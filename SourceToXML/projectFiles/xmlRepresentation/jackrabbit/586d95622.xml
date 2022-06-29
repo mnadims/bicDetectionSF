@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/586d95622.java"><expr_stmt><expr><name>From</name> <literal type="number">586d95622fa90c6b91e59485ced8208003028edc</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jukka</name> <name><name>Zitting</name> <argument_list type="generic">&lt;<argument><name>jukka</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">18</literal> <name>Jan</name> <literal type="number">2011</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">05</literal><operator>:</operator><literal type="number">03</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">2832</literal><operator>:</operator> <name>Crash</name> <name>when</name> <name>adding</name> <name>node</name> <name>to</name> <name>cluster</name> <name>with</name> <name>big</name> <name>journal</name>
+ <name>on</name> <name>PSQL</name> <name>DB</name>
+
+<name>Patch</name> <name>by</name> <name>Omid</name> <name>Milani</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@1060431 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>journal</name><operator>/</operator><name><name>DatabaseJournal</name><operator>.</operator><name>java</name></name>         <operator>|</operator> <literal type="number">26</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name>db</name><operator>/</operator><name><name>ConnectionHelper</name><operator>.</operator><name>java</name></name>        <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">27</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>journal</name><operator>/</operator><name><name>DatabaseJournal</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>journal</name><operator>/</operator><name><name>DatabaseJournal</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c7d9995f4</name><operator>..</operator><name>e39fbeaa0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>journal</name><operator>/</operator><name><name>DatabaseJournal</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>journal</name><operator>/</operator><name><name>DatabaseJournal</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">434</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">434</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@ <specifier>public</specifier> <name>class</name> <name>DatabaseJournal</name> extends <name>AbstractJournal</name> implements <name>DatabaseAware</name> <block>{
+         }</block></expr></expr_stmt>
+     }
+ 
+    <comment type="block" format="javadoc">/**
+     * Synchronize contents from journal. May be overridden by subclasses.
+     * Override to do it in batchMode, since some databases (PSQL) when 
+     * not in transactional mode, load all results in memory which causes
+     * out of memory.
+     *
+     * @param startRevision start point (exclusive)
+     * @throws JournalException if an error occurs
+     */</comment>
+    @<function><type><name>Override</name>
+    <specifier>protected</specifier> <name>void</name></type> <name>doSync</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>startRevision</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>JournalException</name></expr></argument></throws> <block>{<block_content>
+        <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>conHelper</name><operator>.</operator><name>startBatch</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>doSync</name></name><argument_list>(<argument><expr><name>startRevision</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SQLException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// Should throw journal exception instead of just logging it?</comment>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"couldn't sync the cluster node"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch> <finally>finally <block>{<block_content>
+            <try>try <block>{<block_content>
+                <expr_stmt><expr><call><name><name>conHelper</name><operator>.</operator><name>endBatch</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SQLException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"couldn't close connection"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></catch></try>
+        </block_content>}</block></finally></try>
+    </block_content>}</block></function>
+
+     <comment type="block" format="javadoc">/**
+      * {@inheritDoc}
+      * &lt;p/&gt;
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/util/db/ConnectionHelper.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/util/db/ConnectionHelper.java
+index 21a41c849..266b3aa50 100644
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/util/db/ConnectionHelper.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/util/db/ConnectionHelper.java
+@@ -355,6 +355,7 @@ public class ConnectionHelper {
+                 stmt = con.prepareStatement(sql);
+             }
+             stmt.setMaxRows(maxRows);
+            stmt.setFetchSize(10000);
+             execute(stmt, params);
+             if (returnGeneratedKeys) {
+                 rs = stmt.getGeneratedKeys();
+- 
+2.19.1.windows.1
+
+</comment></unit>

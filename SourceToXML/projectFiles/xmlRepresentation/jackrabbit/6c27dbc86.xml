@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/6c27dbc86.java"><expr_stmt><expr><name>From</name> <literal type="number">6c27dbc86a3caf7bd1122a106a7e2d54307b00de</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Marcel</name> <name><name>Reutegger</name> <argument_list type="generic">&lt;<argument><name>mreutegg</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">30</literal> <name>Nov</name> <literal type="number">2009</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">06</literal><operator>:</operator><literal type="number">33</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">2413</literal><operator>:</operator> <name>AlreadyClosedException</name> <name>on</name> <name>initial</name> <name>index</name> <name>creation</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@885411 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MultiIndex</name><operator>.</operator><name>java</name></name>         <operator>|</operator> <literal type="number">25</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">8</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">17</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MultiIndex</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MultiIndex</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c5ade8b2d</name><operator>..</operator><literal type="number">759021d6a</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MultiIndex</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MultiIndex</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">329</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">329</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MultiIndex</name> <block>{
+         <expr><name>flushTask</name> <operator>=</operator> <operator>new</operator> <class><super><name><name>Timer</name><operator>.</operator><name>Task</name></name></super><argument_list>()</argument_list> <block>{
+             <function><type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+                 <comment type="line">// check if there are any indexing jobs finished</comment>
+                <expr_stmt><expr><call><name>checkIndexingQueue</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name>checkIndexingQueue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 <comment type="line">// check if volatile index should be flushed</comment>
+                 <expr_stmt><expr><call><name>checkFlush</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             <expr_stmt/></block_content></block></function></block></class></expr>}</block>
+@@ <operator>-</operator><literal type="number">1264</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">1264</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>MultiIndex</name> <block>{
+         }</block></expr></expr_stmt>
+     }
+ 
+    <comment type="block" format="javadoc">/**
+     * Checks the indexing queue for finished text extrator jobs and updates the
+     * index accordingly if there are any new ones. This method is synchronized
+     * and should only be called by the timer task that periodically checks if
+     * there are documents ready in the indexing queue. A new transaction is
+     * used when documents are transfered from the indexing queue to the index.
+     */</comment>
+    private <function><type><specifier>synchronized</specifier> <name>void</name></type> <name>checkIndexingQueue</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name>checkIndexingQueue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+     <comment type="block" format="javadoc">/**
+      * Checks the indexing queue for finished text extrator jobs and updates the
+      * index accordingly if there are any new ones.
+@@ -1304,11 +1293,13 @@ public class MultiIndex {
+ 
+             try {
+                 if (transactionPresent) {
+                    for (NodeId id : finished.keySet()) {
+                        executeAndLog(new DeleteNode(getTransactionId(), id));
+                    }
+                    for (Document document : finished.values()) {
+                        executeAndLog(new AddNode(getTransactionId(), document));
+                    synchronized (this) {
+                        for (NodeId id : finished.keySet()) {
+                            executeAndLog(new DeleteNode(getTransactionId(), id));
+                        }
+                        for (Document document : finished.values()) {
+                            executeAndLog(new AddNode(getTransactionId(), document));
+                        }
+                     }
+                 } else {
+                     update(finished.keySet(), finished.values());
+- 
+2.19.1.windows.1
+
+</comment></unit>

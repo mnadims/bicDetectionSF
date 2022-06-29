@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/6b9a59753a.java"><expr_stmt><expr><name>From</name> <literal type="number">6b9a59753a924c6e07a68a0de61f0fb2792df102</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jonathan</name> <name><name>Hurley</name> <argument_list type="generic">&lt;<argument><name>jhurley</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">8</literal> <name>Apr</name> <literal type="number">2017</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">17</literal><operator>:</operator><literal type="number">14</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">20712</literal> <operator>-</operator> <name>Parallel</name> <name>Requests</name> <name>With</name> <name>Intersecting</name> <name>Hosts</name>
+ <name>Don</name><literal type="char">'t Block Correctly (jonathanhurley)
+
+--
+ .../server/actionmanager/ActionScheduler.java | 154 ++++++++----------
+ .../server/actionmanager/HostRoleCommand.java |  26 +++
+ .../AmbariCustomCommandExecutionHelper.java   |   3 +-
+ .../server/orm/dao/HostRoleCommandDAO.java    |  49 ++++++
+ .../orm/entities/HostRoleCommandEntity.java   |  33 +++-
+ .../resources/Ambari-DDL-Derby-CREATE.sql     |   1 +
+ .../resources/Ambari-DDL-MySQL-CREATE.sql     |   1 +
+ .../resources/Ambari-DDL-Oracle-CREATE.sql    |   1 +
+ .../resources/Ambari-DDL-Postgres-CREATE.sql  |   1 +
+ .../Ambari-DDL-SQLAnywhere-CREATE.sql         |   3 +-
+ .../resources/Ambari-DDL-SQLServer-CREATE.sql |   1 +
+ .../actionmanager/TestActionScheduler.java    |  41 +++--
+ 12 files changed, 204 insertions(+), 110 deletions(-)
+
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+index 758db3516f..316f2bdbff 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+@@ -42,7 +42,6 @@ import org.apache.ambari.server.ServiceComponentHostNotFoundException;
+ import org.apache.ambari.server.ServiceComponentNotFoundException;
+ import org.apache.ambari.server.agent.ActionQueue;
+ import org.apache.ambari.server.agent.AgentCommand;
+import org.apache.ambari.server.agent.AgentCommand.AgentCommandType;
+ import org.apache.ambari.server.agent.CancelCommand;
+ import org.apache.ambari.server.agent.CommandReport;
+ import org.apache.ambari.server.agent.ExecutionCommand;
+@@ -355,15 +354,15 @@ class ActionScheduler implements Runnable {
+       }
+ 
+       Set&lt;Long&gt; runningRequestIds = new HashSet&lt;&gt;();
+      List&lt;Stage&gt; stages = db.getFirstStageInProgressPerRequest();
+      List&lt;Stage&gt; firstStageInProgressPerRequest = db.getFirstStageInProgressPerRequest();
+       if (LOG.isDebugEnabled()) {
+         LOG.debug("Scheduler wakes up");
+        LOG.debug("Processing {} in progress stages ", stages.size());
+        LOG.debug("Processing {} in progress stages", firstStageInProgressPerRequest.size());
+       }
+ 
+      publishInProgressTasks(stages);
+      publishInProgressTasks(firstStageInProgressPerRequest);
+ 
+      if (stages.isEmpty()) {
+      if (firstStageInProgressPerRequest.isEmpty()) {
+         // Nothing to do
+         if (LOG.isDebugEnabled()) {
+           LOG.debug("There are no stages currently in progress.");
+@@ -375,11 +374,19 @@ class ActionScheduler implements Runnable {
+ 
+       int i_stage = 0;
+ 
+      HashSet&lt;String&gt; hostsWithTasks = getListOfHostsWithPendingTask(stages);
+      actionQueue.updateListOfHostsWithPendingTask(hostsWithTasks);
+      // get the range of requests in progress
+      long iLowestRequestIdInProgress = firstStageInProgressPerRequest.get(0).getRequestId();
+      long iHighestRequestIdInProgress = firstStageInProgressPerRequest.get(
+          firstStageInProgressPerRequest.size() - 1).getRequestId();
+ 
+      stages = filterParallelPerHostStages(stages);
+      // At this point the stages is a filtered list
+      List&lt;String&gt; hostsWithPendingTasks = hostRoleCommandDAO.getHostsWithPendingTasks(
+          iLowestRequestIdInProgress, iHighestRequestIdInProgress);
+
+      actionQueue.updateListOfHostsWithPendingTask(new HashSet&lt;&gt;(hostsWithPendingTasks));
+
+      // filter the stages in progress down to those which can be scheduled in
+      // parallel
+      List&lt;Stage&gt; stages = filterParallelPerHostStages(firstStageInProgressPerRequest);
+ 
+       boolean exclusiveRequestIsGoing = false;
+       // This loop greatly depends on the fact that order of stages in
+@@ -565,123 +572,92 @@ class ActionScheduler implements Runnable {
+   }
+ 
+   /**
+   * Returns the list of hosts that have a task assigned
+   *
+   * @param stages
+   * @return
+   */
+  private HashSet&lt;String&gt; getListOfHostsWithPendingTask(List&lt;Stage&gt; stages) {
+    HashSet&lt;String&gt; hostsWithTasks = new HashSet&lt;&gt;();
+    for (Stage s : stages) {
+      hostsWithTasks.addAll(s.getHosts());
+    }
+    return hostsWithTasks;
+  }
+
+  /**
+   * Returns filtered list of stages such that the returned list is an ordered list of stages that may
+   * be executed in parallel or in the order in which they are presented
+   * Returns filtered list of stages such that the returned list is an ordered
+   * list of stages that may be executed in parallel or in the order in which
+   * they are presented.
+    * &lt;p/&gt;
+   * Assumption: the list of stages supplied as input are ordered by request id and then stage id.
+   * The specified stages must be ordered by request ID and may only contain the
+   * next stage in progress per request (as returned by
+   * {@link ActionDBAccessor#getFirstStageInProgressPerRequest()}. This is
+   * because there is a requirement that within a request, no two stages may
+   * ever run in parallel.
+    * &lt;p/&gt;
+   * Rules:
+   * The following rules will be applied to the list:
+    * &lt;ul&gt;
+   * &lt;li&gt;
+   * Stages are filtered such that the first stage in the list (assumed to be the first pending
+   * stage from the earliest active request) has priority
+   * &lt;/li&gt;
+   * &lt;li&gt;
+   * No stage in any request may be executed before an earlier stage in the same request
+   * &lt;/li&gt;
+   * &lt;li&gt;
+   * A stages in different requests may be performed in parallel if the relevant hosts for the
+   * stage in the later requests do not intersect with the union of hosts from (pending) stages
+   * in earlier requests
+   * &lt;li&gt;Stages are filtered such that the first stage in the list (assumed to
+   * be the first pending stage from the earliest active request) has priority.
+    * &lt;/li&gt;
+   * &lt;li&gt;No stage in any request may be executed before an earlier stage in the
+   * same request. This requirement is automatically covered by virtue of the
+   * supplied stages only being for the next stage in progress per request.&lt;/li&gt;
+   * &lt;li&gt;A stage in different request may be performed in parallel
+   * if-and-only-if the relevant hosts for the stage in the later requests do
+   * not intersect with the union of hosts from (pending) stages in earlier
+   * requests. In order to accomplish this&lt;/li&gt;
+    * &lt;/ul&gt;
+    *
+   * @param stages the stages to process
+   * @param firstStageInProgressPerRequest
+   *          the stages to process, one stage per request
+    * @return a list of stages that may be executed in parallel
+    */
+  private List&lt;Stage&gt; filterParallelPerHostStages(List&lt;Stage&gt; stages) {
+  private List&lt;Stage&gt; filterParallelPerHostStages(List&lt;Stage&gt; firstStageInProgressPerRequest) {
+    // if there'</literal><name>s</name> <name>only</name> <literal type="number">1</literal> <name>stage</name> <name>in</name> <name>progress</name> <name>in</name> <literal type="number">1</literal> <name>request</name></expr><operator>,</operator> <expr><name>simply</name></expr></expr_stmt> <return>return <expr><name>that</name> <name>stage</name></expr></return>
+    <if_stmt><if>if <condition>(<expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name>firstStageInProgressPerRequest</name></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name></type> <name>retVal</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>affectedHosts</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>Long</name></argument>&gt;</argument_list></name></type> <name>affectedRequests</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+    <for>for <control>(<init><decl><type><name>Stage</name></type> <name>s</name> <range>: <expr><name>stages</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>long</name></type> <name>requestId</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// set the lower range (inclusive) of requests to limit the query a bit</comment>
+    <comment type="line">// since there can be a LOT of commands</comment>
+    <decl_stmt><decl><type><name>long</name></type> <name>lowerRequestIdInclusive</name> <init>= <expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getRequestId</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// determine if this stage can be scheduled in parallel with the other</comment>
+    <comment type="line">// stages from other requests</comment>
+    <for>for <control>(<init><decl><type><name>Stage</name></type> <name>stage</name> <range>: <expr><name>firstStageInProgressPerRequest</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>long</name></type> <name>requestId</name> <init>= <expr><call><name><name>stage</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isTraceEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"==&gt; Processing stage: {}/{} ({}) for {}"</literal></expr></argument>, <argument><expr><name>requestId</name></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"==&gt; Processing stage: {}/{} ({}) for {}"</literal></expr></argument>, <argument><expr><name>requestId</name></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+ 
+       <decl_stmt><decl><type><name>boolean</name></type> <name>addStage</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+ 
+      <comment type="line">// there are at least 2 request in progress concurrently; determine which</comment>
+      <comment type="line">// hosts are affected</comment>
+      <decl_stmt><decl><type><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>hostsInProgressForEarlierRequests</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+          <argument><expr><call><name><name>hostRoleCommandDAO</name><operator>.</operator><name>getBlockingHostsForRequest</name></name><argument_list>(<argument><expr><name>lowerRequestIdInclusive</name></expr></argument>, <argument><expr><name>requestId</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+       <comment type="line">// Iterate over the relevant hosts for this stage to see if any intersect with the set of</comment>
+       <comment type="line">// hosts needed for previous stages.  If any intersection occurs, this stage may not be</comment>
+       <comment type="line">// executed in parallel.</comment>
+      <for>for <control>(<init><decl><type><name>String</name></type> <name>host</name> <range>: <expr><call><name><name>s</name><operator>.</operator><name>getHosts</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>String</name></type> <name>host</name> <range>: <expr><call><name><name>stage</name><operator>.</operator><name>getHosts</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt; Processing Host {}"</literal></expr></argument>, <argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+        <if_stmt><if>if <condition>(<expr><call><name><name>affectedHosts</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>hostsInProgressForEarlierRequests</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+           <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isTraceEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt;  Skipping stage since it utilizes at least one host that a previous stage requires: {}/{} ({})"</literal></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt;  Skipping stage since it utilizes at least one host that a previous stage requires: {}/{} ({})"</literal></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           </block_content>}</block></if></if_stmt>
+ 
+          <expr_stmt><expr><name>addStage</name> <operator>&amp;=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Stage</name><operator>.</operator><name>INTERNAL_HOSTNAME</name><operator>.</operator><name>equalsIgnoreCase</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>isStageHasBackgroundCommandsOnly</name><argument_list>(<argument><expr><name>s</name></expr></argument>, <argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"====&gt;  Adding host to affected hosts: {}"</literal></expr></argument>, <argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>affectedHosts</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+
+          <expr_stmt><expr><name>addStage</name> <operator>&amp;=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block></if></if_stmt>
+
+      <comment type="line">// If this stage is for a request that we have already processed, the it cannot execute in</comment>
+      <comment type="line">// parallel since only one stage per request my execute at a time. The first time we encounter</comment>
+      <comment type="line">// a request id, will be for the first pending stage for that request, so it is a candidate</comment>
+      <comment type="line">// for execution at this time - if the previous test for host intersection succeeds.</comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>affectedRequests</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>requestId</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isTraceEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt;  Skipping stage since the request it is in has been processed already: {}/{} ({})"</literal></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+        <expr_stmt><expr><name>addStage</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isTraceEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"====&gt;  Adding request to affected requests: {}"</literal></expr></argument>, <argument><expr><name>requestId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>addStage</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+          <break>break;</break>
+         </block_content>}</block></if></if_stmt>
+
+        <expr_stmt><expr><call><name><name>affectedRequests</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>requestId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>addStage</name> <operator>&amp;=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+       </block_content>}</block></else></if_stmt>
+ 
+      <comment type="line">// If both tests pass - the stage is the first pending stage in its request and the hosts</comment>
+      <comment type="line">// required in the stage do not intersect with hosts from stages that should occur before this,</comment>
+      <comment type="line">// than add it to the list of stages that may be executed in parallel.</comment>
+      <comment type="line">// add the stage is no other prior stages for prior requests intersect the</comment>
+      <comment type="line">// hosts in this stage</comment>
+       <if_stmt><if>if <condition>(<expr><name>addStage</name></expr>)</condition> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isTraceEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt;  Adding stage to return value: {}/{} ({})"</literal></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt;  Adding stage to return value: {}/{} ({})"</literal></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>stage</name><operator>.</operator><name>getRequestContext</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+ 
+        <expr_stmt><expr><call><name><name>retVal</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>retVal</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>stage</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+     </block_content>}</block></for>
+ 
+     <return>return <expr><name>retVal</name></expr>;</return>
+   </block_content>}</block></for>
+ 
+  <function><type><specifier>private</specifier> <name>boolean</name></type> <name>isStageHasBackgroundCommandsOnly</name><parameter_list>(<parameter><decl><type><name>Stage</name></type> <name>s</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>host</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>ExecutionCommandWrapper</name></type> <name>c</name> <range>: <expr><call><name><name>s</name><operator>.</operator><name>getExecutionCommands</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>c</name><operator>.</operator><name>getCommandType</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>AgentCommandType</name><operator>.</operator><name>BACKGROUND_EXECUTION_COMMAND</name></name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><type><specifier>private</specifier> <name>boolean</name></type> <name>hasPreviousStageFailed</name><parameter_list>(<parameter><decl><type><name>Stage</name></type> <name>stage</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><name>boolean</name></type> <name>failed</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">651eb2413a</literal><operator>..</operator><literal type="number">87a6edf4d6</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostRoleCommand</name> <block>{
+   <expr><specifier>private</specifier> <name>String</name> <name>commandDetail</name></expr>;
+   <expr><specifier>private</specifier> <name>String</name> <name>customCommandName</name></expr>;
+   <expr><specifier>private</specifier> <name>ExecutionCommandWrapper</name> <name>executionCommandWrapper</name></expr>;
+  <expr><specifier>private</specifier> <name>boolean</name> <name>isBackgroundCommand</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+ 
+   @<expr><name>Inject</name>
+   <specifier>private</specifier> <name>ExecutionCommandDAO</name> <name>executionCommandDAO</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">179</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">180</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostRoleCommand</name> <block>{
+     <expr><name>event</name> <operator>=</operator> <operator>new</operator> <call><name>ServiceComponentHostEventWrapper</name><argument_list>(<argument><expr><call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>getEvent</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>commandDetail</name> <operator>=</operator> <call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>getCommandDetail</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>customCommandName</name> <operator>=</operator> <call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>getCustomCommandName</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><name>isBackgroundCommand</name> <operator>=</operator> <call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>isBackgroundCommand</name></name><argument_list>()</argument_list></call></expr>;
+   }</block>
+ 
+   <comment type="line">//todo: why is this not symmetrical with the constructor which takes an entity</comment>
+@@ <operator>-</operator><literal type="number">201</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">203</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostRoleCommand</name> <block>{
+     <expr><call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>setRoleCommand</name></name><argument_list>(<argument><expr><name>roleCommand</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>setCommandDetail</name></name><argument_list>(<argument><expr><name>commandDetail</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>setCustomCommandName</name></name><argument_list>(<argument><expr><name>customCommandName</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>hostRoleCommandEntity</name><operator>.</operator><name>setBackgroundCommand</name></name><argument_list>(<argument><expr><name>isBackgroundCommand</name></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><name>HostEntity</name> <name>hostEntity</name> <operator>=</operator> <call><name><name>hostDAO</name><operator>.</operator><name>findById</name></name><argument_list>(<argument><expr><name>hostId</name></expr></argument>)</argument_list></call></expr>;
+     <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>hostEntity</name></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">432</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">435</literal></expr><operator>,</operator><expr><literal type="number">29</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostRoleCommand</name> <block>{
+     <return>return <expr><name>requestId</name></expr>;</return></block></expr></expr_stmt></block_content></block></if></if_stmt>
+   }</block>
+ 
+  <comment type="block" format="javadoc">/**
+   * Gets whether this command runs in the background and does not block other
+   * commands.
+   *
+   * @return {@code true} if this command runs in the background, {@code false}
+   *         otherise.
+   */</comment>
+  <specifier>public</specifier> <name>boolean</name> <call><name>isBackgroundCommand</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>isBackgroundCommand</name></expr>;</return></block></expr>
+  }</block>
+
+  <comment type="block" format="javadoc">/**
+   * Sets whether this command runs in the background and does not block other
+   * commands.
+   *
+   * @param isBackgroundCommand
+   *          {@code true} if this command runs in the background, {@code false}
+   *          otherise.
+   */</comment>
+  <specifier>public</specifier> <name>void</name> <call><name>setBackgroundCommand</name><argument_list>(<argument><expr><name>boolean</name> <name>isBackgroundCommand</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>isBackgroundCommand</name></name> <operator>=</operator> <name>isBackgroundCommand</name></expr>;
+  }</block>
+
+   <comment type="block" format="javadoc">/**
+    * Gets whether commands which fail and are retryable are automatically
+    * skipped and marked with {@link HostRoleStatus#SKIPPED_FAILED}.
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
+index 77d5bf89db..d5018f55b2 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
+@@ -144,7 +144,7 @@ public class AmbariCustomCommandExecutionHelper {
+   private final static String ALIGN_MAINTENANCE_STATE = "align_maintenance_state";
+ 
+   public final static int MIN_STRICT_SERVICE_CHECK_TIMEOUT = 120;
+  
+
+   @Inject
+   private ActionMetadata actionMetadata;
+ 
+@@ -378,6 +378,7 @@ public class AmbariCustomCommandExecutionHelper {
+ 
+       //set type background
+       if(customCommandDefinition != null &amp;&amp; customCommandDefinition.isBackground()){
+        cmd.setBackgroundCommand(true);
+         execCmd.setCommandType(AgentCommandType.BACKGROUND_EXECUTION_COMMAND);
+       }
+ 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
+index 79b8bc9f31..73181623c1 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
+@@ -43,6 +43,7 @@ import org.apache.ambari.server.RoleCommand;
+ import org.apache.ambari.server.actionmanager.HostRoleCommand;
+ import org.apache.ambari.server.actionmanager.HostRoleCommandFactory;
+ import org.apache.ambari.server.actionmanager.HostRoleStatus;
+import org.apache.ambari.server.agent.AgentCommand.AgentCommandType;
+ import org.apache.ambari.server.api.query.JpaPredicateVisitor;
+ import org.apache.ambari.server.api.query.JpaSortBuilder;
+ import org.apache.ambari.server.configuration.Configuration;
+@@ -913,6 +914,54 @@ public class HostRoleCommandDAO {
+     return daoUtils.selectList(typedQuery);
+   }
+ 
+  /**
+   * Gets a lists of hosts with commands in progress given a range of requests.
+   * The range of requests should include all requests with at least 1 stage in
+   * progress.
+   *
+   * @return the list of hosts with commands in progress.
+   * @see HostRoleStatus#IN_PROGRESS_STATUSES
+   */</comment>
+  @<name>RequiresSession</name>
+  <specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <call><name>getHostsWithPendingTasks</name><argument_list>(<argument><expr><name>long</name> <name>iLowestRequestIdInProgress</name></expr></argument>,
+      <argument><expr><name>long</name> <name>iHighestRequestIdInProgress</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>TypedQuery</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>query</name> <operator>=</operator> <call><name><name>entityManagerProvider</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createNamedQuery</name><argument_list>(
+        <argument><expr><literal type="string">"HostRoleCommandEntity.findHostsByCommandStatus"</literal></expr></argument>, <argument><expr><name><name>String</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+
+    <expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"iLowestRequestIdInProgress"</literal></expr></argument>, <argument><expr><name>iLowestRequestIdInProgress</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"iHighestRequestIdInProgress"</literal></expr></argument>, <argument><expr><name>iHighestRequestIdInProgress</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"statuses"</literal></expr></argument>, <argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>IN_PROGRESS_STATUSES</name></name></expr></argument>)</argument_list></call></expr>;
+    <return>return <expr><call><name><name>daoUtils</name><operator>.</operator><name>selectList</name></name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr>;</return>
+  }</block></expr></expr_stmt>
+
+  <comment type="block" format="javadoc">/**
+   * Gets a lists of hosts with commands in progress which occurr before the
+   * specified request ID. This will only return commands which are not
+   * {@link AgentCommandType#BACKGROUND_EXECUTION_COMMAND} as thsee commands do
+   * not block future requests.
+   *
+   * @param lowerRequestIdInclusive
+   *          the lowest request ID to consider (inclusive) when getting any
+   *          blocking hosts.
+   * @param requestId
+   *          the request ID to calculate any blocking hosts for (essentially,
+   *          the upper limit exclusive)
+   * @return the list of hosts from older running requests which will block
+   *         those same hosts in the specified request ID.
+   * @see HostRoleStatus#IN_PROGRESS_STATUSES
+   */</comment>
+  <function><annotation>@<name>RequiresSession</name></annotation>
+  <type><specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getBlockingHostsForRequest</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>lowerRequestIdInclusive</name></decl></parameter>,
+      <parameter><decl><type><name>long</name></type> <name>requestId</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>TypedQuery</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>query</name> <init>= <expr><call><name><name>entityManagerProvider</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createNamedQuery</name><argument_list>(
+        <argument><expr><literal type="string">"HostRoleCommandEntity.getBlockingHostsForRequest"</literal></expr></argument>, <argument><expr><name><name>String</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"lowerRequestIdInclusive"</literal></expr></argument>, <argument><expr><name>lowerRequestIdInclusive</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"upperRequestIdExclusive"</literal></expr></argument>, <argument><expr><name>requestId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"statuses"</literal></expr></argument>, <argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>IN_PROGRESS_STATUSES</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><call><name><name>daoUtils</name><operator>.</operator><name>selectList</name></name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * The {@link HostRoleCommandPredicateVisitor} is used to convert an Ambari
+    * {@link Predicate} into a JPA {@link javax.persistence.criteria.Predicate}.
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/HostRoleCommandEntity.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/HostRoleCommandEntity.java
+index a809295a14..fdec5f040a 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/HostRoleCommandEntity.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/HostRoleCommandEntity.java
+@@ -70,7 +70,14 @@ import org.apache.commons.lang.ArrayUtils;
+     @NamedQuery(name = "HostRoleCommandEntity.findByHostRoleNullHost", query = "SELECT command FROM HostRoleCommandEntity command WHERE command.hostEntity IS NULL AND command.requestId=:requestId AND command.stageId=:stageId AND command.role=:role"),
+     @NamedQuery(name = "HostRoleCommandEntity.findByStatusBetweenStages", query = "SELECT command FROM HostRoleCommandEntity command WHERE command.requestId = :requestId AND command.stageId &gt;= :minStageId AND command.stageId &lt;= :maxStageId AND command.status = :status"),
+     @NamedQuery(name = "HostRoleCommandEntity.updateAutoSkipExcludeRoleCommand", query = "UPDATE HostRoleCommandEntity command SET command.autoSkipOnFailure = :autoSkipOnFailure WHERE command.requestId = :requestId AND command.roleCommand &lt;&gt; :roleCommand"),
+    @NamedQuery(name = "HostRoleCommandEntity.updateAutoSkipForRoleCommand", query = "UPDATE HostRoleCommandEntity command SET command.autoSkipOnFailure = :autoSkipOnFailure WHERE command.requestId = :requestId AND command.roleCommand = :roleCommand")
+    @NamedQuery(name = "HostRoleCommandEntity.updateAutoSkipForRoleCommand", query = "UPDATE HostRoleCommandEntity command SET command.autoSkipOnFailure = :autoSkipOnFailure WHERE command.requestId = :requestId AND command.roleCommand = :roleCommand"),
+    @NamedQuery(
+        name = "HostRoleCommandEntity.findHostsByCommandStatus",
+        query = "SELECT DISTINCT(host.hostName) FROM HostRoleCommandEntity command, HostEntity host WHERE (command.requestId &gt;= :iLowestRequestIdInProgress AND command.requestId &lt;= :iHighestRequestIdInProgress) AND command.status IN :statuses AND command.hostId = host.hostId AND host.hostName IS NOT NULL"),
+    @NamedQuery(
+        name = "HostRoleCommandEntity.getBlockingHostsForRequest",
+        query = "SELECT DISTINCT(host.hostName) FROM HostRoleCommandEntity command, HostEntity host WHERE command.requestId &gt;= :lowerRequestIdInclusive AND command.requestId &lt; :upperRequestIdExclusive AND command.status IN :statuses AND command.isBackgroundCommand=0 AND command.hostId = host.hostId AND host.hostName IS NOT NULL")
+
+ })
+ public class HostRoleCommandEntity {
+ 
+@@ -195,6 +202,10 @@ public class HostRoleCommandEntity {
+   @OneToOne(mappedBy = "hostRoleCommandEntity", cascade = CascadeType.REMOVE)
+   private TopologyLogicalTaskEntity topologyLogicalTaskEntity;
+ 
+  @Basic
+  @Column(name = "is_background_command", nullable = false)
+  private short isBackgroundCommand = 0;
+
+   public Long getTaskId() {
+     return taskId;
+   }
+@@ -407,6 +418,26 @@ public class HostRoleCommandEntity {
+     autoSkipOnFailure = skipFailures ? 1 : 0;
+   }
+ 
+  /**
+   * Sets whether this is a command is a background command and will not block
+   * other commands.
+   *
+   * @param runInBackground
+   *          {@code true} if this is a background command, {@code false}
+   *          otherwise.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setBackgroundCommand</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>runInBackground</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>isBackgroundCommand</name> <operator>=</operator> <operator>(</operator><name>short</name><operator>)</operator> <operator>(</operator><ternary><condition><expr><name>runInBackground</name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><literal type="number">0</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Gets whether this command runs in the background and will not block other
+   * commands.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isBackgroundCommand</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><ternary><condition><expr><name>isBackgroundCommand</name> <operator>==</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="boolean">false</literal></expr> </then><else>: <expr><literal type="boolean">true</literal></expr></else></ternary></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>boolean</name></type> <name>equals</name><parameter_list>(<parameter><decl><type><name>Object</name></type> <name>o</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <if_stmt><if>if <condition>(<expr><name>this</name> <operator>==</operator> <name>o</name></expr>)</condition> <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Derby</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Derby</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <literal type="number">6744a74b54</literal><operator>..</operator><literal type="number">5785a9dd48</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Derby</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Derby</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">383</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">383</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>role_command</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <literal type="number">6279f83c58</literal><operator>..</operator><literal type="number">96ef0ac206</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">404</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">404</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>structured_out</name> <name>LONGBLOB</name></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <literal type="number">470eb6082c</literal><operator>..</operator><literal type="number">3396ce9a8b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">384</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">384</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>structured_out</name> <name>BLOB</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR2</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call> <name>NULL</name></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR2</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call> <name>NULL</name></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <literal type="number">87ffb7feb0</literal><operator>..</operator><name>c6bfa94a52</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">383</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">383</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>role_command</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <name>a460194c1e</name><operator>..</operator><name>bbf5d3cc63</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">75</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">75</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>clusterconfig</name> <argument_list>(
+   <argument><expr><name>config_data</name> <name>TEXT</name> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>config_attributes</name> <name>TEXT</name></expr></argument>,
+   <argument><expr><name>create_timestamp</name> <call><name>NUMERIC</name><argument_list>(<argument><expr><literal type="number">19</literal></expr></argument>)</argument_list></call> <name>NOT</name> <name>NULL</name></expr></argument>,
+  <argument><expr><name>selected_timestamp</name> <call><name>NUMERIC</name><argument_list>(<argument><expr><literal type="number">19</literal></expr></argument>)</argument_list></call> <name>NOT</name> <name>NULL</name> <name>DEFAULT</name> <literal type="number">0</literal></expr></argument>,  
+  <argument><expr><name>selected_timestamp</name> <call><name>NUMERIC</name><argument_list>(<argument><expr><literal type="number">19</literal></expr></argument>)</argument_list></call> <name>NOT</name> <name>NULL</name> <name>DEFAULT</name> <literal type="number">0</literal></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_clusterconfig</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>config_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_clusterconfig_cluster_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>cluster_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>clusters</name> <argument_list>(<argument><expr><name>cluster_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_clusterconfig_stack_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stack_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stack</name><argument_list>(<argument><expr><name>stack_id</name></expr></argument>)</argument_list></call></expr></argument>,
+<argument>@@ <expr><operator>-</operator><literal type="number">382</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">382</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>structured_out</name> <name>IMAGE</name></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<name>index</name> <literal type="number">237c892332</literal><operator>..</operator><literal type="number">13ab01dd33</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>
+@@ <operator>-</operator><literal type="number">388</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">388</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>CREATE</name> <name>TABLE</name> <call><name>host_role_command</name> <argument_list>(
+   <argument><expr><name>role_command</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>command_detail</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>custom_command_name</name> <call><name>VARCHAR</name><argument_list>(<argument><expr><literal type="number">255</literal></expr></argument>)</argument_list></call></expr></argument>,
+  <argument><expr><name>is_background_command</name> <name>SMALLINT</name> <name>DEFAULT</name> <literal type="number">0</literal> <name>NOT</name> <name>NULL</name></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>PK_host_role_command</name> <name>PRIMARY</name> <name>KEY</name> <call><name>CLUSTERED</name> <argument_list>(<argument><expr><name>task_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_host_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>hosts</name> <argument_list>(<argument><expr><name>host_id</name></expr></argument>)</argument_list></call></expr></argument>,
+   <argument><expr><name>CONSTRAINT</name> <name>FK_host_role_command_stage_id</name> <name>FOREIGN</name> <call><name>KEY</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call> <name>REFERENCES</name> <call><name>stage</name> <argument_list>(<argument><expr><name>stage_id</name></expr></argument>, <argument><expr><name>request_id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>TestActionScheduler</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>TestActionScheduler</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d7d3d404d0</name><operator>..</operator><name>b1a75249c6</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>TestActionScheduler</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>TestActionScheduler</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">1106</literal></expr><operator>,</operator><expr><literal type="number">41</literal> <operator>+</operator><literal type="number">1106</literal></expr><operator>,</operator><expr><literal type="number">45</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+     <expr><call><name><name>hosts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>hostname4</name></expr></argument>, <argument><expr><name>sch</name></expr></argument>)</argument_list></call></expr>;
+     <call><name>when</name><argument_list>(<argument><expr><call><name><name>scomp</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>hosts</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name></type> <name>stages</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>(
+    <argument><expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name> <name>firstStageInProgressPerRequest</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+
+    <expr_stmt><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>add</name></name><argument_list>(
+             <argument><expr><call><name>getStageWithSingleTask</name><argument_list>(
+                     <argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><name><name>Role</name><operator>.</operator><name>DATANODE</name></name></expr></argument>,
+                     <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>START</name></name></expr></argument>, <argument><expr><name><name>Service</name><operator>.</operator><name>Type</name><operator>.</operator><name>HDFS</name></name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>( <comment type="line">// Stage with the same hostname, should not be scheduled</comment>
+
+    <comment type="line">// Stage with the same hostname, should not be scheduled</comment>
+    <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>add</name></name><argument_list>(
+             <argument><expr><call><name>getStageWithSingleTask</name><argument_list>(
+                     <argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><name><name>Role</name><operator>.</operator><name>GANGLIA_MONITOR</name></name></expr></argument>,
+                     <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>START</name></name></expr></argument>, <argument><expr><name><name>Service</name><operator>.</operator><name>Type</name><operator>.</operator><name>GANGLIA</name></name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+ 
+    <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>(
+    <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>add</name></name><argument_list>(
+             <argument><expr><call><name>getStageWithSingleTask</name><argument_list>(
+                     <argument><expr><name>hostname2</name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><name><name>Role</name><operator>.</operator><name>DATANODE</name></name></expr></argument>,
+                     <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>START</name></name></expr></argument>, <argument><expr><name><name>Service</name><operator>.</operator><name>Type</name><operator>.</operator><name>HDFS</name></name></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+ 
+    <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>(
+    <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>add</name></name><argument_list>(
+         <argument><expr><call><name>getStageWithSingleTask</name><argument_list>(
+             <argument><expr><name>hostname3</name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><name><name>Role</name><operator>.</operator><name>DATANODE</name></name></expr></argument>,
+             <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>START</name></name></expr></argument>, <argument><expr><name><name>Service</name><operator>.</operator><name>Type</name><operator>.</operator><name>HDFS</name></name></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+ 
+    <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>( <comment type="line">// Stage with the same request id, should not be scheduled</comment>
+        <argument><expr><call><name>getStageWithSingleTask</name><argument_list>(
+            <argument><expr><name>hostname4</name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><name><name>Role</name><operator>.</operator><name>GANGLIA_MONITOR</name></name></expr></argument>,
+            <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>START</name></name></expr></argument>, <argument><expr><name><name>Service</name><operator>.</operator><name>Type</name><operator>.</operator><name>GANGLIA</name></name></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+     <decl_stmt><decl><type><name>ActionDBAccessor</name></type> <name>db</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>ActionDBAccessor</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>HostRoleCommandDAO</name></type> <name>hostRoleCommandDAOMock</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>HostRoleCommandDAO</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>Mockito</name><operator>.</operator><name>doNothing</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>when</name><argument_list>(<argument><expr><name>hostRoleCommandDAOMock</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>publishTaskCreateEvent</name><argument_list>(<argument><expr><call><name>anyListOf</name><argument_list>(<argument><expr><name><name>HostRoleCommand</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>blockingHostsRequest1</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>hostRoleCommandDAOMock</name><operator>.</operator><name>getBlockingHostsForRequest</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>blockingHostsRequest1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>blockingHostsRequest2</name> <init>= <expr><call><name><name>Lists</name><operator>.</operator><name>newArrayList</name></name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>hostRoleCommandDAOMock</name><operator>.</operator><name>getBlockingHostsForRequest</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>blockingHostsRequest2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+     <decl_stmt><decl><type><name>RequestEntity</name></type> <name>request</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RequestEntity</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>isExclusive</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>db</name><operator>.</operator><name>getRequestEntity</name></name><argument_list>(<argument><expr><call><name>anyLong</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>request</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>db</name><operator>.</operator><name>getCommandsInProgressCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><call><name><name>stages</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>db</name><operator>.</operator><name>getFirstStageInProgressPerRequest</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>stages</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>db</name><operator>.</operator><name>getCommandsInProgressCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>db</name><operator>.</operator><name>getFirstStageInProgressPerRequest</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>firstStageInProgressPerRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <decl_stmt><decl><type><name>Properties</name></type> <name>properties</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Configuration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1152</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">1156</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+ 
+     <expr><call><name><name>scheduler</name><operator>.</operator><name>doWork</name></name><argument_list>()</argument_list></call></expr>;
+ 
+    <call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>PENDING</name></name></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"GANGLIA_MONITOR"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname2</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname3</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>PENDING</name></name></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">4</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname4</name></expr></argument>, <argument><expr><literal type="string">"GANGLIA_MONITOR"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>PENDING</name></name></expr></argument>, <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>, <argument><expr><literal type="string">"GANGLIA_MONITOR"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname2</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>QUEUED</name></name></expr></argument>, <argument><expr><call><name><name>firstStageInProgressPerRequest</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostRoleStatus</name><argument_list>(<argument><expr><name>hostname3</name></expr></argument>, <argument><expr><literal type="string">"DATANODE"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></if></if_stmt>
+ 
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2065</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">2068</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+     <expr><call><name><name>hosts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>, <argument><expr><name>sch1</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>scomp</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>hosts</name></expr></argument>)</argument_list></call></expr>;
+ 
+    <expr><name>HostRoleCommandDAO</name> <name>hostRoleCommandDAO</name> <operator>=</operator> <call><name>mock</name><argument_list>(<argument><expr><name><name>HostRoleCommandDAO</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+
+     <expr><name>HostEntity</name> <name>hostEntity</name> <operator>=</operator> <operator>new</operator> <call><name>HostEntity</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>hostEntity</name><operator>.</operator><name>setHostName</name></name><argument_list>(<argument><expr><name>hostname1</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>hostDAO</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>hostEntity</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">2100</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">2105</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+ 
+     <expr><name>ActionScheduler</name> <name>scheduler</name> <operator>=</operator> <operator>new</operator> <call><name>ActionScheduler</name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>, <argument><expr><literal type="number">50000</literal></expr></argument>, <argument><expr><name>db</name></expr></argument>, <argument><expr><name>aq</name></expr></argument>, <argument><expr><name>fsm</name></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>,
+         <argument><expr><operator>new</operator> <call><name>HostsMap</name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>unitOfWork</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>entityManagerProviderMock</name></expr></argument>,
+        <argument><expr><operator>(</operator><name>HostRoleCommandDAO</name><operator>)</operator><literal type="null">null</literal></expr></argument>, <argument><expr><operator>(</operator><name>HostRoleCommandFactory</name><operator>)</operator><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><name>hostRoleCommandDAO</name></expr>, <expr><operator>(</operator><name>HostRoleCommandFactory</name><operator>)</operator> <literal type="null">null</literal></expr>)</block></expr>;
+ 
+     <expr><name>final</name> <name>CountDownLatch</name> <name>abortCalls</name> <operator>=</operator> <operator>new</operator> <call><name>CountDownLatch</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;
+ 
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></for></block_content></block></for>
+
+</unit>

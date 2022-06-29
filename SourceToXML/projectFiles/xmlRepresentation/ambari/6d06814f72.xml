@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/6d06814f72.java"><expr_stmt><expr><name>From</name> <literal type="number">6d06814f729d45db11d63465d0e9d640c49d2b23</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Bob</name> <name><name>Nettleton</name> <argument_list type="generic">&lt;<argument><name>rnettleton</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">8</literal> <name>Jan</name> <literal type="number">2016</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">25</literal><operator>:</operator><literal type="number">59</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">14555.</literal> <name>Add</name> <name>Blueprints</name> <name>support</name></expr></expr_stmt> <for>for starting only a
+ subset of components within a host group. <control>(<init><expr><name>rnettleton</name></expr></init>)</control><block type="pseudo"><block_content>
+
+<expr_stmt><expr><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRenderer</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">5</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>StackAdvisorBlueprintProcessor</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintResourceProvider</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">6</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequest</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">10</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>        <operator>|</operator> <literal type="number">38</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionAction</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">25</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionClusterRequest</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">5</literal> <operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntity</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">24</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntityPK</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">4</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>AmbariContext</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintFactory</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintImpl</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">15</literal> <operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintValidatorImpl</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopology</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImpl</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">15</literal> <operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>Component</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">59</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>HostGroup</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">34</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>HostGroupImpl</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">64</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>HostRequest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>LogicalRequest</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>RequiredPasswordValidator</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog221</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">12</literal> <operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Derby</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>     <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>     <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>    <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>  <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name>EMBEDDED</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>   <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>         <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRendererTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">7</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>StackAdvisorBlueprintProcessorTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">8</literal> <operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>BlueprintConfigurationProcessorTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">8</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequestTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>HostGroupComponentEntityTest</name><operator>.</operator><name>java</name></name>         <operator>|</operator>  <literal type="number">8</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintFactoryTest</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintImplTest</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">40</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>BlueprintValidatorImplTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>ClusterInstallWithoutStartTest</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImplTest</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">18</literal> <operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>RequiredPasswordValidatorTest</name><operator>.</operator><name>java</name></name>        <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>TopologyManagerTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog221Test</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">28</literal> <operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator>
+ <literal type="number">42</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">401</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">103</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionAction</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>Component</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>query</name><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRenderer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>query</name><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRenderer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3705ceb505</literal><operator>..</operator><literal type="number">1a9ea9172b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>query</name><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRenderer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>query</name><operator>/</operator><name>render</name><operator>/</operator><name><name>ClusterBlueprintRenderer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></block_content></block></for> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>SecurityType</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>AmbariContext</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>ClusterTopology</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>ClusterTopologyImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>Component</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>HostGroup</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>HostGroupInfo</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">325</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">326</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterBlueprintRenderer</name> extends <name>BaseRenderer</name> implements <name>Renderer</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>private</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <call><name>processHostGroupComponents</name><argument_list>(<argument><expr><name>HostGroup</name> <name>group</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>listHostGroupComponents</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>component</name> <range>: <expr><call><name><name>group</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>Component</name></type> <name>component</name> <range>: <expr><call><name><name>group</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+       <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>mapComponentProperties</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>listHostGroupComponents</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>mapComponentProperties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>mapComponentProperties</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"name"</literal></expr></argument>, <argument><expr><name>component</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>mapComponentProperties</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"name"</literal></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></for></block_content></block></for>}</block></expr>
+     <return>return <expr><name>listHostGroupComponents</name></expr>;</return>
+   }</block></expr></expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name>stackadvisor</name><operator>/</operator><name><name>StackAdvisorBlueprintProcessor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name>stackadvisor</name><operator>/</operator><name><name>StackAdvisorBlueprintProcessor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d57c17d718</name><operator>..</operator><literal type="number">337ad06377</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name>stackadvisor</name><operator>/</operator><name><name>StackAdvisorBlueprintProcessor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name>stackadvisor</name><operator>/</operator><name><name>StackAdvisorBlueprintProcessor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">105</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">105</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>StackAdvisorBlueprintProcessor</name> <block>{
+   <expr><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <call><name>gatherHostGroupComponents</name><argument_list>(<argument><expr><name>ClusterTopology</name> <name>clusterTopology</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>hgComponentsMap</name> <operator>=</operator> <call><name><name>Maps</name><operator>.</operator><name>newHashMap</name></name><argument_list>()</argument_list></call></expr>;
+     <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>HostGroup</name></argument>&gt;</argument_list></name></name></type> <name>hgEnrty</name><range>: <expr><call><name><name>clusterTopology</name><operator>.</operator><name>getBlueprint</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getHostGroups</name><argument_list>()</argument_list></call><operator>.</operator><call><name>entrySet</name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>hgComponentsMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>hgEnrty</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>Sets</name><operator>.</operator><name>newCopyOnWriteArraySet</name></name><argument_list>(<argument><expr><call><name><name>hgEnrty</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getComponents</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>hgComponentsMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>hgEnrty</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>Sets</name><operator>.</operator><name>newCopyOnWriteArraySet</name></name><argument_list>(<argument><expr><call><name><name>hgEnrty</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getComponentNames</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></for>}</block></expr>
+     <return>return <expr><name>hgComponentsMap</name></expr>;</return>
+   }</block></expr></expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f3100b5aa1</name><operator>..</operator><name>a4b2aaabde</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>BlueprintResourceProvider</name> extends <name>AbstractControllerResourceProvide</name>
+   <comment type="line">// Host Group Components</comment>
+   <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>COMPONENT_PROPERTY_ID</name> <operator>=</operator><literal type="string">"components"</literal></expr>;</expr_stmt>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>COMPONENT_NAME_PROPERTY_ID</name> <init>=<expr><literal type="string">"name"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>COMPONENT_PROVISION_ACTION_PROPERTY_ID</name> <init>= <expr><literal type="string">"provision_action"</literal></expr></init></decl>;</decl_stmt>
+ 
+   <comment type="line">// Configurations</comment>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>CONFIGURATION_PROPERTY_ID</name> <init>= <expr><literal type="string">"configurations"</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">305</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">306</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>BlueprintResourceProvider</name> extends <name>AbstractControllerResourceProvide</name></expr></expr_stmt>
+       <for>for <control>(<init><decl><type><name>HostGroupComponentEntity</name></type> <name>component</name> <range>: <expr><name>components</name></expr></range></decl></init>)</control> <block>{<block_content>
+         <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>mapComponentProps</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>mapComponentProps</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>COMPONENT_NAME_PROPERTY_ID</name></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <if_stmt><if>if <condition>(<expr><call><name><name>component</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>mapComponentProps</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>COMPONENT_PROVISION_ACTION_PROPERTY_ID</name></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+         <expr_stmt><expr><call><name><name>listComponentProps</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>mapComponentProps</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></for>
+       <expr_stmt><expr><call><name><name>mapGroupProps</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>COMPONENT_PROPERTY_ID</name></expr></argument>, <argument><expr><name>listComponentProps</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8c8b89dfa7</literal><operator>..</operator><literal type="number">4d8e56ffd2</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ExportBlueprintRequest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>DesiredConfig</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>HostConfig</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>Blueprint</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>BlueprintImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>Component</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>HostGroup</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name><operator>.</operator><name>HostGroupImpl</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">130</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">131</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>ExportBlueprintRequest</name> implements <name>TopologyRequest</name> <block>{
+ 
+     <expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>HostGroup</name></argument>&gt;</argument_list></name> <name>hostGroups</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>HostGroup</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+     <for>for <control>(<init><decl><type><name>ExportedHostGroup</name></type> <name>exportedHostGroup</name> <range>: <expr><name>exportedHostGroups</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>hostGroups</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>HostGroupImpl</name><argument_list>(<argument><expr><call><name><name>exportedHostGroup</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>bpName</name></expr></argument>, <argument><expr><name>stack</name></expr></argument>, <argument><expr><call><name><name>exportedHostGroup</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></argument>,
+
+      <comment type="line">// create Component using component name</comment>
+      <argument><expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>Component</name></argument>&gt;</argument_list></name> <name>componentList</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Component</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>;
+      for <argument><expr><operator>(</operator><name>String</name> <name>component</name> <operator>:</operator> <call><name><name>exportedHostGroup</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call><operator>)</operator> <block>{
+        <expr><call><name><name>componentList</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Component</name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      }</block>
+
+      <call><name><name>hostGroups</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>HostGroupImpl</name><argument_list>(<argument><expr><call><name><name>exportedHostGroup</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>bpName</name></expr></argument>, <argument><expr><name>stack</name></expr></argument>, <argument><expr><name>componentList</name></expr></argument>,
+           <argument><expr><call><name><name>exportedHostGroup</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>exportedHostGroup</name><operator>.</operator><name>getCardinality</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+     }</argument_list></call>
+     <name>blueprint</name> <operator>=</operator> <operator>new</operator> <call><name>BlueprintImpl</name><argument_list>(<argument><expr><name>bpName</name></expr></argument>, <argument><expr><name>hostGroups</name></expr></argument>, <argument><expr><name>stack</name></expr></argument>, <argument><expr><name>configuration</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>;
+<argument><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">194d75fdc3</literal><operator>..</operator><name>a2a58e8cf0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">392</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">392</literal></expr></argument>,<argument><expr><literal type="number">16</literal> @@ <specifier>public</specifier> class <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name></expr></argument>
+     <return>return <expr><call><name><name>requestStages</name><operator>.</operator><name>getRequestStatusResponse</name></name><argument_list>()</argument_list></call></expr>;</return></argument_list></call></expr></expr_stmt>
+   <expr_stmt/></block_content></block></for>}</block>
+ 
+
+  <comment type="line">// TODO, revisit this extra method, that appears to be used during Add Hosts</comment>
+  <comment type="line">// TODO, How do we determine the component list for INSTALL_ONLY during an Add Hosts operation? rwn</comment>
+   <specifier>public</specifier> <name>RequestStatusResponse</name> <call><name>start</name><argument_list>(<argument><expr><name>String</name> <name>cluster</name></expr></argument>, <argument><expr><name>String</name> <name>hostName</name></expr></argument>)</argument_list></call> <throws>throws  <argument><expr><name>SystemException</name></expr></argument>,
+    <argument><expr><name>UnsupportedPropertyException</name></expr></argument>, <argument><expr><name>NoSuchParentResourceException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+
+    <return>return <expr><call><name><name>this</name><operator>.</operator><name>start</name></name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>hostName</name></expr></argument>, <argument><expr><name><name>Collections</name><operator>.</operator></name>&lt;<name>String</name><operator>&gt;</operator><call><name>emptySet</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  }
+
+  public <function><type><name>RequestStatusResponse</name></type> <name>start</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>cluster</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>hostName</name></decl></parameter>, <parameter><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>installOnlyComponents</name></decl></parameter>)</parameter_list> <throws>throws  <argument><expr><name>SystemException</name></expr></argument>,
+       <argument><expr><name>UnsupportedPropertyException</name></expr></argument>, <argument><expr><name>NoSuchParentResourceException</name></expr></argument></throws> <block>{<block_content>
+ 
+     <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>requestInfo</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">416</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">425</literal></expr><operator>,</operator><expr><literal type="number">34</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name>
+       <name>Predicate</name> <name>notClientPredicate</name> <operator>=</operator> <operator>new</operator> <call><name>NotPredicate</name><argument_list>(<argument><expr><operator>new</operator> <call><name>ClientComponentPredicate</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Predicate</name></type> <name>clusterAndClientPredicate</name> <init>= <expr><operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><name>clusterPredicate</name></expr></argument>, <argument><expr><name>notClientPredicate</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>Predicate</name></type> <name>hostAndStatePredicate</name> <init>= <expr><operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><name>installedStatePredicate</name></expr></argument>, <argument><expr><name>hostPredicate</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Predicate</name></type> <name>startPredicate</name> <init>= <expr><operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><name>clusterAndClientPredicate</name></expr></argument>, <argument><expr><name>hostAndStatePredicate</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Predicate</name></type> <name>startPredicate</name></decl>;</decl_stmt>
+
+      <if_stmt><if>if <condition>(<expr><call><name><name>installOnlyComponents</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <comment type="line">// all installed components should be started</comment>
+        <expr_stmt><expr><name>startPredicate</name> <operator>=</operator> <operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><name>clusterAndClientPredicate</name></expr></argument>, <argument><expr><name>hostAndStatePredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Starting all non-client components on host: "</literal> <operator>+</operator> <name>hostName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <comment type="line">// any INSTALL_ONLY components should not be started</comment>
+        <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Predicate</name></argument>&gt;</argument_list></name></type> <name>listOfComponentPredicates</name> <init>=
+          <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Predicate</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><name>String</name></type> <name>installOnlyComponent</name> <range>: <expr><name>installOnlyComponents</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name>Predicate</name></type> <name>componentNameEquals</name> <init>= <expr><operator>new</operator> <call><name><name>EqualsPredicate</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>HOST_COMPONENT_COMPONENT_NAME_PROPERTY_ID</name></expr></argument>, <argument><expr><name>installOnlyComponent</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <comment type="line">// create predicate to filter out the install only component</comment>
+          <expr_stmt><expr><call><name><name>listOfComponentPredicates</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>NotPredicate</name><argument_list>(<argument><expr><name>componentNameEquals</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <decl_stmt><decl><type><name><name>Predicate</name><index>[]</index></name></type> <name>arrayOfInstallOnlyPredicates</name> <init>= <expr><operator>new</operator> <name><name>Predicate</name><index>[<expr><call><name><name>listOfComponentPredicates</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        <comment type="line">// aggregate Predicate of all INSTALL_ONLY component names</comment>
+        <decl_stmt><decl><type><name>Predicate</name></type> <name>installOnlyComponentsPredicate</name> <init>= <expr><operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><call><name><name>listOfComponentPredicates</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><name>arrayOfInstallOnlyPredicates</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <comment type="line">// start predicate must now include the INSTALL_ONLY component predicates, in</comment>
+        <comment type="line">// order to filter out those components for START attempts</comment>
+        <expr_stmt><expr><name>startPredicate</name> <operator>=</operator> <operator>new</operator> <call><name>AndPredicate</name><argument_list>(<argument><expr><name>clusterAndClientPredicate</name></expr></argument>, <argument><expr><name>hostAndStatePredicate</name></expr></argument>, <argument><expr><name>installOnlyComponentsPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Starting all non-client components on host: "</literal> <operator>+</operator> <name>hostName</name> <operator>+</operator> <literal type="string">", except for the INSTALL_ONLY components specified: "</literal> <operator>+</operator> <name>installOnlyComponents</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+
+ 
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Starting all non-client components on host: "</literal> <operator>+</operator> <name>hostName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><name>requestStages</name> <operator>=</operator> <call><name>doUpdateResources</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>startRequest</name></expr></argument>, <argument><expr><name>startPredicate</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>notifyUpdate</name><argument_list>(<argument><expr><name><name>Resource</name><operator>.</operator><name>Type</name><operator>.</operator><name>HostComponent</name></name></expr></argument>, <argument><expr><name>startRequest</name></expr></argument>, <argument><expr><name>startPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <try>try <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionAction</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionAction</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">0000000000..9874c5ec6e</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionAction</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name></name>;</package>
+
+
+<enum><specifier>public</specifier> enum <name>ProvisionAction</name> <block>{
+  <decl><name>INSTALL_ONLY</name></decl>,     <comment type="line">// Skip Start</comment>
+  <decl><name>INSTALL_AND_START</name></decl> <comment type="line">// Default action</comment>
+}</block></enum>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionClusterRequest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionClusterRequest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7b1de26e8a</literal><operator>..</operator><literal type="number">6a11b26229</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionClusterRequest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>ProvisionClusterRequest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">99</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">99</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>ProvisionClusterRequest</name> extends <name>BaseClusterRequest</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>PROVISION_ACTION_PROPERTY</name> <operator>=</operator> <literal type="string">"provision_action"</literal></expr>;
+ 
+  <expr><specifier>public</specifier> enum <name>ProvisionAction</name> <block>{
+    <expr><name>INSTALL_ONLY</name></expr>,     <comment type="line">// Skip Start</comment>
+    <expr><name>INSTALL_AND_START</name></expr> <comment type="line">// Default action</comment>
+  }</block>
+
+   <comment type="block" format="javadoc">/**
+    * configuration factory
+    */</comment>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntity</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntity</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">984c5494aa</literal><operator>..</operator><literal type="number">046bbd8827</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntity</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntity</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">47</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr>,<expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostGroupComponentEntity</name> <block>{
+   @<expr><call><name>Column</name><argument_list>(<argument><expr><name>name</name> <operator>=</operator> <literal type="string">"name"</literal></expr></argument>, <argument><expr><name>nullable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>, <argument><expr><name>insertable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>updatable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>)</argument_list></call>
+   <specifier>private</specifier> <name>String</name> <name>name</name></expr>;
+ 
+  @<expr><name>Id</name>
+  @<call><name>Column</name><argument_list>(<argument><expr><name>name</name> <operator>=</operator> <literal type="string">"provision_action"</literal></expr></argument>, <argument><expr><name>nullable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>insertable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>updatable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>)</argument_list></call>
+  <specifier>private</specifier> <name>String</name> <name>provisionAction</name></expr>;
+
+   @<expr><name>ManyToOne</name>
+   @<call><name>JoinColumns</name><argument_list>(<argument><expr><block>{
+       @<expr><call><name>JoinColumn</name><argument_list>(<argument><expr><name>name</name> <operator>=</operator> <literal type="string">"hostgroup_name"</literal></expr></argument>, <argument><expr><name>referencedColumnName</name> <operator>=</operator> <literal type="string">"name"</literal></expr></argument>, <argument><expr><name>nullable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>,
+@@ <expr><operator>-</operator><literal type="number">126</literal></expr>,<expr><literal type="number">4</literal> <operator>+</operator><literal type="number">130</literal></expr>,<expr><literal type="number">24</literal> @@ <specifier>public</specifier> class <name>HostGroupComponentEntity</name> <block>{
+   <expr><specifier>public</specifier> <name>void</name> <call><name>setBlueprintName</name><argument_list>(<argument><expr><name>String</name> <name>blueprintName</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>blueprintName</name></name> <operator>=</operator> <name>blueprintName</name></expr>;
+   }</block>
+
+  <comment type="block" format="javadoc">/**
+   * Get the provision action associated with this
+   *   component.
+   *
+   * @return provision action
+   */</comment>
+  <specifier>public</specifier> <name>String</name> <call><name>getProvisionAction</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>provisionAction</name></expr>;</return>
+  }</block>
+
+  <comment type="block" format="javadoc">/**
+   * Set the provision action associated with this
+   *   component.
+   *
+   * @param provisionAction action associated with the component (example: INSTALL_ONLY, INSTALL_AND_START)
+   */</comment>
+  <specifier>public</specifier> <name>void</name> <call><name>setProvisionAction</name><argument_list>(<argument><expr><name>String</name> <name>provisionAction</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>provisionAction</name></name> <operator>=</operator> <name>provisionAction</name></expr>;
+  }</block>
+ }
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntityPK</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntityPK</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fb9011b783</name><operator>..</operator><literal type="number">0e97346e68</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntityPK</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>HostGroupComponentEntityPK</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">38</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">38</literal></expr>,<expr><literal type="number">10</literal> @@ <specifier>public</specifier> class <name>HostGroupComponentEntityPK</name> <block>{
+   @<expr><call><name>Column</name><argument_list>(<argument><expr><name>name</name> <operator>=</operator> <literal type="string">"name"</literal></expr></argument>, <argument><expr><name>nullable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>, <argument><expr><name>insertable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>updatable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>, <argument><expr><name>length</name> <operator>=</operator> <literal type="number">100</literal></expr></argument>)</argument_list></call>
+   <specifier>private</specifier> <name>String</name> <name>name</name></expr>;
+ 
+  @<expr><name>Id</name>
+  @<call><name>Column</name><argument_list>(<argument><expr><name>name</name> <operator>=</operator> <literal type="string">"provision_action"</literal></expr></argument>, <argument><expr><name>nullable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>insertable</name> <operator>=</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><name>updatable</name> <operator>=</operator> <literal type="boolean">false</literal></expr></argument>, <argument><expr><name>length</name> <operator>=</operator> <literal type="number">100</literal></expr></argument>)</argument_list></call>
+  <specifier>private</specifier> <name>String</name> <name>provisionAction</name></expr>;
+
+   <comment type="block" format="javadoc">/**
+    * Get the name of the associated host group.
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/AmbariContext.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/AmbariContext.java
+index 6bfee93919..87225adc0a 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/AmbariContext.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/AmbariContext.java
+@@ -338,9 +338,9 @@ public class AmbariContext {
+     }
+   }
+ 
+  public RequestStatusResponse startHost(String hostName, String clusterName) {
+  public RequestStatusResponse startHost(String hostName, String clusterName, Collection&lt;String&gt; installOnlyComponents) {
+     try {
+      return getHostComponentResourceProvider().start(clusterName, hostName);
+      return getHostComponentResourceProvider().start(clusterName, hostName, installOnlyComponents);
+     } catch (Exception e) {
+       e.printStackTrace();
+       throw new RuntimeException("START Host request submission failed: " + e, e);
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintFactory.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintFactory.java
+index b8ce74907b..cca28ca152 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintFactory.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintFactory.java
+@@ -24,6 +24,7 @@ import org.apache.ambari.server.AmbariException;
+ import org.apache.ambari.server.ObjectNotFoundException;
+ import org.apache.ambari.server.controller.AmbariManagementController;
+ import org.apache.ambari.server.controller.AmbariServer;
+import org.apache.ambari.server.controller.internal.ProvisionAction;
+ import org.apache.ambari.server.controller.internal.Stack;
+ import org.apache.ambari.server.controller.utilities.PropertyHelper;
+ import org.apache.ambari.server.orm.dao.BlueprintDAO;
+@@ -58,6 +59,7 @@ public class BlueprintFactory {
+   // Host Group Components
+   protected static final String COMPONENT_PROPERTY_ID ="components";
+   protected static final String COMPONENT_NAME_PROPERTY_ID ="name";
+  protected static final String COMPONENT_PROVISION_ACTION_PROPERTY_ID = "provision_action";
+ 
+   // Configurations
+   protected static final String CONFIGURATION_PROPERTY_ID = "configurations";
+@@ -144,7 +146,7 @@ public class BlueprintFactory {
+       Collection&lt;Map&lt;String, String&gt;&gt; configProps = (Collection&lt;Map&lt;String, String&gt;&gt;)
+           hostGroupProperties.get(CONFIGURATION_PROPERTY_ID);
+ 
+      Collection&lt;String&gt; components = processHostGroupComponents(stack, hostGroupName, componentProps);
+      Collection&lt;Component&gt; components = processHostGroupComponents(stack, hostGroupName, componentProps);
+       Configuration configuration = configFactory.getConfiguration(configProps);
+       String cardinality = String.valueOf(hostGroupProperties.get(HOST_GROUP_CARDINALITY_PROPERTY_ID));
+ 
+@@ -155,13 +157,13 @@ public class BlueprintFactory {
+     return hostGroups;
+   }
+ 
+  private Collection&lt;String&gt; processHostGroupComponents(Stack stack, String groupName, HashSet&lt;HashMap&lt;String, String&gt;&gt;  componentProps) {
+  private Collection&lt;Component&gt; processHostGroupComponents(Stack stack, String groupName, HashSet&lt;HashMap&lt;String, String&gt;&gt;  componentProps) {
+     if (componentProps == null || componentProps.isEmpty()) {
+       throw new IllegalArgumentException("Host group '" + groupName + "' must contain at least one component");
+     }
+ 
+     Collection&lt;String&gt; stackComponentNames = getAllStackComponents(stack);
+    Collection&lt;String&gt; components = new ArrayList&lt;String&gt;();
+    Collection&lt;Component&gt; components = new ArrayList&lt;Component&gt;();
+ 
+     for (HashMap&lt;String, String&gt; componentProperties : componentProps) {
+       String componentName = componentProperties.get(COMPONENT_NAME_PROPERTY_ID);
+@@ -174,9 +176,16 @@ public class BlueprintFactory {
+         throw new IllegalArgumentException("The component '" + componentName + "' in host group '" +
+             groupName + "' is not valid for the specified stack");
+       }
+      components.add(componentName);
+ 
+      String componentProvisionAction = componentProperties.get(COMPONENT_PROVISION_ACTION_PROPERTY_ID);
+      if (componentProvisionAction != null) {
+        //TODO, might want to add some validation here, to only accept value enum types, rwn
+        components.add(new Component(componentName, ProvisionAction.valueOf(componentProvisionAction)));
+      } else {
+        components.add(new Component(componentName));
+      }
+     }
+
+     return components;
+   }
+ 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintImpl.java
+index 88052b093b..bea036421c 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintImpl.java
+@@ -157,7 +157,7 @@ public class BlueprintImpl implements Blueprint {
+   public Collection&lt;HostGroup&gt; getHostGroupsForComponent(String component) {
+     Collection&lt;HostGroup&gt; resultGroups = new HashSet&lt;HostGroup&gt;();
+     for (HostGroup group : hostGroups.values() ) {
+      if (group.getComponents().contains(component)) {
+      if (group.getComponentNames().contains(component)) {
+         resultGroups.add(group);
+       }
+     }
+@@ -358,18 +358,25 @@ public class BlueprintImpl implements Blueprint {
+     * Create component entities and add to parent host group.
+     */</comment>
+   @<expr><call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unchecked"</literal></expr></argument>)</argument_list></call>
+  <specifier>private</specifier> <name>void</name> <call><name>createComponentEntities</name><argument_list>(<argument><expr><name>HostGroupEntity</name> <name>group</name></expr></argument>, <argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>components</name></expr></argument>)</argument_list></call> <block>{
+  <expr><specifier>private</specifier> <name>void</name> <call><name>createComponentEntities</name><argument_list>(<argument><expr><name>HostGroupEntity</name> <name>group</name></expr></argument>, <argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Component</name></argument>&gt;</argument_list></name> <name>components</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>HostGroupComponentEntity</name></argument>&gt;</argument_list></name> <name>componentEntities</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>HostGroupComponentEntity</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>group</name><operator>.</operator><name>setComponents</name></name><argument_list>(<argument><expr><name>componentEntities</name></expr></argument>)</argument_list></call></expr>;
+ 
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>component</name> <range>: <expr><name>components</name></expr></range></decl></init>)</control> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>Component</name></type> <name>component</name> <range>: <expr><name>components</name></expr></range></decl></init>)</control> <block>{<block_content>
+       <decl_stmt><decl><type><name>HostGroupComponentEntity</name></type> <name>componentEntity</name> <init>= <expr><operator>new</operator> <call><name>HostGroupComponentEntity</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>componentEntities</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>componentEntity</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+      <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setName</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setName</name></name><argument_list>(<argument><expr><call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setBlueprintName</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>getBlueprintName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setHostGroupEntity</name></name><argument_list>(<argument><expr><name>group</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setHostGroupName</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <comment type="line">// add provision action (if specified) to entity type</comment>
+      <comment type="line">// otherwise, just leave this column null (provision_action)</comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>component</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>componentEntity</name><operator>.</operator><name>setProvisionAction</name></name><argument_list>(<argument><expr><call><name><name>component</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/>}</block_content>
+
+     }
+     group.setComponents(componentEntities</block></if></if_stmt>)</block_content></block><empty_stmt>;</empty_stmt></for>
+   <expr_stmt/>}</block_content>
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintValidatorImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintValidatorImpl.java
+index 1c293eeba5..432c6f886d 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintValidatorImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/BlueprintValidatorImpl.java
+@@ -116</block><operator>,</operator><expr_stmt><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">116</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>BlueprintValidatorImpl</name> implements <name>BlueprintValidator</name> <block>{
+       <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>operationalConfiguration</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>clusterConfigurations</name></expr></argument>)</argument_list></call></expr>;
+ 
+       <expr><call><name><name>operationalConfiguration</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><call><name><name>hostGroup</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperties</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <for>for <control>(<init><decl><type><name>String</name></type> <name>component</name> <range>: <expr><call><name><name>hostGroup</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>String</name></type> <name>component</name> <range>: <expr><call><name><name>hostGroup</name><operator>.</operator><name>getComponentNames</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+         <comment type="line">//check that MYSQL_SERVER component is not available while hive is using existing db</comment>
+         <if_stmt><if>if <condition>(<expr><call><name><name>component</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">"MYSQL_SERVER"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+           <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>hiveEnvConfig</name> <init>= <expr><call><name><name>clusterConfigurations</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"hive-env"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">228</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">228</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>BlueprintValidatorImpl</name> implements <name>BlueprintValidator</name> <block>{
+         <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>DependencyInfo</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+     <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>blueprintServices</name> <operator>=</operator> <call><name><name>blueprint</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>groupComponents</name> <init>= <expr><call><name><name>group</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>groupComponents</name> <init>= <expr><call><name><name>group</name><operator>.</operator><name>getComponentNames</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <for>for <control>(<init><decl><type><name>String</name></type> <name>component</name> <range>: <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>groupComponents</name></expr></argument>)</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+       <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>DependencyInfo</name></argument>&gt;</argument_list></name></type> <name>dependenciesForComponent</name> <init>= <expr><call><name><name>stack</name><operator>.</operator><name>getDependenciesForComponent</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <for>for <control>(<init><decl><type><name>DependencyInfo</name></type> <name>dependency</name> <range>: <expr><name>dependenciesForComponent</name></expr></range></decl></init>)</control> <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopology</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopology</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c3c04dbb48</name><operator>..</operator><literal type="number">4e178c0193</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopology</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopology</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">19</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">19</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name></name>;</package>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>RequestStatusResponse</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionClusterRequest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionClusterRequest</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e78300c898</name><operator>..</operator><literal type="number">91965f1f35</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterTopologyImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name></name>;</package>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>AmbariException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>RequestStatusResponse</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionClusterRequest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionClusterRequest</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">120</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>ClusterTopologyImpl</name> implements <name>ClusterTopology</name> <block>{
+   <expr><specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <call><name>getHostGroupsForComponent</name><argument_list>(<argument><expr><name>String</name> <name>component</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>resultGroups</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</block></expr>
+     <for>for <control>(<init><decl><type><name>HostGroup</name></type> <name>group</name> <range>: <expr><call><name>getBlueprint</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getHostGroups</name><argument_list>()</argument_list></call><operator>.</operator><call><name>values</name><argument_list>()</argument_list></call></expr></range></decl></init> )</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>group</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>group</name><operator>.</operator><name>getComponentNames</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>resultGroups</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt/>}</block_content>
+     }
+@@ -231</block><operator>,</operator><expr_stmt><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">230</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> class <name>ClusterTopologyImpl</name> implements <name>ClusterTopology</name> <block>{
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>RequestStatusResponse</name> <call><name>startHost</name><argument_list>(<argument><expr><name>String</name> <name>hostName</name></expr></argument>)</argument_list></call> <block>{
+     <try>try <block>{<block_content>
+      <return>return <expr><call><name><name>ambariContext</name><operator>.</operator><name>startHost</name></name><argument_list>(<argument><expr><name>hostName</name></expr></argument>, <argument><expr><call><name><name>ambariContext</name><operator>.</operator><name>getClusterName</name></name><argument_list>(<argument><expr><call><name>getClusterId</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+      <decl_stmt><decl><type><name>String</name></type> <name>hostGroupName</name> <init>= <expr><call><name>getHostGroupForHost</name><argument_list>(<argument><expr><name>hostName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>HostGroup</name></type> <name>hostGroup</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>blueprint</name><operator>.</operator><name>getHostGroup</name></name><argument_list>(<argument><expr><name>hostGroupName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <comment type="line">// get the set of components that are marked as INSTALL_ONLY</comment>
+      <comment type="line">// for this hostgroup</comment>
+      <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>installOnlyComponents</name> <init>=
+        <expr><call><name><name>hostGroup</name><operator>.</operator><name>getComponentNames</name></name><argument_list>(<argument><expr><name><name>ProvisionAction</name><operator>.</operator><name>INSTALL_ONLY</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <return>return <expr><call><name><name>ambariContext</name><operator>.</operator><name>startHost</name></name><argument_list>(<argument><expr><name>hostName</name></expr></argument>, <argument><expr><call><name><name>ambariContext</name><operator>.</operator><name>getClusterName</name></name><argument_list>(<argument><expr><call><name>getClusterId</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>installOnlyComponents</name></expr></argument>)</argument_list></call></expr>;</return>
+     <expr_stmt/>}</block_content> catch (AmbariException e</block></try>)</block> <block>{
+       <expr><call><name><name>LOG</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Cannot get cluster name for clusterId = "</literal> <operator>+</operator> <call><name>getClusterId</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;
+       <throw>throw <argument_list>new <argument><expr><call><name>RuntimeException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></argument></argument_list></throw></block></expr>;
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>Component</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>Component</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">0000000000..0dfad41a06</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>Component</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal><operator>,</operator><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal><operator>,</operator><literal type="number">59</literal> @@</block></expr></expr_stmt></if></if_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name></name>;</package>
+
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>Component</name> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>name</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>ProvisionAction</name></type> <name>provisionAction</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>Component</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>this</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt/>}</block_content>
+
+
+  public Component(String name</block><operator>,</operator> ProvisionAction provisionAction</constructor>)</block> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>name</name></name> <operator>=</operator> <name>name</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>provisionAction</name></name> <operator>=</operator> <name>provisionAction</name></expr>;</expr_stmt>
+  <expr_stmt/>}</block_content>
+
+  <comment type="block" format="javadoc">/**
+   * Gets the name of this component
+   *
+   * @return component name
+   */</comment>
+  public String getName(</block></class>)</block_content> <block>{<block_content>
+    <return>return <expr><name><name>this</name><operator>.</operator><name>name</name></name></expr>;</return>
+  <expr_stmt/>}</block_content>
+
+  <comment type="block" format="javadoc">/**
+   * Gets the provision action associated with this component.
+   *
+   * @return the provision action for this component, which
+   *         may be null if the default action is to be used
+   */</comment>
+  public ProvisionAction getProvisionAction(</block></block></if></if_stmt>)</block_content> <block>{<block_content>
+    <return>return <expr><name><name>this</name><operator>.</operator><name>provisionAction</name></name></expr>;</return>
+  <expr_stmt/>}</block_content>
+
+}
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroup.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroup.java
+index 07e3e8846d..c0aec68125 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroup.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroup.java
+@@ -18</block></block><operator>,</operator><expr_stmt><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></for>
+ 
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>topology</name></name>;</package></block></expr></expr_stmt>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionAction</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>Stack</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>HostGroupEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>DependencyInfo</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">28</literal> @@ <specifier>public</specifier> interface <name>HostGroup</name> <block>{
+   <comment type="block" format="javadoc">/**
+    * Get all of the host group components.
+    *
+   * @return collection of component names
+   * @return collection of component instances
+    */</comment>
+  <expr><specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <call><name>getComponents</name><argument_list>()</argument_list></call></expr>;
+  <specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Component</name></argument>&gt;</argument_list></name> <call><name>getComponents</name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+
+  <comment type="block" format="javadoc">/**
+   * Get all of the host group component names
+   *
+   * @return collection of component names as String
+   */</comment>
+  <function_decl><type><specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getComponentNames</name><parameter_list>()</parameter_list>;</function_decl>
+
+  <comment type="block" format="javadoc">/**
+   * Get all host group component names for instances
+   *   that have the specified provision action association.
+   *
+   * @param provisionAction the provision action that must be associated
+   *                          with the component names returned
+   *
+   * @return collection of component names as String that are associated with
+   *           the specified provision action
+   */</comment>
+  <decl_stmt><decl><type><specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getComponentNames</name><argument_list>(<argument><expr><name>ProvisionAction</name> <name>provisionAction</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Get the host group components which belong to the specified service.
+@@ -77,6 +97,16 @@ public interface HostGroup {
+    */</comment>
+   <decl_stmt><decl><type><specifier>public</specifier> <name>boolean</name></type> <name>addComponent</name><argument_list>(<argument><expr><name>String</name> <name>component</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Add a component to the host group, with the specified name
+   *   and provision action.
+   *
+   * @param component  component name
+   * @param provisionAction provision action for this component
+   * @return
+   */</comment>
+  <decl_stmt><decl><type><specifier>public</specifier> <name>boolean</name></type> <name>addComponent</name><argument_list>(<argument><expr><name>String</name> <name>component</name></expr></argument>, <argument><expr><name>ProvisionAction</name> <name>provisionAction</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+   <comment type="block" format="javadoc">/**
+    * Determine if the host group contains a master component.
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroupImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroupImpl.java
+index b89e7e4e74..ddbe0b3d9e 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroupImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostGroupImpl.java
+@@ -20,6 +20,7 @@
+ package org.apache.ambari.server.topology;
+ 
+ import com.google.gson.Gson;
+import org.apache.ambari.server.controller.internal.ProvisionAction;
+ import org.apache.ambari.server.controller.internal.Stack;
+ import org.apache.ambari.server.orm.entities.HostGroupComponentEntity;
+ import org.apache.ambari.server.orm.entities.HostGroupConfigEntity;
+@@ -50,7 +51,7 @@ public class HostGroupImpl implements HostGroup {
+   /**
+    * components contained in the host group
+    */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Component</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Component</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * map of service to components for the host group
+@@ -78,21 +79,23 @@ public class HostGroupImpl implements HostGroup {
+     parseConfigurations(entity);
+   }
+ 
+  public HostGroupImpl(String name, String bpName, Stack stack, Collection&lt;String&gt; components, Configuration configuration, String cardinality) {
+  public HostGroupImpl(String name, String bpName, Stack stack, Collection&lt;Component&gt; components, Configuration configuration, String cardinality) {
+     this.name = name;
+     this.blueprintName = bpName;
+     this.stack = stack;
+ 
+     // process each component
+    for (String component : components) {
+      addComponent(component);
+    for (Component component : components) {
+      addComponent(component.getName(), component.getProvisionAction());
+     }
+
+     this.configuration = configuration;
+     if (cardinality != null &amp;&amp; ! cardinality.equals("null")) {
+       this.cardinality = cardinality;
+     }
+   }
+ 
+
+   @Override
+   public String getName() {
+     return name;
+@@ -110,10 +113,29 @@ public class HostGroupImpl implements HostGroup {
+   }
+ 
+   @Override
+  public Collection&lt;String&gt; getComponents() {
+    return components;
+  public Collection&lt;Component&gt; getComponents() {
+    return components.values();
+  }
+
+  @Override
+  public Collection&lt;String&gt; getComponentNames() {
+    return components.keySet();
+  }
+
+  @Override
+  public Collection&lt;String&gt; getComponentNames(ProvisionAction provisionAction) {
+    Set&lt;String&gt; setOfComponentNames = new HashSet&lt;String&gt;();
+    for (String componentName : components.keySet()) {
+      Component component = components.get(componentName);
+      if ( (component.getProvisionAction() != null) &amp;&amp; (component.getProvisionAction() == provisionAction) ) {
+        setOfComponentNames.add(componentName);
+      }
+    }
+
+    return setOfComponentNames;
+   }
+ 
+
+   /**
+    * Get the services which are deployed to this host group.
+    *
+@@ -133,7 +155,27 @@ public class HostGroupImpl implements HostGroup {
+    */</comment>
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>boolean</name></type> <name>addComponent</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>component</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>added</name> <init>= <expr><call><name><name>components</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><call><name><name>this</name><operator>.</operator><name>addComponent</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+  <expr_stmt/>}</block_content>
+
+  <comment type="block" format="javadoc">/**
+   * Add a component with the specified provision action to the
+   *   host group.
+   *
+   * @param component  component name
+   * @param provisionAction provision action for this component
+   *
+   * @return true if component was added; false if component already existed
+   */</comment>
+  public boolean addComponent(String component</block><operator>,</operator> ProvisionAction provisionAction</function>)</block_content> <block>{<block_content>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>added</name></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>components</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>components</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Component</name><argument_list>(<argument><expr><name>component</name></expr></argument>, <argument><expr><name>provisionAction</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>added</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+    <expr_stmt/>}</block_content> else <block>{<block_content>
+      <expr_stmt><expr><name>added</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+    <expr_stmt/>}</block_content>
+
+     if (stack.isMasterComponent(component</block></block></if></if_stmt>)</block_content></block></block></for>)</block_content> <block>{<block_content>
+       <expr_stmt><expr><name>containsMasterComponent</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+     <expr_stmt/>}</block_content>
+@@ -207</block></block><operator>,</operator><expr_stmt><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">249</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> class <name>HostGroupImpl</name> implements <name>HostGroup</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>private</specifier> <name>void</name> <call><name>parseComponents</name><argument_list>(<argument><expr><name>HostGroupEntity</name> <name>entity</name></expr></argument>)</argument_list></call> <block>{
+     <for>for <control>(<init><decl><type><name>HostGroupComponentEntity</name></type> <name>componentEntity</name> <range>: <expr><call><name><name>entity</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></range></decl></init> )</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>addComponent</name><argument_list>(<argument><expr><call><name><name>componentEntity</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>componentEntity</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name>addComponent</name><argument_list>(<argument><expr><call><name><name>componentEntity</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ProvisionAction</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>componentEntity</name><operator>.</operator><name>getProvisionAction</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/>}</block_content> else <block>{<block_content>
+        <expr_stmt><expr><call><name>addComponent</name><argument_list>(<argument><expr><call><name><name>componentEntity</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/>}</block_content>
+
+
+     }
+   }
+ 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostRequest.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostRequest.java
+index 440638c07d..9eb514a3ee 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/HostRequest.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/HostRequest.java
+@@ -43</block></block><operator>,</operator><expr_stmt><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></if></if_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ 
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionClusterRequest</name><operator>.</operator><name>ProvisionAction</name><operator>.</operator><name>INSTALL_ONLY</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ProvisionAction</name><operator>.</operator><name>INSTALL_ONLY</name></name>;</import></block_content></block></for></block></expr></block></expr></expr_stmt></for></block_content></block></if></if_stmt></block_content></block></for></block_content></block></for></block></expr></expr_stmt></for></block></expr></block></expr></block></expr></block></expr></block></expr></argument></argument_list></call></expr></block></expr></block></expr></expr_stmt></block_content></block></try></block_content></block></function>
+ 
+ <comment type="block" format="javadoc">/**
+  * Represents a set of requests to a single host such as install, start, etc.
+@@ -194,7 +194,7 @@ public class HostRequest implements Comparable&lt;HostRequest&gt; {
+ 
+     // lower level logical component level tasks which get mapped to physical tasks
+     HostGroup hostGroup = getHostGroup();
+    for (String component : hostGroup.getComponents()) {
+    for (String component : hostGroup.getComponentNames()) {
+       if (component == null || component.equals("AMBARI_SERVER")) {
+         LOG.info("Skipping component {} when creating request\n", component);
+         continue;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/LogicalRequest.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/LogicalRequest.java
+index bd9f2e07ba..ad7c8fd8d1 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/LogicalRequest.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/LogicalRequest.java
+@@ -188,7 +188,7 @@ public class LogicalRequest extends Request {
+           hostComponents = new HashSet&lt;String&gt;();
+           hostComponentMap.put(host, hostComponents);
+         }
+        hostComponents.addAll(hostGroup.getComponents());
+        hostComponents.addAll(hostGroup.getComponentNames());
+       }
+     }
+     return hostComponentMap;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/RequiredPasswordValidator.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/RequiredPasswordValidator.java
+index e26de3f9b7..98eaa40e91 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/RequiredPasswordValidator.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/RequiredPasswordValidator.java
+@@ -81,7 +81,7 @@ public class RequiredPasswordValidator implements TopologyValidator {
+       Stack stack = blueprint.getStack();
+ 
+       HostGroup hostGroup = blueprint.getHostGroup(hostGroupName);
+      for (String component : hostGroup.getComponents()) {
+      for (String component : hostGroup.getComponentNames()) {
+         //for now, AMBARI is not recognized as a service in Stacks
+         if (component.equals("AMBARI_SERVER")) {
+           continue;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java
+index 5cde24b0fc..9c947a1c87 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java
+@@ -27,6 +27,7 @@ import com.google.inject.Inject;
+ import com.google.inject.Injector;
+ import org.apache.ambari.server.AmbariException;
+ import org.apache.ambari.server.controller.AmbariManagementController;
+import org.apache.ambari.server.orm.DBAccessor;
+ import org.apache.ambari.server.orm.dao.AlertDefinitionDAO;
+ import org.apache.ambari.server.orm.dao.DaoUtils;
+ import org.apache.ambari.server.orm.entities.AlertDefinitionEntity;
+@@ -76,6 +77,10 @@ public class UpgradeCatalog221 extends AbstractUpgradeCatalog {
+   private static final String OLD_DEFAULT_HADOOP_CONFIG_PATH = "/etc/hadoop/conf";
+   private static final String NEW_DEFAULT_HADOOP_CONFIG_PATH = "{{hadoop_conf_dir}}";
+ 
+  private static final String BLUEPRINT_HOSTGROUP_COMPONENT_TABLE_NAME = "hostgroup_component";
+  private static final String BLUEPRINT_PROVISION_ACTION_COLUMN_NAME = "provision_action";
+
+
+ 
+   // ----- Constructors ------------------------------------------------------
+ 
+@@ -118,6 +123,13 @@ public class UpgradeCatalog221 extends AbstractUpgradeCatalog {
+     dbAccessor.createIndex("idx_hrc_request_id", "host_role_command", "request_id");
+     dbAccessor.createIndex("idx_rsc_request_id", "role_success_criteria", "request_id");
+ 
+    executeBlueprintProvisionActionDDLUpdates();
+  }
+
+  private void executeBlueprintProvisionActionDDLUpdates() throws AmbariException, SQLException {
+    // add provision_action column to the hostgroup_component table for Blueprints
+    dbAccessor.addColumn(BLUEPRINT_HOSTGROUP_COMPONENT_TABLE_NAME, new DBAccessor.DBColumnInfo(BLUEPRINT_PROVISION_ACTION_COLUMN_NAME,
+      String.class, 255, null, true));
+   }
+ 
+   @Override
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Derby-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Derby-CREATE.sql
+index d93a3c2cb0..6eda26d46d 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Derby-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Derby-CREATE.sql
+@@ -406,6 +406,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR(255) NOT NULL,
+   hostgroup_name VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+  provision_action VARCHAR(255),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+index aa8ced131d..05f7c4c90d 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+@@ -414,6 +414,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR(100) NOT NULL,
+   hostgroup_name VARCHAR(100) NOT NULL,
+   name VARCHAR(100) NOT NULL,
+  provision_action VARCHAR(100),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+index b53434449d..59fd773159 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+@@ -405,6 +405,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR2(255) NOT NULL,
+   hostgroup_name VARCHAR2(255) NOT NULL,
+   name VARCHAR2(255) NOT NULL,
+  provision_action VARCHAR2(255),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+index 941fc6e6ec..24bf962093 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+@@ -406,6 +406,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR(255) NOT NULL,
+   hostgroup_name VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+  provision_action VARCHAR(255),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Postgres-EMBEDDED-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Postgres-EMBEDDED-CREATE.sql
+index dd517f8e4f..705a241dbd 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Postgres-EMBEDDED-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Postgres-EMBEDDED-CREATE.sql
+@@ -453,6 +453,7 @@ CREATE TABLE ambari.hostgroup_component (
+   blueprint_name VARCHAR(255) NOT NULL,
+   hostgroup_name VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+  provision_action VARCHAR(255),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE ambari.blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+index f837f9ed0b..3bb7faf01c 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+@@ -403,6 +403,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR(255) NOT NULL,
+   hostgroup_name VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+  provision_action VARCHAR(255),
+   PRIMARY KEY(blueprint_name, hostgroup_name, name));
+ 
+ CREATE TABLE blueprint_configuration (
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+index 239d27ef50..89acb96611 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+@@ -459,6 +459,7 @@ CREATE TABLE hostgroup_component (
+   blueprint_name VARCHAR(255) NOT NULL,
+   hostgroup_name VARCHAR(255) NOT NULL,
+   NAME VARCHAR(255) NOT NULL,
+  provision_action VARCHAR(255),
+   PRIMARY KEY CLUSTERED (
+     blueprint_name,
+     hostgroup_name,
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/api/query/render/ClusterBlueprintRendererTest.java b/ambari-server/src/test/java/org/apache/ambari/server/api/query/render/ClusterBlueprintRendererTest.java
+index 522d902d08..1fe48df062 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/api/query/render/ClusterBlueprintRendererTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/api/query/render/ClusterBlueprintRendererTest.java
+@@ -40,6 +40,7 @@ import org.apache.ambari.server.state.ServiceInfo;
+ import org.apache.ambari.server.topology.AmbariContext;
+ import org.apache.ambari.server.topology.Blueprint;
+ import org.apache.ambari.server.topology.ClusterTopology;
+import org.apache.ambari.server.topology.Component;
+ import org.apache.ambari.server.topology.Configuration;
+ import org.apache.ambari.server.topology.HostGroup;
+ import org.apache.ambari.server.topology.HostGroupInfo;
+@@ -115,10 +116,10 @@ public class ClusterBlueprintRendererTest {
+     clusterAttributeProps.put("propertyOne", "true");
+     clusterTypeAttributes.put("final", clusterAttributeProps);
+ 
+    Collection&lt;String&gt; group1Components = Arrays.asList(
+        "JOBTRACKER", "TASKTRACKER", "NAMENODE", "DATANODE", "AMBARI_SERVER");
+    Collection&lt;Component&gt; group1Components = Arrays.asList(
+        new Component("JOBTRACKER"), new Component("TASKTRACKER"), new Component("NAMENODE"), new Component("DATANODE"), new Component("AMBARI_SERVER"));
+ 
+    Collection&lt;String&gt; group2Components = Arrays.asList("TASKTRACKER", "DATANODE");
+    Collection&lt;Component&gt; group2Components = Arrays.asList(new Component("TASKTRACKER"), new Component("DATANODE"));
+ 
+     Map&lt;String, Configuration&gt; hostGroupConfigs = new HashMap&lt;String, Configuration&gt;();
+     hostGroupConfigs.put("host_group_1", emptyConfiguration);
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/api/services/stackadvisor/StackAdvisorBlueprintProcessorTest.java b/ambari-server/src/test/java/org/apache/ambari/server/api/services/stackadvisor/StackAdvisorBlueprintProcessorTest.java
+index 514e6ab1ec..d5531a666b 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/api/services/stackadvisor/StackAdvisorBlueprintProcessorTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/api/services/stackadvisor/StackAdvisorBlueprintProcessorTest.java
+@@ -20,9 +20,9 @@ package org.apache.ambari.server.api.services.stackadvisor;
+ 
+ import com.google.common.collect.Maps;
+ import org.apache.ambari.server.controller.internal.ConfigurationTopologyException;
+import org.apache.ambari.server.topology.Component;
+ import org.apache.ambari.server.topology.Configuration;
+ import org.apache.ambari.server.topology.HostGroup;
+import org.apache.ambari.server.topology.HostGroupImpl;
+ import static org.easymock.EasyMock.anyObject;
+ import static org.easymock.EasyMock.createMock;
+ import static org.easymock.EasyMock.expect;
+@@ -81,7 +81,7 @@ public class StackAdvisorBlueprintProcessorTest {
+     expect(stack.getName()).andReturn("HDP").anyTimes();
+     expect(blueprint.getServices()).andReturn(Arrays.asList("HDFS", "YARN", "HIVE")).anyTimes();
+     expect(blueprint.getHostGroups()).andReturn(createHostGroupMap()).anyTimes();
+    expect(hostGroup.getComponents()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+    expect(hostGroup.getComponentNames()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+     expect(stackAdvisorHelper.recommend(anyObject(StackAdvisorRequest.class))).andReturn(createRecommendationResponse());
+     expect(configuration.getFullProperties()).andReturn(createProps());
+ 
+@@ -108,7 +108,7 @@ public class StackAdvisorBlueprintProcessorTest {
+     expect(stack.getVersion()).andReturn("2.3").anyTimes();
+     expect(stack.getName()).andReturn("HDP").anyTimes();
+     expect(blueprint.getHostGroups()).andReturn(createHostGroupMap()).anyTimes();
+    expect(hostGroup.getComponents()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+    expect(hostGroup.getComponentNames()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+     expect(blueprint.getServices()).andReturn(Arrays.asList("HDFS", "YARN", "HIVE")).anyTimes();
+     expect(stackAdvisorHelper.recommend(anyObject(StackAdvisorRequest.class))).andThrow(new StackAdvisorException("ex"));
+     expect(configuration.getFullProperties()).andReturn(createProps());
+@@ -136,7 +136,7 @@ public class StackAdvisorBlueprintProcessorTest {
+     expect(stack.getName()).andReturn("HDP").anyTimes();
+     expect(blueprint.getServices()).andReturn(Arrays.asList("HDFS", "YARN", "HIVE")).anyTimes();
+     expect(blueprint.getHostGroups()).andReturn(createHostGroupMap()).anyTimes();
+    expect(hostGroup.getComponents()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+    expect(hostGroup.getComponentNames()).andReturn(Arrays.asList("comp1", "comp2")).anyTimes();
+     expect(stackAdvisorHelper.recommend(anyObject(StackAdvisorRequest.class))).andReturn(new RecommendationResponse());
+     expect(configuration.getFullProperties()).andReturn(createProps());
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+index 0384b45aa0..ab6913ee7b 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+@@ -32,6 +32,7 @@ import org.apache.ambari.server.topology.Blueprint;
+ import org.apache.ambari.server.topology.Cardinality;
+ import org.apache.ambari.server.topology.ClusterTopology;
+ import org.apache.ambari.server.topology.ClusterTopologyImpl;
+import org.apache.ambari.server.topology.Component;
+ import org.apache.ambari.server.topology.ConfigRecommendationStrategy;
+ import org.apache.ambari.server.topology.Configuration;
+ import org.apache.ambari.server.topology.HostGroup;
+@@ -6393,9 +6394,14 @@ public class BlueprintConfigurationProcessorTest {
+       //todo: HG configs
+       groupInfo.setConfiguration(hostGroup.configuration);
+ 
+      List&lt;Component&gt; componentList = new ArrayList&lt;Component&gt;();
+      for (String componentName : hostGroup.components) {
+        componentList.add(new Component(componentName));
+      }
+
+       //create host group which is set on topology
+       allHostGroups.put(hostGroup.name, new HostGroupImpl(hostGroup.name, "test-bp", stack,
+          hostGroup.components, EMPTY_CONFIG, "1"));
+          componentList, EMPTY_CONFIG, "1"));
+ 
+       hostGroupInfo.put(hostGroup.name, groupInfo);
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ExportBlueprintRequestTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ExportBlueprintRequestTest.java
+index 94ba90f654..7f37814e65 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ExportBlueprintRequestTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ExportBlueprintRequestTest.java
+@@ -129,7 +129,7 @@ public class ExportBlueprintRequestTest {
+     String hg1Name = null;
+     String hg2Name = null;
+     for (HostGroup group : hostGroups.values()) {
+      Collection&lt;String&gt; components = group.getComponents();
+      Collection&lt;String&gt; components = group.getComponentNames();
+       if (components.containsAll(host1ComponentsList)) {
+         assertEquals(host1ComponentsList.size(), components.size());
+         assertEquals("1", group.getCardinality());
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/orm/entities/HostGroupComponentEntityTest.java b/ambari-server/src/test/java/org/apache/ambari/server/orm/entities/HostGroupComponentEntityTest.java
+index c0efd0de1b..f3104e8642 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/orm/entities/HostGroupComponentEntityTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/orm/entities/HostGroupComponentEntityTest.java
+@@ -55,4 +55,12 @@ public class HostGroupComponentEntityTest {
+     entity.setBlueprintName("foo");
+     assertEquals("foo", entity.getBlueprintName());
+   }
+
+  @Test
+  public void testSetGetProvisionAction() {
+    HostGroupComponentEntity entity = new HostGroupComponentEntity();
+    entity.setProvisionAction("INSTALL_ONLY");
+    assertEquals("INSTALL_ONLY", entity.getProvisionAction());
+  }
+
+ }
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintFactoryTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintFactoryTest.java
+index 3a3b6dca8f..5e2085b7df 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintFactoryTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintFactoryTest.java
+@@ -130,7 +130,7 @@ public class BlueprintFactoryTest {
+     HostGroup group1 = hostGroups.get("group1");
+     assertEquals("group1", group1.getName());
+     assertEquals("1", group1.getCardinality());
+    Collection&lt;String&gt; components = group1.getComponents();
+    Collection&lt;String&gt; components = group1.getComponentNames();
+     assertEquals(2, components.size());
+     assertTrue(components.contains("component1"));
+     assertTrue(components.contains("component2"));
+@@ -147,7 +147,7 @@ public class BlueprintFactoryTest {
+     HostGroup group2 = hostGroups.get("group2");
+     assertEquals("group2", group2.getName());
+     assertEquals("2", group2.getCardinality());
+    components = group2.getComponents();
+    components = group2.getComponentNames();
+     assertEquals(1, components.size());
+     assertTrue(components.contains("component1"));
+     services = group2.getServices();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintImplTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintImplTest.java
+index 3addfc4fa1..0b06eb8bd9 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintImplTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintImplTest.java
+@@ -23,16 +23,14 @@ import org.apache.ambari.server.orm.entities.BlueprintEntity;
+ import org.apache.ambari.server.state.SecurityType;
+ import org.junit.Test;
+ 
+import java.util.Arrays;
+ import java.util.Collection;
+ import java.util.HashMap;
+ import java.util.HashSet;
+ import java.util.Map;
+ import java.util.Set;
+ 
+import static org.easymock.EasyMock.createNiceMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.easymock.EasyMock.*;
+ import static org.junit.Assert.assertTrue;
+ import static org.junit.Assert.fail;
+ 
+@@ -56,13 +54,13 @@ public class BlueprintImplTest {
+ 
+     Stack stack = createNiceMock(Stack.class);
+ 
+    HostGroup group1 = createNiceMock(HostGroup.class);
+    HostGroup group2 = createNiceMock(HostGroup.class);
+    HostGroup group1 = createMock(HostGroup.class);
+    HostGroup group2 = createMock(HostGroup.class);
+     Collection&lt;HostGroup&gt; hostGroups = new HashSet&lt;HostGroup&gt;();
+     hostGroups.add(group1);
+     hostGroups.add(group2);
+ 
+    Set&lt;String&gt; group1Components = new HashSet&lt;String&gt;();
+    Collection&lt;String&gt; group1Components = new HashSet&lt;String&gt;();
+     group1Components.add("c1");
+     group1Components.add("c2");
+ 
+@@ -95,11 +93,15 @@ public class BlueprintImplTest {
+ 
+     expect(group1.getConfiguration()).andReturn(EMPTY_CONFIGURATION).atLeastOnce();
+     expect(group1.getName()).andReturn("group1").anyTimes();
+    expect(group1.getComponents()).andReturn(group1Components).atLeastOnce();
+    expect(group1.getComponentNames()).andReturn(group1Components).atLeastOnce();
+    expect(group1.getCardinality()).andReturn("1").atLeastOnce();
+    expect(group1.getComponents()).andReturn(Arrays.asList(new Component("c1"), new Component("c2"))).atLeastOnce();
+ 
+     expect(group2.getConfiguration()).andReturn(EMPTY_CONFIGURATION).atLeastOnce();
+     expect(group2.getName()).andReturn("group2").anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).atLeastOnce();
+    expect(group2.getComponentNames()).andReturn(group2Components).atLeastOnce();
+    expect(group2.getCardinality()).andReturn("1").atLeastOnce();
+    expect(group2.getComponents()).andReturn(Arrays.asList(new Component("c1"), new Component("c3"))).atLeastOnce();
+ 
+     replay(stack, group1, group2);
+ 
+@@ -143,11 +145,11 @@ public class BlueprintImplTest {
+     hostGroups.add(group1);
+     hostGroups.add(group2);
+ 
+    Set&lt;String&gt; group1Components = new HashSet&lt;String&gt;();
+    Collection&lt;String&gt; group1Components = new HashSet&lt;String&gt;();
+     group1Components.add("c1");
+     group1Components.add("c2");
+ 
+    Set&lt;String&gt; group2Components = new HashSet&lt;String&gt;();
+    Collection&lt;String&gt; group2Components = new HashSet&lt;String&gt;();
+     group2Components.add("c1");
+     group2Components.add("c3");
+ 
+@@ -176,11 +178,11 @@ public class BlueprintImplTest {
+ 
+     expect(group1.getConfiguration()).andReturn(EMPTY_CONFIGURATION).atLeastOnce();
+     expect(group1.getName()).andReturn("group1").anyTimes();
+    expect(group1.getComponents()).andReturn(group1Components).atLeastOnce();
+    expect(group1.getComponentNames()).andReturn(group1Components).atLeastOnce();
+ 
+     expect(group2.getConfiguration()).andReturn(EMPTY_CONFIGURATION).atLeastOnce();
+     expect(group2.getName()).andReturn("group2").anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).atLeastOnce();
+    expect(group2.getComponentNames()).andReturn(group2Components).atLeastOnce();
+ 
+     replay(stack, group1, group2);
+ 
+@@ -214,8 +216,8 @@ public class BlueprintImplTest {
+ 
+     Stack stack = createNiceMock(Stack.class);
+ 
+    HostGroup group1 = createNiceMock(HostGroup.class);
+    HostGroup group2 = createNiceMock(HostGroup.class);
+    HostGroup group1 = createMock(HostGroup.class);
+    HostGroup group2 = createMock(HostGroup.class);
+     Collection&lt;HostGroup&gt; hostGroups = new HashSet&lt;HostGroup&gt;();
+     hostGroups.add(group1);
+     hostGroups.add(group2);
+@@ -258,10 +260,14 @@ public class BlueprintImplTest {
+ 
+     expect(group1.getConfiguration()).andReturn(EMPTY_CONFIGURATION).atLeastOnce();
+     expect(group1.getName()).andReturn("group1").anyTimes();
+    expect(group1.getComponents()).andReturn(group1Components).atLeastOnce();
+    expect(group1.getComponentNames()).andReturn(group1Components).atLeastOnce();
+    expect(group1.getCardinality()).andReturn("1").atLeastOnce();
+    expect(group1.getComponents()).andReturn(Arrays.asList(new Component("c1"), new Component("c2"))).atLeastOnce();
+ 
+     expect(group2.getName()).andReturn("group2").anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).atLeastOnce();
+    expect(group2.getComponentNames()).andReturn(group2Components).atLeastOnce();
+    expect(group2.getCardinality()).andReturn("1").atLeastOnce();
+    expect(group2.getComponents()).andReturn(Arrays.asList(new Component("c1"), new Component("c3"))).atLeastOnce();
+ 
+     // Blueprint config
+     Map&lt;String, Map&lt;String, String&gt;&gt; properties = new HashMap&lt;String, Map&lt;String, String&gt;&gt;();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintValidatorImplTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintValidatorImplTest.java
+index 304cded21d..f78d86dccf 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintValidatorImplTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/BlueprintValidatorImplTest.java
+@@ -75,8 +75,8 @@ public class BlueprintValidatorImplTest{
+     expect(blueprint.getHostGroups()).andReturn(hostGroups).anyTimes();
+     expect(blueprint.getServices()).andReturn(services).anyTimes();
+ 
+    expect(group1.getComponents()).andReturn(group1Components).anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).anyTimes();
+    expect(group1.getComponentNames()).andReturn(group1Components).anyTimes();
+    expect(group2.getComponentNames()).andReturn(group2Components).anyTimes();
+ 
+     expect(stack.getDependenciesForComponent("component1")).andReturn(dependencies1).anyTimes();
+     expect(stack.getDependenciesForComponent("component2")).andReturn(dependencies1).anyTimes();
+@@ -98,7 +98,7 @@ public class BlueprintValidatorImplTest{
+   @Test
+   public void testValidateTopology_basic() throws Exception {
+     group1Components.add("component1");
+    group1Components.add("component2");
+    group1Components.add("component1");
+ 
+     services.addAll(Arrays.asList("service1", "service2"));
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterInstallWithoutStartTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterInstallWithoutStartTest.java
+index 1354a72cde..dd66b1bfba 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterInstallWithoutStartTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterInstallWithoutStartTest.java
+@@ -60,7 +60,7 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Future;
+import static org.apache.ambari.server.controller.internal.ProvisionClusterRequest.ProvisionAction.INSTALL_ONLY;
+import static org.apache.ambari.server.controller.internal.ProvisionAction.INSTALL_ONLY;
+ import static org.easymock.EasyMock.anyLong;
+ import static org.easymock.EasyMock.anyObject;
+ import static org.easymock.EasyMock.anyString;
+@@ -269,7 +269,7 @@ public class ClusterInstallWithoutStartTest {
+     expect(group1.getBlueprintName()).andReturn(BLUEPRINT_NAME).anyTimes();
+     expect(group1.getCardinality()).andReturn("test cardinality").anyTimes();
+     expect(group1.containsMasterComponent()).andReturn(true).anyTimes();
+    expect(group1.getComponents()).andReturn(group1Components).anyTimes();
+    expect(group1.getComponentNames()).andReturn(group1Components).anyTimes();
+     expect(group1.getComponents("service1")).andReturn(group1ServiceComponents.get("service1")).anyTimes();
+     expect(group1.getComponents("service2")).andReturn(group1ServiceComponents.get("service1")).anyTimes();
+     expect(group1.getConfiguration()).andReturn(topoGroup1Config).anyTimes();
+@@ -280,7 +280,7 @@ public class ClusterInstallWithoutStartTest {
+     expect(group2.getBlueprintName()).andReturn(BLUEPRINT_NAME).anyTimes();
+     expect(group2.getCardinality()).andReturn("test cardinality").anyTimes();
+     expect(group2.containsMasterComponent()).andReturn(false).anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).anyTimes();
+    expect(group2.getComponentNames()).andReturn(group2Components).anyTimes();
+     expect(group2.getComponents("service1")).andReturn(group2ServiceComponents.get("service1")).anyTimes();
+     expect(group2.getComponents("service2")).andReturn(group2ServiceComponents.get("service2")).anyTimes();
+     expect(group2.getConfiguration()).andReturn(topoGroup2Config).anyTimes();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterTopologyImplTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterTopologyImplTest.java
+index 08aa3d3b50..7c68482987 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterTopologyImplTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterTopologyImplTest.java
+@@ -98,15 +98,15 @@ public class ClusterTopologyImplTest {
+     hostGroupMap.put("group3", group3);
+     hostGroupMap.put("group4", group4);
+ 
+    Set&lt;String&gt; group1Components = new HashSet&lt;String&gt;();
+    group1Components.add("component1");
+    group1Components.add("component2");
+    Set&lt;String&gt; group2Components = new HashSet&lt;String&gt;();
+    group2Components.add("component3");
+    Set&lt;String&gt; group3Components = new HashSet&lt;String&gt;();
+    group3Components.add("component4");
+    Set&lt;String&gt; group4Components = new HashSet&lt;String&gt;();
+    group4Components.add("component5");
+    Set&lt;Component&gt; group1Components = new HashSet&lt;Component&gt;();
+    group1Components.add(new Component("component1"));
+    group1Components.add(new Component("component2"));
+    Set&lt;Component&gt; group2Components = new HashSet&lt;Component&gt;();
+    group2Components.add(new Component("component3"));
+    Set&lt;Component&gt; group3Components = new HashSet&lt;Component&gt;();
+    group3Components.add(new Component("component4"));
+    Set&lt;Component&gt; group4Components = new HashSet&lt;Component&gt;();
+    group4Components.add(new Component("component5"));
+ 
+     expect(blueprint.getHostGroups()).andReturn(hostGroupMap).anyTimes();
+     expect(blueprint.getHostGroup("group1")).andReturn(group1).anyTimes();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/RequiredPasswordValidatorTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/RequiredPasswordValidatorTest.java
+index f4ded703d4..e8a2ff5912 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/RequiredPasswordValidatorTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/RequiredPasswordValidatorTest.java
+@@ -130,8 +130,8 @@ public class RequiredPasswordValidatorTest {
+     expect(blueprint.getHostGroup("group2")).andReturn(group2).anyTimes();
+     expect(blueprint.getStack()).andReturn(stack).anyTimes();
+ 
+    expect(group1.getComponents()).andReturn(group1Components).anyTimes();
+    expect(group2.getComponents()).andReturn(group2Components).anyTimes();
+    expect(group1.getComponentNames()).andReturn(group1Components).anyTimes();
+    expect(group2.getComponentNames()).andReturn(group2Components).anyTimes();
+     expect(group1.getComponents("service1")).andReturn(Arrays.asList("component1", "component2")).anyTimes();
+     expect(group1.getComponents("service2")).andReturn(Arrays.asList("component3")).anyTimes();
+     expect(group1.getComponents("service3")).andReturn(Collections.&lt;String&gt;emptySet()).anyTimes();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/TopologyManagerTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/TopologyManagerTest.java
+index 47169f488d..7810f92efb 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/TopologyManagerTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/TopologyManagerTest.java
+@@ -142,8 +142,8 @@ public class TopologyManagerTest {
+   private HostGroupInfo group2Info = new HostGroupInfo("group2");
+   private Map&lt;String, HostGroupInfo&gt; groupInfoMap = new HashMap&lt;String, HostGroupInfo&gt;();
+ 
+  private Collection&lt;String&gt; group1Components = Arrays.asList("component1", "component2", "component3");
+  private Collection&lt;String&gt; group2Components = Arrays.asList("component3", "component4");
+  private Collection&lt;Component&gt; group1Components = Arrays.asList(new Component("component1"), new Component("component2"), new Component("component3"));
+  private Collection&lt;Component&gt; group2Components = Arrays.asList(new Component("component3"), new Component("component4"));
+ 
+   private Map&lt;String, Collection&lt;String&gt;&gt; group1ServiceComponents = new HashMap&lt;String, Collection&lt;String&gt;&gt;();
+   private Map&lt;String, Collection&lt;String&gt;&gt; group2ServiceComponents = new HashMap&lt;String, Collection&lt;String&gt;&gt;();
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java b/ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java
+index 319024b42c..49484c1032 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java
+@@ -59,20 +59,9 @@ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+import static org.easymock.EasyMock.capture;
+import static org.easymock.EasyMock.createMockBuilder;
+import static org.easymock.EasyMock.createNiceMock;
+import static org.easymock.EasyMock.createStrictMock;
+import static org.easymock.EasyMock.eq;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.reset;
+import static org.easymock.EasyMock.verify;
+import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.anyString;
+import static org.easymock.EasyMock.capture;
+import static org.easymock.EasyMock.*;
+ import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.assertTrue;
+ 
+ public class UpgradeCatalog221Test {
+@@ -114,6 +103,10 @@ public class UpgradeCatalog221Test {
+     dbAccessor.createIndex(eq("idx_rsc_request_id"), eq("role_success_criteria"), eq("request_id"));
+     expectLastCall().once();
+ 
+    Capture&lt;DBAccessor.DBColumnInfo&gt; capturedHostGroupComponentProvisionColumn = EasyMock.newCapture();
+    dbAccessor.addColumn(eq("hostgroup_component"), capture(capturedHostGroupComponentProvisionColumn));
+    expectLastCall().once();
+
+ 
+     replay(dbAccessor);
+     Module module = new Module() {
+@@ -128,6 +121,15 @@ public class UpgradeCatalog221Test {
+     Injector injector = Guice.createInjector(module);
+     UpgradeCatalog221 upgradeCatalog221 = injector.getInstance(UpgradeCatalog221.class);
+     upgradeCatalog221.executeDDLUpdates();
+
+    // verify that the column was added for provision_action to the hostgroup_component table
+    assertEquals("Incorrect column name added", "provision_action", capturedHostGroupComponentProvisionColumn.getValue().getName());
+    assertNull("Incorrect default value added", capturedHostGroupComponentProvisionColumn.getValue().getDefaultValue());
+    assertEquals("Incorrect column type added", String.class, capturedHostGroupComponentProvisionColumn.getValue().getType());
+    assertEquals("Incorrect column length added", 255, capturedHostGroupComponentProvisionColumn.getValue().getLength().intValue());
+    assertTrue("Incorrect column nullable state added", capturedHostGroupComponentProvisionColumn.getValue().isNullable());
+
+
+     verify(dbAccessor);
+   }
+ 
+- 
+2.19.1.windows.1
+
+</comment></unit>

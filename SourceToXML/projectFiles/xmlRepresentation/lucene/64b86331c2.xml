@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/64b86331c2.java"><expr_stmt><expr><name>From</name> <literal type="number">64b86331c29d074fa7b257d65d3fda3b662bf96a</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Mike</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">13</literal> <name>Jan</name> <literal type="number">2017</literal> <literal type="number">17</literal><operator>:</operator><literal type="number">46</literal><operator>:</operator><literal type="number">02</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">7626</literal><operator>:</operator> <name>IndexWriter</name> <name>no</name> <name>longer</name> <name>accepts</name> <name>broken</name> <name>offsets</name>
+
+<operator>--</operator>
+ <name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                            <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">78</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name><name>FixBrokenOffsetsFilterFactory</name><operator>.</operator><name>java</name></name>        <operator>|</operator>  <literal type="number">39</literal> <operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><name><name>he</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name> <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name><name>TestFixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>           <operator>|</operator>  <literal type="number">50</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>FixBrokenOffsets</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">125</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator></expr></expr_stmt><package>package.<name>html</name> <operator>|</operator>  27 ++++
+ .../<name>lucene</name>/<name>index</name>/<name><name>TestFixBrokenOffsets</name><operator>.</operator><name>java</name></name>    <operator>|</operator> 114 ++++++++++++++++
+ .../<name>lucene</name>/<name>index</name>/<name>index</name>.630.brokenoffsets.<name>zip</name>  <operator>|</operator> <name>Bin</name> 0 -&gt; 3203 <name>bytes</name>
+ .../<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>CheckIndex</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  29 ++--
+ .../<name>lucene</name>/<name>index</name>/<name><name>DefaultIndexingChain</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  20 ++-
+ .../<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>TestCheckIndex</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   5 -
+ .../<name>search</name>/<name>highlight</name>/<name><name>TokenSourcesTest</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   2 +-
+ .../<name>lucene</name>/<name>search</name>/<name><name>TestTermAutomatonQuery</name><operator>.</operator><name>java</name></name> <operator>|</operator>   3 +
+ .../<name>index</name>/<name><name>BaseTermVectorsFormatTestCase</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  17 +--
+ .../<name>lucene</name>/<name>index</name>/<name><name>BaseTestCheckIndex</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  19 ---
+ .../<name>java</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>util</name>/<name><name>TestUtil</name><operator>.</operator><name>java</name></name> <operator>|</operator>   4 +-
+ .../<name>apache</name>/<name>solr</name>/<name>schema</name>/<name><name>PreAnalyzedField</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  11 ++
+ .../<name>solr</name>/<name>index</name>/<name>hdfs</name>/<name><name>CheckHdfsIndexTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   5 -
+ 19 <name>files</name> <name>changed</name><operator>,</operator> 480 <name>insertions</name>(+</package>)<operator>,</operator> <expr_stmt><expr><literal type="number">72</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilterFactory</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>TestFixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>FixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator></expr></expr_stmt><package>package.<name>html</name>
+ <name>create</name> <name>mode</name> 100644 <name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>test</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>TestFixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> 100644 <name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>test</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name>index</name>.630.brokenoffsets.<name>zip</name>
+
+<name>diff</name> --<name>git</name> <name>a</name>/<name>lucene</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name>/<name>lucene</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> 040f4e0ef5b..30943d2a9d2 100644
+-- <name>a</name>/<name>lucene</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+++ <name>b</name>/<name>lucene</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ -29<operator>,</operator>6 +29<operator>,</operator>9 @@ <name>API</name> <name>Changes</name>
+ 
+ <name>Bug</name> <name>Fixes</name>
+ 
+* <name>LUCENE</name>-7626: <name>IndexWriter</name> <name>will</name> <name>no</name> <name>longer</name> <name>accept</name> <name>broken</name> <name>token</name> <name>offsets</name>
+  (<name>Mike</name> <name>McCandless</name></package>)
+
+ <expr_stmt><expr><name>Improvements</name>
+ 
+ <operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">7489</literal><operator>:</operator> <name>Better</name> <name>storage</name> <name>of</name> <name>sparse</name> <name>doc</name><operator>-</operator><name>values</name> <name>fields</name> <name>with</name> <name>the</name> default
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..b0a6b1df24d</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">78</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenFilter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>OffsetAttribute</name></name>;</import>
+
+<comment type="block" format="javadoc">/** 
+ * A filter to correct offsets that illegally go backwards.
+ *
+ * @deprecated Fix the token filters that create broken offsets in the first place.
+ */</comment>
+<class><annotation>@<name>Deprecated</name></annotation>
+<specifier>public</specifier> <specifier>final</specifier> class <name>FixBrokenOffsetsFilter</name> <super_list><extends>extends <super><name>TokenFilter</name></super></extends></super_list> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>lastStartOffset</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>lastEndOffset</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>OffsetAttribute</name></type> <name>offsetAtt</name> <init>= <expr><call><name>addAttribute</name><argument_list>(<argument><expr><name><name>OffsetAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>FixBrokenOffsetsFilter</name><parameter_list>(<parameter><decl><type><name>TokenStream</name></type> <name>in</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>boolean</name></type> <name>incrementToken</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name><name>input</name><operator>.</operator><name>incrementToken</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="boolean">false</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name>fixOffsets</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>end</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>fixOffsets</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>reset</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>reset</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>lastStartOffset</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>lastEndOffset</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>fixOffsets</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>startOffset</name> <init>= <expr><call><name><name>offsetAtt</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>endOffset</name> <init>= <expr><call><name><name>offsetAtt</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>startOffset</name> <operator>&lt;</operator> <name>lastStartOffset</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>startOffset</name> <operator>=</operator> <name>lastStartOffset</name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><name>endOffset</name> <operator>&lt;</operator> <name>startOffset</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>endOffset</name> <operator>=</operator> <name>startOffset</name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>offsetAtt</name><operator>.</operator><name>setOffset</name></name><argument_list>(<argument><expr><name>startOffset</name></expr></argument>, <argument><expr><name>endOffset</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>lastStartOffset</name> <operator>=</operator> <name>startOffset</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>lastEndOffset</name> <operator>=</operator> <name>endOffset</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..8484b8c2d68</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>FixBrokenOffsetsFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">39</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * Factory for {@link FixBrokenOffsetsFilter}.
+ */</comment>
+<class><specifier>public</specifier> class <name>FixBrokenOffsetsFilterFactory</name> <super_list><extends>extends <super><name>TokenFilterFactory</name></super></extends></super_list> <block>{
+
+  <comment type="block" format="javadoc">/** Sole constructor */</comment>
+  <constructor><specifier>public</specifier> <name>FixBrokenOffsetsFilterFactory</name><parameter_list>(<parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>args</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>TokenStream</name></type> <name>create</name><parameter_list>(<parameter><decl><type><name>TokenStream</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>new</operator> <call><name>FixBrokenOffsetsFilter</name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>resources</name><operator>/</operator><name>META</name><operator>-</operator><name>INF</name><operator>/</operator><name>services</name><operator>/</operator><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>resources</name><operator>/</operator><name>META</name><operator>-</operator><name>INF</name><operator>/</operator><name>services</name><operator>/</operator><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name>
+<name>index</name> <literal type="number">73986d73fec</literal><operator>..</operator><literal type="number">5f8894cb02b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>resources</name><operator>/</operator><name>META</name><operator>-</operator><name>INF</name><operator>/</operator><name>services</name><operator>/</operator><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>resources</name><operator>/</operator><name>META</name><operator>-</operator><name>INF</name><operator>/</operator><name>services</name><operator>/</operator><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>util</name><operator>.</operator><name>TokenFilterFactory</name></name>
+@@ <operator>-</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>CapitalizationFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>CodepointCountFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>DateRecognizerFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>FingerprintFilterFactory</name></name>
+<name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>FixBrokenOffsetsFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>HyphenatedWordsFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>KeepWordFilterFactory</name></name>
+ <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name><operator>.</operator><name>KeywordMarkerFilterFactory</name></name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>TestFixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>TestFixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..ada5014334f</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>miscellaneous</name><operator>/</operator><name><name>TestFixBrokenOffsetsFilter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">50</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>miscellaneous</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>BaseTokenStreamTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>CannedTokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Token</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>FieldType</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>TextField</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestFixBrokenOffsetsFilter</name> <super_list><extends>extends <super><name>BaseTokenStreamTestCase</name></super></extends></super_list> <block>{
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testBogusTermVectors</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>dir</name> <init>= <expr><call><name>newDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>IndexWriter</name></type> <name>iw</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>dir</name></expr></argument>, <argument><expr><call><name>newIndexWriterConfig</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FieldType</name></type> <name>ft</name> <init>= <expr><operator>new</operator> <call><name>FieldType</name><argument_list>(<argument><expr><name><name>TextField</name><operator>.</operator><name>TYPE_NOT_STORED</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>ft</name><operator>.</operator><name>setStoreTermVectors</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>ft</name><operator>.</operator><name>setStoreTermVectorOffsets</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Field</name></type> <name>field</name> <init>= <expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><literal type="string">"foo"</literal></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>ft</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>field</name><operator>.</operator><name>setTokenStream</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FixBrokenOffsetsFilter</name><argument_list>(<argument><expr><operator>new</operator> <call><name>CannedTokenStream</name><argument_list>(
+        <argument><expr><operator>new</operator> <call><name>Token</name><argument_list>(<argument><expr><literal type="string">"bar"</literal></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><operator>new</operator> <call><name>Token</name><argument_list>(<argument><expr><literal type="string">"bar"</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>)</argument_list></call></expr></argument>
+        )</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>iw</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>iw</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>dir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>FixBrokenOffsets</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>FixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..d4d6f85430b</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>FixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">125</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>file</name><operator>.</operator><name>Files</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>file</name><operator>.</operator><name>Path</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>file</name><operator>.</operator><name>Paths</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>FSDirectory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>IOUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>SuppressForbidden</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * Command-line tool that reads from a source index and
+ * writes to a dest index, correcting any broken offsets
+ * in the process.
+ *
+ * @lucene.experimental
+ */</comment>
+<class><specifier>public</specifier> class <name>FixBrokenOffsets</name> <block>{
+  <decl_stmt><decl><type><specifier>public</specifier> <name>SegmentInfos</name></type> <name>infos</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><name>FSDirectory</name></type> <name>fsDir</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><name>Path</name></type> <name>dir</name></decl>;</decl_stmt>
+
+  <function><annotation>@<name>SuppressForbidden</name><argument_list>(<argument><expr><name>reason</name> <operator>=</operator> <literal type="string">"System.out required: command line tool"</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name><name>args</name><operator>.</operator><name>length</name></name> <operator>&lt;</operator> <literal type="number">2</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>err</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"Usage: FixBrokenOffsetse &lt;srcDir&gt; &lt;destDir&gt;"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return;</return>
+    </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>Path</name></type> <name>srcPath</name> <init>= <expr><call><name><name>Paths</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Files</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>srcPath</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"srcPath "</literal> <operator>+</operator> <call><name><name>srcPath</name><operator>.</operator><name>toAbsolutePath</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" doesn't exist"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>Path</name></type> <name>destPath</name> <init>= <expr><call><name><name>Paths</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>Files</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>destPath</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"destPath "</literal> <operator>+</operator> <call><name><name>destPath</name><operator>.</operator><name>toAbsolutePath</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" already exists; please remove it and re-run"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>srcDir</name> <init>= <expr><call><name><name>FSDirectory</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>srcPath</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>DirectoryReader</name></type> <name>reader</name> <init>= <expr><call><name><name>DirectoryReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>srcDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>LeafReaderContext</name></argument>&gt;</argument_list></name></type> <name>leaves</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>leaves</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>CodecReader</name><index>[]</index></name></type> <name>filtered</name> <init>= <expr><operator>new</operator> <name><name>CodecReader</name><index>[<expr><call><name><name>leaves</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><call><name><name>leaves</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>filtered</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>SlowCodecReaderWrapper</name><operator>.</operator><name>wrap</name></name><argument_list>(<argument><expr><operator>new</operator> <class><super><name>FilterLeafReader</name></super><argument_list>(<argument><expr><call><name><name>leaves</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>reader</name><argument_list>()</argument_list></call></expr></argument>)</argument_list> <block>{
+          <function><annotation>@<name>Override</name></annotation>
+          <type><specifier>public</specifier> <name>Fields</name></type> <name>getTermVectors</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>docID</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+            <decl_stmt><decl><type><name>Fields</name></type> <name>termVectors</name> <init>= <expr><call><name><name>in</name><operator>.</operator><name>getTermVectors</name></name><argument_list>(<argument><expr><name>docID</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>termVectors</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <return>return <expr><literal type="null">null</literal></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+            <return>return <expr><operator>new</operator> <class><super><name>FilterFields</name></super><argument_list>(<argument><expr><name>termVectors</name></expr></argument>)</argument_list> <block>{
+              <function><annotation>@<name>Override</name></annotation>
+              <type><specifier>public</specifier> <name>Terms</name></type> <name>terms</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>field</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                <return>return <expr><operator>new</operator> <class><super><name>FilterTerms</name></super><argument_list>(<argument><expr><call><name><name>super</name><operator>.</operator><name>terms</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list> <block>{
+                  <function><annotation>@<name>Override</name></annotation>
+                  <type><specifier>public</specifier> <name>TermsEnum</name></type> <name>iterator</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                    <return>return <expr><operator>new</operator> <class><super><name>FilterTermsEnum</name></super><argument_list>(<argument><expr><call><name><name>super</name><operator>.</operator><name>iterator</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list> <block>{
+                      <function><annotation>@<name>Override</name></annotation>
+                      <type><specifier>public</specifier> <name>PostingsEnum</name></type> <name>postings</name><parameter_list>(<parameter><decl><type><name>PostingsEnum</name></type> <name>reuse</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>flags</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                        <return>return <expr><operator>new</operator> <class><super><name>FilterPostingsEnum</name></super><argument_list>(<argument><expr><call><name><name>super</name><operator>.</operator><name>postings</name></name><argument_list>(<argument><expr><name>reuse</name></expr></argument>, <argument><expr><name>flags</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list> <block>{
+                          <decl_stmt><decl><type><name>int</name></type> <name>nextLastStartOffset</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+                          <decl_stmt><decl><type><name>int</name></type> <name>lastStartOffset</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+                          <function><annotation>@<name>Override</name></annotation>
+                          <type><specifier>public</specifier> <name>int</name></type> <name>nextPosition</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                            <decl_stmt><decl><type><name>int</name></type> <name>pos</name> <init>= <expr><call><name><name>super</name><operator>.</operator><name>nextPosition</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                            <expr_stmt><expr><name>lastStartOffset</name> <operator>=</operator> <name>nextLastStartOffset</name></expr>;</expr_stmt>
+                            <expr_stmt><expr><name>nextLastStartOffset</name> <operator>=</operator> <call><name>startOffset</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                            <return>return <expr><name>pos</name></expr>;</return>
+                          </block_content>}</block></function>
+                          
+                          <function><annotation>@<name>Override</name></annotation>
+                          <type><specifier>public</specifier> <name>int</name></type> <name>startOffset</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                            <decl_stmt><decl><type><name>int</name></type> <name>offset</name> <init>= <expr><call><name><name>super</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                            <if_stmt><if>if <condition>(<expr><name>offset</name> <operator>&lt;</operator> <name>lastStartOffset</name></expr>)</condition> <block>{<block_content>
+                              <expr_stmt><expr><name>offset</name> <operator>=</operator> <name>lastStartOffset</name></expr>;</expr_stmt>
+                            </block_content>}</block></if></if_stmt>
+                            <return>return <expr><name>offset</name></expr>;</return>
+                          </block_content>}</block></function>
+                          
+                          <function><annotation>@<name>Override</name></annotation>
+                          <type><specifier>public</specifier> <name>int</name></type> <name>endOffset</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                            <decl_stmt><decl><type><name>int</name></type> <name>offset</name> <init>= <expr><call><name><name>super</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                            <if_stmt><if>if <condition>(<expr><name>offset</name> <operator>&lt;</operator> <name>lastStartOffset</name></expr>)</condition> <block>{<block_content>
+                              <expr_stmt><expr><name>offset</name> <operator>=</operator> <name>lastStartOffset</name></expr>;</expr_stmt>
+                            </block_content>}</block></if></if_stmt>
+                            <return>return <expr><name>offset</name></expr>;</return>
+                          </block_content>}</block></function>
+                        }</block></class></expr>;</return>
+                      </block_content>}</block></function>
+                    }</block></class></expr>;</return>
+                  </block_content>}</block></function>
+                }</block></class></expr>;</return>
+              </block_content>}</block></function>
+            }</block></class></expr>;</return>
+          </block_content>}</block></function>
+        }</block></class></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <decl_stmt><decl><type><name>Directory</name></type> <name>destDir</name> <init>= <expr><call><name><name>FSDirectory</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>destPath</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>IndexWriter</name></type> <name>writer</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>destDir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>addIndexes</name></name><argument_list>(<argument><expr><name>filtered</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>IOUtils</name><operator>.</operator><name>close</name></name><argument_list>(<argument><expr><name>writer</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>, <argument><expr><name>srcDir</name></expr></argument>, <argument><expr><name>destDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator></expr></expr_stmt><package>package.<name>html</name> <name>b</name>/<name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/package.<name>html</name>
+new <name>file</name> <name>mode</name> 100644
+<name>index</name> 00000000000..42ff91af613
+-- /<name>dev</name>/null
+++ <name>b</name>/<name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/package.<name>html</name>
+@@ -0<operator>,</operator>0 +1<operator>,</operator>27 @@
+<name><argument_list type="generic">&lt;<argument><operator>!</operator><name>doctype</name> <name>html</name> <specifier>public</specifier></argument></argument_list></name> "-//w3c//dtd html 4.0 transitional//en"&gt;
+<name><argument_list type="generic">&lt;<argument><operator>!</operator><operator>--</operator>
+ <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <name>Foundation</name></argument> <argument/></argument_list></name>(<name>ASF</name></package>) <expr_stmt><expr><name>under</name> <name>one</name> <name>or</name> <name>more</name>
+ <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+ <name>this</name> <name>work</name></expr></expr_stmt> <for>for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+ <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+ <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+
+     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+
+ <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+ <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+ <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator>
+ <name>See</name></name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+ limitations under the License.
+--&gt;
+&lt;!-- not a package-info.java<operator>,</operator> <expr_stmt><expr><name>because</name> <name>we</name> <name>already</name> <name>defined</name> <name>this</name></expr></expr_stmt></for> <package>package <name>in</name> <name>core</name>/ --&gt;
+<argument_list type="generic">&lt;<argument><name>html</name></argument>&gt;</argument_list>
+<argument_list type="generic">&lt;<argument><name>head</name></argument>&gt;</argument_list>
+  <name><argument_list type="generic">&lt;<argument><name>meta</name> <name>http</name></argument></argument_list></name>-<name>equiv</name>="Content-Type" <name>content</name>="text/html; charset=iso-8859-1"&gt;
+  <argument_list type="generic">&lt;<argument><name>title</name></argument>&gt;</argument_list><name>Tools</name> for <name>handling</name> <name>backwards</name> <name>compatibility</name> <name>issues</name> <name>with</name> <name><name>indices</name><operator>.</operator></name>&lt;/<name>title</name>&gt;
+<argument_list type="generic">&lt;<argument><operator>/</operator><name>head</name></argument>&gt;</argument_list>
+<argument_list type="generic">&lt;<argument><name>body</name></argument>&gt;</argument_list>
+<name>Tools</name> for <name>handling</name> <name>backwards</name> <name>compatibility</name> <name>issues</name> <name>with</name> <name><name>indices</name><operator>.</operator></name>
+&lt;/<name>body</name>&gt;
+<argument_list type="generic">&lt;<argument><operator>/</operator><name>html</name></argument>&gt;</argument_list>
+<name>diff</name> --<name>git</name> <name>a</name>/<name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>test</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>TestFixBrokenOffsets</name><operator>.</operator><name>java</name></name> <name>b</name>/<name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>test</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>TestFixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+new <name>file</name> <name>mode</name> 100644
+<name>index</name> 00000000000..bcd5a65aee8
+-- /<name>dev</name>/null
+++ <name>b</name>/<name>lucene</name>/<name>backward</name>-<name>codecs</name>/<name>src</name>/<name>test</name>/<name>org</name>/<name>apache</name>/<name>lucene</name>/<name>index</name>/<name><name>TestFixBrokenOffsets</name><operator>.</operator><name>java</name></name>
+@@ -0<operator>,</operator>0 +1<operator>,</operator>114 @@
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>ByteArrayOutputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>InputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>file</name><operator>.</operator><name>Path</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>FSDirectory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>MockDirectoryWrapper</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LuceneTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>TestUtil</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestFixBrokenOffsets</name> <super_list><extends>extends <super><name>LuceneTestCase</name></super></extends></super_list> <block>{
+
+  <comment type="line">// Run this in Lucene 6.x:</comment>
+  <comment type="line">//</comment>
+  <comment type="line">//     ant test -Dtestcase=TestFixBrokenOffsets -Dtestmethod=testCreateBrokenOffsetsIndex -Dtests.codec=default -Dtests.useSecurityManager=false</comment>
+  <comment type="block">/*
+  public void testCreateBrokenOffsetsIndex() throws IOException {
+
+    Path indexDir = Paths.get("/tmp/brokenoffsets");
+    Files.deleteIfExists(indexDir);
+    Directory dir = newFSDirectory(indexDir);
+    IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig());
+
+    Document doc = new Document();
+    FieldType fieldType = new FieldType(TextField.TYPE_STORED);
+    fieldType.setStoreTermVectors(true);
+    fieldType.setStoreTermVectorPositions(true);
+    fieldType.setStoreTermVectorOffsets(true);
+    Field field = new Field("foo", "bar", fieldType);
+    field.setTokenStream(new CannedTokenStream(new Token("foo", 10, 13), new Token("foo", 7, 9)));
+    doc.add(field);
+    writer.addDocument(doc);
+    writer.commit();
+
+    // 2nd segment
+    doc = new Document();
+    field = new Field("foo", "bar", fieldType);
+    field.setTokenStream(new CannedTokenStream(new Token("bar", 15, 17), new Token("bar", 1, 5)));
+    doc.add(field);
+    writer.addDocument(doc);
+    
+    writer.close();
+
+    dir.close();
+  }
+  */</comment>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFixBrokenOffsetsIndex</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>InputStream</name></type> <name>resource</name> <init>= <expr><call><name>getClass</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getResourceAsStream</name><argument_list>(<argument><expr><literal type="string">"index.630.brokenoffsets.zip"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><literal type="string">"Broken offsets index not found"</literal></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Path</name></type> <name>path</name> <init>= <expr><call><name>createTempDir</name><argument_list>(<argument><expr><literal type="string">"brokenoffsets"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>TestUtil</name><operator>.</operator><name>unzip</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>dir</name> <init>= <expr><call><name><name>FSDirectory</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// OK: index is 6.3.0 so offsets not checked:</comment>
+    <expr_stmt><expr><call><name><name>TestUtil</name><operator>.</operator><name>checkIndex</name></name><argument_list>(<argument><expr><name>dir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>MockDirectoryWrapper</name></type> <name>tmpDir</name> <init>= <expr><call><name>newMockDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>tmpDir</name><operator>.</operator><name>setCheckIndexOnClose</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>IndexWriter</name></type> <name>w</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>tmpDir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>addIndexes</name></name><argument_list>(<argument><expr><name>dir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// OK: addIndexes(Directory...) also keeps version as 6.3.0, so offsets not checked:</comment>
+    <expr_stmt><expr><call><name><name>TestUtil</name><operator>.</operator><name>checkIndex</name></name><argument_list>(<argument><expr><name>tmpDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>tmpDir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name>MockDirectoryWrapper</name></type> <name>tmpDir2</name> <init>= <expr><call><name>newMockDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>tmpDir2</name><operator>.</operator><name>setCheckIndexOnClose</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>w</name> <operator>=</operator> <operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>tmpDir2</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>DirectoryReader</name></type> <name>reader</name> <init>= <expr><call><name><name>DirectoryReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>dir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>LeafReaderContext</name></argument>&gt;</argument_list></name></type> <name>leaves</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>leaves</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>CodecReader</name><index>[]</index></name></type> <name>codecReaders</name> <init>= <expr><operator>new</operator> <name><name>CodecReader</name><index>[<expr><call><name><name>leaves</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><call><name><name>leaves</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>codecReaders</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>CodecReader</name><operator>)</operator> <call><name><name>leaves</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>reader</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>addIndexes</name></name><argument_list>(<argument><expr><name>codecReaders</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// NOT OK: broken offsets were copied into a 7.0 segment:</comment>
+    <decl_stmt><decl><type><name>ByteArrayOutputStream</name></type> <name>output</name> <init>= <expr><operator>new</operator> <call><name>ByteArrayOutputStream</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>    
+    <decl_stmt><decl><type><name>RuntimeException</name></type> <name>re</name> <init>= <expr><call><name>expectThrows</name><argument_list>(<argument><expr><name><name>RuntimeException</name><operator>.</operator><name>class</name></name></expr></argument>, <argument><expr><lambda><parameter_list>()</parameter_list> -&gt; <block>{<block_content><expr_stmt><expr><call><name><name>TestUtil</name><operator>.</operator><name>checkIndex</name></name><argument_list>(<argument><expr><name>tmpDir2</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>output</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content>}</block></lambda></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"term [66 6f 6f]: doc 0: pos 1: startOffset 7 &lt; lastStartOffset 10; consider using the FixBrokenOffsets tool in Lucene's backward-codecs module to correct your index"</literal></expr></argument>, <argument><expr><call><name><name>re</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>tmpDir2</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Now run the tool and confirm the broken offsets are fixed:</comment>
+    <decl_stmt><decl><type><name>Path</name></type> <name>path2</name> <init>= <expr><call><name>createTempDir</name><argument_list>(<argument><expr><literal type="string">"fixedbrokenoffsets"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>resolve</name><argument_list>(<argument><expr><literal type="string">"subdir"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>FixBrokenOffsets</name><operator>.</operator><name>main</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{<expr><call><name><name>path</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>, <expr><call><name><name>path2</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>tmpDir3</name> <init>= <expr><call><name><name>FSDirectory</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>path2</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>TestUtil</name><operator>.</operator><name>checkIndex</name></name><argument_list>(<argument><expr><name>tmpDir3</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>tmpDir3</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><call><name><name>dir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>index</name><literal type="number">.630.brokenoffsets</literal><operator>.</operator><name>zip</name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>backward</name><operator>-</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>index</name><literal type="number">.630.brokenoffsets</literal><operator>.</operator><name>zip</name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">0000000000000000000000000000000000000000..3cf476a07d5a39f253f52c85b5f2512b698ed06d</literal>
+<name>GIT</name> <name>binary</name> <name>patch</name>
+<name>literal</name> <literal type="number">3203</literal>
+<name>zcmb</name><operator>`</operator><name>JX</name></expr>;</expr_stmt><expr_stmt><expr><literal type="number">4</literal><operator>#</operator><name>H9</name><operator>&gt;</operator><name>rhC1</name><operator>|</operator><name>bq</name></expr>;</expr_stmt><expr><name>R</name></expr>}lh<block>{<block_content><expr_stmt><expr><name>Ert</name><operator>*</operator><name>hR8</name></expr></expr_stmt>)</block_content><block>{<block_content><expr_stmt><expr><name>nXdoaFkWGYuA</name></expr>;</expr_stmt><expr><name>_w</name><operator>-</operator><literal type="number">8W</literal><operator>%</operator><name>bt2pyJ</name>@<name>RR</name><operator>|</operator><name>zk</name>
+<name>z0fJj0Mx</name><operator>`</operator><literal type="number">5</literal><operator>-</operator><name>uqO</name></expr></block_content>}</block><block>{<block_content><expr><name>nY4l</name></expr></block_content>}</block>HXx#wsGyc@lra</block><empty_stmt>;</empty_stmt><expr_stmt><expr><operator>~</operator><name>wtyNPK6Kr</name><operator>&gt;</operator><name>ukQPD</name><operator>&gt;</operator><name>VK</name><operator>-</operator><name>v</name><block>{<expr><name>oO</name><operator>+</operator><name>$gCS</name></expr>}</block><name>F</name>
+<name>z0LTOPQgN</name><operator>&gt;</operator><literal type="number">1w_iw</literal><operator>`</operator><name>WPf</name><operator>`</operator><operator>=</operator><literal type="number">000BDfnWlDKRs</literal><operator>-</operator><name>Zw</name><operator>*</operator><name>mmJeVgnzzY</name><operator>~</operator><name>ur0wBmUFaRukuC</name><operator>!</operator><name>HP</name>
+<name>z</name>@<name>UOf</name><operator>|</operator><operator>%</operator><call><name>S</name><argument_list>(<argument><expr><name>$RBge</name><operator>`</operator><name>s_vQwd7EhG</name><operator>=</operator><name>dKPj6L</name></expr></argument>;<argument><expr><name>z$xKGr</name><operator>`</operator><name>UR</name><operator>+</operator><operator>-</operator><operator>(</operator><operator>^</operator><name>_WX</name><operator>)</operator><literal type="number">9</literal><operator>=</operator><operator>?</operator><name>Xn</name></expr></argument>;<argument><expr><ternary><condition><expr><name>jDB</name><operator>~</operator><name>c2</name><operator>|</operator><literal type="number">0ub</literal>
+<name>zSR0</name></expr>?</condition><then><operator>|</operator><expr><ternary><condition><expr><operator>(</operator><name>M6Fkk8I5hY</name></expr></condition></ternary></expr></then></ternary></expr></argument></argument_list></call></expr></expr_stmt>}R0RKwY0<expr_stmt><expr><operator>!</operator><literal type="number">3yNt</literal><operator>|</operator><name>_GxRlRc</name><operator>~</operator><name>HUCKcagRliwR_2x6</name><operator>~</operator><name>D1$</name><operator>&amp;=</operator><name>BXxjY</name>
+<name>z</name><operator>^</operator><name>nW</name><operator>+</operator><name>xiA6</name><operator>^</operator><name>nZfu</name><operator>|</operator><name>uO5LFpNl</name><operator>*</operator><operator>#</operator><name>duGF</name><operator>&lt;</operator><name>EwX</name><operator>!</operator><operator>-</operator><name>j1Z</name><operator>`</operator><name>vI9</name><block>{<expr><name>N5F</name>@<name>sTy1wylt</name><block>{<expr><operator>&amp;</operator><literal type="number">7NS2GW</literal><operator>?</operator><operator>*</operator><literal type="number">1</literal>
+<name>zwS39</name><operator>!</operator><call><name>nbf3gcF_3u</name><argument_list>(<argument><expr><call><name>PV</name><argument_list>(<argument><expr><name>K</name><operator>#</operator><name>IL</name></expr></argument>)</argument_list></call><name>VcLpE_09lYle</name><operator>&amp;</operator><name>heI</name><operator>--</operator><operator>+</operator><name>dZ</name><operator>^</operator><name>ZoJ</name><operator>#</operator><operator>|</operator><call><name>HEt</name><argument_list>(<argument><expr><block>{<expr><name>G3Kcqmqkh</name>
+<name>z</name><operator>-</operator><name>zu</name><operator>^</operator>@<name>UTB6</name><operator>*</operator><name>kEC</name><operator>`</operator><name>D</name><operator>^</operator><literal type="number">2JqrzCa</literal><operator>*</operator><name>fNTx</name><operator>&lt;</operator><name>pY1A</name><operator>+</operator><operator>(</operator><name>E$Pq</name><operator>^</operator><name>KA</name><operator>&amp;&amp;</operator><name>EW3o8a</name><operator>?</operator><name>Pyb</name><operator>*</operator><operator>%</operator><name>Dmb6nUNGq</name>
+<name>z</name><operator>%</operator><literal type="number">6TbBpy5</literal><operator>(</operator><name>t3X</name><operator>*</operator><name>gia2e0L</name><operator>#</operator><operator>~</operator><name>rx_jgEMUa9Fzs</name><operator>&gt;</operator><name>b3qLzqU$HE9</name><operator>&amp;</operator><name>U$x</name><operator>!</operator><name>o</name>@<literal type="number">89_Z</literal>}<name>vHA5S3</name>
+<name>z</name><operator>!</operator><literal type="number">0BTR</literal>@<name>p</name><operator>&gt;</operator><call><name>i</name><argument_list>(<argument><expr><name>rkIUJr</name><operator>=</operator><name>s</name><operator>^</operator><name>J9C</name></expr></argument>)</argument_list></call><operator>`</operator><name>eH</name><operator>^</operator><name>zR</name><operator>~</operator><name>R</name><operator>*</operator><literal type="number">7</literal><operator>&amp;</operator><operator>#</operator><operator>&amp;</operator><operator>#</operator><operator>|</operator><operator>!</operator><operator>)</operator><operator>?</operator><name>V</name>;<name>XEGb</name><block>{<expr><name>$exU</name><operator>+</operator><name>uXA</name><operator>%</operator><name>mRJ94bb</name><operator>&gt;</operator>
+<name>zrJ0q</name><operator>-</operator><name>Em</name><operator>-</operator><name>r6Vd</name><operator>&amp;&amp;</operator><name>EWw</name><block>{<expr><name>sT1aqoCCbCshbyiNRR</name><operator>*</operator><name>JSudYQIitAbSscye</name><operator>`</operator><literal type="number">95y</literal><operator>+</operator><name>sSNXzI</name><operator>`</operator>
+<name><name>zYPM</name><argument_list type="generic">&lt;<argument><operator>`</operator><name>mhiqGE</name><operator>?</operator><name>MvU5EHde</name><operator>%</operator><name>zK4</name><operator>&amp;</operator><name>K93VkQ</name></argument>&gt;</argument_list></name><name>j</name><operator>&gt;</operator><name>I_rv</name><block>{<expr><name>e11</name><operator>=</operator><operator>^</operator><operator>&gt;</operator><name>WE_50M0UBzuh3_5Sb6P</name></expr>;
+<expr><name>zU</name></expr></block></expr></block></expr></block><operator>)</operator><name>BWX</name><operator>&lt;</operator><operator>|</operator><name>G</name><operator>`</operator><name>GCTtfthlm</name>@<name>PYjzsrOGZ</name></expr>;<expr><literal type="number">2n0</literal><operator>&gt;</operator><name>Yi</name><operator>*</operator><operator>%</operator><name>BR90V2Mk</name><block>{<expr><name>g</name><operator>&amp;</operator><name>X</name><operator>`</operator><literal type="number">1</literal>@<name>EiYC</name><block>{<expr><name>H</name></expr>}</block><name>Qf85e5</name>
+<name>z</name><operator>&amp;</operator><name>H</name></expr>;<expr><operator>&gt;</operator><literal type="number">39h</literal><operator>|</operator></expr></block></expr></block></expr></argument>)</argument_list></call><name>YLW</name><operator>*</operator><literal type="number">2Cjt</literal><operator>!</operator><name>h</name><operator>^</operator><literal type="number">1</literal><operator>&amp;</operator></expr></argument>;<argument><expr><name>qg2</name></expr></argument>)</argument_list></call><ternary><condition><expr><name>q</name></expr>?</condition><then><expr><operator>=</operator><block>{<expr><operator>%</operator><name>neK3DaI5GQ</name><operator>!</operator></expr>)<ternary><condition><expr><name>Rj</name><operator>-</operator><name>s</name><operator>&gt;</operator><name>NR2</name></expr>?</condition><then><expr><operator>~</operator><operator>*</operator><name>e</name><operator>~</operator><name>R</name><operator>&lt;</operator><name>F</name></expr></then></ternary>)</block><name>B</name><operator>+</operator><name>EK</name>
+<name>z</name></expr></then></ternary></expr>;<expr><ternary><condition><expr><name>YCswQ</name><operator>+</operator><name>I</name></expr>?</condition><then><expr><name>HWukXtY</name><operator>=</operator><name>e</name><operator>^</operator><name>dfC</name><operator>!</operator><name>lOy</name><operator>&gt;</operator><name>r82x</name></expr></then></ternary></expr>)<name>G</name><operator>|</operator><name>CQYG</name><operator>#</operator><name>ch</name><operator>-</operator><name>P</name><operator>#</operator><name>VB</name><block>{<expr><name>Z</name></expr>;<expr><ternary><condition><expr><name>S7Qd7</name><operator>#</operator><literal type="number">99Z</literal></expr>?</condition><then><expr><name>NqD$qb</name>
+<name>z1</name></expr></then></ternary></expr>)<operator>&amp;</operator>@<name>CmV</name><operator>^</operator>)</block><ternary><condition><expr><name>Mu8WA</name><operator>^</operator><name>s</name><operator>%</operator><name>OKD6</name><operator>`</operator><name>aFgBMP$</name><operator>*</operator><literal type="number">3</literal></expr>?</condition><then><expr><operator>&amp;</operator><operator>+</operator><name>AEXxo5</name><operator>-</operator><name>tZlL</name><operator>*</operator><operator>&lt;</operator><name>Fc</name><operator>~</operator><name>ZRnT</name><operator>#</operator><literal type="number">5</literal><operator>+</operator><name>CuS_</name><operator>*</operator><name>hfi</name>
+<call><name>z$</name><argument_list>(<argument><expr><ternary><condition><expr><operator>^</operator><operator>&gt;</operator><operator>!</operator></expr>?</condition><then><expr><name>l_J</name><operator>`</operator><name>fVz67k</name>@<name>ZpGZ</name></expr></then></ternary></expr></argument>;}</argument_list></call><literal type="number">9n4kSj</literal><operator>--</operator><name>cIjPXKD0</name><operator>&lt;</operator><operator>!</operator><name>s</name><operator>*</operator><name>x</name><operator>%</operator><name>_sq7cqko</name><operator>|</operator><operator>!</operator><name>W</name></expr></then></ternary></block></expr>;<expr><name>YmWcXX</name><operator>^</operator></expr>;
+<expr><name>zBZicaoj10</name></expr>;<expr><literal type="number">9w2O</literal><operator>~</operator><name>d</name>@@<literal type="number">7xJe</literal><operator>#</operator><operator>(</operator><ternary><condition><expr><literal type="number">9vWMoXaQ</literal><operator>&gt;</operator><name>D5</name></expr>?</condition><then><expr><name>M</name><operator>&gt;</operator><operator>&lt;</operator><name>jA0J48</name><block>{<expr><ternary><condition><expr><name>X9DUXOSf5QVxu</name></expr>?</condition><then><expr><operator>=</operator><name>RI$8</name>
+<name>z</name><operator>!</operator><name>svtXp</name><operator>%</operator><name>S$VDI</name></expr></then></ternary></expr>;<expr><name>Z</name><operator>%</operator><literal type="number">4PfLBBK</literal></expr>}</block><block>{<expr><ternary><condition><expr><name>xkX_</name><operator>`</operator><name>s</name><operator>!</operator>@<name>b</name></expr>?</condition><then><expr><literal type="complex">9ih</literal><operator>=</operator><literal type="number">6oFOzw</literal><operator>&gt;=</operator><name>bmq</name></expr></then></ternary></expr>;<expr><name>LZ</name></expr>}</block><name>nAPn</name><operator>%</operator><literal type="number">9YPrv</literal><operator>*</operator><name>S</name>
+<name>zFdj</name></expr></then></ternary></expr>}</block><name>xy1</name><operator>|</operator><name>Y</name><operator>+</operator><name>Ax</name><operator>&lt;</operator><operator>|</operator></expr></expr_stmt>}o<expr_stmt><expr><operator>&amp;</operator><name>g</name><operator>&gt;</operator><block>{<expr><name>QK9DDM</name><operator>!</operator><name>JzED</name><operator>=</operator><operator>+</operator><operator>&lt;</operator><name>CL</name><operator>*</operator><name>HX</name></expr>}</block><name>oz1</name><operator>?</operator></expr>;</expr_stmt><expr_stmt><expr><name>cpT</name><operator>~</operator></expr></expr_stmt>)<decl_stmt><decl><type><name>lvSw3</name><annotation>@<name>bBl</name></annotation></type><init>=<expr><name>iATkG</name>
+<name>zsN</name><operator>=</operator><call><name>v</name><argument_list>(<argument><expr><block>{<expr><operator>*</operator><operator>|</operator><operator>+</operator><name>l9OI</name><operator>#</operator><name>s$9fyxG</name><block>{<expr><name>L</name><operator>&gt;</operator><name>Pl31qpB</name><operator>&lt;</operator><literal type="number">9Xbt</literal><operator>^</operator><name>y</name><operator>=</operator><ternary><condition><expr><name>t7jh5n</name></expr>?</condition><then><expr><name>q</name><operator>*</operator><name>M$gEkucmWfo_Zo57</name><operator>=</operator>
+<name>zr$9</name></expr></then></ternary></expr>;<operator>|</operator><expr><ternary><condition><expr><name>sE</name><operator>-</operator><name>snnm</name><operator>+</operator><literal type="number">5LVv</literal><operator>|</operator><literal type="number">1Z_o</literal></expr>?</condition><then><expr><name>N$</name><operator>^</operator><name>tn</name><operator>#</operator><operator>`</operator><operator>%</operator></expr></then></ternary></expr>}</block><call><name>YMP</name><argument_list>(<argument><expr><name>xn</name><operator>#</operator><operator>^</operator></expr></argument>)</argument_list></call><name>Odbd</name><operator>^</operator><name>I</name><block>{;<expr><name>G</name><operator>|</operator><name>HD8EADcRrVRCBA</name>
+<call><name>zAX</name><argument_list>(<argument>@<expr><operator>^</operator><name>U</name><operator>!</operator><name>YQkesDflQN0pecmMLUqQW</name></expr></argument>}</argument_list></call><name>c</name></expr>;<expr><name>p</name><operator>`</operator><name>wvyM</name>@<name>M0tClfXL</name></expr></block></expr></block></expr></argument>)</argument_list></call><name>E5C7pSD0BDqgt</name><block>{<expr><name>H$</name>@<literal type="number">4</literal>
+<name>zSBQ</name><operator>`</operator><operator>=</operator><literal type="number">6C$u$NTNcdk</literal><operator>(</operator><name>ZhGAgY0gGCZ</name>;<ternary><condition><expr><name>lYq_fSCZvOoPeY</name><operator>`</operator><name>$0</name><operator>^</operator><name>yqqB$jU5ON$Zc4qOf4</name>
+<name>zzV2YjoLnE</name><operator>&gt;</operator>@</expr>?</condition><then><expr><name>p</name><operator>|</operator><name>b</name><operator>%</operator><operator>(</operator><literal type="number">6</literal><operator>&amp;</operator><name>DU</name><operator>%</operator><name>$</name><operator>%</operator><name>vB</name><operator>#</operator><name>YBGB</name><operator>+</operator><name>Wbi$B</name><operator>+</operator><operator>~</operator><operator>*</operator><call><name>L</name><argument_list>(<argument><expr><operator>=</operator><name>KAMkRq6UMM1</name></expr></argument>)</argument_list></call><name>DVg</name><operator>=</operator><operator>*</operator><name>TukGH</name>
+<name>z9zFFZ73</name>;<name>S</name><operator>&gt;</operator><name>V</name><operator>!</operator><name>GJnxo</name>}<name>Sw</name><operator>&lt;</operator><operator>(</operator><name>y</name><operator>#</operator><operator>`</operator><name>WR</name><operator>+</operator><name>zUp9</name>;<literal type="number">36IQ</literal><operator>#</operator><name>ANb_</name><operator>=</operator><name>xkbPaIw</name><operator>+</operator><literal type="number">4cDgmzt</literal><operator>(</operator><name>Ii7</name><operator>&gt;</operator><operator>%</operator><name>t</name>
+<name>zy</name><operator>|</operator><name>d</name><operator>+</operator><name>Wlhe61VsWmx</name><operator>=</operator><literal type="number">3</literal><operator>!</operator><block>{<expr><name>DXi</name></expr>}</block><name>vLN79M1</name><block>{<expr><ternary><condition><expr><call><name>jK</name><argument_list>(<argument><expr><name>L</name><operator>&gt;</operator><operator>*</operator></expr></argument></argument_list></call></expr></condition><block>{<block_content><expr_stmt><expr><name>C</name><operator>-</operator><name>$agb</name><operator>=</operator><literal type="number">7</literal><operator>*</operator><literal type="number">8</literal></expr></expr_stmt>}</block_content>Z&amp;@eYA5_?C81lbzh
+z4~r<operator>|</operator>YO+_OUsfx`}$$`UMpxIZOt<operator>|</operator>X<block>{<block_content><expr_stmt><expr><name>$5</name><operator>&gt;</operator><name>MvO</name></expr></expr_stmt></block_content></block></block></ternary></expr></block><operator>)</operator><ternary><condition><expr><name>r20P5</name><operator>&lt;</operator></expr>?</condition><then><expr><operator>+</operator><operator>|</operator><name>UTirq27</name><block>{<expr><ternary><condition><expr><call><name>sCS</name><argument_list>(<argument><expr><name>jOPtRhz4</name>
+<name>zNc$</name></expr></argument>}</argument_list></call><name>oi$$ISgB97Sph3KoQz7B</name><operator>-</operator><name>t</name><operator>!</operator><operator>&lt;</operator><name>jLEVNi</name><operator>-</operator><name>f7</name>@<operator>|</operator><name>N</name></expr>?</condition><then><expr><ternary><condition><expr><name>pP</name><operator>*</operator><name>H</name></expr>?</condition><then><expr><name>c$R</name></expr></then></ternary></expr></then></ternary></expr>}</block><operator>-</operator><name>PxTwxj</name><operator>&amp;</operator></expr></then></ternary><operator>)</operator><ternary><condition><expr><operator>(</operator><ternary><condition><expr><name>v</name></expr>?</condition><then><expr><name>zfc</name>
+<name>zs</name><operator>#</operator><operator>=</operator><name>K</name></expr></then></ternary>}<name>v</name><operator>~</operator><call><name>rxA9bxcnqe</name><argument_list>(<argument><expr><literal type="number">2cajQvpET</literal><operator>`</operator><name>L</name><operator>`</operator><name>f</name><operator>??</operator><literal type="number">9AK73</literal><operator>-</operator></expr></argument>;<argument><expr><name>I</name><operator>|</operator><literal type="number">7ESu1sn</literal></expr></argument></argument_list></call></expr></condition><block>{<block_content><expr_stmt><expr><ternary><condition><expr><name>uj5</name><operator>`</operator><literal type="number">0</literal></expr>?</condition><then><expr><ternary><condition><expr><name>$xH</name><operator>%</operator><literal type="number">8fQK</literal><operator>|</operator>
+<name>z</name></expr>?</condition><then><expr><name>nPGdI</name><operator>&gt;</operator><name>b</name></expr></then></ternary></expr></then></ternary></expr>;</expr_stmt><expr_stmt><expr><operator>`</operator><operator>!</operator><name>b</name><operator>-</operator><name>s</name></expr></expr_stmt></block_content></block></ternary><operator>)</operator><name>o92jEH</name><operator>^</operator><operator>&lt;</operator><name>_3Aw0B</name><block>{<expr><literal type="number">3mT57U_</literal><operator>=</operator><name>aCBak0</name><operator>?</operator><name>bH</name><operator>~</operator><name>xbMfA</name><block>{<expr><name>n0</name><operator>!</operator><operator>#</operator><literal type="number">1</literal><operator>+</operator><operator>&lt;</operator><name>pixQ</name>
+<name>znP4</name></expr></block></expr></block></expr></then></ternary><operator>)</operator><name><name>si</name><argument_list type="generic">&lt;&gt;</argument_list></name><literal type="number">8gcsvop30</literal><operator>&amp;</operator><name>xB</name><operator>`</operator><name>Kb0BBCZH</name><operator>|</operator><name>iQ38aS</name><operator>-</operator><name>Vz</name><operator>?</operator><operator>%</operator><name>e3oV</name><operator>%</operator><name>jak3</name></expr>;<if_stmt><if>if</if></if_stmt>)<literal type="number">3nTBz</literal><operator>(</operator><name>EQ8tA</name>
+<name>znQ</name><operator>&amp;</operator><name>E</name><operator>#</operator><name>RT</name><block>{<expr><name>eNz5Z</name>@<literal type="number">51g</literal><operator>(</operator>@<ternary><condition><expr><literal type="number">1</literal><operator>*</operator><operator>~</operator><literal type="number">6A$</literal>@<call><name>u_</name><argument_list>(<argument><expr><name>$Gy</name><operator>^</operator><name>DNsgT</name></expr></argument>}</argument_list></call><name>U8</name><operator>|</operator><name>JD</name></expr></condition><block>{<block_content><expr_stmt><expr><ternary><condition><expr><name>QP</name></expr>?</condition><then><expr><name>N</name></expr></then></ternary></expr></expr_stmt></block_content></block></ternary><operator>)</operator><ternary><condition><expr><name>Vi</name>@<operator>&amp;</operator><operator>|</operator><name>a41pA5s</name><operator>-</operator><name>H</name><operator>*</operator>
+<name>zi_Wj</name><operator>`</operator><name>L</name><operator>%</operator><name>Ep6G</name><operator>&amp;</operator><literal type="number">0Apj7Fv</literal><operator>|</operator><literal type="number">5j</literal><operator>-</operator><name>qb</name><operator>&amp;</operator><name>Ex31p</name><operator>~</operator><name>Nk</name><operator>^</operator><name>QSI</name><operator>!</operator><name>i7</name><operator>+</operator><name>YiGu48</name>@<name>$</name></expr>?</condition><then><expr><name>q</name><operator>&amp;</operator><name>I</name><operator>-</operator><name>rmbZY9y5</name><operator>&lt;</operator>@
+<name>zCfjCoe</name><operator>=</operator><ternary><condition><expr><name>$PIa1</name><operator>`</operator></expr>?</condition><then><expr><ternary><condition><expr><call><name>mN6D38</name><argument_list>(<argument><expr><name>ge</name>@<name>CLa</name><operator>*</operator><name>uWgg</name></expr></argument>)</argument_list></call><name>c</name>@<name>r</name><operator>&gt;</operator><name>rzjbN</name><operator>&lt;</operator></expr>?</condition><then><expr><ternary><condition><expr><name>GVUy7oBz</name><operator>^</operator><call><name>rr</name><argument_list>(<argument><expr><name>sBLFrm2$X</name>
+<name>zy</name>@<operator>|</operator><name>YlR</name><operator>~</operator><literal type="number">3</literal></expr></argument>}</argument_list></call><operator>^</operator><name>wPU</name><operator>~</operator><name>k</name>@<name>wptQ</name></expr></condition></ternary></expr></then></ternary></expr></then></ternary></expr></then></ternary></expr>;<expr><name>OAMPz</name><operator>&lt;</operator><literal type="number">9I4C19u</literal>@<name>uBU0QvQIu</name><operator>`</operator><name>aL</name><operator>|</operator></expr></block><operator>)</operator><ternary><condition><expr><name>mpT$</name></expr>?</condition><then><expr><operator>^</operator><name>L</name><operator>+</operator><name>lc</name><operator>~</operator><name>JEQws</name>
+<name>zg5</name></expr></then></ternary></block></expr></init></decl>;</decl_stmt><expr_stmt><expr><literal type="number">4_M</literal></expr>;</expr_stmt><expr_stmt><expr><name>t$g</name><block>{<expr><name>JJ</name><operator>%=</operator><name>e</name><operator>^</operator><operator>~</operator><literal type="number">1Skd</literal><operator>!</operator><literal type="number">93vz</literal></expr>}</block><name>DegoKB$yLzDoKOEb1ofO</name><operator>&lt;</operator><operator>^</operator><operator>&gt;</operator><name>FQ0aOA7LdoLZYm</name>
+<name>zO4Mcoe7k3</name></expr>;</expr_stmt><expr_stmt><expr><name>dO8O</name></expr>;</expr_stmt><expr_stmt><expr><operator>^</operator><name>y</name><operator>+</operator><operator>~</operator><name>_M2Cj88WL</name><operator>&gt;</operator><name>QB</name>@<name>h1qyLJY</name><operator>`</operator><name>vhYo</name></expr>;</expr_stmt><expr_stmt><expr><name>zGianz</name><operator>&amp;</operator><operator>^</operator><literal type="number">3AV</literal><operator>#</operator><name>tM</name></expr></expr_stmt>)<expr_stmt><expr><name>wf</name><operator>^</operator><literal type="number">3N</literal>
+<name>zM6bNu</name><operator>&gt;</operator></expr>;</expr_stmt><expr_stmt><expr><name>wFrPNSa</name><operator>=</operator><operator>&amp;</operator><operator>*</operator><name>gXBc</name><operator>|</operator><literal type="number">0rl</literal><operator>*</operator><name>b</name></expr>;</expr_stmt><expr_stmt><expr><name>DJ3</name><operator>+</operator><name>jr</name><operator>`</operator><operator>%</operator><name>uiDAQXJi_D98ww</name></expr>;</expr_stmt><expr_stmt><expr><name>iyNp5i</name></expr>;</expr_stmt><expr><name>J</name><operator>#</operator><call><name>hlR</name><argument_list>(<argument><expr><literal type="number">4</literal>
+<name>z</name><operator>#</operator><name>U</name><block>{<expr><name>iD6MqE</name><operator>#</operator><operator>`</operator><name>HpmZcX</name><operator>??</operator><operator>=</operator><name>nXDIyWH0</name>@<name>_</name>@<name>rlz05i</name><operator>&gt;</operator><operator>&amp;</operator><name>Pxw0L9kVsKVPMFPfm</name>@<name>yR</name><operator>|</operator><name>YN</name><operator>!</operator><name>lD</name>
+<name>zn0K</name><operator>!</operator><name>u</name></expr></block></expr></argument>)</argument_list></call><name>HH</name>@<name>YnK5zSH9</name><operator>+</operator><literal type="number">1</literal><operator>(</operator><operator>`</operator><name>iO</name><operator>#</operator></expr>}-<expr_stmt><expr><name>KBSd</name></expr>;</expr_stmt><expr_stmt><expr><name>SKdi91</name><operator>=</operator><operator>#</operator><name>SyI</name><operator>#</operator></expr>;</expr_stmt><expr_stmt><expr><name>OtIQ</name><operator>=</operator><operator>(</operator><operator>(</operator><name>QdepHW</name><operator>#</operator>@<name>N0</name><operator>)</operator><operator>%</operator><name>WJ</name>
+<name>zV4</name><operator>=</operator><ternary><condition><expr><name>b</name><operator>-</operator><literal type="number">9KL</literal></expr>?</condition><then><expr><name>$M</name>@</expr></then></ternary><operator>)</operator><block>{<expr><ternary><condition><expr><literal type="number">3NC</literal></expr>?</condition><then><expr><name>A6AKV</name></expr></then></ternary></expr>}</block><name>HqY</name></expr></expr_stmt>)<expr_stmt><expr><operator>`</operator><operator>&amp;</operator><name>kem</name><operator>+</operator><name>qdqq</name><operator>&amp;</operator><operator>|</operator><name>n</name><operator>&lt;</operator><name>$SpfBd</name>@<operator>^</operator><name>Lci3</name></expr></expr_stmt>)<expr_stmt><expr><name>WtDKb</name><operator>*</operator><literal type="number">3y</literal><operator>!</operator><operator>-</operator>
+<name>zSZn5QEg9cdrnU6JU93frHB</name><operator>#</operator><name>AJ</name><operator>^</operator><name>MPNP</name></expr></expr_stmt>)<expr_stmt><expr><name>Y7MAu</name><operator>~</operator><name>eR</name><block>{<expr><literal type="number">4F</literal><operator>-</operator><name>RGXjZ1R6xxfm</name><operator>*</operator><name>wC</name><operator>+</operator><literal type="number">9E4H</literal></expr>}</block><name>w</name>
+<name>z7BAMi1z</name><operator>*</operator><name>rwxy7Y</name><operator>%</operator><name>T</name><operator>`</operator><name>YxG0G5RJM</name><operator>&gt;</operator><name>fBgt</name></expr>;</expr_stmt><expr_stmt><expr><name>KqsGQGt</name><operator>~</operator><operator>`</operator><operator>&lt;</operator>@</expr>;</expr_stmt><expr_stmt><expr><name>YHlH7P</name><operator>*</operator><operator>`</operator><name>mv8H</name><operator>+</operator><operator>(</operator><ternary><condition><expr><name>_</name><operator>*</operator><name>zt6O</name><operator>#</operator>
+<name>AzyJUM</name>
+
+<name>literal</name> <literal type="number">0</literal>
+<name>HcmV</name></expr>?</condition><then><expr><name>d00001</name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>CheckIndex</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>CheckIndex</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fd8011d4d07</name><operator>..</operator><literal type="number">3bb10d325b5</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>CheckIndex</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>CheckIndex</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">740</literal></expr></then></ternary><operator>,</operator><literal type="number">13</literal> <operator>+</operator><literal type="number">740</literal><operator>,</operator><literal type="number">13</literal> @@ <specifier>public</specifier> <name>final</name> class <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+           <expr><name><name>segInfoStat</name><operator>.</operator><name>fieldNormStatus</name></name> <operator>=</operator> <call><name>testFieldNorms</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>)</argument_list></call></expr>;
+ 
+           <comment type="line">// Test the Term Index</comment>
+          <expr><name><name>segInfoStat</name><operator>.</operator><name>termIndexStatus</name></name> <operator>=</operator> <call><name>testPostings</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>)</argument_list></call></expr>;
+          <expr><name><name>segInfoStat</name><operator>.</operator><name>termIndexStatus</name></name> <operator>=</operator> <call><name>testPostings</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;
+ 
+           <comment type="line">// Test Stored Fields</comment>
+           <expr><name><name>segInfoStat</name><operator>.</operator><name>storedFieldStatus</name></name> <operator>=</operator> <call><name>testStoredFields</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>)</argument_list></call></expr>;
+ 
+           <comment type="line">// Test Term Vectors</comment>
+          <expr><name><name>segInfoStat</name><operator>.</operator><name>termVectorStatus</name></name> <operator>=</operator> <call><name>testTermVectors</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>crossCheckTermVectors</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>)</argument_list></call></expr>;
+          <expr><name><name>segInfoStat</name><operator>.</operator><name>termVectorStatus</name></name> <operator>=</operator> <call><name>testTermVectors</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>crossCheckTermVectors</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;
+ 
+           <comment type="line">// Test Docvalues</comment>
+           <expr><name><name>segInfoStat</name><operator>.</operator><name>docValuesStatus</name></name> <operator>=</operator> <call><name>testDocValues</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>failFast</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">1205</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1205</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> class <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+    <expr><operator>*</operator> <name>checks</name> <name>Fields</name> <name>api</name> <name>is</name> <name>consistent</name> <name>with</name> <name><name>itself</name><operator>.</operator></name>
+    * <name>searcher</name> <name>is</name> <name>optional</name></expr>, <expr><name>to</name> <name>verify</name> <name>with</name> <name><name>queries</name><operator>.</operator> <name>Can</name></name> <name>be</name> <literal type="null">null</literal><operator>.</operator>
+    <operator>*</operator><operator>/</operator>
+  <specifier>private</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name> <call><name>checkFields</name><argument_list>(<argument><expr><name>Fields</name> <name>fields</name></expr></argument>, <argument><expr><name>Bits</name> <name>liveDocs</name></expr></argument>, <argument><expr><name>int</name> <name>maxDoc</name></expr></argument>, <argument><expr><name>FieldInfos</name> <name>fieldInfos</name></expr></argument>, <argument><expr><name>boolean</name> <name>doPrint</name></expr></argument>, <argument><expr><name>boolean</name> <name>isVectors</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>, <argument><expr><name>boolean</name> <name>verbose</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+  <expr><specifier>private</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name> <call><name>checkFields</name><argument_list>(<argument><expr><name>Fields</name> <name>fields</name></expr></argument>, <argument><expr><name>Bits</name> <name>liveDocs</name></expr></argument>, <argument><expr><name>int</name> <name>maxDoc</name></expr></argument>, <argument><expr><name>FieldInfos</name> <name>fieldInfos</name></expr></argument>, <argument><expr><name>boolean</name> <name>doPrint</name></expr></argument>, <argument><expr><name>boolean</name> <name>isVectors</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>, <argument><expr><name>boolean</name> <name>verbose</name></expr></argument>, <argument><expr><name>Version</name> <name>version</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <comment type="line">// TODO: we should probably return our own stats thing...?!</comment>
+     <expr><name>long</name> <name>startNS</name></expr></block></expr></argument></throws></expr>;
+     <if_stmt><if>if <condition>(<expr><name>doPrint</name></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1461</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">1461</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>final</name> class <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+               <if_stmt><if>if <condition>(<expr><name>hasOffsets</name></expr>)</condition> <block>{<block_content>
+                 <decl_stmt><decl><type><name>int</name></type> <name>startOffset</name> <init>= <expr><call><name><name>postings</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                 <decl_stmt><decl><type><name>int</name></type> <name>endOffset</name> <init>= <expr><call><name><name>postings</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <comment type="line">// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?</comment>
+                <comment type="line">// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter</comment>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><name>isVectors</name></expr>)</condition> <block>{<block_content>
+                <comment type="line">// In Lucene 7 we fixed IndexWriter to also enforce term vector offsets</comment>
+                <if_stmt><if>if <condition>(<expr><name>isVectors</name> <operator>==</operator> <literal type="boolean">false</literal> <operator>||</operator> <call><name><name>version</name><operator>.</operator><name>onOrAfter</name></name><argument_list>(<argument><expr><name><name>Version</name><operator>.</operator><name>LUCENE_7_0_0</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                   <if_stmt><if>if <condition>(<expr><name>startOffset</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                     <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"term "</literal> <operator>+</operator> <name>term</name> <operator>+</operator> <literal type="string">": doc "</literal> <operator>+</operator> <name>doc</name> <operator>+</operator> <literal type="string">": pos "</literal> <operator>+</operator> <name>pos</name> <operator>+</operator> <literal type="string">": startOffset "</literal> <operator>+</operator> <name>startOffset</name> <operator>+</operator> <literal type="string">" is out of bounds"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+                   <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block></expr></expr_stmt></block_content></block></if></if_stmt>}</block></expr>
+                   <if_stmt><if>if <condition>(<expr><name>startOffset</name> <operator>&lt;</operator> <name>lastOffset</name></expr>)</condition> <block>{<block_content>
+                    <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"term "</literal> <operator>+</operator> <name>term</name> <operator>+</operator> <literal type="string">": doc "</literal> <operator>+</operator> <name>doc</name> <operator>+</operator> <literal type="string">": pos "</literal> <operator>+</operator> <name>pos</name> <operator>+</operator> <literal type="string">": startOffset "</literal> <operator>+</operator> <name>startOffset</name> <operator>+</operator> <literal type="string">" &lt; lastStartOffset "</literal> <operator>+</operator> <name>lastOffset</name></expr></argument>)</argument_list></call></expr>;</throw>
+                    <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"term "</literal> <operator>+</operator> <name>term</name> <operator>+</operator> <literal type="string">": doc "</literal> <operator>+</operator> <name>doc</name> <operator>+</operator> <literal type="string">": pos "</literal> <operator>+</operator> <name>pos</name> <operator>+</operator> <literal type="string">": startOffset "</literal> <operator>+</operator> <name>startOffset</name> <operator>+</operator> <literal type="string">" &lt; lastStartOffset "</literal> <operator>+</operator> <name>lastOffset</name> <operator>+</operator> <literal type="string">"; consider using the FixBrokenOffsets tool in Lucene's backward-codecs module to correct your index"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+                   <expr_stmt/></block_content></block></if></if_stmt>}</block>
+                   <if_stmt><if>if <condition>(<expr><name>endOffset</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                     <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"term "</literal> <operator>+</operator> <name>term</name> <operator>+</operator> <literal type="string">": doc "</literal> <operator>+</operator> <name>doc</name> <operator>+</operator> <literal type="string">": pos "</literal> <operator>+</operator> <name>pos</name> <operator>+</operator> <literal type="string">": endOffset "</literal> <operator>+</operator> <name>endOffset</name> <operator>+</operator> <literal type="string">" is out of bounds"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1742</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">1741</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>final</name> class <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+    <expr><operator>*</operator> <name>Test</name> <name>the</name> <name>term</name> <name><name>index</name><operator>.</operator></name>
+    * @<name><name>lucene</name><operator>.</operator><name>experimental</name></name>
+    <operator>*</operator><operator>/</operator>
+  <specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name> <call><name>testPostings</name><argument_list>(<argument><expr><name>CodecReader</name> <name>reader</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <return>return <expr><call><name>testPostings</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</return>
+  <specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name> <call><name>testPostings</name><argument_list>(<argument><expr><name>CodecReader</name> <name>reader</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>, <argument><expr><name>Version</name> <name>version</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></block></expr></expr_stmt>
+    <return>return <expr><call><name>testPostings</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt></expr></expr_stmt>
+   
+   <comment type="block" format="javadoc">/**
+    * Test the term index.
+    * @lucene.experimental
+    */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name></type> <name>testPostings</name><parameter_list>(<parameter><decl><type><name>CodecReader</name></type> <name>reader</name></decl></parameter>, <parameter><decl><type><name>PrintStream</name></type> <name>infoStream</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>verbose</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>failFast</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermIndexStatus</name></name></type> <name>testPostings</name><parameter_list>(<parameter><decl><type><name>CodecReader</name></type> <name>reader</name></decl></parameter>, <parameter><decl><type><name>PrintStream</name></type> <name>infoStream</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>verbose</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>failFast</name></decl></parameter>, <parameter><decl><type><name>Version</name></type> <name>version</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+ 
+     <comment type="line">// TODO: we should go and verify term vectors match, if</comment>
+     <comment type="line">// crossCheckTermVectors is on...</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1765</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1764</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+ 
+       <expr><name>final</name> <name>Fields</name> <name>fields</name> <operator>=</operator> <call><name><name>reader</name><operator>.</operator><name>getPostingsReader</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getMergeInstance</name><argument_list>()</argument_list></call></expr>;
+       <expr><name>final</name> <name>FieldInfos</name> <name>fieldInfos</name> <operator>=</operator> <call><name><name>reader</name><operator>.</operator><name>getFieldInfos</name></name><argument_list>()</argument_list></call></expr>;
+      <expr><name>status</name> <operator>=</operator> <call><name>checkFields</name><argument_list>(<argument><expr><name>fields</name></expr></argument>, <argument><expr><call><name><name>reader</name><operator>.</operator><name>getLiveDocs</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>, <argument><expr><name>fieldInfos</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>)</argument_list></call></expr>;
+      <expr><name>status</name> <operator>=</operator> <call><name>checkFields</name><argument_list>(<argument><expr><name>fields</name></expr></argument>, <argument><expr><call><name><name>reader</name><operator>.</operator><name>getLiveDocs</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>, <argument><expr><name>fieldInfos</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;
+     }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>Throwable</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><name>failFast</name></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>IOUtils</name><operator>.</operator><name>reThrow</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2339</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">2338</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+    <expr><operator>*</operator> <name>Test</name> <name>term</name> <name><name>vectors</name><operator>.</operator></name>
+    * @<name><name>lucene</name><operator>.</operator><name>experimental</name></name>
+    <operator>*</operator><operator>/</operator>
+  <specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name> <call><name>testTermVectors</name><argument_list>(<argument><expr><name>CodecReader</name> <name>reader</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <return>return <expr><call><name>testTermVectors</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</return>
+  <specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name> <call><name>testTermVectors</name><argument_list>(<argument><expr><name>CodecReader</name> <name>reader</name></expr></argument>, <argument><expr><name>PrintStream</name> <name>infoStream</name></expr></argument>, <argument><expr><name>Version</name> <name>version</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></block></expr></expr_stmt>
+    <return>return <expr><call><name>testTermVectors</name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Test term vectors.
+    * @lucene.experimental
+    */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name></type> <name>testTermVectors</name><parameter_list>(<parameter><decl><type><name>CodecReader</name></type> <name>reader</name></decl></parameter>, <parameter><decl><type><name>PrintStream</name></type> <name>infoStream</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>verbose</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>crossCheckTermVectors</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>failFast</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name></type> <name>testTermVectors</name><parameter_list>(<parameter><decl><type><name>CodecReader</name></type> <name>reader</name></decl></parameter>, <parameter><decl><type><name>PrintStream</name></type> <name>infoStream</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>verbose</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>crossCheckTermVectors</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>failFast</name></decl></parameter>, <parameter><decl><type><name>Version</name></type> <name>version</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>long</name></type> <name>startNS</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>nanoTime</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name></type> <name>status</name> <init>= <expr><operator>new</operator> <call><name><name>Status</name><operator>.</operator><name>TermVectorStatus</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>FieldInfos</name></type> <name>fieldInfos</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>getFieldInfos</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2387</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">2386</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CheckIndex</name> implements <name>Closeable</name> <block>{
+           
+           <if_stmt><if>if <condition>(<expr><name>tfv</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+             <comment type="line">// First run with no deletions:</comment>
+            <expr_stmt><expr><call><name>checkFields</name><argument_list>(<argument><expr><name>tfv</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>fieldInfos</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>checkFields</name><argument_list>(<argument><expr><name>tfv</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>fieldInfos</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>infoStream</name></expr></argument>, <argument><expr><name>verbose</name></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             
+             <comment type="line">// Only agg stats if the doc is live:</comment>
+             <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>doStats</name> <init>= <expr><name>liveDocs</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>liveDocs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DefaultIndexingChain</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DefaultIndexingChain</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">79c285b4936</literal><operator>..</operator><literal type="number">197ab3155f9</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DefaultIndexingChain</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DefaultIndexingChain</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>CharTermAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>codecs</name><operator>.</operator><name>DocValuesConsumer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>codecs</name><operator>.</operator><name>DocValuesFormat</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>codecs</name><operator>.</operator><name>NormsConsumer</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">728</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">729</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <name>final</name> <name>class</name> <name>DefaultIndexingChain</name> extends <name>DocConsumer</name> <block>{
+ 
+       <expr><name>final</name> <name>boolean</name> <name>analyzed</name> <operator>=</operator> <call><name><name>fieldType</name><operator>.</operator><name>tokenized</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>docState</name><operator>.</operator><name>analyzer</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>;
+         
+      <comment type="line">// only bother checking offsets if something will consume them.</comment>
+      <comment type="line">// TODO: after we fix analyzers, also check if termVectorOffsets will be indexed.</comment>
+      <name>final</name> <name>boolean</name> <name>checkOffsets</name> <operator>=</operator> <name>indexOptions</name> <operator>==</operator> <name><name>IndexOptions</name><operator>.</operator><name>DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS</name></name></block></expr>;</expr_stmt></block_content></block></if></if_stmt></block></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></catch></block_content></block></function></block_content></block></function>
+
+       <comment type="block">/*
+        * To assist people in tracking down problems in analysis components, we wish to write the field name to the infostream
+        * when we fail. We expect some caller to eventually deal with the real exception, so we don't want any 'catch' clauses,
+@@ -743,6 +740,7 @@ final class DefaultIndexingChain extends DocConsumer {
+         stream.reset();
+         invertState.setAttributeSource(stream);
+         termsHashPerField.start(field, first);
+        CharTermAttribute termAtt = tokenStream.getAttribute(CharTermAttribute.class);
+ 
+         while (stream.incrementToken()) {
+ 
+@@ -771,15 +769,13 @@ final class DefaultIndexingChain extends DocConsumer {
+             invertState.numOverlap++;
+           }
+               
+          if (checkOffsets) {
+            int startOffset = invertState.offset + invertState.offsetAttribute.startOffset();
+            int endOffset = invertState.offset + invertState.offsetAttribute.endOffset();
+            if (startOffset &lt; invertState.lastStartOffset || endOffset &lt; startOffset) {
+              throw new IllegalArgumentException("startOffset must be non-negative, and endOffset must be &gt;= startOffset, and offsets must not go backwards "
+                                                 + "startOffset=" + startOffset + ",endOffset=" + endOffset + ",lastStartOffset=" + invertState.lastStartOffset + " for field '" + field.name() + "'");
+            }
+            invertState.lastStartOffset = startOffset;
+          int startOffset = invertState.offset + invertState.offsetAttribute.startOffset();
+          int endOffset = invertState.offset + invertState.offsetAttribute.endOffset();
+          if (startOffset &lt; invertState.lastStartOffset || endOffset &lt; startOffset) {
+            throw new IllegalArgumentException("startOffset must be non-negative, and endOffset must be &gt;= startOffset, and offsets must not go backwards "
+                                               + "startOffset=" + startOffset + ",endOffset=" + endOffset + ",lastStartOffset=" + invertState.lastStartOffset + " for field '" + field.name() + "'");
+           }
+          invertState.lastStartOffset = startOffset;
+ 
+           invertState.length++;
+           if (invertState.length &lt; 0) {
+diff --git a/lucene/core/src/test/org/apache/lucene/index/TestCheckIndex.java b/lucene/core/src/test/org/apache/lucene/index/TestCheckIndex.java
+index 7b71d3c5cfc..2559ce4d663 100644
+-- a/lucene/core/src/test/org/apache/lucene/index/TestCheckIndex.java
+++ b/lucene/core/src/test/org/apache/lucene/index/TestCheckIndex.java
+@@ -42,11 +42,6 @@ public class TestCheckIndex extends BaseTestCheckIndex {
+     testDeletedDocs(directory);
+   }
+   
+  @Test
+  public void testBogusTermVectors() throws IOException {
+    testBogusTermVectors(directory);
+  }
+  
+   @Test
+   public void testChecksumsOnly() throws IOException {
+     testChecksumsOnly(directory);
+diff --git a/lucene/highlighter/src/test/org/apache/lucene/search/highlight/TokenSourcesTest.java b/lucene/highlighter/src/test/org/apache/lucene/search/highlight/TokenSourcesTest.java
+index 581ff2f77e7..d49434a248e 100644
+-- a/lucene/highlighter/src/test/org/apache/lucene/search/highlight/TokenSourcesTest.java
+++ b/lucene/highlighter/src/test/org/apache/lucene/search/highlight/TokenSourcesTest.java
+@@ -377,7 +377,7 @@ public class TokenSourcesTest extends BaseTokenStreamTestCase {
+     }
+ 
+     final BaseTermVectorsFormatTestCase.RandomTokenStream rTokenStream =
+        new BaseTermVectorsFormatTestCase.RandomTokenStream(TestUtil.nextInt(random(), 1, 10), terms, termBytes, false);
+        new BaseTermVectorsFormatTestCase.RandomTokenStream(TestUtil.nextInt(random(), 1, 10), terms, termBytes);
+     //check to see if the token streams might have non-deterministic testable result
+     final boolean storeTermVectorPositions = random().nextBoolean();
+     final int[] startOffsets = rTokenStream.getStartOffsets();
+diff --git a/lucene/sandbox/src/test/org/apache/lucene/search/TestTermAutomatonQuery.java b/lucene/sandbox/src/test/org/apache/lucene/search/TestTermAutomatonQuery.java
+index 6055e0076cb..6ef9baf284e 100644
+-- a/lucene/sandbox/src/test/org/apache/lucene/search/TestTermAutomatonQuery.java
+++ b/lucene/sandbox/src/test/org/apache/lucene/search/TestTermAutomatonQuery.java
+@@ -45,6 +45,7 @@ import org.apache.lucene.index.RandomIndexWriter;
+ import org.apache.lucene.index.Term;
+ import org.apache.lucene.search.BooleanClause.Occur;
+ import org.apache.lucene.store.Directory;
+import org.apache.lucene.util.AttributeSource;
+ import org.apache.lucene.util.BitSetIterator;
+ import org.apache.lucene.util.BytesRef;
+ import org.apache.lucene.util.FixedBitSet;
+@@ -431,7 +432,9 @@ public class TestTermAutomatonQuery extends LuceneTestCase {
+     @Override
+     public boolean incrementToken() throws IOException {
+       if (synNext) {
+        AttributeSource.State state = captureState();
+         clearAttributes();
+        restoreState(state);
+         posIncAtt.setPositionIncrement(0);
+         termAtt.append(""+((char) 97 + random().nextInt(3)));
+         synNext = false;
+diff --git a/lucene/test-framework/src/java/org/apache/lucene/index/BaseTermVectorsFormatTestCase.java b/lucene/test-framework/src/java/org/apache/lucene/index/BaseTermVectorsFormatTestCase.java
+index 5e6809ff703..7acee871f59 100644
+-- a/lucene/test-framework/src/java/org/apache/lucene/index/BaseTermVectorsFormatTestCase.java
+++ b/lucene/test-framework/src/java/org/apache/lucene/index/BaseTermVectorsFormatTestCase.java
+@@ -200,10 +200,6 @@ public abstract class BaseTermVectorsFormatTestCase extends BaseIndexFileFormatT
+     int i = 0;
+ 
+     public RandomTokenStream(int len, String[] sampleTerms, BytesRef[] sampleTermBytes) {
+      this(len, sampleTerms, sampleTermBytes, rarely());
+    }
+
+    public RandomTokenStream(int len, String[] sampleTerms, BytesRef[] sampleTermBytes, boolean offsetsGoBackwards) {
+       terms = new String[len];
+       termBytes = new BytesRef[len];
+       positionsIncrements = new int[len];
+@@ -216,17 +212,12 @@ public abstract class BaseTermVectorsFormatTestCase extends BaseIndexFileFormatT
+         terms[i] = sampleTerms[o];
+         termBytes[i] = sampleTermBytes[o];
+         positionsIncrements[i] = TestUtil.nextInt(random(), i == 0 ? 1 : 0, 10);
+        if (offsetsGoBackwards) {
+          startOffsets[i] = random().nextInt();
+          endOffsets[i] = random().nextInt();
+        if (i == 0) {
+          startOffsets[i] = TestUtil.nextInt(random(), 0, 1 &lt;&lt; 16);
+         } else {
+          if (i == 0) {
+            startOffsets[i] = TestUtil.nextInt(random(), 0, 1 &lt;&lt; 16);
+          } else {
+            startOffsets[i] = startOffsets[i-1] + TestUtil.nextInt(random(), 0, rarely() ? 1 &lt;&lt; 16 : 20);
+          }
+          endOffsets[i] = startOffsets[i] + TestUtil.nextInt(random(), 0, rarely() ? 1 &lt;&lt; 10 : 20);
+          startOffsets[i] = startOffsets[i-1] + TestUtil.nextInt(random(), 0, rarely() ? 1 &lt;&lt; 16 : 20);
+         }
+        endOffsets[i] = startOffsets[i] + TestUtil.nextInt(random(), 0, rarely() ? 1 &lt;&lt; 10 : 20);
+       }
+ 
+       for (int i = 0; i &lt; len; ++i) {
+diff --git a/lucene/test-framework/src/java/org/apache/lucene/index/BaseTestCheckIndex.java b/lucene/test-framework/src/java/org/apache/lucene/index/BaseTestCheckIndex.java
+index cdec720f134..21ccf3b777f 100644
+-- a/lucene/test-framework/src/java/org/apache/lucene/index/BaseTestCheckIndex.java
+++ b/lucene/test-framework/src/java/org/apache/lucene/index/BaseTestCheckIndex.java
+@@ -22,11 +22,8 @@ import java.io.PrintStream;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+import org.apache.lucene.analysis.CannedTokenStream;
+ import org.apache.lucene.analysis.MockAnalyzer;
+import org.apache.lucene.analysis.Token;
+ import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+ import org.apache.lucene.document.FieldType;
+ import org.apache.lucene.document.TextField;
+ import org.apache.lucene.store.Directory;
+@@ -105,22 +102,6 @@ public class BaseTestCheckIndex extends LuceneTestCase {
+     checker.close();
+   }
+   
+  // LUCENE-4221: we have to let these thru, for now
+  public void testBogusTermVectors(Directory dir) throws IOException {
+    IndexWriter iw = new IndexWriter(dir, newIndexWriterConfig(null));
+    Document doc = new Document();
+    FieldType ft = new FieldType(TextField.TYPE_NOT_STORED);
+    ft.setStoreTermVectors(true);
+    ft.setStoreTermVectorOffsets(true);
+    Field field = new Field("foo", "", ft);
+    field.setTokenStream(new CannedTokenStream(
+        new Token("bar", 5, 10), new Token("bar", 1, 4)
+    ));
+    doc.add(field);
+    iw.addDocument(doc);
+    iw.close();
+  }
+  
+   public void testChecksumsOnly(Directory dir) throws IOException {
+     LineFileDocs lf = new LineFileDocs(random());
+     MockAnalyzer analyzer = new MockAnalyzer(random());
+diff --git a/lucene/test-framework/src/java/org/apache/lucene/util/TestUtil.java b/lucene/test-framework/src/java/org/apache/lucene/util/TestUtil.java
+index d3351ab9f63..0ea90fc04eb 100644
+-- a/lucene/test-framework/src/java/org/apache/lucene/util/TestUtil.java
+++ b/lucene/test-framework/src/java/org/apache/lucene/util/TestUtil.java
+@@ -334,9 +334,9 @@ public final class TestUtil {
+     CheckIndex.testLiveDocs(codecReader, infoStream, true);
+     CheckIndex.testFieldInfos(codecReader, infoStream, true);
+     CheckIndex.testFieldNorms(codecReader, infoStream, true);
+    CheckIndex.testPostings(codecReader, infoStream, false, true);
+    CheckIndex.testPostings(codecReader, infoStream, false, true, Version.LUCENE_7_0_0);
+     CheckIndex.testStoredFields(codecReader, infoStream, true);
+    CheckIndex.testTermVectors(codecReader, infoStream, false, crossCheckTermVectors, true);
+    CheckIndex.testTermVectors(codecReader, infoStream, false, crossCheckTermVectors, true, Version.LUCENE_7_0_0);
+     CheckIndex.testDocValues(codecReader, infoStream, true);
+     CheckIndex.testPoints(codecReader, infoStream, true);
+     
+diff --git a/solr/core/src/java/org/apache/solr/schema/PreAnalyzedField.java b/solr/core/src/java/org/apache/solr/schema/PreAnalyzedField.java
+index 87d40940e4c..5f125d95428 100644
+-- a/solr/core/src/java/org/apache/solr/schema/PreAnalyzedField.java
+++ b/solr/core/src/java/org/apache/solr/schema/PreAnalyzedField.java
+@@ -27,6 +27,7 @@ import java.util.Map;
+ 
+ import org.apache.lucene.analysis.Analyzer;
+ import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+ import org.apache.lucene.document.Field;
+ import org.apache.lucene.index.IndexOptions;
+ import org.apache.lucene.index.IndexableField;
+@@ -284,6 +285,7 @@ public class PreAnalyzedField extends TextField implements HasImplicitIndexAnaly
+     private byte[] binaryValue = null;
+     private PreAnalyzedParser parser;
+     private IOException readerConsumptionException;
+    private int lastEndOffset;
+ 
+     public PreAnalyzedTokenizer(PreAnalyzedParser parser) {
+       // we don't pack attributes: since we are used for (de)serialization and dont want bloat.
+@@ -311,6 +313,8 @@ public class PreAnalyzedField extends TextField implements HasImplicitIndexAnaly
+       
+       AttributeSource.State state = it.next();
+       restoreState(state.clone());
+      // TODO: why can't I lookup the OffsetAttribute up in ctor instead?
+      lastEndOffset = addAttribute(OffsetAttribute.class).endOffset();
+       return true;
+     }
+ 
+@@ -329,6 +333,13 @@ public class PreAnalyzedField extends TextField implements HasImplicitIndexAnaly
+       it = cachedStates.iterator();
+     }
+ 
+    @Override
+    public void end() throws IOException {
+      super.end();
+      // we must set the end offset correctly so multi-valued fields don't try to send offsets backwards:
+      addAttribute(OffsetAttribute.class).setOffset(lastEndOffset, lastEndOffset);
+    }
+
+     private void setReaderConsumptionException(IOException e) {
+       readerConsumptionException = e;
+     }
+diff --git a/solr/core/src/test/org/apache/solr/index/hdfs/CheckHdfsIndexTest.java b/solr/core/src/test/org/apache/solr/index/hdfs/CheckHdfsIndexTest.java
+index b4f69310760..61b430530e2 100644
+-- a/solr/core/src/test/org/apache/solr/index/hdfs/CheckHdfsIndexTest.java
+++ b/solr/core/src/test/org/apache/solr/index/hdfs/CheckHdfsIndexTest.java
+@@ -120,11 +120,6 @@ public class CheckHdfsIndexTest extends AbstractFullDistribZkTestBase {
+     testCheckIndex.testDeletedDocs(directory);
+   }
+ 
+  @Test
+  public void testBogusTermVectors() throws IOException {
+    testCheckIndex.testBogusTermVectors(directory);
+  }
+
+   @Test
+   public void testChecksumsOnly() throws IOException {
+     testCheckIndex.testChecksumsOnly(directory);
+- 
+2.19.1.windows.1
+
+</comment></unit>

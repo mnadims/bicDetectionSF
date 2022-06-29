@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/080a945fd.java"><expr_stmt><expr><name>From</name> <literal type="number">080a945fd2a3780e9ffb7250606ba9c569c1a6db</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Marcel</name> <name><name>Reutegger</name> <argument_list type="generic">&lt;<argument><name>mreutegg</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">17</literal> <name>Nov</name> <literal type="number">2009</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">15</literal><operator>:</operator><literal type="number">48</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">2393</literal><operator>:</operator> <name>Index</name> <name>migration</name> <name>fails</name></expr></expr_stmt> <for>for property names that are
+ prefixes of others
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@881299 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../core/query/lucene/IndexMigration.java     <operator>|</operator> 157 +++++++++++++++---
+ .../core/query/lucene/PersistentIndex.java    <operator>|</operator>  12 +-
+ .../core/query/lucene/IndexMigrationTest.java <operator>|</operator>  74 +++++++++
+ .../jackrabbit/core/query/lucene/TestAll.java <operator>|</operator>   1 +
+ 4 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">215</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">29</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>IndexMigrationTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>IndexMigration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>IndexMigration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7f7f40713</literal><operator>..</operator><name>df577f46e</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>IndexMigration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>IndexMigration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">23</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt></for>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>Term</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>TermEnum</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Comparator</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>LinkedList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Queue</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>SortedMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TreeMap</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryManager</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>FieldSelector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Fieldable</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>CorruptIndexException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>FilterIndexReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>CorruptIndexException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>TermPositions</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>Term</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>TermEnum</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>TermPositions</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>FieldSelector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Fieldable</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryManager</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * &lt;code&gt;IndexMigration&lt;/code&gt; implements a utility that migrates a Jackrabbit
+@@ -55,10 +64,12 @@ public class IndexMigration {
+      *
+      * @param index the index to check and migration if needed.
+      * @param directoryManager the directory manager.
+     * @param oldSeparatorChar the old separator char that needs to be replaced.
+      * @throws IOException if an error occurs while migrating the index.
+      */</comment>
+     <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>migrate</name><argument_list>(<argument><expr><name>PersistentIndex</name> <name>index</name></expr></argument>,
+                               <argument><expr><name>DirectoryManager</name> <name>directoryManager</name></expr></argument>)</argument_list>
+                               <name>DirectoryManager</name> <name>directoryManager</name></decl>,
+                               <decl><type ref="prev"/><name>char</name> <name>oldSeparatorChar</name></decl>)
+             <throws>throws <argument><expr><name>IOException</name> <block>{
+         <expr><name>Directory</name> <name>indexDir</name> <operator>=</operator> <call><name><name>index</name><operator>.</operator><name>getDirectory</name></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Checking {} ..."</literal></expr></argument>, <argument><expr><name>indexDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">76</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">87</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+             <expr><name>TermEnum</name> <name>terms</name> <operator>=</operator> <call><name><name>reader</name><operator>.</operator><name>terms</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+             <try>try <block>{<block_content>
+                 <decl_stmt><decl><type><name>Term</name></type> <name>t</name> <init>= <expr><call><name><name>terms</name><operator>.</operator><name>term</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>t</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><literal type="char">'\uFFFF'</literal></expr></argument>)</argument_list></call> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>t</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><name>oldSeparatorChar</name></expr></argument>)</argument_list></call> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+                     <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Index already migrated"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                     <return>return;</return>
+                 <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></try>}</block>
+@@ <operator>-</operator><literal type="number">102</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+                     <expr><name><name>IndexWriter</name><operator>.</operator><name>MaxFieldLength</name><operator>.</operator><name>UNLIMITED</name></name></expr>)</block></expr>;</expr_stmt>
+             <try>try <block>{<block_content>
+                 <decl_stmt><decl><type><name>IndexReader</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>MigrationIndexReader</name><argument_list>(
+                        <argument><expr><call><name><name>IndexReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><call><name><name>index</name><operator>.</operator><name>getDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                        <expr_stmt><expr><call><name><name>IndexReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><call><name><name>index</name><operator>.</operator><name>getDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr><operator>,</operator>
+                        <expr><name>oldSeparatorChar</name></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></try>
+                 <try>try <block>{<block_content>
+                     <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>addIndexes</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>IndexReader</name><index>[]</index></name><block>{<expr><name>r</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                     <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">131</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">143</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+      <expr><operator>*</operator><operator>/</operator>
+     <specifier>private</specifier> <specifier>static</specifier> <name>class</name> <name>MigrationIndexReader</name> extends <name>FilterIndexReader</name> <block>{
+ 
+        <expr><specifier>public</specifier> <call><name>MigrationIndexReader</name><argument_list>(<argument><expr><name>IndexReader</name> <name>in</name></expr></argument>)</argument_list></call> <block>{
+        <expr><specifier>private</specifier> <name>final</name> <name>char</name> <name>oldSepChar</name></expr>;
+
+        <expr><specifier>public</specifier> <call><name>MigrationIndexReader</name><argument_list>(<argument><expr><name>IndexReader</name> <name>in</name></expr></argument>, <argument><expr><name>char</name> <name>oldSepChar</name></expr></argument>)</argument_list></call> <block>{
+             <expr><call><name>super</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;
+            <expr><name><name>this</name><operator>.</operator><name>oldSepChar</name></name> <operator>=</operator> <name>oldSepChar</name></expr>;
+         }</block>
+ 
+         <specifier>public</specifier> <name>Document</name> <call><name>document</name><argument_list>(<argument><expr><name>int</name> <name>n</name></expr></argument>, <argument><expr><name>FieldSelector</name> <name>fieldSelector</name></expr></argument>)</argument_list></call>
+@@ <operator>-</operator><literal type="number">143</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">158</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+                 <expr><call><name><name>doc</name><operator>.</operator><name>removeFields</name></name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>)</argument_list></call></expr>;
+                 <for>for <control>(<init><decl><type><name>Fieldable</name></type> <name>field</name> <range>: <expr><name>fields</name></expr></range></decl></init>)</control> <block>{<block_content>
+                     <decl_stmt><decl><type><name>String</name></type> <name>value</name> <init>= <expr><call><name><name>field</name><operator>.</operator><name>stringValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <expr_stmt><expr><name>value</name> <operator>=</operator> <call><name><name>value</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><literal type="char">'\uFFFF'</literal></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>value</name> <operator>=</operator> <call><name><name>value</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><name>oldSepChar</name></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                     <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><name>value</name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>YES</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Index</name><operator>.</operator><name>NOT_ANALYZED_NO_NORMS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 <expr_stmt/></block_content></block></for>}</block></expr>
+             }</block>
+@@ <operator>-</operator><literal type="number">151</literal></expr>,<expr><literal type="number">17</literal> <operator>+</operator><literal type="number">166</literal></expr>,<expr><literal type="number">60</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+         }</block>
+ 
+         <specifier>public</specifier> <name>TermEnum</name> <call><name>terms</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+            <return>return <expr><operator>new</operator> <call><name>MigrationTermEnum</name><argument_list>(<argument><expr><call><name><name>in</name><operator>.</operator><name>terms</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+            <name><name>List</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name> <name>enums</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></block></expr>;
+            <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>fieldNames</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+            <for>for <control>(<init><decl><type><name>Object</name></type> <name>obj</name> <range>: <expr><call><name><name>in</name><operator>.</operator><name>getFieldNames</name></name><argument_list>(<argument><expr><name><name>FieldOption</name><operator>.</operator><name>ALL</name></name></expr></argument>)</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>fieldNames</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator> <name>obj</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt/></block_content></block></for>}</block>
+            <call><name><name>Collections</name><operator>.</operator><name>sort</name></name><argument_list>(<argument><expr><name>fieldNames</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <for>for <control>(<init><decl><type><name>String</name></type> <name>fieldName</name> <range>: <expr><name>fieldNames</name></expr></range></decl></init>)</control> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>fieldName</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name>addPropertyTerms</name><argument_list>(<argument><expr><name>enums</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>enums</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>RangeScan</name><argument_list>(<argument><expr><name>in</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name>fieldName</name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name>fieldName</name></expr></argument>, <argument><expr><literal type="string">"\uFFFF"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></for>
+            <return>return <expr><operator>new</operator> <call><name>MigrationTermEnum</name><argument_list>(<argument><expr><operator>new</operator> <call><name>ChainedTermEnum</name><argument_list>(<argument><expr><name>enums</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>oldSepChar</name></expr></argument>)</argument_list></call></expr>;</return>
+         </block_content>}</block></try>
+ 
+         <function><type><specifier>public</specifier> <name>TermPositions</name></type> <name>termPositions</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+            <return>return <expr><operator>new</operator> <call><name>MigrationTermPositions</name><argument_list>(<argument><expr><call><name><name>in</name><operator>.</operator><name>termPositions</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+            <return>return <expr><operator>new</operator> <call><name>MigrationTermPositions</name><argument_list>(<argument><expr><call><name><name>in</name><operator>.</operator><name>termPositions</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>oldSepChar</name></expr></argument>)</argument_list></call></expr>;</return>
+        </block_content>}</block></function>
+
+        <function><type><specifier>private</specifier> <name>void</name></type> <name>addPropertyTerms</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name></type> <name>enums</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+            <decl_stmt><decl><type><name><name>SortedMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>TermEnum</name></argument>&gt;</argument_list></name></type> <name>termEnums</name> <init>= <expr><operator>new</operator> <call><name><name>TreeMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>TermEnum</name></argument>&gt;</argument_list></name><argument_list>(
+                    <argument><expr><operator>new</operator> <class><super><name><name>Comparator</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+                        <function><type><specifier>public</specifier> <name>int</name></type> <name>compare</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>s1</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>s2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                            <expr_stmt><expr><name>s1</name> <operator>=</operator> <call><name><name>s1</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><name>oldSepChar</name></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            <expr_stmt><expr><name>s2</name> <operator>=</operator> <call><name><name>s2</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><name>oldSepChar</name></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            <return>return <expr><call><name><name>s1</name><operator>.</operator><name>compareTo</name></name><argument_list>(<argument><expr><name>s2</name></expr></argument>)</argument_list></call></expr>;</return>
+                        </block_content>}</block></function>
+            }</block></class></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// scan through terms and find embedded field names</comment>
+            <decl_stmt><decl><type><name>TermEnum</name></type> <name>terms</name> <init>= <expr><operator>new</operator> <call><name>RangeScan</name><argument_list>(<argument><expr><name>in</name></expr></argument>,
+                    <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr></argument>,
+                    <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><literal type="string">"\uFFFF"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>String</name></type> <name>previous</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+            <while>while <condition>(<expr><call><name><name>terms</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name>Term</name></type> <name>t</name> <init>= <expr><call><name><name>terms</name><operator>.</operator><name>term</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>String</name></type> <name>name</name> <init>= <expr><call><name><name>t</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>substring</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>t</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><name>oldSepChar</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>name</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>previous</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>termEnums</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>RangeScan</name><argument_list>(<argument><expr><name>in</name></expr></argument>,
+                            <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></argument>,
+                            <argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><name>name</name> <operator>+</operator> <literal type="string">"\uFFFF"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+                <expr_stmt><expr><name>previous</name> <operator>=</operator> <name>name</name></expr>;</expr_stmt>
+            </block_content>}</block></while>
+            <expr_stmt><expr><call><name><name>enums</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>termEnums</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></function>
+ 
+         <class><specifier>private</specifier> <specifier>static</specifier> class <name>MigrationTermEnum</name> <super_list><extends>extends <super><name>FilterTermEnum</name></super></extends></super_list> <block>{
+ 
+            <constructor><specifier>public</specifier> <name>MigrationTermEnum</name><parameter_list>(<parameter><decl><type><name>TermEnum</name></type> <name>in</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>char</name></type> <name>oldSepChar</name></decl>;</decl_stmt>
+
+            <constructor><specifier>public</specifier> <name>MigrationTermEnum</name><parameter_list>(<parameter><decl><type><name>TermEnum</name></type> <name>in</name></decl></parameter>, <parameter><decl><type><name>char</name></type> <name>oldSepChar</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                 <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>this</name><operator>.</operator><name>oldSepChar</name></name> <operator>=</operator> <name>oldSepChar</name></expr>;</expr_stmt>
+             </block_content>}</block></constructor>
+ 
+             <function><type><specifier>public</specifier> <name>Term</name></type> <name>term</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">171</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">229</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+                 }</block></expr></expr_stmt>
+                 <if_stmt><if>if <condition>(<expr><call><name><name>t</name><operator>.</operator><name>field</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                     <decl_stmt><decl><type><name>String</name></type> <name>text</name> <init>= <expr><call><name><name>t</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <return>return <expr><call><name><name>t</name><operator>.</operator><name>createTerm</name></name><argument_list>(<argument><expr><call><name><name>text</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><literal type="char">'\uFFFF'</literal></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+                    <return>return <expr><call><name><name>t</name><operator>.</operator><name>createTerm</name></name><argument_list>(<argument><expr><call><name><name>text</name><operator>.</operator><name>replace</name></name><argument_list>(<argument><expr><name>oldSepChar</name></expr></argument>, <argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+                 </block_content>}</block></if> <else>else <block>{<block_content>
+                     <return>return <expr><name>t</name></expr>;</return>
+                 </block_content>}</block></else></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">184</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">242</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+ 
+         <expr><specifier>private</specifier> <specifier>static</specifier> <name>class</name> <name>MigrationTermPositions</name> extends <name>FilterTermPositions</name> <block>{
+ 
+            <expr><specifier>public</specifier> <call><name>MigrationTermPositions</name><argument_list>(<argument><expr><name>TermPositions</name> <name>in</name></expr></argument>)</argument_list></call> <block>{
+            <expr><specifier>private</specifier> <name>final</name> <name>char</name> <name>oldSepChar</name></expr>;
+
+            <expr><specifier>public</specifier> <call><name>MigrationTermPositions</name><argument_list>(<argument><expr><name>TermPositions</name> <name>in</name></expr></argument>, <argument><expr><name>char</name> <name>oldSepChar</name></expr></argument>)</argument_list></call> <block>{
+                 <expr><call><name>super</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;
+                <expr><name><name>this</name><operator>.</operator><name>oldSepChar</name></name> <operator>=</operator> <name>oldSepChar</name></expr>;
+             }</block>
+ 
+             <specifier>public</specifier> <name>void</name> <call><name>seek</name><argument_list>(<argument><expr><name>Term</name> <name>term</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+                 <if_stmt><if>if <condition>(<expr><call><name><name>term</name><operator>.</operator><name>field</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                     <decl_stmt><decl><type><name><name>char</name><index>[]</index></name></type> <name>text</name> <init>= <expr><call><name><name>term</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toCharArray</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <expr_stmt><expr><name><name>text</name><index>[<expr><call><name><name>term</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>]</index></name> <operator>=</operator> <literal type="char">'\uFFFF'</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name><name>text</name><index>[<expr><call><name><name>term</name><operator>.</operator><name>text</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><literal type="char">'['</literal></expr></argument>)</argument_list></call></expr>]</index></name> <operator>=</operator> <name>oldSepChar</name></expr>;</expr_stmt>
+                     <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>seek</name></name><argument_list>(<argument><expr><call><name><name>term</name><operator>.</operator><name>createTerm</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>String</name><argument_list>(<argument><expr><name>text</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 <expr_stmt/></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else <block>{<block_content>
+                     <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>seek</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">207</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">268</literal></expr><operator>,</operator><expr><literal type="number">54</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexMigration</name> <block>{
+             }</block></expr></expr_stmt></block_content></block></else></if_stmt>
+         }</block></expr>
+     }</block>
+
+    <specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>class</name> <name>ChainedTermEnum</name> extends <name>TermEnum</name> <block>{
+
+        <expr><specifier>private</specifier> <name><name>Queue</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name> <name>queue</name> <operator>=</operator> <operator>new</operator> <call><name><name>LinkedList</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+
+        <expr><specifier>public</specifier> <call><name>ChainedTermEnum</name><argument_list>(<argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>TermEnum</name></argument>&gt;</argument_list></name> <name>enums</name></expr></argument>)</argument_list></call> <block>{
+            <expr><call><name>super</name><argument_list>()</argument_list></call></expr>;
+            <expr><call><name><name>queue</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>enums</name></expr></argument>)</argument_list></call></expr>;
+        }</block>
+
+        <specifier>public</specifier> <name>boolean</name> <call><name>next</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+            <for>for <control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+                <decl_stmt><decl><type><name>TermEnum</name></type> <name>terms</name> <init>= <expr><call><name><name>queue</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><name>terms</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                    <comment type="line">// no more enums</comment>
+                    <break>break;</break>
+                <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for>}</block></expr></expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>terms</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>terms</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></function>
+            <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+        </block_content>}</block></constructor>
+
+        <function><type><specifier>public</specifier> <name>Term</name></type> <name>term</name><parameter_list>()</parameter_list> <block>{<block_content>
+            <decl_stmt><decl><type><name>TermEnum</name></type> <name>terms</name> <init>= <expr><call><name><name>queue</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>terms</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <return>return <expr><call><name><name>terms</name><operator>.</operator><name>term</name></name><argument_list>()</argument_list></call></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></function>
+
+        <function><type><specifier>public</specifier> <name>int</name></type> <name>docFreq</name><parameter_list>()</parameter_list> <block>{<block_content>
+            <decl_stmt><decl><type><name>TermEnum</name></type> <name>terms</name> <init>= <expr><call><name><name>queue</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>terms</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <return>return <expr><call><name><name>terms</name><operator>.</operator><name>docFreq</name></name><argument_list>()</argument_list></call></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        </block_content>}</block></function>
+
+        <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+            <comment type="line">// close remaining</comment>
+            <while>while <condition>(<expr><operator>!</operator><call><name><name>queue</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>close</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></while>
+        </block_content>}</block></function>
+    }</block></class>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>PersistentIndex</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>PersistentIndex</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>bfb17f82b</name><operator>..</operator><literal type="number">28adc2a31</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>PersistentIndex</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>PersistentIndex</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryManager</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Analyzer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexDeletionPolicy</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>Term</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexDeletionPolicy</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Similarity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>IndexInput</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>IndexOutput</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Similarity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryManager</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Implements a lucene index which is based on a
+@@ -79,7 +79,7 @@ class PersistentIndex extends AbstractIndex {
+         this.indexDelPolicy = new IndexDeletionPolicyImpl(this,
+                 generationMaxAge * 1000);
+         if (isExisting()) {
+            IndexMigration.migrate(this, directoryManager);
+            IndexMigration.migrate(this, directoryManager, '\uFFFF');
+         }
+     }
+ 
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/query/lucene/IndexMigrationTest.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/query/lucene/IndexMigrationTest.java
+new file mode 100644
+index 000000000..2e37c6cea
+-- /dev/null
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/query/lucene/IndexMigrationTest.java
+@@ -0,0 +1,74 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>UUID</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryManager</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>directory</name><operator>.</operator><name>RAMDirectoryManager</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>standard</name><operator>.</operator><name>StandardAnalyzer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Similarity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>RAMDirectory</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;code&gt;IndexMigrationTest&lt;/code&gt; contains a test case for JCR-2393.
+ */</comment>
+<class><specifier>public</specifier> class <name>IndexMigrationTest</name> <super_list><extends>extends <super><name>TestCase</name></super></extends></super_list> <block>{
+
+    <comment type="block" format="javadoc">/**
+     * Cannot use \uFFFF because of LUCENE-1221.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>char</name></type> <name>SEP_CHAR</name> <init>= <expr><literal type="char">'\uFFFE'</literal></expr></init></decl>;</decl_stmt>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testMigration</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Document</name></argument>&gt;</argument_list></name></type> <name>docs</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Document</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>docs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>createDocument</name><argument_list>(<argument><expr><literal type="string">"ab"</literal></expr></argument>, <argument><expr><literal type="string">"a"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>docs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>createDocument</name><argument_list>(<argument><expr><literal type="string">"a"</literal></expr></argument>, <argument><expr><literal type="string">"b"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>docs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>createDocument</name><argument_list>(<argument><expr><literal type="string">"abcd"</literal></expr></argument>, <argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>docs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>createDocument</name><argument_list>(<argument><expr><literal type="string">"abc"</literal></expr></argument>, <argument><expr><literal type="string">"d"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>DirectoryManager</name></type> <name>dirMgr</name> <init>= <expr><operator>new</operator> <call><name>RAMDirectoryManager</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name>PersistentIndex</name></type> <name>idx</name> <init>= <expr><operator>new</operator> <call><name>PersistentIndex</name><argument_list>(<argument><expr><literal type="string">"index"</literal></expr></argument>,
+                <argument><expr><operator>new</operator> <call><name>StandardAnalyzer</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>Similarity</name><operator>.</operator><name>getDefault</name></name><argument_list>()</argument_list></call></expr></argument>,
+                <argument><expr><operator>new</operator> <call><name>DocNumberCache</name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr></argument>,
+                <argument><expr><operator>new</operator> <call><name>IndexingQueue</name><argument_list>(<argument><expr><operator>new</operator> <call><name>IndexingQueueStore</name><argument_list>(<argument><expr><operator>new</operator> <call><name>RAMDirectory</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+                <argument><expr><name>dirMgr</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>idx</name><operator>.</operator><name>addDocuments</name></name><argument_list>(<argument><expr><call><name><name>docs</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>Document</name><index>[<expr><call><name><name>docs</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>idx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>IndexMigration</name><operator>.</operator><name>migrate</name></name><argument_list>(<argument><expr><name>idx</name></expr></argument>, <argument><expr><name>dirMgr</name></expr></argument>, <argument><expr><name>SEP_CHAR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>createNamedValue14</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>value</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><name>name</name> <operator>+</operator> <name>SEP_CHAR</name> <operator>+</operator> <name>value</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Document</name></type> <name>createDocument</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>value</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>UUID</name></name></expr></argument>, <argument><expr><call><name><name>UUID</name><operator>.</operator><name>randomUUID</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>YES</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Index</name><operator>.</operator><name>NO</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>PROPERTIES</name></name></expr></argument>, <argument><expr><call><name>createNamedValue14</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>value</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>NO</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Index</name><operator>.</operator><name>NOT_ANALYZED</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name><name>FieldNames</name><operator>.</operator><name>FULLTEXT_PREFIX</name></name> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <name>name</name></expr></argument>, <argument><expr><name>value</name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>NO</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Index</name><operator>.</operator><name>ANALYZED</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>TermVector</name><operator>.</operator><name>WITH_POSITIONS_OFFSETS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><name>doc</name></expr>;</return>
+    </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>TestAll</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>TestAll</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">684559f6e</literal><operator>..</operator><name>fd61147b0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>TestAll</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>TestAll</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestAll</name> extends <name>TestCase</name> <block>{
+         <expr><call><name><name>suite</name><operator>.</operator><name>addTestSuite</name></name><argument_list>(<argument><expr><name><name>IndexingQueueTest</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>suite</name><operator>.</operator><name>addTestSuite</name></name><argument_list>(<argument><expr><name><name>DecimalConvertTest</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>suite</name><operator>.</operator><name>addTestSuite</name></name><argument_list>(<argument><expr><name><name>IndexingAggregateTest</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>suite</name><operator>.</operator><name>addTestSuite</name></name><argument_list>(<argument><expr><name><name>IndexMigrationTest</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+         <return>return <expr><name>suite</name></expr>;</return>
+     }</block></expr></expr_stmt>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/faddd2e6e.java"><expr_stmt><expr><name>From</name> <name>faddd2e6e957d1c2303381d4ec1d08b6434209ab</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Tobias</name> <name><name>Bocanegra</name> <argument_list type="generic">&lt;<argument><name>tripod</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">22</literal> <name>Apr</name> <literal type="number">2010</literal> <literal type="number">09</literal><operator>:</operator><literal type="number">11</literal><operator>:</operator><literal type="number">50</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">2613</literal> <name>NoSuchItemStateException</name> <name>on</name> <name>checkin</name> <name>after</name>
+ <name>removeVersion</name> <name>in</name> <name>XA</name> <name>Environment</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@936668 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>version</name><operator>/</operator><name><name>InternalVersionHistoryImpl</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>RemoveVersionTest</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">166</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">171</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">1</literal> <call><name>deletion</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>RemoveVersionTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>InternalVersionHistoryImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>InternalVersionHistoryImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d936b4661</name><operator>..</operator><literal type="number">4f0d2952f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>InternalVersionHistoryImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>version</name><operator>/</operator><name><name>InternalVersionHistoryImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">315</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">315</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>class</name> <name>InternalVersionHistoryImpl</name> extends <name>InternalVersionItemImpl</name>
+     <comment type="block" format="javadoc">/**
+      * Returns the version from cache, or &lt;code&gt;null&lt;/code&gt; if it is not
+      * present.
+     * @param id the id of the version
+     * @return the version or &lt;code&gt;null&lt;/code&gt; if not cached.
+      */</comment>
+     <specifier>private</specifier> <specifier>synchronized</specifier> <name>InternalVersion</name> <call><name>getCachedVersion</name><argument_list>(<argument><expr><name>NodeId</name> <name>id</name></expr></argument>)</argument_list></call> <block>{
+         <expr><name>InternalVersion</name> <name>v</name> <operator>=</operator> <call><name><name>versionCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">442</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">444</literal></expr>,<expr><literal type="number">8</literal> @@ <name>class</name> <name>InternalVersionHistoryImpl</name> extends <name>InternalVersionItemImpl</name>
+                 <call><name><name>parentNode</name><operator>.</operator><name>removeNode</name></name><argument_list>(<argument><expr><call><name><name>node</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                 <comment type="line">// store changes for this node and his children</comment>
+                 <expr><call><name><name>parentNode</name><operator>.</operator><name>store</name></name><argument_list>()</argument_list></call></expr>;
+            }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>node</name><operator>.</operator><name>store</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></else></if_stmt>
+         } else <block>{<block_content>
+             <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Current version history has at least one reference"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">464</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">468</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>class</name> <name>InternalVersionHistoryImpl</name> extends <name>InternalVersionItemImpl</name>
+      <operator>*</operator> <name><name>or</name> <argument_list type="generic">&lt;<argument><name>code</name></argument>&gt;</argument_list></name><literal type="null">null</literal><operator>&lt;</operator><operator>/</operator><name>code</name><operator>&gt;</operator> <name>of</name> <name>the</name> <name>label</name> <name>was</name> <name>not</name> <name><name>moved</name><operator>.</operator></name>
+      *
+      <operator>*</operator> @<name>param</name> <name>versionName</name> <name>the</name> <name>name</name> <name>of</name> <name>the</name> <name>version</name>
+     <operator>*</operator> @<name>param</name> <name>label</name> <name>the</name> <name>label</name> <name>to</name> <name>assgign</name>
+     <operator>*</operator> @<name>param</name> <name>label</name> <name>the</name> <name>label</name> <name>to</name> <name>assign</name>
+      <operator>*</operator> @<name>param</name> <name>move</name>  <name>flag</name> <name>what</name> <name>to</name></expr></expr_stmt> <do>do<block type="pseudo"><block_content> <expr_stmt><expr><name>by</name> <name>collisions</name>
+      <operator>*</operator> @</expr></expr_stmt></block_content></block><return>return <expr><name>the</name> <name>version</name> <name>that</name> <name>was</name> <name>previously</name> <name>assigned</name> <name>by</name> <name>this</name> <name>label</name> <name><name>or</name> <argument_list type="generic">&lt;<argument><name>code</name></argument>&gt;</argument_list></name><literal type="null">null</literal><operator>&lt;</operator><operator>/</operator><name>code</name><operator>&gt;</operator><operator>.</operator>
+      <operator>*</operator> @<throws>throws <argument><expr><name>VersionException</name></expr></argument></throws></expr></return> <if_stmt><if>if the version does not exist or if the label is already defined.
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveVersionTest.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveVersionTest.java
+new file mode 100644
+index 000000000..69916d880
+-- /dev/null
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveVersionTest.java
+@@ -0<operator>,</operator><expr_stmt><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">166</literal> @@</expr></expr_stmt></if></if_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>version</name></name>;</package>
+
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.version.Version;
+import javax.jcr.version.VersionHistory;
+import javax.jcr.version.VersionIterator;
+import javax.jcr.version.VersionManager;
+import javax.transaction.UserTransaction;
+
+import org.apache.jackrabbit.core.UserTransactionImpl;
+import org.apache.jackrabbit.test.AbstractJCRTest;
+
+<comment type="block" format="javadoc">/**
+ * Tests if removing of versions works correctly
+ */</comment>
+public class RemoveVersionTest  extends AbstractJCRTest <block>{<block_content>
+
+    <comment type="block" format="javadoc">/**
+     * Removes a version in 1 transaction and tries to commit afterwards the
+     * versionable node using a 2nd transaction.
+     *
+     * Tests error reported in JCR-2613
+     *
+     * @throws Exception if an error occurs
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testRemoveVersionAndCheckinXA</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>UserTransaction</name></type> <name>tx</name> <init>= <expr><operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>superuser</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>Node</name></type> <name>n</name> <init>= <expr><call><name><name>testRootNode</name><operator>.</operator><name>addNode</name></name><argument_list>(<argument><expr><name>nodeName1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>addMixin</name></name><argument_list>(<argument><expr><name>mixVersionable</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>addMixin</name></name><argument_list>(<argument><expr><name>mixReferenceable</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>testRootNode</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>uuid</name> <init>= <expr><call><name><name>n</name><operator>.</operator><name>getUUID</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <comment type="line">// create two versions</comment>
+        <decl_stmt><decl><type><name>String</name></type> <name>v1</name> <init>= <expr><call><name><name>n</name><operator>.</operator><name>checkin</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>checkout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>checkin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>checkout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>tx</name> <operator>=</operator> <operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>superuser</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// remove one version</comment>
+        <expr_stmt><expr><name>n</name> <operator>=</operator> <call><name><name>superuser</name><operator>.</operator><name>getNodeByUUID</name></name><argument_list>(<argument><expr><name>uuid</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>getVersionHistory</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>removeVersion</name><argument_list>(<argument><expr><name>v1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// new session</comment>
+        <decl_stmt><decl><type><name>Session</name></type> <name>session</name> <init>= <expr><call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>tx</name> <operator>=</operator> <operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>session</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>n</name> <operator>=</operator> <call><name><name>session</name><operator>.</operator><name>getNodeByUUID</name></name><argument_list>(<argument><expr><name>uuid</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>checkin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Removes a version in 1 transaction and tries to commit afterwards the
+     * versionable node using a 2nd transaction. Uses the JCR2.0 API.
+     *
+     * Tests error reported in JCR-2613
+     * 
+     * @throws Exception if an error occurs
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testRemoveVersionAndCheckinXA_JCR2</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>UserTransaction</name></type> <name>tx</name> <init>= <expr><operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>superuser</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>Node</name></type> <name>n</name> <init>= <expr><call><name><name>testRootNode</name><operator>.</operator><name>addNode</name></name><argument_list>(<argument><expr><name>nodeName1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>addMixin</name></name><argument_list>(<argument><expr><name>mixVersionable</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>superuser</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// create two versions</comment>
+        <decl_stmt><decl><type><name>String</name></type> <name>path</name> <init>= <expr><call><name><name>n</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>v1</name> <init>= <expr><call><name><name>superuser</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionManager</name><argument_list>()</argument_list></call><operator>.</operator><call><name>checkpoint</name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>v2</name> <init>= <expr><call><name><name>superuser</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionManager</name><argument_list>()</argument_list></call><operator>.</operator><call><name>checkpoint</name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>tx</name> <operator>=</operator> <operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>superuser</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// remove one version</comment>
+        <expr_stmt><expr><call><name><name>superuser</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionManager</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionHistory</name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>removeVersion</name><argument_list>(<argument><expr><name>v1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// new session</comment>
+        <decl_stmt><decl><type><name>Session</name></type> <name>session</name> <init>= <expr><call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>tx</name> <operator>=</operator> <operator>new</operator> <call><name>UserTransactionImpl</name><argument_list>(<argument><expr><name>session</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>session</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionManager</name><argument_list>()</argument_list></call><operator>.</operator><call><name>checkin</name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tx</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Creates 3 versions and removes them afterwards. Checks if version history
+     * was purged, too.
+     *
+     * Tests error reported in JCR-2601
+     *
+     * @throws Exception if an error occurs
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testRemoveAllVersions</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>Node</name></type> <name>n</name> <init>= <expr><call><name><name>testRootNode</name><operator>.</operator><name>addNode</name></name><argument_list>(<argument><expr><name>nodeName1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>addMixin</name></name><argument_list>(<argument><expr><name>mixVersionable</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>superuser</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>path</name> <init>= <expr><call><name><name>n</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <comment type="line">// create some versions</comment>
+        <decl_stmt><decl><type><name>VersionManager</name></type> <name>mgr</name> <init>= <expr><call><name><name>superuser</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersionManager</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>mgr</name><operator>.</operator><name>checkpoint</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// v1.0</comment>
+        <expr_stmt><expr><call><name><name>mgr</name><operator>.</operator><name>checkpoint</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// v1.1</comment>
+        <expr_stmt><expr><call><name><name>mgr</name><operator>.</operator><name>checkpoint</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// v1.2</comment>
+
+        <comment type="line">// get version history</comment>
+        <decl_stmt><decl><type><name>VersionHistory</name></type> <name>vh</name> <init>= <expr><call><name><name>mgr</name><operator>.</operator><name>getVersionHistory</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>id</name> <init>= <expr><call><name><name>vh</name><operator>.</operator><name>getIdentifier</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <comment type="line">// remove versionable node</comment>
+        <expr_stmt><expr><call><name><name>n</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>superuser</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// get the names of the versions</comment>
+        <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>names</name> <init>= <expr><operator>new</operator> <call><name><name>LinkedList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>VersionIterator</name></type> <name>vit</name> <init>= <expr><call><name><name>vh</name><operator>.</operator><name>getAllVersions</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <while>while <condition>(<expr><call><name><name>vit</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>Version</name></type> <name>v</name> <init>= <expr><call><name><name>vit</name><operator>.</operator><name>nextVersion</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>v</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><literal type="string">"jcr:rootVersion"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>names</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>v</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></while>
+        <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Number of versions"</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><call><name><name>names</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        
+        <comment type="line">// remove all versions</comment>
+        <for>for <control>(<init><decl><type><name>String</name></type> <name>name</name><range>: <expr><name>names</name></expr></range></decl></init>)</control> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>vh</name><operator>.</operator><name>removeVersion</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <comment type="line">// assert that version history is gone</comment>
+        <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>superuser</name><operator>.</operator><name>getNodeByIdentifier</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><literal type="string">"Version history not removed after last version was removed."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// ok</comment>
+        </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+</block_content>}</block>
+\ No newline at end of file
+- 
+2.19.1.windows.1</do></block_content></block>
+
+</unit>

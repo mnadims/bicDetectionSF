@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/8d7f04cd9.java"><expr_stmt><expr><name>From</name> <literal type="number">8d7f04cd96d435692726bf2e3dcdb025570e01e8</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name><name>phrocker</name> <argument_list type="generic">&lt;<argument><name><name>marc</name><operator>.</operator><name>parisi</name></name><annotation>@<name><name>gmail</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Feb</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">40</literal><operator>:</operator><literal type="number">08</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">4153</literal><operator>:</operator> <name>Remove</name> <name>synchronization</name> <name>from</name> <name>Compression</name>
+
+<name>Update</name> <name>the</name> <name>getCodec</name> <name>method</name> <name>to</name> <name>no</name> <name>longer</name> <name>be</name> <specifier>synchronized</specifier> <name>using</name> <specifier>static</specifier> <name>initializer</name> <name>in</name> enum
+<name>Update</name> <name>so</name> <name>that</name> <name>we</name> <name>use</name> <name>a</name> <name>codec</name> <name>cache</name></expr></expr_stmt> <if_stmt><if>if we are not using the default buffer size for each specific codec. LZO does not need this change.
+Update to improve comments and other readability concerns. Update tests to check
+all codecs. Add checks for failures in executor. Instead of more unit
+tests with Assume checks<operator>,</operator> <expr_stmt><expr><name>we</name><literal type="char">'ll simply use a map and loop in existing
+unit tests to check all codecs. A failure in one will cause a failure
+--
+ .../core/file/rfile/bcfile/Compression.java   | 306 ++++++++++++++----
+ .../file/rfile/bcfile/CompressionTest.java    | 250 ++++++++++++++
+ 2 files changed, 497 insertions(+), 59 deletions(-)
+ create mode 100644 core/src/test/java/org/apache/accumulo/core/file/rfile/bcfile/CompressionTest.java
+
+diff --git a/core/src/main/java/org/apache/accumulo/core/file/rfile/bcfile/Compression.java b/core/src/main/java/org/apache/accumulo/core/file/rfile/bcfile/Compression.java
+index 9defa1c63..3b8246241 100644
+-- a/core/src/main/java/org/apache/accumulo/core/file/rfile/bcfile/Compression.java
+++ b/core/src/main/java/org/apache/accumulo/core/file/rfile/bcfile/Compression.java
+@@ -23,6 +23,9 @@ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.OutputStream;
+ import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicBoolean;
+ 
+ import org.apache.commons.logging.Log;
+ import org.apache.commons.logging.LogFactory;
+@@ -36,6 +39,11 @@ import org.apache.hadoop.io.compress.Decompressor;
+ import org.apache.hadoop.io.compress.DefaultCodec;
+ import org.apache.hadoop.util.ReflectionUtils;
+ 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Maps;
+
+ /**
+  * Compression related stuff.
+  */
+@@ -78,41 +86,90 @@ public final class Compression {
+   public static final String COMPRESSION_NONE = "none";
+ 
+   /**
+   * Compression algorithms.
+   * Compression algorithms. There is a static initializer, below the values defined in the enumeration, that calls the initializer of all defined codecs within
+   * the Algorithm enum. This promotes a model of the following call graph of initialization by the static initializer, followed by calls to getCodec() and
+   * createCompressionStream/DecompressionStream. In some cases, the compression and decompression call methods will include a different buffer size for the
+   * stream. Note that if the compressed buffer size requested in these calls is zero, we will not set the buffer size for that algorithm. Instead, we will use
+   * the default within the codec.
+   *
+   * The buffer size is configured in the Codec by way of a Hadoop Configuration reference. One approach may be to use the same Configuration object, but when
+   * calls are made to createCompressionStream and DecompressionStream, with non default buffer sizes, the configuration object must be changed. In this case,
+   * concurrent calls to createCompressionStream and DecompressionStream would mutate the configuration object beneath each other, requiring synchronization to
+   * avoid undesirable activity via co-modification. To avoid synchronization entirely, we will create Codecs with their own Configuration object and cache them
+   * for re-use. A default codec will be statically created, as mentioned above to ensure we always have a codec available at loader initialization.
+   *
+   * There is a Guava cache defined within Algorithm that allows us to cache Codecs for re-use. Since they will have their own configuration object and thus do
+   * not need to be mutable, there is no concern for using them concurrently; however, the Guava cache exists to ensure a maximal size of the cache and
+   * efficient and concurrent read/write access to the cache itself.
+   *
+   * To provide Algorithm specific details and to describe what is in code:
+   *
+   * LZO will always have the default LZO codec because the buffer size is never overridden within it.
+   *
+   * GZ will use the default GZ codec for the compression stream, but can potentially use a different codec instance for the decompression stream if the
+   * requested buffer size does not match the default GZ buffer size of 32k.
+   *
+   * Snappy will use the default Snappy codec with the default buffer size of 64k for the compression stream, but will use a cached codec if the buffer size
+   * differs from the default.
+    */
+   public static enum Algorithm {
+
+     LZO(COMPRESSION_LZO) {
+      private transient boolean checked = false;
+      /**
+       * determines if we'</literal><name>ve</name> <name>checked</name> <name>the</name> <name>codec</name> <name><name>status</name><operator>.</operator> <name>ensures</name></name> <name>we</name> <name>don</name><literal type="char">'t recreate the defualt codec
+       */
+      private transient AtomicBoolean checked = new AtomicBoolean(false);
+       private static final String defaultClazz = "org.apache.hadoop.io.compress.LzoCodec";
+       private transient CompressionCodec codec = null;
+ 
+      /**
+       * Configuration option for LZO buffer size
+       */
+      private static final String BUFFER_SIZE_OPT = "io.compression.codec.lzo.buffersize";
+
+      /**
+       * Default buffer size
+       */
+      private static final int DEFAULT_BUFFER_SIZE = 64 * 1024;
+
+       @Override
+      public synchronized boolean isSupported() {
+        if (!checked) {
+          checked = true;
+          String extClazz = (conf.get(CONF_LZO_CLASS) == null ? System.getProperty(CONF_LZO_CLASS) : null);
+          String clazz = (extClazz != null) ? extClazz : defaultClazz;
+          try {
+            LOG.info("Trying to load Lzo codec class: " + clazz);
+            codec = (CompressionCodec) ReflectionUtils.newInstance(Class.forName(clazz), conf);
+          } catch (ClassNotFoundException e) {
+            // that is okay
+          }
+        }
+      public boolean isSupported() {
+         return codec != null;
+       }
+ 
+      public void initializeDefaultCodec() {
+        if (!checked.get()) {
+          checked.set(true);
+          codec = createNewCodec(DEFAULT_BUFFER_SIZE);
+        }
+      }
+
+       @Override
+      CompressionCodec getCodec() throws IOException {
+        if (!isSupported()) {
+          throw new IOException("LZO codec class not specified. Did you forget to set property " + CONF_LZO_CLASS + "?");
+      CompressionCodec createNewCodec(int bufferSize) {
+        String extClazz = (conf.get(CONF_LZO_CLASS) == null ? System.getProperty(CONF_LZO_CLASS) : null);
+        String clazz = (extClazz != null) ? extClazz : defaultClazz;
+        try {
+          LOG.info("Trying to load Lzo codec class: " + clazz);
+          Configuration myConf = new Configuration(conf);
+          // only use the buffersize if &gt; 0, otherwise we'</literal><name>ll</name> <name>use</name></expr></expr_stmt></if></if_stmt>
+          <comment type="line">// the default defined within the codec</comment>
+          <if_stmt><if>if <condition>(<expr><name>bufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><call><name><name>myConf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><name>BUFFER_SIZE_OPT</name></expr></argument>, <argument><expr><name>bufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+          <expr_stmt><expr><name>codec</name> <operator>=</operator> <operator>(</operator><name>CompressionCodec</name><operator>)</operator> <call><name><name>ReflectionUtils</name><operator>.</operator><name>newInstance</name></name><argument_list>(<argument><expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>myConf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <return>return <expr><name>codec</name></expr>;</return>
+        } catch <expr_stmt><expr><operator>(</operator><name>ClassNotFoundException</name> <name>e</name><operator>)</operator> <block>{
+          <comment type="line">// that is okay</comment>
+         }</block></expr></expr_stmt>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+      }
+ 
+      @<function><type><name>Override</name>
+      <name>CompressionCodec</name></type> <name>getCodec</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <return>return <expr><name>codec</name></expr>;</return>
+       </block_content>}</block></function>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>InputStream</name></type> <name>createDecompressionStream</name><parameter_list>(<parameter><decl><type><name>InputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Decompressor</name></type> <name>decompressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>InputStream</name></type> <name>createDecompressionStream</name><parameter_list>(<parameter><decl><type><name>InputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Decompressor</name></type> <name>decompressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isSupported</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"LZO codec class not specified. Did you forget to set property "</literal> <operator>+</operator> <name>CONF_LZO_CLASS</name> <operator>+</operator> <literal type="string">"?"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">122</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">179</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+         }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+           <expr_stmt><expr><name>bis1</name> <operator>=</operator> <name>downStream</name></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"io.compression.codec.lzo.buffersize"</literal></expr></argument>, <argument><expr><literal type="number">64</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <decl_stmt><decl><type><name>CompressionInputStream</name></type> <name>cis</name> <init>= <expr><call><name><name>codec</name><operator>.</operator><name>createInputStream</name></name><argument_list>(<argument><expr><name>bis1</name></expr></argument>, <argument><expr><name>decompressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedInputStream</name></type> <name>bis2</name> <init>= <expr><operator>new</operator> <call><name>BufferedInputStream</name><argument_list>(<argument><expr><name>cis</name></expr></argument>, <argument><expr><name>DATA_IBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bis2</name></expr>;</return>
+       </block_content>}</block></function>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isSupported</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"LZO codec class not specified. Did you forget to set property "</literal> <operator>+</operator> <name>CONF_LZO_CLASS</name> <operator>+</operator> <literal type="string">"?"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">139</literal></expr><operator>,</operator><expr><literal type="number">46</literal> <operator>+</operator><literal type="number">195</literal></expr><operator>,</operator><expr><literal type="number">82</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+         }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+           <expr_stmt><expr><name>bos1</name> <operator>=</operator> <name>downStream</name></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"io.compression.codec.lzo.buffersize"</literal></expr></argument>, <argument><expr><literal type="number">64</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <decl_stmt><decl><type><name>CompressionOutputStream</name></type> <name>cos</name> <init>= <expr><call><name><name>codec</name><operator>.</operator><name>createOutputStream</name></name><argument_list>(<argument><expr><name>bos1</name></expr></argument>, <argument><expr><name>compressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedOutputStream</name></type> <name>bos2</name> <init>= <expr><operator>new</operator> <call><name>BufferedOutputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>FinishOnFlushCompressionStream</name><argument_list>(<argument><expr><name>cos</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>DATA_OBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bos2</name></expr>;</return>
+       </block_content>}</block></function>
+
+     </block_content>}</block></function><operator>,</operator>
+ 
+     <expr_stmt><expr><call><name>GZ</name><argument_list>(<argument><expr><name>COMPRESSION_GZ</name></expr></argument>)</argument_list></call> <block>{
+      <expr><specifier>private</specifier> <specifier>transient</specifier> <name>DefaultCodec</name> <name>codec</name></expr>;
+ 
+      @<expr><name>Override</name>
+      <specifier>synchronized</specifier> <name>CompressionCodec</name> <call><name>getCodec</name><argument_list>()</argument_list></call> <block>{
+        <if_stmt><if>if <condition>(<expr><name>codec</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>codec</name> <operator>=</operator> <operator>new</operator> <call><name>DefaultCodec</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>codec</name><operator>.</operator><name>setConf</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block>
+      <specifier>private</specifier> <specifier>transient</specifier> <name>DefaultCodec</name> <name>codec</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+
+      <comment type="block" format="javadoc">/**
+       * Configuration option for gz buffer size
+       */</comment>
+      <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>BUFFER_SIZE_OPT</name> <operator>=</operator> <literal type="string">"io.file.buffer.size"</literal></expr>;
+
+      <comment type="block" format="javadoc">/**
+       * Default buffer size
+       */</comment>
+      <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>DEFAULT_BUFFER_SIZE</name> <operator>=</operator> <literal type="number">32</literal> <operator>*</operator> <literal type="number">1024</literal></expr>;
+ 
+      @<expr><name>Override</name>
+      <name>CompressionCodec</name> <call><name>getCodec</name><argument_list>()</argument_list></call> <block>{
+         <return>return <expr><name>codec</name></expr>;</return></block></expr>
+       }</block>
+ 
+       @<name>Override</name>
+      <specifier>public</specifier> <specifier>synchronized</specifier> <name>InputStream</name> <call><name>createDecompressionStream</name><argument_list>(<argument><expr><name>InputStream</name> <name>downStream</name></expr></argument>, <argument><expr><name>Decompressor</name> <name>decompressor</name></expr></argument>, <argument><expr><name>int</name> <name>downStreamBufferSize</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><specifier>public</specifier> <name>void</name> <call><name>initializeDefaultCodec</name><argument_list>()</argument_list></call> <block>{
+        <expr><name>codec</name> <operator>=</operator> <operator>(</operator><name>DefaultCodec</name><operator>)</operator> <call><name>createNewCodec</name><argument_list>(<argument><expr><name>DEFAULT_BUFFER_SIZE</name></expr></argument>)</argument_list></call></expr></block></expr></block></expr></argument></throws></expr>;</expr_stmt>
+      </block_content>}</block></function>
+
+      <comment type="block" format="javadoc">/**
+       * Create a new GZ codec
+       *
+       * @param bufferSize
+       *          buffer size to for GZ
+       * @return created codec
+       */</comment>
+      <function><type><specifier>protected</specifier> <name>CompressionCodec</name></type> <name>createNewCodec</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>bufferSize</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>DefaultCodec</name></type> <name>myCodec</name> <init>= <expr><operator>new</operator> <call><name>DefaultCodec</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Configuration</name></type> <name>myConf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <comment type="line">// only use the buffersize if &gt; 0, otherwise we'll use</comment>
+        <comment type="line">// the default defined within the codec</comment>
+        <if_stmt><if>if <condition>(<expr><name>bufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content>
+          <expr_stmt><expr><call><name><name>myConf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><name>BUFFER_SIZE_OPT</name></expr></argument>, <argument><expr><name>bufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>myCodec</name><operator>.</operator><name>setConf</name></name><argument_list>(<argument><expr><name>myConf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><name>myCodec</name></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>InputStream</name></type> <name>createDecompressionStream</name><parameter_list>(<parameter><decl><type><name>InputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Decompressor</name></type> <name>decompressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <comment type="line">// Set the internal buffer size to read from down stream.</comment>
+        <if_stmt><if>if <condition>(<expr><name>downStreamBufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>codec</name><operator>.</operator><name>getConf</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setInt</name><argument_list>(<argument><expr><literal type="string">"io.file.buffer.size"</literal></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>CompressionCodec</name></type> <name>decomCodec</name> <init>= <expr><name>codec</name></expr></init></decl>;</decl_stmt>
+        <comment type="line">// if we're not using the default, let's pull from the loading cache</comment>
+        <if_stmt><if>if <condition>(<expr><name>DEFAULT_BUFFER_SIZE</name> <operator>!=</operator> <name>downStreamBufferSize</name></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Algorithm</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>sizeOpt</name> <init>= <expr><call><name><name>Maps</name><operator>.</operator><name>immutableEntry</name></name><argument_list>(<argument><expr><name>GZ</name></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><name>decomCodec</name> <operator>=</operator> <call><name><name>codecCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>sizeOpt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ExecutionException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></catch></try>
+         </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>CompressionInputStream</name></type> <name>cis</name> <init>= <expr><call><name><name>codec</name><operator>.</operator><name>createInputStream</name></name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>decompressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>CompressionInputStream</name></type> <name>cis</name> <init>= <expr><call><name><name>decomCodec</name><operator>.</operator><name>createInputStream</name></name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>decompressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedInputStream</name></type> <name>bis2</name> <init>= <expr><operator>new</operator> <call><name>BufferedInputStream</name><argument_list>(<argument><expr><name>cis</name></expr></argument>, <argument><expr><name>DATA_IBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bis2</name></expr>;</return>
+       </block_content>}</block></if></if_stmt>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>OutputStream</name></type> <name>bos1</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>downStreamBufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><name>bos1</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedOutputStream</name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if> <else>else <block>{<block_content>
+           <expr_stmt><expr><name>bos1</name> <operator>=</operator> <name>downStream</name></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><call><name><name>codec</name><operator>.</operator><name>getConf</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setInt</name><argument_list>(<argument><expr><literal type="string">"io.file.buffer.size"</literal></expr></argument>, <argument><expr><literal type="number">32</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// always uses the default buffer size</comment>
+         <decl_stmt><decl><type><name>CompressionOutputStream</name></type> <name>cos</name> <init>= <expr><call><name><name>codec</name><operator>.</operator><name>createOutputStream</name></name><argument_list>(<argument><expr><name>bos1</name></expr></argument>, <argument><expr><name>compressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedOutputStream</name></type> <name>bos2</name> <init>= <expr><operator>new</operator> <call><name>BufferedOutputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>FinishOnFlushCompressionStream</name><argument_list>(<argument><expr><name>cos</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>DATA_OBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bos2</name></expr>;</return>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">197</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">289</literal></expr><operator>,</operator><expr><literal type="number">23</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+       }</block>
+ 
+       @<name>Override</name>
+      <specifier>public</specifier> <specifier>synchronized</specifier> <name>InputStream</name> <call><name>createDecompressionStream</name><argument_list>(<argument><expr><name>InputStream</name> <name>downStream</name></expr></argument>, <argument><expr><name>Decompressor</name> <name>decompressor</name></expr></argument>, <argument><expr><name>int</name> <name>downStreamBufferSize</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><specifier>public</specifier> <name>InputStream</name> <call><name>createDecompressionStream</name><argument_list>(<argument><expr><name>InputStream</name> <name>downStream</name></expr></argument>, <argument><expr><name>Decompressor</name> <name>decompressor</name></expr></argument>, <argument><expr><name>int</name> <name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+         <if_stmt><if>if <condition>(<expr><name>downStreamBufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+           <return>return <expr><operator>new</operator> <call><name>BufferedInputStream</name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr>;</return>
+         </block_content>}</block></if></if_stmt>
+         <return>return <expr><name>downStream</name></expr>;</return>
+       </block_content>}</block></function>
+ 
+      <function><type><specifier>public</specifier> <name>void</name></type> <name>initializeDefaultCodec</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+      </block_content>}</block></function>
+
+      <function><type><specifier>protected</specifier> <name>CompressionCodec</name></type> <name>createNewCodec</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>bufferSize</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+      </block_content>}</block></function>
+
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><name>downStreamBufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+           <return>return <expr><operator>new</operator> <call><name>BufferedOutputStream</name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr>;</return>
+         </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">222</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">322</literal></expr><operator>,</operator><expr><literal type="number">65</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+     <expr><call><name>SNAPPY</name><argument_list>(<argument><expr><name>COMPRESSION_SNAPPY</name></expr></argument>)</argument_list></call> <block>{
+       <comment type="line">// Use base type to avoid compile-time dependencies.</comment>
+       <expr><specifier>private</specifier> <specifier>transient</specifier> <name>CompressionCodec</name> <name>snappyCodec</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+      <expr><specifier>private</specifier> <specifier>transient</specifier> <name>boolean</name> <name>checked</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+      <comment type="block" format="javadoc">/**
+       * determines if we've checked the codec status. ensures we don't recreate the defualt codec
+       */</comment>
+      <expr><specifier>private</specifier> <specifier>transient</specifier> <name>AtomicBoolean</name> <name>checked</name> <operator>=</operator> <operator>new</operator> <call><name>AtomicBoolean</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+       <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>defaultClazz</name> <operator>=</operator> <literal type="string">"org.apache.hadoop.io.compress.SnappyCodec"</literal></expr>;
+ 
+      <comment type="block" format="javadoc">/**
+       * Buffer size option
+       */</comment>
+      <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>BUFFER_SIZE_OPT</name> <operator>=</operator> <literal type="string">"io.compression.codec.snappy.buffersize"</literal></expr>;
+
+      <comment type="block" format="javadoc">/**
+       * Default buffer size value
+       */</comment>
+      <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>DEFAULT_BUFFER_SIZE</name> <operator>=</operator> <literal type="number">64</literal> <operator>*</operator> <literal type="number">1024</literal></expr>;
+
+       <expr><specifier>public</specifier> <name>CompressionCodec</name> <call><name>getCodec</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isSupported</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"SNAPPY codec class not specified. Did you forget to set property "</literal> <operator>+</operator> <name>CONF_SNAPPY_CLASS</name> <operator>+</operator> <literal type="string">"?"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+         <return>return <expr><name>snappyCodec</name></expr>;</return>
+       }</block></expr></expr_stmt>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>void</name></type> <name>initializeDefaultCodec</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>checked</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>checked</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>snappyCodec</name> <operator>=</operator> <call><name>createNewCodec</name><argument_list>(<argument><expr><name>DEFAULT_BUFFER_SIZE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></function>
+
+      <comment type="block" format="javadoc">/**
+       * Creates a new snappy codec.
+       *
+       * @param bufferSize
+       *          incoming buffer size
+       * @return new codec or null, depending on if installed
+       */</comment>
+      <function><type><specifier>protected</specifier> <name>CompressionCodec</name></type> <name>createNewCodec</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>bufferSize</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+        <decl_stmt><decl><type><name>String</name></type> <name>extClazz</name> <init>= <expr><operator>(</operator><ternary><condition><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>CONF_SNAPPY_CLASS</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name>CONF_SNAPPY_CLASS</name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary><operator>)</operator></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>clazz</name> <init>= <expr><ternary><condition><expr><operator>(</operator><name>extClazz</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><name>extClazz</name></expr> </then><else>: <expr><name>defaultClazz</name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+        <try>try <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Trying to load snappy codec class: "</literal> <operator>+</operator> <name>clazz</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+          <decl_stmt><decl><type><name>Configuration</name></type> <name>myConf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <comment type="line">// only use the buffersize if &gt; 0, otherwise we'll use</comment>
+          <comment type="line">// the default defined within the codec</comment>
+          <if_stmt><if>if <condition>(<expr><name>bufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><call><name><name>myConf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><name>BUFFER_SIZE_OPT</name></expr></argument>, <argument><expr><name>bufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+
+          <return>return <expr><operator>(</operator><name>CompressionCodec</name><operator>)</operator> <call><name><name>ReflectionUtils</name><operator>.</operator><name>newInstance</name></name><argument_list>(<argument><expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>myConf</name></expr></argument>)</argument_list></call></expr>;</return>
+
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <comment type="line">// that is okay</comment>
+        </block_content>}</block></catch></try>
+
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>OutputStream</name></type> <name>createCompressionStream</name><parameter_list>(<parameter><decl><type><name>OutputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Compressor</name></type> <name>compressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+ 
+         <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isSupported</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"SNAPPY codec class not specified. Did you forget to set property "</literal> <operator>+</operator> <name>CONF_SNAPPY_CLASS</name> <operator>+</operator> <literal type="string">"?"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">244</literal></expr><operator>,</operator><expr><literal type="number">44</literal> <operator>+</operator><literal type="number">391</literal></expr><operator>,</operator><expr><literal type="number">71</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+         }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+           <expr_stmt><expr><name>bos1</name> <operator>=</operator> <name>downStream</name></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"io.compression.codec.snappy.buffersize"</literal></expr></argument>, <argument><expr><literal type="number">64</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// use the default codec</comment>
+         <decl_stmt><decl><type><name>CompressionOutputStream</name></type> <name>cos</name> <init>= <expr><call><name><name>snappyCodec</name><operator>.</operator><name>createOutputStream</name></name><argument_list>(<argument><expr><name>bos1</name></expr></argument>, <argument><expr><name>compressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedOutputStream</name></type> <name>bos2</name> <init>= <expr><operator>new</operator> <call><name>BufferedOutputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>FinishOnFlushCompressionStream</name><argument_list>(<argument><expr><name>cos</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>DATA_OBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bos2</name></expr>;</return>
+       </block_content>}</block></if></if_stmt>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>InputStream</name></type> <name>createDecompressionStream</name><parameter_list>(<parameter><decl><type><name>InputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Decompressor</name></type> <name>decompressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <function><type><specifier>public</specifier> <name>InputStream</name></type> <name>createDecompressionStream</name><parameter_list>(<parameter><decl><type><name>InputStream</name></type> <name>downStream</name></decl></parameter>, <parameter><decl><type><name>Decompressor</name></type> <name>decompressor</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>downStreamBufferSize</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isSupported</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"SNAPPY codec class not specified. Did you forget to set property "</literal> <operator>+</operator> <name>CONF_SNAPPY_CLASS</name> <operator>+</operator> <literal type="string">"?"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>downStreamBufferSize</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"io.file.buffer.size"</literal></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>CompressionCodec</name></type> <name>decomCodec</name> <init>= <expr><name>snappyCodec</name></expr></init></decl>;</decl_stmt>
+        <comment type="line">// if we're not using the same buffer size, we'll pull the codec from the loading cache</comment>
+        <if_stmt><if>if <condition>(<expr><name>DEFAULT_BUFFER_SIZE</name> <operator>!=</operator> <name>downStreamBufferSize</name></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Algorithm</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>sizeOpt</name> <init>= <expr><call><name><name>Maps</name><operator>.</operator><name>immutableEntry</name></name><argument_list>(<argument><expr><name>SNAPPY</name></expr></argument>, <argument><expr><name>downStreamBufferSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><name>decomCodec</name> <operator>=</operator> <call><name><name>codecCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>sizeOpt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ExecutionException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></catch></try>
+         </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>CompressionInputStream</name></type> <name>cis</name> <init>= <expr><call><name><name>snappyCodec</name><operator>.</operator><name>createInputStream</name></name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>decompressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name>CompressionInputStream</name></type> <name>cis</name> <init>= <expr><call><name><name>decomCodec</name><operator>.</operator><name>createInputStream</name></name><argument_list>(<argument><expr><name>downStream</name></expr></argument>, <argument><expr><name>decompressor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>BufferedInputStream</name></type> <name>bis2</name> <init>= <expr><operator>new</operator> <call><name>BufferedInputStream</name><argument_list>(<argument><expr><name>cis</name></expr></argument>, <argument><expr><name>DATA_IBUF_SIZE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <return>return <expr><name>bis2</name></expr>;</return>
+       </block_content>}</block></if></if_stmt>
+ 
+       <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>boolean</name></type> <name>isSupported</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>checked</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>checked</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>extClazz</name> <init>= <expr><operator>(</operator><ternary><condition><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>CONF_SNAPPY_CLASS</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name>CONF_SNAPPY_CLASS</name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary><operator>)</operator></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>clazz</name> <init>= <expr><ternary><condition><expr><operator>(</operator><name>extClazz</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><name>extClazz</name></expr> </then><else>: <expr><name>defaultClazz</name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Trying to load snappy codec class: "</literal> <operator>+</operator> <name>clazz</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>snappyCodec</name> <operator>=</operator> <operator>(</operator><name>CompressionCodec</name><operator>)</operator> <call><name><name>ReflectionUtils</name><operator>.</operator><name>newInstance</name></name><argument_list>(<argument><expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// that is okay</comment>
+          </block_content>}</block></catch></try>
+        </block_content>}</block></if></if_stmt>
+      <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isSupported</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+         <return>return <expr><name>snappyCodec</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</return>
+       </block_content>}</block></function>
+     </block_content>}</block></function><empty_stmt>;</empty_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * The model defined by the static block, below, creates a singleton for each defined codec in the Algorithm enumeration. By creating the codecs, each call
+     * to isSupported shall return true/false depending on if the codec singleton is defined. The static initializer, below, will ensure this occurs when the
+     * Enumeration is loaded. Furthermore, calls to getCodec will return the singleton, whether it is null or not.
+     *
+     * Calls to createCompressionStream and createDecompressionStream may return a different codec than getCodec, if the incoming downStreamBufferSize is
+     * different than the default. In such a case, we will place the resulting codec into the codecCache, defined below, to ensure we have cache codecs.
+     *
+     * Since codecs are immutable, there is no concern about concurrent access to the CompressionCodec objects within the guava cache.
+     */</comment>
+    <static>static <block>{<block_content>
+      <expr_stmt><expr><name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>al</name><operator>.</operator><name>initializeDefaultCodec</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></static>
+
+    <comment type="block" format="javadoc">/**
+     * Guava cache to have a limited factory pattern defined in the Algorithm enum.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name><name>LoadingCache</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Algorithm</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></argument>,<argument><name>CompressionCodec</name></argument>&gt;</argument_list></name></type> <name>codecCache</name> <init>= <expr><call><name><name>CacheBuilder</name><operator>.</operator><name>newBuilder</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>maximumSize</name><argument_list>(<argument><expr><literal type="number">25</literal></expr></argument>)</argument_list></call>
+        <operator>.</operator><call><name>build</name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>CacheLoader</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Algorithm</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></argument>,<argument><name>CompressionCodec</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+          <function><type><specifier>public</specifier> <name>CompressionCodec</name></type> <name>load</name><parameter_list>(<parameter><decl><type><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Algorithm</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>key</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <return>return <expr><call><name><name>key</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createNewCodec</name><argument_list>(<argument><expr><call><name><name>key</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+          </block_content>}</block></function>
+        }</block></class></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+     <comment type="line">// We require that all compression related settings are configured</comment>
+     <comment type="line">// statically in the Configuration object.</comment>
+    <decl_stmt><decl><type><specifier>protected</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Configuration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>protected</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Configuration</name></type> <name>conf</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>compressName</name></decl>;</decl_stmt>
+     <comment type="line">// data input buffer size to absorb small reads from application.</comment>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>DATA_IBUF_SIZE</name> <init>= <expr><literal type="number">1</literal> <operator>*</operator> <literal type="number">1024</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">296</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">470</literal></expr><operator>,</operator><expr><literal type="number">20</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>Compression</name> <block>{
+ 
+     <expr><specifier>abstract</specifier> <name>CompressionCodec</name> <call><name>getCodec</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr>;
+ 
+    <comment type="block" format="javadoc">/**
+     * function to create the default codec object.
+     */</comment>
+    <expr><specifier>abstract</specifier> <name>void</name> <call><name>initializeDefaultCodec</name><argument_list>()</argument_list></call></expr>;
+
+    <comment type="block" format="javadoc">/**
+     * Shared function to create new codec objects. It is expected that if buffersize is invalid, a codec will be created with the default buffer size
+     *
+     * @param bufferSize
+     *          configured buffer size.
+     * @return new codec
+     */</comment>
+    <expr><specifier>abstract</specifier> <name>CompressionCodec</name> <call><name>createNewCodec</name><argument_list>(<argument><expr><name>int</name> <name>bufferSize</name></expr></argument>)</argument_list></call></expr>;
+
+     <expr><specifier>public</specifier> <specifier>abstract</specifier> <name>InputStream</name> <call><name>createDecompressionStream</name><argument_list>(<argument><expr><name>InputStream</name> <name>downStream</name></expr></argument>, <argument><expr><name>Decompressor</name> <name>decompressor</name></expr></argument>, <argument><expr><name>int</name> <name>downStreamBufferSize</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr>;
+ 
+     <expr><specifier>public</specifier> <specifier>abstract</specifier> <name>OutputStream</name> <call><name>createCompressionStream</name><argument_list>(<argument><expr><name>OutputStream</name> <name>downStream</name></expr></argument>, <argument><expr><name>Compressor</name> <name>compressor</name></expr></argument>, <argument><expr><name>int</name> <name>downStreamBufferSize</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr>;
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>CompressionTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>CompressionTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..961556424</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>CompressionTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr>,<expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr>,<expr><literal type="number">250</literal> @@</expr>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file distributed with this
+ * work for additional information regarding copyright ownership. The ASF
+ * licenses this file to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>file</name><operator>.</operator><name>rfile</name><operator>.</operator><name>bcfile</name></name>;</package></block></expr></expr_stmt>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Callable</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutionException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutorService</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Executors</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Future</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>file</name><operator>.</operator><name>rfile</name><operator>.</operator><name>bcfile</name><operator>.</operator><name>Compression</name><operator>.</operator><name>Algorithm</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>compress</name><operator>.</operator><name>CompressionCodec</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>util</name><operator>.</operator><name>ReflectionUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Before</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Lists</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Maps</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Sets</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>CompressionTest</name> <block>{
+
+  <decl_stmt><decl><type><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name><name>Compression</name><operator>.</operator><name>Algorithm</name></name></argument>,<argument><name>Boolean</name></argument>&gt;</argument_list></name></type> <name>isSupported</name> <init>= <expr><call><name><name>Maps</name><operator>.</operator><name>newHashMap</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <function><annotation>@<name>Before</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testSupport</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <comment type="line">// we can safely assert that GZ exists by virtue of it being the DefaultCodec</comment>
+    <expr_stmt><expr><call><name><name>isSupported</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name><name>Compression</name><operator>.</operator><name>Algorithm</name><operator>.</operator><name>GZ</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>Configuration</name></type> <name>myConf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>extClazz</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name><name>Compression</name><operator>.</operator><name>Algorithm</name><operator>.</operator><name>CONF_LZO_CLASS</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>clazz</name> <init>= <expr><ternary><condition><expr><operator>(</operator><name>extClazz</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><name>extClazz</name></expr> </then><else>: <expr><literal type="string">"org.apache.hadoop.io.compress.LzoCodec"</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>CompressionCodec</name></type> <name>codec</name> <init>= <expr><operator>(</operator><name>CompressionCodec</name><operator>)</operator> <call><name><name>ReflectionUtils</name><operator>.</operator><name>newInstance</name></name><argument_list>(<argument><expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>myConf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>isSupported</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name><name>Compression</name><operator>.</operator><name>Algorithm</name><operator>.</operator><name>LZO</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// that is okay</comment>
+    </block_content>}</block></catch></try>
+
+    <expr_stmt><expr><name>extClazz</name> <operator>=</operator> <call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name><name>Compression</name><operator>.</operator><name>Algorithm</name><operator>.</operator><name>CONF_SNAPPY_CLASS</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>clazz</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>extClazz</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><name>extClazz</name></expr> </then><else>: <expr><literal type="string">"org.apache.hadoop.io.compress.SnappyCodec"</literal></expr></else></ternary></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>CompressionCodec</name></type> <name>codec</name> <init>= <expr><operator>(</operator><name>CompressionCodec</name><operator>)</operator> <call><name><name>ReflectionUtils</name><operator>.</operator><name>newInstance</name></name><argument_list>(<argument><expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>myConf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><call><name><name>isSupported</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name><name>Compression</name><operator>.</operator><name>Algorithm</name><operator>.</operator><name>SNAPPY</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// that is okay</comment>
+    </block_content>}</block></catch></try>
+
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testSingle</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+
+        <comment type="line">// first call to issupported should be true</comment>
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" is not supported, but should be"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>isSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should have a non-null codec"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should have a non-null codec"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testSingleNoSideEffect</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" is not supported, but should be"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>isSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should have a non-null codec"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// assert that additional calls to create will not create</comment>
+        <comment type="line">// additional codecs</comment>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotEquals</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should have created a new codec, but did not"</literal></expr></argument>, <argument><expr><call><name><name>System</name><operator>.</operator><name>identityHashCode</name></name><argument_list>(<argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>createNewCodec</name></name><argument_list>(<argument><expr><literal type="number">88</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testManyStartNotNull</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument>, <argument><expr><name>ExecutionException</name></expr></argument></throws> <block>{<block_content>
+
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+
+        <comment type="line">// first call to issupported should be true</comment>
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" is not supported, but should be"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>isSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><specifier>final</specifier> <name>CompressionCodec</name></type> <name>codec</name> <init>= <expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should not be null"</literal></expr></argument>, <argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>ExecutorService</name></type> <name>service</name> <init>= <expr><call><name><name>Executors</name><operator>.</operator><name>newFixedThreadPool</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>results</name> <init>= <expr><call><name><name>Lists</name><operator>.</operator><name>newArrayList</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">30</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>results</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>submit</name></name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>Callable</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list>
+
+          <block>{
+
+            <function><annotation>@<name>Override</name></annotation>
+            <type><specifier>public</specifier> <name>Boolean</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+              <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should not be null"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+            </block_content>}</block></function>
+
+          }</block></class></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <expr_stmt><expr><call><name><name>service</name><operator>.</operator><name>shutdown</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should not be null"</literal></expr></argument>, <argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <while>while <condition>(<expr><operator>!</operator><call><name><name>service</name><operator>.</operator><name>awaitTermination</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>SECONDS</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <comment type="line">// wait</comment>
+        </block_content>}</block></while>
+
+        <for>for <control>(<init><decl><type><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></type> <name>result</name> <range>: <expr><name>results</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" resulted in a failed call to getcodec within the thread pool"</literal></expr></argument>, <argument><expr><call><name><name>result</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+
+  </block_content>}</block></function>
+
+  <comment type="line">// don't start until we have created the codec</comment>
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testManyDontStartUntilThread</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument>, <argument><expr><name>ExecutionException</name></expr></argument></throws> <block>{<block_content>
+
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+
+        <comment type="line">// first call to issupported should be true</comment>
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" is not supported, but should be"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>isSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>ExecutorService</name></type> <name>service</name> <init>= <expr><call><name><name>Executors</name><operator>.</operator><name>newFixedThreadPool</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>results</name> <init>= <expr><call><name><name>Lists</name><operator>.</operator><name>newArrayList</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">30</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+
+          <expr_stmt><expr><call><name><name>results</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>submit</name></name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>Callable</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+
+            <function><annotation>@<name>Override</name></annotation>
+            <type><specifier>public</specifier> <name>Boolean</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+              <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" should have a non-null codec"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+            </block_content>}</block></function>
+
+          }</block></class></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <expr_stmt><expr><call><name><name>service</name><operator>.</operator><name>shutdown</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <while>while <condition>(<expr><operator>!</operator><call><name><name>service</name><operator>.</operator><name>awaitTermination</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>SECONDS</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <comment type="line">// wait</comment>
+        </block_content>}</block></while>
+
+        <for>for <control>(<init><decl><type><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></type> <name>result</name> <range>: <expr><name>results</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" resulted in a failed call to getcodec within the thread pool"</literal></expr></argument>, <argument><expr><call><name><name>result</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testThereCanBeOnlyOne</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument>, <argument><expr><name>ExecutionException</name></expr></argument></throws> <block>{<block_content>
+
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Algorithm</name></type> <name>al</name> <range>: <expr><call><name><name>Algorithm</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>isSupported</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>al</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+
+        <comment type="line">// first call to issupported should be true</comment>
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" is not supported, but should be"</literal></expr></argument>, <argument><expr><call><name><name>al</name><operator>.</operator><name>isSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>ExecutorService</name></type> <name>service</name> <init>= <expr><call><name><name>Executors</name><operator>.</operator><name>newFixedThreadPool</name></name><argument_list>(<argument><expr><literal type="number">20</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Callable</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>list</name> <init>= <expr><call><name><name>Lists</name><operator>.</operator><name>newArrayList</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>results</name> <init>= <expr><call><name><name>Lists</name><operator>.</operator><name>newArrayList</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <comment type="line">// keep track of the system's identity hashcodes.</comment>
+        <decl_stmt><decl><type><specifier>final</specifier> <name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>testSet</name> <init>= <expr><call><name><name>Sets</name><operator>.</operator><name>newHashSet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">40</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>list</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>Callable</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+
+            <function><annotation>@<name>Override</name></annotation>
+            <type><specifier>public</specifier> <name>Boolean</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+              <decl_stmt><decl><type><name>CompressionCodec</name></type> <name>codec</name> <init>= <expr><call><name><name>al</name><operator>.</operator><name>getCodec</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+              <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" resulted in a non-null codec"</literal></expr></argument>, <argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <comment type="line">// add the identity hashcode to the set.</comment>
+              <expr_stmt><expr><call><name><name>testSet</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>System</name><operator>.</operator><name>identityHashCode</name></name><argument_list>(<argument><expr><name>codec</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+            </block_content>}</block></function>
+          }</block></class></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <expr_stmt><expr><call><name><name>results</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>invokeAll</name></name><argument_list>(<argument><expr><name>list</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// ensure that we</comment>
+        <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" created too many codecs"</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>testSet</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>service</name><operator>.</operator><name>shutdown</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <while>while <condition>(<expr><operator>!</operator><call><name><name>service</name><operator>.</operator><name>awaitTermination</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>SECONDS</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <comment type="line">// wait</comment>
+        </block_content>}</block></while>
+
+        <for>for <control>(<init><decl><type><name><name>Future</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name></type> <name>result</name> <range>: <expr><name>results</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>al</name> <operator>+</operator> <literal type="string">" resulted in a failed call to getcodec within the thread pool"</literal></expr></argument>, <argument><expr><call><name><name>result</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></function>
+
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function>
+
+</unit>

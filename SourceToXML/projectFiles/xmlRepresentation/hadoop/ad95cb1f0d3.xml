@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/ad95cb1f0d3.java"><expr_stmt><expr><name>From</name> <name>ad95cb1f0d329e8d80d468cd8d1eb6b0cffd75c2</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Eli</name> <name><name>Collins</name> <argument_list type="generic">&lt;<argument><name>eli</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">30</literal> <name>Jun</name> <literal type="number">2011</literal> <literal type="number">07</literal><operator>:</operator><literal type="number">04</literal><operator>:</operator><literal type="number">58</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>Minor</name> <name>update</name> <name>to</name> <name>HADOOP</name><operator>-</operator><literal type="number">7429.</literal>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1141415 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name><name>IOUtils</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">28</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">18</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">10</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name><name>IOUtils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name><name>IOUtils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">29db28032ba</literal><operator>..</operator><name>c60b95befec</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name><name>IOUtils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name><name>IOUtils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">115</literal></expr><operator>,</operator><expr><literal type="number">24</literal> <operator>+</operator><literal type="number">115</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@ <specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>copyBytes</name><argument_list>(<argument><expr><name>InputStream</name> <name>in</name></expr></argument>, <argument><expr><name>OutputStream</name> <name>out</name></expr></argument>, <argument><expr><name>Configuration</name> <name>con</name>
+    <operator>*</operator> @<name>param</name> <name>in</name> <name>InputStream</name> <name>to</name> <name>read</name> <name>from</name>
+    <operator>*</operator> @<name>param</name> <name>out</name> <name>OutputStream</name> <name>to</name> <name>write</name> <name>to</name>
+    <operator>*</operator> @<name>param</name> <name>count</name> <name>number</name> <name>of</name> <name>bytes</name> <name>to</name> <name>copy</name>
+   <operator>*</operator> @<name>param</name> <name>close</name> <name>whether</name> <name>to</name> <name>close</name> <name>the</name> <name>streams</name>
+    <operator>*</operator> @<throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr></argument> <if_stmt><if>if bytes can not be read or written
+    */
+  public static void copyBytes<condition>(<expr><name>InputStream</name> <name>in</name></expr><operator>,</operator> <expr><name>OutputStream</name> <name>out</name></expr><operator>,</operator> <expr><name>long</name> <name>count</name></expr>)</condition><block type="pseudo"><block_content>
+      <throws>throws <argument><expr><name>IOException</name> <block>{
+  <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>copyBytes</name><argument_list>(<argument><expr><name>InputStream</name> <name>in</name></expr></argument>, <argument><expr><name>OutputStream</name> <name>out</name></expr></argument>, <argument><expr><name>long</name> <name>count</name></expr></argument>,
+      <argument><expr><name>boolean</name> <name>close</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <expr><name>byte</name> <name><name>buf</name><index>[]</index></name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">4096</literal></expr>]</index></name></expr></block></expr></argument></throws><empty_stmt>;</empty_stmt></block_content></block></if></if_stmt></argument_list></call></expr></expr_stmt>
+     <decl_stmt><decl><type><name>long</name></type> <name>bytesRemaining</name> <init>= <expr><name>count</name></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>int</name></type> <name>bytesRead</name></decl>;</decl_stmt>
+ 
+    <while>while <condition>(<expr><name>bytesRemaining</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>bytesToRead</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator>
+        <operator>(</operator><ternary><condition><expr><name>bytesRemaining</name> <operator>&lt;</operator> <name><name>buf</name><operator>.</operator><name>length</name></name></expr> ?</condition><then> <expr><name>bytesRemaining</name></expr> </then><else>: <expr><name><name>buf</name><operator>.</operator><name>length</name></name></expr></else></ternary><operator>)</operator></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <while>while <condition>(<expr><name>bytesRemaining</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>bytesToRead</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator>
+          <operator>(</operator><ternary><condition><expr><name>bytesRemaining</name> <operator>&lt;</operator> <name><name>buf</name><operator>.</operator><name>length</name></name></expr> ?</condition><then> <expr><name>bytesRemaining</name></expr> </then><else>: <expr><name><name>buf</name><operator>.</operator><name>length</name></name></expr></else></ternary><operator>)</operator></expr></init></decl>;</decl_stmt>
+ 
+      <expr_stmt><expr><name>bytesRead</name> <operator>=</operator> <call><name><name>in</name><operator>.</operator><name>read</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>bytesToRead</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>bytesRead</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content>
+        <break>break;</break></block_content></block></if></if_stmt>
+        <expr_stmt><expr><name>bytesRead</name> <operator>=</operator> <call><name><name>in</name><operator>.</operator><name>read</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>bytesToRead</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>bytesRead</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content>
+          <break>break;</break></block_content></block></if></if_stmt>
+ 
+      <expr_stmt><expr><call><name><name>out</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>bytesRead</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>bytesRemaining</name> <operator>-=</operator> <name>bytesRead</name></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>out</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>bytesRead</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>bytesRemaining</name> <operator>-=</operator> <name>bytesRead</name></expr>;</expr_stmt>
+      </block_content>}</block></while>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>close</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name>closeStream</name><argument_list>(<argument><expr><name>out</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>closeStream</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+     </block_content>}</block></finally></try>
+   </block_content>}</block></while>
+   
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

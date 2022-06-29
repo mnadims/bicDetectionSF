@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/0589889950.java"><expr_stmt><expr><name>From</name> <literal type="number">05898899508b7a895f15f816caafabe1e6965d40</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Grant</name> <name><name>Ingersoll</name> <argument_list type="generic">&lt;<argument><name>gsingers</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">12</literal> <name>Dec</name> <literal type="number">2009</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">27</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">1297</literal><operator>:</operator> <name>Added</name> <name>Sort</name> <name>By</name> <name>Function</name> <name>capability</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/solr/trunk@889997 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsing</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">157</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>ValueSource</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">125</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsingTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">95</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>SortByFunctionTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">96</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">5</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">425</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">50</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>SortByFunctionTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>ee59a697d2d</name><operator>..</operator><literal type="number">4b3fd6cfd38</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>New</name> <name>Features</name>
+ 
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">1625</literal><operator>:</operator> <name>Add</name> <name>regexp</name> <name>support</name></expr></expr_stmt> <for>for TermsComponent <control>(<init><expr><name>Uri</name> <name>Boness</name> <name>via</name> <name>noble</name></expr></init>)</control><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">1297</literal><operator>:</operator> <name>Add</name> <name>sort</name> <name>by</name> <name>Function</name> <call><name>capability</name> <argument_list>(<argument><expr><name>gsingers</name></expr></argument>)</argument_list></call>
+
+ <name>Optimizations</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsing</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsing</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cd3a9c7c2fa</name><operator>..</operator><name>ea721f72a94</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsing</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsing</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></block_content></block></for> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>FieldType</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>IndexSchema</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>SchemaField</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name><operator>.</operator><name>FunctionQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name><operator>.</operator><name>ValueSource</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">216</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">217</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>QueryParsing</name> <block>{
+   }</block>
+ 
+ 
+  <specifier>private</specifier> <specifier>static</specifier> <name>Pattern</name> <name>sortSep</name> <operator>=</operator> <call><name><name>Pattern</name><operator>.</operator><name>compile</name></name><argument_list>(<argument><expr><literal type="string">","</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Returns null if the sortSpec is the standard sort desc.
+@@ -240,58 +240,145 @@ public class QueryParsing {
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>Sort</name></type> <name>parseSort</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>sortSpec</name></decl></parameter>, <parameter><decl><type><name>IndexSchema</name></type> <name>schema</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <if_stmt><if>if <condition>(<expr><name>sortSpec</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>sortSpec</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+    <decl_stmt><decl><type><name><name>char</name><index>[]</index></name></type> <name>chars</name> <init>= <expr><call><name><name>sortSpec</name><operator>.</operator><name>toCharArray</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>StringBuilder</name></type> <name>buffer</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>(<argument><expr><call><name><name>sortSpec</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>sort</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>order</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>functionDepth</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>score</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>SortField</name></argument>&gt;</argument_list></name></type> <name>lst</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>SortField</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>needOrder</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>i</name> <operator>&lt;</operator> <name><name>chars</name><operator>.</operator><name>length</name></name></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>Character</name><operator>.</operator><name>isWhitespace</name></name><argument_list>(<argument><expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <name>functionDepth</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>buffer</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <comment type="line">//do nothing</comment>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>needOrder</name> <operator>==</operator> <literal type="boolean">false</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>needOrder</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name>order</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>needOrder</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+          </block_content>}</block></else></if_stmt>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal> <operator>&amp;&amp;</operator> <name>functionDepth</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>functionDepth</name><operator>++</operator></expr>;</expr_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">')'</literal> <operator>&amp;&amp;</operator> <name>functionDepth</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>functionDepth</name><operator>--</operator></expr>;</expr_stmt><comment type="line">//close up one layer</comment>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">','</literal> <operator>&amp;&amp;</operator> <name>functionDepth</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content><comment type="line">//can either be a separator of sort declarations, or a separator in a function</comment>
+        <comment type="line">//we have a separator between sort declarations,</comment>
+        <comment type="line">// We may need an order still, but then evaluate it, as we should have everything we need</comment>
+        <if_stmt><if>if <condition>(<expr><name>needOrder</name> <operator>==</operator> <literal type="boolean">true</literal> <operator>&amp;&amp;</operator> <call><name><name>buffer</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{<block_content>
+          <expr_stmt><expr><name>order</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>needOrder</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name>score</name> <operator>=</operator> <call><name>processSort</name><argument_list>(<argument><expr><name>schema</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>, <argument><expr><name>order</name></expr></argument>, <argument><expr><name>lst</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>sort</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>order</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//get ready for the next one, if there is one</comment>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">','</literal> <operator>&amp;&amp;</operator> <name>functionDepth</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <comment type="line">//we are in a function</comment>
+        <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <comment type="line">//just a regular old char, add it to the buffer</comment>
+        <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name><name>chars</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+      <expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+    </block_content>}</block></while>
+    <if_stmt><if>if <condition>(<expr><call><name><name>buffer</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>needOrder</name></expr>)</condition><block>{<block_content><comment type="line">//see if we have anything left, at most it should be an order</comment>
+      <expr_stmt><expr><name>order</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>needOrder</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>parts</name> <init>= <expr><call><name><name>sortSep</name><operator>.</operator><name>split</name></name><argument_list>(<argument><expr><call><name><name>sortSpec</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name><name>parts</name><operator>.</operator><name>length</name></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+    <comment type="line">//do some sanity checks</comment>
+    <if_stmt><if>if <condition>(<expr><name>functionDepth</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Unable to parse sort spec, mismatched parentheses: "</literal> <operator>+</operator> <name>sortSpec</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>buffer</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{<block_content><comment type="line">//there's something wrong, as everything should have been parsed by now</comment>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Unable to parse sort spec: "</literal> <operator>+</operator> <name>sortSpec</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><name>needOrder</name> <operator>==</operator> <literal type="boolean">false</literal> <operator>&amp;&amp;</operator> <name>sort</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>sort</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">false</literal> <operator>&amp;&amp;</operator> <name>order</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>order</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="boolean">false</literal></expr>)</condition><block>{<block_content><comment type="line">//handle the last declaration</comment>
+      <expr_stmt><expr><name>score</name> <operator>=</operator> <call><name>processSort</name><argument_list>(<argument><expr><name>schema</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>, <argument><expr><name>order</name></expr></argument>, <argument><expr><name>lst</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <comment type="line">//If the normal case (by score desc) do nothing</comment>
+    <if_stmt><if>if <condition>(<expr><call><name><name>lst</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name>score</name> <operator>==</operator> <literal type="boolean">true</literal> <operator>&amp;&amp;</operator> <call><name><name>lst</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getReverse</name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="boolean">false</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="null">null</literal></expr>;</return> <comment type="line">// do normal scoring...</comment>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><operator>new</operator> <call><name>Sort</name><argument_list>(<argument><expr><operator>(</operator><name><name>SortField</name><index>[]</index></name><operator>)</operator> <call><name><name>lst</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>SortField</name><index>[<expr><call><name><name>lst</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+ 
+    <decl_stmt><decl><type><name><name>SortField</name><index>[]</index></name></type> <name>lst</name> <init>= <expr><operator>new</operator> <name><name>SortField</name><index>[<expr><name><name>parts</name><operator>.</operator><name>length</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>parts</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>part</name> <init>= <expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>processSort</name><parameter_list>(<parameter><decl><type><name>IndexSchema</name></type> <name>schema</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>sort</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>order</name></decl></parameter>, <parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>SortField</name></argument>&gt;</argument_list></name></type> <name>lst</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>score</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>sort</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>order</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>boolean</name></type> <name>top</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+      <comment type="line">//determine the ordering, ascending or descending</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><call><name><name>part</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><literal type="char">' '</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>idx</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>order</name> <init>= <expr><call><name><name>part</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><name>idx</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><literal type="string">"desc"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call> <operator>||</operator> <literal type="string">"top"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>top</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><literal type="string">"asc"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call> <operator>||</operator> <literal type="string">"bottom"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>top</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Unknown sort order: "</literal> <operator>+</operator> <name>order</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><name>part</name> <operator>=</operator> <call><name><name>part</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>idx</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><literal type="string">"desc"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call> <operator>||</operator> <literal type="string">"top"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>top</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><literal type="string">"asc"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call> <operator>||</operator> <literal type="string">"bottom"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>order</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>top</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+       </block_content>}</block></if> <else>else <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Missing sort order."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+        <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Unknown sort order: "</literal> <operator>+</operator> <name>order</name></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></else></if_stmt>
+      <comment type="line">//figure out the field or score</comment>
+      <if_stmt><if>if <condition>(<expr><literal type="string">"score"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>part</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <comment type="line">//we got the order, now deal with the sort</comment>
+      <if_stmt><if>if <condition>(<expr><literal type="string">"score"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>score</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+         <if_stmt><if>if <condition>(<expr><name>top</name></expr>)</condition> <block>{<block_content>
+          <comment type="line">// If there is only one thing in the list, just do the regular thing...</comment>
+          <if_stmt><if>if <condition>(<expr><name><name>parts</name><operator>.</operator><name>length</name></name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+            <return>return <expr><literal type="null">null</literal></expr>;</return> <comment type="line">// do normal scoring...</comment>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name><name>lst</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>SortField</name><operator>.</operator><name>FIELD_SCORE</name></name></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name><name>SortField</name><operator>.</operator><name>FIELD_SCORE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if> <else>else <block>{<block_content>
+          <expr_stmt><expr><name><name>lst</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>SCORE</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>SCORE</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>DOCID</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>part</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name><name>lst</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>DOC</name></name></expr></argument>, <argument><expr><name>top</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>DOCID</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>DOC</name></name></expr></argument>, <argument><expr><name>top</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if> <else>else <block>{<block_content>
+        <comment type="line">//See if we have a Field first, then see if it is a function, then throw an exception</comment>
+         <comment type="line">// getField could throw an exception if the name isn't found</comment>
+         <decl_stmt><decl><type><name>SchemaField</name></type> <name>f</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+          <expr_stmt><expr><name>f</name> <operator>=</operator> <call><name><name>schema</name><operator>.</operator><name>getField</name></name><argument_list>(<argument><expr><name>part</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>f</name> <operator>=</operator> <call><name><name>schema</name><operator>.</operator><name>getField</name></name><argument_list>(<argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block>
+         <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"can not sort on undefined field: "</literal> <operator>+</operator> <name>part</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          <comment type="line">//Not an error just yet</comment>
+         </block_content>}</block></catch></try>
+        <if_stmt><if>if <condition>(<expr><name>f</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><call><name><name>f</name><operator>.</operator><name>indexed</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"can not sort on unindexed field: "</literal> <operator>+</operator> <name>part</name></expr></argument>)</argument_list></call></expr>;</throw>
+        <if_stmt><if>if <condition>(<expr><name>f</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>f</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><call><name><name>f</name><operator>.</operator><name>indexed</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"can not sort on unindexed field: "</literal> <operator>+</operator> <name>sort</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>f</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSortField</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><name>top</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <comment type="line">//See if we have a function:</comment>
+          <decl_stmt><decl><type><name>FunctionQuery</name></type> <name>query</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><name>query</name> <operator>=</operator> <call><name>parseFunction</name><argument_list>(<argument><expr><name>sort</name></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>query</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <decl_stmt><decl><type><name>ValueSource</name></type> <name>valueSource</name> <init>= <expr><call><name><name>query</name><operator>.</operator><name>getValueSource</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+              <comment type="line">//We have a function query</comment>
+              <try>try <block>{<block_content>
+                <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>valueSource</name><operator>.</operator><name>getSortField</name></name><argument_list>(<argument><expr><name>top</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"error getting the sort for this function: "</literal> <operator>+</operator> <name>sort</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+              </block_content>}</block></catch></try>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+              <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"can not sort on undefined function: "</literal> <operator>+</operator> <name>sort</name></expr></argument>)</argument_list></call></expr>;</throw>
+            </block_content>}</block></else></if_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ParseException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"can not sort on undefined field or function: "</literal> <operator>+</operator> <name>sort</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></catch></try>
+
+         </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><name><name>lst</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>f</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSortField</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><name>top</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+    </block_content>}</block></else></if_stmt> <if_stmt><if type="elseif">else if <condition>(<expr><name>sort</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content><comment type="line">//no sort value</comment>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>,
+              <argument><expr><literal type="string">"Must declare sort field or function"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>order</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"Missing sort order: "</literal></expr></argument>)</argument_list></call></expr>;</throw>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><operator>new</operator> <call><name>Sort</name><argument_list>(<argument><expr><name>lst</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><name>score</name></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>ValueSource</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>ValueSource</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7862a08a034</literal><operator>..</operator><literal type="number">1d1e985e03f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>ValueSource</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>ValueSource</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@</expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name></name>;</package>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name><operator>.</operator><name>DocValues</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Explanation</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>FieldComparator</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>FieldComparatorSource</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Scorer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Searcher</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>SortField</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Serializable</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>IdentityHashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Instantiates {@link org.apache.solr.search.function.DocValues} for a particular reader.
+@@ -40,7 +46,8 @@ public abstract class ValueSource implements Serializable {
+     return getValues(null, reader);
+   }
+ 
+  /** Gets the values for this reader and the context that was previously
+  /**
+   * Gets the values for this reader and the context that was previously
+    * passed to createWeight()
+    */</comment>
+   <function><type><specifier>public</specifier> <name>DocValues</name></type> <name>getValues</name><parameter_list>(<parameter><decl><type><name>Map</name></type> <name>context</name></decl></parameter>, <parameter><decl><type><name>IndexReader</name></type> <name>reader</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">23</literal> <operator>+</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">113</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>ValueSource</name> implements <name>Serializable</name> <block>{
+ 
+   <expr><specifier>public</specifier> <specifier>abstract</specifier> <name>int</name> <call><name>hashCode</name><argument_list>()</argument_list></call></expr>;
+ 
+  <comment type="block" format="javadoc">/** description of field, used in explain() */</comment>
+  <comment type="block" format="javadoc">/**
+   * description of field, used in explain()
+   */</comment>
+   <specifier>public</specifier> <specifier>abstract</specifier> <name>String</name> <call><name>description</name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+ 
+   <function><type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><call><name>description</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Implementations should propagate createWeight to sub-ValueSources which can optionally store
+  /**
+   * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, org.apache.lucene.index.IndexReader)}
+   * to populate the SortField.
+   * 
+   * @param reverse true if the order should be reversed.
+   * @return The {@link org.apache.lucene.search.SortField} for the ValueSource
+   * @throws IOException if there was a problem reading the values.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>SortField</name></type> <name>getSortField</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>reverse</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">//should we pass in the description for the field name?</comment>
+    <comment type="line">//Hmm, Lucene is going to intern whatever we pass in, not sure I like that</comment>
+    <comment type="line">//and we can't pass in null, either, as that throws an illegal arg. exception</comment>
+    <return>return <expr><operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><call><name>description</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>new</operator> <call><name>ValueSourceComparatorSource</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>reverse</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+
+  <comment type="block" format="javadoc">/**
+   * Implementations should propagate createWeight to sub-ValueSources which can optionally store
+    * weight info in the context. The context object will be passed to getValues()
+   * where this info can be retrieved. */</comment>
+   <expr_stmt><expr><operator>*</operator> <name>where</name> <name>this</name> <name>info</name> <name>can</name> <name>be</name> <name><name>retrieved</name><operator>.</operator></name>
+   *<operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>createWeight</name><argument_list>(<argument><expr><name>Map</name> <name>context</name></expr></argument>, <argument><expr><name>Searcher</name> <name>searcher</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+   }</block>
+ 
+  <comment type="block" format="javadoc">/** Returns a new non-threadsafe context map. */</comment>
+  <comment type="block" format="javadoc">/**
+   * Returns a new non-threadsafe context map.
+   */</comment>
+   <specifier>public</specifier> <specifier>static</specifier> <name>Map</name> <call><name>newContext</name><argument_list>()</argument_list></call> <block>{</block></expr></argument></throws></expr></expr_stmt>
+     <return>return <expr><operator>new</operator> <call><name>IdentityHashMap</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+
+  <class>class <name>ValueSourceComparatorSource</name> <super_list><extends>extends <super><name>FieldComparatorSource</name></super></extends></super_list> <block>{
+
+
+    <constructor><specifier>public</specifier> <name>ValueSourceComparatorSource</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>FieldComparator</name></type> <name>newComparator</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>fieldname</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numHits</name></decl></parameter>,
+                                         <parameter><decl><type><name>int</name></type> <name>sortPos</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>reversed</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <return>return <expr><operator>new</operator> <call><name>ValueSourceComparator</name><argument_list>(<argument><expr><name>numHits</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <comment type="block" format="javadoc">/**
+   * Implement a {@link org.apache.lucene.search.FieldComparator} that works
+   * off of the {@link org.apache.solr.search.function.DocValues} for a ValueSource
+   * instead of the normal Lucene FieldComparator that works off of a FieldCache.
+   */</comment>
+  <class>class <name>ValueSourceComparator</name> <super_list><extends>extends <super><name>FieldComparator</name></super></extends></super_list> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>double</name><index>[]</index></name></type> <name>values</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>DocValues</name></type> <name>docVals</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>double</name></type> <name>bottom</name></decl>;</decl_stmt>
+
+    <constructor><name>ValueSourceComparator</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>numHits</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name>values</name> <operator>=</operator> <operator>new</operator> <name><name>double</name><index>[<expr><name>numHits</name></expr>]</index></name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>compare</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>slot1</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>slot2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>double</name></type> <name>v1</name> <init>= <expr><name><name>values</name><index>[<expr><name>slot1</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>double</name></type> <name>v2</name> <init>= <expr><name><name>values</name><index>[<expr><name>slot2</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>v1</name> <operator>&gt;</operator> <name>v2</name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>v1</name> <operator>&lt;</operator> <name>v2</name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>compareBottom</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>doc</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>double</name></type> <name>v2</name> <init>= <expr><call><name><name>docVals</name><operator>.</operator><name>doubleVal</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>bottom</name> <operator>&gt;</operator> <name>v2</name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>bottom</name> <operator>&lt;</operator> <name>v2</name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>copy</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>slot</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>doc</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>values</name><index>[<expr><name>slot</name></expr>]</index></name> <operator>=</operator> <call><name><name>docVals</name><operator>.</operator><name>doubleVal</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setNextReader</name><parameter_list>(<parameter><decl><type><name>IndexReader</name></type> <name>reader</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>docBase</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><name>docVals</name> <operator>=</operator> <call><name>getValues</name><argument_list>(<argument><expr><call><name><name>Collections</name><operator>.</operator><name>emptyMap</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setBottom</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>bottom</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>bottom</name></name> <operator>=</operator> <name><name>values</name><index>[<expr><name>bottom</name></expr>]</index></name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>Comparable</name></type> <name>value</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>slot</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <return>return <expr><call><name><name>Double</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name><name>values</name><index>[<expr><name>slot</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+ </block_content>}</block></if></if_stmt>
+ 
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">86</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">183</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>class</name> <name>ValueSourceScorer</name> extends <name>Scorer</name> <block>{
+     <expr><call><name>setCheckDeletes</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;
+   }</block></expr></expr_stmt>
+ 
+  <function><type><specifier>public</specifier> <name>IndexReader</name></type> <name>getReader</name><parameter_list>()</parameter_list> <block>{<block_content> <return>return <expr><name>reader</name></expr>;</return> </block_content>}</block></function>
+  <function><type><specifier>public</specifier> <name>IndexReader</name></type> <name>getReader</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>reader</name></expr>;</return>
+  </block_content>}</block></function>
+ 
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>setCheckDeletes</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>checkDeletes</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>checkDeletes</name></name> <operator>=</operator> <name>checkDeletes</name> <operator>&amp;&amp;</operator> <call><name><name>reader</name><operator>.</operator><name>hasDeletions</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">107</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">206</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>class</name> <name>ValueSourceScorer</name> extends <name>Scorer</name> <block>{
+ 
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>int</name> <call><name>nextDoc</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <for>for<control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+    <for>for <control>(<init>;</init> <condition>;</condition><incr/>)</control> <block>{<block_content>
+       <expr_stmt><expr><name>doc</name><operator>++</operator></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>doc</name> <operator>&gt;=</operator> <name>maxDoc</name></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>doc</name><operator>=</operator><name>NO_MORE_DOCS</name></expr>;</return></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>doc</name> <operator>&gt;=</operator> <name>maxDoc</name></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>doc</name> <operator>=</operator> <name>NO_MORE_DOCS</name></expr>;</return></block_content></block></if></if_stmt>
+       <if_stmt><if>if <condition>(<expr><call><name>matches</name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>doc</name></expr>;</return></block_content></block></if></if_stmt>
+     </block_content>}</block></for>
+   </block_content>}</block></for>
+@@ <operator>-</operator><literal type="number">117</literal><operator>,</operator><literal type="number">7</literal> <operator>+</operator><literal type="number">216</literal><operator>,</operator><literal type="number">7</literal> @@ <name>class</name> <name>ValueSourceScorer</name> extends <name>Scorer</name> <block>{
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>int</name> <call><name>advance</name><argument_list>(<argument><expr><name>int</name> <name>target</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <comment type="line">// also works fine when target==NO_MORE_DOCS</comment>
+    <expr><name>doc</name> <operator>=</operator> <name>target</name><operator>-</operator><literal type="number">1</literal></expr></block></expr></argument></throws></expr>;
+    <name>doc</name> <operator>=</operator> <name>target</name> <operator>-</operator> <literal type="number">1</literal></block></block></expr>;</expr_stmt>
+     <return>return <expr><call><name>nextDoc</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">126</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">225</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>class</name> <name>ValueSourceScorer</name> extends <name>Scorer</name> <block>{
+   }</block>
+ 
+   <specifier>public</specifier> <name>boolean</name> <call><name>next</name><argument_list>()</argument_list></call> <block>{
+    <for>for<control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+    <for>for <control>(<init>;</init> <condition>;</condition><incr/>)</control> <block>{<block_content>
+       <expr_stmt><expr><name>doc</name><operator>++</operator></expr>;</expr_stmt>
+       <if_stmt><if>if <condition>(<expr><name>doc</name> <operator>&gt;=</operator> <name>maxDoc</name></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="boolean">false</literal></expr>;</return></block_content></block></if></if_stmt>
+       <if_stmt><if>if <condition>(<expr><call><name>matches</name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="boolean">true</literal></expr>;</return></block_content></block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">233</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>class</name> <name>ValueSourceScorer</name> extends <name>Scorer</name> <block>{
+   }</block>
+ 
+   <specifier>public</specifier> <name>boolean</name> <call><name>skipTo</name><argument_list>(<argument><expr><name>int</name> <name>target</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>doc</name> <operator>=</operator> <name>target</name><operator>-</operator><literal type="number">1</literal></expr>;
+    <name>doc</name> <operator>=</operator> <name>target</name> <operator>-</operator> <literal type="number">1</literal></block></expr>;</expr_stmt>
+     <return>return <expr><call><name>next</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></for>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsingTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsingTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">1ba6970d5b4</literal><operator>..</operator><name>af4ec9daea2</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsingTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryParsingTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>QueryParsingTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+     <expr><name>IndexSchema</name> <name>schema</name> <operator>=</operator> <call><name><name>h</name><operator>.</operator><name>getCore</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSchema</name><argument_list>()</argument_list></call></expr>;
+     <name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"score desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//only 1 thing in the list, no Sort specified</comment>
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"score asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name><name>SortField</name><index>[]</index></name></type> <name>flds</name> <init>= <expr><call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>SCORE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getReverse</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>FLOAT</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"weight"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getReverse</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">79</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">85</literal></expr><operator>,</operator><expr><literal type="number">71</literal> @@ <specifier>public</specifier> <name>class</name> <name>QueryParsingTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+     <expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;
+     <call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>FLOAT</name></name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"weight"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>LONG</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"bday"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>LONG</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <comment type="line">//handles trailing commas</comment>
+     <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight desc,"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>FLOAT</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"weight"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">//test functions</comment>
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow(weight, 2) desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>CUSTOM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//Not thrilled about the fragility of string matching here, but...</comment>
+    <comment type="line">//the value sources get wrapped, so the out field is different than the input</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"pow(float(weight),const(2.0))"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow(weight,                 2)         desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>CUSTOM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//Not thrilled about the fragility of string matching here, but...</comment>
+    <comment type="line">//the value sources get wrapped, so the out field is different than the input</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"pow(float(weight),const(2.0))"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow(weight, 2) desc, weight    desc,   bday    asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>CUSTOM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">//Not thrilled about the fragility of string matching here, but...</comment>
+    <comment type="line">//the value sources get wrapped, so the out field is different than the input</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"pow(float(weight),const(2.0))"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>FLOAT</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"weight"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">2</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"bday"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">2</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>LONG</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">//handles trailing commas</comment>
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight desc,"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>FLOAT</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"weight"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <try>try <block>{<block_content>
+      <comment type="line">//bad number of parens, but the function parser can handle an extra close</comment>
+      <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow(weight,2)) desc, bday asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></catch></try>
+    <comment type="line">//Test literals in functions</comment>
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"strdist(foo_s, \"junk\", jw) desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>flds</name> <operator>=</operator> <call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>CUSTOM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//the value sources get wrapped, so the out field is different than the input</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>flds</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getField</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"strdist(str(foo_s),literal(junk), dist=org.apache.lucene.search.spell.JaroWinklerDistance)"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  </block_content>}</block></for>
+
+  <specifier>public</specifier> <name>void</name> <call><name>testBad</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>Sort</name> <name>sort</name></expr></block></expr></argument></throws></block></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>IndexSchema</name></type> <name>schema</name> <init>= <expr><call><name><name>h</name><operator>.</operator><name>getCore</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSchema</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">//test some bad vals</comment>
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight, desc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">93</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">157</literal></expr><operator>,</operator><expr><literal type="number">39</literal> @@ <specifier>public</specifier> <name>class</name> <name>QueryParsingTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+     }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <comment type="line">//expected</comment>
+     </block_content>}</block></catch>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">//expected</comment>
+    </block_content>}</block></catch></try>
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"weight desc, bday"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     </block_content>}</block></catch></try>
+ 
+    <try>try <block>{<block_content>
+      <comment type="line">//bad number of commas</comment>
+      <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow(weight,,2) desc, bday asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    </block_content>}</block></catch></try>
+
+    <try>try <block>{<block_content>
+      <comment type="line">//bad function</comment>
+      <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow() desc, bday asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    </block_content>}</block></catch></try>
+
+    <try>try <block>{<block_content>
+      <comment type="line">//bad number of parens</comment>
+      <expr_stmt><expr><name>sort</name> <operator>=</operator> <call><name><name>QueryParsing</name><operator>.</operator><name>parseSort</name></name><argument_list>(<argument><expr><literal type="string">"pow((weight,2) desc, bday asc"</literal></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>SolrException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    </block_content>}</block></catch></try>
+
+   </block_content>}</block></try>
+ 
+ </block_content>}</block></if></if_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>SortByFunctionTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>SortByFunctionTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..6ec278bac0c</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>SortByFunctionTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">96</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name></name>;</package>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>AbstractSolrTestCase</name></name>;</import>
+
+
+<comment type="block" format="javadoc">/**
+ *
+ *
+ **/</comment>
+<class><specifier>public</specifier> class <name>SortByFunctionTest</name> <super_list><extends>extends <super><name>AbstractSolrTestCase</name></super></extends></super_list> <block>{
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSchemaFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"schema.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSolrConfigFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"solrconfig.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>test</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"1"</literal></expr></argument>, <argument><expr><literal type="string">"x_td"</literal></expr></argument>, <argument><expr><literal type="string">"0"</literal></expr></argument>, <argument><expr><literal type="string">"y_td"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"w_td"</literal></expr></argument>, <argument><expr><literal type="string">"25"</literal></expr></argument>, <argument><expr><literal type="string">"z_td"</literal></expr></argument>, <argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><literal type="string">"f_t"</literal></expr></argument>, <argument><expr><literal type="string">"ipod"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"x_td"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"y_td"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"w_td"</literal></expr></argument>, <argument><expr><literal type="string">"15"</literal></expr></argument>, <argument><expr><literal type="string">"z_td"</literal></expr></argument>, <argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><literal type="string">"f_t"</literal></expr></argument>, <argument><expr><literal type="string">"ipod ipod ipod ipod ipod"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"3"</literal></expr></argument>, <argument><expr><literal type="string">"x_td"</literal></expr></argument>, <argument><expr><literal type="string">"3"</literal></expr></argument>, <argument><expr><literal type="string">"y_td"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"w_td"</literal></expr></argument>, <argument><expr><literal type="string">"55"</literal></expr></argument>, <argument><expr><literal type="string">"z_td"</literal></expr></argument>, <argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><literal type="string">"f_t"</literal></expr></argument>, <argument><expr><literal type="string">"ipod ipod ipod ipod ipod ipod ipod ipod ipod"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"4"</literal></expr></argument>, <argument><expr><literal type="string">"x_td"</literal></expr></argument>, <argument><expr><literal type="string">"4"</literal></expr></argument>, <argument><expr><literal type="string">"y_td"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"w_td"</literal></expr></argument>, <argument><expr><literal type="string">"45"</literal></expr></argument>, <argument><expr><literal type="string">"z_td"</literal></expr></argument>, <argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><literal type="string">"f_t"</literal></expr></argument>, <argument><expr><literal type="string">"ipod ipod ipod ipod ipod ipod ipod"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>commit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//float[@name='score']='1.0'"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='1']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='3']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='4']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"score desc"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//float[@name='score']='1.0'"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='1']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='3']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='4']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"id,score"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"f_t:ipod"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"score desc"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='1']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='3']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+
+
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"sum(x_td, y_td) desc"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//float[@name='score']='1.0'"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='3']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='1']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"sum(x_td, y_td) asc"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//float[@name='score']='1.0'"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='1']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='3']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='4']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//the function is equal, w_td separates</comment>
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"sum(z_td, y_td) asc, w_td asc"</literal></expr></argument>)</argument_list></call></expr></argument>,
+            <argument><expr><literal type="string">"//*[@numFound='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[1]/int[@name='id'][.='2']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[2]/int[@name='id'][.='1']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[3]/int[@name='id'][.='4']"</literal></expr></argument>,
+            <argument><expr><literal type="string">"//result/doc[4]/int[@name='id'][.='3']"</literal></expr></argument>
+    )</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+
+<comment type="block">/*
+&lt;lst name="responseHeader"&gt;&lt;int name="status"&gt;0&lt;/int&gt;&lt;int name="QTime"&gt;93&lt;/int&gt;&lt;/lst&gt;&lt;result name="response" numFound="4" start="0" maxScore="1.0"&gt;&lt;doc&gt;&lt;float name="score"&gt;1.0&lt;/float&gt;&lt;int name="id"&gt;4&lt;/int&gt;&lt;int name="intDefault"&gt;42&lt;/int&gt;&lt;arr name="multiDefault"&gt;&lt;str&gt;muLti-Default&lt;/str&gt;&lt;/arr&gt;&lt;date name="timestamp"&gt;2009-12-12T12:59:46.412Z&lt;/date&gt;&lt;arr name="x_td"&gt;&lt;double&gt;4.0&lt;/double&gt;&lt;/arr&gt;&lt;arr name="y_td"&gt;&lt;double&gt;2.0&lt;/double&gt;&lt;/arr&gt;&lt;/doc&gt;&lt;doc&gt;&lt;float name="score"&gt;1.0&lt;/float&gt;&lt;int name="id"&gt;3&lt;/int&gt;&lt;int name="intDefault"&gt;42&lt;/int&gt;&lt;arr name="multiDefault"&gt;&lt;str&gt;muLti-Default&lt;/str&gt;&lt;/arr&gt;&lt;date name="timestamp"&gt;2009-12-12T12:59:46.409Z&lt;/date&gt;&lt;arr name="x_td"&gt;&lt;double&gt;3.0&lt;/double&gt;&lt;/arr&gt;&lt;arr name="y_td"&gt;&lt;double&gt;2.0&lt;/double&gt;&lt;/arr&gt;&lt;/doc&gt;&lt;doc&gt;&lt;float name="score"&gt;1.0&lt;/float&gt;&lt;int name="id"&gt;2&lt;/int&gt;&lt;int name="intDefault"&gt;42&lt;/int&gt;&lt;arr name="multiDefault"&gt;&lt;str&gt;muLti-Default&lt;/str&gt;&lt;/arr&gt;&lt;date name="timestamp"&gt;2009-12-12T12:59:46.406Z&lt;/date&gt;&lt;arr name="x_td"&gt;&lt;double&gt;2.0&lt;/double&gt;&lt;/arr&gt;&lt;arr name="y_td"&gt;&lt;double&gt;2.0&lt;/double&gt;&lt;/arr&gt;&lt;/doc&gt;&lt;doc&gt;&lt;float name="score"&gt;1.0&lt;/float&gt;&lt;int name="id"&gt;1&lt;/int&gt;&lt;int name="intDefault"&gt;42&lt;/int&gt;&lt;arr name="multiDefault"&gt;&lt;str&gt;muLti-Default&lt;/str&gt;&lt;/arr&gt;&lt;date name="timestamp"&gt;2009-12-12T12:59:46.361Z&lt;/date&gt;&lt;arr name="x_td"&gt;&lt;double&gt;0.0&lt;/double&gt;&lt;/arr&gt;&lt;arr name="y_td"&gt;&lt;double&gt;2.0&lt;/double&gt;&lt;/arr&gt;&lt;/doc&gt;&lt;/result&gt;
+*/</comment>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></for>
+
+</unit>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/b9c9cddff7.java"><expr_stmt><expr><name>From</name> <name>b9c9cddff7cef08e8b0433a203771e48e662e7b1</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Mike</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">22</literal> <name>Feb</name> <literal type="number">2017</literal> <literal type="number">05</literal><operator>:</operator><literal type="number">16</literal><operator>:</operator><literal type="number">47</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">7698</literal><operator>:</operator> <name>fix</name> <name>CommonGramsQueryFilter</name> <name>to</name> <name>not</name> <name>produce</name> <name>a</name>
+ <name>disconnected</name> <name>token</name> <name>graph</name>
+
+<operator>--</operator>
+ <name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                             <operator>|</operator>  <literal type="number">4</literal> <operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>CommonGramsQueryFilter</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">6</literal> <operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>TestCommonGramsQueryFilterFactory</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">10</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>util</name><operator>/</operator><name><name>QueryBuilder</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>queryparser</name><operator>/</operator><name>classic</name><operator>/</operator><name><name>TestQueryParser</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">18</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <literal type="number">5</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">54</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">1</literal> <call><name>deletion</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>a3028acb683</name><operator>..</operator><name>dda4a45d4cc</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">142</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">142</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>Bug</name> <name>Fixes</name>
+   <name>rewritten</name> <name>child</name> <name>query</name> <name>in</name> <name>their</name> <name>equals</name> <name>and</name> <name>hashCode</name> <name><name>implementations</name><operator>.</operator></name>
+   (<name>Adrien</name> <name>Grand</name></expr></expr_stmt>)
+ 
+<expr_stmt><expr><operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">7698</literal><operator>:</operator> <name>CommonGramsQueryFilter</name> <name>was</name> <name>producing</name> <name>a</name> <name>disconnected</name>
+  <name>token</name> <name>graph</name></expr><operator>,</operator> <expr><name>messing</name> <name>up</name> <name>phrase</name> <name>queries</name> <name>when</name> <name>it</name> <name>was</name> <name>used</name> <name>during</name> <name>query</name>
+  <call><name>parsing</name> <argument_list>(<argument><expr><name>Ere</name> <name>Maijala</name> <name>via</name> <name>Mike</name> <name>McCandless</name></expr></argument>)</argument_list></call>
+
+ <name>Improvements</name>
+ 
+ <operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">7055</literal><operator>:</operator> <name>Added</name> <name>Weight</name><operator>#</operator><name>scorerSupplier</name></expr><operator>,</operator> <expr><name>which</name> <name>allows</name> <name>to</name> <name>estimate</name> <name>the</name> <name>cost</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>CommonGramsQueryFilter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>CommonGramsQueryFilter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>eeaec846981</name><operator>..</operator><literal type="number">9307e7b74aa</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>CommonGramsQueryFilter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>CommonGramsQueryFilter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenFilter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>PositionIncrementAttribute</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>PositionLengthAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>TypeAttribute</name></name>;</import>
+ 
+ <import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>commongrams</name><operator>.</operator><name>CommonGramsFilter</name><operator>.</operator><name>GRAM_TYPE</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">46</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CommonGramsQueryFilter</name> extends <name>TokenFilter</name> <block>{
+ 
+   <expr><specifier>private</specifier> <name>final</name> <name>TypeAttribute</name> <name>typeAttribute</name> <operator>=</operator> <call><name>addAttribute</name><argument_list>(<argument><expr><name><name>TypeAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+   <expr><specifier>private</specifier> <name>final</name> <name>PositionIncrementAttribute</name> <name>posIncAttribute</name> <operator>=</operator> <call><name>addAttribute</name><argument_list>(<argument><expr><name><name>PositionIncrementAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>PositionLengthAttribute</name> <name>posLengthAttribute</name> <operator>=</operator> <call><name>addAttribute</name><argument_list>(<argument><expr><name><name>PositionLengthAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+   
+   <expr><specifier>private</specifier> <name>State</name> <name>previous</name></expr>;
+   <expr><specifier>private</specifier> <name>String</name> <name>previousType</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">91</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">93</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CommonGramsQueryFilter</name> extends <name>TokenFilter</name> <block>{
+         
+         <if_stmt><if>if <condition>(<expr><call><name>isGramType</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><call><name><name>posIncAttribute</name><operator>.</operator><name>setPositionIncrement</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// We must set this back to 1 (from e.g. 2 or higher) otherwise the token graph is disconnected:</comment>
+          <expr_stmt><expr><call><name><name>posLengthAttribute</name><operator>.</operator><name>setPositionLength</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+         <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+       }</block></expr></expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">109</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>CommonGramsQueryFilter</name> extends <name>TokenFilter</name> <block>{
+     
+     <if_stmt><if>if <condition>(<expr><call><name>isGramType</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>posIncAttribute</name><operator>.</operator><name>setPositionIncrement</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">// We must set this back to 1 (from e.g. 2 or higher) otherwise the token graph is disconnected:</comment>
+      <expr_stmt><expr><call><name><name>posLengthAttribute</name><operator>.</operator><name>setPositionLength</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+     <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+   }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>TestCommonGramsQueryFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>TestCommonGramsQueryFilterFactory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">23d1bd4224f</literal><operator>..</operator><name>fee6e886dd0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>TestCommonGramsQueryFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name>commongrams</name><operator>/</operator><name><name>TestCommonGramsQueryFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCommonGramsQueryFilterFactory</name> extends <name>BaseTokenStreamFactoryTes</name></expr></expr_stmt>
+     })<empty_stmt>;</empty_stmt>
+     <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>expected</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><literal type="string">"Unknown parameters"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   }
+
+  public <function><type><name>void</name></type> <name>testCompleteGraph</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>CommonGramsQueryFilterFactory</name></type> <name>factory</name> <init>= <expr><operator>(</operator><name>CommonGramsQueryFilterFactory</name><operator>)</operator> <call><name>tokenFilterFactory</name><argument_list>(<argument><expr><literal type="string">"CommonGramsQuery"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>CharArraySet</name></type> <name>words</name> <init>= <expr><call><name><name>factory</name><operator>.</operator><name>getCommonWords</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>words</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>words</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"the"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Tokenizer</name></type> <name>tokenizer</name> <init>= <expr><call><name>whitespaceMockTokenizer</name><argument_list>(<argument><expr><literal type="string">"testing the factory works"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>TokenStream</name></type> <name>stream</name> <init>= <expr><call><name><name>factory</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>tokenizer</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertGraphStrings</name><argument_list>(<argument><expr><name>stream</name></expr></argument>, <argument><expr><literal type="string">"testing_the the_factory factory works"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>util</name><operator>/</operator><name><name>QueryBuilder</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>util</name><operator>/</operator><name><name>QueryBuilder</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b8d8c290517</name><operator>..</operator><name>c3998420394</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>util</name><operator>/</operator><name><name>QueryBuilder</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>util</name><operator>/</operator><name><name>QueryBuilder</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">57</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">57</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>graph</name><operator>.</operator><name>GraphTokenStreamFiniteStrings</name></name>;</import>
+ <class><specifier>public</specifier> class <name>QueryBuilder</name> <block>{
+   <decl_stmt><decl><type><specifier>protected</specifier> <name>Analyzer</name></type> <name>analyzer</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>protected</specifier> <name>boolean</name></type> <name>enablePositionIncrements</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>protected</specifier> <name>boolean</name></type> <name>enableGraphQueries</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>protected</specifier> <name>boolean</name></type> <name>autoGenerateMultiTermSynonymsPhraseQuery</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+   
+   <comment type="block" format="javadoc">/** Creates a new QueryBuilder using the given analyzer. */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">240</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">241</literal></expr><operator>,</operator><expr><literal type="number">20</literal> @@ <specifier>public</specifier> <name>class</name> <name>QueryBuilder</name> <block>{
+     }</block></expr></expr_stmt>
+   }</block></class>
+ 
+  <comment type="block" format="javadoc">/** Enable or disable graph TokenStream processing (enabled by default).
+   *
+   * @lucene.experimental */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setEnableGraphQueries</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>enableGraphQueries</name> <operator>=</operator> <name>v</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/** Returns true if graph TokenStream processing is enabled (default).
+   *
+   * @lucene.experimental */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>getEnableGraphQueries</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>enableGraphQueries</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Creates a query from a token stream.
+    *
+@@ -282,7 +297,7 @@ public class QueryBuilder {
+         }
+ 
+         int positionLength = posLenAtt.getPositionLength();
+        if (!isGraph &amp;&amp; positionLength &gt; 1) {
+        if (enableGraphQueries &amp;&amp; positionLength &gt; 1) {
+           isGraph = true;
+         }
+       }
+diff --git a/lucene/queryparser/src/test/org/apache/lucene/queryparser/classic/TestQueryParser.java b/lucene/queryparser/src/test/org/apache/lucene/queryparser/classic/TestQueryParser.java
+index 1d7a0f6178e..e83b62a1bf0 100644
+-- a/lucene/queryparser/src/test/org/apache/lucene/queryparser/classic/TestQueryParser.java
+++ b/lucene/queryparser/src/test/org/apache/lucene/queryparser/classic/TestQueryParser.java
+@@ -533,6 +533,24 @@ public class TestQueryParser extends QueryParserTestBase {
+     assertEquals(guineaPigPhrase, smart.parse("\"guinea pig\""));
+   }
+ 
+  public void testEnableGraphQueries() throws Exception {
+    QueryParser dumb = new QueryParser("field", new Analyzer1());
+    dumb.setSplitOnWhitespace(false);
+    dumb.setEnableGraphQueries(false);
+    
+    TermQuery guinea = new TermQuery(new Term("field", "guinea"));
+    TermQuery pig = new TermQuery(new Term("field", "pig"));
+    TermQuery cavy = new TermQuery(new Term("field", "cavy"));
+
+    // A multi-word synonym source will just form a boolean query when graph queries are disabled:
+    Query inner = new SynonymQuery(new Term[] {new Term("field", "cavy"), new Term("field", "guinea")});
+    BooleanQuery.Builder b = new BooleanQuery.Builder();
+    b.add(inner, BooleanClause.Occur.SHOULD);
+    b.add(pig, BooleanClause.Occur.SHOULD);
+    BooleanQuery query = b.build();
+    assertEquals(query, dumb.parse("guinea pig"));
+  }
+
+   // TODO: Move to QueryParserTestBase once standard flexible parser gets this capability
+   public void testOperatorsAndMultiWordSynonyms() throws Exception {
+     Analyzer a = new MockSynonymAnalyzer();
+- 
+2.19.1.windows.1
+
+</comment></unit>

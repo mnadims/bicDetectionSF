@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/cf06226cb8.java"><expr_stmt><expr><name>From</name> <name>cf06226cb8e18640fe94bf04661aef4947a77757</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Michael</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Sep</name> <literal type="number">2013</literal> <literal type="number">11</literal><operator>:</operator><literal type="number">10</literal><operator>:</operator><literal type="number">18</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">5239</literal><operator>:</operator> <name>don</name><literal type="char">'t delete same term for the wrong field
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1525851 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../lucene/index/FreqProxTermsWriter.java     |  2 ++
+ .../apache/lucene/index/TestIndexWriter.java  | 23 +++++++++++++++++++
+ 2 files changed, 25 insertions(+)
+
+diff --git a/lucene/core/src/java/org/apache/lucene/index/FreqProxTermsWriter.java b/lucene/core/src/java/org/apache/lucene/index/FreqProxTermsWriter.java
+index 7d50b39cb48..0ed7f1c70db 100644
+-- a/lucene/core/src/java/org/apache/lucene/index/FreqProxTermsWriter.java
+++ b/lucene/core/src/java/org/apache/lucene/index/FreqProxTermsWriter.java
+@@ -47,6 +47,8 @@ final class FreqProxTermsWriter extends TermsHashConsumer {
+           Terms terms = fields.terms(lastField);
+           if (terms != null) {
+             termsEnum = terms.iterator(termsEnum);
+          } else {
+            termsEnum = null;
+           }
+         }
+ 
+diff --git a/lucene/core/src/test/org/apache/lucene/index/TestIndexWriter.java b/lucene/core/src/test/org/apache/lucene/index/TestIndexWriter.java
+index 5e35a785a3a..0f09c3ccedf 100644
+-- a/lucene/core/src/test/org/apache/lucene/index/TestIndexWriter.java
+++ b/lucene/core/src/test/org/apache/lucene/index/TestIndexWriter.java
+@@ -2281,4 +2281,27 @@ public class TestIndexWriter extends LuceneTestCase {
+     evilWriter.close();
+     dir.close();
+   }
+
+  // LUCENE-5239
+  public void testDeleteSameTermAcrossFields() throws Exception {
+    Directory dir = newDirectory();
+    IndexWriterConfig iwc = new IndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random()));
+    IndexWriter w = new IndexWriter(dir, iwc);
+    Document doc = new Document();
+    doc.add(new TextField("a", "foo", Field.Store.NO));
+    w.addDocument(doc);
+
+    // Should not delete the document; with LUCENE-5239 the
+    // "foo" from the 2nd delete term would incorrectly
+    // match field a'</literal><name>s</name> <literal type="string">"foo"</literal><operator>:</operator>
+    <call><name><name>w</name><operator>.</operator><name>deleteDocuments</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"a"</literal></expr></argument>, <argument><expr><literal type="string">"xxx"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>deleteDocuments</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"b"</literal></expr></argument>, <argument><expr><literal type="string">"foo"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>IndexReader</name></type> <name>r</name> <init>= <expr><call><name><name>w</name><operator>.</operator><name>getReader</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Make sure document was not (incorrectly) deleted:</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>r</name><operator>.</operator><name>numDocs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>r</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>dir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }
+ }
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

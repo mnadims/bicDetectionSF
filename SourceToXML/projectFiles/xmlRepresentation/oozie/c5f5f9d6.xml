@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/c5f5f9d6.java"><expr_stmt><expr><name>From</name> <name>c5f5f9d6bae8ab44b54f728ebee15851478fa272</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Rohini</name> <name><name>Palaniswamy</name> <argument_list type="generic">&lt;<argument><name>rohini</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">27</literal> <name>May</name> <literal type="number">2016</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">07</literal><operator>:</operator><literal type="number">27</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">2475</literal> <name>Oozie</name> <name>does</name> <name>not</name> <name>cleanup</name> <name>action</name> <name>dir</name> <name>of</name> <name>killed</name>
+ <call><name>actions</name> <argument_list>(<argument><expr><name>satishsaley</name> <name>via</name> <name>rohini</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>wf</name><operator>/</operator><name><name>ActionKillXCommand</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">46</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">39</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">8</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>wf</name><operator>/</operator><name><name>ActionKillXCommand</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>wf</name><operator>/</operator><name><name>ActionKillXCommand</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">33498bfc7</literal><operator>..</operator><name>ac096cc49</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>wf</name><operator>/</operator><name><name>ActionKillXCommand</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>wf</name><operator>/</operator><name><name>ActionKillXCommand</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">33</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">37</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileStatus</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileSystem</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>Path</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>ErrorCode</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>SLAEventBean</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>WorkflowActionBean</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>WorkflowJobBean</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>XException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>ActionExecutor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>ActionExecutor</name><operator>.</operator><name>Context</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>ActionExecutorException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>control</name><operator>.</operator><name>ControlNodeActionExecutor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>client</name><operator>.</operator><name>SLAEvent</name><operator>.</operator><name>SlaAppType</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>client</name><operator>.</operator><name>SLAEvent</name><operator>.</operator><name>Status</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>client</name><operator>.</operator><name>rest</name><operator>.</operator><name>JsonBean</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>command</name><operator>.</operator><name>CommandException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>command</name><operator>.</operator><name>PreconditionException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>BatchQueryExecutor</name><operator>.</operator><name>UpdateEntry</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>BatchQueryExecutor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>BatchQueryExecutor</name><operator>.</operator><name>UpdateEntry</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>JPAExecutorException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>WorkflowActionQueryExecutor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>WorkflowJobQueryExecutor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>WorkflowActionQueryExecutor</name><operator>.</operator><name>WorkflowActionQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>WorkflowJobQueryExecutor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>executor</name><operator>.</operator><name>jpa</name><operator>.</operator><name>WorkflowJobQueryExecutor</name><operator>.</operator><name>WorkflowJobQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>ActionExecutor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>ActionExecutorException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>action</name><operator>.</operator><name>control</name><operator>.</operator><name>ControlNodeActionExecutor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>ActionService</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>EventHandlerService</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>JPAService</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>UUIDService</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>Services</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>LogUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>UUIDService</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>Instrumentation</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>LogUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>db</name><operator>.</operator><name>SLADbXOperations</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -129,10 +133,11 @@ public class ActionKillXCommand extends ActionXCommand&lt;Void&gt; {
+         if (wfAction.isPending()) {
+             ActionExecutor executor = Services.get().get(ActionService.class).getExecutor(wfAction.getType());
+             if (executor != null) {
+                ActionExecutorContext context = null;
+                 try {
+                     boolean isRetry = false;
+                     boolean isUserRetry = false;
+                    ActionExecutorContext context = new ActionXCommand.ActionExecutorContext(wfJob, wfAction,
+                    context = new ActionXCommand.ActionExecutorContext(wfJob, wfAction,
+                             isRetry, isUserRetry);
+                     incrActionCounter(wfAction.getType(), 1);
+ 
+@@ -179,6 +184,7 @@ public class ActionKillXCommand extends ActionXCommand&lt;Void&gt; {
+                 }
+                 finally {
+                     try {
+                        cleanupActionDir(context);
+                         BatchQueryExecutor.getInstance().executeBatchInsertUpdateDelete(insertList, updateList, null);
+                         if (!(executor instanceof ControlNodeActionExecutor) &amp;&amp; EventHandlerService.isEnabled()) {
+                             generateEvent(wfAction, wfJob.getUser());
+@@ -194,4 +200,28 @@ public class ActionKillXCommand extends ActionXCommand&lt;Void&gt; {
+         return null;
+     }
+ 
+    /*
+     * Cleans up the action directory
+     */</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>cleanupActionDir</name><parameter_list>(<parameter><decl><type><name>Context</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>FileSystem</name></type> <name>actionFs</name> <init>= <expr><call><name><name>context</name><operator>.</operator><name>getAppFileSystem</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>Path</name></type> <name>actionDir</name> <init>= <expr><call><name><name>context</name><operator>.</operator><name>getActionDir</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>Path</name></type> <name>jobDir</name> <init>= <expr><call><name><name>actionDir</name><operator>.</operator><name>getParent</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>context</name><operator>.</operator><name>getProtoActionConf</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getBoolean</name><argument_list>(<argument><expr><literal type="string">"oozie.action.keep.action.dir"</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call>
+                    <operator>&amp;&amp;</operator> <call><name><name>actionFs</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>actionDir</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>actionFs</name><operator>.</operator><name>delete</name></name><argument_list>(<argument><expr><name>actionDir</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <if_stmt><if>if <condition>(<expr><call><name><name>actionFs</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>jobDir</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>actionFs</name><operator>.</operator><name>getFileStatus</name></name><argument_list>(<argument><expr><name>jobDir</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>isDir</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name><name>FileStatus</name><index>[]</index></name></type> <name>statuses</name> <init>= <expr><call><name><name>actionFs</name><operator>.</operator><name>listStatus</name></name><argument_list>(<argument><expr><name>jobDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><name>statuses</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name><name>statuses</name><operator>.</operator><name>length</name></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>actionFs</name><operator>.</operator><name>delete</name></name><argument_list>(<argument><expr><name>jobDir</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block>
+        <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Exception while cleaning up action dir. Message[{1}]"</literal></expr></argument>, <argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+
+ }
+diff <expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">1c8d11b41</literal><operator>..</operator><literal type="number">02b3bc87f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+ <operator>--</operator> <name>Oozie</name> <literal type="number">4.3.0</literal> <call><name>release</name> <argument_list>(<argument><expr><name>trunk</name> <operator>-</operator> <name>unreleased</name></expr></argument>)</argument_list></call>
+ 
+<name>OOZIE</name><operator>-</operator><literal type="number">2475</literal> <name>Oozie</name> <name>does</name> <name>not</name> <name>cleanup</name> <name>action</name> <name>dir</name> <name>of</name> <name>killed</name> <call><name>actions</name> <argument_list>(<argument><expr><name>satishsaley</name> <name>via</name> <name>rohini</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">2535</literal> <name>User</name> <name>can</name><literal type="char">'</literal></expr>t disable uber mode (puru)
+ OOZIE-2482 Pyspark job fails with Oozie (satishsaley and gezapeti via rkanter)
+ OOZIE-2467 Oozie can shutdown itself on long GC pause (puru)
+- 
+2.19.1.windows.1
+
+</unit>

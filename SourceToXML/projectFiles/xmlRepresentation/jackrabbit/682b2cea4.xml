@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/682b2cea4.java"><expr_stmt><expr><name>From</name> <literal type="number">682b2cea472aa21820b62dfa9b10d81ffa38bd32</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jukka</name> <name><name>Zitting</name> <argument_list type="generic">&lt;<argument><name>jukka</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">26</literal> <name>May</name> <literal type="number">2009</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">36</literal><operator>:</operator><literal type="number">38</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">134</literal><operator>:</operator> <name>Unreferenced</name> <name>VersionHistory</name> <name>should</name> <name>be</name> <name>deleted</name>
+ <name>automatically</name>
+
+<name>Added</name> <name>a</name> <name>test</name></expr></expr_stmt> <case>case <expr><name>that</name> <name>makes</name> <name>sure</name> <name>that</name> <name>a</name> <name>version</name> <name>history</name> <name>that</name> <name>is</name> <name>still</name> <name>being</name> <name>referenced</name> <name>from</name> <name>another</name> <name>workspace</name> <name>won</name><literal type="char">'</literal></expr></case>t get lost when the last version is removed.
+
+git-svn-id: https://svn.apache.org/repos/asf/jackrabbit/trunk@778720 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../RemoveOrphanVersionHistoryTest.java       | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveOrphanVersionHistoryTest.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveOrphanVersionHistoryTest.java
+index 88c741b28..9bb700bd6 100644
+-- a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveOrphanVersionHistoryTest.java
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/version/RemoveOrphanVersionHistoryTest.java
+@@ -18,6 +18,8 @@ package org.apache.jackrabbit.core.version;
+ 
+ import javax.jcr.ItemNotFoundException;
+ import javax.jcr.Node;
+import javax.jcr.Property;
+import javax.jcr.PropertyType;
+ import javax.jcr.RepositoryException;
+ import javax.jcr.Session;
+ import javax.jcr.SimpleCredentials;
+@@ -137,6 +139,57 @@ public class RemoveOrphanVersionHistoryTest extends AbstractJCRTest {
+         }
+     }
+ 
+    /**
+     * Test that an emptied version history that is still being referenced
+     * from another workspace does not get removed.
+     *
+     * @throws RepositoryException if an error occurs.
+     */
+    public void testEmptyNonOrphanVersionHistory() throws RepositoryException {
+        Session session = testRootNode.getSession();
+
+        // Create versionable test node
+        Node node = testRootNode.addNode(nodeName1);
+        node.addMixin(mixVersionable);
+        session.save();
+
+        VersionHistory history = node.getVersionHistory();
+        String uuid = history.getUUID();
+
+        // Create version 1.0
+        Version v10 = node.checkin();
+
+        // Remove the test node
+        node.checkout();
+        node.remove();
+        session.save();
+
+        Session otherSession = helper.getReadWriteSession(workspaceName);
+        try {
+            // create a reference to the version history in another workspace
+            Node otherRoot = otherSession.getRootNode();
+            Property reference = otherRoot.setProperty(
+                    "RemoveOrphanVersionTest", uuid, PropertyType.REFERENCE);
+            otherSession.save();
+
+            // Now remove the contents of the version history
+            history.removeVersion(v10.getName());
+
+            // Check that the version history still exists!
+            try {
+                session.getNodeByUUID(uuid);
+            } catch (ItemNotFoundException e) {
+                fail("Referenced empty version history must note be removed");
+            }
+
+            // Cleanup
+            reference.remove();
+            otherSession.save();
+        } finally {
+            otherSession.logout();
+        }
+    }
+
+     /**
+      * Assert that a node exists in a session.
+      * @param session the session.
+- 
+2.19.1.windows.1
+
+</unit>

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/268f5cb652.java"><expr_stmt><expr><name>From</name> <literal type="number">268f5cb65244fd0de540c676bfc135b661f5bb1a</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Ajit</name> <name><name>Kumar</name> <argument_list type="generic">&lt;<argument><name>ajit</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">5</literal> <name>Aug</name> <literal type="number">2016</literal> <literal type="number">12</literal><operator>:</operator><literal type="number">14</literal><operator>:</operator><literal type="number">22</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">18011.</literal> <name>API</name></expr></expr_stmt> <for>for bulk delete hostcomponents <control>(<init><expr><name>ajit</name></expr></init>)</control><block type="pseudo"><block_content>
+
+<expr_stmt><expr><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>HostComponentService</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name>           <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">189</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>        <operator>|</operator>   <literal type="number">8</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementControllerTest</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">53</literal> <operator>++</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>HostComponentResourceProviderTest</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">8</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">6</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">146</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">121</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>HostComponentService</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>HostComponentService</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">4990ad71c7</literal><operator>..</operator><literal type="number">72351c3a01</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>HostComponentService</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>HostComponentService</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">215</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">215</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentService</name> extends <name>BaseService</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   @<name>DELETE</name>
+   @<call><name>Produces</name><argument_list>(<argument><expr><literal type="string">"text/plain"</literal></expr></argument>)</argument_list></call>
+  <specifier>public</specifier> <name>Response</name> <call><name>deleteHostComponents</name><argument_list>(<argument><expr><annotation>@<name>Context</name></annotation> <name>HttpHeaders</name> <name>headers</name></expr></argument>, <argument><expr><annotation>@<name>Context</name></annotation> <name>UriInfo</name> <name>ui</name></expr></argument>)</argument_list></call> <block>{
+  <expr><specifier>public</specifier> <name>Response</name> <call><name>deleteHostComponents</name><argument_list>(<argument><expr><name>String</name> <name>body</name></expr></argument>, <argument><expr><annotation>@<name>Context</name></annotation> <name>HttpHeaders</name> <name>headers</name></expr></argument>, <argument><expr><annotation>@<name>Context</name></annotation> <name>UriInfo</name> <name>ui</name></expr></argument>)</argument_list></call> <block>{
+ 
+    <return>return <expr><call><name>handleRequest</name><argument_list>(<argument><expr><name>headers</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>ui</name></expr></argument>, <argument><expr><name><name>Request</name><operator>.</operator><name>Type</name><operator>.</operator><name>DELETE</name></name></expr></argument>,
+    return <argument><expr><call><name>handleRequest</name><argument_list>(<argument><expr><name>headers</name></expr></argument>, <argument><expr><name>body</name></expr></argument>, <argument><expr><name>ui</name></expr></argument>, <argument><expr><name><name>Request</name><operator>.</operator><name>Type</name><operator>.</operator><name>DELETE</name></name></expr></argument>,
+         <argument><expr><call><name>createHostComponentResource</name><argument_list>(<argument><expr><name>m_clusterName</name></expr></argument>, <argument><expr><name>m_hostName</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+   }</argument_list></call>
+  
+
+   @<name>GET</name>
+   @<call><name>Path</name><argument_list>(<argument><expr><literal type="string">"{hostComponentName}/processes"</literal></expr></argument>)</argument_list></call>
+   @<call><name>Produces</name><argument_list>(<argument><expr><literal type="string">"text/plain"</literal></expr></argument>)</argument_list></call>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5cf2de7b95</literal><operator>..</operator><literal type="number">9da6fd48b1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></return> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>RoleCommand</name></name>;</import></block></expr>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>actionmanager</name><operator>.</operator><name>ActionManager</name></name>;</import></block></expr>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>agent</name><operator>.</operator><name>ExecutionCommand</name></name>;</import></block></expr></expr_stmt></block_content></block></for>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>api</name><operator>.</operator><name>services</name><operator>.</operator><name>AmbariMetaInfo</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>DeleteStatusMetaData</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>RequestStageContainer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name><operator>.</operator><name>LoggingSearchPropertyProvider</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>metrics</name><operator>.</operator><name>MetricPropertyProviderFactory</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">296</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">297</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> interface <name>AmbariManagementController</name> <block>{
+    <expr><operator>*</operator>
+    <operator>*</operator> @<throws>throws <argument><expr><name>AmbariException</name> <name>thrown</name></expr></argument></throws></expr> <if_stmt><if>if the resource cannot be deleted
+    */
+  RequestStatusResponse deleteHostComponents<condition>(
+  <decl_stmt><expr><name>DeleteStatusMetaData</name> <call><name>deleteHostComponents</name><argument_list>(
+       <argument><expr><name><name>Set</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHostRequest</name></argument>&gt;</argument_list></name> <name>requests</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>AmbariException</name></expr></argument>, <argument><expr><name>AuthorizationException</name></expr></argument></throws></expr>;</decl_stmt></condition></if></if_stmt></block></expr></expr_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index 075b85a806..95a14d5dc1 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -89,6 +89,7 @@ import org.apache.ambari.server.agent.ExecutionCommand.KeyNames;
+ import org.apache.ambari.server.api.services.AmbariMetaInfo;
+ import org.apache.ambari.server.configuration.Configuration;
+ import org.apache.ambari.server.configuration.Configuration.DatabaseType;
+import org.apache.ambari.server.controller.internal.DeleteStatusMetaData;
+ import org.apache.ambari.server.controller.internal.RequestOperationLevel;
+ import org.apache.ambari.server.controller.internal.RequestResourceFilter;
+ import org.apache.ambari.server.controller.internal.RequestStageContainer;
+@@ -3123,6 +3124,30 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+     }
+   }
+ 
+  private void checkIfHostComponentsInDeleteFriendlyState(ServiceComponentHostRequest request, Cluster cluster) throws AmbariException {
+    Service service = cluster.getService(request.getServiceName());
+    ServiceComponent component = service.getServiceComponent(request.getComponentName());
+    ServiceComponentHost componentHost = component.getServiceComponentHost(request.getHostname());
+
+    if (!componentHost.canBeRemoved()) {
+      throw new AmbariException("Host Component cannot be removed"
+              + ", clusterName=" + request.getClusterName()
+              + ", serviceName=" + request.getServiceName()
+              + ", componentName=" + request.getComponentName()
+              + ", hostname=" + request.getHostname()
+              + ", request=" + request);
+    }
+
+    // Only allow removing master/slave components in DISABLED/UNKNOWN/INSTALL_FAILED/INIT state without stages
+    // generation.
+    // Clients may be removed without a state check.
+    if (!component.isClientComponent() &amp;&amp;
+            !componentHost.getState().isRemovableState()) {
+      throw new AmbariException("To remove master or slave components they must be in " +
+              "DISABLED/INIT/INSTALLED/INSTALL_FAILED/UNKNOWN state. Current=" + componentHost.getState() + ".");
+    }
+  }
+
+   @Override
+   public String findServiceName(Cluster cluster, String componentName) throws AmbariException {
+     StackId stackId = cluster.getDesiredStackVersion();
+@@ -3224,10 +3249,10 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+   }
+ 
+   @Override
+  public RequestStatusResponse deleteHostComponents(
+  public DeleteStatusMetaData deleteHostComponents(
+       Set&lt;ServiceComponentHostRequest&gt; requests) throws AmbariException, AuthorizationException {
+ 
+    Set&lt;ServiceComponentHostRequest&gt; expanded = new HashSet&lt;ServiceComponentHostRequest&gt;();
+    Set&lt;ServiceComponentHostRequest&gt; expanded = new HashSet&lt;&gt;();
+ 
+     // if any request are for the whole host, they need to be expanded
+     for (ServiceComponentHostRequest request : requests) {
+@@ -3254,7 +3279,8 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+       }
+     }
+ 
+    Map&lt;ServiceComponent, Set&lt;ServiceComponentHost&gt;&gt; safeToRemoveSCHs = new HashMap&lt;ServiceComponent, Set&lt;ServiceComponentHost&gt;&gt;();
+    Map&lt;ServiceComponent, Set&lt;ServiceComponentHost&gt;&gt; safeToRemoveSCHs = new HashMap&lt;&gt;();
+    DeleteStatusMetaData deleteStatusMetaData = new DeleteStatusMetaData();
+ 
+     for (ServiceComponentHostRequest request : expanded) {
+ 
+@@ -3279,88 +3305,41 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+       ServiceComponent component = service.getServiceComponent(request.getComponentName());
+       ServiceComponentHost componentHost = component.getServiceComponentHost(request.getHostname());
+ 
+      if (!componentHost.canBeRemoved()) {
+        throw new AmbariException("Host Component cannot be removed"
+            + ", clusterName=" + request.getClusterName()
+            + ", serviceName=" + request.getServiceName()
+            + ", componentName=" + request.getComponentName()
+            + ", hostname=" + request.getHostname()
+            + ", request=" + request);
+      }
+
+      // Only allow removing master/slave components in DISABLED/UNKNOWN/INSTALL_FAILED/INIT state without stages
+      // generation.
+      // Clients may be removed without a state check.
+      if (!component.isClientComponent() &amp;&amp;
+          !componentHost.getState().isRemovableState()) {
+        throw new AmbariException("To remove master or slave components they must be in " +
+            "DISABLED/INIT/INSTALLED/INSTALL_FAILED/UNKNOWN state. Current=" + componentHost.getState() + ".");
+      }
+
+       setRestartRequiredServices(service, request.getComponentName());
+
+      if (!safeToRemoveSCHs.containsKey(component)) {
+        safeToRemoveSCHs.put(component, new HashSet&lt;ServiceComponentHost&gt;());
+      try {
+        checkIfHostComponentsInDeleteFriendlyState(request, cluster);
+        if (!safeToRemoveSCHs.containsKey(component)) {
+          safeToRemoveSCHs.put(component, new HashSet&lt;ServiceComponentHost&gt;());
+        }
+        safeToRemoveSCHs.get(component).add(componentHost);
+      } catch (Exception ex) {
+        deleteStatusMetaData.addException(request.getHostname() + "/" + request.getComponentName(), ex);
+       }
+      safeToRemoveSCHs.get(component).add(componentHost);
+     }
+ 
+    for (Entry&lt;ServiceComponent, Set&lt;ServiceComponentHost&gt;&gt; entry
+            : safeToRemoveSCHs.entrySet()) {
+    for (Entry&lt;ServiceComponent, Set&lt;ServiceComponentHost&gt;&gt; entry : safeToRemoveSCHs.entrySet()) {
+       for (ServiceComponentHost componentHost : entry.getValue()) {
+        String included_hostname = componentHost.getHostName();
+        String serviceName = entry.getKey().getServiceName();
+        String master_component_name = null;
+        String slave_component_name = componentHost.getServiceComponentName();
+        HostComponentAdminState desiredAdminState = componentHost.getComponentAdminState();
+        State slaveState = componentHost.getState();
+        //Delete hostcomponents
+        entry.getKey().deleteServiceComponentHosts(componentHost.getHostName());
+        // If deleted hostcomponents support decomission and were decommited and stopped
+        if (AmbariCustomCommandExecutionHelper.masterToSlaveMappingForDecom.containsValue(slave_component_name)
+                &amp;&amp; desiredAdminState.equals(HostComponentAdminState.DECOMMISSIONED)
+                &amp;&amp; slaveState.equals(State.INSTALLED)) {
+
+          for (Entry&lt;String, String&gt; entrySet : AmbariCustomCommandExecutionHelper.masterToSlaveMappingForDecom.entrySet()) {
+            if (entrySet.getValue().equals(slave_component_name)) {
+              master_component_name = entrySet.getKey();
+            }
+          }
+          //Clear exclud file or draining list except HBASE
+          if (!serviceName.equals(Service.Type.HBASE.toString())) {
+            HashMap&lt;String, String&gt; requestProperties = new HashMap&lt;String, String&gt;();
+            requestProperties.put("context", "Remove host " +
+                    included_hostname + " from exclude file");
+            requestProperties.put("exclusive", "true");
+            HashMap&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();
+            params.put("included_hosts", included_hostname);
+            params.put("slave_type", slave_component_name);
+            params.put(AmbariCustomCommandExecutionHelper.UPDATE_EXCLUDE_FILE_ONLY, "true");
+
+            //Create filter for RECOMISSION command
+            RequestResourceFilter resourceFilter
+                    = new RequestResourceFilter(serviceName, master_component_name, null);
+            //Create request for RECOMISSION command
+            ExecuteActionRequest actionRequest = new ExecuteActionRequest(
+                    entry.getKey().getClusterName(), AmbariCustomCommandExecutionHelper.DECOMMISSION_COMMAND_NAME, null,
+                    Collections.singletonList(resourceFilter), null, params, true);
+            //Send request
+            createAction(actionRequest, requestProperties);
+          }
+
+          //Mark master component as needed to restart for remove host info from components UI
+          Cluster cluster = clusters.getCluster(entry.getKey().getClusterName());
+          Service service = cluster.getService(serviceName);
+          ServiceComponent sc = service.getServiceComponent(master_component_name);
+
+          if (sc != null &amp;&amp; sc.isMasterComponent()) {
+            for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+              sch.setRestartRequired(true);
+            }
+          }
+        try {
+          deleteHostComponent(entry.getKey(), componentHost);
+          deleteStatusMetaData.addDeletedKey(componentHost.getHostName() + "/" + componentHost.getServiceComponentName());
+ 
+        } catch (Exception ex) {
+          deleteStatusMetaData.addException(componentHost.getHostName() + "/" + componentHost.getServiceComponentName(), ex);
+         }
+      }
+    }
+ 
+    //Do not break behavior for existing clients where delete request contains only 1 host component.
+    //Response for these requests will have empty body with appropriate error code.
+    if (deleteStatusMetaData.getDeletedKeys().size() + deleteStatusMetaData.getExceptionForKeys().size() == 1) {
+      if (deleteStatusMetaData.getDeletedKeys().size() == 1) {
+        return null;
+      }
+      Exception ex =  deleteStatusMetaData.getExceptionForKeys().values().iterator().next();
+      if (ex instanceof AmbariException) {
+        throw (AmbariException)ex;
+      } else {
+        throw new AmbariException(ex.getMessage(), ex);
+       }
+     }
+ 
+@@ -3368,7 +3347,61 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+     if (!safeToRemoveSCHs.isEmpty()) {
+       setMonitoringServicesRestartRequired(requests);
+     }
+    return null;
+    return deleteStatusMetaData;
+  }
+
+  private void deleteHostComponent(ServiceComponent serviceComponent, ServiceComponentHost componentHost) throws AmbariException {
+    String included_hostname = componentHost.getHostName();
+    String serviceName = serviceComponent.getServiceName();
+    String master_component_name = null;
+    String slave_component_name = componentHost.getServiceComponentName();
+    HostComponentAdminState desiredAdminState = componentHost.getComponentAdminState();
+    State slaveState = componentHost.getState();
+    //Delete hostcomponents
+    serviceComponent.deleteServiceComponentHosts(componentHost.getHostName());
+    // If deleted hostcomponents support decomission and were decommited and stopped
+    if (AmbariCustomCommandExecutionHelper.masterToSlaveMappingForDecom.containsValue(slave_component_name)
+            &amp;&amp; desiredAdminState.equals(HostComponentAdminState.DECOMMISSIONED)
+            &amp;&amp; slaveState.equals(State.INSTALLED)) {
+
+      for (Entry&lt;String, String&gt; entrySet : AmbariCustomCommandExecutionHelper.masterToSlaveMappingForDecom.entrySet()) {
+        if (entrySet.getValue().equals(slave_component_name)) {
+          master_component_name = entrySet.getKey();
+        }
+      }
+      //Clear exclud file or draining list except HBASE
+      if (!serviceName.equals(Service.Type.HBASE.toString())) {
+        HashMap&lt;String, String&gt; requestProperties = new HashMap&lt;String, String&gt;();
+        requestProperties.put("context", "Remove host " +
+                included_hostname + " from exclude file");
+        requestProperties.put("exclusive", "true");
+        HashMap&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();
+        params.put("included_hosts", included_hostname);
+        params.put("slave_type", slave_component_name);
+        params.put(AmbariCustomCommandExecutionHelper.UPDATE_EXCLUDE_FILE_ONLY, "true");
+
+        //Create filter for RECOMISSION command
+        RequestResourceFilter resourceFilter
+                = new RequestResourceFilter(serviceName, master_component_name, null);
+        //Create request for RECOMISSION command
+        ExecuteActionRequest actionRequest = new ExecuteActionRequest(
+                serviceComponent.getClusterName(), AmbariCustomCommandExecutionHelper.DECOMMISSION_COMMAND_NAME, null,
+                Collections.singletonList(resourceFilter), null, params, true);
+        //Send request
+        createAction(actionRequest, requestProperties);
+      }
+
+      //Mark master component as needed to restart for remove host info from components UI
+      Cluster cluster = clusters.getCluster(serviceComponent.getClusterName());
+      Service service = cluster.getService(serviceName);
+      ServiceComponent sc = service.getServiceComponent(master_component_name);
+
+      if (sc != null &amp;&amp; sc.isMasterComponent()) {
+        for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+          sch.setRestartRequired(true);
+        }
+      }
+    }
+   }
+ 
+   @Override
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
+index df2b476ee0..4c840570f4 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
+@@ -294,20 +294,20 @@ public class HostComponentResourceProvider extends AbstractControllerResourcePro
+   @Override
+   protected RequestStatus deleteResourcesAuthorized(Request request, Predicate predicate)
+       throws SystemException, UnsupportedPropertyException, NoSuchResourceException, NoSuchParentResourceException {
+    final Set&lt;ServiceComponentHostRequest&gt; requests = new HashSet&lt;ServiceComponentHostRequest&gt;();
+    final Set&lt;ServiceComponentHostRequest&gt; requests = new HashSet&lt;&gt;();
+     for (Map&lt;String, Object&gt; propertyMap : getPropertyMaps(predicate)) {
+       requests.add(changeRequest(propertyMap));
+     }
+    RequestStatusResponse response = modifyResources(new Command&lt;RequestStatusResponse&gt;() {
+    DeleteStatusMetaData deleteStatusMetaData = modifyResources(new Command&lt;DeleteStatusMetaData&gt;() {
+       @Override
+      public RequestStatusResponse invoke() throws AmbariException, AuthorizationException {
+      public DeleteStatusMetaData invoke() throws AmbariException, AuthorizationException {
+         return getManagementController().deleteHostComponents(requests);
+       }
+     });
+ 
+     notifyDelete(Resource.Type.HostComponent, predicate);
+ 
+    return getRequestStatus(response);
+    return getRequestStatus(null, null, deleteStatusMetaData);
+   }
+ 
+   @Override
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerTest.java
+index 3ad1f1fc77..420c078a08 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerTest.java
+@@ -18,6 +18,7 @@
+ 
+ package org.apache.ambari.server.controller;
+ 
+import org.apache.ambari.server.controller.internal.DeleteStatusMetaData;
+ import static org.easymock.EasyMock.capture;
+ import static org.easymock.EasyMock.createNiceMock;
+ import static org.easymock.EasyMock.createStrictMock;
+@@ -8866,11 +8867,10 @@ public class AmbariManagementControllerTest {
+   public void testDeleteHostComponentInVariousStates() throws Exception {
+     String cluster1 = getUniqueName();
+     createCluster(cluster1);
+    clusters.getCluster(cluster1)
+        .setDesiredStackVersion(new StackId("HDP-1.3.1"));
+    String serviceName = "HDFS";
+    clusters.getCluster(cluster1).setDesiredStackVersion(new StackId("HDP-1.3.1"));
+    String hdfs = "HDFS";
+     String mapred = "MAPREDUCE";
+    createService(cluster1, serviceName, null);
+    createService(cluster1, hdfs, null);
+     createService(cluster1, mapred, null);
+     String componentName1 = "NAMENODE";
+     String componentName2 = "DATANODE";
+@@ -8879,9 +8879,9 @@ public class AmbariManagementControllerTest {
+     String componentName5 = "TASKTRACKER";
+     String componentName6 = "MAPREDUCE_CLIENT";
+ 
+    createServiceComponent(cluster1, serviceName, componentName1, State.INIT);
+    createServiceComponent(cluster1, serviceName, componentName2, State.INIT);
+    createServiceComponent(cluster1, serviceName, componentName3, State.INIT);
+    createServiceComponent(cluster1, hdfs, componentName1, State.INIT);
+    createServiceComponent(cluster1, hdfs, componentName2, State.INIT);
+    createServiceComponent(cluster1, hdfs, componentName3, State.INIT);
+     createServiceComponent(cluster1, mapred, componentName4, State.INIT);
+     createServiceComponent(cluster1, mapred, componentName5, State.INIT);
+     createServiceComponent(cluster1, mapred, componentName6, State.INIT);
+@@ -8890,19 +8890,19 @@ public class AmbariManagementControllerTest {
+ 
+     addHostToCluster(host1, cluster1);
+ 
+    createServiceComponentHost(cluster1, serviceName, componentName1, host1, null);
+    createServiceComponentHost(cluster1, serviceName, componentName2, host1, null);
+    createServiceComponentHost(cluster1, serviceName, componentName3, host1, null);
+    createServiceComponentHost(cluster1, hdfs, componentName1, host1, null);
+    createServiceComponentHost(cluster1, hdfs, componentName2, host1, null);
+    createServiceComponentHost(cluster1, hdfs, componentName3, host1, null);
+     createServiceComponentHost(cluster1, mapred, componentName4, host1, null);
+     createServiceComponentHost(cluster1, mapred, componentName5, host1, null);
+     createServiceComponentHost(cluster1, mapred, componentName6, host1, null);
+ 
+     // Install
+    installService(cluster1, serviceName, false, false);
+    installService(cluster1, hdfs, false, false);
+     installService(cluster1, mapred, false, false);
+ 
+     Cluster cluster = clusters.getCluster(cluster1);
+    Service s1 = cluster.getService(serviceName);
+    Service s1 = cluster.getService(hdfs);
+     Service s2 = cluster.getService(mapred);
+     ServiceComponent sc1 = s1.getServiceComponent(componentName1);
+     sc1.getServiceComponentHosts().values().iterator().next().setState(State.STARTED);
+@@ -8910,7 +8910,7 @@ public class AmbariManagementControllerTest {
+     Set&lt;ServiceComponentHostRequest&gt; schRequests = new HashSet&lt;ServiceComponentHostRequest&gt;();
+     // delete HC
+     schRequests.clear();
+    schRequests.add(new ServiceComponentHostRequest(cluster1, serviceName, componentName1, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, hdfs, componentName1, host1, null));
+     try {
+       controller.deleteHostComponents(schRequests);
+       Assert.fail("Expect failure while deleting.");
+@@ -8934,13 +8934,14 @@ public class AmbariManagementControllerTest {
+     sc6.getServiceComponentHosts().values().iterator().next().setState(State.INIT);
+ 
+     schRequests.clear();
+    schRequests.add(new ServiceComponentHostRequest(cluster1, serviceName, componentName1, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, serviceName, componentName2, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, serviceName, componentName3, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, hdfs, componentName1, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, hdfs, componentName2, host1, null));
+    schRequests.add(new ServiceComponentHostRequest(cluster1, hdfs, componentName3, host1, null));
+     schRequests.add(new ServiceComponentHostRequest(cluster1, mapred, componentName4, host1, null));
+     schRequests.add(new ServiceComponentHostRequest(cluster1, mapred, componentName5, host1, null));
+     schRequests.add(new ServiceComponentHostRequest(cluster1, mapred, componentName6, host1, null));
+    controller.deleteHostComponents(schRequests);
+    DeleteStatusMetaData deleteStatusMetaData = controller.deleteHostComponents(schRequests);
+    Assert.assertEquals(0, deleteStatusMetaData.getExceptionForKeys().size());
+   }
+ 
+   @Test
+@@ -9174,24 +9175,14 @@ public class AmbariManagementControllerTest {
+ 
+     Set&lt;ServiceComponentHostRequest&gt; schRequests = new HashSet&lt;ServiceComponentHostRequest&gt;();
+     schRequests.add(new ServiceComponentHostRequest(cluster1, null, null, host1, null));
+    try {
+      controller.deleteHostComponents(schRequests);
+      fail("Expected exception while deleting all host components.");
+    } catch (AmbariException e) {
+    }
+    Assert.assertEquals(3, cluster.getServiceComponentHosts(host1).size());
+
+    DeleteStatusMetaData deleteStatusMetaData = controller.deleteHostComponents(schRequests);
+    Assert.assertEquals(1, deleteStatusMetaData.getExceptionForKeys().size());
+    Assert.assertEquals(1, cluster.getServiceComponentHosts(host1).size());
+ 
+     sch.handleEvent(new ServiceComponentHostStopEvent(sch.getServiceComponentName(), sch.getHostName(), System.currentTimeMillis()));
+     sch.handleEvent(new ServiceComponentHostStoppedEvent (sch.getServiceComponentName(), sch.getHostName(), System.currentTimeMillis()));
+ 
+    schRequests.clear();
+    // disable HC, DN was already stopped
+    schRequests.add(new ServiceComponentHostRequest(cluster1, serviceName, componentName1, host1, "DISABLED"));
+    updateHostComponents(schRequests, new HashMap&lt;String,String&gt;(), false);
+
+    // delete HC
+    schRequests.clear();
+    schRequests.add(new ServiceComponentHostRequest(cluster1, null, null, host1, null));
+     controller.deleteHostComponents(schRequests);
+ 
+     Assert.assertEquals(0, cluster.getServiceComponentHosts(host1).size());
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+index ef1b821ca0..5dc69e92e8 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+@@ -430,7 +430,7 @@ public class HostComponentResourceProviderTest {
+     Resource.Type type = Resource.Type.HostComponent;
+ 
+     AmbariManagementController managementController = createMock(AmbariManagementController.class);
+    RequestStatusResponse response = createNiceMock(RequestStatusResponse.class);
+    DeleteStatusMetaData deleteStatusMetaData = createNiceMock(DeleteStatusMetaData.class);
+     Injector injector = createNiceMock(Injector.class);
+ 
+     HostComponentResourceProvider provider =
+@@ -441,10 +441,10 @@ public class HostComponentResourceProviderTest {
+     // set expectations
+     expect(managementController.deleteHostComponents(
+         AbstractResourceProviderTest.Matcher.getHostComponentRequestSet(
+            null, null, "Component100", "Host100", null, null))).andReturn(response);
+            null, null, "Component100", "Host100", null, null))).andReturn(deleteStatusMetaData);
+ 
+     // replay
+    replay(managementController, response);
+    replay(managementController, deleteStatusMetaData);
+ 
+     SecurityContextHolder.getContext().setAuthentication(authentication);
+ 
+@@ -466,7 +466,7 @@ public class HostComponentResourceProviderTest {
+     Assert.assertNull(lastEvent.getRequest());
+ 
+     // verify
+    verify(managementController, response);
+    verify(managementController, deleteStatusMetaData);
+   }
+ 
+   @Test
+- 
+2.19.1.windows.1
+
+</comment></unit>

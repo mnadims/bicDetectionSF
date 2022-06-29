@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/b62cff9fc0.java"><expr><name>From</name> <name>b62cff9fc0b9071b799cdca827b0d5be64c64a41</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Yonik</name> <name><name>Seeley</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Jul</name> <literal type="number">2010</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">38</literal><operator>:</operator><literal type="number">58</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">2458</literal><operator>:</operator> <name>keep</name> <name>Solr</name><literal type="char">'</literal></expr>s default QP behavior wrt compound
+ words and phrases
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@978879 13f79535-47bb-0310-9956-ffa450edef68
+--
+ solr/src/java/org/apache/solr/search/SolrQueryParser.java | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/solr/src/java/org/apache/solr/search/SolrQueryParser.java b/solr/src/java/org/apache/solr/search/SolrQueryParser.java
+index 9882e220dca..6bc0353a369 100644
+-- a/solr/src/java/org/apache/solr/search/SolrQueryParser.java
+++ b/solr/src/java/org/apache/solr/search/SolrQueryParser.java
+@@ -73,7 +73,7 @@ public class SolrQueryParser extends QueryParser {
+    * @see IndexSchema#getDefaultSearchFieldName()
+    */
+   public SolrQueryParser(IndexSchema schema, String defaultField) {
+    super(schema.getSolrConfig().getLuceneVersion("luceneMatchVersion", Version.LUCENE_24), defaultField == null ? schema.getDefaultSearchFieldName() : defaultField, schema.getQueryAnalyzer());
+    super(Version.LUCENE_24, defaultField == null ? schema.getDefaultSearchFieldName() : defaultField, schema.getQueryAnalyzer());
+     this.schema = schema;
+     this.parser  = null;
+     this.defaultField = defaultField;
+@@ -87,7 +87,7 @@ public class SolrQueryParser extends QueryParser {
+   }
+ 
+   public SolrQueryParser(QParser parser, String defaultField, Analyzer analyzer) {
+    super(parser.getReq().getSchema().getSolrConfig().getLuceneVersion("luceneMatchVersion", Version.LUCENE_24), defaultField, analyzer);
+    super(Version.LUCENE_24, defaultField, analyzer);
+     this.schema = parser.getReq().getSchema();
+     this.parser = parser;
+     this.defaultField = defaultField;
+- 
+2.19.1.windows.1
+
+</unit>

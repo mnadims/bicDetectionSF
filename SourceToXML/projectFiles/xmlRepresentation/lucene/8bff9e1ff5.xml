@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/8bff9e1ff5.java"><expr_stmt><expr><name>From</name> <literal type="number">8bff9e1ff5bbc7310df92c53a71e0fb91f999e8d</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Yonik</name> <name><name>Seeley</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Feb</name> <literal type="number">2011</literal> <literal type="number">21</literal><operator>:</operator><literal type="number">29</literal><operator>:</operator><literal type="number">01</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">1711</literal><operator>:</operator> <name>fix</name> <name>SUSS</name> <name>deadlock</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1071074 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>StreamingUpdateSolrServer</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">42</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">33</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">9</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>solrj</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>StreamingUpdateSolrServer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>solrj</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>StreamingUpdateSolrServer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c47f4a09957</name><operator>..</operator><literal type="number">607480ed69f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>solrj</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>StreamingUpdateSolrServer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>solrj</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>StreamingUpdateSolrServer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">178</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">178</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>StreamingUpdateSolrServer</name> extends <name>CommonsHttpSolrServer</name>
+ 
+         <comment type="line">// remove it from the list of running things unless we are the last runner and the queue is full...</comment>
+         <comment type="line">// in which case, the next queue.put() would block and there would be no runners to handle it.</comment>
+        <comment type="line">// This case has been further handled by using offer instead of put, and using a retry loop</comment>
+        <comment type="line">// to avoid blocking forever (see request()).</comment>
+         <synchronized>synchronized <init>(<expr><name>runners</name></expr>)</init> <block>{<block_content>
+           <if_stmt><if>if <condition>(<expr><call><name><name>runners</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <call><name><name>queue</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <comment type="line">// keep this runner alive</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">223</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">225</literal></expr><operator>,</operator><expr><literal type="number">40</literal> @@ <specifier>public</specifier> <name>class</name> <name>StreamingUpdateSolrServer</name> extends <name>CommonsHttpSolrServer</name>
+         <call><name><name>tmpLock</name><operator>.</operator><name>await</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+ 
+      <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>put</name></name><argument_list>( <argument><expr><name>req</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>boolean</name></type> <name>success</name> <init>= <expr><call><name><name>queue</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>req</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+      <synchronized>synchronized<init>( <expr><name>runners</name></expr> )</init> <block>{<block_content>
+        <if_stmt><if>if<condition>( <expr><call><name><name>runners</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call>
+                <operator>||</operator> <operator>(</operator><call><name><name>queue</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <call><name><name>queue</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call>
+                <operator>&amp;&amp;</operator> <call><name><name>runners</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <name>threadCount</name><operator>)</operator></expr> )</condition>
+        <block>{<block_content>
+          <decl_stmt><decl><type><name>Runner</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>Runner</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>scheduler</name><operator>.</operator><name>execute</name></name><argument_list>( <argument><expr><name>r</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>runners</name><operator>.</operator><name>add</name></name><argument_list>( <argument><expr><name>r</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+      <for>for<control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+        <synchronized>synchronized<init>( <expr><name>runners</name></expr> )</init> <block>{<block_content>
+          <if_stmt><if>if<condition>( <expr><call><name><name>runners</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call>
+                  <operator>||</operator> <operator>(</operator><call><name><name>queue</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <call><name><name>queue</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call>    <comment type="line">// queue is half full and we can add more runners</comment>
+                  <operator>&amp;&amp;</operator> <call><name><name>runners</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <name>threadCount</name><operator>)</operator></expr> )</condition>
+          <block>{<block_content>
+            <comment type="line">// We need more runners, so start a new one.</comment>
+            <decl_stmt><decl><type><name>Runner</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>Runner</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>runners</name><operator>.</operator><name>add</name></name><argument_list>( <argument><expr><name>r</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>scheduler</name><operator>.</operator><name>execute</name></name><argument_list>( <argument><expr><name>r</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <comment type="line">// break out of the retry loop if we added the element to the queue successfully, *and*</comment>
+            <comment type="line">// while we are still holding the runners lock to prevent race conditions.</comment>
+            <comment type="line">// race conditions.</comment>
+            <if_stmt><if>if <condition>(<expr><name>success</name></expr>)</condition><block type="pseudo"><block_content> <break>break;</break></block_content></block></if></if_stmt>
+          </block_content>}</block></else></if_stmt>
+        </block_content>}</block></synchronized>
+
+        <comment type="line">// Retry to add to the queue w/o the runners lock held (else we risk temporary deadlock)</comment>
+        <comment type="line">// This retry could also fail because</comment>
+        <comment type="line">// 1) existing runners were not able to take off any new elements in the queue</comment>
+        <comment type="line">// 2) the queue was filled back up since our last try</comment>
+        <comment type="line">// If we succeed, the queue may have been completely emptied, and all runners stopped.</comment>
+        <comment type="line">// In all cases, we should loop back to the top to see if we need to start more runners.</comment>
+        <comment type="line">//</comment>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>success</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>success</name> <operator>=</operator> <call><name><name>queue</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>req</name></expr></argument>, <argument><expr><literal type="number">100</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+
+       </block_content>}</block></for>
+
+
+     </block_content>}</block></if></if_stmt>
+     <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>( <argument><expr><literal type="string">"interrupted"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block_content></block></catch></block_content></block></synchronized></block_content></block></synchronized></expr></expr_stmt>
+
+</unit>

@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/9ba7a8e612.java"><expr_stmt><expr><name>From</name> <literal type="number">9ba7a8e612e933da24c4eae0f927bf2fb6af32b0</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Yonik</name> <name><name>Seeley</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">22</literal> <name>Nov</name> <literal type="number">2006</literal> <literal type="number">02</literal><operator>:</operator><literal type="number">47</literal><operator>:</operator><literal type="number">49</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name><name>RAMDirectory</name><operator>.</operator><name>sizeInBytes</name></name></expr><operator>,</operator> <expr><specifier>public</specifier> <name>flushRamSegments</name><operator>:</operator> <name>LUCENE</name><operator>-</operator><literal type="number">709</literal>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/java/trunk@478014 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexWriter</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">24</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMDirectory</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">159</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMFile</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">58</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMInputStream</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMOutputStream</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">18</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>store</name><operator>/</operator><name><name>TestRAMDirectory</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">54</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <literal type="number">7</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">253</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">68</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>ba576ea44c1</name><operator>..</operator><name>ff7fc961307</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <name>New</name> <name>features</name>
+     <name>characters</name> <name>in</name> <name>terms</name> <name>via</name> <name>a</name> <name>unicode</name> <name>escape</name> <name>of</name> <name>the</name> <name>form</name> <operator>\</operator><call><name>uXXXX</name>
+     <argument_list>(<argument><expr><name>Michael</name> <name>Busch</name> <name>via</name> <name>Yonik</name> <name>Seeley</name></expr></argument>)</argument_list></call>
+ 
+ <literal type="number">9.</literal> <name>LUCENE</name><operator>-</operator><literal type="number">709</literal><operator>:</operator> <name>Added</name> <call><name><name>RAMDirectory</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><call><name><name>IndexWriter</name><operator>.</operator><name>ramSizeInBytes</name></name><argument_list>()</argument_list></call>
+    <name>and</name> <call><name><name>IndexWriter</name><operator>.</operator><name>flushRamSegments</name></name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><name>allowing</name> <name>applications</name> <name>to</name>
+    <name>control</name> <name>the</name> <name>amount</name> <name>of</name> <name>memory</name> <name>used</name> <name>to</name> <name>buffer</name> <name><name>documents</name><operator>.</operator></name>
+    (<name>Chuck</name> <name>Williams</name> <name>via</name> <name>Yonik</name> <name>Seeley</name></expr></expr_stmt>)
+
+
+ <expr_stmt><expr><name>API</name> <name>Changes</name>
+ 
+  <literal type="number">1.</literal> <name>LUCENE</name><operator>-</operator><literal type="number">438</literal><operator>:</operator> <name>Remove</name> <literal type="string">"final"</literal> <name>from</name> <name>Token</name></expr><operator>,</operator> <expr><name>implement</name> <name>Cloneable</name></expr><operator>,</operator> <expr><name>allow</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexWriter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d02c9435a68</name><operator>..</operator><literal type="number">167249deaef</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexWriter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">99</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">99</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexWriter</name> <block>{
+ 
+   <expr><specifier>private</specifier> <name>Similarity</name> <name>similarity</name> <operator>=</operator> <call><name><name>Similarity</name><operator>.</operator><name>getDefault</name></name><argument_list>()</argument_list></call></expr>; <comment type="line">// how to normalize</comment>
+ 
+  <expr><specifier>private</specifier> <name>SegmentInfos</name> <name>segmentInfos</name> <operator>=</operator> <operator>new</operator> <call><name>SegmentInfos</name><argument_list>()</argument_list></call></expr>; <comment type="line">// the segments</comment>
+  <expr><specifier>private</specifier> <name>SegmentInfos</name> <name>ramSegmentInfos</name> <operator>=</operator> <operator>new</operator> <call><name>SegmentInfos</name><argument_list>()</argument_list></call></expr>; <comment type="line">// the segments in ramDirectory</comment>
+  <expr><specifier>private</specifier> <name>final</name> <name>Directory</name> <name>ramDirectory</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>()</argument_list></call></expr>; <comment type="line">// for temp segs</comment>
+  <expr><specifier>private</specifier> <name>SegmentInfos</name> <name>segmentInfos</name> <operator>=</operator> <operator>new</operator> <call><name>SegmentInfos</name><argument_list>()</argument_list></call></expr>;       <comment type="line">// the segments</comment>
+  <expr><specifier>private</specifier> <name>SegmentInfos</name> <name>ramSegmentInfos</name> <operator>=</operator> <operator>new</operator> <call><name>SegmentInfos</name><argument_list>()</argument_list></call></expr>;    <comment type="line">// the segments in ramDirectory</comment>
+  <expr><specifier>private</specifier> <name>final</name> <name>RAMDirectory</name> <name>ramDirectory</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>()</argument_list></call></expr>; <comment type="line">// for temp segs</comment>
+   <expr><specifier>private</specifier> <name>IndexFileDeleter</name> <name>deleter</name></expr>;
+ 
+   <expr><specifier>private</specifier> <name>Lock</name> <name>writeLock</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">827</literal></expr>,<expr><literal type="number">14</literal> <operator>+</operator><literal type="number">827</literal></expr>,<expr><literal type="number">28</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexWriter</name> <block>{
+     }</block></expr>
+   }</block>
+ 
+  <comment type="block" format="javadoc">/** Merges all RAM-resident segments, then may merge segments. */</comment>
+  <specifier>private</specifier> <name>final</name> <name>void</name> <call><name>flushRamSegments</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+  <comment type="block" format="javadoc">/** Expert:  Flushes all RAM-resident segments (buffered documents), then may merge segments. */</comment>
+  <expr><specifier>public</specifier> <name>final</name> <specifier>synchronized</specifier> <name>void</name> <call><name>flushRamSegments</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+     <if_stmt><if>if <condition>(<expr><call><name><name>ramSegmentInfos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><call><name>mergeSegments</name><argument_list>(<argument><expr><name>ramSegmentInfos</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>ramSegmentInfos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>maybeMergeSegments</name><argument_list>(<argument><expr><name>minMergeDocs</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+   }
+ 
+  <comment type="block" format="javadoc">/** Expert:  Return the total size of all index files currently cached in memory.
+   * Useful for size management with flushRamDocs()
+   */</comment>
+  public <function><type><specifier>final</specifier> <name>long</name></type> <name>ramSizeInBytes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>ramDirectory</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/** Expert:  Return the number of documents whose segments are currently cached in memory.
+   * Useful when calling flushRamSegments()
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <specifier>synchronized</specifier> <name>int</name></type> <name>numRamDocs</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>ramSegmentInfos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+  
+   <comment type="block" format="javadoc">/** Incremental segment merger.  */</comment>
+   <function><type><specifier>private</specifier> <specifier>final</specifier> <name>void</name></type> <name>maybeMergeSegments</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>startUpperBound</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>long</name></type> <name>lowerBound</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMDirectory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMDirectory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">9d5aa94ca37</literal><operator>..</operator><name>dd908278a8a</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMDirectory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMDirectory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileNotFoundException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Serializable</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Hashtable</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Enumeration</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>IndexInput</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>IndexOutput</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * A memory-resident {@link Directory} implementation.  Locking
+@@ -39,7 +38,14 @@ public final class RAMDirectory extends Directory implements Serializable {
+ 
+   private static final long serialVersionUID = 1l;
+ 
+  Hashtable files = new Hashtable();
+  private HashMap fileMap = new HashMap();
+  private Set fileNames = fileMap.keySet();
+  private Collection files = fileMap.values();
+  long sizeInBytes = 0;
+  
+  // *****
+  // Lock acquisition sequence:  RAMDirectory, then RAMFile
+  // *****
+ 
+   /** Constructs an empty {@link Directory}. */</comment>
+   <constructor><specifier>public</specifier> <name>RAMDirectory</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">107</literal></expr><operator>,</operator><expr><literal type="number">85</literal> <operator>+</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">144</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>RAMDirectory</name> extends <name>Directory</name> implements <name>Serializable</name> <block>{
+ 
+   <comment type="block" format="javadoc">/** Returns an array of strings, one for each file in the directory. */</comment>
+   <expr><specifier>public</specifier> <specifier>synchronized</specifier> <name>final</name> <name><name>String</name><index>[]</index></name> <call><name>list</name><argument_list>()</argument_list></call> <block>{
+    <expr><name><name>String</name><index>[]</index></name> <name>result</name> <operator>=</operator> <operator>new</operator> <name><name>String</name><index>[<expr><call><name><name>files</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr>;
+    <expr><name><name>String</name><index>[]</index></name> <name>result</name> <operator>=</operator> <operator>new</operator> <name><name>String</name><index>[<expr><call><name><name>fileNames</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr>;
+     <expr><name>int</name> <name>i</name> <operator>=</operator> <literal type="number">0</literal></expr>;
+    <expr><name>Enumeration</name> <name>names</name> <operator>=</operator> <call><name><name>files</name><operator>.</operator><name>keys</name></name><argument_list>()</argument_list></call></expr>;
+    <while>while <condition>(<expr><call><name><name>names</name><operator>.</operator><name>hasMoreElements</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><name><name>result</name><index>[<expr><name>i</name><operator>++</operator></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>String</name><operator>)</operator><call><name><name>names</name><operator>.</operator><name>nextElement</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></while>
+    <name>Iterator</name> <name>it</name> <operator>=</operator> <call><name><name>fileNames</name><operator>.</operator><name>iterator</name></name><argument_list>()</argument_list></call></block></expr>;
+    <while>while <condition>(<expr><call><name><name>it</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><name><name>result</name><index>[<expr><name>i</name><operator>++</operator></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>String</name><operator>)</operator><call><name><name>it</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></while></block></expr></expr_stmt>
+     <return>return <expr><name>result</name></expr>;</return>
+   </block_content>}</block></constructor>
+ 
+   <comment type="block" format="javadoc">/** Returns true iff the named file exists in this directory. */</comment>
+   <function><type><specifier>public</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>fileExists</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>file</name> <operator>=</operator> <operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></synchronized>
+     <return>return <expr><name>file</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Returns the time the named file was last modified. */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>long</name></type> <name>fileModified</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><name><name>file</name><operator>.</operator><name>lastModified</name></name></expr>;</return>
+  <comment type="block" format="javadoc">/** Returns the time the named file was last modified.
+   * @throws IOException if the file does not exist
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>long</name></type> <name>fileModified</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>file</name> <operator>=</operator> <operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></synchronized>
+    <if_stmt><if>if <condition>(<expr><name>file</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+    <return>return <expr><call><name><name>file</name><operator>.</operator><name>getLastModified</name></name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Set the modified time of an existing file to now. */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>touchFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<comment type="line">//     final boolean MONITOR = false;</comment>
+
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <comment type="block" format="javadoc">/** Set the modified time of an existing file to now.
+   * @throws IOException if the file does not exist
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>touchFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>file</name> <operator>=</operator> <operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></synchronized>
+    <if_stmt><if>if <condition>(<expr><name>file</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+    
+     <decl_stmt><decl><type><name>long</name></type> <name>ts2</name></decl>, <decl><type ref="prev"/><name>ts1</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <do>do <block>{<block_content>
+       <try>try <block>{<block_content>
+         <expr_stmt><expr><call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try>
+       <expr_stmt><expr><name>ts2</name> <operator>=</operator> <call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<comment type="line">//       if (MONITOR) {</comment>
+<comment type="line">//         count++;</comment>
+<comment type="line">//       }</comment>
+     </block_content>}</block> while<condition>(<expr><name>ts1</name> <operator>==</operator> <name>ts2</name></expr>)</condition>;</do>
+
+    <expr_stmt><expr><name><name>file</name><operator>.</operator><name>lastModified</name></name> <operator>=</operator> <name>ts2</name></expr>;</expr_stmt>
+
+<comment type="line">//     if (MONITOR)</comment>
+<comment type="line">//         System.out.println("SLEEP COUNT: " + count);</comment>
+    
+    <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>setLastModified</name></name><argument_list>(<argument><expr><name>ts2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Returns the length in bytes of a file in the directory. */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>long</name></type> <name>fileLength</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><name><name>file</name><operator>.</operator><name>length</name></name></expr>;</return>
+  <comment type="block" format="javadoc">/** Returns the length in bytes of a file in the directory.
+   * @throws IOException if the file does not exist
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>long</name></type> <name>fileLength</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>file</name> <operator>=</operator> <operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></synchronized>
+    <if_stmt><if>if <condition>(<expr><name>file</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+    <return>return <expr><call><name><name>file</name><operator>.</operator><name>getLength</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/** Return total size in bytes of all files in this directory */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <specifier>final</specifier> <name>long</name></type> <name>sizeInBytes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>sizeInBytes</name></expr>;</return>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/** Provided for testing purposes.  Use sizeInBytes() instead. */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <specifier>final</specifier> <name>long</name></type> <name>getRecomputedSizeInBytes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>long</name></type> <name>size</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Iterator</name></type> <name>it</name> <init>= <expr><call><name><name>files</name><operator>.</operator><name>iterator</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><call><name><name>it</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><name>size</name> <operator>+=</operator> <operator>(</operator><operator>(</operator><name>RAMFile</name><operator>)</operator> <call><name><name>it</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getSizeInBytes</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></while>
+    <return>return <expr><name>size</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Removes an existing file in the directory. */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>void</name></type> <name>deleteFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>files</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <comment type="block" format="javadoc">/** Removes an existing file in the directory.
+   * @throws IOException if the file does not exist
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <specifier>final</specifier> <name>void</name></type> <name>deleteFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>file</name><operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fileMap</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>file</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>sizeInBytes</name> <operator>-=</operator> <name><name>file</name><operator>.</operator><name>sizeInBytes</name></name></expr>;</expr_stmt>       <comment type="line">// updates to RAMFile.sizeInBytes synchronized on directory</comment>
+    </block_content>}</block></if> <else>else<block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></else></if_stmt>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Removes an existing file in the directory. */</comment>
+  <function><type><specifier>public</specifier> <specifier>final</specifier> <name>void</name></type> <name>renameFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>from</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>to</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>from</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>files</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>from</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>files</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>to</name></expr></argument>, <argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <comment type="block" format="javadoc">/** Removes an existing file in the directory.
+   * @throws IOException if from does not exist
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <specifier>final</specifier> <name>void</name></type> <name>renameFile</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>from</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>to</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>fromFile</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>from</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>fromFile</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>from</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>toFile</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>to</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>toFile</name><operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>sizeInBytes</name> <operator>-=</operator> <name><name>toFile</name><operator>.</operator><name>sizeInBytes</name></name></expr>;</expr_stmt>       <comment type="line">// updates to RAMFile.sizeInBytes synchronized on directory</comment>
+      <expr_stmt><expr><name><name>toFile</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>fileMap</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>from</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fileMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>to</name></expr></argument>, <argument><expr><name>fromFile</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Creates a new, empty file in the directory with the given name.
+      Returns a stream writing this file. */</comment>
+  <comment type="block" format="javadoc">/** Creates a new, empty file in the directory with the given name. Returns a stream writing this file. */</comment>
+   <function><type><specifier>public</specifier> <specifier>final</specifier> <name>IndexOutput</name></type> <name>createOutput</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>new</operator> <call><name>RAMFile</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>files</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>new</operator> <call><name>RAMFile</name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <decl_stmt><decl><type><name>RAMFile</name></type> <name>existing</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>existing</name><operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>sizeInBytes</name> <operator>-=</operator> <name><name>existing</name><operator>.</operator><name>sizeInBytes</name></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>existing</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>fileMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></synchronized>
+     <return>return <expr><operator>new</operator> <call><name>RAMOutputStream</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/** Returns a stream reading an existing file. */</comment>
+   <function><type><specifier>public</specifier> <specifier>final</specifier> <name>IndexInput</name></type> <name>openInput</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name> <init>= <expr><operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>files</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>file</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw>
+    <decl_stmt><decl><type><name>RAMFile</name></type> <name>file</name></decl>;</decl_stmt>
+    <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>file</name> <operator>=</operator> <operator>(</operator><name>RAMFile</name><operator>)</operator><call><name><name>fileMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></synchronized>
+    <if_stmt><if>if <condition>(<expr><name>file</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+     <return>return <expr><operator>new</operator> <call><name>RAMInputStream</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+   <comment type="block" format="javadoc">/** Closes the store to future operations, releasing associated memory. */</comment>
+   <function><type><specifier>public</specifier> <specifier>final</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>fileMap</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>fileNames</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+     <expr_stmt><expr><name>files</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+   </block_content>}</block></function>
+
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMFile</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMFile</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d66d91d896c</name><operator>..</operator><literal type="number">9e408746a1d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMFile</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMFile</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">66</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name></name>;</package>
+  <expr_stmt><expr><operator>*</operator> <name>limitations</name> <name>under</name> <name>the</name> <name><name>License</name><operator>.</operator></name>
+  *<operator>/</operator></expr></expr_stmt>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Vector</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Serializable</name></name>;</import>
+ 
+ <class>class <name>RAMFile</name> <super_list><implements>implements <super><name>Serializable</name></super></implements></super_list> <block>{
+ 
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>long</name></type> <name>serialVersionUID</name> <init>= <expr><literal type="number">1l</literal></expr></init></decl>;</decl_stmt>
+ 
+  <decl_stmt><decl><type><name>Vector</name></type> <name>buffers</name> <init>= <expr><operator>new</operator> <call><name>Vector</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <comment type="line">// Direct read-only access to state supported for streams since a writing stream implies no other concurrent streams</comment>
+  <decl_stmt><decl><type><name>ArrayList</name></type> <name>buffers</name> <init>= <expr><operator>new</operator> <call><name>ArrayList</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><name>long</name></type> <name>length</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>long</name></type> <name>lastModified</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>RAMDirectory</name></type> <name>directory</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>long</name></type> <name>sizeInBytes</name></decl>;</decl_stmt>                  <comment type="line">// Only maintained if in a directory; updates synchronized on directory</comment>
+
+  <comment type="line">// This is publicly modifiable via Directory.touchFile(), so direct access not supported</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>long</name></type> <name>lastModified</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <comment type="line">// File used as buffer, in no RAMDirectory</comment>
+  <constructor><name>RAMFile</name><parameter_list>()</parameter_list> <block>{<block_content/>}</block></constructor>
+  
+  <constructor><name>RAMFile</name><parameter_list>(<parameter><decl><type><name>RAMDirectory</name></type> <name>directory</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <name>directory</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <comment type="line">// For non-stream access from thread that might be concurrent with writing</comment>
+  <function><type><specifier>synchronized</specifier> <name>long</name></type> <name>getLength</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>length</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>synchronized</specifier> <name>void</name></type> <name>setLength</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>length</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>length</name></name> <operator>=</operator> <name>length</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// For non-stream access from thread that might be concurrent with writing</comment>
+  <function><type><specifier>synchronized</specifier> <name>long</name></type> <name>getLastModified</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>lastModified</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>synchronized</specifier> <name>void</name></type> <name>setLastModified</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>lastModified</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lastModified</name></name> <operator>=</operator> <name>lastModified</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// Only one writing stream with no concurrent reading streams, so no file synchronization required</comment>
+  <function><type><specifier>final</specifier> <name><name>byte</name><index>[]</index></name></type> <name>addBuffer</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>size</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>buffer</name> <init>= <expr><operator>new</operator> <name><name>byte</name><index>[<expr><name>size</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>directory</name><operator>!=</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <synchronized>synchronized <init>(<expr><name>directory</name></expr>)</init> <block>{<block_content>             <comment type="line">// Ensure addition of buffer and adjustment to directory size are atomic wrt directory</comment>
+        <expr_stmt><expr><call><name><name>buffers</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>buffer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>directory</name><operator>.</operator><name>sizeInBytes</name></name> <operator>+=</operator> <name>size</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>sizeInBytes</name> <operator>+=</operator> <name>size</name></expr>;</expr_stmt>
+      </block_content>}</block></synchronized></block_content></block></if>
+    <else>else<block type="pseudo"><block_content>
+      <expr_stmt><expr><call><name><name>buffers</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>buffer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></else></if_stmt>
+    <return>return <expr><name>buffer</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="line">// Only valid if in a directory</comment>
+  <function><type><name>long</name></type> <name>getSizeInBytes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <synchronized>synchronized <init>(<expr><name>directory</name></expr>)</init> <block>{<block_content>
+      <return>return <expr><name>sizeInBytes</name></expr>;</return>
+    </block_content>}</block></synchronized>
+  </block_content>}</block></function>
+  
+ }</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMInputStream</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMInputStream</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c4acb567faf</name><operator>..</operator><literal type="number">34f9d0695de</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMInputStream</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMInputStream</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>class</name> <name>RAMInputStream</name> extends <name>BufferedIndexInput</name> implements <name>Cloneable</name> <block>{
+       <expr><name>int</name> <name>bufferOffset</name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator><operator>(</operator><name>start</name><operator>%</operator><name>BUFFER_SIZE</name><operator>)</operator></expr>;
+       <expr><name>int</name> <name>bytesInBuffer</name> <operator>=</operator> <name>BUFFER_SIZE</name> <operator>-</operator> <name>bufferOffset</name></expr>;
+       <expr><name>int</name> <name>bytesToCopy</name> <operator>=</operator> <ternary><condition><expr><name>bytesInBuffer</name> <operator>&gt;=</operator> <name>remainder</name></expr> ?</condition><then> <expr><name>remainder</name></expr> </then><else>: <expr><name>bytesInBuffer</name></expr></else></ternary></expr>;
+      <expr><name><name>byte</name><index>[]</index></name> <name>buffer</name> <operator>=</operator> <operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator><call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>elementAt</name></name><argument_list>(<argument><expr><name>bufferNumber</name></expr></argument>)</argument_list></call></expr>;
+      <expr><name><name>byte</name><index>[]</index></name> <name>buffer</name> <operator>=</operator> <operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator><call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>bufferNumber</name></expr></argument>)</argument_list></call></expr>;
+       <expr><call><name><name>System</name><operator>.</operator><name>arraycopy</name></name><argument_list>(<argument><expr><name>buffer</name></expr></argument>, <argument><expr><name>bufferOffset</name></expr></argument>, <argument><expr><name>dest</name></expr></argument>, <argument><expr><name>destOffset</name></expr></argument>, <argument><expr><name>bytesToCopy</name></expr></argument>)</argument_list></call></expr>;
+       <expr><name>destOffset</name> <operator>+=</operator> <name>bytesToCopy</name></expr>;
+       <expr><name>start</name> <operator>+=</operator> <name>bytesToCopy</name></expr>;
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMOutputStream</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMOutputStream</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f1d76afe520</name><operator>..</operator><literal type="number">8ccd8f70fb1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMOutputStream</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>RAMOutputStream</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">50</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">50</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>RAMOutputStream</name> extends <name>BufferedIndexOutput</name> <block>{
+       <if_stmt><if>if <condition>(<expr><name>nextPos</name> <operator>&gt;</operator> <name>end</name></expr>)</condition> <block>{<block_content>                        <comment type="line">// at the last buffer</comment>
+         <expr_stmt><expr><name>length</name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator><operator>(</operator><name>end</name> <operator>-</operator> <name>pos</name><operator>)</operator></expr>;</expr_stmt>
+       <expr_stmt/></block_content></block></if></if_stmt>}</block>
+      <call><name><name>out</name><operator>.</operator><name>writeBytes</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator><call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>elementAt</name></name><argument_list>(<argument><expr><name>buffer</name><operator>++</operator></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>length</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>out</name><operator>.</operator><name>writeBytes</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator><call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>buffer</name><operator>++</operator></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>length</name></expr></argument>)</argument_list></call></expr>;
+       <expr><name>pos</name> <operator>=</operator> <name>nextPos</name></expr>;
+     }</block></expr></expr_stmt>
+   </block_content>}</block></function>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">63</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">63</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>RAMOutputStream</name> extends <name>BufferedIndexOutput</name> <block>{
+       <throw>throw <argument_list>new <argument><expr><call><name>RuntimeException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+     }</block>
+ 
+    <name><name>file</name><operator>.</operator><name>length</name></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>flushBuffer</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>src</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>len</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">76</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">76</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>RAMOutputStream</name> extends <name>BufferedIndexOutput</name> <block>{
+       <expr><name>int</name> <name>remainInSrcBuffer</name> <operator>=</operator> <name>len</name> <operator>-</operator> <name>bufferPos</name></expr>;
+       <expr><name>int</name> <name>bytesToCopy</name> <operator>=</operator> <ternary><condition><expr><name>bytesInBuffer</name> <operator>&gt;=</operator> <name>remainInSrcBuffer</name></expr> ?</condition><then> <expr><name>remainInSrcBuffer</name></expr> </then><else>: <expr><name>bytesInBuffer</name></expr></else></ternary></expr>;
+ 
+      <if_stmt><if>if <condition>(<expr><name>bufferNumber</name> <operator>==</operator> <call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>buffer</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><name>BUFFER_SIZE</name></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><name>buffer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+        <expr_stmt><expr><name>buffer</name> <operator>=</operator> <operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator> <call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>elementAt</name></name><argument_list>(<argument><expr><name>bufferNumber</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>bufferNumber</name> <operator>==</operator> <call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>buffer</name> <operator>=</operator> <call><name><name>file</name><operator>.</operator><name>addBuffer</name></name><argument_list>(<argument><expr><name>BUFFER_SIZE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if>
+      <else>else<block type="pseudo"><block_content>
+        <expr_stmt><expr><name>buffer</name> <operator>=</operator> <operator>(</operator><name><name>byte</name><index>[]</index></name><operator>)</operator> <call><name><name>file</name><operator>.</operator><name>buffers</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>bufferNumber</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></else></if_stmt>
+ 
+       <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>arraycopy</name></name><argument_list>(<argument><expr><name>src</name></expr></argument>, <argument><expr><name>bufferPos</name></expr></argument>, <argument><expr><name>buffer</name></expr></argument>, <argument><expr><name>bufferOffset</name></expr></argument>, <argument><expr><name>bytesToCopy</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><name>bufferPos</name> <operator>+=</operator> <name>bytesToCopy</name></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">89</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">87</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>RAMOutputStream</name> extends <name>BufferedIndexOutput</name> <block>{
+     }</block></expr></expr_stmt>
+ 
+     <if_stmt><if>if <condition>(<expr><name>pointer</name> <operator>&gt;</operator> <name><name>file</name><operator>.</operator><name>length</name></name></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><name><name>file</name><operator>.</operator><name>length</name></name> <operator>=</operator> <name>pointer</name></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>setLength</name></name><argument_list>(<argument><expr><name>pointer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+    <expr_stmt><expr><name><name>file</name><operator>.</operator><name>lastModified</name></name> <operator>=</operator> <call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>setLastModified</name></name><argument_list>(<argument><expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>store</name><operator>/</operator><name><name>TestRAMDirectory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>store</name><operator>/</operator><name><name>TestRAMDirectory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">75083457cbc</literal><operator>..</operator><literal type="number">967cfefef55</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>store</name><operator>/</operator><name><name>TestRAMDirectory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>store</name><operator>/</operator><name><name>TestRAMDirectory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestRAMDirectory</name> extends <name>TestCase</name> <block>{
+       <expr><call><name><name>writer</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;
+     }</block>
+     <call><name>assertEquals</name><argument_list>(<argument><expr><name>docsToAdd</name></expr></argument>, <argument><expr><call><name><name>writer</name><operator>.</operator><name>docCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>optimize</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+   
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">73</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestRAMDirectory</name> extends <name>TestCase</name> <block>{
+     <expr><name>Directory</name> <name>dir</name> <operator>=</operator> <call><name><name>FSDirectory</name><operator>.</operator><name>getDirectory</name></name><argument_list>(<argument><expr><name>indexDir</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><name>RAMDirectory</name> <name>ramDir</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>(<argument><expr><name>dir</name></expr></argument>)</argument_list></call></expr>;
+     
+    <comment type="line">// close the underlaying directory and delete the index</comment>
+    <comment type="line">// close the underlaying directory</comment>
+     <expr><call><name><name>dir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;
+     
+    <comment type="line">// Check size</comment>
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+     <comment type="line">// open reader to test document count</comment>
+     <expr><name>IndexReader</name> <name>reader</name> <operator>=</operator> <call><name><name>IndexReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>ramDir</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>docsToAdd</name></expr></argument>, <argument><expr><call><name><name>reader</name><operator>.</operator><name>numDocs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">98</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">100</literal></expr>,<expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestRAMDirectory</name> extends <name>TestCase</name> <block>{
+     
+     <expr><name>RAMDirectory</name> <name>ramDir</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>(<argument><expr><name>indexDir</name></expr></argument>)</argument_list></call></expr>;
+     
+    <comment type="line">// Check size</comment>
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+     <comment type="line">// open reader to test document count</comment>
+     <expr><name>IndexReader</name> <name>reader</name> <operator>=</operator> <call><name><name>IndexReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>ramDir</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>docsToAdd</name></expr></argument>, <argument><expr><call><name><name>reader</name><operator>.</operator><name>numDocs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">120</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">125</literal></expr>,<expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestRAMDirectory</name> extends <name>TestCase</name> <block>{
+     
+     <expr><name>RAMDirectory</name> <name>ramDir</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>(<argument><expr><call><name><name>indexDir</name><operator>.</operator><name>getCanonicalPath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     
+    <comment type="line">// Check size</comment>
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+     <comment type="line">// open reader to test document count</comment>
+     <expr><name>IndexReader</name> <name>reader</name> <operator>=</operator> <call><name><name>IndexReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>ramDir</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>docsToAdd</name></expr></argument>, <argument><expr><call><name><name>reader</name><operator>.</operator><name>numDocs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">137</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">145</literal></expr>,<expr><literal type="number">48</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestRAMDirectory</name> extends <name>TestCase</name> <block>{
+     <expr><call><name><name>reader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>searcher</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;
+   }</block>
+  
+  <specifier>private</specifier> <name>final</name> <name>int</name> <name>numThreads</name> <operator>=</operator> <literal type="number">50</literal></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>int</name> <name>docsPerThread</name> <operator>=</operator> <literal type="number">40</literal></expr>;
+  
+  <expr><specifier>public</specifier> <name>void</name> <call><name>testRAMDirectorySize</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{
+      
+    <expr><name>final</name> <name>RAMDirectory</name> <name>ramDir</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>(<argument><expr><call><name><name>indexDir</name><operator>.</operator><name>getCanonicalPath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><name>final</name> <name>IndexWriter</name> <name>writer</name>  <operator>=</operator> <operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>ramDir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>WhitespaceAnalyzer</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>writer</name><operator>.</operator><name>optimize</name></name><argument_list>()</argument_list></call></expr>;
+    
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+    <expr><name><name>Thread</name><index>[]</index></name> <name>threads</name> <operator>=</operator> <operator>new</operator> <name><name>Thread</name><index>[<expr><name>numThreads</name></expr>]</index></name></expr>;
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>numThreads</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>num</name> <init>= <expr><name>i</name></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>threads</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>new</operator> <class><super><name>Thread</name></super><argument_list>()</argument_list><block>{
+        <function><type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+          <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>j</name><operator>&lt;</operator><name>docsPerThread</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+            <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><literal type="string">"sizeContent"</literal></expr></argument>, <argument><expr><call><name><name>English</name><operator>.</operator><name>intToEnglish</name></name><argument_list>(<argument><expr><name>num</name><operator>*</operator><name>docsPerThread</name><operator>+</operator><name>j</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>YES</name></name></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Index</name><operator>.</operator><name>UN_TOKENIZED</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <try>try <block>{<block_content>
+              <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt/></block_content></block></try></block_content></block></for></block_content></block></function></block></class></expr></expr_stmt></block_content></block></for>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+              <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+            <expr_stmt/></block_content></block></catch>}</block>
+            <synchronized>synchronized <init>(<expr><name>ramDir</name></expr>)</init> <block>{<block_content>
+              <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt/></block_content></block></synchronized></expr>}</block></expr></expr_stmt>
+          </block_content>}</block></function>
+        </block_content>}</block></function>
+      </block_content>}</block></function><empty_stmt>;</empty_stmt>
+    </block_content>}</block></function>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>numThreads</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><block_content>
+      <expr_stmt><expr><name><name>threads</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>start</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></for>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>numThreads</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><block_content>
+      <expr_stmt><expr><name><name>threads</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>join</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></for>
+
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>optimize</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>ramDir</name><operator>.</operator><name>sizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ramDir</name><operator>.</operator><name>getRecomputedSizeInBytes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }
+ 
+   public <function><type><name>void</name></type> <name>tearDown</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <comment type="line">// cleanup </comment>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function>
+
+</unit>

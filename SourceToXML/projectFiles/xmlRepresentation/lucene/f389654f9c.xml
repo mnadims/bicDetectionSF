@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/f389654f9c.java"><expr_stmt><expr><name>From</name> <name>f389654f9c0763127df748769b9239a510e4dea8</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Steven</name> <name><name>Rowe</name> <argument_list type="generic">&lt;<argument><name>sarowe</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">14</literal> <name>Nov</name> <literal type="number">2011</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">48</literal><operator>:</operator><literal type="number">09</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">2382</literal><operator>:</operator> <name>Switch</name> <name>javadoc</name> <name>tag</name> @<name><name>solr</name><operator>.</operator><name>experimental</name></name> <name>to</name>
+ @<call><name><name>lucene</name><operator>.</operator><name>experimental</name></name> <argument_list>(<argument><expr><name>the</name> <name>build</name><literal type="char">'s javadoc invocation does not include
+ @solr.experimental, and @lucene.experimental is already used in many places
+ in Solr'</literal><name>s</name> <name>code</name></expr></argument>)</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1201784 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>dataimport</name><operator>/</operator><name><name>DIHCache</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">19</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">18</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">1</literal> <call><name>deletion</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>contrib</name><operator>/</operator><name>dataimporthandler</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>dataimport</name><operator>/</operator><name><name>DIHCache</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>contrib</name><operator>/</operator><name>dataimporthandler</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>dataimport</name><operator>/</operator><name><name>DIHCache</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">049e503330c</literal><operator>..</operator><literal type="number">2b6ae9a9663</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>contrib</name><operator>/</operator><name>dataimporthandler</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>dataimport</name><operator>/</operator><name><name>DIHCache</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>contrib</name><operator>/</operator><name>dataimporthandler</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>dataimport</name><operator>/</operator><name><name>DIHCache</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@</expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>handler</name><operator>.</operator><name>dataimport</name></name>;</package>
+ 
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">9</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">26</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+  <expr><operator>*</operator> <name>to</name> <name>other</name> <name>data</name> <name>and</name><operator>/</operator><name>or</name> <name><name>indexed</name><operator>.</operator></name>
+  * <operator>&lt;</operator><operator>/</operator><name>p</name><operator>&gt;</operator>
+  <operator>*</operator> 
+ <operator>*</operator> @<name><name>solr</name><operator>.</operator><name>experimental</name></name>
+ <operator>*</operator> @<name><name>lucene</name><operator>.</operator><name>experimental</name></name>
+  <operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> interface <name>DIHCache</name> extends <name><name>Iterable</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <block>{
+   
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block></expr>
+
+</unit>

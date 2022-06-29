@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/085c5b793.java"><expr><name>From</name> <literal type="number">085c5b793b057b8a28bd2bfcd96ebf03b3ecfc21</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Christopher</name> <name><name>Tubbs</name> <argument_list type="generic">&lt;<argument><name>ctubbsii</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">10</literal> <name>Oct</name> <literal type="number">2014</literal> <literal type="number">17</literal><operator>:</operator><literal type="number">53</literal><operator>:</operator><literal type="number">44</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">3224</literal> <name>Use</name> <name>nanoTime</name> <name>in</name> <name>the</name> <name>shell</name><literal type="char">'</literal></expr>s auth timeout
+
+--
+ .../org/apache/accumulo/core/util/shell/Shell.java   | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java b/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+index a2834ff1c..bb3c06e95 100644
+-- a/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+++ b/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+@@ -36,6 +36,7 @@ import java.util.Map.Entry;
+ import java.util.Set;
+ import java.util.TreeMap;
+ import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+ 
+ import jline.ConsoleReader;
+ import jline.History;
+@@ -196,7 +197,7 @@ public class Shell extends ShellOptions {
+   private boolean tabCompletion;
+   private boolean disableAuthTimeout;
+   private long authTimeout;
+  private long lastUserActivity = System.currentTimeMillis();
+  private long lastUserActivity = System.nanoTime();
+   private boolean logErrorsToConsole = false;
+   private PrintWriter writer = null;
+   private boolean masking = false;
+@@ -229,7 +230,7 @@ public class Shell extends ShellOptions {
+       }
+       
+       setDebugging(cl.hasOption(debugOption.getLongOpt()));
+      authTimeout = Integer.parseInt(cl.getOptionValue(authTimeoutOpt.getLongOpt(), DEFAULT_AUTH_TIMEOUT)) * 60 * 1000l;
+      authTimeout = TimeUnit.MINUTES.toNanos(Integer.parseInt(cl.getOptionValue(authTimeoutOpt.getLongOpt(), DEFAULT_AUTH_TIMEOUT)));
+       disableAuthTimeout = cl.hasOption(disableAuthTimeoutOpt.getLongOpt());
+       
+       if (cl.hasOption(zooKeeperInstance.getOpt()) &amp;&amp; cl.getOptionValues(zooKeeperInstance.getOpt()).length != 2)
+@@ -492,7 +493,7 @@ public class Shell extends ShellOptions {
+     if (disableAuthTimeout)
+       sb.append("- Authorization timeout: disabled\n");
+     else
+      sb.append("- Authorization timeout: ").append(String.format("%.2fs%n", authTimeout / 1000.0));
+      sb.append("- Authorization timeout: ").append(String.format("%.2fs%n", TimeUnit.NANOSECONDS.toSeconds(authTimeout)));
+     sb.append("- Debug: ").append(isDebuggingEnabled() ? "on" : "off").append("\n");
+     if (!scanIteratorOptions.isEmpty()) {
+       for (Entry&lt;String,List&lt;IteratorSetting&gt;&gt; entry : scanIteratorOptions.entrySet()) {
+@@ -548,7 +549,8 @@ public class Shell extends ShellOptions {
+           return;
+         }
+         
+        if (!(sc instanceof ExitCommand) &amp;&amp; !ignoreAuthTimeout &amp;&amp; System.currentTimeMillis() - lastUserActivity &gt; authTimeout) {
+        long duration = System.nanoTime() - lastUserActivity;
+        if (!(sc instanceof ExitCommand) &amp;&amp; !ignoreAuthTimeout &amp;&amp; (duration &lt; 0 || duration &gt; authTimeout)) {
+           reader.printString("Shell has been idle for too long. Please re-authenticate.\n");
+           boolean authFailed = true;
+           do {
+@@ -568,7 +570,7 @@ public class Shell extends ShellOptions {
+             if (authFailed)
+               reader.printString("Invalid password. ");
+           } while (authFailed);
+          lastUserActivity = System.currentTimeMillis();
+          lastUserActivity = System.nanoTime();
+         }
+         
+         // Get the options from the command on how to parse the string
+- 
+2.19.1.windows.1
+
+</unit>

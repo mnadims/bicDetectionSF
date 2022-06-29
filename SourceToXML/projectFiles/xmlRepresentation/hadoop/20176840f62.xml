@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/20176840f62.java"><expr_stmt><expr><name>From</name> <literal type="number">20176840f6287fb426090820d5a3319c7e120bea</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jason</name> <name>Darrell</name> <name><name>Lowe</name> <argument_list type="generic">&lt;<argument><name>jlowe</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Jan</name> <literal type="number">2014</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">45</literal><operator>:</operator><literal type="number">28</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>Addendum</name> <name>patch</name></expr></expr_stmt> <for>for HADOOP-9652 to fix performance problems.
+ Contributed by Andrew Wang
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1561038 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ hadoop-common-project/hadoop-common/CHANGES.txt       <operator>|</operator>  6 +++---
+ .../java/org/apache/hadoop/fs/RawLocalFileSystem.java <operator>|</operator> 11 ++++++++++-
+ .../java/org/apache/hadoop/fs/TestSymlinkLocalFS.java <operator>|</operator>  5 +++++
+ 3 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">18</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">4</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">4d18a94c4a1</literal><operator>..</operator><literal type="number">7595563d4e0</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">424</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">424</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>Release</name> <literal type="number">2.4.0</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">10143</literal> <name>replace</name> <name>WritableFactories</name><literal type="char">'</literal></expr></expr_stmt></for>s hashmap with ConcurrentHashMap
+     (Liang Xie via stack)
+ 
+    HADOOP-9652. Allow RawLocalFs#getFileLinkStatus to fill in the link owner
+    and mode if requested. (Andrew Wang via Colin Patrick McCabe)
+
+   OPTIMIZATIONS
+ 
+     HADOOP-9748. Reduce blocking on UGI.ensureInitialized (daryn)
+@@ -450,9 +453,6 @@ Release 2.4.0 - UNRELEASED
+     HADOOP-9817. FileSystem#globStatus and FileContext#globStatus need to work
+     with symlinks. (Colin Patrick McCabe via Andrew Wang)
+ 
+    HADOOP-9652.  RawLocalFs#getFileLinkStatus does not fill in the link owner
+    and mode.  (Andrew Wang via Colin Patrick McCabe)
+
+     HADOOP-9875.  TestDoAsEffectiveUser can fail on JDK 7.  (Aaron T. Myers via
+     Colin Patrick McCabe)
+ 
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+index 7d70ada73b4..bb5d8aada3e 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+@@ -16,8 +16,11 @@
+  * limitations under the License.
+  */
+ 
+
+ package org.apache.hadoop.fs;
+ 
+import com.google.common.annotations.VisibleForTesting;
+
+ import java.io.BufferedOutputStream;
+ import java.io.DataOutput;
+ import java.io.File;
+@@ -51,7 +54,13 @@
+ public class RawLocalFileSystem extends FileSystem {
+   static final URI NAME = URI.create("file:///");
+   private Path workingDir;
+  private static final boolean useDeprecatedFileStatus = !Stat.isAvailable();
+  // Temporary workaround for HADOOP-9652.
+  private static boolean useDeprecatedFileStatus = true;
+
+  @VisibleForTesting
+  public static void useStatIfAvailable() {
+    useDeprecatedFileStatus = !Stat.isAvailable();
+  }
+   
+   public RawLocalFileSystem() {
+     workingDir = getInitialWorkingDirectory();
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestSymlinkLocalFS.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestSymlinkLocalFS.java
+index c82dcc8a124..64e34af64bb 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestSymlinkLocalFS.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestSymlinkLocalFS.java
+@@ -38,6 +38,11 @@
+  * Test symbolic links using LocalFs.
+  */
+ abstract public class TestSymlinkLocalFS extends SymlinkBaseTest {
+
+  // Workaround for HADOOP-9652
+  static {
+    RawLocalFileSystem.useStatIfAvailable();
+  }
+   
+   @Override
+   protected String getScheme() {
+- 
+2.19.1.windows.1
+
+</unit>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/3b57a5a624.java"><expr_stmt><expr><name>From</name> <literal type="number">3b57a5a624bbe5b3ef36cee4e3f1a68e5287be99</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Koji</name> <name><name>Sekiguchi</name> <argument_list type="generic">&lt;<argument><name>koji</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">26</literal> <name>Dec</name> <literal type="number">2008</literal> <literal type="number">01</literal><operator>:</operator><literal type="number">08</literal><operator>:</operator><literal type="number">18</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">925</literal><operator>:</operator> <name>Fixed</name> <name>highlighting</name> <name>on</name> <name>fields</name> <name>with</name>
+ <name>multiValued</name><operator>=</operator><literal type="string">"true"</literal> <name>and</name> <name>termOffsets</name><operator>=</operator><literal type="string">"true"</literal>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/solr/trunk@729450 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>highlight</name><operator>/</operator><name><name>DefaultSolrHighlighter</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">46</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">47</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>schema</name><operator>.</operator><name>xml</name></name>      <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">97</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">2</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">7afa8a6d156</literal><operator>..</operator><literal type="number">906eb314129</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">118</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">118</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>New</name> <name>Features</name>
+     <name>optimized</name> <name>distributed</name> <name>faceting</name> <name>refinement</name> <name>by</name> <name>lowering</name> <name>parsing</name> <name>overhead</name> <name>and</name>
+     <name>by</name> <name>making</name> <name>requests</name> <name>and</name> <name>responses</name> <name><name>smaller</name><operator>.</operator></name>
+ 
+25. <name>SOLR</name><operator>-</operator><literal type="number">876</literal><operator>:</operator> <name>WOrdDelimiterFilter</name> <name>now</name> <name>supports</name> <name>a</name> <name>splitOnNumerics</name> 
+<literal type="number">25.</literal> <name>SOLR</name><operator>-</operator><literal type="number">876</literal><operator>:</operator> <name>WordDelimiterFilter</name> <name>now</name> <name>supports</name> <name>a</name> <name>splitOnNumerics</name> 
+     <name>option</name></expr><operator>,</operator> <expr><name>as</name> <name>well</name> <name>as</name> <name>a</name> <name>list</name> <name>of</name> <specifier>protected</specifier> <name><name>terms</name><operator>.</operator></name>
+     (<name>Dan</name> <name>Rosher</name> <name>via</name> <name>hossman</name></expr></expr_stmt>)
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">200</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">200</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Bug</name> <name>Fixes</name>
+ 
+ <literal type="number">22.</literal> <name>SOLR</name><operator>-</operator><literal type="number">897</literal><operator>:</operator> <name>Fixed</name> <name>Argument</name> <name>list</name> <name>too</name> <name>long</name> <name>error</name> <name>when</name> <name>there</name> <name>are</name> <name>lots</name> <name>of</name> <name>snapshots</name><operator>/</operator><call><name>backups</name> <argument_list>(<argument><expr><name>Dan</name> <name>Rosher</name> <name>via</name> <name>billa</name></expr></argument>)</argument_list></call>
+ 
+<literal type="number">23.</literal> <name>SOLR</name><operator>-</operator><literal type="number">925</literal><operator>:</operator> <name>Fixed</name> <name>highlighting</name> <name>on</name> <name>fields</name> <name>with</name> <name>multiValued</name><operator>=</operator><literal type="string">"true"</literal> <name>and</name> <name>termOffsets</name><operator>=</operator><literal type="string">"true"</literal> <operator>(</operator><name>koji</name><operator>)</operator>
+
+ 
+ <name>Other</name> <name>Changes</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>DefaultSolrHighlighter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>DefaultSolrHighlighter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">489c03e6603</literal><operator>..</operator><literal type="number">43904525281</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>DefaultSolrHighlighter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>DefaultSolrHighlighter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">271</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">271</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>DefaultSolrHighlighter</name> extends <name>SolrHighlighter</name>
+ 
+           <name><name>String</name><index>[]</index></name> <name>summaries</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+           <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>TextFragment</name></argument>&gt;</argument_list></name></type> <name>frags</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>TextFragment</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>TermOffsetsTokenStream</name></type> <name>tots</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+           <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name><name>docTexts</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+             <comment type="line">// create TokenStream</comment>
+             <try>try <block>{<block_content>
+               <comment type="line">// attempt term vectors</comment>
+              <expr_stmt><expr><name>tstream</name> <operator>=</operator> <call><name><name>TokenSources</name><operator>.</operator><name>getTokenStream</name></name><argument_list>(<argument><expr><call><name><name>searcher</name><operator>.</operator><name>getReader</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>docId</name></expr></argument>, <argument><expr><name>fieldName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <if_stmt><if>if<condition>( <expr><name>tots</name> <operator>==</operator> <literal type="null">null</literal></expr> )</condition><block type="pseudo"><block_content>
+                <expr_stmt><expr><name>tots</name> <operator>=</operator> <operator>new</operator> <call><name>TermOffsetsTokenStream</name><argument_list>( <argument><expr><call><name><name>TokenSources</name><operator>.</operator><name>getTokenStream</name></name><argument_list>(<argument><expr><call><name><name>searcher</name><operator>.</operator><name>getReader</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>docId</name></expr></argument>, <argument><expr><name>fieldName</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+              <expr_stmt><expr><name>tstream</name> <operator>=</operator> <call><name><name>tots</name><operator>.</operator><name>getMultiValuedTokenStream</name></name><argument_list>( <argument><expr><name><name>docTexts</name><index>[<expr><name>j</name></expr>]</index></name><operator>.</operator><call><name>length</name><argument_list>()</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block>
+             <catch>catch <parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+               <comment type="line">// fall back to anaylzer</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">410</literal></expr><operator>,</operator><expr><literal type="number">3</literal> <operator>+</operator><literal type="number">413</literal></expr><operator>,</operator><expr><literal type="number">44</literal> @@ <name>class</name> <name>TokenOrderingFilter</name> extends <name>TokenFilter</name> <block>{
+     <return>return <expr><call><name><name>queue</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call> <operator>?</operator> <literal type="null">null</literal> <operator>:</operator> <call><name><name>queue</name><operator>.</operator><name>removeFirst</name></name><argument_list>()</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+ </block_content>}</block></catch></try>
+
+<class>class <name>TermOffsetsTokenStream</name> <block>{
+
+  <decl_stmt><decl><type><name>TokenStream</name></type> <name>bufferedTokenStream</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>Token</name></type> <name>bufferedToken</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>startOffset</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>endOffset</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>TermOffsetsTokenStream</name><parameter_list>( <parameter><decl><type><name>TokenStream</name></type> <name>tstream</name></decl></parameter> )</parameter_list><block>{<block_content>
+    <expr_stmt><expr><name>bufferedTokenStream</name> <operator>=</operator> <name>tstream</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>startOffset</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>bufferedToken</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><type><specifier>public</specifier> <name>TokenStream</name></type> <name>getMultiValuedTokenStream</name><parameter_list>( <parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>length</name></decl></parameter> )</parameter_list><block>{<block_content>
+    <expr_stmt><expr><name>endOffset</name> <operator>=</operator> <name>startOffset</name> <operator>+</operator> <name>length</name></expr>;</expr_stmt>
+    <return>return <expr><operator>new</operator> <class><super><name>TokenStream</name></super><argument_list>()</argument_list><block>{
+      <decl_stmt><decl><type><name>Token</name></type> <name>token</name></decl>;</decl_stmt>
+      <function><type><specifier>public</specifier> <name>Token</name></type> <name>next</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <while>while<condition>( <expr><literal type="boolean">true</literal></expr> )</condition><block>{<block_content>
+          <if_stmt><if>if<condition>( <expr><name>bufferedToken</name> <operator>==</operator> <literal type="null">null</literal></expr> )</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><name>bufferedToken</name> <operator>=</operator> <call><name><name>bufferedTokenStream</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+          <if_stmt><if>if<condition>( <expr><name>bufferedToken</name> <operator>==</operator> <literal type="null">null</literal></expr> )</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+          <if_stmt><if>if<condition>( <expr><name>startOffset</name> <operator>&lt;=</operator> <call><name><name>bufferedToken</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+              <call><name><name>bufferedToken</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call> <operator>&lt;=</operator> <name>endOffset</name></expr> )</condition><block>{<block_content>
+            <expr_stmt><expr><name>token</name> <operator>=</operator> <name>bufferedToken</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>bufferedToken</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>token</name><operator>.</operator><name>setStartOffset</name></name><argument_list>( <argument><expr><call><name><name>token</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call> <operator>-</operator> <name>startOffset</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>token</name><operator>.</operator><name>setEndOffset</name></name><argument_list>( <argument><expr><call><name><name>token</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call> <operator>-</operator> <name>startOffset</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><name>token</name></expr>;</return>
+          </block_content>}</block></if>
+          <if type="elseif">else if<condition>( <expr><call><name><name>bufferedToken</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <name>endOffset</name></expr> )</condition><block>{<block_content>
+            <expr_stmt><expr><name>startOffset</name> <operator>+=</operator> <name>length</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name>bufferedToken</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        </block_content>}</block></while>
+      </block_content>}</block></function>
+    }</block></class></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2ebeb9fe74c</literal><operator>..</operator><literal type="number">01893fb254f</literal> <literal type="number">100755</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@</expr></expr_stmt>
+ 
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>highlight</name></name>;</package>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Analyzer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Token</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>WhitespaceAnalyzer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name><operator>.</operator><name>SolrCore</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>*</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>params</name><operator>.</operator><name>HighlightParams</name></name>;</import>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>StringReader</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import></block_content></block></for>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -140,6 +146,47 @@ public class HighlighterTest extends AbstractSolrTestCase {
+             "//arr[@name='tv_text']/str[.=' &lt;em&gt;long&lt;/em&gt; fragments.']"
+             );
+   }
+  
+  public void testTermOffsetsTokenStream() throws Exception {
+    String[] multivalued = { "a b c d", "e f g", "h", "i j k l m n" };
+    Analyzer a1 = new WhitespaceAnalyzer();
+    TermOffsetsTokenStream tots = new TermOffsetsTokenStream(
+        a1.tokenStream( "", new StringReader( "a b c d e f g h i j k l m n" ) ) );
+    for( String v : multivalued ){
+      TokenStream ts1 = tots.getMultiValuedTokenStream( v.length() );
+      Analyzer a2 = new WhitespaceAnalyzer();
+      TokenStream ts2 = a2.tokenStream( "", new StringReader( v ) );
+      Token t1 = new Token();
+      Token t2 = new Token();
+      for( t1 = ts1.next( t1 ); t1 != null; t1 = ts1.next( t1 ) ){
+        t2 = ts2.next( t2 );
+        assertEquals( t2, t1 );
+      }
+    }
+  }
+
+  public void testTermVecMultiValuedHighlight() throws Exception {
+
+    // do summarization using term vectors on multivalued field
+    HashMap&lt;String,String&gt; args = new HashMap&lt;String,String&gt;();
+    args.put("hl", "true");
+    args.put("hl.fl", "tv_mv_text");
+    args.put("hl.snippets", "2");
+    TestHarness.LocalRequestFactory sumLRF = h.getRequestFactory(
+      "standard",0,200,args);
+    
+    assertU(adoc("tv_mv_text", LONG_TEXT, 
+                 "tv_mv_text", LONG_TEXT, 
+                 "id", "1"));
+    assertU(commit());
+    assertU(optimize());
+    assertQ("Basic summarization",
+            sumLRF.makeRequest("tv_mv_text:long"),
+            "//lst[@name='highlighting']/lst[@name='1']",
+            "//lst[@name='1']/arr[@name='tv_mv_text']/str[.='a &lt;em&gt;long&lt;/em&gt; days night this should be a piece of text which']",
+            "//arr[@name='tv_mv_text']/str[.=' &lt;em&gt;long&lt;/em&gt; fragments.']"
+            );
+  }
+ 
+   public void testDisMaxHighlight() {
+ 
+diff --git a/src/test/test-files/solr/conf/schema.xml b/src/test/test-files/solr/conf/schema.xml
+index 50c0f421447..93449b6acd6 100644
+-- a/src/test/test-files/solr/conf/schema.xml
+++ b/src/test/test-files/solr/conf/schema.xml
+@@ -455,6 +455,8 @@
+    &lt;dynamicField name="t_*"  type="text"    indexed="true"  stored="true"/&gt;
+    &lt;dynamicField name="tv_*"  type="text" indexed="true"  stored="true" 
+       termVectors="true" termPositions="true" termOffsets="true"/&gt;
+   &lt;dynamicField name="tv_mv_*"  type="text" indexed="true"  stored="true" multivalued="true"
+      termVectors="true" termPositions="true" termOffsets="true"/&gt;
+ 
+    &lt;!-- special fields for dynamic copyField test --&gt;
+    &lt;dynamicField name="dynamic_*" type="string" indexed="true" stored="true"/&gt;
+- 
+2.19.1.windows.1
+
+</comment></unit>

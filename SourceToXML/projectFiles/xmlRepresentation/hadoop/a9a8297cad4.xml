@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/a9a8297cad4.java"><expr_stmt><expr><name>From</name> <name>a9a8297cad4122961b34265c0a31d87134a4a028</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jing</name> <name><name>Zhao</name> <argument_list type="generic">&lt;<argument><name>jing9</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">16</literal> <name>May</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">23</literal><operator>:</operator><literal type="number">36</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">13146.</literal> <name>Refactor</name> <name><name>RetryInvocationHandler</name><operator>.</operator> <name>Contributed</name></name> <name>by</name>
+ <name>Tsz</name> <name>Wo</name> <name>Nicholas</name> <name><name>Sze</name><operator>.</operator></name>
+
+--
+ <operator>...</operator><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>FailoverProxyProvider</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">11</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>RetryInvocationHandler</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">350</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>TestRetryProxy</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">67</literal> <operator>+</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">211</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">217</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>FailoverProxyProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>FailoverProxyProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5acb936aad5</literal><operator>..</operator><name>c73e0837721</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>FailoverProxyProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>FailoverProxyProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">37</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">37</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@
+      <operator>*</operator> <name>provides</name> <name>information</name></expr></expr_stmt> <for>for debugging purposes.
+      */
+     public final String proxyInfo<empty_stmt>;</empty_stmt></for>
+
+     <constructor><specifier>public</specifier> <name>ProxyInfo</name><parameter_list>(<parameter><decl><type><name>T</name></type> <name>proxy</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>proxyInfo</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>proxy</name></name> <operator>=</operator> <name>proxy</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>proxyInfo</name></name> <operator>=</operator> <name>proxyInfo</name></expr>;</expr_stmt>
+     </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getString</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>methodName</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <return>return <expr><call><name><name>proxy</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSimpleName</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"."</literal> <operator>+</operator> <name>methodName</name>
+          <operator>+</operator> <literal type="string">" over "</literal> <operator>+</operator> <name>proxyInfo</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><call><name><name>proxy</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSimpleName</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" over "</literal> <operator>+</operator> <name>proxyInfo</name></expr>;</return>
+    </block_content>}</block></function>
+   }
+ 
+   <comment type="block" format="javadoc">/**
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/retry/RetryInvocationHandler.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/retry/RetryInvocationHandler.java
+index a67c84f058b..300d0c2ab5b 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/retry/RetryInvocationHandler.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/retry/RetryInvocationHandler.java
+@@ -17,48 +17,137 @@
+  */</comment>
+ package <expr_stmt><expr><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name></name></expr>;</expr_stmt>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>InvocationHandler</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>InvocationTargetException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Method</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Proxy</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>LinkedList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>logging</name><operator>.</operator><name>Log</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>logging</name><operator>.</operator><name>LogFactory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceAudience</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>FailoverProxyProvider</name><operator>.</operator><name>ProxyInfo</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicy</name><operator>.</operator><name>RetryAction</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>Client</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>*</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>Client</name><operator>.</operator><name>ConnectionId</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>ProtocolTranslator</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RPC</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RpcConstants</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RpcInvocationHandler</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>InvocationHandler</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>InvocationTargetException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Method</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Proxy</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+ * This class implements RpcInvocationHandler and supports retry on the client 
+ * side.
+ * A {@link RpcInvocationHandler} which supports client side retry .
+  */</comment>
+ <class><annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>Private</name></name></annotation>
+ <specifier>public</specifier> class <name><name>RetryInvocationHandler</name><parameter_list>&lt;<parameter><name>T</name></parameter>&gt;</parameter_list></name> <super_list><implements>implements <super><name>RpcInvocationHandler</name></super></implements></super_list> <block>{
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Log</name></type> <name>LOG</name> <init>= <expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><name><name>RetryInvocationHandler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>proxyProvider</name></decl>;</decl_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * The number of times the associated proxyProvider has ever been failed over.
+   */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>long</name></type> <name>proxyProviderFailoverCount</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>Counters</name> <block>{
+    <comment type="block" format="javadoc">/** Counter for retries. */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>retries</name></decl>;</decl_stmt>
+    <comment type="block" format="javadoc">/** Counter for method invocation has been failed over. */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>failovers</name></decl>;</decl_stmt>
+  }</block></class>
+
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name><name>ProxyDescriptor</name><parameter_list>&lt;<parameter><name>T</name></parameter>&gt;</parameter_list></name> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>fpp</name></decl>;</decl_stmt>
+    <comment type="block" format="javadoc">/** Count the associated proxy provider has ever been failed over. */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>long</name></type> <name>failoverCount</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name><name>ProxyInfo</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>proxyInfo</name></decl>;</decl_stmt>
+
+    <constructor><name>ProxyDescriptor</name><parameter_list>(<parameter><decl><type><name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>fpp</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>fpp</name></name> <operator>=</operator> <name>fpp</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>proxyInfo</name></name> <operator>=</operator> <call><name><name>fpp</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>synchronized</specifier> <name><name>ProxyInfo</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>getProxyInfo</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>proxyInfo</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>synchronized</specifier> <name>T</name></type> <name>getProxy</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name><name>proxyInfo</name><operator>.</operator><name>proxy</name></name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>synchronized</specifier> <name>long</name></type> <name>getFailoverCount</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>failoverCount</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>synchronized</specifier> <name>void</name></type> <name>failover</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>expectedFailoverCount</name></decl></parameter>, <parameter><decl><type><name>Method</name></type> <name>method</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// Make sure that concurrent failed invocations only cause a single</comment>
+      <comment type="line">// actual failover.</comment>
+      <if_stmt><if>if <condition>(<expr><name>failoverCount</name> <operator>==</operator> <name>expectedFailoverCount</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fpp</name><operator>.</operator><name>performFailover</name></name><argument_list>(<argument><expr><name><name>proxyInfo</name><operator>.</operator><name>proxy</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>failoverCount</name><operator>++</operator></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"A failover has occurred since the start of "</literal>
+            <operator>+</operator> <call><name><name>proxyInfo</name><operator>.</operator><name>getString</name></name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+      <expr_stmt><expr><name>proxyInfo</name> <operator>=</operator> <call><name><name>fpp</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><name>boolean</name></type> <name>idempotentOrAtMostOnce</name><parameter_list>(<parameter><decl><type><name>Method</name></type> <name>method</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>NoSuchMethodException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>Method</name></type> <name>m</name> <init>= <expr><call><name><name>fpp</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call>
+          <operator>.</operator><call><name>getMethod</name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>method</name><operator>.</operator><name>getParameterTypes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <return>return <expr><call><name><name>m</name><operator>.</operator><name>isAnnotationPresent</name></name><argument_list>(<argument><expr><name><name>Idempotent</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call>
+          <operator>||</operator> <call><name><name>m</name><operator>.</operator><name>isAnnotationPresent</name></name><argument_list>(<argument><expr><name><name>AtMostOnce</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>fpp</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>RetryInfo</name> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>long</name></type> <name>delay</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>RetryAction</name></type> <name>failover</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>RetryAction</name></type> <name>fail</name></decl>;</decl_stmt>
+
+    <constructor><name>RetryInfo</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>delay</name></decl></parameter>, <parameter><decl><type><name>RetryAction</name></type> <name>failover</name></decl></parameter>, <parameter><decl><type><name>RetryAction</name></type> <name>fail</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>delay</name></name> <operator>=</operator> <name>delay</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>failover</name></name> <operator>=</operator> <name>failover</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>fail</name></name> <operator>=</operator> <name>fail</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>static</specifier> <name>RetryInfo</name></type> <name>newRetryInfo</name><parameter_list>(<parameter><decl><type><name>RetryPolicy</name></type> <name>policy</name></decl></parameter>, <parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>,
+        <parameter><decl><type><name>Counters</name></type> <name>counters</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>idempotentOrAtMostOnce</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>long</name></type> <name>maxRetryDelay</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>RetryAction</name></type> <name>failover</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>RetryAction</name></type> <name>retry</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>RetryAction</name></type> <name>fail</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+
+      <decl_stmt><decl><type><specifier>final</specifier> <name><name>Iterable</name><argument_list type="generic">&lt;<argument><name>Exception</name></argument>&gt;</argument_list></name></type> <name>exceptions</name> <init>= <expr><ternary><condition><expr><name>e</name> <operator>instanceof</operator> <name>MultiException</name></expr> ?</condition><then>
+          <expr><operator>(</operator><operator>(</operator><name>MultiException</name><operator>)</operator> <name>e</name><operator>)</operator><operator>.</operator><call><name>getExceptions</name><argument_list>()</argument_list></call><operator>.</operator><call><name>values</name><argument_list>()</argument_list></call></expr>
+          </then><else>: <expr><call><name><name>Collections</name><operator>.</operator><name>singletonList</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>Exception</name></type> <name>exception</name> <range>: <expr><name>exceptions</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>RetryAction</name></type> <name>a</name> <init>= <expr><call><name><name>policy</name><operator>.</operator><name>shouldRetry</name></name><argument_list>(<argument><expr><name>exception</name></expr></argument>,
+            <argument><expr><name><name>counters</name><operator>.</operator><name>retries</name></name></expr></argument>, <argument><expr><name><name>counters</name><operator>.</operator><name>failovers</name></name></expr></argument>, <argument><expr><name>idempotentOrAtMostOnce</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name><name>a</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>FAIL</name></name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>fail</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <comment type="line">// must be a retry or failover</comment>
+          <if_stmt><if>if <condition>(<expr><name><name>a</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>FAILOVER_AND_RETRY</name></name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>failover</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name>retry</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+          </block_content>}</block></else></if_stmt>
+          <if_stmt><if>if <condition>(<expr><name><name>a</name><operator>.</operator><name>delayMillis</name></name> <operator>&gt;</operator> <name>maxRetryDelay</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>maxRetryDelay</name> <operator>=</operator> <name><name>a</name><operator>.</operator><name>delayMillis</name></name></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block></for>
+
+      <return>return <expr><operator>new</operator> <call><name>RetryInfo</name><argument_list>(<argument><expr><name>maxRetryDelay</name></expr></argument>, <argument><expr><name>failover</name></expr></argument>,
+          <argument><expr><ternary><condition><expr><name>failover</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>retry</name> <operator>==</operator> <literal type="null">null</literal></expr>?</condition><then> <expr><name>fail</name></expr></then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>ProxyDescriptor</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>proxyDescriptor</name></decl>;</decl_stmt>
+
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>volatile</specifier> <name>boolean</name></type> <name>hasMadeASuccessfulCall</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+   
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>RetryPolicy</name></type> <name>defaultPolicy</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>RetryPolicy</name></argument>&gt;</argument_list></name></type> <name>methodNameToPolicyMap</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>ProxyInfo</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>currentProxy</name></decl>;</decl_stmt>
+ 
+   <constructor><specifier>protected</specifier> <name>RetryInvocationHandler</name><parameter_list>(<parameter><decl><type><name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name></type> <name>proxyProvider</name></decl></parameter>,
+       <parameter><decl><type><name>RetryPolicy</name></type> <name>retryPolicy</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">39</literal> <operator>+</operator><literal type="number">157</literal></expr><operator>,</operator><expr><literal type="number">40</literal> @@ <specifier>protected</specifier> <call><name>RetryInvocationHandler</name><argument_list>(<argument><expr><name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name> <name>proxyProvider</name></expr></argument>,
+   <argument><expr><specifier>protected</specifier> <call><name>RetryInvocationHandler</name><argument_list>(<argument><expr><name><name>FailoverProxyProvider</name><argument_list type="generic">&lt;<argument><name>T</name></argument>&gt;</argument_list></name> <name>proxyProvider</name></expr></argument>,
+       <argument><expr><name>RetryPolicy</name> <name>defaultPolicy</name></expr></argument>,
+       <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>RetryPolicy</name></argument>&gt;</argument_list></name> <name>methodNameToPolicyMap</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>proxyProvider</name></name> <operator>=</operator> <name>proxyProvider</name></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>proxyDescriptor</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>ProxyDescriptor</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><name>proxyProvider</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>defaultPolicy</name></name> <operator>=</operator> <name>defaultPolicy</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>methodNameToPolicyMap</name></name> <operator>=</operator> <name>methodNameToPolicyMap</name></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>currentProxy</name></name> <operator>=</operator> <call><name><name>proxyProvider</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr>;
+  }</block>
+
+  <specifier>private</specifier> <name>RetryPolicy</name> <call><name>getRetryPolicy</name><argument_list>(<argument><expr><name>Method</name> <name>method</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>final</name> <name>RetryPolicy</name> <name>policy</name> <operator>=</operator> <call><name><name>methodNameToPolicyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <return>return <expr><ternary><condition><expr><name>policy</name> <operator>!=</operator> <literal type="null">null</literal></expr>?</condition><then> <expr><name>policy</name></expr></then><else>: <expr><name>defaultPolicy</name></expr></else></ternary></expr>;</return>
+   }</block></expr></argument></argument_list></call></expr></expr_stmt>
+ 
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>Object</name></type> <name>invoke</name><parameter_list>(<parameter><decl><type><name>Object</name></type> <name>proxy</name></decl></parameter>, <parameter><decl><type><name>Method</name></type> <name>method</name></decl></parameter>, <parameter><decl><type><name><name>Object</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list>
+    <throws>throws <argument><expr><name>Throwable</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>RetryPolicy</name></type> <name>policy</name> <init>= <expr><call><name><name>methodNameToPolicyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>policy</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>policy</name> <operator>=</operator> <name>defaultPolicy</name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    
+    <comment type="line">// The number of times this method invocation has been failed over.</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>invocationFailoverCount</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>isRpc</name> <init>= <expr><call><name>isRpcInvocation</name><argument_list>(<argument><expr><name><name>currentProxy</name><operator>.</operator><name>proxy</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <throws>throws <argument><expr><name>Throwable</name> <block>{
+    <expr><name>final</name> <name>boolean</name> <name>isRpc</name> <operator>=</operator> <call><name>isRpcInvocation</name><argument_list>(<argument><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws><empty_stmt>;</empty_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>callId</name> <init>= <expr><ternary><condition><expr><name>isRpc</name></expr>?</condition><then> <expr><call><name><name>Client</name><operator>.</operator><name>nextCallId</name></name><argument_list>()</argument_list></call></expr></then><else>: <expr><name><name>RpcConstants</name><operator>.</operator><name>INVALID_CALL_ID</name></name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>retries</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <return>return <expr><call><name>invoke</name><argument_list>(<argument><expr><name>method</name></expr></argument>, <argument><expr><name>args</name></expr></argument>, <argument><expr><name>isRpc</name></expr></argument>, <argument><expr><name>callId</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Counters</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>Object</name></type> <name>invoke</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Method</name></type> <name>method</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name><name>Object</name><index>[]</index></name></type> <name>args</name></decl></parameter>,
+      <parameter><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>isRpc</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>callId</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>Counters</name></type> <name>counters</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>Throwable</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>RetryPolicy</name></type> <name>policy</name> <init>= <expr><call><name>getRetryPolicy</name><argument_list>(<argument><expr><name>method</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+     <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+       <comment type="line">// The number of times this invocation handler has ever been failed over,</comment>
+       <comment type="line">// before this method invocation attempt. Used to prevent concurrent</comment>
+       <comment type="line">// failed method invocations from triggering multiple failover attempts.</comment>
+      <decl_stmt><decl><type><name>long</name></type> <name>invocationAttemptFailoverCount</name></decl>;</decl_stmt>
+      <synchronized>synchronized <init>(<expr><name>proxyProvider</name></expr>)</init> <block>{<block_content>
+        <expr_stmt><expr><name>invocationAttemptFailoverCount</name> <operator>=</operator> <name>proxyProviderFailoverCount</name></expr>;</expr_stmt>
+      </block_content>}</block></synchronized>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>long</name></type> <name>failoverCount</name> <init>= <expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>getFailoverCount</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <if_stmt><if>if <condition>(<expr><name>isRpc</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>Client</name><operator>.</operator><name>setCallIdAndRetryCount</name></name><argument_list>(<argument><expr><name>callId</name></expr></argument>, <argument><expr><name>retries</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>Client</name><operator>.</operator><name>setCallIdAndRetryCount</name></name><argument_list>(<argument><expr><name>callId</name></expr></argument>, <argument><expr><name><name>counters</name><operator>.</operator><name>retries</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+       <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name>Object</name></type> <name>ret</name> <init>= <expr><call><name>invokeMethod</name><argument_list>(<argument><expr><name>method</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>Object</name></type> <name>ret</name> <init>= <expr><call><name>invokeMethod</name><argument_list>(<argument><expr><name>method</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><name>hasMadeASuccessfulCall</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+         <return>return <expr><name>ret</name></expr>;</return>
+       </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">108</literal></expr><operator>,</operator><expr><literal type="number">153</literal> <operator>+</operator><literal type="number">198</literal></expr><operator>,</operator><expr><literal type="number">74</literal> @@ <specifier>public</specifier> <name>Object</name> <call><name>invoke</name><argument_list>(<argument><expr><name>Object</name> <name>proxy</name></expr></argument>, <argument><expr><name>Method</name> <name>method</name></expr></argument>, <argument><expr><name><name>Object</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call>
+           <comment type="line">// If interrupted, do not retry.</comment>
+           <throw>throw <argument_list>ex</argument_list></throw></expr>;</expr_stmt>
+         </block_content>}</block></catch></try>
+        <decl_stmt><decl><type><name>boolean</name></type> <name>isIdempotentOrAtMostOnce</name> <init>= <expr><call><name><name>proxyProvider</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call>
+            <operator>.</operator><call><name>getMethod</name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>method</name><operator>.</operator><name>getParameterTypes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>isAnnotationPresent</name><argument_list>(<argument><expr><name><name>Idempotent</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>isIdempotentOrAtMostOnce</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>isIdempotentOrAtMostOnce</name> <operator>=</operator> <call><name><name>proxyProvider</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call>
+              <operator>.</operator><call><name>getMethod</name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>method</name><operator>.</operator><name>getParameterTypes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+              <operator>.</operator><call><name>isAnnotationPresent</name><argument_list>(<argument><expr><name><name>AtMostOnce</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>actions</name> <init>= <expr><call><name>extractActions</name><argument_list>(<argument><expr><name>policy</name></expr></argument>, <argument><expr><name>ex</name></expr></argument>, <argument><expr><name>retries</name><operator>++</operator></expr></argument>,
+                <argument><expr><name>invocationFailoverCount</name></expr></argument>, <argument><expr><name>isIdempotentOrAtMostOnce</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>RetryAction</name></type> <name>failAction</name> <init>= <expr><call><name>getFailAction</name><argument_list>(<argument><expr><name>actions</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>failAction</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <comment type="line">// fail.</comment>
+          <if_stmt><if>if <condition>(<expr><name><name>failAction</name><operator>.</operator><name>reason</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Exception while invoking "</literal> <operator>+</operator> <call><name><name>currentProxy</name><operator>.</operator><name>proxy</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call>
+                <operator>+</operator> <literal type="string">"."</literal> <operator>+</operator> <call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" over "</literal> <operator>+</operator> <name><name>currentProxy</name><operator>.</operator><name>proxyInfo</name></name>
+                <operator>+</operator> <literal type="string">". Not retrying because "</literal> <operator>+</operator> <name><name>failAction</name><operator>.</operator><name>reason</name></name></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+          <throw>throw <expr><name>ex</name></expr>;</throw>
+        </block_content>}</block></if> <else>else <block>{<block_content> <comment type="line">// retry or failover</comment>
+          <comment type="line">// avoid logging the failover if this is the first call on this</comment>
+          <comment type="line">// proxy object, and we successfully achieve the failover without</comment>
+          <comment type="line">// any flip-flopping</comment>
+          <decl_stmt><decl><type><name>boolean</name></type> <name>worthLogging</name> <init>= 
+            <expr><operator>!</operator><operator>(</operator><name>invocationFailoverCount</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <operator>!</operator><name>hasMadeASuccessfulCall</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>worthLogging</name> <operator>|=</operator> <call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <decl_stmt><decl><type><name>RetryAction</name></type> <name>failOverAction</name> <init>= <expr><call><name>getFailOverAction</name><argument_list>(<argument><expr><name>actions</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>long</name></type> <name>delay</name> <init>= <expr><call><name>getDelayMillis</name><argument_list>(<argument><expr><name>actions</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <if_stmt><if>if <condition>(<expr><name>worthLogging</name></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>String</name></type> <name>msg</name> <init>= <expr><literal type="string">"Exception while invoking "</literal> <operator>+</operator> <call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call>
+                <operator>+</operator> <literal type="string">" of class "</literal> <operator>+</operator> <call><name><name>currentProxy</name><operator>.</operator><name>proxy</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSimpleName</name><argument_list>()</argument_list></call>
+                <operator>+</operator> <literal type="string">" over "</literal> <operator>+</operator> <name><name>currentProxy</name><operator>.</operator><name>proxyInfo</name></name></expr></init></decl>;</decl_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>invocationFailoverCount</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><name>msg</name> <operator>+=</operator> <literal type="string">" after "</literal> <operator>+</operator> <name>invocationFailoverCount</name> <operator>+</operator> <literal type="string">" fail over attempts"</literal></expr>;</expr_stmt> 
+            </block_content>}</block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>failOverAction</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <comment type="line">// failover</comment>
+              <expr_stmt><expr><name>msg</name> <operator>+=</operator> <literal type="string">". Trying to fail over "</literal> <operator>+</operator> <call><name>formatSleepMessage</name><argument_list>(<argument><expr><name>delay</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+              <comment type="line">// retry</comment>
+              <expr_stmt><expr><name>msg</name> <operator>+=</operator> <literal type="string">". Retrying "</literal> <operator>+</operator> <call><name>formatSleepMessage</name><argument_list>(<argument><expr><name>delay</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><name>msg</name></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+
+          <if_stmt><if>if <condition>(<expr><name>delay</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><name>delay</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+
+          <if_stmt><if>if <condition>(<expr><name>failOverAction</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <comment type="line">// Make sure that concurrent failed method invocations only cause a</comment>
+            <comment type="line">// single actual fail over.</comment>
+            <synchronized>synchronized <init>(<expr><name>proxyProvider</name></expr>)</init> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><name>invocationAttemptFailoverCount</name> <operator>==</operator> <name>proxyProviderFailoverCount</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>proxyProvider</name><operator>.</operator><name>performFailover</name></name><argument_list>(<argument><expr><name><name>currentProxy</name><operator>.</operator><name>proxy</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>proxyProviderFailoverCount</name><operator>++</operator></expr>;</expr_stmt>
+              </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"A failover has occurred since the start of this method"</literal>
+                    <operator>+</operator> <literal type="string">" invocation attempt."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block></else></if_stmt>
+              <expr_stmt><expr><name>currentProxy</name> <operator>=</operator> <call><name><name>proxyProvider</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></synchronized>
+            <expr_stmt><expr><name>invocationFailoverCount</name><operator>++</operator></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></else></if_stmt>
+        <expr_stmt><expr><call><name>handleException</name><argument_list>(<argument><expr><name>method</name></expr></argument>, <argument><expr><name>policy</name></expr></argument>, <argument><expr><name>failoverCount</name></expr></argument>, <argument><expr><name>counters</name></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></while>
+     </block_content>}</block></function>
+   </block_content>}</block></constructor>
+ 
+  <comment type="block" format="javadoc">/**
+   * Obtain a retry delay from list of RetryActions.
+   */</comment>
+  <function><type><specifier>private</specifier> <name>long</name></type> <name>getDelayMillis</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>actions</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>long</name></type> <name>retVal</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>RetryAction</name></type> <name>action</name> <range>: <expr><name>actions</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>action</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>FAILOVER_AND_RETRY</name></name> <operator>||</operator>
+              <name><name>action</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>RETRY</name></name></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>action</name><operator>.</operator><name>delayMillis</name></name> <operator>&gt;</operator> <name>retVal</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>retVal</name> <operator>=</operator> <name><name>action</name><operator>.</operator><name>delayMillis</name></name></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>handleException</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Method</name></type> <name>method</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>RetryPolicy</name></type> <name>policy</name></decl></parameter>,
+      <parameter><decl><type><specifier>final</specifier> <name>long</name></type> <name>expectedFailoverCount</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>Counters</name></type> <name>counters</name></decl></parameter>,
+      <parameter><decl><type><specifier>final</specifier> <name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>RetryInfo</name></type> <name>retryInfo</name> <init>= <expr><call><name><name>RetryInfo</name><operator>.</operator><name>newRetryInfo</name></name><argument_list>(<argument><expr><name>policy</name></expr></argument>, <argument><expr><name>ex</name></expr></argument>, <argument><expr><name>counters</name></expr></argument>,
+        <argument><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>idempotentOrAtMostOnce</name></name><argument_list>(<argument><expr><name>method</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>counters</name><operator>.</operator><name>retries</name></name><operator>++</operator></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name><name>retryInfo</name><operator>.</operator><name>fail</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <comment type="line">// fail.</comment>
+      <if_stmt><if>if <condition>(<expr><name><name>retryInfo</name><operator>.</operator><name>fail</name><operator>.</operator><name>reason</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Exception while invoking "</literal>
+            <operator>+</operator> <call><name><name>proxyDescriptor</name><operator>.</operator><name>getProxyInfo</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getString</name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+            <operator>+</operator> <literal type="string">". Not retrying because "</literal> <operator>+</operator> <name><name>retryInfo</name><operator>.</operator><name>fail</name><operator>.</operator><name>reason</name></name></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <throw>throw <expr><name>ex</name></expr>;</throw>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>retVal</name></expr>;</return>
+  </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/**
+   * Return the first FAILOVER_AND_RETRY action.
+   */</comment>
+  <function><type><specifier>private</specifier> <name>RetryAction</name></type> <name>getFailOverAction</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>actions</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>RetryAction</name></type> <name>action</name> <range>: <expr><name>actions</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>action</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>FAILOVER_AND_RETRY</name></name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><name>action</name></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+    <comment type="line">// retry</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>isFailover</name> <init>= <expr><name><name>retryInfo</name><operator>.</operator><name>failover</name></name> <operator>!=</operator> <literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>log</name><argument_list>(<argument><expr><name>method</name></expr></argument>, <argument><expr><name>isFailover</name></expr></argument>, <argument><expr><name><name>counters</name><operator>.</operator><name>failovers</name></name></expr></argument>, <argument><expr><name><name>retryInfo</name><operator>.</operator><name>delay</name></name></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name><name>retryInfo</name><operator>.</operator><name>delay</name></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><name><name>retryInfo</name><operator>.</operator><name>delay</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><literal type="null">null</literal></expr>;</return>
+  </block_content>}</block></for>
+ 
+  <comment type="block" format="javadoc">/**
+   * Return the last FAIL action.. only if there are no RETRY actions.
+   */</comment>
+  <function><type><specifier>private</specifier> <name>RetryAction</name></type> <name>getFailAction</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>actions</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RetryAction</name></type> <name>fAction</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>RetryAction</name></type> <name>action</name> <range>: <expr><name>actions</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>action</name><operator>.</operator><name>action</name></name> <operator>==</operator> <name><name>RetryAction</name><operator>.</operator><name>RetryDecision</name><operator>.</operator><name>FAIL</name></name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>fAction</name> <operator>=</operator> <name>action</name></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <comment type="line">// Atleast 1 RETRY</comment>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+    <if_stmt><if>if <condition>(<expr><name>isFailover</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>failover</name></name><argument_list>(<argument><expr><name>expectedFailoverCount</name></expr></argument>, <argument><expr><name>method</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>counters</name><operator>.</operator><name>failovers</name></name><operator>++</operator></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>fAction</name></expr>;</return>
+   </block_content>}</block></for>
+ 
+  <function><type><specifier>private</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>extractActions</name><parameter_list>(<parameter><decl><type><name>RetryPolicy</name></type> <name>policy</name></decl></parameter>, <parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>,
+                                           <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>invocationFailoverCount</name></decl></parameter>,
+                                           <parameter><decl><type><name>boolean</name></type> <name>isIdempotentOrAtMostOnce</name></decl></parameter>)</parameter_list>
+          <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>RetryAction</name></argument>&gt;</argument_list></name></type> <name>actions</name> <init>= <expr><operator>new</operator> <call><name><name>LinkedList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>ex</name> <operator>instanceof</operator> <name>MultiException</name></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>Exception</name></type> <name>th</name> <range>: <expr><operator>(</operator><operator>(</operator><name>MultiException</name><operator>)</operator> <name>ex</name><operator>)</operator><operator>.</operator><call><name>getExceptions</name><argument_list>()</argument_list></call><operator>.</operator><call><name>values</name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>actions</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>policy</name><operator>.</operator><name>shouldRetry</name></name><argument_list>(<argument><expr><name>th</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>invocationFailoverCount</name></expr></argument>,
+                <argument><expr><name>isIdempotentOrAtMostOnce</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name><name>actions</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>policy</name><operator>.</operator><name>shouldRetry</name></name><argument_list>(<argument><expr><name>ex</name></expr></argument>, <argument><expr><name>i</name></expr></argument>,
+              <argument><expr><name>invocationFailoverCount</name></expr></argument>, <argument><expr><name>isIdempotentOrAtMostOnce</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>log</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Method</name></type> <name>method</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>isFailover</name></decl></parameter>,
+      <parameter><decl><type><specifier>final</specifier> <name>int</name></type> <name>failovers</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>long</name></type> <name>delay</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// log info if this has made some successful calls or</comment>
+    <comment type="line">// this is not the first failover</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>info</name> <init>= <expr><name>hasMadeASuccessfulCall</name> <operator>||</operator> <name>failovers</name> <operator>!=</operator> <literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><name>info</name> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return;</return>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>actions</name></expr>;</return>
+  </block_content>}</block></function>
+ 
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>formatSleepMessage</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>millis</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>millis</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="string">"after sleeping for "</literal> <operator>+</operator> <name>millis</name> <operator>+</operator> <literal type="string">"ms."</literal></expr>;</return>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>StringBuilder</name></type> <name>b</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call>
+        <operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">"Exception while invoking "</literal></expr></argument>)</argument_list></call>
+        <operator>.</operator><call><name>append</name><argument_list>(<argument><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>getProxyInfo</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getString</name><argument_list>(<argument><expr><call><name><name>method</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>failovers</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>b</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">" after "</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>append</name><argument_list>(<argument><expr><name>failovers</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">" failover attempts"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>b</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><ternary><condition><expr><name>isFailover</name></expr>?</condition><then> <expr><literal type="string">". Trying to failover "</literal></expr></then><else>: <expr><literal type="string">". Retrying "</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>b</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><ternary><condition><expr><name>delay</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>?</condition><then> <expr><literal type="string">"after sleeping for "</literal> <operator>+</operator> <name>delay</name> <operator>+</operator> <literal type="string">"ms."</literal></expr></then><else>: <expr><literal type="string">"immediately."</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>info</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><call><name><name>b</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+      <return>return <expr><literal type="string">"immediately."</literal></expr>;</return>
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><call><name><name>b</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></else></if_stmt>
+   </block_content>}</block></if></if_stmt>
+  
+
+   <function><type><specifier>protected</specifier> <name>Object</name></type> <name>invokeMethod</name><parameter_list>(<parameter><decl><type><name>Method</name></type> <name>method</name></decl></parameter>, <parameter><decl><type><name><name>Object</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Throwable</name></expr></argument></throws> <block>{<block_content>
+     <try>try <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>method</name><operator>.</operator><name>isAccessible</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>method</name><operator>.</operator><name>setAccessible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <return>return <expr><call><name><name>method</name><operator>.</operator><name>invoke</name></name><argument_list>(<argument><expr><name><name>currentProxy</name><operator>.</operator><name>proxy</name></name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</return>
+      <return>return <expr><call><name><name>method</name><operator>.</operator><name>invoke</name></name><argument_list>(<argument><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InvocationTargetException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <throw>throw <expr><call><name><name>e</name><operator>.</operator><name>getCause</name></name><argument_list>()</argument_list></call></expr>;</throw>
+     </block_content>}</block></catch></try>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">274</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>static</specifier> <name>boolean</name> <call><name>isRpcInvocation</name><argument_list>(<argument><expr><name>Object</name> <name>proxy</name></expr></argument>)</argument_list></call> <block>{
+ 
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>void</name> <call><name>close</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><call><name><name>proxyProvider</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <call><name><name>proxyDescriptor</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <function><annotation>@<name>Override</name></annotation> <comment type="line">//RpcInvocationHandler</comment>
+   <type><specifier>public</specifier> <name>ConnectionId</name></type> <name>getConnectionId</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>RPC</name><operator>.</operator><name>getConnectionIdForProxy</name></name><argument_list>(<argument><expr><name><name>currentProxy</name><operator>.</operator><name>proxy</name></name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>RPC</name><operator>.</operator><name>getConnectionIdForProxy</name></name><argument_list>(<argument><expr><call><name><name>proxyDescriptor</name><operator>.</operator><name>getProxy</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>TestRetryProxy</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>TestRetryProxy</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">4137daec54c</literal><operator>..</operator><literal type="number">41c1be49104</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>TestRetryProxy</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>retry</name><operator>/</operator><name><name>TestRetryProxy</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">55</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@</expr></expr_stmt>
+ 
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name></name>;</package>
+ 
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>RETRY_FOREVER</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>TRY_ONCE_THEN_FAIL</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryByException</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryByRemoteException</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryOtherThanRemoteException</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryUpToMaximumCountWithFixedSleep</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryUpToMaximumCountWithProportionalSleep</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryUpToMaximumTimeWithFixedSleep</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>retryForeverWithFixedSleep</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>exponentialBackoffRetry</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>any</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>anyBoolean</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>anyInt</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>mock</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>times</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>verify</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>when</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>*</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Callable</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>CountDownLatch</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutorService</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Executors</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Future</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicReference</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>*</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicy</name><operator>.</operator><name>RetryAction</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicy</name><operator>.</operator><name>RetryAction</name><operator>.</operator><name>RetryDecision</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>RetryUpToMaximumCountWithFixedSleep</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>RetryUpToMaximumTimeWithFixedSleep</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>TryOnceThenFail</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>UnreliableInterface</name><operator>.</operator><name>FatalException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>UnreliableInterface</name><operator>.</operator><name>UnreliableException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>ProtocolTranslator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RemoteException</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>invocation</name><operator>.</operator><name>InvocationOnMock</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>stubbing</name><operator>.</operator><name>Answer</name></name>;</import>
+
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Before</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>invocation</name><operator>.</operator><name>InvocationOnMock</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>stubbing</name><operator>.</operator><name>Answer</name></name>;</import>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>UndeclaredThrowableException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicInteger</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicReference</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name><operator>.</operator><name>*</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>*</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>any</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>anyBoolean</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name><operator>.</operator><name>anyInt</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>*</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>TestRetryProxy</name> <block>{
+   
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">131</literal></expr><operator>,</operator><expr><literal type="number">25</literal> <operator>+</operator><literal type="number">108</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>testRpcInvocation</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><name>final</name> <name>UnreliableInterface</name> <name>unreliable</name> <operator>=</operator> <operator>(</operator><name>UnreliableInterface</name><operator>)</operator>
+       <call><name><name>RetryProxy</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name><name>UnreliableInterface</name><operator>.</operator><name>class</name></name></expr></argument>, <argument><expr><name>unreliableImpl</name></expr></argument>, <argument><expr><name>RETRY_FOREVER</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>RetryInvocationHandler</name><operator>.</operator><name>isRpcInvocation</name></name><argument_list>(<argument><expr><name>unreliable</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name>AtomicInteger</name></type> <name>count</name> <init>= <expr><operator>new</operator> <call><name>AtomicInteger</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">// Embed the proxy in ProtocolTranslator</comment>
+     <decl_stmt><decl><type><name>ProtocolTranslator</name></type> <name>xlator</name> <init>= <expr><operator>new</operator> <class><super><name>ProtocolTranslator</name></super><argument_list>()</argument_list> <block>{
+      <decl_stmt><decl><type><name>int</name></type> <name>count</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+       <function><annotation>@<name>Override</name></annotation>
+       <type><specifier>public</specifier> <name>Object</name></type> <name>getUnderlyingProxyObject</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>count</name><operator>.</operator><name>getAndIncrement</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+         <return>return <expr><name>unreliable</name></expr>;</return>
+       </block_content>}</block></function>
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><literal type="string">""</literal> <operator>+</operator> <name>count</name></expr>;</return>
+      </block_content>}</block></function>
+     }</block></class></expr></init></decl>;</decl_stmt>
+     
+     <comment type="line">// For a proxy wrapped in ProtocolTranslator method should return true</comment>
+     <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>RetryInvocationHandler</name><operator>.</operator><name>isRpcInvocation</name></name><argument_list>(<argument><expr><name>xlator</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <comment type="line">// Ensure underlying proxy was looked at</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>xlator</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>count</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     
+     <comment type="line">// For non-proxy the method must return false</comment>
+     <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>RetryInvocationHandler</name><operator>.</operator><name>isRpcInvocation</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Object</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block></class></block_content></block></else></if_stmt></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></if></if_stmt></block_content></block></for></block_content></block></function></block></class>
+
+</unit>

@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/6b33a8c593.java"><expr_stmt><expr><name>From</name> <literal type="number">6b33a8c5936c44b14517503d9c61d1b4648fc131</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <literal type="string">"Chris M. Hostetter"</literal> <operator>&lt;</operator><name>hossman</name>@<name><name>apache</name><operator>.</operator><name>org</name></name><operator>&gt;</operator>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">9</literal> <name>Jan</name> <literal type="number">2014</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">55</literal><operator>:</operator><literal type="number">46</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">5618</literal><operator>:</operator> <name>Fix</name> <literal type="boolean">false</literal> <name>cache</name> <name>hits</name> <name>in</name> <name>queryResultCache</name> <name>when</name>
+ <name>hashCodes</name> <name>are</name> <name>equal</name> <name>and</name> <name>duplicate</name> <name>filter</name> <name>queries</name> <name>exist</name> <name>in</name> <name>one</name> <name>of</name> <name>the</name> <name>requests</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1556988 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                              <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryResultKey</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">62</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>QueryResultKeyTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">161</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>TestFiltering</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">44</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">234</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">36</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>b23c103de63</name><operator>..</operator><literal type="number">1e8f35b8d11</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">353</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">353</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>Bug</name> <name>Fixes</name>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5543</literal><operator>:</operator> <name>Core</name> <name>swaps</name> <name>resulted</name> <name>in</name> <name>duplicate</name> <name>core</name> <name>entries</name> <name>in</name> <name><name>solr</name><operator>.</operator><name>xml</name></name> <name>when</name> 
+   <name>using</name> <name><name>solr</name><operator>.</operator><name>xml</name></name> <name><name>persistence</name><operator>.</operator></name> (<name>Bill</name> <name>Bell</name></expr><operator>,</operator> <expr><name>Alan</name> <name>Woodward</name></expr></expr_stmt>)
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5618</literal><operator>:</operator> <name>Fix</name> <literal type="boolean">false</literal> <name>cache</name> <name>hits</name> <name>in</name> <name>queryResultCache</name> <name>when</name> <name>hashCodes</name> <name>are</name> <name>equal</name> 
+  <name>and</name> <name>duplicate</name> <name>filter</name> <name>queries</name> <name>exist</name> <name>in</name> <name>one</name> <name>of</name> <name>the</name> <call><name>requests</name> <argument_list>(<argument><expr><name>hossman</name></expr></argument>)</argument_list></call>
+
+ <name>Optimizations</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryResultKey</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryResultKey</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b09b6062f35</name><operator>..</operator><name>e0ac6d913a6</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryResultKey</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>QueryResultKey</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Query</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>SortField</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/** A hash key encapsulating a query, a list of filters, and a sort
+  *
+@@ -47,6 +48,8 @@ public final class QueryResultKey {
+ 
+     if (filters != null) {
+       for (Query filt : filters)
+        // NOTE: simple summation used here so keys with the same filters but in
+        // different orders get the same hashCode
+         h += filt.hashCode();
+     }
+ 
+@@ -78,7 +81,7 @@ public final class QueryResultKey {
+     // first.
+     if (this.sfields.length != other.sfields.length) return false;
+     if (!this.query.equals(other.query)) return false;
+    if (!isEqual(this.filters, other.filters)) return false;
+    if (!unorderedCompare(this.filters, other.filters)) return false;
+ 
+     for (int i=0; i&lt;sfields.length; i++) {
+       SortField sf1 = this.sfields[i];
+@@ -89,17 +92,27 @@ public final class QueryResultKey {
+     return true;
+   }
+ 
+
+  // Do fast version, expecting that filters are ordered and only
+  // fall back to unordered compare on the first non-equal elements.
+  // This will only be called if the hash code of the entire key already
+  // matched, so the slower unorderedCompare should pretty much never
+  // be called if filter lists are generally ordered.
+  private static boolean isEqual(List&lt;Query&gt; fqList1, List&lt;Query&gt; fqList2) {
+  /** 
+   * compares the two lists of queries in an unordered manner such that this method 
+   * returns true if the 2 lists are the same size, and contain the same elements.
+   *
+   * This method should only be used if the lists come from QueryResultKeys which have 
+   * already been found to have equal hashCodes, since the unordered comparison aspects 
+   * of the logic are not cheap.
+   * 
+   * @return true if the lists of equivilent other then the ordering
+   */</comment>
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>unorderedCompare</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>fqList1</name></decl></parameter>, <parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>fqList2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// Do fast version first, expecting that filters are usually in the same order</comment>
+    <comment type="line">//</comment>
+    <comment type="line">// Fall back to unordered compare logic on the first non-equal elements.</comment>
+    <comment type="line">// The slower unorderedCompare should pretty much never be called if filter </comment>
+    <comment type="line">// lists are generally ordered consistently</comment>
+     <if_stmt><if>if <condition>(<expr><name>fqList1</name> <operator>==</operator> <name>fqList2</name></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="boolean">true</literal></expr>;</return></block_content></block></if></if_stmt>  <comment type="line">// takes care of identity and null cases</comment>
+     <if_stmt><if>if <condition>(<expr><name>fqList1</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name>fqList2</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="boolean">false</literal></expr>;</return></block_content></block></if></if_stmt>
+     <decl_stmt><decl><type><name>int</name></type> <name>sz</name> <init>= <expr><call><name><name>fqList1</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>sz</name> <operator>!=</operator> <call><name><name>fqList2</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="boolean">false</literal></expr>;</return></block_content></block></if></if_stmt>
+
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>sz</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>fqList1</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><call><name><name>fqList2</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+         <return>return <expr><call><name>unorderedCompare</name><argument_list>(<argument><expr><name>fqList1</name></expr></argument>, <argument><expr><name>fqList2</name></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</return>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">108</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">37</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>QueryResultKey</name> <block>{
+     <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+
+  <comment type="block" format="javadoc">/** 
+   * Does an unordered comparison of the elements of two lists of queries starting at 
+   * the specified start index.
+   * 
+   * This method should only be called on lists which are the same size, and where 
+   * all items with an index less then the specified start index are the same.
+   *
+   * @return true if the list items after start are equivilent other then the ordering
+   */</comment>
+   <function><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>unorderedCompare</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>fqList1</name></decl></parameter>, <parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>fqList2</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>start</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>sz</name> <init>= <expr><call><name><name>fqList1</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <label><name>outer</name>:</label>
+    <assert>assert <expr><literal type="null">null</literal> <operator>!=</operator> <name>fqList1</name></expr>;</assert>
+    <assert>assert <expr><literal type="null">null</literal> <operator>!=</operator> <name>fqList2</name></expr>;</assert>
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>sz</name> <init>= <expr><call><name><name>fqList1</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <assert>assert <expr><call><name><name>fqList2</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name>sz</name></expr>;</assert>
+
+    <comment type="line">// SOLR-5618: if we had a garuntee that the lists never contained any duplicates,</comment>
+    <comment type="line">// this logic could be a lot simplier </comment>
+    <comment type="line">//</comment>
+    <comment type="line">// (And of course: if the SolrIndexSearcher / QueryCommmand was ever changed to</comment>
+    <comment type="line">// sort the filter query list, then this whole method could be eliminated).</comment>
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>set2</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>fqList2</name><operator>.</operator><name>subList</name></name><argument_list>(<argument><expr><name>start</name></expr></argument>, <argument><expr><name>sz</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>start</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>sz</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+       <decl_stmt><decl><type><name>Query</name></type> <name>q1</name> <init>= <expr><call><name><name>fqList1</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><name>start</name></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>sz</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>q1</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>fqList2</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+          <continue>continue <name>outer</name>;</continue></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>( <expr><operator>!</operator> <call><name><name>set2</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>q1</name></expr></argument>)</argument_list></call></expr> )</condition> <block>{<block_content>
+        <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+       </block_content>}</block></if></if_stmt>
+      <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+     </block_content>}</block></for>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    <return>return <expr><call><name><name>set2</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></for>
+ 
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>QueryResultKeyTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>QueryResultKeyTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">1c07d85a0a0</literal><operator>..</operator><literal type="number">1ffe0deb0d0</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>QueryResultKeyTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>QueryResultKeyTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ 
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">53</literal> <operator>+</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">175</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Query</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>SortField</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TermQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>_TestUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>QueryResultKey</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>QueryResultKeyTest</name> <super_list><extends>extends <super><name>SolrTestCaseJ4</name></super></extends></super_list> <block>{
+ 
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testFiltersHashCode</name><parameter_list>()</parameter_list> <block>{<block_content>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFiltersOutOfOrder1</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <comment type="line">// the hashcode should be the same even when the list</comment>
+     <comment type="line">// of filters is in a different order</comment>
+     
+     <decl_stmt><decl><type><name>Sort</name></type> <name>sort</name> <init>= <expr><operator>new</operator> <call><name>Sort</name><argument_list>(<argument><expr><operator>new</operator> <call><name>SortField</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><name><name>SortField</name><operator>.</operator><name>Type</name><operator>.</operator><name>INT</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>filters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>filters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test2"</literal></expr></argument>, <argument><expr><literal type="string">"field2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+     <decl_stmt><decl><type><name>BooleanQuery</name></type> <name>query</name> <init>= <expr><operator>new</operator> <call><name>BooleanQuery</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name><name>Occur</name><operator>.</operator><name>MUST</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters</name> <init>= <expr><name><name>Arrays</name><operator>.</operator></name>&lt;<name>Query</name><operator>&gt;</operator><call><name>asList</name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+                                               <argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test2"</literal></expr></argument>, <argument><expr><literal type="string">"field2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>qrk1</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument> , <argument><expr><name>filters</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters2</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>filters2</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test2"</literal></expr></argument>, <argument><expr><literal type="string">"field2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>filters2</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters2</name> <init>= <expr><name><name>Arrays</name><operator>.</operator></name>&lt;<name>Query</name><operator>&gt;</operator><call><name>asList</name><argument_list>(<argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test2"</literal></expr></argument>, <argument><expr><literal type="string">"field2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+                                                <argument><expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>qrk2</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument> , <argument><expr><name>filters2</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>qrk1</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>qrk2</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertKeyEquals</name><argument_list>(<argument><expr><name>qrk1</name></expr></argument>, <argument><expr><name>qrk2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testQueryResultKeySortedFilters</name><parameter_list>()</parameter_list> <block>{<block_content>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFiltersOutOfOrder2</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><name>Query</name></type> <name>fq1</name> <init>= <expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test1"</literal></expr></argument>, <argument><expr><literal type="string">"field1"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Query</name></type> <name>fq2</name> <init>= <expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test2"</literal></expr></argument>, <argument><expr><literal type="string">"field2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><name>Query</name></type> <name>query</name> <init>= <expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"test3"</literal></expr></argument>, <argument><expr><literal type="string">"field3"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>filters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>fq1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>filters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>fq2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters</name> <init>= <expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name>fq1</name></expr></argument>, <argument><expr><name>fq2</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>key</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>filters</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>newFilters</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>newFilters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>fq2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>newFilters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>fq1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>newFilters</name> <init>= <expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name>fq2</name></expr></argument>, <argument><expr><name>fq1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>newKey</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>newFilters</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>key</name></expr></argument>, <argument><expr><name>newKey</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertKeyEquals</name><argument_list>(<argument><expr><name>key</name></expr></argument>, <argument><expr><name>newKey</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testQueryResultKeyUnSortedFiltersWithDups</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Query</name></type> <name>query</name> <init>= <expr><operator>new</operator> <call><name>TermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"main"</literal></expr></argument>, <argument><expr><literal type="string">"val"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// we need Query clauses that have identical hashCodes </comment>
+    <comment type="line">// but are not equal unless the term is equals</comment>
+    <decl_stmt><decl><type><name>Query</name></type> <name>fq_aa</name> <init>= <expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><literal type="string">"fq_a"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Query</name></type> <name>fq_ab</name> <init>= <expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><literal type="string">"fq_a"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Query</name></type> <name>fq_ac</name> <init>= <expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><literal type="string">"fq_a"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Query</name></type> <name>fq_zz</name> <init>= <expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><literal type="string">"fq_z"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>fq_aa</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>fq_ab</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>fq_aa</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>fq_ac</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>fq_aa</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>fq_zz</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_aa</name></expr></argument>, <argument><expr><name>fq_ab</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_aa</name></expr></argument>, <argument><expr><name>fq_ac</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_ab</name></expr></argument>, <argument><expr><name>fq_aa</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_ab</name></expr></argument>, <argument><expr><name>fq_ac</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_ac</name></expr></argument>, <argument><expr><name>fq_aa</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>fq_ac</name></expr></argument>, <argument><expr><name>fq_ab</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_aa</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_zz</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_ab</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_zz</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_ac</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_zz</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_zz</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_aa</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_zz</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_ab</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>fq_zz</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>fq_ac</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters1</name> <init>= <expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name>fq_aa</name></expr></argument>, <argument><expr><name>fq_ab</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters2</name> <init>= <expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name>fq_zz</name></expr></argument>, <argument><expr><name>fq_ac</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>key1</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>filters1</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>key2</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>filters2</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>key1</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>key2</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertKeyNotEquals</name><argument_list>(<argument><expr><name>key1</name></expr></argument>, <argument><expr><name>key2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testRandomQueryKeyEquality</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>minIters</name> <init>= <expr><call><name>atLeast</name><argument_list>(<argument><expr><literal type="number">100</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Query</name></type> <name>base</name> <init>= <expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><literal type="string">"base"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <comment type="line">// ensure we cover both code paths at least once</comment>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>didEquals</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>didNotEquals</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>iter</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>iter</name> <operator>&lt;=</operator> <name>minIters</name> <operator>||</operator> <operator>(</operator><operator>!</operator> <name>didEquals</name> <operator>)</operator> <operator>||</operator> <operator>(</operator><operator>!</operator> <name>didNotEquals</name> <operator>)</operator></expr> )</condition> <block>{<block_content>
+      <expr_stmt><expr><name>iter</name><operator>++</operator></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>numsA</name> <init>= <expr><call><name>smallArrayOfRandomNumbers</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>numsB</name> <init>= <expr><call><name>smallArrayOfRandomNumbers</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>aa</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><call><name>buildFiltersFromNumbers</name><argument_list>(<argument><expr><name>numsA</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>QueryResultKey</name></type> <name>bb</name> <init>= <expr><operator>new</operator> <call><name>QueryResultKey</name><argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><call><name>buildFiltersFromNumbers</name><argument_list>(<argument><expr><name>numsB</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="line">// now that we have our keys, sort the numbers so we know what to expect</comment>
+      <expr_stmt><expr><call><name><name>Arrays</name><operator>.</operator><name>sort</name></name><argument_list>(<argument><expr><name>numsA</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Arrays</name><operator>.</operator><name>sort</name></name><argument_list>(<argument><expr><name>numsB</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>Arrays</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>numsA</name></expr></argument>, <argument><expr><name>numsB</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>didEquals</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>assertKeyEquals</name><argument_list>(<argument><expr><name>aa</name></expr></argument>, <argument><expr><name>bb</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <expr_stmt><expr><name>didNotEquals</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>assertKeyNotEquals</name><argument_list>(<argument><expr><name>aa</name></expr></argument>, <argument><expr><name>bb</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block></while>
+    <assert>assert <expr><name>minIters</name> <operator>&lt;=</operator> <name>iter</name></expr>;</assert>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * does bi-directional equality check as well as verifying hashCode
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertKeyEquals</name><parameter_list>(<parameter><decl><type><name>QueryResultKey</name></type> <name>key1</name></decl></parameter>, <parameter><decl><type><name>QueryResultKey</name></type> <name>key2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>key1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>key2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>key1</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>key2</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>key1</name></expr></argument>, <argument><expr><name>key2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>key2</name></expr></argument>, <argument><expr><name>key1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * does bi-directional check that the keys are &lt;em&gt;not&lt;/em&gt; equals
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertKeyNotEquals</name><parameter_list>(<parameter><decl><type><name>QueryResultKey</name></type> <name>key1</name></decl></parameter>, <parameter><decl><type><name>QueryResultKey</name></type> <name>key2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>key1</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>key2</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>( <argument><expr><operator>!</operator> <call><name><name>key2</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>key1</name></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * returns a "small" list of "small" random numbers.  The idea behind this method is 
+   * that multiple calls have a decent change of returning two arrays which are the 
+   * same size and contain the same numbers but in a differnet order.
+   *
+   * the array is garunteed to always have at least 1 element
+   */</comment>
+  <function><type><specifier>private</specifier> <name><name>int</name><index>[]</index></name></type> <name>smallArrayOfRandomNumbers</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>size</name> <init>= <expr><call><name><name>_TestUtil</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>result</name> <init>= <expr><operator>new</operator> <name><name>int</name><index>[<expr><name>size</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>size</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>result</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>_TestUtil</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>result</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/**
+   * Creates an array of Filter queries using {@link FlatHashTermQuery} based on the 
+   * specified ints
+   */</comment>
+  <function><type><specifier>private</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>buildFiltersFromNumbers</name><parameter_list>(<parameter><decl><type><name><name>int</name><index>[]</index></name></type> <name>values</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name></type> <name>filters</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Query</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name><name>values</name><operator>.</operator><name>length</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>val</name> <range>: <expr><name>values</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>filters</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FlatHashTermQuery</name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>val</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>filters</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Quick and dirty subclass of TermQuery that uses fixed field name and a constant 
+   * value hashCode, regardless of the Term value.
+   */</comment>
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>FlatHashTermQuery</name> <super_list><extends>extends <super><name>TermQuery</name></super></extends></super_list> <block>{
+    <constructor><specifier>public</specifier> <name>FlatHashTermQuery</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>val</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"some_field"</literal></expr></argument>, <argument><expr><name>val</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>int</name></type> <name>hashCode</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="number">42</literal></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>TestFiltering</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>TestFiltering</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b0a4bd8b9a0</name><operator>..</operator><literal type="number">75c0a3b9c81</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>TestFiltering</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>TestFiltering</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name></name>;</package>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>OpenBitSet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>params</name><operator>.</operator><name>SolrParams</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>request</name><operator>.</operator><name>SolrQueryRequest</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>BeforeClass</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">259</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">260</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestFiltering</name> extends <name>SolrTestCaseJ4</name> <block>{
+         }</block></expr></expr_stmt>
+       </block_content>}</block></function>
+       <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>commit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">// sanity check</comment>
+      <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound=="</literal> <operator>+</operator> <name><name>model</name><operator>.</operator><name>indexSize</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+       <decl_stmt><decl><type><name>int</name></type> <name>totalMatches</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>int</name></type> <name>nonZeros</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">322</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">325</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestFiltering</name> extends <name>SolrTestCaseJ4</name> <block>{
+         }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+           <comment type="line">// show the indexIter and queryIter for easier debugging</comment>
+           <expr_stmt><expr><call><name><name>SolrException</name><operator>.</operator><name>log</name></name><argument_list>(<argument><expr><name>log</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>s</name><init>= <expr><literal type="string">"FAILURE: iiter="</literal> <operator>+</operator> <name>iiter</name> <operator>+</operator> <literal type="string">" qiter="</literal> <operator>+</operator> <name>qiter</name> <operator>+</operator> <literal type="string">" request="</literal><operator>+</operator><name>params</name></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>s</name><init>= <expr><literal type="string">"FAILURE: indexSize="</literal> <operator>+</operator> <name><name>model</name><operator>.</operator><name>indexSize</name></name> <operator>+</operator> <literal type="string">" iiter="</literal> <operator>+</operator> <name>iiter</name> <operator>+</operator> <literal type="string">" qiter="</literal> <operator>+</operator> <name>qiter</name> <operator>+</operator> <literal type="string">" request="</literal><operator>+</operator><name>params</name></expr></init></decl>;</decl_stmt>
+           <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></catch>
+
+       }</block></class>
+ 
+       <comment type="line">// After making substantial changes to this test, make sure that we still get a</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">336</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">338</literal></expr><operator>,</operator><expr><literal type="number">42</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestFiltering</name> extends <name>SolrTestCaseJ4</name> <block>{
+     }</block></expr></expr_stmt>
+   </block_content>}</block></if></if_stmt>
+ 
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testHossssSanity</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    
+    <decl_stmt><decl><type><name>SolrParams</name></type> <name>match_0</name> 
+      <init>= <expr><call><name>params</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>,  <argument><expr><literal type="string">"{!frange v=val_i l=0 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"{!frange v=val_i l=1 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"{!frange v=val_i l=0 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"-_query_:\"{!frange v=val_i l=1 u=1}\""</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"-_query_:\"{!frange v=val_i l=0 u=1}\""</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>SolrParams</name></type> <name>match_1</name>
+      <init>= <expr><call><name>params</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>,  <argument><expr><literal type="string">"{!frange v=val_i l=0 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"{!frange v=val_i l=0 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"{!frange v=val_i l=0 u=1}"</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"-_query_:\"{!frange v=val_i l=1 u=1}\""</literal></expr></argument>,
+               <argument><expr><literal type="string">"fq"</literal></expr></argument>, <argument><expr><literal type="string">"-_query_:\"{!frange v=val_i l=1 u=1}\""</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>numDocs</name> <init>= <expr><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numDocs</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>val</name> <init>= <expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>,<argument><expr><name>val</name></expr></argument>,<argument><expr><name>f</name></expr></argument>,<argument><expr><name>val</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>commit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// sanity check</comment>
+    <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound=="</literal> <operator>+</operator> <name>numDocs</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// 1 then 0</comment>
+    <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><name>match_1</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound==1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><name>match_0</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound==0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// clear caches</comment>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>commit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// 0 then 1</comment>
+    <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><name>match_0</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound==0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertJQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><name>match_1</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/response/numFound==1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+ </block_content>}</block></for>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function>
+
+</unit>

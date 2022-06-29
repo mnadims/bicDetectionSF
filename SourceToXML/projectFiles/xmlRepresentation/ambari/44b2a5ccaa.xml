@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/44b2a5ccaa.java"><expr_stmt><expr><name>From</name> <literal type="number">44b2a5ccaa7b58878d19634acf364eb90a9ef34e</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>John</name> <name><name>Speidel</name> <argument_list type="generic">&lt;<argument><name>jspeidel</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <name>Feb</name> <literal type="number">2015</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">44</literal><operator>:</operator><literal type="number">10</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">9367.</literal> <name>Fix</name> <name>regression</name> <name>of</name> <operator>new</operator> <name>high</name> <name>level</name> <literal type="string">"add hosts"</literal>
+ <name><name>api</name><operator>.</operator>              <name>Also</name></name></expr><operator>,</operator> <expr><name>ensure</name> <name>that</name> <name>kerberos</name> <name>client</name> <name>is</name> <name>added</name> <name>to</name> <name>hostgroups</name></expr></expr_stmt> <if_stmt><if>if
+ kerberos is enabled.
+
+--
+ .../HostComponentResourceProvider.java        <operator>|</operator> 60 ++++++++++++-------
+ .../internal/HostResourceProvider.java        <operator>|</operator> 28 ++++++++-
+ .../HostComponentResourceProviderTest.java    <operator>|</operator> 31 +++++++---
+ 3 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">90</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">29</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b1e05cc299</name><operator>..</operator><name>b513de781f</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>HostComponentResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">264</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">264</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name>
+       <throw>throw <argument_list>new <argument><expr><call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Received an update request with no properties"</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw></expr>;</expr_stmt></if></if_stmt>
+     }
+ 
+    RequestStageContainer <expr_stmt><expr><name>requestStages</name> <operator>=</operator> <call><name>doUpdateResources</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>request</name></expr></argument>, <argument><expr><name>predicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>RequestStageContainer</name></type> <name>requestStages</name> <init>= <expr><call><name>doUpdateResources</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>request</name></expr></argument>, <argument><expr><name>predicate</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><name>RequestStatusResponse</name></type> <name>response</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>requestStages</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">343</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">343</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name></expr></expr_stmt>
+ 
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Installing all components on added hosts"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>requestStages</name> <operator>=</operator> <call><name>doUpdateResources</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>installRequest</name></expr></argument>, <argument><expr><name>installPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>requestStages</name> <operator>=</operator> <call><name>doUpdateResources</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>installRequest</name></expr></argument>, <argument><expr><name>installPredicate</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>notifyUpdate</name><argument_list>(<argument><expr><name><name>Resource</name><operator>.</operator><name>Type</name><operator>.</operator><name>HostComponent</name></name></expr></argument>, <argument><expr><name>installRequest</name></expr></argument>, <argument><expr><name>installPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+       <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>startProperties</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">362</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">362</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name>
+       <call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Starting all non-client components on added hosts"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <comment type="line">//todo: if a host in in state HEARTBEAT_LOST, no stage will be created, so if this occurs during INSTALL</comment>
+       <comment type="line">//todo: then no INSTALL stage will exist which will result in invalid state transition INIT-&gt;STARTED</comment>
+      <expr_stmt><expr><call><name>doUpdateResources</name><argument_list>(<argument><expr><name>requestStages</name></expr></argument>, <argument><expr><name>startRequest</name></expr></argument>, <argument><expr><name>startPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>doUpdateResources</name><argument_list>(<argument><expr><name>requestStages</name></expr></argument>, <argument><expr><name>startRequest</name></expr></argument>, <argument><expr><name>startPredicate</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>notifyUpdate</name><argument_list>(<argument><expr><name><name>Resource</name><operator>.</operator><name>Type</name><operator>.</operator><name>HostComponent</name></name></expr></argument>, <argument><expr><name>startRequest</name></expr></argument>, <argument><expr><name>startPredicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <try>try <block>{<block_content>
+         <expr_stmt><expr><call><name><name>requestStages</name><operator>.</operator><name>persist</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">616</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">616</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name></expr></expr_stmt>
+     <return>return <expr><name>serviceComponentHostRequest</name></expr>;</return>
+   </block_content>}</block></try>
+ 
+  <function><type><specifier>private</specifier> <name>RequestStageContainer</name></type> <name>doUpdateResources</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>RequestStageContainer</name></type> <name>stages</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>Request</name></type> <name>request</name></decl></parameter>, <parameter><decl><type><name>Predicate</name></type> <name>predicate</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>UnsupportedPropertyException</name></expr></argument>, <argument><expr><name>SystemException</name></expr></argument>, <argument><expr><name>NoSuchResourceException</name></expr></argument>, <argument><expr><name>NoSuchParentResourceException</name></expr></argument></throws> <block>{<block_content>
+  <comment type="block" format="javadoc">/**
+   * Update resources.
+   *
+   * @param stages                  request stage container
+   * @param request                 request
+   * @param predicate               request predicate
+   * @param performQueryEvaluation  should query be evaluated for matching resource set
+   * @return
+   * @throws UnsupportedPropertyException   an unsupported property was specified in the request
+   * @throws SystemException                an unknown exception occurred
+   * @throws NoSuchResourceException        the query didn't match any resources
+   * @throws NoSuchParentResourceException  a specified parent resource doesn't exist
+   */</comment>
+  <function><type><specifier>private</specifier> <name>RequestStageContainer</name></type> <name>doUpdateResources</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>RequestStageContainer</name></type> <name>stages</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>Request</name></type> <name>request</name></decl></parameter>,
+                                                  <parameter><decl><type><name>Predicate</name></type> <name>predicate</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>performQueryEvaluation</name></decl></parameter>)</parameter_list>
+                                                  <throws>throws <argument><expr><name>UnsupportedPropertyException</name></expr></argument>,
+                                                         <argument><expr><name>SystemException</name></expr></argument>,
+                                                         <argument><expr><name>NoSuchResourceException</name></expr></argument>,
+                                                         <argument><expr><name>NoSuchParentResourceException</name></expr></argument></throws> <block>{<block_content>
+ 
+     <decl_stmt><decl><type><specifier>final</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHostRequest</name></argument>&gt;</argument_list></name></type> <name>requests</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHostRequest</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">631</literal></expr><operator>,</operator><expr><literal type="number">23</literal> <operator>+</operator><literal type="number">648</literal></expr><operator>,</operator><expr><literal type="number">23</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name>
+     <name><name>Set</name><argument_list type="generic">&lt;<argument><name>Resource</name></argument>&gt;</argument_list></name> <name>matchingResources</name> <operator>=</operator> <call><name>getResources</name><argument_list>(<argument><expr><name>queryRequest</name></expr></argument>, <argument><expr><name>predicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <for>for <control>(<init><decl><type><name>Resource</name></type> <name>queryResource</name> <range>: <expr><name>matchingResources</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <comment type="line">//todo: this was removed for BUG-28737 and the removal of this breaks</comment>
+      <comment type="line">//todo: the new "add hosts" api.  BUG-4818 is the root cause and needs</comment>
+      <comment type="line">//todo: to be addressed and then this predicate evaluation should be</comment>
+      <comment type="line">//todo: uncommented to fix "add hosts".</comment>
+<comment type="line">//    if (predicate.evaluate(queryResource)) {</comment>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>updateRequestProperties</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <comment type="line">// add props from query resource</comment>
+      <expr_stmt><expr><call><name><name>updateRequestProperties</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><call><name><name>PropertyHelper</name><operator>.</operator><name>getProperties</name></name><argument_list>(<argument><expr><name>queryResource</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <comment type="line">// add properties from update request</comment>
+      <comment type="line">//todo: should we flag value size &gt; 1?</comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>updateRequestProperties</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>next</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">//todo: predicate evaluation was removed for BUG-28737 and the removal of this breaks</comment>
+      <comment type="line">//todo: the new "add hosts" api.  BUG-4818 is the root cause and needs to be addressed</comment>
+      <comment type="line">//todo: and then this predicate evaluation should always be performed and the</comment>
+      <comment type="line">//todo: temporary performQueryEvaluation flag hack should be removed.</comment>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator> <name>performQueryEvaluation</name> <operator>||</operator> <call><name><name>predicate</name><operator>.</operator><name>evaluate</name></name><argument_list>(<argument><expr><name>queryResource</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>updateRequestProperties</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <comment type="line">// add props from query resource</comment>
+        <expr_stmt><expr><call><name><name>updateRequestProperties</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><call><name><name>PropertyHelper</name><operator>.</operator><name>getProperties</name></name><argument_list>(<argument><expr><name>queryResource</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// add properties from update request</comment>
+        <comment type="line">//todo: should we flag value size &gt; 1?</comment>
+        <if_stmt><if>if <condition>(<expr><call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>updateRequestProperties</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>next</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>requests</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getRequest</name><argument_list>(<argument><expr><name>updateRequestProperties</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>requests</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getRequest</name><argument_list>(<argument><expr><name>updateRequestProperties</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<comment type="line">//    }</comment>
+     </block_content>}</block></if></if_stmt>
+ 
+     <decl_stmt><decl><type><name>RequestStageContainer</name></type> <name>requestStages</name> <init>= <expr><call><name>modifyResources</name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>Command</name><argument_list type="generic">&lt;<argument><name>RequestStageContainer</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">662</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">679</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>HostComponentResourceProvider</name> extends <name>AbstractControllerResourcePro</name></expr></expr_stmt>
+     <return>return <expr><name>requestStages</name></expr>;</return>
+   }</block></class>
+ 
+
+   <comment type="block" format="javadoc">/**
+    * Determine whether a host component state change is valid.
+    * Looks at projected state from the current stages associated with the request.
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostResourceProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostResourceProvider.java
+index b5d2d6da56..3a359e5a18 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostResourceProvider.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostResourceProvider.java
+@@ -56,6 +56,7 @@ import org.apache.ambari.server.state.Config;
+ import org.apache.ambari.server.state.DesiredConfig;
+ import org.apache.ambari.server.state.Host;
+ import org.apache.ambari.server.state.MaintenanceState;
+import org.apache.ambari.server.state.SecurityType;
+ import org.apache.ambari.server.state.ServiceComponentHost;
+ import org.apache.ambari.server.state.configgroup.ConfigGroup;
+ import org.slf4j.Logger;
+@@ -547,6 +548,7 @@ public class HostResourceProvider extends BaseBlueprintProcessor {
+       BlueprintEntity blueprint = getExistingBlueprint(bpName);
+       Stack stack = parseStack(blueprint);
+       Map&lt;String, HostGroupImpl&gt; blueprintHostGroups = parseBlueprintHostGroups(blueprint, stack);
+      addKerberosClientIfNecessary(clusterName, blueprintHostGroups);
+       addHostToHostgroup(hgName, hostname, blueprintHostGroups);
+       createHostAndComponentResources(blueprintHostGroups, clusterName, this);
+       //todo: optimize: update once per hostgroup with added hosts
+@@ -556,6 +558,31 @@ public class HostResourceProvider extends BaseBlueprintProcessor {
+         installAndStart(clusterName, addedHosts);
+   }
+ 
+  /**
+   * Add the kerberos client to groups if kerberos is enabled for the cluster.
+   *
+   * @param clusterName  cluster name
+   * @param groups       host groups
+   *
+   * @throws NoSuchParentResourceException unable to get cluster instance
+   */</comment>
+  <specifier>private</specifier> <name>void</name> <call><name>addKerberosClientIfNecessary</name><argument_list>(<argument><expr><name>String</name> <name>clusterName</name></expr></argument>, <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>HostGroupImpl</name></argument>&gt;</argument_list></name> <name>groups</name></expr></argument>)</argument_list></call>
+      <throws>throws <argument><expr><name>NoSuchParentResourceException</name> <block>{
+
+    <comment type="line">//todo: logic would ideally be contained in the stack</comment>
+    <expr><name>Cluster</name> <name>cluster</name></expr></block></expr></argument></throws></expr></argument>;</argument_list></call></expr></init></decl></decl_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>cluster</name> <operator>=</operator> <call><name>getManagementController</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getClusters</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCluster</name><argument_list>(<argument><expr><name>clusterName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>AmbariException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>NoSuchParentResourceException</name><argument_list>(<argument><expr><literal type="string">"Parent Cluster resource doesn't exist.  clusterName= "</literal> <operator>+</operator> <name>clusterName</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch></try>
+    <if_stmt><if>if <condition>(<expr><call><name><name>cluster</name><operator>.</operator><name>getSecurityType</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>SecurityType</name><operator>.</operator><name>KERBEROS</name></name></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>HostGroupImpl</name></type> <name>group</name> <range>: <expr><call><name><name>groups</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>group</name><operator>.</operator><name>addComponent</name></name><argument_list>(<argument><expr><literal type="string">"KERBEROS_CLIENT"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></for></block_content></block></function></block_content></block></function></block_content></block></try></block_content></block></if></if_stmt>
+
+   <comment type="block" format="javadoc">/**
+    * Add the new host to an existing config group.
+    *
+@@ -674,7 +701,6 @@ public class HostResourceProvider extends BaseBlueprintProcessor {
+       }
+     }
+ 
+
+     for (Host h : hosts) {
+       if (clusterName != null) {
+         if (clusters.getClustersForHost(h.getHostName()).contains(cluster)) {
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+index 337cc74857..8688e286c6 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/HostComponentResourceProviderTest.java
+@@ -351,10 +351,12 @@ public class HostComponentResourceProviderTest {
+     Cluster cluster = createNiceMock(Cluster.class);
+     Service service = createNiceMock(Service.class);
+     ServiceComponent component = createNiceMock(ServiceComponent.class);
+    ServiceComponent clientComponent = createNiceMock(ServiceComponent.class);
+     ServiceComponentHost componentHost = createNiceMock(ServiceComponentHost.class);
+    ServiceComponentHost clientComponentHost = createNiceMock(ServiceComponentHost.class);
+     RequestStageContainer stageContainer = createNiceMock(RequestStageContainer.class);
+     MaintenanceStateHelper maintenanceStateHelper = createNiceMock(MaintenanceStateHelper.class);
+    // INIT-&gt;INSTALLED state transition causes check for kerverized cluster
+    // INIT-&gt;INSTALLED state transition causes check for kerberized cluster
+     KerberosHelper kerberosHelper = createStrictMock(KerberosHelper.class);
+ 
+     Collection&lt;String&gt; hosts = new HashSet&lt;String&gt;();
+@@ -366,28 +368,40 @@ public class HostComponentResourceProviderTest {
+     Set&lt;ServiceComponentHostResponse&gt; nameResponse = new HashSet&lt;ServiceComponentHostResponse&gt;();
+     nameResponse.add(new ServiceComponentHostResponse(
+         "Cluster102", "Service100", "Component100", "Host100", "INIT", "", "INIT", "", null));
+    nameResponse.add(new ServiceComponentHostResponse(
+        "Cluster102", "Service100", "some-client", "Host100", "INIT", "", "INIT", "", null));
+     Set&lt;ServiceComponentHostResponse&gt; nameResponse2 = new HashSet&lt;ServiceComponentHostResponse&gt;();
+     nameResponse2.add(new ServiceComponentHostResponse(
+         "Cluster102", "Service100", "Component100", "Host100", "INIT", "", "INSTALLED", "", null));
+    nameResponse2.add(new ServiceComponentHostResponse(
+        "Cluster102", "Service100", "some-client", "Host100", "INIT", "", "INSTALLED", "", null));
+ 
+ 
+     // set expectations
+     expect(managementController.getClusters()).andReturn(clusters).anyTimes();
+     expect(managementController.findServiceName(cluster, "Component100")).andReturn("Service100").anyTimes();
+    expect(managementController.findServiceName(cluster, "some-client")).andReturn("Service100").anyTimes();
+     expect(clusters.getCluster("Cluster102")).andReturn(cluster).anyTimes();
+     expect(cluster.getService("Service100")).andReturn(service).anyTimes();
+     expect(service.getServiceComponent("Component100")).andReturn(component).anyTimes();
+    expect(service.getServiceComponent("some-client")).andReturn(clientComponent).anyTimes();
+     expect(component.getServiceComponentHost("Host100")).andReturn(componentHost).anyTimes();
+     expect(component.getName()).andReturn("Component100").anyTimes();
+    expect(clientComponent.getServiceComponentHost("Host100")).andReturn(clientComponentHost).anyTimes();
+    expect(clientComponent.getName()).andReturn("some-client").anyTimes();
+    expect(clientComponent.isClientComponent()).andReturn(true).anyTimes();
+     // actual state is always INIT until stages actually execute
+     expect(componentHost.getState()).andReturn(State.INIT).anyTimes();
+     expect(componentHost.getHostName()).andReturn("Host100").anyTimes();
+     expect(componentHost.getServiceComponentName()).andReturn("Component100").anyTimes();
+    expect(clientComponentHost.getState()).andReturn(State.INIT).anyTimes();
+    expect(clientComponentHost.getHostName()).andReturn("Host100").anyTimes();
+    expect(clientComponentHost.getServiceComponentName()).andReturn("some-client").anyTimes();
+     expect(response.getMessage()).andReturn("response msg").anyTimes();
+ 
+
+     //Cluster is default type.  Maintenance mode is not being tested here so the default is returned.
+     expect(maintenanceStateHelper.isOperationAllowed(Resource.Type.Cluster, componentHost)).andReturn(true).anyTimes();
+    expect(maintenanceStateHelper.isOperationAllowed(Resource.Type.Cluster, clientComponentHost)).andReturn(true).anyTimes();
+ 
+     //todo: can we change to prevent having to call twice?
+     expect(managementController.getHostComponents(
+@@ -397,8 +411,9 @@ public class HostComponentResourceProviderTest {
+ 
+     Map&lt;String, Map&lt;State, List&lt;ServiceComponentHost&gt;&gt;&gt; changedHosts =
+         new HashMap&lt;String, Map&lt;State, List&lt;ServiceComponentHost&gt;&gt;&gt;();
+    List&lt;ServiceComponentHost&gt; changedComponentHosts = Collections.singletonList(componentHost);
+    changedHosts.put("Component100", Collections.singletonMap(State.INSTALLED, changedComponentHosts));
+
+    changedHosts.put("Component100", Collections.singletonMap(State.INSTALLED, Collections.singletonList(componentHost)));
+    changedHosts.put("some-client", Collections.singletonMap(State.INSTALLED, Collections.singletonList(clientComponentHost)));
+ 
+     Map&lt;String, Map&lt;State, List&lt;ServiceComponentHost&gt;&gt;&gt; changedHosts2 =
+         new HashMap&lt;String, Map&lt;State, List&lt;ServiceComponentHost&gt;&gt;&gt;();
+@@ -425,11 +440,12 @@ public class HostComponentResourceProviderTest {
+         eq(managementController))).
+         andReturn(provider).anyTimes();
+ 
+    expect(kerberosHelper.isClusterKerberosEnabled(cluster)).andReturn(false).once();
+    expect(kerberosHelper.isClusterKerberosEnabled(cluster)).andReturn(false).times(2);
+ 
+     // replay
+     replay(managementController, response, resourceProviderFactory, clusters, cluster, service,
+        component, componentHost, stageContainer, maintenanceStateHelper, kerberosHelper);
+        component, componentHost, stageContainer, maintenanceStateHelper, kerberosHelper, clientComponent,
+        clientComponentHost);
+ 
+     Map&lt;String, Object&gt; properties = new LinkedHashMap&lt;String, Object&gt;();
+     properties.put(HostComponentResourceProvider.HOST_COMPONENT_STATE_PROPERTY_ID, "STARTED");
+@@ -438,7 +454,8 @@ public class HostComponentResourceProviderTest {
+ 
+     assertSame(response, requestResponse);
+     // verify
+    verify(managementController, response, resourceProviderFactory, stageContainer, kerberosHelper);
+    verify(managementController, response, resourceProviderFactory, stageContainer, kerberosHelper,
+           clientComponent, clientComponentHost);
+   }
+ 
+   @Test
+- 
+2.19.1.windows.1
+
+</comment></unit>

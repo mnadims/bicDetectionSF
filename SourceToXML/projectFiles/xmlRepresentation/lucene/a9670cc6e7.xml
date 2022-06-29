@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/a9670cc6e7.java"><expr_stmt><expr><name>From</name> <name>a9670cc6e7951e02d5a8aa0a66afd8612bed9c42</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Mark</name> <name>Robert</name> <name><name>Miller</name> <argument_list type="generic">&lt;<argument><name>markrmiller</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Jan</name> <literal type="number">2014</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">53</literal><operator>:</operator><literal type="number">06</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">5658</literal><operator>:</operator> <name>commitWithin</name> <name>and</name> <name>overwrite</name> <name>are</name> <name>not</name> <name>being</name>
+ <name>distributed</name> <name>to</name> <name>replicas</name> <name>now</name> <name>that</name> <name>SolrCloud</name> <name>uses</name> <name>javabin</name> <name>to</name> <name>distribute</name>
+ <name><name>updates</name><operator>.</operator>
+
+<name>git</name></name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1560859 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                              <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>loader</name><operator>/</operator><name><name>JavabinLoader</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">9</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>BasicDistributedZkTest</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">20</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>request</name><operator>/</operator><name><name>JavaBinUpdateRequestCodec</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">76</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>UpdateRequest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>JavaBinCodec</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">41</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>TestUpdateRequestCodec</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">7</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">111</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">45</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">7c51c9106b0</literal><operator>..</operator><name>af1fbdd60fe</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">401</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">401</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>Bug</name> <name>Fixes</name>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5636</literal><operator>:</operator> <name>SolrRequestParsers</name> <name>does</name> <name>some</name> <name>xpath</name> <name>lookups</name> <name>on</name> <name>every</name> <name>request</name></expr><operator>,</operator> <expr><name>which</name>
+   <name>can</name> <name>cause</name> <name>concurrency</name> <name><name>issues</name><operator>.</operator></name> (<name>Mark</name> <name>Miller</name></expr></expr_stmt>)
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5658</literal><operator>:</operator> <name>commitWithin</name> <name>and</name> <name>overwrite</name> <name>are</name> <name>not</name> <name>being</name> <name>distributed</name> <name>to</name> <name>replicas</name>
+  <name>now</name> <name>that</name> <name>SolrCloud</name> <name>uses</name> <name>javabin</name> <name>to</name> <name>distribute</name> <name><name>updates</name><operator>.</operator></name>
+  (<name>Mark</name> <name>Miller</name></expr><operator>,</operator> <expr><name>Varun</name> <name>Thacker</name></expr><operator>,</operator> <expr><name>Elodie</name> <name>Sannier</name></expr><operator>,</operator> <expr><name>shalin</name></expr></expr_stmt>)
+
+ <expr_stmt><expr><name>Optimizations</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>  
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>loader</name><operator>/</operator><name><name>JavabinLoader</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>loader</name><operator>/</operator><name><name>JavabinLoader</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d6671414ccf</name><operator>..</operator><literal type="number">64b851f786d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>loader</name><operator>/</operator><name><name>JavabinLoader</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>loader</name><operator>/</operator><name><name>JavabinLoader</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">70</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">70</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavabinLoader</name> extends <name>ContentStreamLoader</name> <block>{
+       <expr><specifier>private</specifier> <name>AddUpdateCommand</name> <name>addCmd</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+ 
+       @<expr><name>Override</name>
+      <specifier>public</specifier> <name>void</name> <call><name>update</name><argument_list>(<argument><expr><name>SolrInputDocument</name> <name>document</name></expr></argument>, <argument><expr><name>UpdateRequest</name> <name>updateRequest</name></expr></argument>)</argument_list></call> <block>{
+      <expr><specifier>public</specifier> <name>void</name> <call><name>update</name><argument_list>(<argument><expr><name>SolrInputDocument</name> <name>document</name></expr></argument>, <argument><expr><name>UpdateRequest</name> <name>updateRequest</name></expr></argument>, <argument><expr><name>Integer</name> <name>commitWithin</name></expr></argument>, <argument><expr><name>Boolean</name> <name>overwrite</name></expr></argument>)</argument_list></call> <block>{
+         <if_stmt><if>if <condition>(<expr><name>document</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <comment type="line">// Perhaps commit from the parameters</comment>
+           <try>try <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">85</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">85</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavabinLoader</name> extends <name>ContentStreamLoader</name> <block>{
+           <expr><name>addCmd</name> <operator>=</operator> <call><name>getAddCommand</name><argument_list>(<argument><expr><name>req</name></expr></argument>, <argument><expr><call><name><name>updateRequest</name><operator>.</operator><name>getParams</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</block></expr></expr_stmt></block_content></block></try></block_content></block></if></if_stmt>
+         }</block>
+         <name><name>addCmd</name><operator>.</operator><name>solrDoc</name></name> <operator>=</operator> <name>document</name></expr>;
+        <if_stmt><if>if <condition>(<expr><name>commitWithin</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name><name>addCmd</name><operator>.</operator><name>commitWithin</name></name> <operator>=</operator> <name>commitWithin</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+        <if_stmt><if>if <condition>(<expr><name>overwrite</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name><name>addCmd</name><operator>.</operator><name>overwrite</name></name> <operator>=</operator> <name>overwrite</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+        
+         <try>try <block>{<block_content>
+           <expr_stmt><expr><call><name><name>processor</name><operator>.</operator><name>processAdd</name></name><argument_list>(<argument><expr><name>addCmd</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><call><name><name>addCmd</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>BasicDistributedZkTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>BasicDistributedZkTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">0da31f46461</literal><operator>..</operator><literal type="number">607c22001e0</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>BasicDistributedZkTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>BasicDistributedZkTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>MalformedURLException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Callable</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>CompletionService</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutorCompletionService</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">336</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">336</literal></expr><operator>,</operator><expr><literal type="number">24</literal> @@ <specifier>public</specifier> <name>class</name> <name>BasicDistributedZkTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+     <expr><call><name>query</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><operator>new</operator> <name><name>Object</name><index>[]</index></name> <block>{<expr><literal type="string">"q"</literal></expr>, <expr><literal type="string">"id:[1 TO 5]"</literal></expr>, <expr><name><name>CommonParams</name><operator>.</operator><name>DEBUG</name></name></expr>, <expr><name><name>CommonParams</name><operator>.</operator><name>RESULTS</name></name></expr>}</block></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>query</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><operator>new</operator> <name><name>Object</name><index>[]</index></name> <block>{<expr><literal type="string">"q"</literal></expr>, <expr><literal type="string">"id:[1 TO 5]"</literal></expr>, <expr><name><name>CommonParams</name><operator>.</operator><name>DEBUG</name></name></expr>, <expr><name><name>CommonParams</name><operator>.</operator><name>QUERY</name></name></expr>}</block></expr></argument>)</argument_list></call></expr>;
+ 
+    <comment type="line">// try commitWithin</comment>
+    <expr><name>long</name> <name>before</name> <operator>=</operator> <call><name><name>cloudClient</name><operator>.</operator><name>query</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>SolrQuery</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>getResults</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getNumFound</name><argument_list>()</argument_list></call></expr>;
+    <expr><name>ModifiableSolrParams</name> <name>params</name> <operator>=</operator> <operator>new</operator> <call><name>ModifiableSolrParams</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>params</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="string">"commitWithin"</literal></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>add</name><argument_list>(<argument><expr><name>cloudClient</name></expr></argument>, <argument><expr><name>params</name></expr></argument> , <argument><expr><call><name>getDoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="number">300</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+    <expr><name>long</name> <name>timeout</name> <operator>=</operator> <call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="number">15000</literal></expr>;
+    <while>while <condition>(<expr><call><name><name>cloudClient</name><operator>.</operator><name>query</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>SolrQuery</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>getResults</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getNumFound</name><argument_list>()</argument_list></call> <operator>!=</operator> <name>before</name> <operator>+</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>timeout</name> <operator>&lt;=</operator> <call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><literal type="string">"commitWithin did not work"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt></block_content></block></while>}</block>
+      <call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></try>
+    
+    <for>for <control>(<init><decl><type><name>SolrServer</name></type> <name>client</name> <range>: <expr><name>clients</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"commitWithin did not work"</literal></expr></argument>, <argument><expr><name>before</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>client</name><operator>.</operator><name>query</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>SolrQuery</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>getResults</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getNumFound</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    
+     <comment type="line">// TODO: This test currently fails because debug info is obtained only</comment>
+     <comment type="line">// on shards with matches.</comment>
+     <comment type="line">// query("q","matchesnothing","fl","*,score", "debugQuery", "true");</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>JavaBinUpdateRequestCodec</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>JavaBinUpdateRequestCodec</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5998eeccb80</literal><operator>..</operator><literal type="number">744aac7245c</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>JavaBinUpdateRequestCodec</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>JavaBinUpdateRequestCodec</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">25</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">25</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name><operator>.</operator><name>Entry</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrInputDocument</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>params</name><operator>.</operator><name>ModifiableSolrParams</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">60</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">59</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+     }</block>
+     <name><name>Iterator</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>&gt;</argument_list></name> <name>docIter</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+ 
+    <if_stmt><if>if <condition>(<expr><call><name><name>updateRequest</name><operator>.</operator><name>getDocuments</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>docIter</name> <operator>=</operator> <call><name><name>updateRequest</name><operator>.</operator><name>getDocuments</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+     <if_stmt><if>if<condition>(<expr><call><name><name>updateRequest</name><operator>.</operator><name>getDocIterator</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block>{<block_content>
+       <expr_stmt><expr><name>docIter</name> <operator>=</operator> <call><name><name>updateRequest</name><operator>.</operator><name>getDocIterator</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">70</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>docMap</name> <operator>=</operator> <call><name><name>updateRequest</name><operator>.</operator><name>getDocumentsMap</name></name><argument_list>()</argument_list></call></expr>;
+ 
+     <expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"params"</literal></expr></argument>, <argument><expr><name>params</name></expr></argument>)</argument_list></call></expr>;<comment type="line">// 0: params</comment>
+    <expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"delByIdMap"</literal></expr></argument>, <argument><expr><call><name><name>updateRequest</name><operator>.</operator><name>getDeleteByIdMap</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <if_stmt><if>if <condition>(<expr><call><name><name>updateRequest</name><operator>.</operator><name>getDeleteByIdMap</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"delByIdMap"</literal></expr></argument>, <argument><expr><call><name><name>updateRequest</name><operator>.</operator><name>getDeleteByIdMap</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block>
+     <call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"delByQ"</literal></expr></argument>, <argument><expr><call><name><name>updateRequest</name><operator>.</operator><name>getDeleteQuery</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"docs"</literal></expr></argument>, <argument><expr><name>docIter</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"docsMap"</literal></expr></argument>, <argument><expr><name>docMap</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>docMap</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"docsMap"</literal></expr></argument>, <argument><expr><call><name><name>docMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>updateRequest</name><operator>.</operator><name>getDocuments</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>docIter</name> <operator>=</operator> <call><name><name>updateRequest</name><operator>.</operator><name>getDocuments</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>nl</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"docs"</literal></expr></argument>, <argument><expr><name>docIter</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+     <decl_stmt><decl><type><name>JavaBinCodec</name></type> <name>codec</name> <init>= <expr><operator>new</operator> <call><name>JavaBinCodec</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>codec</name><operator>.</operator><name>marshal</name></name><argument_list>(<argument><expr><name>nl</name></expr></argument>, <argument><expr><name>os</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   }
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">97</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+   <expr><specifier>public</specifier> <name>UpdateRequest</name> <call><name>unmarshal</name><argument_list>(<argument><expr><name>InputStream</name> <name>is</name></expr></argument>, <argument><expr><name>final</name> <name>StreamingUpdateHandler</name> <name>handler</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <expr><name>final</name> <name>UpdateRequest</name> <name>updateRequest</name> <operator>=</operator> <operator>new</operator> <call><name>UpdateRequest</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>List</name><argument_list type="generic">&lt;<argument><name>NamedList</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>doclist</name></expr>;
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name>  <name>docMap</name></expr>;
+    <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name>  <name>docMap</name></expr>;
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>delById</name></expr>;
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>delByIdMap</name></expr>;
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>delByQ</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">132</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">137</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+       }</block>
+ 
+       <specifier>private</specifier> <name>List</name> <call><name>readOuterMostDocIterator</name><argument_list>(<argument><expr><name>DataInputInputStream</name> <name>fis</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+        <expr><name>NamedList</name> <name>params</name> <operator>=</operator> <operator>(</operator><name>NamedList</name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getVal</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+        <expr><name>NamedList</name> <name>params</name> <operator>=</operator> <operator>(</operator><name>NamedList</name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"params"</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>updateRequest</name><operator>.</operator><name>setParams</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>ModifiableSolrParams</name><argument_list>(<argument><expr><call><name><name>SolrParams</name><operator>.</operator><name>toSolrParams</name></name><argument_list>(<argument><expr><name>params</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         <if_stmt><if>if <condition>(<expr><name>handler</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><call><name><name>super</name><operator>.</operator><name>readIterator</name></name><argument_list>(<argument><expr><name>fis</name></expr></argument>)</argument_list></call></expr>;</return></block_content></block></if></if_stmt>
+        <name>Integer</name> <name>commitWithin</name> <operator>=</operator> <literal type="null">null</literal></block></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>Boolean</name></type> <name>overwrite</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+           <decl_stmt><decl><type><name>Object</name></type> <name>o</name> <init>= <expr><call><name>readVal</name><argument_list>(<argument><expr><name>fis</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+           <if_stmt><if>if <condition>(<expr><name>o</name> <operator>==</operator> <name>END_OBJ</name></expr>)</condition><block type="pseudo"><block_content> <break>break;</break></block_content></block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">144</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">151</literal></expr><operator>,</operator><expr><literal type="number">24</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+           }</block></expr></expr_stmt> <if_stmt><if type="elseif">else if <condition>(<expr><name>o</name> <operator>instanceof</operator> <name>NamedList</name></expr>)</condition>  <block>{<block_content>
+             <decl_stmt><decl><type><name>UpdateRequest</name></type> <name>req</name> <init>= <expr><operator>new</operator> <call><name>UpdateRequest</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+             <expr_stmt><expr><call><name><name>req</name><operator>.</operator><name>setParams</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>ModifiableSolrParams</name><argument_list>(<argument><expr><call><name><name>SolrParams</name><operator>.</operator><name>toSolrParams</name></name><argument_list>(<argument><expr><operator>(</operator><name>NamedList</name><operator>)</operator> <name>o</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>handler</name><operator>.</operator><name>update</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>req</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>handler</name><operator>.</operator><name>update</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>req</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>o</name> <operator>instanceof</operator> <name><name>Map</name><operator>.</operator><name>Entry</name></name></expr>)</condition><block>{<block_content>
+            <expr_stmt><expr><name>sdoc</name> <operator>=</operator> <operator>(</operator><name>SolrInputDocument</name><operator>)</operator> <operator>(</operator><operator>(</operator><name><name>Map</name><operator>.</operator><name>Entry</name></name><operator>)</operator> <name>o</name><operator>)</operator><operator>.</operator><call><name>getKey</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>Map</name></type> <name>p</name> <init>= <expr><operator>(</operator><name>Map</name><operator>)</operator> <operator>(</operator><operator>(</operator><name><name>Map</name><operator>.</operator><name>Entry</name></name><operator>)</operator> <name>o</name><operator>)</operator><operator>.</operator><call><name>getValue</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>p</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><name>commitWithin</name> <operator>=</operator> <operator>(</operator><name>Integer</name><operator>)</operator> <call><name><name>p</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>UpdateRequest</name><operator>.</operator><name>COMMIT_WITHIN</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <expr_stmt><expr><name>overwrite</name> <operator>=</operator> <operator>(</operator><name>Boolean</name><operator>)</operator> <call><name><name>p</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>UpdateRequest</name><operator>.</operator><name>OVERWRITE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+           </block_content>}</block></if> <else>else  <block>{<block_content>
+          
+             <expr_stmt><expr><name>sdoc</name> <operator>=</operator> <operator>(</operator><name>SolrInputDocument</name><operator>)</operator> <name>o</name></expr>;</expr_stmt>
+           </block_content>}</block></else></if_stmt>
+          <expr_stmt><expr><call><name><name>handler</name><operator>.</operator><name>update</name></name><argument_list>(<argument><expr><name>sdoc</name></expr></argument>, <argument><expr><name>updateRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>handler</name><operator>.</operator><name>update</name></name><argument_list>(<argument><expr><name>sdoc</name></expr></argument>, <argument><expr><name>updateRequest</name></expr></argument>, <argument><expr><name>commitWithin</name></expr></argument>, <argument><expr><name>overwrite</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></while>
+         <return>return <expr><name><name>Collections</name><operator>.</operator><name>EMPTY_LIST</name></name></expr>;</return>
+       }
+    }<empty_stmt>;</empty_stmt>
+ 
+    };
+ 
+     <expr_stmt><expr><call><name><name>codec</name><operator>.</operator><name>unmarshal</name></name><argument_list>(<argument><expr><name>is</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">161</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">176</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+     <comment type="line">// must be loaded now</comment>
+     <if_stmt><if>if<condition>(<expr><call><name><name>updateRequest</name><operator>.</operator><name>getParams</name></name><argument_list>()</argument_list></call><operator>==</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>NamedList</name></type> <name>params</name> <init>= <expr><operator>(</operator><name>NamedList</name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"params"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"unmarchal params:"</literal> <operator>+</operator> <name>params</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <if_stmt><if>if<condition>(<expr><name>params</name><operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>updateRequest</name><operator>.</operator><name>setParams</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>ModifiableSolrParams</name><argument_list>(<argument><expr><call><name><name>SolrParams</name><operator>.</operator><name>toSolrParams</name></name><argument_list>(<argument><expr><name>params</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block>
+@@ <operator>-</operator><literal type="number">169</literal></expr><operator>,</operator><expr><literal type="number">32</literal> <operator>+</operator><literal type="number">185</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+     <expr><name>delByIdMap</name> <operator>=</operator> <operator>(</operator><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"delByIdMap"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><name>delByQ</name> <operator>=</operator> <operator>(</operator><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"delByQ"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><name>doclist</name> <operator>=</operator> <operator>(</operator><name>List</name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"docs"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>docMap</name> <operator>=</operator>  <operator>(</operator><name><name>Map</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"docsMap"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>docMap</name> <operator>=</operator>  <operator>(</operator><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><operator>)</operator> <name><name>namedList</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"docsMap"</literal></expr></argument>)</argument_list></call></expr>;
+    
+
+    <comment type="line">// we don't add any docs, because they were already processed</comment>
+    <comment type="line">// deletes are handled later, and must be passed back on the UpdateRequest</comment>
+     
+    <if_stmt><if>if <condition>(<expr><name>doclist</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>doclist</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>&gt;</argument_list></name></type> <name>solrInputDocs</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>Object</name></type> <name>o</name> <range>: <expr><name>doclist</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>o</name> <operator>instanceof</operator> <name>List</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>solrInputDocs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>listToSolrInputDocument</name><argument_list>(<argument><expr><operator>(</operator><name><name>List</name><argument_list type="generic">&lt;<argument><name>NamedList</name></argument>&gt;</argument_list></name><operator>)</operator><name>o</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt>}</block></expr></expr_stmt> <if_stmt><else>else  <block>{<block_content>
+          <expr_stmt><expr><call><name><name>solrInputDocs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>(</operator><name>SolrInputDocument</name><operator>)</operator><name>o</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+      }
+      updateRequest<expr_stmt><expr><operator>.</operator><call><name>add</name><argument_list>(<argument><expr><name>solrInputDocs</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }
+    if <expr_stmt><expr><operator>(</operator><name>docMap</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>docMap</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call><operator>)</operator> <block>{
+      <expr><name><name>Set</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>entries</name> <operator>=</operator> <call><name><name>docMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr>;
+      <for>for <control>(<init><decl><type><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>entry</name> <range>: <expr><name>entries</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>map</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Boolean</name></type> <name>overwrite</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Integer</name></type> <name>commitWithin</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>map</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>overwrite</name> <operator>=</operator> <operator>(</operator><name>Boolean</name><operator>)</operator> <call><name><name>map</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>UpdateRequest</name><operator>.</operator><name>OVERWRITE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>commitWithin</name> <operator>=</operator> <operator>(</operator><name>Integer</name><operator>)</operator> <call><name><name>map</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>UpdateRequest</name><operator>.</operator><name>COMMIT_WITHIN</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for>}</block>
+        <call><name><name>updateRequest</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>commitWithin</name></expr></argument>, <argument><expr><name>overwrite</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      }
+    }
+     <if_stmt><if>if <condition>(<expr><name>delById</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <for>for <control>(<init><decl><type><name>String</name></type> <name>s</name> <range>: <expr><name>delById</name></expr></range></decl></init>)</control> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>updateRequest</name><operator>.</operator><name>deleteById</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">200</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+       <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>delByIdMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+         <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>params</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>params</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>Long</name></type> <name>version</name> <init>= <expr><operator>(</operator><name>Long</name><operator>)</operator> <call><name><name>params</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"ver"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>Long</name></type> <name>version</name> <init>= <expr><operator>(</operator><name>Long</name><operator>)</operator> <call><name><name>params</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>UpdateRequest</name><operator>.</operator><name>VER</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+           <expr_stmt><expr><call><name><name>updateRequest</name><operator>.</operator><name>deleteById</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>version</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if> <else>else <block>{<block_content>
+           <expr_stmt><expr><call><name><name>updateRequest</name><operator>.</operator><name>deleteById</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">217</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">213</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+         <expr><call><name><name>updateRequest</name><operator>.</operator><name>deleteByQuery</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;
+       }</block></expr></expr_stmt>
+     </block_content>}</block></else></if_stmt>
+    
+     <return>return <expr><name>updateRequest</name></expr>;</return>
+
+   </block_content>}</block></for>
+ 
+   <specifier>private</specifier> <name>SolrInputDocument</name> <call><name>listToSolrInputDocument</name><argument_list>(<argument><expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>NamedList</name></argument>&gt;</argument_list></name> <name>namedList</name></expr></argument>)</argument_list></call> <block>{
+@@ <expr><operator>-</operator><literal type="number">242</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">238</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>JavaBinUpdateRequestCodec</name> <block>{
+   }</block>
+ 
+   <specifier>public</specifier> <specifier>static</specifier> interface <name>StreamingUpdateHandler</name> <block>{
+    <expr><specifier>public</specifier> <name>void</name> <call><name>update</name><argument_list>(<argument><expr><name>SolrInputDocument</name> <name>document</name></expr></argument>, <argument><expr><name>UpdateRequest</name> <name>req</name></expr></argument>)</argument_list></call></expr>;
+    <specifier>public</specifier> <name>void</name> <call><name>update</name><argument_list>(<argument><expr><name>SolrInputDocument</name> <name>document</name></expr></argument>, <argument><expr><name>UpdateRequest</name> <name>req</name></expr></argument>, <argument><expr><name>Integer</name> <name>commitWithin</name></expr></argument>, <argument><expr><name>Boolean</name> <name>override</name></expr></argument>)</argument_list></call></block></expr>;
+   }</block>
+ }</block></expr></expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>UpdateRequest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>UpdateRequest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">81befbe1b3c</literal><operator>..</operator><literal type="number">154d7e090f1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>UpdateRequest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>request</name><operator>/</operator><name><name>UpdateRequest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>XML</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> <name>class</name> <name>UpdateRequest</name> extends <name>AbstractUpdateRequest</name> <block>{
+   
+  <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>VER</name> <operator>=</operator> <literal type="string">"ver"</literal></expr>;
+  <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>VER</name> <operator>=</operator> <literal type="string">"ver"</literal></block></expr>;</expr_stmt>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>OVERWRITE</name> <init>= <expr><literal type="string">"ow"</literal></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>COMMIT_WITHIN</name> <init>= <expr><literal type="string">"cw"</literal></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>SolrInputDocument</name></argument>,<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>documents</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>JavaBinCodec</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>JavaBinCodec</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f6e322861bb</name><operator>..</operator><literal type="number">3e83f24a32f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>JavaBinCodec</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>JavaBinCodec</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>InputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>OutputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name><operator>.</operator><name>Entry</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>ByteBuffer</name></name>;</import></block_content></block></for></block_content></block></if></if_stmt>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -65,6 +66,7 @@ public class JavaBinCodec {
+           SOLRINPUTDOC = 16,
+           SOLRINPUTDOC_CHILDS = 17,
+           ENUM_FIELD_VALUE = 18,
+          MAP_ENTRY = 19,
+           // types that combine tag + length (or other info) in a single byte
+           TAG_AND_LEN = (byte) (1 &lt;&lt; 5),
+           STR = (byte) (1 &lt;&lt; 5),
+@@ -227,6 +229,8 @@ public class JavaBinCodec {
+         return readSolrInputDocument(dis);
+       case ENUM_FIELD_VALUE:
+         return readEnumFieldValue(dis);
+      case MAP_ENTRY:
+        return readMapEntry(dis);
+     }
+ 
+     throw new RuntimeException("Unknown type " + tagByte);
+@@ -286,6 +290,10 @@ public class JavaBinCodec {
+       writeEnumFieldValue((EnumFieldValue) val);
+       return true;
+     }
+    if (val instanceof Map.Entry) {
+      writeMapEntry((Map.Entry)val);
+      return true;
+    }
+     return false;
+   }
+ 
+@@ -480,6 +488,12 @@ public class JavaBinCodec {
+     writeInt(enumFieldValue.toInt());
+     writeStr(enumFieldValue.toString());
+   }
+  
+  public void writeMapEntry(Entry&lt;Object,Object&gt; val) throws IOException {
+    writeTag(MAP_ENTRY);
+    writeVal(val.getKey());
+    writeVal(val.getValue());
+  }
+ 
+   /**
+    * read {@link EnumFieldValue} (int+string) from input stream
+@@ -491,6 +505,33 @@ public class JavaBinCodec {
+     String stringValue = (String) readVal(dis);
+     return new EnumFieldValue(intValue, stringValue);
+   }
+  
+
+  public Map.Entry&lt;Object,Object&gt; readMapEntry(DataInputInputStream dis) throws IOException {
+    final Object key = readVal(dis);
+    final Object value = readVal(dis);
+    return new Map.Entry&lt;Object,Object&gt;() {
+
+      @Override
+      public Object getKey() {
+        return key;
+      }
+
+      @Override
+      public Object getValue() {
+        return value;
+      }
+      
+      @Override
+      public String toString() {
+        return "MapEntry[" + key.toString() + ":" + value.toString() + "]";
+      }
+
+      @Override
+      public Object setValue(Object value) {
+        throw new UnsupportedOperationException();
+      }};
+  }
+ 
+   /**
+    * write the string as tag+length, with length being the number of UTF-8 bytes
+diff --git a/solr/solrj/src/test/org/apache/solr/client/solrj/request/TestUpdateRequestCodec.java b/solr/solrj/src/test/org/apache/solr/client/solrj/request/TestUpdateRequestCodec.java
+index f9b3d56dc80..5a66759b0b5 100644
+-- a/solr/solrj/src/test/org/apache/solr/client/solrj/request/TestUpdateRequestCodec.java
+++ b/solr/solrj/src/test/org/apache/solr/client/solrj/request/TestUpdateRequestCodec.java
+@@ -85,7 +85,7 @@ public class TestUpdateRequestCodec extends LuceneTestCase {
+     final List&lt;SolrInputDocument&gt; docs = new ArrayList&lt;SolrInputDocument&gt;();
+     JavaBinUpdateRequestCodec.StreamingUpdateHandler handler = new JavaBinUpdateRequestCodec.StreamingUpdateHandler() {
+       @Override
+      public void update(SolrInputDocument document, UpdateRequest req) {
+      public void update(SolrInputDocument document, UpdateRequest req, Integer commitWithin, Boolean overwrite) {
+         Assert.assertNotNull(req.getParams());
+         docs.add(document);
+       }
+@@ -136,7 +136,7 @@ public class TestUpdateRequestCodec extends LuceneTestCase {
+     final List&lt;SolrInputDocument&gt; docs = new ArrayList&lt;SolrInputDocument&gt;();
+     JavaBinUpdateRequestCodec.StreamingUpdateHandler handler = new JavaBinUpdateRequestCodec.StreamingUpdateHandler() {
+       @Override
+      public void update(SolrInputDocument document, UpdateRequest req) {
+      public void update(SolrInputDocument document, UpdateRequest req, Integer commitWithin, Boolean overwrite) {
+         Assert.assertNotNull(req.getParams());
+         docs.add(document);
+       }
+- 
+2.19.1.windows.1
+
+</comment></unit>

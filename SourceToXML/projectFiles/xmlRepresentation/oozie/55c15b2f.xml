@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/55c15b2f.java"><expr><name>From</name> <literal type="number">55c15b2f605ce7d0eb799faa3d5e5240ac581c0f</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name><name>Kanter</name> <argument_list type="generic">&lt;<argument><name>rkanter</name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">3</literal> <name>Feb</name> <literal type="number">2014</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">17</literal><operator>:</operator><literal type="number">57</literal> <operator>-</operator><literal type="number">0800</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">1684</literal> <name>DB</name> <name>upgrade</name> <name>from</name> <literal type="number">3.3.0</literal> <name>to</name> <name>trunk</name> <name>fails</name> <name>on</name> <call><name>Oracle</name>
+ <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                                            <operator>|</operator> <literal type="number">1</literal> <operator>+</operator>
+ <name>tools</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>tools</name><operator>/</operator><name><name>OozieDBCLI</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">6</literal> <operator>+</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">5</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>f424dd393</name><operator>..</operator><literal type="number">876a25671</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+ <operator>--</operator> <name>Oozie</name> <literal type="number">4.1.0</literal> <call><name>release</name> <argument_list>(<argument><expr><name>trunk</name> <operator>-</operator> <name>unreleased</name></expr></argument>)</argument_list></call>
+ 
+<name>OOZIE</name><operator>-</operator><literal type="number">1684</literal> <name>DB</name> <name>upgrade</name> <name>from</name> <literal type="number">3.3.0</literal> <name>to</name> <name>trunk</name> <name>fails</name> <name>on</name> <call><name>Oracle</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1675</literal> <name>Adding</name> <name>absolute</name> <name>URI</name> <name>of</name> <name>local</name> <name>cluster</name> <name>to</name> <name>dist</name> <name>cache</name> <name>not</name> <name>working</name> <name>with</name> <name>hadoop</name> <name>version</name> <literal type="number">0.20.2</literal> <name>and</name> <call><name>before</name> <argument_list>(<argument><expr><name>satish</name> <name>via</name> <name>ryota</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1683</literal> <name>UserGroupInformationService</name> <name>should</name> <name>close</name> <name>any</name> <name>filesystems</name> <name>opened</name> <name>by</name> <call><name>it</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1646</literal> <name>HBase</name> <name>Table</name> <name>Copy</name> <name>between</name> <name>two</name> <name>HBase</name> <name>servers</name> <name>doesn</name><literal type="char">'</literal></expr>t work with Kerberos (rkanter)
+diff --git a/tools/src/main/java/org/apache/oozie/tools/OozieDBCLI.java b/tools/src/main/java/org/apache/oozie/tools/OozieDBCLI.java
+index 7312faa28..a116984e6 100644
+-- a/tools/src/main/java/org/apache/oozie/tools/OozieDBCLI.java
+++ b/tools/src/main/java/org/apache/oozie/tools/OozieDBCLI.java
+@@ -1038,11 +1038,7 @@ public class OozieDBCLI {
+         System.out.println((create) ? "Create SQL schema" : "Upgrade SQL schema");
+         String[] args = createMappingToolArguments(sqlFile);
+         org.apache.openjpa.jdbc.meta.MappingTool.main(args);
+        // With oracle, mapping tool tries to create a table even if already
+        // exists and fails
+        // However the update is reflected in the database even though the below
+        // block is not executed
+        if (run &amp;&amp; (create || !getDBVendor().equals("oracle"))) {
+        if (run) {
+             args = createMappingToolArguments(null);
+             org.apache.openjpa.jdbc.meta.MappingTool.main(args);
+         }
+- 
+2.19.1.windows.1
+
+</unit>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/9180eca5925.java"><expr_stmt><expr><name>From</name> <literal type="number">9180eca59258fe07ee067c66e432cf322148025a</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Alejandro</name> <name><name>Abdelnur</name> <argument_list type="generic">&lt;<argument><name>tucu</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">14</literal> <name>Mar</name> <literal type="number">2012</literal> <literal type="number">17</literal><operator>:</operator><literal type="number">07</literal><operator>:</operator><literal type="number">26</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">8167.</literal> <name>Configuration</name> <name>deprecation</name> <name>logic</name> <name>breaks</name> <name>backwards</name>
+ <call><name>compatibility</name> <argument_list>(<argument><expr><name>tucu</name></expr></argument>)</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1300642 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">49</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">54</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">91</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">14</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">1b76cf1a031</literal><operator>..</operator><literal type="number">68065faf78b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">232</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">232</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Release</name> <literal type="number">0.23.3</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">8169.</literal>  <name>javadoc</name> <name>generation</name> <name>fails</name> <name>with</name> <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>OutOfMemoryError</name></name><operator>:</operator>
+     <name>Java</name> <name>heap</name> <call><name>space</name> <argument_list>(<argument><expr><name>tgraves</name> <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call>
+ 
+    <name>HADOOP</name><operator>-</operator><literal type="number">8167.</literal> <name>Configuration</name> <name>deprecation</name> <name>logic</name> <name>breaks</name> <name>backwards</name> <call><name>compatibility</name> <argument_list>(<argument><expr><name>tucu</name></expr></argument>)</argument_list></call>
+
+   <name>BREAKDOWN</name> <name>OF</name> <name>HADOOP</name><operator>-</operator><literal type="number">7454</literal> <name>SUBTASKS</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">7455.</literal> <name>HA</name><operator>:</operator> <name>Introduce</name> <name>HA</name> <name>Service</name> <name>Protocol</name> <name><name>Interface</name><operator>.</operator></name> (<name>suresh</name></expr></expr_stmt>)
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d71aaf58106</name><operator>..</operator><literal type="number">3d8c3a5d450</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">306</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">306</literal></expr><operator>,</operator><expr><literal type="number">26</literal> @@ <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name><name>String</name><index>[]</index></name> <name>newKeys</name></expr></argument>)</argument_list></call> <block>{
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name> <call><name>isDeprecated</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>)</argument_list></call> <block>{
+     <return>return <expr><call><name><name>deprecatedKeyMap</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+   }</block>
+ 
+
+  <comment type="block" format="javadoc">/**
+   * Returns the alternate name for a key if the property name is deprecated
+   * or if deprecates a property name.
+   *
+   * @param name property name.
+   * @return alternate name.
+   */</comment>
+  <specifier>private</specifier> <name>String</name> <call><name>getAlternateName</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>String</name> <name>altName</name></expr>;
+    <expr><name>DeprecatedKeyInfo</name> <name>keyInfo</name> <operator>=</operator> <call><name><name>deprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;
+    <if_stmt><if>if <condition>(<expr><name>keyInfo</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>altName</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name><name>keyInfo</name><operator>.</operator><name>newKeys</name><operator>.</operator><name>length</name></name> <operator>&gt;</operator> <literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><name><name>keyInfo</name><operator>.</operator><name>newKeys</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+    <if_stmt><else>else <block>{<block_content>
+      <expr_stmt><expr><name>altName</name> <operator>=</operator> <call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+    <return>return <expr><name>altName</name></expr>;</return>
+  }
+
+   <comment type="block" format="javadoc">/**
+    * Checks for the presence of the property &lt;code&gt;name&lt;/code&gt; in the
+    * deprecation map. Returns the first of the list of new keys if present
+@@ -619,8 +638,8 @@ public String getRaw(String name) {
+ 
+   /** 
+    * Set the &lt;code&gt;value&lt;/code&gt; of the &lt;code&gt;name&lt;/code&gt; property. If 
+   * &lt;code&gt;name&lt;/code&gt; is deprecated, it sets the &lt;code&gt;value&lt;/code&gt; to the keys
+   * that replace the deprecated key.
+   * &lt;code&gt;name&lt;/code&gt; is deprecated or there is a deprecated name associated to it,
+   * it sets the value to both names.
+    * 
+    * @param name property name.
+    * @param value property value.
+@@ -629,18 +648,17 @@ public void set(String name, String value) {
+     if (deprecatedKeyMap.isEmpty()) {
+       getProps();
+     }
+    if (!isDeprecated(name)) {
+      getOverlay().setProperty(name, value);
+      getProps().setProperty(name, value);
+      updatingResource.put(name, UNKNOWN_RESOURCE);
+    getOverlay().setProperty(name, value);
+    getProps().setProperty(name, value);
+    updatingResource.put(name, UNKNOWN_RESOURCE);
+    String altName = getAlternateName(name);
+    if (altName != null) {
+      getOverlay().setProperty(altName, value);
+      getProps().setProperty(altName, value);
+     }
+    else {
+    if (isDeprecated(name)) {
+       DeprecatedKeyInfo keyInfo = deprecatedKeyMap.get(name);
+       LOG.warn(keyInfo.getWarningMessage(name));
+      for (String newKey : keyInfo.newKeys) {
+        getOverlay().setProperty(newKey, value);
+        getProps().setProperty(newKey, value);
+      }
+     }
+   }
+   
+@@ -648,10 +666,13 @@ public void set(String name, String value) {
+    * Unset a previously set property.
+    */</comment>
+   public <function><type><specifier>synchronized</specifier> <name>void</name></type> <name>unset</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>name</name> <operator>=</operator> <call><name>handleDeprecation</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>altName</name> <init>= <expr><call><name>getAlternateName</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>altName</name> <operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+index a6f95ef097e..e5a7748d5cf 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+@@ -20,6 +20,7 @@
+ 
+ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.assertTrue;
+ 
+@@ -27,6 +28,7 @@
+ import java.io.File;
+ import java.io.FileWriter;
+ import java.io.IOException;
+import java.util.Map;
+ 
+ import org.apache.hadoop.fs.Path;
+ import org.junit.After;
+@@ -270,4 +272,56 @@ public void testSetBeforeAndGetAfterDeprecationAndDefaults() {
+         new String[]{ "tests.fake-default.new-key" });
+     assertEquals("hello", conf.get("tests.fake-default.new-key"));
+   }
+
+  @Test
+  public void testIteratorWithDeprecatedKeys() {
+    Configuration conf = new Configuration();
+    Configuration.addDeprecation("dK", new String[]{"nK"});
+    conf.set("k", "v");
+    conf.set("dK", "V");
+    assertEquals("V", conf.get("dK"));
+    assertEquals("V", conf.get("nK"));
+    conf.set("nK", "VV");
+    assertEquals("VV", conf.get("dK"));
+    assertEquals("VV", conf.get("nK"));
+    boolean kFound = false;
+    boolean dKFound = false;
+    boolean nKFound = false;
+    for (Map.Entry&lt;String, String&gt; entry : conf) {
+      if (entry.getKey().equals("k")) {
+        assertEquals("v", entry.getValue());
+        kFound = true;
+      }
+      if (entry.getKey().equals("dK")) {
+        assertEquals("VV", entry.getValue());
+        dKFound = true;
+      }
+      if (entry.getKey().equals("nK")) {
+        assertEquals("VV", entry.getValue());
+        nKFound = true;
+      }
+    }
+    assertTrue("regular Key not found", kFound);
+    assertTrue("deprecated Key not found", dKFound);
+    assertTrue("new Key not found", nKFound);
+  }
+
+  @Test
+  public void testUnsetWithDeprecatedKeys() {
+    Configuration conf = new Configuration();
+    Configuration.addDeprecation("dK", new String[]{"nK"});
+    conf.set("nK", "VV");
+    assertEquals("VV", conf.get("dK"));
+    assertEquals("VV", conf.get("nK"));
+    conf.unset("dK");
+    assertNull(conf.get("dK"));
+    assertNull(conf.get("nK"));
+    conf.set("nK", "VV");
+    assertEquals("VV", conf.get("dK"));
+    assertEquals("VV", conf.get("nK"));
+    conf.unset("nK");
+    assertNull(conf.get("dK"));
+    assertNull(conf.get("nK"));
+  }
+
+ }
+- 
+2.19.1.windows.1
+
+</comment></unit>

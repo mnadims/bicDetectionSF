@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/f2de427f7.java"><expr_stmt><expr><name>From</name> <name>f2de427f74a8a6ffa05c6209e7161e7349458241</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Eric</name> <name><name>Newton</name> <argument_list type="generic">&lt;<argument><name><name>eric</name><operator>.</operator><name>newton</name></name><annotation>@<name><name>gmail</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Feb</name> <literal type="number">2014</literal> <literal type="number">11</literal><operator>:</operator><literal type="number">18</literal><operator>:</operator><literal type="number">34</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">2401</literal> <name>removed</name> <name>many</name> <name>calls</name> <name>to</name> <name>deprecated</name>
+ <call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call> <name>fixed</name> <name>hacky</name> <name>crypto</name> <name>tests</name> <name>that</name>
+ <name>messed</name> <name>with</name> <name>the</name> <name>site</name> <name>configuration</name>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>cli</name><operator>/</operator><name><name>ClientOpts</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>DefaultConfiguration</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>blockfile</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CachableBlockFile</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">45</literal> <operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">5</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileOperations</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>SplitLarge</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">10</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>BCFile</name><operator>.</operator><name>java</name></name>        <operator>|</operator>  <literal type="number">15</literal> <operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>     <operator>|</operator>   <literal type="number">9</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SecurityUtil</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name>shell</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooUtil</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">5</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>mapred</name><operator>/</operator><name><name>AccumuloFileOutputFormatTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>PropertyTest</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>CreateCompatTestFile</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>MultiLevelIndexTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">8</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name>crypto</name><operator>/</operator><name><name>CryptoTest</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">100</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name>shell</name><operator>/</operator><name><name>ShellSetInstanceTest</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name><name>ServerConstants</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>client</name><operator>/</operator><name><name>HdfsZooInstance</name><operator>.</operator><name>java</name></name>        <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>ZooConfiguration</name><operator>.</operator><name>java</name></name>         <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>init</name><operator>/</operator><name><name>Initialize</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">7</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name>state</name><operator>/</operator><name><name>SetGoalState</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>TraceServer</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name><name>TabletServer</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>logger</name><operator>/</operator><name><name>LogReader</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">5</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>TestUpgradePathForWALogs</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">8</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>randomwalk</name><operator>/</operator><name>concurrent</name><operator>/</operator><name><name>BulkImport</name><operator>.</operator><name>java</name></name>     <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">31</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">118</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">156</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>cli</name><operator>/</operator><name><name>ClientOpts</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>cli</name><operator>/</operator><name><name>ClientOpts</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ca126e3d7</name><operator>..</operator><literal type="number">7573f694b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>cli</name><operator>/</operator><name><name>ClientOpts</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>cli</name><operator>/</operator><name><name>ClientOpts</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">258</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">258</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClientOpts</name> extends <name>Help</name> <block>{
+       }</block></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>zookeepers</name></name> <operator>=</operator> <call><name><name>config</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>INSTANCE_ZK_HOST</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Path</name></type> <name>instanceDir</name> <init>= <expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><call><name><name>config</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>INSTANCE_DFS_DIR</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"instance_id"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>instanceIDFromFile</name> <init>= <expr><call><name><name>ZooUtil</name><operator>.</operator><name>getInstanceIDFromHdfs</name></name><argument_list>(<argument><expr><name>instanceDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>instanceIDFromFile</name> <init>= <expr><call><name><name>ZooUtil</name><operator>.</operator><name>getInstanceIDFromHdfs</name></name><argument_list>(<argument><expr><name>instanceDir</name></expr></argument>, <argument><expr><name>config</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <if_stmt><if>if <condition>(<expr><call><name><name>config</name><operator>.</operator><name>getBoolean</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>INSTANCE_RPC_SSL_ENABLED</name></name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+         <expr_stmt><expr><call><name><name>clientConfig</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><name><name>ClientProperty</name><operator>.</operator><name>INSTANCE_RPC_SSL_ENABLED</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+       <return>return <expr><name>cachedClientConfig</name> <operator>=</operator> <call><name><name>clientConfig</name><operator>.</operator><name>withInstance</name></name><argument_list>(<argument><expr><call><name><name>UUID</name><operator>.</operator><name>fromString</name></name><argument_list>(<argument><expr><name>instanceIDFromFile</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>withZkHosts</name><argument_list>(<argument><expr><name>zookeepers</name></expr></argument>)</argument_list></call></expr>;</return>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>DefaultConfiguration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>DefaultConfiguration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">6162bc5ef</literal><operator>..</operator><name>cfd2f3539</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>DefaultConfiguration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>DefaultConfiguration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">53</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">53</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>DefaultConfiguration</name> extends <name>AccumuloConfiguration</name> <block>{
+       <comment type="line">// the following loop is super slow, it takes a few milliseconds, so cache it</comment>
+       <expr><name>resolvedProps</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+       <for>for <control>(<init><decl><type><name>Property</name></type> <name>prop</name> <range>: <expr><call><name><name>Property</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control><block type="pseudo"><block_content>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>prop</name><operator>.</operator><name>isExperimental</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>prop</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name><name>PropertyType</name><operator>.</operator><name>PREFIX</name></name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>prop</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name><name>PropertyType</name><operator>.</operator><name>PREFIX</name></name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+           <expr_stmt><expr><call><name><name>resolvedProps</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>prop</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>prop</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for>
+     }</block></expr></expr_stmt>
+     <return>return <expr><name>resolvedProps</name></expr>;</return>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>blockfile</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CachableBlockFile</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>blockfile</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CachableBlockFile</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5e462159a</literal><operator>..</operator><literal type="number">095a21838</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>blockfile</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CachableBlockFile</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>blockfile</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CachableBlockFile</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>InputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>ref</name><operator>.</operator><name>SoftReference</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>AccumuloConfiguration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>file</name><operator>.</operator><name>blockfile</name><operator>.</operator><name>ABlockReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>file</name><operator>.</operator><name>blockfile</name><operator>.</operator><name>ABlockWriter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>file</name><operator>.</operator><name>blockfile</name><operator>.</operator><name>BlockFileReader</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+     <expr><specifier>private</specifier> <name>BlockWrite</name> <name>_bw</name></expr>;
+     <expr><specifier>private</specifier> <name>FSDataOutputStream</name> <name>fsout</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+     
+    <expr><specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FileSystem</name> <name>fs</name></expr></argument>, <argument><expr><name>Path</name> <name>fName</name></expr></argument>, <argument><expr><name>String</name> <name>compressAlgor</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FileSystem</name> <name>fs</name></expr></argument>, <argument><expr><name>Path</name> <name>fName</name></expr></argument>, <argument><expr><name>String</name> <name>compressAlgor</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>fsout</name></name> <operator>=</operator> <call><name><name>fs</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>fName</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+      <expr><call><name>init</name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>init</name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;
+     }</block>
+     
+    <specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FSDataOutputStream</name> <name>fsout</name></expr></argument>, <argument><expr><name>String</name> <name>compressAlgor</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FSDataOutputStream</name> <name>fsout</name></expr></argument>, <argument><expr><name>String</name> <name>compressAlgor</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>fsout</name></name> <operator>=</operator> <name>fsout</name></expr></block></expr></argument></throws></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>init</name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>init</name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     }
+     
+    private <function><type><name>void</name></type> <name>init</name><parameter_list>(<parameter><decl><type><name>FSDataOutputStream</name></type> <name>fsout</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>compressAlgor</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><name>_bc</name> <operator>=</operator> <operator>new</operator> <call><name><name>BCFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>init</name><parameter_list>(<parameter><decl><type><name>FSDataOutputStream</name></type> <name>fsout</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>compressAlgor</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>AccumuloConfiguration</name></type> <name>accumuloConfiguration</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><name>_bc</name> <operator>=</operator> <operator>new</operator> <call><name><name>BCFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fsout</name></expr></argument>, <argument><expr><name>compressAlgor</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></function>
+     
+     <function><type><specifier>public</specifier> <name>ABlockWriter</name></type> <name>prepareMetaBlock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">149</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">150</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+     <expr><specifier>private</specifier> <name>FileSystem</name> <name>fs</name></expr>;
+     <expr><specifier>private</specifier> <name>Configuration</name> <name>conf</name></expr>;
+     <expr><specifier>private</specifier> <name>boolean</name> <name>closed</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+    <expr><specifier>private</specifier> <name>AccumuloConfiguration</name> <name>accumuloConfiguration</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+     
+     <expr><specifier>private</specifier> interface <name>BlockLoader</name> <block>{
+       <expr><name>BlockReader</name> <call><name>get</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr>;
+@@ <expr><operator>-</operator><literal type="number">166</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">168</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+       
+       @<expr><name>Override</name>
+       <specifier>public</specifier> <name>BlockReader</name> <call><name>get</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+        <return>return <expr><call><name>getBCFile</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getDataBlock</name><argument_list>(<argument><expr><name>blockIndex</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+        <return>return <expr><call><name>getBCFile</name><argument_list>(<argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getDataBlock</name><argument_list>(<argument><expr><name>blockIndex</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+       }</block>
+       
+       @<name>Override</name>
+@@ <operator>-</operator><literal type="number">190</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">192</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+       
+       @<expr><name>Override</name>
+       <specifier>public</specifier> <name>BlockReader</name> <call><name>get</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+        <return>return <expr><call><name>getBCFile</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getDataBlock</name><argument_list>(<argument><expr><name>offset</name></expr></argument>, <argument><expr><name>compressedSize</name></expr></argument>, <argument><expr><name>rawSize</name></expr></argument>)</argument_list></call></expr>;</return></block></expr></expr_stmt>
+        <return>return <expr><call><name>getBCFile</name><argument_list>(<argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getDataBlock</name><argument_list>(<argument><expr><name>offset</name></expr></argument>, <argument><expr><name>compressedSize</name></expr></argument>, <argument><expr><name>rawSize</name></expr></argument>)</argument_list></call></expr>;</return>
+       </block_content>}</block></function>
+       
+       <annotation>@<name>Override</name></annotation>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">202</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+     <expr><specifier>private</specifier> <name>class</name> <name>MetaBlockLoader</name> implements <name>BlockLoader</name> <block>{
+       
+       <expr><specifier>private</specifier> <name>String</name> <name>name</name></expr>;
+      <expr><specifier>private</specifier> <name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr>;
+       
+      <expr><call><name>MetaBlockLoader</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></call> <block>{
+      <expr><call><name>MetaBlockLoader</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call> <block>{
+         <expr><name><name>this</name><operator>.</operator><name>name</name></name> <operator>=</operator> <name>name</name></expr>;
+        <expr><name><name>this</name><operator>.</operator><name>accumuloConfiguration</name></name> <operator>=</operator> <name>accumuloConfiguration</name></expr>;
+       }</block>
+       
+       @<name>Override</name>
+       <specifier>public</specifier> <name>BlockReader</name> <call><name>get</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+        <return>return <expr><call><name>getBCFile</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getMetaBlock</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+        <return>return <expr><call><name>getBCFile</name><argument_list>(<argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getMetaBlock</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+       }</block>
+       
+       @<name>Override</name>
+@@ <operator>-</operator><literal type="number">218</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">222</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CachableBlockFile</name> <block>{
+       }</block></expr></expr_stmt>
+     </block_content>}</block></function>
+     
+    <constructor><specifier>public</specifier> <name>Reader</name><parameter_list>(<parameter><decl><type><name>FileSystem</name></type> <name>fs</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>dataFile</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>BlockCache</name></type> <name>data</name></decl></parameter>, <parameter><decl><type><name>BlockCache</name></type> <name>index</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <constructor><specifier>public</specifier> <name>Reader</name><parameter_list>(<parameter><decl><type><name>FileSystem</name></type> <name>fs</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>dataFile</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>BlockCache</name></type> <name>data</name></decl></parameter>, <parameter><decl><type><name>BlockCache</name></type> <name>index</name></decl></parameter>, <parameter><decl><type><name>AccumuloConfiguration</name></type> <name>accumuloConfiguration</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+       
+       <comment type="block">/*
+        * Grab path create input stream grab len create file
+@@ -229,24 +233,25 @@ public class CachableBlockFile {
+       this._iCache = index;
+       this.fs = fs;
+       this.conf = conf;
+      this.accumuloConfiguration = accumuloConfiguration;
+     }
+     
+    public Reader(FSDataInputStream fsin, long len, Configuration conf, BlockCache data, BlockCache index) throws IOException {
+    public Reader(FSDataInputStream fsin, long len, Configuration conf, BlockCache data, BlockCache index, AccumuloConfiguration accumuloConfiguration) throws IOException {
+       this._dCache = data;
+       this._iCache = index;
+      init(fsin, len, conf);
+      init(fsin, len, conf, accumuloConfiguration);
+     }
+ 
+    public Reader(FSDataInputStream fsin, long len, Configuration conf) throws IOException {
+    public Reader(FSDataInputStream fsin, long len, Configuration conf, AccumuloConfiguration accumuloConfiguration) throws IOException {
+       // this.fin = fsin;
+      init(fsin, len, conf);
+      init(fsin, len, conf, accumuloConfiguration);
+     }
+     
+    private void init(FSDataInputStream fsin, long len, Configuration conf) throws IOException {
+      this._bc = new BCFile.Reader(this, fsin, len, conf);
+    private void init(FSDataInputStream fsin, long len, Configuration conf, AccumuloConfiguration accumuloConfiguration) throws IOException {
+      this._bc = new BCFile.Reader(this, fsin, len, conf, accumuloConfiguration);
+     }
+     
+    private synchronized BCFile.Reader getBCFile() throws IOException {
+    private synchronized BCFile.Reader getBCFile(AccumuloConfiguration accumuloConfiguration) throws IOException {
+       if (closed)
+         throw new IllegalStateException("File " + fileName + " is closed");
+       
+@@ -254,7 +259,7 @@ public class CachableBlockFile {
+         // lazily open file if needed
+         Path path = new Path(fileName);
+         fin = fs.open(path);
+        init(fin, fs.getFileStatus(path).getLen(), conf);
+        init(fin, fs.getFileStatus(path).getLen(), conf, accumuloConfiguration);
+       }
+       
+       return _bc;
+@@ -364,7 +369,7 @@ public class CachableBlockFile {
+      */</comment>
+     <function><type><specifier>public</specifier> <name>BlockRead</name></type> <name>getMetaBlock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>blockName</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+       <decl_stmt><decl><type><name>String</name></type> <name>_lookup</name> <init>= <expr><name><name>this</name><operator>.</operator><name>fileName</name></name> <operator>+</operator> <literal type="string">"M"</literal> <operator>+</operator> <name>blockName</name></expr></init></decl>;</decl_stmt>
+      <return>return <expr><call><name>getBlock</name><argument_list>(<argument><expr><name>_lookup</name></expr></argument>, <argument><expr><name>_iCache</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>MetaBlockLoader</name><argument_list>(<argument><expr><name>blockName</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+      <return>return <expr><call><name>getBlock</name><argument_list>(<argument><expr><name>_lookup</name></expr></argument>, <argument><expr><name>_iCache</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>MetaBlockLoader</name><argument_list>(<argument><expr><name>blockName</name></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+     
+     <annotation>@<name>Override</name></annotation>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">899a5cd86</literal><operator>..</operator><literal type="number">7cee0f94f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>PrintInfo</name> <block>{
+     <expr><name>Configuration</name> <name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr>;
+ 
+     @<expr><call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"deprecation"</literal></expr></argument>)</argument_list></call>
+    <name>FileSystem</name> <name>hadoopFs</name> <operator>=</operator> <call><name><name>FileUtil</name><operator>.</operator><name>getFileSystem</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><name>AccumuloConfiguration</name> <name>aconf</name> <operator>=</operator> <call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><name>FileSystem</name> <name>hadoopFs</name> <operator>=</operator> <call><name><name>FileUtil</name><operator>.</operator><name>getFileSystem</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>aconf</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>FileSystem</name> <name>localFs</name>  <operator>=</operator> <call><name><name>FileSystem</name><operator>.</operator><name>getLocal</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Opts</name> <name>opts</name> <operator>=</operator> <operator>new</operator> <call><name>Opts</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><call><name><name>PrintInfo</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">70</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">71</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>PrintInfo</name> <block>{
+       <if_stmt><else>else<block type="pseudo"><block_content>
+         <expr_stmt><expr><name>fs</name> <operator>=</operator> <call><name><name>hadoopFs</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call> <operator>?</operator> <name>hadoopFs</name> <operator>:</operator> <name>localFs</name></expr>;</expr_stmt></block_content></block></else></if_stmt> <comment type="line">// fall back to local</comment>
+       
+      <name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_rdr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></block></expr>;
+      <expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_rdr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>aconf</name></expr></argument>)</argument_list></call></expr>;
+       <expr><name>Reader</name> <name>iter</name> <operator>=</operator> <operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>_rdr</name></expr></argument>)</argument_list></call></expr>;
+       
+       <expr><call><name><name>iter</name><operator>.</operator><name>printInfo</name></name><argument_list>()</argument_list></call></expr>;
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileOperations</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileOperations</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5374332a4</literal><operator>..</operator><name>b36141347</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileOperations</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>RFileOperations</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">59</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">59</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>RFileOperations</name> extends <name>FileOperations</name> <block>{
+     <comment type="line">// long len = fs.getFileStatus(path).getLen();</comment>
+     <comment type="line">// FSDataInputStream in = fs.open(path);</comment>
+     <comment type="line">// Reader reader = new RFile.Reader(in, len , conf);</comment>
+    <expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_cbr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>dataCache</name></expr></argument>, <argument><expr><name>indexCache</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_cbr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>dataCache</name></expr></argument>, <argument><expr><name>indexCache</name></expr></argument>, <argument><expr><name>acuconf</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>final</name> <name>Reader</name> <name>reader</name> <operator>=</operator> <operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>_cbr</name></expr></argument>)</argument_list></call></expr>;
+     
+     <return>return <expr><call><name><name>reader</name><operator>.</operator><name>getIndex</name></name><argument_list>()</argument_list></call></expr>;</return>
+@@ <operator>-</operator><literal type="number">75</literal><operator>,</operator><literal type="number">7</literal> <operator>+</operator><literal type="number">75</literal><operator>,</operator><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>RFileOperations</name> extends <name>FileOperations</name> <block>{
+       <expr><name>BlockCache</name> <name>dataCache</name></expr>, <expr><name>BlockCache</name> <name>indexCache</name></expr>) <throws>throws <argument><expr><name>IOException</name> <block>{
+     <expr><name>Path</name> <name>path</name> <operator>=</operator> <operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></block></block></expr>;
+     
+    <expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_cbr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>dataCache</name></expr></argument>, <argument><expr><name>indexCache</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>_cbr</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>dataCache</name></expr></argument>, <argument><expr><name>indexCache</name></expr></argument>, <argument><expr><name>acuconf</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Reader</name> <name>iter</name> <operator>=</operator> <operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>_cbr</name></expr></argument>)</argument_list></call></expr>;
+     
+     <if_stmt><if>if <condition>(<expr><name>seekToBeginning</name></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>RFileOperations</name> extends <name>FileOperations</name> <block>{
+     
+     <expr><name>String</name> <name>compression</name> <operator>=</operator> <call><name><name>acuconf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TABLE_FILE_COMPRESSION_TYPE</name></name></expr></argument>)</argument_list></call></expr>;
+     
+    <name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name> <name>_cbw</name> <operator>=</operator> <operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><call><name><name>fs</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>bufferSize</name></expr></argument>, <argument><expr><operator>(</operator><name>short</name><operator>)</operator> <name>rep</name></expr></argument>, <argument><expr><name>block</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>compression</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name></type> <name>_cbw</name> <init>= <expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><call><name><name>fs</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>bufferSize</name></expr></argument>, <argument><expr><operator>(</operator><name>short</name><operator>)</operator> <name>rep</name></expr></argument>, <argument><expr><name>block</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>compression</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>acuconf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Writer</name></type> <name>writer</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>_cbw</name></expr></argument>, <argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>blockSize</name></expr></argument>, <argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>indexBlockSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <return>return <expr><name>writer</name></expr>;</return>
+   <expr_stmt/></block_content></block></if></if_stmt>}</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>SplitLarge</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>SplitLarge</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e19e5f32b</name><operator>..</operator><literal type="number">53e4aaa84</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>SplitLarge</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name><name>SplitLarge</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>cli</name><operator>.</operator><name>Help</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>AccumuloConfiguration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>DefaultConfiguration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>Property</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>data</name><operator>.</operator><name>ByteSequence</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">59</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>SplitLarge</name> <block>{
+     <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><call><name><name>SplitLarge</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+     
+     <for>for <control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><name><name>opts</name><operator>.</operator><name>files</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>AccumuloConfiguration</name></type> <name>aconf</name> <init>= <expr><call><name><name>DefaultConfiguration</name><operator>.</operator><name>getDefaultConfiguration</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt> 
+       <decl_stmt><decl><type><name>Path</name></type> <name>path</name> <init>= <expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name></type> <name>rdr</name> <init>= <expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name></type> <name>rdr</name> <init>= <expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>aconf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>Reader</name></type> <name>iter</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>rdr</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>file</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">".rf"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">70</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>SplitLarge</name> <block>{
+       <expr><name>String</name> <name>smallName</name> <operator>=</operator> <call><name><name>file</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>file</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">3</literal></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"_small.rf"</literal></expr>;
+       <name>String</name> <name>largeName</name> <operator>=</operator> <call><name><name>file</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>file</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">3</literal></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"_large.rf"</literal></block></expr>;</expr_stmt>
+       
+      <decl_stmt><decl><type><name>int</name></type> <name>blockSize</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator> <call><name><name>DefaultConfiguration</name><operator>.</operator><name>getDefaultConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getMemoryInBytes</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TABLE_FILE_BLOCK_SIZE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Writer</name></type> <name>small</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>smallName</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"gz"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>blockSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>blockSize</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator> <call><name><name>aconf</name><operator>.</operator><name>getMemoryInBytes</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TABLE_FILE_BLOCK_SIZE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Writer</name></type> <name>small</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>smallName</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"gz"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>aconf</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>blockSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>small</name><operator>.</operator><name>startDefaultLocalityGroup</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>Writer</name></type> <name>large</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>largeName</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"gz"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>blockSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Writer</name></type> <name>large</name> <init>= <expr><operator>new</operator> <call><name><name>RFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>CachableBlockFile</name><operator>.</operator><name>Writer</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>largeName</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"gz"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>aconf</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>blockSize</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>large</name><operator>.</operator><name>startDefaultLocalityGroup</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+       <expr_stmt><expr><call><name><name>iter</name><operator>.</operator><name>seek</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Range</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>ByteSequence</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>BCFile</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>BCFile</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e8f45ccf0</name><operator>..</operator><literal type="number">6c3ea0d0a</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>BCFile</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>BCFile</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">346</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">346</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+      <expr><operator>*</operator> @<throws>throws <argument><expr><name>IOException</name>
+      <operator>*</operator> <annotation>@<name>see</name></annotation> <name>Compression</name><operator>#</operator><name>getSupportedAlgorithms</name>
+      <operator>*</operator><operator>/</operator>
+    <specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FSDataOutputStream</name> <name>fout</name></expr></argument>, <argument><expr><name>String</name> <name>compressionName</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>boolean</name> <name>trackDataBlocks</name></expr></argument>)</argument_list></call></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <call><name>Writer</name><argument_list>(<argument><expr><name>FSDataOutputStream</name> <name>fout</name></expr></argument>, <argument><expr><name>String</name> <name>compressionName</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>boolean</name> <name>trackDataBlocks</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+       <if_stmt><if>if <condition>(<expr><call><name><name>fout</name><operator>.</operator><name>getPos</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Output file not at zero offset."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       <expr_stmt/></block_content></block></if></if_stmt></block></expr></expr_stmt></block_content></block></if></if_stmt></block_content></block></for>}</block>
+@@ <operator>-</operator><literal type="number">360</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">360</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+ 
+       <comment type="line">// Set up crypto-related detail, including secret key generation and encryption</comment>
+ 
+      @<expr><call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"deprecation"</literal></expr></argument>)</argument_list></call>
+      <name>AccumuloConfiguration</name> <name>accumuloConfiguration</name> <operator>=</operator> <call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr>;
+
+       <expr><name><name>this</name><operator>.</operator><name>cryptoModule</name></name> <operator>=</operator> <call><name><name>CryptoModuleFactory</name><operator>.</operator><name>getCryptoModule</name></name><argument_list>(<argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>cryptoParams</name></name> <operator>=</operator> <operator>new</operator> <call><name>BCFileCryptoModuleParameters</name><argument_list>()</argument_list></call></expr>;
+       <expr><call><name><name>CryptoModuleFactory</name><operator>.</operator><name>fillParamsObjectFromConfiguration</name></name><argument_list>(<argument><expr><name>cryptoParams</name></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">739</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">736</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+      <expr><operator>*</operator>          <name>Length</name> <name>of</name> <name>the</name> <name>corresponding</name> <name>file</name>
+      <operator>*</operator> @<throws>throws <argument><expr><name>IOException</name>
+      <operator>*</operator><operator>/</operator>
+    <specifier>public</specifier> <call><name>Reader</name><argument_list>(<argument><expr><name>FSDataInputStream</name> <name>fin</name></expr></argument>, <argument><expr><name>long</name> <name>fileLength</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>)</argument_list></call></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <call><name>Reader</name><argument_list>(<argument><expr><name>FSDataInputStream</name> <name>fin</name></expr></argument>, <argument><expr><name>long</name> <name>fileLength</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+ 
+       <expr><name><name>this</name><operator>.</operator><name>in</name></name> <operator>=</operator> <name>fin</name></expr></block></expr></argument></throws></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>conf</name></name> <operator>=</operator> <name>conf</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">775</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">772</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+       <comment type="line">// If they exist, read the crypto parameters</comment>
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>version</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>BCFile</name><operator>.</operator><name>API_VERSION_1</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+ 
+        <decl_stmt><decl><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"deprecation"</literal></expr></argument>)</argument_list></annotation>
+        <type><name>AccumuloConfiguration</name></type> <name>accumuloConfiguration</name> <init>= <expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+         <comment type="line">// read crypto parameters</comment>
+         <expr_stmt><expr><call><name><name>fin</name><operator>.</operator><name>seek</name></name><argument_list>(<argument><expr><name>offsetCryptoParameters</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>cryptoParams</name> <operator>=</operator> <operator>new</operator> <call><name>BCFileCryptoModuleParameters</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">822</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">816</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+       }</block></expr></expr_stmt></block_content></block></if></if_stmt>
+     }</block>
+ 
+    <specifier>public</specifier> <call><name>Reader</name><argument_list>(<argument><expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>cache</name></expr></argument>, <argument><expr><name>FSDataInputStream</name> <name>fin</name></expr></argument>, <argument><expr><name>long</name> <name>fileLength</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <call><name>Reader</name><argument_list>(<argument><expr><name><name>CachableBlockFile</name><operator>.</operator><name>Reader</name></name> <name>cache</name></expr></argument>, <argument><expr><name>FSDataInputStream</name> <name>fin</name></expr></argument>, <argument><expr><name>long</name> <name>fileLength</name></expr></argument>, <argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>AccumuloConfiguration</name> <name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>in</name></name> <operator>=</operator> <name>fin</name></expr></block></expr></argument></throws></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>conf</name></name> <operator>=</operator> <name>conf</name></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">864</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">858</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BCFile</name> <block>{
+         <comment type="line">// If they exist, read the crypto parameters</comment>
+         <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>version</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>BCFile</name><operator>.</operator><name>API_VERSION_1</name></name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <name>cachedCryptoParams</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+ 
+          <decl_stmt><decl><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"deprecation"</literal></expr></argument>)</argument_list></annotation>
+          <type><name>AccumuloConfiguration</name></type> <name>accumuloConfiguration</name> <init>= <expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+           <comment type="line">// read crypto parameters</comment>
+           <expr_stmt><expr><call><name><name>fin</name><operator>.</operator><name>seek</name></name><argument_list>(<argument><expr><name>offsetCryptoParameters</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><name>cryptoParams</name> <operator>=</operator> <operator>new</operator> <call><name>BCFileCryptoModuleParameters</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>a7464c634</name><operator>..</operator><literal type="number">4809d8072</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>file</name><operator>/</operator><name>rfile</name><operator>/</operator><name>bcfile</name><operator>/</operator><name><name>PrintInfo</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">30</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">30</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileSystem</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>Path</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>PrintInfo</name> <block>{
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>printMetaBlockInfo</name><parameter_list>(<parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>FileSystem</name></type> <name>fs</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>path</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>printMetaBlockInfo</name><parameter_list>(<parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>FileSystem</name></type> <name>fs</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>path</name></decl></parameter>, <parameter><decl><type><name>AccumuloConfiguration</name></type> <name>accumuloConfiguration</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>FSDataInputStream</name></type> <name>fsin</name> <init>= <expr><call><name><name>fs</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>BCFile</name><operator>.</operator><name>Reader</name></name></type> <name>bcfr</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+     <try>try <block>{<block_content>
+      <expr_stmt><expr><name>bcfr</name> <operator>=</operator> <operator>new</operator> <call><name><name>BCFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fsin</name></expr></argument>, <argument><expr><call><name><name>fs</name><operator>.</operator><name>getFileStatus</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getLen</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>bcfr</name> <operator>=</operator> <operator>new</operator> <call><name><name>BCFile</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>fsin</name></expr></argument>, <argument><expr><call><name><name>fs</name><operator>.</operator><name>getFileStatus</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getLen</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>accumuloConfiguration</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       
+       <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>MetaIndexEntry</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>es</name> <init>= <expr><call><name><name>bcfr</name><operator>.</operator><name>metaIndex</name><operator>.</operator><name>index</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>PrintInfo</name> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>main</name><argument_list>(<argument><expr><name><name>String</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><name>Configuration</name> <name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+     @<call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"deprecation"</literal></expr></argument>)</argument_list></call>
+    <name>FileSystem</name> <name>hadoopFs</name> <operator>=</operator> <call><name><name>FileUtil</name><operator>.</operator><name>getFileSystem</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>AccumuloConfiguration</name></type> <name>siteConf</name> <init>= <expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileSystem</name></type> <name>hadoopFs</name> <init>= <expr><call><name><name>FileUtil</name><operator>.</operator><name>getFileSystem</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>siteConf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>FileSystem</name></type> <name>localFs</name> <init>= <expr><call><name><name>FileSystem</name><operator>.</operator><name>getLocal</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Path</name></type> <name>path</name> <init>= <expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>FileSystem</name></type> <name>fs</name></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>PrintInfo</name> <block>{
+       <expr><name>fs</name> <operator>=</operator> <call><name><name>path</name><operator>.</operator><name>getFileSystem</name></name><argument_list>(<argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;
+     <if_stmt><else>else<block type="pseudo"><block_content>
+       <expr_stmt><expr><name>fs</name> <operator>=</operator> <ternary><condition><expr><call><name><name>hadoopFs</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr> ?</condition><then> <expr><name>hadoopFs</name></expr> </then><else>: <expr><name>localFs</name></expr></else></ternary></expr>;</expr_stmt></block_content></block></else></if_stmt> <comment type="line">// fall back to local</comment>
+    <call><name>printMetaBlockInfo</name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>printMetaBlockInfo</name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>fs</name></expr></argument>, <argument><expr><name>path</name></expr></argument>, <argument><expr><name>siteConf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   <expr_stmt/></block_content></block></try></block_content></block></function></block_content></block></function></block></class></block_content></block></if></if_stmt>}</block></expr>
+ }</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SecurityUtil</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SecurityUtil</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">59c19749d</literal><operator>..</operator><literal type="number">43a2d4626</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SecurityUtil</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SecurityUtil</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">35</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">35</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>SecurityUtil</name> <block>{
+    <expr><operator>*</operator> <name>This</name> <name>method</name> <name>is</name></expr> <for>for logging a server in kerberos. If this is used in client code<operator>,</operator> <expr_stmt><expr><name>it</name> <name>will</name> <name>fail</name> <name>unless</name> <name>run</name> <name>as</name> <name>the</name> <name>accumulo</name> <name>keytab</name><literal type="char">'</literal></expr></expr_stmt></for></block></expr></block></expr></expr_stmt></block_content></block></constructor></block_content></block></constructor>s owner. Instead, use
+    * {@link #login(String, String)}
+    */
+  public static void serverLogin() {
+    @SuppressWarnings("deprecation")
+    AccumuloConfiguration acuConf = AccumuloConfiguration.getSiteConfiguration();
+  public static void serverLogin(AccumuloConfiguration acuConf) {
+     String keyTab = acuConf.getPath(Property.GENERAL_KERBEROS_KEYTAB);
+     if (keyTab == null || keyTab.length() == 0)
+       return;
+diff --git a/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java b/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+index 7f1b8dc49..faded5633 100644
+-- a/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+++ b/core/src/main/java/org/apache/accumulo/core/util/shell/Shell.java
+@@ -434,7 +434,7 @@ public class Shell extends ShellOptions {
+       AccumuloConfiguration conf = SiteConfiguration.getInstance(ServerConfigurationUtil.convertClientConfig(DefaultConfiguration.getInstance(), clientConfig));
+       if (instanceName == null) {
+         Path instanceDir = new Path(conf.get(Property.INSTANCE_DFS_DIR), "instance_id");
+        instanceId = UUID.fromString(ZooUtil.getInstanceIDFromHdfs(instanceDir));
+        instanceId = UUID.fromString(ZooUtil.getInstanceIDFromHdfs(instanceDir, conf));
+       }
+       if (keepers == null) {
+         keepers = conf.get(Property.INSTANCE_ZK_HOST);
+diff --git a/core/src/main/java/org/apache/accumulo/core/zookeeper/ZooUtil.java b/core/src/main/java/org/apache/accumulo/core/zookeeper/ZooUtil.java
+index fa0bdf630..a062602fc 100644
+-- a/core/src/main/java/org/apache/accumulo/core/zookeeper/ZooUtil.java
+++ b/core/src/main/java/org/apache/accumulo/core/zookeeper/ZooUtil.java
+@@ -46,11 +46,10 @@ public class ZooUtil extends org.apache.accumulo.fate.zookeeper.ZooUtil {
+    * Utility to support certain client side utilities to minimize command-line options.
+    */
+ 
+  public static String getInstanceIDFromHdfs(Path instanceDirectory) {
+  public static String getInstanceIDFromHdfs(Path instanceDirectory, AccumuloConfiguration conf) {
+     try {
+ 
+      @SuppressWarnings("deprecation")
+      FileSystem fs = FileUtil.getFileSystem(instanceDirectory.toString(), CachedConfiguration.getInstance(), AccumuloConfiguration.getSiteConfiguration());
+      FileSystem fs = FileUtil.getFileSystem(instanceDirectory.toString(), CachedConfiguration.getInstance(), conf);
+       FileStatus[] files = null;
+       try {
+         files = fs.listStatus(instanceDirectory);
+diff --git a/core/src/test/java/org/apache/accumulo/core/client/mapred/AccumuloFileOutputFormatTest.java b/core/src/test/java/org/apache/accumulo/core/client/mapred/AccumuloFileOutputFormatTest.java
+index 565b61889..aad544b85 100644
+-- a/core/src/test/java/org/apache/accumulo/core/client/mapred/AccumuloFileOutputFormatTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/client/mapred/AccumuloFileOutputFormatTest.java
+@@ -46,6 +46,7 @@ import org.apache.hadoop.mapred.Reporter;
+ import org.apache.hadoop.mapred.lib.IdentityMapper;
+ import org.apache.hadoop.util.Tool;
+ import org.apache.hadoop.util.ToolRunner;
+import org.apache.log4j.Logger;
+ import org.junit.BeforeClass;
+ import org.junit.Rule;
+ import org.junit.Test;
+@@ -108,6 +109,7 @@ public class AccumuloFileOutputFormatTest {
+             if (index == 2)
+               fail();
+           } catch (Exception e) {
+            Logger.getLogger(this.getClass()).error(e, e);
+             assertEquals(2, index);
+           }
+         } catch (AssertionError e) {
+@@ -191,6 +193,7 @@ public class AccumuloFileOutputFormatTest {
+     File f = folder.newFile("writeBadVisibility");
+     f.delete();
+     MRTester.main(new String[] {"root", "", BAD_TABLE, f.getAbsolutePath()});
+    Logger.getLogger(this.getClass()).error(e1, e1);
+     assertNull(e1);
+     assertNull(e2);
+   }
+diff --git a/core/src/test/java/org/apache/accumulo/core/conf/PropertyTest.java b/core/src/test/java/org/apache/accumulo/core/conf/PropertyTest.java
+index 9609e02cb..600caab83 100644
+-- a/core/src/test/java/org/apache/accumulo/core/conf/PropertyTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/conf/PropertyTest.java
+@@ -148,7 +148,7 @@ public class PropertyTest {
+     TreeSet&lt;String&gt; expected = new TreeSet&lt;String&gt;();
+     for (Entry&lt;String,String&gt; entry : conf) {
+       String key = entry.getKey();
+      if (key.equals(Property.INSTANCE_SECRET.getKey()) || key.toLowerCase().contains("password") || key.toLowerCase().contains("secret")
+      if (key.equals(Property.INSTANCE_SECRET.getKey()) || key.toLowerCase().contains("password") || key.toLowerCase().endsWith("secret")
+           || key.startsWith(Property.TRACE_TOKEN_PROPERTY_PREFIX.getKey()))
+         expected.add(key);
+     }
+diff --git a/core/src/test/java/org/apache/accumulo/core/file/rfile/CreateCompatTestFile.java b/core/src/test/java/org/apache/accumulo/core/file/rfile/CreateCompatTestFile.java
+index e99b3f29a..46c2f0e63 100644
+-- a/core/src/test/java/org/apache/accumulo/core/file/rfile/CreateCompatTestFile.java
+++ b/core/src/test/java/org/apache/accumulo/core/file/rfile/CreateCompatTestFile.java
+@@ -19,6 +19,7 @@ package org.apache.accumulo.core.file.rfile;
+ import java.util.HashSet;
+ import java.util.Set;
+ 
+import org.apache.accumulo.core.conf.AccumuloConfiguration;
+ import org.apache.accumulo.core.data.ArrayByteSequence;
+ import org.apache.accumulo.core.data.ByteSequence;
+ import org.apache.accumulo.core.data.Key;
+@@ -55,7 +56,7 @@ public class CreateCompatTestFile {
+   public static void main(String[] args) throws Exception {
+     Configuration conf = new Configuration();
+     FileSystem fs = FileSystem.get(conf);
+    CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(fs, new Path(args[0]), "gz", conf);
+    CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(fs, new Path(args[0]), "gz", conf, AccumuloConfiguration.getDefaultConfiguration());
+     RFile.Writer writer = new RFile.Writer(_cbw, 1000);
+     
+     writer.startNewLocalityGroup("lg1", ncfs(nf("cf_", 1), nf("cf_", 2)));
+diff --git a/core/src/test/java/org/apache/accumulo/core/file/rfile/MultiLevelIndexTest.java b/core/src/test/java/org/apache/accumulo/core/file/rfile/MultiLevelIndexTest.java
+index 00405d1af..04874955f 100644
+-- a/core/src/test/java/org/apache/accumulo/core/file/rfile/MultiLevelIndexTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/file/rfile/MultiLevelIndexTest.java
+@@ -22,6 +22,7 @@ import java.util.Random;
+ 
+ import junit.framework.TestCase;
+ 
+import org.apache.accumulo.core.conf.AccumuloConfiguration;
+ import org.apache.accumulo.core.data.Key;
+ import org.apache.accumulo.core.file.blockfile.ABlockWriter;
+ import org.apache.accumulo.core.file.blockfile.impl.CachableBlockFile;
+@@ -51,9 +52,10 @@ public class MultiLevelIndexTest extends TestCase {
+   }
+   
+   private void runTest(int maxBlockSize, int num) throws IOException {
+    AccumuloConfiguration aconf = AccumuloConfiguration.getDefaultConfiguration();
+     ByteArrayOutputStream baos = new ByteArrayOutputStream();
+     FSDataOutputStream dos = new FSDataOutputStream(baos, new FileSystem.Statistics("a"));
+    CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(dos, "gz", CachedConfiguration.getInstance());
+    CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(dos, "gz", CachedConfiguration.getInstance(), aconf);
+     
+     BufferedWriter mliw = new BufferedWriter(new Writer(_cbw, maxBlockSize));
+     
+@@ -73,7 +75,7 @@ public class MultiLevelIndexTest extends TestCase {
+     byte[] data = baos.toByteArray();
+     SeekableByteArrayInputStream bais = new SeekableByteArrayInputStream(data);
+     FSDataInputStream in = new FSDataInputStream(bais);
+    CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in, data.length, CachedConfiguration.getInstance());
+    CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in, data.length, CachedConfiguration.getInstance(), aconf);
+     
+     Reader reader = new Reader(_cbr, RFile.RINDEX_VER_7);
+     BlockRead rootIn = _cbr.getMetaBlock("root");
+diff --git a/core/src/test/java/org/apache/accumulo/core/file/rfile/RFileTest.java b/core/src/test/java/org/apache/accumulo/core/file/rfile/RFileTest.java
+index cffe2cb08..fb9658ce0 100644
+-- a/core/src/test/java/org/apache/accumulo/core/file/rfile/RFileTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/file/rfile/RFileTest.java
+@@ -178,7 +178,7 @@ public class RFileTest {
+ 
+       baos = new ByteArrayOutputStream();
+       dos = new FSDataOutputStream(baos, new FileSystem.Statistics("a"));
+      CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(dos, "gz", conf);
+      CachableBlockFile.Writer _cbw = new CachableBlockFile.Writer(dos, "gz", conf, AccumuloConfiguration.getDefaultConfiguration());
+       writer = new RFile.Writer(_cbw, 1000, 1000);
+ 
+       if (startDLG)
+@@ -211,7 +211,7 @@ public class RFileTest {
+       LruBlockCache indexCache = new LruBlockCache(100000000, 100000);
+       LruBlockCache dataCache = new LruBlockCache(100000000, 100000);
+ 
+      CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in, fileLength, conf, dataCache, indexCache);
+      CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in, fileLength, conf, dataCache, indexCache, AccumuloConfiguration.getDefaultConfiguration());
+       reader = new RFile.Reader(_cbr);
+       iter = new ColumnFamilySkippingIterator(reader);
+ 
+@@ -1546,7 +1546,9 @@ public class RFileTest {
+     byte data[] = baos.toByteArray();
+     SeekableByteArrayInputStream bais = new SeekableByteArrayInputStream(data);
+     FSDataInputStream in2 = new FSDataInputStream(bais);
+    CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in2, data.length, CachedConfiguration.getInstance());
+    @SuppressWarnings("deprecation")
+    AccumuloConfiguration aconf = AccumuloConfiguration.getSiteConfiguration();
+    CachableBlockFile.Reader _cbr = new CachableBlockFile.Reader(in2, data.length, CachedConfiguration.getInstance(), aconf);
+     Reader reader = new RFile.Reader(_cbr);
+     checkIndex(reader);
+ 
+diff --git a/core/src/test/java/org/apache/accumulo/core/security/crypto/CryptoTest.java b/core/src/test/java/org/apache/accumulo/core/security/crypto/CryptoTest.java
+index 963f41ce1..605e43ae4 100644
+-- a/core/src/test/java/org/apache/accumulo/core/security/crypto/CryptoTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/security/crypto/CryptoTest.java
+@@ -34,6 +34,7 @@ import java.security.NoSuchAlgorithmException;
+ import java.security.NoSuchProviderException;
+ import java.security.SecureRandom;
+ import java.util.Arrays;
+import java.util.Map.Entry;
+ 
+ import javax.crypto.BadPaddingException;
+ import javax.crypto.Cipher;
+@@ -42,7 +43,8 @@ import javax.crypto.NoSuchPaddingException;
+ import javax.crypto.spec.SecretKeySpec;
+ 
+ import org.apache.accumulo.core.conf.AccumuloConfiguration;
+import org.apache.accumulo.core.conf.SiteConfiguration;
+import org.apache.accumulo.core.conf.ConfigurationCopy;
+import org.apache.hadoop.conf.Configuration;
+ import org.junit.Rule;
+ import org.junit.Test;
+ import org.junit.rules.ExpectedException;
+@@ -61,7 +63,6 @@ public class CryptoTest {
+   
+   @Test
+   public void testNoCryptoStream() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_OFF_CONF);    
+     
+     CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+@@ -82,14 +83,10 @@ public class CryptoTest {
+     params = cryptoModule.getEncryptingOutputStream(params);
+     assertNotNull(params.getEncryptedOutputStream());
+     assertEquals(out, params.getEncryptedOutputStream());
+    
+
+    restoreOldConfiguration(oldSiteConfigProperty, conf);
+   }
+   
+   @Test
+   public void testCryptoModuleParamsParsing() {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+ 
+     CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+@@ -102,48 +99,32 @@ public class CryptoTest {
+     assertEquals("SHA1PRNG", params.getRandomNumberGenerator());
+     assertEquals("SUN", params.getRandomNumberGeneratorProvider());
+     assertEquals("org.apache.accumulo.core.security.crypto.CachingHDFSSecretKeyEncryptionStrategy", params.getKeyEncryptionStrategyClass());
+    
+    restoreOldConfiguration(oldSiteConfigProperty, conf);    
+   }
+   
+   @Test
+   public void testCryptoModuleParamsValidation1() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+   
+    try {
+      
+      CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+      CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+      
+      assertTrue(cryptoModule instanceof DefaultCryptoModule);
+      
+      exception.expect(RuntimeException.class);
+      cryptoModule.getEncryptingOutputStream(params);
+      
+      
+    } finally {
+      restoreOldConfiguration(oldSiteConfigProperty, conf);             
+    }
+
+    CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+    CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+
+    assertTrue(cryptoModule instanceof DefaultCryptoModule);
+
+    exception.expect(RuntimeException.class);
+    cryptoModule.getEncryptingOutputStream(params);
+   }
+ 
+   @Test
+   public void testCryptoModuleParamsValidation2() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+    
+    try {
+      
+      CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+      CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+      
+      assertTrue(cryptoModule instanceof DefaultCryptoModule);
+      
+      exception.expect(RuntimeException.class);
+      cryptoModule.getDecryptingInputStream(params);
+    } finally {
+      restoreOldConfiguration(oldSiteConfigProperty, conf);             
+    }
+    CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+    CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+
+    assertTrue(cryptoModule instanceof DefaultCryptoModule);
+
+    exception.expect(RuntimeException.class);
+    cryptoModule.getDecryptingInputStream(params);
+   }
+   
+   private String getStringifiedBytes(String s) throws IOException {
+@@ -170,14 +151,12 @@ public class CryptoTest {
+ 
+   @Test
+   public void testCryptoModuleBasicReadWrite() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_KEK_OFF_CONF);    
+   
+     CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+     CryptoModuleParameters params = CryptoModuleFactory.createParamsObjectFromAccumuloConfiguration(conf);
+     
+     assertTrue(cryptoModule instanceof DefaultCryptoModule);
+    assertTrue(params.getKeyEncryptionStrategyClass() == null || params.getKeyEncryptionStrategyClass().equals(""));
+     
+     byte[] resultingBytes = setUpSampleEncryptedBytes(cryptoModule, params);
+     
+@@ -199,8 +178,6 @@ public class CryptoTest {
+     
+     assertEquals(MARKER_STRING, markerString);
+     assertEquals(MARKER_INT, markerInt);
+    
+    restoreOldConfiguration(oldSiteConfigProperty, conf);
+   }
+ 
+   private byte[] setUpSampleEncryptedBytes(CryptoModule cryptoModule, CryptoModuleParameters params) throws IOException {
+@@ -233,7 +210,6 @@ public class CryptoTest {
+   
+   @Test
+   public void testKeyEncryptionAndCheckThatFileCannotBeReadWithoutKEK() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+   
+     CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+@@ -259,19 +235,13 @@ public class CryptoTest {
+     assertNotNull(params.getPlaintextInputStream());
+     DataInputStream dataIn = new DataInputStream(params.getPlaintextInputStream());
+     // We expect the following operation to fail and throw an exception
+    try {
+      exception.expect(IOException.class);
+      @SuppressWarnings("unused")
+      String markerString = dataIn.readUTF();
+    }
+    finally {
+      restoreOldConfiguration(oldSiteConfigProperty, conf);      
+    }
+    exception.expect(IOException.class);
+    @SuppressWarnings("unused")
+    String markerString = dataIn.readUTF();
+  }
+ 
+   @Test
+   public void testKeyEncryptionNormalPath() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+ 
+     CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+@@ -299,13 +269,10 @@ public class CryptoTest {
+     
+     assertEquals(MARKER_STRING, markerString);
+     assertEquals(MARKER_INT, markerInt);
+
+    restoreOldConfiguration(oldSiteConfigProperty, conf);
+   }
+   
+   @Test
+   public void testChangingCryptoParamsAndCanStillDecryptPreviouslyEncryptedFiles() throws IOException {
+    String oldSiteConfigProperty = System.getProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+     AccumuloConfiguration conf = setAndGetAccumuloConfig(CRYPTO_ON_CONF);    
+ 
+     CryptoModule cryptoModule = CryptoModuleFactory.getCryptoModule(conf);
+@@ -336,27 +303,16 @@ public class CryptoTest {
+     
+     assertEquals(MARKER_STRING, markerString);
+     assertEquals(MARKER_INT, markerInt);
+
+    restoreOldConfiguration(oldSiteConfigProperty, conf);   
+   }
+   
+  private void restoreOldConfiguration(String oldSiteConfigProperty, AccumuloConfiguration conf) {
+    if (oldSiteConfigProperty != null) {
+      System.setProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP, oldSiteConfigProperty);
+    } else {
+      System.clearProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP);
+  private AccumuloConfiguration setAndGetAccumuloConfig(String cryptoConfSetting) {
+    ConfigurationCopy result = new ConfigurationCopy(AccumuloConfiguration.getDefaultConfiguration());
+    Configuration conf = new Configuration(false);
+    conf.addResource(cryptoConfSetting);
+    for (Entry&lt;String,String&gt; e : conf) {
+      result.set(e.getKey(), e.getValue());
+     }
+    ((SiteConfiguration)conf).clearAndNull();
+  }
+
+
+
+  private AccumuloConfiguration setAndGetAccumuloConfig(String cryptoConfSetting) {  
+    @SuppressWarnings("deprecation")
+    AccumuloConfiguration conf = AccumuloConfiguration.getSiteConfiguration();
+    System.setProperty(CryptoTest.CONFIG_FILE_SYSTEM_PROP, cryptoConfSetting);
+    ((SiteConfiguration)conf).clearAndNull();
+    return conf;
+    return result;
+   }
+   
+   @Test
+diff --git a/core/src/test/java/org/apache/accumulo/core/util/shell/ShellSetInstanceTest.java b/core/src/test/java/org/apache/accumulo/core/util/shell/ShellSetInstanceTest.java
+index 40b5cf076..af810ad10 100644
+-- a/core/src/test/java/org/apache/accumulo/core/util/shell/ShellSetInstanceTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/util/shell/ShellSetInstanceTest.java
+@@ -179,7 +179,7 @@ public class ShellSetInstanceTest {
+     if (!onlyInstance) {
+       mockStatic(ZooUtil.class);
+       randomUUID = UUID.randomUUID();
+      expect(ZooUtil.getInstanceIDFromHdfs(anyObject(Path.class)))
+      expect(ZooUtil.getInstanceIDFromHdfs(anyObject(Path.class), anyObject(AccumuloConfiguration.class)))
+         .andReturn(randomUUID.toString());
+       replay(ZooUtil.class);
+       expect(clientConf.withInstance(randomUUID)).andReturn(clientConf);
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java b/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+index eb928ba68..ca5783b8f 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+@@ -136,7 +136,7 @@ public class ServerConstants {
+       String currentIid;
+       Integer currentVersion;
+       try {
+        currentIid = ZooUtil.getInstanceIDFromHdfs(new Path(baseDir, INSTANCE_ID_DIR));
+        currentIid = ZooUtil.getInstanceIDFromHdfs(new Path(baseDir, INSTANCE_ID_DIR), ServerConfiguration.getSiteConfiguration());
+         Path vpath = new Path(baseDir, VERSION_DIR);
+         currentVersion = Accumulo.getAccumuloPersistentVersion(vpath.getFileSystem(CachedConfiguration.getInstance()), vpath);
+       } catch (Exception e) {
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/client/HdfsZooInstance.java b/server/base/src/main/java/org/apache/accumulo/server/client/HdfsZooInstance.java
+index 54fb7e352..6993a0a46 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/client/HdfsZooInstance.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/client/HdfsZooInstance.java
+@@ -122,7 +122,7 @@ public class HdfsZooInstance implements Instance {
+ 
+   private static synchronized void _getInstanceID() {
+     if (instanceId == null) {
+      String instanceIdFromFile = ZooUtil.getInstanceIDFromHdfs(ServerConstants.getInstanceIdLocation());
+      String instanceIdFromFile = ZooUtil.getInstanceIDFromHdfs(ServerConstants.getInstanceIdLocation(), ServerConfiguration.getSiteConfiguration());
+       instanceId = instanceIdFromFile;
+     }
+   }
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/conf/ZooConfiguration.java b/server/base/src/main/java/org/apache/accumulo/server/conf/ZooConfiguration.java
+index e790d0d42..32f6126d4 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/conf/ZooConfiguration.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/conf/ZooConfiguration.java
+@@ -57,7 +57,7 @@ public class ZooConfiguration extends AccumuloConfiguration {
+     if (instance == null) {
+       propCache = new ZooCache(parent.get(Property.INSTANCE_ZK_HOST), (int) parent.getTimeInMillis(Property.INSTANCE_ZK_TIMEOUT));
+       instance = new ZooConfiguration(parent);
+      String deprecatedInstanceIdFromHdfs = ZooUtil.getInstanceIDFromHdfs(ServerConstants.getInstanceIdLocation());
+      String deprecatedInstanceIdFromHdfs = ZooUtil.getInstanceIDFromHdfs(ServerConstants.getInstanceIdLocation(), parent);
+       instanceId = deprecatedInstanceIdFromHdfs;
+     }
+     return instance;
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java b/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+index a7e858ca8..8533484b4 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+@@ -573,7 +573,7 @@ public class Initialize {
+     Path iidPath = new Path(aBasePath, ServerConstants.INSTANCE_ID_DIR);
+     Path versionPath = new Path(aBasePath, ServerConstants.VERSION_DIR);
+ 
+    UUID uuid = UUID.fromString(ZooUtil.getInstanceIDFromHdfs(iidPath));
+    UUID uuid = UUID.fromString(ZooUtil.getInstanceIDFromHdfs(iidPath, ServerConfiguration.getSiteConfiguration()));
+ 
+     if (ServerConstants.DATA_VERSION != Accumulo.getAccumuloPersistentVersion(versionPath.getFileSystem(CachedConfiguration.getInstance()), versionPath)) {
+       throw new IOException("Accumulo " + Constants.VERSION + " cannot initialize data version " + Accumulo.getAccumuloPersistentVersion(fs));
+@@ -602,10 +602,11 @@ public class Initialize {
+     opts.parseArgs(Initialize.class.getName(), args);
+ 
+     try {
+      SecurityUtil.serverLogin();
+      AccumuloConfiguration acuConf = ServerConfiguration.getSiteConfiguration();
+      SecurityUtil.serverLogin(acuConf);
+       Configuration conf = CachedConfiguration.getInstance();
+ 
+      VolumeManager fs = VolumeManagerImpl.get(ServerConfiguration.getSiteConfiguration());
+      VolumeManager fs = VolumeManagerImpl.get(acuConf);
+ 
+       if (opts.resetSecurity) {
+         if (isInitialized(fs)) {
+diff --git a/server/gc/src/main/java/org/apache/accumulo/gc/SimpleGarbageCollector.java b/server/gc/src/main/java/org/apache/accumulo/gc/SimpleGarbageCollector.java
+index e6c8265fb..89925b46a 100644
+-- a/server/gc/src/main/java/org/apache/accumulo/gc/SimpleGarbageCollector.java
+++ b/server/gc/src/main/java/org/apache/accumulo/gc/SimpleGarbageCollector.java
+@@ -134,7 +134,7 @@ public class SimpleGarbageCollector implements Iface {
+   private Instance instance;
+ 
+   public static void main(String[] args) throws UnknownHostException, IOException {
+    SecurityUtil.serverLogin();
+    SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+     Instance instance = HdfsZooInstance.getInstance();
+     ServerConfiguration serverConf = new ServerConfiguration(instance);
+     final VolumeManager fs = VolumeManagerImpl.get();
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/Master.java b/server/master/src/main/java/org/apache/accumulo/master/Master.java
+index 31469f113..a06337786 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/Master.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/Master.java
+@@ -1058,7 +1058,7 @@ public class Master implements LiveTServerSet.Listener, TableObserver, CurrentSt
+ 
+   public static void main(String[] args) throws Exception {
+     try {
+      SecurityUtil.serverLogin();
+      SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+ 
+       VolumeManager fs = VolumeManagerImpl.get();
+       ServerOpts opts = new ServerOpts();
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/state/SetGoalState.java b/server/master/src/main/java/org/apache/accumulo/master/state/SetGoalState.java
+index e28dcad05..f981bae8f 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/state/SetGoalState.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/state/SetGoalState.java
+@@ -23,6 +23,7 @@ import org.apache.accumulo.core.zookeeper.ZooUtil;
+ import org.apache.accumulo.fate.zookeeper.ZooUtil.NodeExistsPolicy;
+ import org.apache.accumulo.server.Accumulo;
+ import org.apache.accumulo.server.client.HdfsZooInstance;
+import org.apache.accumulo.server.conf.ServerConfiguration;
+ import org.apache.accumulo.server.fs.VolumeManager;
+ import org.apache.accumulo.server.fs.VolumeManagerImpl;
+ import org.apache.accumulo.server.zookeeper.ZooReaderWriter;
+@@ -37,7 +38,7 @@ public class SetGoalState {
+       System.err.println("Usage: accumulo " + SetGoalState.class.getName() + " [NORMAL|SAFE_MODE|CLEAN_STOP]");
+       System.exit(-1);
+     }
+    SecurityUtil.serverLogin();
+    SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+ 
+     VolumeManager fs = VolumeManagerImpl.get();
+     Accumulo.waitForZookeeperAndHdfs(fs);
+diff --git a/server/monitor/src/main/java/org/apache/accumulo/monitor/Monitor.java b/server/monitor/src/main/java/org/apache/accumulo/monitor/Monitor.java
+index 90b65fef0..0e6b37f82 100644
+-- a/server/monitor/src/main/java/org/apache/accumulo/monitor/Monitor.java
+++ b/server/monitor/src/main/java/org/apache/accumulo/monitor/Monitor.java
+@@ -390,7 +390,7 @@ public class Monitor {
+   }
+ 
+   public static void main(String[] args) throws Exception {
+    SecurityUtil.serverLogin();
+    SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+     
+     VolumeManager fs = VolumeManagerImpl.get();
+     ServerOpts opts = new ServerOpts();
+diff --git a/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java b/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+index 0f4cd3a15..30f1ae768 100644
+-- a/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+++ b/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+@@ -283,7 +283,7 @@ public class TraceServer implements Watcher {
+   }
+   
+   public static void main(String[] args) throws Exception {
+    SecurityUtil.serverLogin();
+    SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+     ServerOpts opts = new ServerOpts();
+     opts.parseArgs("tracer", args);
+     Instance instance = HdfsZooInstance.getInstance();
+diff --git a/server/tserver/src/main/java/org/apache/accumulo/tserver/TabletServer.java b/server/tserver/src/main/java/org/apache/accumulo/tserver/TabletServer.java
+index 4efcab1c3..1cce5655c 100644
+-- a/server/tserver/src/main/java/org/apache/accumulo/tserver/TabletServer.java
+++ b/server/tserver/src/main/java/org/apache/accumulo/tserver/TabletServer.java
+@@ -3153,7 +3153,7 @@ public class TabletServer extends AbstractMetricsImpl implements org.apache.accu
+ 
+   // main loop listens for client requests
+   public void run() {
+    SecurityUtil.serverLogin();
+    SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+ 
+     try {
+       clientAddress = startTabletClientService();
+@@ -3646,7 +3646,7 @@ public class TabletServer extends AbstractMetricsImpl implements org.apache.accu
+ 
+   public static void main(String[] args) throws IOException {
+     try {
+      SecurityUtil.serverLogin();
+      SecurityUtil.serverLogin(ServerConfiguration.getSiteConfiguration());
+       VolumeManager fs = VolumeManagerImpl.get();
+       ServerOpts opts = new ServerOpts();
+       opts.parseArgs("tserver", args);
+diff --git a/server/tserver/src/main/java/org/apache/accumulo/tserver/logger/LogReader.java b/server/tserver/src/main/java/org/apache/accumulo/tserver/logger/LogReader.java
+index b32ace9be..25b804308 100644
+-- a/server/tserver/src/main/java/org/apache/accumulo/tserver/logger/LogReader.java
+++ b/server/tserver/src/main/java/org/apache/accumulo/tserver/logger/LogReader.java
+@@ -28,9 +28,9 @@ import java.util.regex.Pattern;
+ 
+ import org.apache.accumulo.core.Constants;
+ import org.apache.accumulo.core.cli.Help;
+import org.apache.accumulo.core.conf.SiteConfiguration;
+ import org.apache.accumulo.core.data.KeyExtent;
+ import org.apache.accumulo.core.data.Mutation;
+import org.apache.accumulo.server.conf.ServerConfiguration;
+ import org.apache.accumulo.server.fs.VolumeManager;
+ import org.apache.accumulo.server.fs.VolumeManagerImpl;
+ import org.apache.accumulo.tserver.log.DfsLogger;
+@@ -97,8 +97,7 @@ public class LogReader {
+ 
+       if (fs.isFile(path)) {
+         // read log entries from a simple hdfs file
+        @SuppressWarnings("deprecation")
+        DFSLoggerInputStreams streams = DfsLogger.readHeaderAndReturnStream(fs, path, SiteConfiguration.getSiteConfiguration());
+        DFSLoggerInputStreams streams = DfsLogger.readHeaderAndReturnStream(fs, path, ServerConfiguration.getSiteConfiguration());
+         DataInputStream input = streams.getDecryptingInputStream();
+ 
+         try {
+diff --git a/server/tserver/src/test/java/org/apache/accumulo/tserver/log/TestUpgradePathForWALogs.java b/server/tserver/src/test/java/org/apache/accumulo/tserver/log/TestUpgradePathForWALogs.java
+index f1ceb3b7c..af149faf2 100644
+-- a/server/tserver/src/test/java/org/apache/accumulo/tserver/log/TestUpgradePathForWALogs.java
+++ b/server/tserver/src/test/java/org/apache/accumulo/tserver/log/TestUpgradePathForWALogs.java
+@@ -23,7 +23,7 @@ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.OutputStream;
+ 
+import org.apache.accumulo.core.conf.DefaultConfiguration;
+import org.apache.accumulo.server.conf.ServerConfiguration;
+ import org.apache.accumulo.server.fs.VolumeManager;
+ import org.apache.accumulo.server.fs.VolumeManagerImpl;
+ import org.apache.commons.io.FileUtils;
+@@ -84,8 +84,7 @@ public class TestUpgradePathForWALogs {
+       walogInHDFStream.close();
+       walogInHDFStream = null;
+ 
+      @SuppressWarnings("deprecation")
+      LogSorter logSorter = new LogSorter(null, fs, DefaultConfiguration.getSiteConfiguration());
+      LogSorter logSorter = new LogSorter(null, fs, ServerConfiguration.getSiteConfiguration());
+       LogSorter.LogProcessor logProcessor = logSorter.new LogProcessor();
+ 
+       logProcessor.sort(WALOG_FROM_15, new Path("file://" + root.getRoot().getAbsolutePath() + WALOG_FROM_15), "file://" + root.getRoot().getAbsolutePath()
+@@ -119,8 +118,7 @@ public class TestUpgradePathForWALogs {
+       walogInHDFStream.close();
+       walogInHDFStream = null;
+ 
+      @SuppressWarnings("deprecation")
+      LogSorter logSorter = new LogSorter(null, fs, DefaultConfiguration.getSiteConfiguration());
+      LogSorter logSorter = new LogSorter(null, fs, ServerConfiguration.getSiteConfiguration());
+       LogSorter.LogProcessor logProcessor = logSorter.new LogProcessor();
+ 
+       logProcessor.sort(walogToTest, new Path("file://" + root.getRoot().getAbsolutePath() + walogToTest), "file://" + root.getRoot().getAbsolutePath()
+diff --git a/test/src/main/java/org/apache/accumulo/test/randomwalk/concurrent/BulkImport.java b/test/src/main/java/org/apache/accumulo/test/randomwalk/concurrent/BulkImport.java
+index d4d6838b1..4a4d5c802 100644
+-- a/test/src/main/java/org/apache/accumulo/test/randomwalk/concurrent/BulkImport.java
+++ b/test/src/main/java/org/apache/accumulo/test/randomwalk/concurrent/BulkImport.java
+@@ -28,6 +28,7 @@ import org.apache.accumulo.core.client.Connector;
+ import org.apache.accumulo.core.client.MutationsRejectedException;
+ import org.apache.accumulo.core.client.TableNotFoundException;
+ import org.apache.accumulo.core.client.TableOfflineException;
+import org.apache.accumulo.core.conf.AccumuloConfiguration;
+ import org.apache.accumulo.core.data.ColumnUpdate;
+ import org.apache.accumulo.core.data.Key;
+ import org.apache.accumulo.core.data.Mutation;
+@@ -48,8 +49,9 @@ public class BulkImport extends Test {
+     RFile.Writer writer;
+     
+     public RFileBatchWriter(Configuration conf, FileSystem fs, String file) throws IOException {
+      AccumuloConfiguration aconf = AccumuloConfiguration.getDefaultConfiguration();
+       CachableBlockFile.Writer cbw = new CachableBlockFile.Writer(fs.create(new Path(file), false, conf.getInt("io.file.buffer.size", 4096),
+          (short) conf.getInt("dfs.replication", 3), conf.getLong("dfs.block.size", 1 &lt;&lt; 26)), "gz", conf);
+          (short) conf.getInt("dfs.replication", 3), conf.getLong("dfs.block.size", 1 &lt;&lt; 26)), "gz", conf, aconf);
+       writer = new RFile.Writer(cbw, 100000);
+       writer.startDefaultLocalityGroup();
+     }
+- 
+2.19.1.windows.1
+
+</unit>

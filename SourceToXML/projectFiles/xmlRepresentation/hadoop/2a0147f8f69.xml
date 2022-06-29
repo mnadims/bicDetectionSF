@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/2a0147f8f69.java"><expr_stmt><expr><name>From</name> <literal type="number">2a0147f8f698f22e61281c06691107e24a2f139c</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Devaraj</name> <name><name>Das</name> <argument_list type="generic">&lt;<argument><name>ddas</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">16</literal> <name>Mar</name> <literal type="number">2012</literal> <literal type="number">01</literal><operator>:</operator><literal type="number">45</literal><operator>:</operator><literal type="number">12</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">6941.</literal> <name>Adds</name> <name>support</name></expr></expr_stmt> <for>for building Hadoop with IBM's JDK.
+ Contributed by Stephen Watt, Eli Collins and Devaraj Das.
+
+git-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1301308 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../client/KerberosAuthenticator.java         | 16 +++--
+ .../server/KerberosAuthenticationHandler.java |  4 +-
+ .../authentication/util/KerberosName.java     |  9 +--
+ .../authentication/util/KerberosUtil.java     | 53 +++++++++++++++++
+ .../authentication/KerberosTestUtils.java     |  6 +-
+ .../TestKerberosAuthenticationHandler.java    | 13 +++--
+ .../hadoop-common/CHANGES.txt                 |  3 +
+ .../hadoop/security/HadoopKerberosName.java   |  8 +--
+ .../apache/hadoop/security/SecurityUtil.java  | 55 ++++++++++++++----
+ .../hadoop/security/UserGroupInformation.java | 58 ++++++++++++++-----
+ 10 files changed, 175 insertions(+), 50 deletions(-)
+ create mode 100644 hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosUtil.java
+
+diff --git a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/client/KerberosAuthenticator.java b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/client/KerberosAuthenticator.java
+index 7338cda2195..48b6cbec6e3 100644
+-- a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/client/KerberosAuthenticator.java
+++ b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/client/KerberosAuthenticator.java
+@@ -13,12 +13,12 @@
+  */
+ package org.apache.hadoop.security.authentication.client;
+ 
+import com.sun.security.auth.module.Krb5LoginModule;
+ import org.apache.commons.codec.binary.Base64;
+import org.apache.hadoop.security.authentication.util.KerberosUtil;
+ import org.ietf.jgss.GSSContext;
+ import org.ietf.jgss.GSSManager;
+ import org.ietf.jgss.GSSName;
+import sun.security.jgss.GSSUtil;
+import org.ietf.jgss.Oid;
+ 
+ import javax.security.auth.Subject;
+ import javax.security.auth.login.AppConfigurationEntry;
+@@ -26,6 +26,7 @@
+ import javax.security.auth.login.LoginContext;
+ import javax.security.auth.login.LoginException;
+ import java.io.IOException;
+import java.lang.reflect.Field;
+ import java.net.HttpURLConnection;
+ import java.net.URL;
+ import java.security.AccessControlContext;
+@@ -97,7 +98,7 @@
+     }
+ 
+     private static final AppConfigurationEntry USER_KERBEROS_LOGIN =
+      new AppConfigurationEntry(Krb5LoginModule.class.getName(),
+      new AppConfigurationEntry(KerberosUtil.getKrb5LoginModuleName(),
+                                 AppConfigurationEntry.LoginModuleControlFlag.OPTIONAL,
+                                 USER_KERBEROS_OPTIONS);
+ 
+@@ -109,7 +110,7 @@
+       return USER_KERBEROS_CONF;
+     }
+   }
+
+  
+   private URL url;
+   private HttpURLConnection conn;
+   private Base64 base64;
+@@ -195,9 +196,12 @@ public Void run() throws Exception {
+           try {
+             GSSManager gssManager = GSSManager.getInstance();
+             String servicePrincipal = "HTTP/" + KerberosAuthenticator.this.url.getHost();
+            
+             GSSName serviceName = gssManager.createName(servicePrincipal,
+                                                        GSSUtil.NT_GSS_KRB5_PRINCIPAL);
+            gssContext = gssManager.createContext(serviceName, GSSUtil.GSS_KRB5_MECH_OID, null,
+                                                        GSSName.NT_HOSTBASED_SERVICE);
+            Oid oid = KerberosUtil.getOidClassInstance(servicePrincipal, 
+                gssManager);
+            gssContext = gssManager.createContext(serviceName, oid, null,
+                                                   GSSContext.DEFAULT_LIFETIME);
+             gssContext.requestCredDeleg(true);
+             gssContext.requestMutualAuth(true);
+diff --git a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/server/KerberosAuthenticationHandler.java b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/server/KerberosAuthenticationHandler.java
+index 79bff01d75a..45297851d73 100644
+-- a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/server/KerberosAuthenticationHandler.java
+++ b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/server/KerberosAuthenticationHandler.java
+@@ -15,9 +15,9 @@
+ 
+ import org.apache.hadoop.security.authentication.client.AuthenticationException;
+ import org.apache.hadoop.security.authentication.client.KerberosAuthenticator;
+import com.sun.security.auth.module.Krb5LoginModule;
+ import org.apache.commons.codec.binary.Base64;
+ import org.apache.hadoop.security.authentication.util.KerberosName;
+import org.apache.hadoop.security.authentication.util.KerberosUtil;
+ import org.ietf.jgss.GSSContext;
+ import org.ietf.jgss.GSSCredential;
+ import org.ietf.jgss.GSSManager;
+@@ -95,7 +95,7 @@ public KerberosConfiguration(String keytab, String principal) {
+       }
+ 
+       return new AppConfigurationEntry[]{
+        new AppConfigurationEntry(Krb5LoginModule.class.getName(),
+          new AppConfigurationEntry(KerberosUtil.getKrb5LoginModuleName(),
+                                   AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,
+                                   options),};
+     }
+diff --git a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosName.java b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosName.java
+index ad4741a6886..63958670713 100644
+-- a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosName.java
+++ b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosName.java
+@@ -23,12 +23,11 @@
+ import java.util.List;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+import java.lang.reflect.Method;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.classification.InterfaceStability;
+ 
+import sun.security.krb5.Config;
+import sun.security.krb5.KrbException;
+ 
+ /**
+  * This class implements parsing and handling of Kerberos principal names. In
+@@ -77,13 +76,11 @@
+   private static List&lt;Rule&gt; rules;
+ 
+   private static String defaultRealm;
+  private static Config kerbConf;
+ 
+   static {
+     try {
+      kerbConf = Config.getInstance();
+      defaultRealm = kerbConf.getDefaultRealm();
+    } catch (KrbException ke) {
+      defaultRealm = KerberosUtil.getDefaultRealm();
+    } catch (Exception ke) {
+         defaultRealm="";
+     }
+   }
+diff --git a/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosUtil.java b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosUtil.java
+new file mode 100644
+index 00000000000..1db8b665802
+-- /dev/null
+++ b/hadoop-common-project/hadoop-auth/src/main/java/org/apache/hadoop/security/authentication/util/KerberosUtil.java
+@@ -0,0 +1,53 @@
+package org.apache.hadoop.security.authentication.util;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.ietf.jgss.GSSException;
+import org.ietf.jgss.GSSManager;
+import org.ietf.jgss.Oid;
+
+public class KerberosUtil {
+
+  /* Return the Kerberos login module name */
+  public static String getKrb5LoginModuleName() {
+    return System.getProperty("java.vendor").contains("IBM")
+      ? "com.ibm.security.auth.module.Krb5LoginModule"
+      : "com.sun.security.auth.module.Krb5LoginModule";
+  }
+  
+  public static Oid getOidClassInstance(String servicePrincipal,
+      GSSManager gssManager) 
+      throws ClassNotFoundException, GSSException, NoSuchFieldException,
+      IllegalAccessException {
+    Class&lt;?&gt; oidClass;
+    if (System.getProperty("java.vendor").contains("IBM")) {
+      oidClass = Class.forName("com.ibm.security.jgss.GSSUtil");
+    } else {
+      oidClass = Class.forName("sun.security.jgss.GSSUtil");
+    }
+    Field oidField = oidClass.getDeclaredField("GSS_KRB5_MECH_OID");
+    return (Oid)oidField.get(oidClass);
+  }
+
+  public static String getDefaultRealm() 
+      throws ClassNotFoundException, NoSuchMethodException, 
+      IllegalArgumentException, IllegalAccessException, 
+      InvocationTargetException {
+    Object kerbConf;
+    Class&lt;?&gt; classRef;
+    Method getInstanceMethod;
+    Method getDefaultRealmMethod;
+    if (System.getProperty("java.vendor").contains("IBM")) {
+      classRef = Class.forName("com.ibm.security.krb5.internal.Config");
+    } else {
+      classRef = Class.forName("sun.security.krb5.Config");
+    }
+    getInstanceMethod = classRef.getMethod("getInstance", new Class[0]);
+    kerbConf = getInstanceMethod.invoke(classRef, new Object[0]);
+    getDefaultRealmMethod = classRef.getDeclaredMethod("getDefaultRealm",
+         new Class[0]);
+    return (String)getDefaultRealmMethod.invoke(kerbConf, new Object[0]);
+  }
+}
+diff --git a/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/KerberosTestUtils.java b/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/KerberosTestUtils.java
+index 92e1de5a261..ea0f17f04cf 100644
+-- a/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/KerberosTestUtils.java
+++ b/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/KerberosTestUtils.java
+@@ -13,13 +13,15 @@
+  */
+ package org.apache.hadoop.security.authentication;
+ 
+import com.sun.security.auth.module.Krb5LoginModule;
+ 
+ import javax.security.auth.Subject;
+ import javax.security.auth.kerberos.KerberosPrincipal;
+ import javax.security.auth.login.AppConfigurationEntry;
+ import javax.security.auth.login.Configuration;
+ import javax.security.auth.login.LoginContext;
+
+import org.apache.hadoop.security.authentication.util.KerberosUtil;
+
+ import java.io.File;
+ import java.security.Principal;
+ import java.security.PrivilegedActionException;
+@@ -88,7 +90,7 @@ public KerberosConfiguration(String principal) {
+       options.put("debug", "true");
+ 
+       return new AppConfigurationEntry[]{
+        new AppConfigurationEntry(Krb5LoginModule.class.getName(),
+        new AppConfigurationEntry(KerberosUtil.getKrb5LoginModuleName(),
+                                   AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,
+                                   options),};
+     }
+diff --git a/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/server/TestKerberosAuthenticationHandler.java b/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/server/TestKerberosAuthenticationHandler.java
+index 161839ddcd8..e6e7c9cca00 100644
+-- a/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/server/TestKerberosAuthenticationHandler.java
+++ b/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/server/TestKerberosAuthenticationHandler.java
+@@ -19,14 +19,16 @@
+ import junit.framework.TestCase;
+ import org.apache.commons.codec.binary.Base64;
+ import org.apache.hadoop.security.authentication.util.KerberosName;
+import org.apache.hadoop.security.authentication.util.KerberosUtil;
+ import org.ietf.jgss.GSSContext;
+ import org.ietf.jgss.GSSManager;
+ import org.ietf.jgss.GSSName;
+ import org.mockito.Mockito;
+import sun.security.jgss.GSSUtil;
+import org.ietf.jgss.Oid;
+ 
+ import javax.servlet.http.HttpServletRequest;
+ import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
+ import java.util.Properties;
+ import java.util.concurrent.Callable;
+ 
+@@ -143,9 +145,12 @@ public String call() throws Exception {
+         GSSContext gssContext = null;
+         try {
+           String servicePrincipal = KerberosTestUtils.getServerPrincipal();
+          GSSName serviceName = gssManager.createName(servicePrincipal, GSSUtil.NT_GSS_KRB5_PRINCIPAL);
+          gssContext = gssManager.createContext(serviceName, GSSUtil.GSS_KRB5_MECH_OID, null,
+                                                GSSContext.DEFAULT_LIFETIME);
+          GSSName serviceName = gssManager.createName(servicePrincipal,
+              GSSName.NT_HOSTBASED_SERVICE);
+          Oid oid = KerberosUtil.getOidClassInstance(servicePrincipal, 
+              gssManager);
+          gssContext = gssManager.createContext(serviceName, oid, null,
+                                                  GSSContext.DEFAULT_LIFETIME);
+           gssContext.requestCredDeleg(true);
+           gssContext.requestMutualAuth(true);
+ 
+diff --git a/hadoop-common-project/hadoop-common/CHANGES.txt b/hadoop-common-project/hadoop-common/CHANGES.txt
+index 80a0df2ffc0..acf3a3db9f6 100644
+-- a/hadoop-common-project/hadoop-common/CHANGES.txt
+++ b/hadoop-common-project/hadoop-common/CHANGES.txt
+@@ -190,6 +190,9 @@ Release 0.23.3 - UNRELEASED
+ 
+     HADOOP-7806. Support binding to sub-interfaces (eli)
+ 
+    HADOOP-6941. Adds support for building Hadoop with IBM's JDK 
+    <control>(<init><decl><type><name>Stephen</name></type> <name>Watt</name></decl>, <decl><type ref="prev"/><name>Eli</name> <name>and</name> <name>ddas</name></decl></init>)</control><block type="pseudo"><block_content>
+
+   <expr_stmt><expr><name>OPTIMIZATIONS</name>
+ 
+   <name>BUG</name> <name>FIXES</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>HadoopKerberosName</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>HadoopKerberosName</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2166acc7a31</literal><operator>..</operator><name>c5eb7dd420a</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>HadoopKerberosName</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>HadoopKerberosName</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></block_content></block></for>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceStability</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name><operator>.</operator><name>KerberosName</name></name>;</import>
+
+<import>import <name><name>sun</name><operator>.</operator><name>security</name><operator>.</operator><name>krb5</name><operator>.</operator><name>Config</name></name>;</import>
+<import>import <name><name>sun</name><operator>.</operator><name>security</name><operator>.</operator><name>krb5</name><operator>.</operator><name>KrbException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name><operator>.</operator><name>KerberosUtil</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * This class implements parsing and handling of Kerberos principal names. In 
+@@ -40,8 +38,8 @@
+ 
+   static {
+     try {
+      Config.getInstance().getDefaultRealm();
+    } catch (KrbException ke) {
+      KerberosUtil.getDefaultRealm();
+    } catch (Exception ke) {
+       if(UserGroupInformation.isSecurityEnabled())
+         throw new IllegalArgumentException("Can't get Kerberos configuration",ke);
+     }
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SecurityUtil.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SecurityUtil.java
+index 13ea2e971ad..ad982bc56d3 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SecurityUtil.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SecurityUtil.java
+@@ -17,6 +17,10 @@
+ package org.apache.hadoop.security;
+ 
+ import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+ import java.net.InetAddress;
+ import java.net.InetSocketAddress;
+ import java.net.URI;
+@@ -49,9 +53,6 @@
+ //this will need to be replaced someday when there is a suitable replacement
+ import sun.net.dns.ResolverConfiguration;
+ import sun.net.util.IPAddressUtil;
+import sun.security.jgss.krb5.Krb5Util;
+import sun.security.krb5.Credentials;
+import sun.security.krb5.PrincipalName;
+ 
+ @InterfaceAudience.LimitedPrivate({"HDFS", "MapReduce"})
+ @InterfaceStability.Evolving
+@@ -155,12 +156,41 @@ public static void fetchServiceTicket(URL remoteHost) throws IOException {
+     String serviceName = "host/" + remoteHost.getHost();
+     if (LOG.isDebugEnabled())
+       LOG.debug("Fetching service ticket for host at: " + serviceName);
+    Credentials serviceCred = null;
+    Object serviceCred = null;
+    Method credsToTicketMeth;
+    Class&lt;?&gt; krb5utilClass;
+     try {
+      PrincipalName principal = new PrincipalName(serviceName,
+          PrincipalName.KRB_NT_SRV_HST);
+      serviceCred = Credentials.acquireServiceCreds(principal
+          .toString(), Krb5Util.ticketToCreds(getTgtFromSubject()));
+      Class&lt;?&gt; principalClass;
+      Class&lt;?&gt; credentialsClass;
+      
+      if (System.getProperty("java.vendor").contains("IBM")) {
+        principalClass = Class.forName("com.ibm.security.krb5.PrincipalName");
+        
+        credentialsClass = Class.forName("com.ibm.security.krb5.Credentials");
+        krb5utilClass = Class.forName("com.ibm.security.jgss.mech.krb5");
+      } else {
+        principalClass = Class.forName("sun.security.krb5.PrincipalName");
+        credentialsClass = Class.forName("sun.security.krb5.Credentials");
+        krb5utilClass = Class.forName("sun.security.jgss.krb5");
+      }
+      @SuppressWarnings("rawtypes")
+      Constructor principalConstructor = principalClass.getConstructor(String.class, 
+          int.class);
+      Field KRB_NT_SRV_HST = principalClass.getDeclaredField("KRB_NT_SRV_HST");
+      Method acquireServiceCredsMeth = 
+          credentialsClass.getDeclaredMethod("acquireServiceCreds", 
+              String.class, credentialsClass);
+      Method ticketToCredsMeth = krb5utilClass.getDeclaredMethod("ticketToCreds", 
+          KerberosTicket.class);
+      credsToTicketMeth = krb5utilClass.getDeclaredMethod("credsToTicket", 
+          credentialsClass);
+      
+      Object principal = principalConstructor.newInstance(serviceName,
+          KRB_NT_SRV_HST.get(principalClass));
+      
+      serviceCred = acquireServiceCredsMeth.invoke(credentialsClass, 
+          principal.toString(), 
+          ticketToCredsMeth.invoke(krb5utilClass, getTgtFromSubject()));
+     } catch (Exception e) {
+       throw new IOException("Can't get service ticket for: "
+           + serviceName, e);
+@@ -168,8 +198,13 @@ public static void fetchServiceTicket(URL remoteHost) throws IOException {
+     if (serviceCred == null) {
+       throw new IOException("Can't get service ticket for " + serviceName);
+     }
+    Subject.getSubject(AccessController.getContext()).getPrivateCredentials()
+        .add(Krb5Util.credsToTicket(serviceCred));
+    try {
+      Subject.getSubject(AccessController.getContext()).getPrivateCredentials()
+          .add(credsToTicketMeth.invoke(krb5utilClass, serviceCred));
+    } catch (Exception e) {
+      throw new IOException("Can't get service ticket for: "
+          + serviceName, e);
+    }
+   }
+   
+   /**
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/UserGroupInformation.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/UserGroupInformation.java
+index d595b5a8027..8285334739d 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/UserGroupInformation.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/UserGroupInformation.java
+@@ -58,14 +58,11 @@
+ import org.apache.hadoop.metrics2.lib.DefaultMetricsSystem;
+ import org.apache.hadoop.metrics2.lib.MutableRate;
+ import org.apache.hadoop.security.authentication.util.KerberosName;
+import org.apache.hadoop.security.authentication.util.KerberosUtil;
+ import org.apache.hadoop.security.token.Token;
+ import org.apache.hadoop.security.token.TokenIdentifier;
+ import org.apache.hadoop.util.Shell;
+ 
+import com.sun.security.auth.NTUserPrincipal;
+import com.sun.security.auth.UnixPrincipal;
+import com.sun.security.auth.module.Krb5LoginModule;
+
+ /**
+  * User and group information for Hadoop.
+  * This class wraps around a JAAS Subject and provides methods to determine the
+@@ -289,20 +286,51 @@ public static boolean isSecurityEnabled() {
+   private final boolean isKeytab;
+   private final boolean isKrbTkt;
+   
+  private static final String OS_LOGIN_MODULE_NAME;
+  private static final Class&lt;? extends Principal&gt; OS_PRINCIPAL_CLASS;
+  private static String OS_LOGIN_MODULE_NAME;
+  private static Class&lt;? extends Principal&gt; OS_PRINCIPAL_CLASS;
+   private static final boolean windows = 
+                            System.getProperty("os.name").startsWith("Windows");
+  static {
+    if (windows) {
+      OS_LOGIN_MODULE_NAME = "com.sun.security.auth.module.NTLoginModule";
+      OS_PRINCIPAL_CLASS = NTUserPrincipal.class;
+  /* Return the OS login module class name */</comment>
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>getOSLoginModuleName</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"java.vendor"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><literal type="string">"IBM"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><ternary><condition><expr><name>windows</name></expr> ?</condition><then> <expr><literal type="string">"com.ibm.security.auth.module.NTLoginModule"</literal></expr>
+       </then><else>: <expr><literal type="string">"com.ibm.security.auth.module.LinuxLoginModule"</literal></expr></else></ternary></expr>;</return>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><name>OS_LOGIN_MODULE_NAME</name> <operator>=</operator> <literal type="string">"com.sun.security.auth.module.UnixLoginModule"</literal></expr>;</expr_stmt>
+      <expr_stmt><expr><name>OS_PRINCIPAL_CLASS</name> <operator>=</operator> <name><name>UnixPrincipal</name><operator>.</operator><name>class</name></name></expr>;</expr_stmt>
+      <return>return <expr><ternary><condition><expr><name>windows</name></expr> ?</condition><then> <expr><literal type="string">"com.sun.security.auth.module.NTLoginModule"</literal></expr>
+        </then><else>: <expr><literal type="string">"com.sun.security.auth.module.UnixLoginModule"</literal></expr></else></ternary></expr>;</return>
+     </block_content>}</block></else></if_stmt>
+   </block_content>}</block></function>
+  
+
+  <comment type="block">/* Return the OS principal class */</comment>
+  <function><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unchecked"</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>private</specifier> <specifier>static</specifier> <name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Principal</name></extends></argument>&gt;</argument_list></name></type> <name>getOsPrincipalClass</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>ClassLoader</name></type> <name>cl</name> <init>= <expr><call><name><name>ClassLoader</name><operator>.</operator><name>getSystemClassLoader</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"java.vendor"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><literal type="string">"IBM"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>windows</name></expr>)</condition> <block>{<block_content>
+          <return>return <expr><operator>(</operator><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Principal</name></extends></argument>&gt;</argument_list></name><operator>)</operator>
+            <call><name><name>cl</name><operator>.</operator><name>loadClass</name></name><argument_list>(<argument><expr><literal type="string">"com.ibm.security.auth.UsernamePrincipal"</literal></expr></argument>)</argument_list></call></expr>;</return>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <return>return <expr><operator>(</operator><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Principal</name></extends></argument>&gt;</argument_list></name><operator>)</operator>
+            <operator>(</operator><ternary><condition><expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"os.arch"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><literal type="string">"64"</literal></expr></argument>)</argument_list></call></expr>
+             ?</condition><then> <expr><call><name><name>cl</name><operator>.</operator><name>loadClass</name></name><argument_list>(<argument><expr><literal type="string">"com.ibm.security.auth.UsernamePrincipal"</literal></expr></argument>)</argument_list></call></expr>
+             </then><else>: <expr><call><name><name>cl</name><operator>.</operator><name>loadClass</name></name><argument_list>(<argument><expr><literal type="string">"com.ibm.security.auth.LinuxPrincipal"</literal></expr></argument>)</argument_list></call></expr></else></ternary><operator>)</operator></expr>;</return>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <return>return <expr><operator>(</operator><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Principal</name></extends></argument>&gt;</argument_list></name><operator>)</operator> <operator>(</operator><ternary><condition><expr><name>windows</name></expr>
+           ?</condition><then> <expr><call><name><name>cl</name><operator>.</operator><name>loadClass</name></name><argument_list>(<argument><expr><literal type="string">"com.sun.security.auth.NTUserPrincipal"</literal></expr></argument>)</argument_list></call></expr>
+           </then><else>: <expr><call><name><name>cl</name><operator>.</operator><name>loadClass</name></name><argument_list>(<argument><expr><literal type="string">"com.sun.security.auth.UnixPrincipal"</literal></expr></argument>)</argument_list></call></expr></else></ternary><operator>)</operator></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Unable to find JAAS classes:"</literal> <operator>+</operator> <call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></catch></try>
+    <return>return <expr><literal type="null">null</literal></expr>;</return>
+  </block_content>}</block></function>
+  <static>static <block>{<block_content>
+    <expr_stmt><expr><name>OS_LOGIN_MODULE_NAME</name> <operator>=</operator> <call><name>getOSLoginModuleName</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>OS_PRINCIPAL_CLASS</name> <operator>=</operator> <call><name>getOsPrincipalClass</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></static>
+
+   <class><specifier>private</specifier> <specifier>static</specifier> class <name>RealUser</name> <super_list><implements>implements <super><name>Principal</name></super></implements></super_list> <block>{
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>UserGroupInformation</name></type> <name>realUser</name></decl>;</decl_stmt>
+     
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">382</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">410</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>String</name> <call><name>toString</name><argument_list>()</argument_list></call> <block>{
+       <expr><call><name><name>USER_KERBEROS_OPTIONS</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><name>BASIC_JAAS_OPTIONS</name></expr></argument>)</argument_list></call></expr>;
+     }</block>
+     <specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>AppConfigurationEntry</name> <name>USER_KERBEROS_LOGIN</name> <operator>=</operator>
+      <operator>new</operator> <call><name>AppConfigurationEntry</name><argument_list>(<argument><expr><call><name><name>Krb5LoginModule</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></argument>,
+      <argument><expr><operator>new</operator> <call><name>AppConfigurationEntry</name><argument_list>(<argument><expr><call><name><name>KerberosUtil</name><operator>.</operator><name>getKrb5LoginModuleName</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                 <argument><expr><name><name>LoginModuleControlFlag</name><operator>.</operator><name>OPTIONAL</name></name></expr></argument>,
+                                 <argument><expr><name>USER_KERBEROS_OPTIONS</name></expr></argument>)</argument_list></call></expr></argument>;
+     <argument><expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name> <name>KEYTAB_KERBEROS_OPTIONS</name> <operator>=</operator> 
+@@ <operator>-</operator><literal type="number">395</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">423</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>String</name> <call><name>toString</name><argument_list>()</argument_list></call> <block>{
+       <expr><call><name><name>KEYTAB_KERBEROS_OPTIONS</name><operator>.</operator><name>putAll</name></name><argument_list>(<argument><expr><name>BASIC_JAAS_OPTIONS</name></expr></argument>)</argument_list></call></expr>;      
+     }</block>
+     <specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>AppConfigurationEntry</name> <name>KEYTAB_KERBEROS_LOGIN</name> <operator>=</operator>
+      <operator>new</operator> <call><name>AppConfigurationEntry</name><argument_list>(<argument><expr><call><name><name>Krb5LoginModule</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></argument>,
+      <argument><expr><operator>new</operator> <call><name>AppConfigurationEntry</name><argument_list>(<argument><expr><call><name><name>KerberosUtil</name><operator>.</operator><name>getKrb5LoginModuleName</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                 <argument><expr><name><name>LoginModuleControlFlag</name><operator>.</operator><name>REQUIRED</name></name></expr></argument>,
+                                 <argument><expr><name>KEYTAB_KERBEROS_OPTIONS</name></expr></argument>)</argument_list></call></expr></argument>;
+     
+<argument><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></argument></argument_list></call></expr></argument></argument_list></call></expr></expr_stmt></block></class>
+
+</unit>

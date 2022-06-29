@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/3807884263f.java"><expr_stmt><expr><name>From</name> <literal type="number">3807884263f859f0aaf6a7cbf0009ffc6543c157</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Haohui</name> <name><name>Mai</name> <argument_list type="generic">&lt;<argument><name>wheat9</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Mar</name> <literal type="number">2015</literal> <literal type="number">12</literal><operator>:</operator><literal type="number">29</literal><operator>:</operator><literal type="number">44</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>Addendum</name></expr></expr_stmt> <for>for HADOOP-10670.
+
+--
+ .../util/FileSignerSecretProvider.java        <operator>|</operator> 84 +++++++++++++++++++
+ .../util/TestFileSignerSecretProvider.java    <operator>|</operator> 51 +++++++++++
+ 2 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">135</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>FileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestFileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>FileSignerSecretProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>FileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..e8aa160a208</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>FileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">84</literal> @@</expr></expr_stmt></for>
+<comment type="block" format="javadoc">/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. See accompanying LICENSE file.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Charsets</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceAudience</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceStability</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>server</name><operator>.</operator><name>AuthenticationFilter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name><operator>.</operator><name>SignerSecretProvider</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>ServletContext</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>charset</name><operator>.</operator><name>Charset</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * A SignerSecretProvider that simply loads a secret from a specified file.
+ */</comment>
+<class><annotation>@<name><name>InterfaceStability</name><operator>.</operator><name>Unstable</name></name></annotation>
+<annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>Private</name></name></annotation>
+<specifier>public</specifier> class <name>FileSignerSecretProvider</name> <super_list><extends>extends <super><name>SignerSecretProvider</name></super></extends></super_list> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>byte</name><index>[]</index></name></type> <name>secret</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>byte</name><index>[]</index><index>[]</index></name></type> <name>secrets</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>FileSignerSecretProvider</name><parameter_list>()</parameter_list> <block>{<block_content/>}</block></constructor>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>init</name><parameter_list>(<parameter><decl><type><name>Properties</name></type> <name>config</name></decl></parameter>, <parameter><decl><type><name>ServletContext</name></type> <name>servletContext</name></decl></parameter>,
+                   <parameter><decl><type><name>long</name></type> <name>tokenValidity</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>signatureSecretFile</name> <init>= <expr><call><name><name>config</name><operator>.</operator><name>getProperty</name></name><argument_list>(
+        <argument><expr><name><name>AuthenticationFilter</name><operator>.</operator><name>SIGNATURE_SECRET_FILE</name></name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>Reader</name></type> <name>reader</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>signatureSecretFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name>StringBuilder</name></type> <name>sb</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>reader</name> <operator>=</operator> <operator>new</operator> <call><name>InputStreamReader</name><argument_list>(
+            <argument><expr><operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><name>signatureSecretFile</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name><name>Charsets</name><operator>.</operator><name>UTF_8</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>c</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>read</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <while>while <condition>(<expr><name>c</name> <operator>&gt;</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>sb</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><operator>(</operator><name>char</name><operator>)</operator> <name>c</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>c</name> <operator>=</operator> <call><name><name>reader</name><operator>.</operator><name>read</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></while>
+        <expr_stmt><expr><name>secret</name> <operator>=</operator> <call><name><name>sb</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><call><name><name>Charset</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"Could not read signature secret file: "</literal> <operator>+</operator>
+            <name>signatureSecretFile</name></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></catch> <finally>finally <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>reader</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>reader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// nothing to do</comment>
+          </block_content>}</block></catch></try>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></finally></try>
+    </block_content>}</block></if></if_stmt>
+
+    <expr_stmt><expr><name>secrets</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[]</index><index>[]</index></name><block>{<expr><name>secret</name></expr>}</block></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>byte</name><index>[]</index></name></type> <name>getCurrentSecret</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>secret</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>byte</name><index>[]</index><index>[]</index></name></type> <name>getAllSecrets</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>secrets</name></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestFileSignerSecretProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestFileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..1856410fd29</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>auth</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name>authentication</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestFileSignerSecretProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">51</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. See accompanying LICENSE file.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>server</name><operator>.</operator><name>AuthenticationFilter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileWriter</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Writer</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestFileSignerSecretProvider</name> <block>{
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testGetSecrets</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>File</name></type> <name>testDir</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"test.build.data"</literal></expr></argument>,
+        <argument><expr><literal type="string">"target/test-dir"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>testDir</name><operator>.</operator><name>mkdirs</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>secretValue</name> <init>= <expr><literal type="string">"hadoop"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>File</name></type> <name>secretFile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>testDir</name></expr></argument>, <argument><expr><literal type="string">"http-secret.txt"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Writer</name></type> <name>writer</name> <init>= <expr><operator>new</operator> <call><name>FileWriter</name><argument_list>(<argument><expr><name>secretFile</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>secretValue</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>FileSignerSecretProvider</name></type> <name>secretProvider</name>
+            <init>= <expr><operator>new</operator> <call><name>FileSignerSecretProvider</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Properties</name></type> <name>secretProviderProps</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>secretProviderProps</name><operator>.</operator><name>setProperty</name></name><argument_list>(
+            <argument><expr><name><name>AuthenticationFilter</name><operator>.</operator><name>SIGNATURE_SECRET_FILE</name></name></expr></argument>,
+        <argument><expr><call><name><name>secretFile</name><operator>.</operator><name>getAbsolutePath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>secretProvider</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>secretProviderProps</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertArrayEquals</name></name><argument_list>(<argument><expr><call><name><name>secretValue</name><operator>.</operator><name>getBytes</name></name><argument_list>()</argument_list></call></expr></argument>,
+        <argument><expr><call><name><name>secretProvider</name><operator>.</operator><name>getCurrentSecret</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>byte</name><index>[]</index><index>[]</index></name></type> <name>allSecrets</name> <init>= <expr><call><name><name>secretProvider</name><operator>.</operator><name>getAllSecrets</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name><name>allSecrets</name><operator>.</operator><name>length</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertArrayEquals</name></name><argument_list>(<argument><expr><call><name><name>secretValue</name><operator>.</operator><name>getBytes</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>allSecrets</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

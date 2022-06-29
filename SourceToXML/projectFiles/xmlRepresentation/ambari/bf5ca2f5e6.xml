@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/bf5ca2f5e6.java"><expr_stmt><expr><name>From</name> <name>bf5ca2f5e6714c8e0536504de9d54c8d6afc1425</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jonathan</name> <name><name>Hurley</name> <argument_list type="generic">&lt;<argument><name>jhurley</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">28</literal> <name>Jun</name> <literal type="number">2016</literal> <literal type="number">11</literal><operator>:</operator><literal type="number">01</literal><operator>:</operator><literal type="number">10</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">17464</literal> <operator>-</operator> <name>Failed</name> <name>task</name> <name>status</name> <name>during</name> <name>EU</name> <name>is</name> <name>wrongly</name>
+ <name>reported</name> <name>as</name> <name>SKIPPED_FAILED</name> <name>instead</name> <name>of</name> <call><name>TIMED_OUT</name> <argument_list>(<argument><expr><name>jonathanhurley</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>ActionScheduler</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">10</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>Stage</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">23</literal> <operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>TestActionScheduler</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">72</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">101</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">21</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>ActionScheduler</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>ActionScheduler</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8c27d3c48e</literal><operator>..</operator><name>b3aab9fe17</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>ActionScheduler</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>ActionScheduler</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">691</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">691</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <name>class</name> <name>ActionScheduler</name> implements <name>Runnable</name> <block>{
+           <expr><name>status</name> <operator>=</operator> <name><name>HostRoleStatus</name><operator>.</operator><name>ABORTED</name></name></expr>;
+         }</block></expr></expr_stmt> <if_stmt><if type="elseif">else if <condition>(<expr><call><name>timeOutActionNeeded</name><argument_list>(<argument><expr><name>status</name></expr></argument>, <argument><expr><name>s</name></expr></argument>, <argument><expr><name>hostObj</name></expr></argument>, <argument><expr><name>roleStr</name></expr></argument>, <argument><expr><name>now</name></expr></argument>, <argument><expr><name>commandTimeout</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+           <comment type="line">// Process command timeouts</comment>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Host:"</literal> <operator>+</operator> <name>host</name> <operator>+</operator> <literal type="string">", role:"</literal> <operator>+</operator> <name>roleStr</name> <operator>+</operator> <literal type="string">", actionId:"</literal> <operator>+</operator> <call><name><name>s</name><operator>.</operator><name>getActionId</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" timed out"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <if_stmt><if>if <condition>(<expr><call><name><name>s</name><operator>.</operator><name>getAttemptCount</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><name>roleStr</name></expr></argument>)</argument_list></call> <operator>&gt;=</operator> <name>maxAttempts</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Host:"</literal> <operator>+</operator> <name>host</name> <operator>+</operator> <literal type="string">", role:"</literal> <operator>+</operator> <name>roleStr</name> <operator>+</operator> <literal type="string">", actionId:"</literal> <operator>+</operator> <call><name><name>s</name><operator>.</operator><name>getActionId</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" expired"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>db</name><operator>.</operator><name>timeoutHostRole</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>c</name><operator>.</operator><name>getRole</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>isAutoSkipOnFailureSupported</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Host: {}, role: {}, actionId: {} expired and will be failed"</literal></expr></argument>, <argument><expr><name>host</name></expr></argument>, <argument><expr><name>roleStr</name></expr></argument>,
+                <argument><expr><call><name><name>s</name><operator>.</operator><name>getActionId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+            <comment type="line">// determine if the task should be auto skipped</comment>
+            <decl_stmt><decl><type><name>boolean</name></type> <name>isSkipSupported</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>isAutoSkipOnFailureSupported</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>HostRoleCommand</name></type> <name>hostRoleCommand</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>getHostRoleCommand</name></name><argument_list>(<argument><expr><call><name><name>c</name><operator>.</operator><name>getTaskId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>isSkipSupported</name> <operator>&amp;&amp;</operator> <literal type="null">null</literal> <operator>!=</operator> <name>hostRoleCommand</name></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><name>isSkipSupported</name> <operator>=</operator> <call><name><name>hostRoleCommand</name><operator>.</operator><name>isFailureAutoSkipped</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+
+            <expr_stmt><expr><call><name><name>db</name><operator>.</operator><name>timeoutHostRole</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getRequestId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getStageId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>c</name><operator>.</operator><name>getRole</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>isSkipSupported</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             <comment type="line">//Reinitialize status</comment>
+             <expr_stmt><expr><name>status</name> <operator>=</operator> <call><name><name>s</name><operator>.</operator><name>getHostRoleStatus</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><name>roleStr</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">714</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">722</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>class</name> <name>ActionScheduler</name> implements <name>Runnable</name> <block>{
+             <expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Removing command from queue, host={}, commandId={} "</literal></expr></argument>, <argument><expr><name>host</name></expr></argument>, <argument><expr><call><name><name>c</name><operator>.</operator><name>getCommandId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+             <call><name><name>actionQueue</name><operator>.</operator><name>dequeue</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><call><name><name>c</name><operator>.</operator><name>getCommandId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+           </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Host: {}, role: {}, actionId: {} timed out and will be rescheduled"</literal></expr></argument>, <argument><expr><name>host</name></expr></argument>,
+                <argument><expr><name>roleStr</name></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getActionId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+             <comment type="line">// reschedule command</comment>
+             <expr_stmt><expr><call><name><name>commandsToSchedule</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"===&gt; commandsToSchedule(reschedule)="</literal> <operator>+</operator> <call><name><name>commandsToSchedule</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2b9c10b027</literal><operator>..</operator><name>ff2ce92e59</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>HostRoleCommand</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">416</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">416</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>HostRoleCommand</name> <block>{
+     <return>return <expr><name>requestId</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Gets whether commands which fail and are retryable are automatically
+   * skipped and marked with {@link HostRoleStatus#SKIPPED_FAILED}.
+   *
+   * @return
+   */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isFailureAutoSkipped</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>autoSkipFailure</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>int</name></type> <name>hashCode</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><call><name><name>Long</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>taskId</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>hashCode</name><argument_list>()</argument_list></call></expr>;</return>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>Stage</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>Stage</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3fbeef9604</literal><operator>..</operator><name>f03d8eac2c</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>Stage</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>actionmanager</name><operator>/</operator><name><name>Stage</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">732</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">732</literal></expr><operator>,</operator><expr><literal type="number">29</literal> @@ <specifier>public</specifier> <name>class</name> <name>Stage</name> <block>{
+     <return>return <expr><name>hostRoleCommands</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Gets the {@link HostRoleCommand} matching the specified ID from this stage.
+   * This will not hit the database, instead using the pre-cached list of HRCs
+   * from the construction of the stage.
+   *
+   * @param taskId
+   *          the ID to match
+   * @return the {@link HostRoleCommand} or {@code null} if none match.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>HostRoleCommand</name></type> <name>getHostRoleCommand</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>taskId</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>HostRoleCommand</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>hostEntry</name> <range>: <expr><call><name><name>hostRoleCommands</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>HostRoleCommand</name></argument>&gt;</argument_list></name></type> <name>hostCommands</name> <init>= <expr><call><name><name>hostEntry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>HostRoleCommand</name></argument>&gt;</argument_list></name></name></type> <name>hostCommand</name> <range>: <expr><call><name><name>hostCommands</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>HostRoleCommand</name></type> <name>hostRoleCommand</name> <init>= <expr><call><name><name>hostCommand</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>hostRoleCommand</name> <operator>&amp;&amp;</operator> <call><name><name>hostRoleCommand</name><operator>.</operator><name>getTaskId</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name>taskId</name></expr>)</condition> <block>{<block_content>
+          <return>return <expr><name>hostRoleCommand</name></expr>;</return>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></for>
+
+    <return>return <expr><literal type="null">null</literal></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * This method should be used only in stage planner. To add
+    * a new execution command use
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/actionmanager/TestActionScheduler.java b/ambari-server/src/test/java/org/apache/ambari/server/actionmanager/TestActionScheduler.java
+index d2c7de940e..d92d87aa0d 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/actionmanager/TestActionScheduler.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/actionmanager/TestActionScheduler.java
+@@ -24,7 +24,12 @@ import static org.easymock.EasyMock.replay;
+ import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertFalse;
+ import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyCollectionOf;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+ import static org.mockito.Mockito.atLeastOnce;
+ import static org.mockito.Mockito.doAnswer;
+ import static org.mockito.Mockito.doReturn;
+@@ -572,7 +577,7 @@ public class TestActionScheduler {
+ 
+     List&lt;Stage&gt; stages = new ArrayList&lt;Stage&gt;();
+     Map&lt;String, String&gt; payload = new HashMap&lt;String, String&gt;();
+    final Stage s = getStageWithServerAction(1, 977, payload, "test", 1200);
+    final Stage s = getStageWithServerAction(1, 977, payload, "test", 1200, false, false);
+     stages.add(s);
+ 
+     ActionDBAccessor db = mock(ActionDBAccessor.class);
+@@ -727,7 +732,7 @@ public class TestActionScheduler {
+     List&lt;Stage&gt; stages = new ArrayList&lt;Stage&gt;();
+     Map&lt;String, String&gt; payload = new HashMap&lt;String, String&gt;();
+     payload.put(MockServerAction.PAYLOAD_FORCE_FAIL, "timeout");
+    final Stage s = getStageWithServerAction(1, 977, payload, "test", 2);
+    final Stage s = getStageWithServerAction(1, 977, payload, "test", 2, false, false);
+     stages.add(s);
+ 
+     ActionDBAccessor db = mock(ActionDBAccessor.class);
+@@ -798,7 +803,7 @@ public class TestActionScheduler {
+ 
+   @Test
+   public void testTimeOutWithHostNull() throws AmbariException {
+    Stage s = getStageWithServerAction(1, 977, null, "test", 2);
+    Stage s = getStageWithServerAction(1, 977, null, "test", 2, false, false);
+     s.setHostRoleStatus(null, Role.AMBARI_SERVER_ACTION.toString(), HostRoleStatus.IN_PROGRESS);
+ 
+     ActionScheduler scheduler = EasyMock.createMockBuilder(ActionScheduler.class)
+@@ -817,25 +822,47 @@ public class TestActionScheduler {
+ 
+   @Test
+   public void testTimeoutRequestDueAgentRestartExecuteCommand() throws Exception {
+    testTimeoutRequest(RoleCommand.EXECUTE);
+    testTimeoutRequest(RoleCommand.EXECUTE, false, false);
+   }
+ 
+   @Test
+   public void testTimeoutRequestDueAgentRestartCustomCommand() throws Exception {
+    testTimeoutRequest(RoleCommand.CUSTOM_COMMAND);
+    testTimeoutRequest(RoleCommand.CUSTOM_COMMAND, false, false);
+   }
+ 
+   @Test
+   public void testTimeoutRequestDueAgentRestartActionExecute() throws Exception {
+    testTimeoutRequest(RoleCommand.ACTIONEXECUTE);
+    testTimeoutRequest(RoleCommand.ACTIONEXECUTE, false, false);
+   }
+ 
+   @Test
+   public void testTimeoutRequestDueAgentRestartServiceCheck() throws Exception {
+    testTimeoutRequest(RoleCommand.SERVICE_CHECK);
+    testTimeoutRequest(RoleCommand.SERVICE_CHECK, false, false);
+   }
+ 
+  private void testTimeoutRequest(RoleCommand roleCommand) throws AmbariException, InvalidStateTransitionException {
+  /**
+   * Ensures that the task is timed out but is not skipped just because its
+   * stage is skipped.
+   *
+   * @throws Exception
+   */</comment>
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testTimeoutWithSkippableStageButNotCommand</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>testTimeoutRequest</name><argument_list>(<argument><expr><name><name>RoleCommand</name><operator>.</operator><name>EXECUTE</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Ensures that the task is timed out and that it will be skipped.
+   *
+   * @throws Exception
+   */</comment>
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testTimeoutWithSkippableCommand</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>testTimeoutRequest</name><argument_list>(<argument><expr><name><name>RoleCommand</name><operator>.</operator><name>EXECUTE</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>testTimeoutRequest</name><parameter_list>(<parameter><decl><type><name>RoleCommand</name></type> <name>roleCommand</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>stageSupportsAutoSkip</name></decl></parameter>,
+      <parameter><decl><type><name>boolean</name></type> <name>autoSkipFailedTask</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AmbariException</name></expr></argument>, <argument><expr><name>InvalidStateTransitionException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>long</name></type> <name>HOST_REGISTRATION_TIME</name> <init>= <expr><literal type="number">100L</literal></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>long</name></type> <name>STAGE_TASK_START_TIME</name> <init>= <expr><name>HOST_REGISTRATION_TIME</name> <operator>-</operator> <literal type="number">1L</literal></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">872</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">899</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+       <expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call></expr>;
+     }</block></expr></expr_stmt>
+ 
+    <decl_stmt><decl><type><name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>stageSupportsAutoSkip</name></expr></argument>, <argument><expr><name>autoSkipFailedTask</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>setStartTime</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>Role</name><operator>.</operator><name>AMBARI_SERVER_ACTION</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>STAGE_TASK_START_TIME</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>setHostRoleStatus</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>Role</name><operator>.</operator><name>AMBARI_SERVER_ACTION</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>HostRoleStatus</name><operator>.</operator><name>IN_PROGRESS</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>getExecutionCommands</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getExecutionCommand</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setServiceName</name><argument_list>(<argument><expr><literal type="string">"Service name"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">881</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">908</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+     <expr><call><name><name>aq</name><operator>.</operator><name>enqueue</name></name><argument_list>(<argument><expr><name><name>Stage</name><operator>.</operator><name>INTERNAL_HOSTNAME</name></name></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>getExecutionCommands</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getExecutionCommand</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <name><name>List</name><argument_list type="generic">&lt;<argument><name>ExecutionCommand</name></argument>&gt;</argument_list></name> <name>commandsToSchedule</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>ExecutionCommand</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+ 
+    <expr_stmt><expr><call><name><name>db</name><operator>.</operator><name>timeoutHostRole</name></name><argument_list>(<argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyLong</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyLong</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyBoolean</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>taskShouldBeSkipped</name> <init>= <expr><name>stageSupportsAutoSkip</name> <operator>&amp;&amp;</operator> <name>autoSkipFailedTask</name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>db</name><operator>.</operator><name>timeoutHostRole</name></name><argument_list>(<argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyLong</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyLong</name></name><argument_list>()</argument_list></call></expr></argument>,
+        <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>eq</name></name><argument_list>(<argument><expr><name>taskShouldBeSkipped</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+     <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+     <decl_stmt><decl><type><name>ActionScheduler</name></type> <name>scheduler</name> <init>= <expr><call><name><name>EasyMock</name><operator>.</operator><name>createMockBuilder</name></name><argument_list>(<argument><expr><name><name>ActionScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call>
+@@ <operator>-</operator><literal type="number">910</literal></expr></init></decl>,7 +940,7 @@ public <decl><type ref="prev"/><name>class</name> <name>TestActionScheduler</name> <block>{<block_content>
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name></type> <name>stages</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>payload</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>payload</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name><name>MockServerAction</name><operator>.</operator><name>PAYLOAD_FORCE_FAIL</name></name></expr></argument>, <argument><expr><literal type="string">"exception"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><name>payload</name></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">300</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><name>payload</name></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">300</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <decl_stmt><decl><type><name>ActionDBAccessor</name></type> <name>db</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>ActionDBAccessor</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">978</literal></expr><operator>,</operator><expr><literal type="number">20</literal> <operator>+</operator><literal type="number">1008</literal></expr><operator>,</operator><expr><literal type="number">27</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><call><name><name>stages</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getRequestContext</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block></expr></expr_stmt>
+ 
+  <function><type><specifier>private</specifier> <name>Stage</name></type> <name>getStageWithServerAction</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>requestId</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>stageId</name></decl></parameter>,
+                                                <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>payload</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>requestContext</name></decl></parameter>,
+                                                <parameter><decl><type><name>int</name></type> <name>timeout</name></decl></parameter>)</parameter_list> <block>{<block_content>
+  <function><type><specifier>private</specifier> <name>Stage</name></type> <name>getStageWithServerAction</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>requestId</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>stageId</name></decl></parameter>, <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>payload</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>requestContext</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>timeout</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>stageSupportsAutoSkip</name></decl></parameter>,
+      <parameter><decl><type><name>boolean</name></type> <name>autoSkipFailedTask</name></decl></parameter>)</parameter_list> <block>{<block_content>
+ 
+     <decl_stmt><decl><type><name>Stage</name></type> <name>stage</name> <init>= <expr><call><name><name>stageFactory</name><operator>.</operator><name>createNew</name></name><argument_list>(<argument><expr><name>requestId</name></expr></argument>, <argument><expr><literal type="string">"/tmp"</literal></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>, <argument><expr><literal type="number">1L</literal></expr></argument>, <argument><expr><name>requestContext</name></expr></argument>, <argument><expr><name>CLUSTER_HOST_INFO</name></expr></argument>,
+       <argument><expr><literal type="string">"{}"</literal></expr></argument>, <argument><expr><literal type="string">"{}"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+     <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>setStageId</name></name><argument_list>(<argument><expr><name>stageId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>setSkippable</name></name><argument_list>(<argument><expr><name>stageSupportsAutoSkip</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>setAutoSkipFailureSupported</name></name><argument_list>(<argument><expr><name>stageSupportsAutoSkip</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>addServerActionCommand</name></name><argument_list>(<argument><expr><call><name><name>MockServerAction</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>,
+         <argument><expr><name><name>Role</name><operator>.</operator><name>AMBARI_SERVER_ACTION</name></name></expr></argument>,
+         <argument><expr><name><name>RoleCommand</name><operator>.</operator><name>EXECUTE</name></name></expr></argument>, <argument><expr><literal type="string">"cluster1"</literal></expr></argument>,
+         <argument><expr><operator>new</operator> <call><name>ServiceComponentHostServerActionEvent</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+         <argument><expr><name>payload</name></expr></argument>,
+        <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>timeout</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><literal type="null">null</literal></expr><operator>,</operator> <expr><literal type="null">null</literal></expr><operator>,</operator> <expr><name>timeout</name></expr><operator>,</operator> <expr><literal type="boolean">false</literal></expr><operator>,</operator> <expr><name>autoSkipFailedTask</name></expr></expr_stmt>)</block_content></block>;</function>
+
+    <comment type="line">// make sure the task ID matches the command ID</comment>
+    <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>getExecutionCommands</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getExecutionCommand</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setTaskId</name><argument_list>(
+        <argument><expr><call><name><name>stage</name><operator>.</operator><name>getOrderedHostRoleCommands</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getTaskId</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <return>return <expr><name>stage</name></expr>;</return>
+   </block_content>}</block></function>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1752</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1789</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+     <expr><name>Stage</name> <name>stage</name> <operator>=</operator> <call><name><name>stageFactory</name><operator>.</operator><name>createNew</name></name><argument_list>(<argument><expr><name>requestId</name></expr></argument>, <argument><expr><literal type="string">"/tmp"</literal></expr></argument>, <argument><expr><name>clusterName</name></expr></argument>, <argument><expr><literal type="number">1L</literal></expr></argument>, <argument><expr><literal type="string">"getStageWithSingleTask"</literal></expr></argument>,
+       <argument><expr><name>CLUSTER_HOST_INFO</name></expr></argument>, <argument><expr><literal type="string">"{\"host_param\":\"param_value\"}"</literal></expr></argument>, <argument><expr><literal type="string">"{\"stage_param\":\"param_value\"}"</literal></expr></argument>)</argument_list></call></expr>;
+     <call><name><name>stage</name><operator>.</operator><name>setStageId</name></name><argument_list>(<argument><expr><name>stageId</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <comment type="line">//stage.setAutoSkipFailureSupported(true);</comment>
+     <return>return <expr><name>stage</name></expr>;</return>
+   </block_content>}</block></decl></decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2034</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">2070</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestActionScheduler</name> <block>{
+ 
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name> <name>stages</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Stage</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+     <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name> <name>payload</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><name>payload</name></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">300</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Stage</name></type> <name>s</name> <init>= <expr><call><name>getStageWithServerAction</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">977</literal></expr></argument>, <argument><expr><name>payload</name></expr></argument>, <argument><expr><literal type="string">"test"</literal></expr></argument>, <argument><expr><literal type="number">300</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name><name>stages</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <decl_stmt><decl><type><name>ActionDBAccessor</name></type> <name>db</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>ActionDBAccessor</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></else></if_stmt></block_content></block></if></if_stmt>
+
+</unit>

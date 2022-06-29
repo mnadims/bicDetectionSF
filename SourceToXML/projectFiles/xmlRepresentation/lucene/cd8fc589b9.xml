@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/cd8fc589b9.java"><expr_stmt><expr><name>From</name> <name>cd8fc589b9812ac1f9ee8163e7145b53600c0b38</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>David</name> <name>Wayne</name> <name><name>Smiley</name> <argument_list type="generic">&lt;<argument><name>dsmiley</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">6</literal> <name>Jan</name> <literal type="number">2015</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">19</literal><operator>:</operator><literal type="number">20</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">6155</literal><operator>:</operator> <name>Add</name> <name>payloads</name> <name>to</name> <name>MemoryIndex</name></expr>;</expr_stmt> <expr_stmt><expr><name>add</name> <name>flag</name> <name>to</name> <name>HL</name>
+ <name>QueryScorer</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1649798 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                            <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>QueryScorer</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">16</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>highlight</name><operator>/</operator><name><name>WeightedSpanTermExtractor</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">14</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>search</name><operator>/</operator><name>highlight</name><operator>/</operator><name><name>HighlighterTest</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">54</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>MemoryIndex</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">103</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>memory</name><operator>/</operator><name><name>TestMemoryIndexAgainstRAMDir</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">37</literal> <operator>++</operator><operator>++</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">6</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">163</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">65</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">14068e4ea8d</literal><operator>..</operator><name>be7e505d280</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>New</name> <name>Features</name>
+   <name>rate</name> <name>limit</name> <name>IO</name> <name>writes</name></expr></expr_stmt> <for>for each merge depending on incoming merge
+   rate.  <control>(<init><expr><name>Mike</name> <name>McCandless</name></expr></init>)</control><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">6155</literal><operator>:</operator> <name>Add</name> <name>payload</name> <name>support</name> <name>to</name> <name><name>MemoryIndex</name><operator>.</operator> <name>The</name></name> default <name>highlighter</name><literal type="char">'s
+  QueryScorer and WeighedSpanTermExtractor now have setUsePayloads(bool).
+  (David Smiley)
+
+ Optimizations
+ 
+ * LUCENE-5960: Use a more efficient bitset, not a Set&lt;Integer&gt;, to
+diff --git a/lucene/highlighter/src/java/org/apache/lucene/search/highlight/QueryScorer.java b/lucene/highlighter/src/java/org/apache/lucene/search/highlight/QueryScorer.java
+index e855a17a585..7655e889233 100644
+-- a/lucene/highlighter/src/java/org/apache/lucene/search/highlight/QueryScorer.java
+++ b/lucene/highlighter/src/java/org/apache/lucene/search/highlight/QueryScorer.java
+@@ -54,6 +54,7 @@ public class QueryScorer implements Scorer {
+   private boolean skipInitExtractor;
+   private boolean wrapToCaching = true;
+   private int maxCharsToAnalyze;
+  private boolean usePayloads = false;
+ 
+   /**
+    * @param query Query to use for highlighting
+@@ -213,6 +214,7 @@ public class QueryScorer implements Scorer {
+     qse.setMaxDocCharsToAnalyze(maxCharsToAnalyze);
+     qse.setExpandMultiTermQuery(expandMultiTermQuery);
+     qse.setWrapIfNotCachingTokenFilter(wrapToCaching);
+    qse.setUsePayloads(usePayloads);
+     if (reader == null) {
+       this.fieldWeightedSpanTerms = qse.getWeightedSpanTerms(query,
+           tokenStream, field);
+@@ -259,7 +261,19 @@ public class QueryScorer implements Scorer {
+   public void setExpandMultiTermQuery(boolean expandMultiTermQuery) {
+     this.expandMultiTermQuery = expandMultiTermQuery;
+   }
+  
+
+  /**
+   * Whether or not we should capture payloads in {@link MemoryIndex} at each position so that queries can access them.
+   * This does not apply to term vector based TokenStreams, which support payloads only when the term vector has them.
+   */
+  public boolean isUsePayloads() {
+    return usePayloads;
+  }
+
+  public void setUsePayloads(boolean usePayloads) {
+    this.usePayloads = usePayloads;
+  }
+
+   /**
+    * By default, {@link TokenStream}s that are not of the type
+    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to
+diff --git a/lucene/highlighter/src/java/org/apache/lucene/search/highlight/WeightedSpanTermExtractor.java b/lucene/highlighter/src/java/org/apache/lucene/search/highlight/WeightedSpanTermExtractor.java
+index abbfd5f55c0..04e794aba93 100644
+-- a/lucene/highlighter/src/java/org/apache/lucene/search/highlight/WeightedSpanTermExtractor.java
+++ b/lucene/highlighter/src/java/org/apache/lucene/search/highlight/WeightedSpanTermExtractor.java
+@@ -83,9 +83,9 @@ public class WeightedSpanTermExtractor {
+   private boolean cachedTokenStream;
+   private boolean wrapToCaching = true;
+   private int maxDocCharsToAnalyze;
+  private boolean usePayloads = false;
+   private LeafReader internalReader = null;
+ 
+
+   public WeightedSpanTermExtractor() {
+   }
+ 
+@@ -384,7 +384,7 @@ public class WeightedSpanTermExtractor {
+ 
+       // Use MemoryIndex (index/invert this tokenStream now)
+       if (internalReader == null) {
+        final MemoryIndex indexer = new MemoryIndex(true);
+        final MemoryIndex indexer = new MemoryIndex(true, usePayloads);//offsets and payloads
+         if (cacheIt) {
+           assert !cachedTokenStream;
+           tokenStream = new CachingTokenFilter(new OffsetLimitTokenFilter(tokenStream, maxDocCharsToAnalyze));
+@@ -652,7 +652,15 @@ public class WeightedSpanTermExtractor {
+   public void setExpandMultiTermQuery(boolean expandMultiTermQuery) {
+     this.expandMultiTermQuery = expandMultiTermQuery;
+   }
+  
+
+  public boolean isUsePayloads() {
+    return usePayloads;
+  }
+
+  public void setUsePayloads(boolean usePayloads) {
+    this.usePayloads = usePayloads;
+  }
+
+   public boolean isCachedTokenStream() {
+     return cachedTokenStream;
+   }
+diff --git a/lucene/highlighter/src/test/org/apache/lucene/search/highlight/HighlighterTest.java b/lucene/highlighter/src/test/org/apache/lucene/search/highlight/HighlighterTest.java
+index 117546aa859..7072d93cb46 100644
+-- a/lucene/highlighter/src/test/org/apache/lucene/search/highlight/HighlighterTest.java
+++ b/lucene/highlighter/src/test/org/apache/lucene/search/highlight/HighlighterTest.java
+@@ -17,6 +17,8 @@ package org.apache.lucene.search.highlight;
+  * limitations under the License.
+  */
+ 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+ import java.io.ByteArrayInputStream;
+ import java.io.IOException;
+ import java.nio.charset.StandardCharsets;
+@@ -28,10 +30,17 @@ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.StringTokenizer;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+ 
+import org.apache.lucene.analysis.*;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.BaseTokenStreamTestCase;
+import org.apache.lucene.analysis.CachingTokenFilter;
+import org.apache.lucene.analysis.MockAnalyzer;
+import org.apache.lucene.analysis.MockPayloadAnalyzer;
+import org.apache.lucene.analysis.MockTokenFilter;
+import org.apache.lucene.analysis.MockTokenizer;
+import org.apache.lucene.analysis.Token;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.Tokenizer;
+ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+ import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+ import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
+@@ -44,20 +53,43 @@ import org.apache.lucene.document.TextField;
+ import org.apache.lucene.index.DirectoryReader;
+ import org.apache.lucene.index.IndexReader;
+ import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+ import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+ import org.apache.lucene.index.StoredDocument;
+ import org.apache.lucene.index.Term;
+ import org.apache.lucene.queries.CommonTermsQuery;
+import org.apache.lucene.search.*;
+ import org.apache.lucene.search.BooleanClause.Occur;
+import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.ConstantScoreQuery;
+import org.apache.lucene.search.FilteredQuery;
+import org.apache.lucene.search.FuzzyQuery;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MultiPhraseQuery;
+import org.apache.lucene.search.MultiTermQuery;
+import org.apache.lucene.search.NumericRangeQuery;
+import org.apache.lucene.search.PhraseQuery;
+import org.apache.lucene.search.PrefixQuery;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.QueryWrapperFilter;
+import org.apache.lucene.search.RegexpQuery;
+import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.TermRangeFilter;
+import org.apache.lucene.search.TermRangeQuery;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.WildcardQuery;
+ import org.apache.lucene.search.highlight.SynonymTokenizer.TestHighlightRunner;
+ import org.apache.lucene.search.join.BitDocIdSetCachingWrapperFilter;
+ import org.apache.lucene.search.join.BitDocIdSetFilter;
+ import org.apache.lucene.search.join.ScoreMode;
+ import org.apache.lucene.search.join.ToChildBlockJoinQuery;
+ import org.apache.lucene.search.join.ToParentBlockJoinQuery;
+import org.apache.lucene.search.spans.*;
+import org.apache.lucene.search.spans.SpanMultiTermQueryWrapper;
+import org.apache.lucene.search.spans.SpanNearQuery;
+import org.apache.lucene.search.spans.SpanNotQuery;
+import org.apache.lucene.search.spans.SpanOrQuery;
+import org.apache.lucene.search.spans.SpanPayloadCheckQuery;
+import org.apache.lucene.search.spans.SpanQuery;
+import org.apache.lucene.search.spans.SpanTermQuery;
+ import org.apache.lucene.store.Directory;
+ import org.apache.lucene.util.BytesRef;
+ import org.apache.lucene.util.LuceneTestCase;
+@@ -1891,7 +1923,7 @@ public class HighlighterTest extends BaseTokenStreamTestCase implements Formatte
+     reader.close();
+   }
+ 
+  /** If we have term vectors, we can highlight based on payloads */
+  /** We can highlight based on payloads. It'</literal><name>s</name> <name>supported</name> <name>both</name> <name>via</name> <name>term</name> <name>vectors</name> <name>and</name> <name>MemoryIndex</name> <name>since</name> <name>Lucene</name> <literal type="number">5.</literal> <operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>testPayloadQuery</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InvalidTokenOffsetsException</name> <block>{
+     <expr><name>final</name> <name>String</name> <name>text</name> <operator>=</operator> <literal type="string">"random words and words"</literal></expr></block></expr></argument></throws></expr>;</expr_stmt></block_content></block></for><comment type="line">//"words" at positions 1 &amp; 4</comment>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1900</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1932</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>HighlighterTest</name> extends <name>BaseTokenStreamTestCase</name> implements <name>Formatte</name>
+       <call><name><name>writer</name><operator>.</operator><name>deleteAll</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+      <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name>FIELD_NAME</name></expr></argument>, <argument><expr><name>text</name></expr></argument>, <argument><expr><name>FIELD_TYPE_TV</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><name>FIELD_NAME</name></expr></argument>, <argument><expr><name>text</name></expr></argument>, <argument><expr><name>fieldType</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>commit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     }
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">1908</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">1940</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>HighlighterTest</name> extends <name>BaseTokenStreamTestCase</name> implements <name>Formatte</name>
+       <name>Query</name> <name>query</name> <operator>=</operator> <operator>new</operator> <call><name>SpanPayloadCheckQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>SpanTermQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><name>FIELD_NAME</name></expr></argument>, <argument><expr><literal type="string">"words"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+           <argument><expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><literal type="string">"pos: 1"</literal><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//just match the first "word" occurrence</comment>
+       <decl_stmt><decl><type><name>IndexSearcher</name></type> <name>searcher</name> <init>= <expr><call><name>newSearcher</name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Scorer</name></type> <name>scorer</name> <init>= <expr><operator>new</operator> <call><name>QueryScorer</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><call><name><name>searcher</name><operator>.</operator><name>getIndexReader</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>FIELD_NAME</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>QueryScorer</name></type> <name>scorer</name> <init>= <expr><operator>new</operator> <call><name>QueryScorer</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><call><name><name>searcher</name><operator>.</operator><name>getIndexReader</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>FIELD_NAME</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>scorer</name><operator>.</operator><name>setUsePayloads</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Highlighter</name></type> <name>h</name> <init>= <expr><operator>new</operator> <call><name>Highlighter</name><argument_list>(<argument><expr><name>scorer</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <decl_stmt><decl><type><name>TopDocs</name></type> <name>hits</name> <init>= <expr><call><name><name>searcher</name><operator>.</operator><name>search</name></name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name><name>hits</name><operator>.</operator><name>scoreDocs</name><operator>.</operator><name>length</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>TokenStream</name></type> <name>stream</name> <init>= <expr><call><name><name>TokenSources</name><operator>.</operator><name>getAnyTokenStream</name></name><argument_list>(<argument><expr><call><name><name>searcher</name><operator>.</operator><name>getIndexReader</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>FIELD_NAME</name></expr></argument>, <argument><expr><name>analyzer</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>stream</name> <operator>=</operator> <operator>new</operator> <call><name>CachingTokenFilter</name><argument_list>(<argument><expr><name>stream</name></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//conceals detection of TokenStreamFromTermVector</comment>
+      </block_content>}</block></if></if_stmt>
+       <decl_stmt><decl><type><name>String</name></type> <name>result</name> <init>= <expr><call><name><name>h</name><operator>.</operator><name>getBestFragment</name></name><argument_list>(<argument><expr><name>stream</name></expr></argument>, <argument><expr><name>text</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"random &lt;B&gt;words&lt;/B&gt; and words"</literal></expr></argument>, <argument><expr><name>result</name></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//only highlight first "word"</comment>
+     }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>MemoryIndex</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>MemoryIndex</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">28c6a976d17</literal><operator>..</operator><literal type="number">28424c13c7c</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>MemoryIndex</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>MemoryIndex</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Analyzer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>CharTermAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>OffsetAttribute</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>PayloadAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>PositionIncrementAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>tokenattributes</name><operator>.</operator><name>TermToBytesRefAttribute</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>BinaryDocValues</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">60</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">61</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>Bits</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>ByteBlockPool</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRefArray</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRefBuilder</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRefHash</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRefHash</name><operator>.</operator><name>DirectBytesStartArray</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>Counter</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">187</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">190</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>RecyclingIntBlockAllocator</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+ 
+  <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>boolean</name> <name>DEBUG</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+
+   <comment type="block" format="javadoc">/** info for each field: Map&amp;lt;String fieldName, Info field&amp;gt; */</comment>
+   <expr><specifier>private</specifier> <name>final</name> <name><name>SortedMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Info</name></argument>&gt;</argument_list></name> <name>fields</name> <operator>=</operator> <operator>new</operator> <call><name><name>TreeMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+   
+   <expr><specifier>private</specifier> <name>final</name> <name>boolean</name> <name>storeOffsets</name></expr>;
+  
+  <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>boolean</name> <name>DEBUG</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>boolean</name> <name>storePayloads</name></expr>;
+ 
+   <expr><specifier>private</specifier> <name>final</name> <name>ByteBlockPool</name> <name>byteBlockPool</name></expr>;
+   <expr><specifier>private</specifier> <name>final</name> <name>IntBlockPool</name> <name>intBlockPool</name></expr>;
+ <comment type="line">//  private final IntBlockPool.SliceReader postingsReader;</comment>
+   <expr><specifier>private</specifier> <name>final</name> <name><name>IntBlockPool</name><operator>.</operator><name>SliceWriter</name></name> <name>postingsWriter</name></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>BytesRefArray</name> <name>payloadsBytesRefs</name></expr>;<comment type="line">//non null only when storePayloads</comment>
+ 
+   <expr><specifier>private</specifier> <name>Counter</name> <name>bytesUsed</name></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">206</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">211</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+   <expr><specifier>private</specifier> <name>Similarity</name> <name>normSimilarity</name> <operator>=</operator> <call><name><name>IndexSearcher</name><operator>.</operator><name>getDefaultSimilarity</name></name><argument_list>()</argument_list></call></expr>;
+ 
+   <comment type="block" format="javadoc">/**
+   * Constructs an empty instance.
+   * Constructs an empty instance that will not store offsets or payloads.
+    */</comment>
+   <expr><specifier>public</specifier> <call><name>MemoryIndex</name><argument_list>()</argument_list></call> <block>{
+     <expr><call><name>this</name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">215</literal></expr>,<expr><literal type="number">25</literal> <operator>+</operator><literal type="number">220</literal></expr>,<expr><literal type="number">37</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+   <comment type="block" format="javadoc">/**
+    * Constructs an empty instance that can optionally store the start and end
+    * character offset of each token term in the text. This can be useful for
+   * highlighting of hit locations with the Lucene highlighter package.
+   * Protected until the highlighter package matures, so that this can actually
+   * be meaningfully integrated.
+   * highlighting of hit locations with the Lucene highlighter package.  But
+   * it will not store payloads; use another constructor for that.
+    * 
+    * @param storeOffsets
+    *            whether or not to store the start and end character offset of
+    *            each token term in the text
+    */</comment>
+   <expr><specifier>public</specifier> <call><name>MemoryIndex</name><argument_list>(<argument><expr><name>boolean</name> <name>storeOffsets</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name>this</name><argument_list>(<argument><expr><name>storeOffsets</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>this</name><argument_list>(<argument><expr><name>storeOffsets</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+   }</block>
+  
+
+  <comment type="block" format="javadoc">/**
+   * Constructs an empty instance with the option of storing offsets and payloads.
+   *
+   * @param storeOffsets store term offsets at each position
+   * @param storePayloads store term payloads at each position
+   */</comment>
+  <specifier>public</specifier> <call><name>MemoryIndex</name><argument_list>(<argument><expr><name>boolean</name> <name>storeOffsets</name></expr></argument>, <argument><expr><name>boolean</name> <name>storePayloads</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name>this</name><argument_list>(<argument><expr><name>storeOffsets</name></expr></argument>, <argument><expr><name>storePayloads</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;
+  }</block>
+
+   <comment type="block" format="javadoc">/**
+    * Expert: This constructor accepts an upper limit for the number of bytes that should be reused if this instance is {@link #reset()}.
+   * The payload storage, if used, is unaffected by maxReusuedBytes, however.
+    * @param storeOffsets &lt;code&gt;true&lt;/code&gt; if offsets should be stored
+   * @param storePayloads &lt;code&gt;true&lt;/code&gt; if payloads should be stored
+    * @param maxReusedBytes the number of bytes that should remain in the internal memory pools after {@link #reset()} is called
+    */</comment>
+  <call><name>MemoryIndex</name><argument_list>(<argument><expr><name>boolean</name> <name>storeOffsets</name></expr></argument>, <argument><expr><name>long</name> <name>maxReusedBytes</name></expr></argument>)</argument_list></call> <block>{
+  <expr><call><name>MemoryIndex</name><argument_list>(<argument><expr><name>boolean</name> <name>storeOffsets</name></expr></argument>, <argument><expr><name>boolean</name> <name>storePayloads</name></expr></argument>, <argument><expr><name>long</name> <name>maxReusedBytes</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>storeOffsets</name></name> <operator>=</operator> <name>storeOffsets</name></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>storePayloads</name></name> <operator>=</operator> <name>storePayloads</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>bytesUsed</name></name> <operator>=</operator> <call><name><name>Counter</name><operator>.</operator><name>newCounter</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>final</name> <name>int</name> <name>maxBufferedByteBlocks</name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator><operator>(</operator><operator>(</operator><name>maxReusedBytes</name><operator>/</operator><literal type="number">2</literal><operator>)</operator> <operator>/</operator> <name><name>ByteBlockPool</name><operator>.</operator><name>BYTE_BLOCK_SIZE</name></name> <operator>)</operator></expr>;
+     <expr><name>final</name> <name>int</name> <name>maxBufferedIntBlocks</name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><name>maxReusedBytes</name> <operator>-</operator> <operator>(</operator><name>maxBufferedByteBlocks</name><operator>*</operator><name><name>ByteBlockPool</name><operator>.</operator><name>BYTE_BLOCK_SIZE</name></name><operator>)</operator><operator>)</operator><operator>/</operator><operator>(</operator><name><name>IntBlockPool</name><operator>.</operator><name>INT_BLOCK_SIZE</name></name> <operator>*</operator> <name><name>RamUsageEstimator</name><operator>.</operator><name>NUM_BYTES_INT</name></name><operator>)</operator><operator>)</operator></expr>;
+@@ <expr><operator>-</operator><literal type="number">241</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">258</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+     <expr><name>byteBlockPool</name> <operator>=</operator> <operator>new</operator> <call><name>ByteBlockPool</name><argument_list>(<argument><expr><operator>new</operator> <call><name>RecyclingByteBlockAllocator</name><argument_list>(<argument><expr><name><name>ByteBlockPool</name><operator>.</operator><name>BYTE_BLOCK_SIZE</name></name></expr></argument>, <argument><expr><name>maxBufferedByteBlocks</name></expr></argument>, <argument><expr><name>bytesUsed</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>intBlockPool</name> <operator>=</operator> <operator>new</operator> <call><name>IntBlockPool</name><argument_list>(<argument><expr><operator>new</operator> <call><name>RecyclingIntBlockAllocator</name><argument_list>(<argument><expr><name><name>IntBlockPool</name><operator>.</operator><name>INT_BLOCK_SIZE</name></name></expr></argument>, <argument><expr><name>maxBufferedIntBlocks</name></expr></argument>, <argument><expr><name>bytesUsed</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>postingsWriter</name> <operator>=</operator> <operator>new</operator> <call><name>SliceWriter</name><argument_list>(<argument><expr><name>intBlockPool</name></expr></argument>)</argument_list></call></expr>;
+    <comment type="line">//TODO refactor BytesRefArray to allow us to apply maxReusedBytes option</comment>
+    <expr><name>payloadsBytesRefs</name> <operator>=</operator> <ternary><condition><expr><name>storePayloads</name></expr> ?</condition><then> <expr><operator>new</operator> <call><name>BytesRefArray</name><argument_list>(<argument><expr><name>bytesUsed</name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;
+   }</block>
+   
+   <comment type="block" format="javadoc">/**
+@@ -381,8 +400,8 @@ public class MemoryIndex {
+    *
+    * @param fieldName
+    *            a name to be associated with the text
+   * @param stream
+   *            the token stream to retrieve tokens from.
+   * @param tokenStream
+   *            the token stream to retrieve tokens from. It's guaranteed to be closed no matter what.
+    * @param boost
+    *            the boost factor for hits for this field
+    * @param positionIncrementGap
+@@ -391,16 +410,17 @@ public class MemoryIndex {
+    *            the offset gap if fields with the same name are added more than once
+    * @see org.apache.lucene.document.Field#setBoost(float)
+    */</comment>
+  <specifier>public</specifier> <name>void</name> <call><name>addField</name><argument_list>(<argument><expr><name>String</name> <name>fieldName</name></expr></argument>, <argument><expr><name>TokenStream</name> <name>stream</name></expr></argument>, <argument><expr><name>float</name> <name>boost</name></expr></argument>, <argument><expr><name>int</name> <name>positionIncrementGap</name></expr></argument>, <argument><expr><name>int</name> <name>offsetGap</name></expr></argument>)</argument_list></call> <block>{
+    <try>try <block>{<block_content>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>addField</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>fieldName</name></decl></parameter>, <parameter><decl><type><name>TokenStream</name></type> <name>tokenStream</name></decl></parameter>, <parameter><decl><type><name>float</name></type> <name>boost</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>positionIncrementGap</name></decl></parameter>,
+                       <parameter><decl><type><name>int</name></type> <name>offsetGap</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <try>try <init>(<decl><type><name>TokenStream</name></type> <name>stream</name> <init>= <expr><name>tokenStream</name></expr></init></decl>)</init> <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><name>frozen</name></expr>)</condition><block type="pseudo"><block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Cannot call addField() when MemoryIndex is frozen"</literal></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+       <if_stmt><if>if <condition>(<expr><name>fieldName</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"fieldName must not be null"</literal></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+       <if_stmt><if>if <condition>(<expr><name>stream</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"token stream must not be null"</literal></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+        <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"token stream must not be null"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       <if_stmt><if>if <condition>(<expr><name>boost</name> <operator>&lt;=</operator> <literal type="number">0.0f</literal></expr>)</condition><block type="pseudo"><block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"boost factor must be greater than 0.0"</literal></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+        <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"boost factor must be greater than 0.0"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       <decl_stmt><decl><type><name>int</name></type> <name>numTokens</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>int</name></type> <name>numOverlapTokens</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>int</name></type> <name>pos</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">421</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">441</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+         <expr><name>sliceArray</name> <operator>=</operator> <name><name>info</name><operator>.</operator><name>sliceArray</name></name></expr>;
+         <expr><name>sumTotalTermFreq</name> <operator>=</operator> <name><name>info</name><operator>.</operator><name>sumTotalTermFreq</name></name></expr>;
+       }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+        <expr_stmt><expr><name>fieldInfo</name> <operator>=</operator> <operator>new</operator> <call><name>FieldInfo</name><argument_list>(<argument><expr><name>fieldName</name></expr></argument>, <argument><expr><call><name><name>fields</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>,
+            <argument><expr><ternary><condition><expr><name><name>this</name><operator>.</operator><name>storeOffsets</name></name></expr> ?</condition><then> <expr><name><name>IndexOptions</name><operator>.</operator><name>DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS</name></name></expr> </then><else>: <expr><name><name>IndexOptions</name><operator>.</operator><name>DOCS_AND_FREQS_AND_POSITIONS</name></name></expr></else></ternary></expr></argument>,
+        <argument><expr><name>fieldInfo</name> <operator>=</operator> <operator>new</operator> <call><name>FieldInfo</name><argument_list>(<argument><expr><name>fieldName</name></expr></argument>, <argument><expr><call><name><name>fields</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name><name>this</name><operator>.</operator><name>storePayloads</name></name></expr></argument>,
+            <argument><expr><ternary><condition><expr><name><name>this</name><operator>.</operator><name>storeOffsets</name></name></expr>
+                ?</condition><then> <expr><name><name>IndexOptions</name><operator>.</operator><name>DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS</name></name></expr> </then><else>: <expr><name><name>IndexOptions</name><operator>.</operator><name>DOCS_AND_FREQS_AND_POSITIONS</name></name></expr></else></ternary></expr></argument>,
+             <argument><expr><name><name>DocValuesType</name><operator>.</operator><name>NONE</name></name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+         <expr_stmt><expr><name>sliceArray</name> <operator>=</operator> <operator>new</operator> <call><name>SliceByteStartArray</name><argument_list>(<argument><expr><name><name>BytesRefHash</name><operator>.</operator><name>DEFAULT_CAPACITY</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>terms</name> <operator>=</operator> <operator>new</operator> <call><name>BytesRefHash</name><argument_list>(<argument><expr><name>byteBlockPool</name></expr></argument>, <argument><expr><name><name>BytesRefHash</name><operator>.</operator><name>DEFAULT_CAPACITY</name></name></expr></argument>, <argument><expr><name>sliceArray</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">431</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">452</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+       <expr><name>TermToBytesRefAttribute</name> <name>termAtt</name> <operator>=</operator> <call><name><name>stream</name><operator>.</operator><name>getAttribute</name></name><argument_list>(<argument><expr><name><name>TermToBytesRefAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+       <name>PositionIncrementAttribute</name> <name>posIncrAttribute</name> <operator>=</operator> <call><name><name>stream</name><operator>.</operator><name>addAttribute</name></name><argument_list>(<argument><expr><name><name>PositionIncrementAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>OffsetAttribute</name></type> <name>offsetAtt</name> <init>= <expr><call><name><name>stream</name><operator>.</operator><name>addAttribute</name></name><argument_list>(<argument><expr><name><name>OffsetAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>PayloadAttribute</name></type> <name>payloadAtt</name> <init>= <expr><ternary><condition><expr><name>storePayloads</name></expr> ?</condition><then> <expr><call><name><name>stream</name><operator>.</operator><name>addAttribute</name></name><argument_list>(<argument><expr><name><name>PayloadAttribute</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>BytesRef</name></type> <name>ref</name> <init>= <expr><call><name><name>termAtt</name><operator>.</operator><name>getBytesRef</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>stream</name><operator>.</operator><name>reset</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">451</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">473</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+         }</block>
+         <name><name>sliceArray</name><operator>.</operator><name>freq</name><index>[<expr><name>ord</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+         <expr_stmt><expr><name>sumTotalTermFreq</name><operator>++</operator></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>storeOffsets</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></else></if_stmt></block_content></block></try></block_content></block></function></block_content></block></try>}</block></expr> <if_stmt><else>else <block>{<block_content>
+          <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>storeOffsets</name></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><call><name><name>offsetAtt</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call> <operator>+</operator> <name>offset</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><call><name><name>offsetAtt</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call> <operator>+</operator> <name>offset</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/></block_content></block></if></if_stmt></block_content></block></else></if_stmt>}</block></expr>
+        <if_stmt><if>if <condition>(<expr><name>storePayloads</name></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><specifier>final</specifier> <name>BytesRef</name></type> <name>payload</name> <init>= <expr><call><name><name>payloadAtt</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>int</name></type> <name>pIndex</name> <init>= <expr><ternary><condition><expr><name>payload</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><operator>-</operator><literal type="number">1</literal></expr> </then><else>: <expr><call><name><name>payloadsBytesRefs</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>payload</name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>postingsWriter</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><name>pIndex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block>
+         <name><name>sliceArray</name><operator>.</operator><name>end</name><index>[<expr><name>ord</name></expr>]</index></name> <operator>=</operator> <call><name><name>postingsWriter</name><operator>.</operator><name>getCurrentOffset</name></name><argument_list>()</argument_list></call></expr>;
+       }</block>
+       <call><name><name>stream</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">466</literal></expr>,<expr><literal type="number">16</literal> <operator>+</operator><literal type="number">491</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+       <if_stmt><if>if <condition>(<expr><name>numTokens</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>fields</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>fieldName</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Info</name><argument_list>(<argument><expr><name>fieldInfo</name></expr></argument>, <argument><expr><name>terms</name></expr></argument>, <argument><expr><name>sliceArray</name></expr></argument>, <argument><expr><name>numTokens</name></expr></argument>, <argument><expr><name>numOverlapTokens</name></expr></argument>, <argument><expr><name>boost</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>, <argument><expr><call><name><name>offsetAtt</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call> <operator>+</operator> <name>offset</name></expr></argument>, <argument><expr><name>sumTotalTermFreq</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+    }</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content> <comment type="line">// can never happen</comment>
+    <expr_stmt/></block_content></block></catch>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+    <expr_stmt/></block_content></block></catch>}</block></expr></expr_stmt> <finally>finally <block>{<block_content>
+      <try>try <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>stream</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>stream</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><name>e2</name></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></catch></try>
+     </block_content>}</block></finally>
+   }
+ 
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">861</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">878</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+ 
+           @<expr><name>Override</name>
+           <specifier>public</specifier> <name>boolean</name> <call><name>hasPayloads</name><argument_list>()</argument_list></call> <block>{
+            <return>return <expr><literal type="boolean">false</literal></expr>;</return></block></expr>
+            <return>return <expr><name>storePayloads</name></expr>;</return>
+           }</block></expr></expr_stmt>
+         };
+       }
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">1043</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">1060</literal></expr><operator>,</operator><expr><literal type="number">20</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+     }</block>
+     
+     <specifier>private</specifier> <name>class</name> <name>MemoryDocsAndPositionsEnum</name> extends <name>DocsAndPositionsEnum</name> <block>{
+      <expr><specifier>private</specifier> <name>final</name> <name>SliceReader</name> <name>sliceReader</name></expr>;
+       <expr><specifier>private</specifier> <name>int</name> <name>posUpto</name></expr>; <comment type="line">// for assert</comment>
+       <expr><specifier>private</specifier> <name>boolean</name> <name>hasNext</name></expr>;
+       <expr><specifier>private</specifier> <name>Bits</name> <name>liveDocs</name></expr>;
+       <expr><specifier>private</specifier> <name>int</name> <name>doc</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;
+      <expr><specifier>private</specifier> <name>SliceReader</name> <name>sliceReader</name></expr>;
+       <expr><specifier>private</specifier> <name>int</name> <name>freq</name></expr>;
+       <expr><specifier>private</specifier> <name>int</name> <name>startOffset</name></expr>;
+       <expr><specifier>private</specifier> <name>int</name> <name>endOffset</name></expr>;
+      
+      <expr><specifier>private</specifier> <name>int</name> <name>payloadIndex</name></expr>;
+      <expr><specifier>private</specifier> <name>final</name> <name>BytesRefBuilder</name> <name>payloadBuilder</name></expr>;<comment type="line">//only non-null when storePayloads</comment>
+
+       <expr><specifier>public</specifier> <call><name>MemoryDocsAndPositionsEnum</name><argument_list>()</argument_list></call> <block>{
+         <expr><name><name>this</name><operator>.</operator><name>sliceReader</name></name> <operator>=</operator> <operator>new</operator> <call><name>SliceReader</name><argument_list>(<argument><expr><name>intBlockPool</name></expr></argument>)</argument_list></call></expr>;
+        <expr><name><name>this</name><operator>.</operator><name>payloadBuilder</name></name> <operator>=</operator> <ternary><condition><expr><name>storePayloads</name></expr> ?</condition><then> <expr><operator>new</operator> <call><name>BytesRefBuilder</name><argument_list>()</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;
+       }</block>
+ 
+       <specifier>public</specifier> <name>DocsAndPositionsEnum</name> <call><name>reset</name><argument_list>(<argument><expr><name>Bits</name> <name>liveDocs</name></expr></argument>, <argument><expr><name>int</name> <name>start</name></expr></argument>, <argument><expr><name>int</name> <name>end</name></expr></argument>, <argument><expr><name>int</name> <name>freq</name></expr></argument>)</argument_list></call> <block>{
+@@ <expr><operator>-</operator><literal type="number">1096</literal></expr>,<expr><literal type="number">14</literal> <operator>+</operator><literal type="number">1116</literal></expr>,<expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+       <expr><specifier>public</specifier> <name>int</name> <call><name>nextPosition</name><argument_list>()</argument_list></call> <block>{
+         <assert>assert <expr><name>posUpto</name><operator>++</operator> <operator>&lt;</operator> <name>freq</name></expr>;</assert></block></expr>
+         <assert>assert <expr><operator>!</operator><call><name><name>sliceReader</name><operator>.</operator><name>endOfSlice</name></name><argument_list>()</argument_list></call> <operator>:</operator> <literal type="string">" stores offsets : "</literal> <operator>+</operator> <name>startOffset</name></expr>;</assert>
+        <name>int</name> <name>pos</name> <operator>=</operator> <call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></block></expr>;
+         <if_stmt><if>if <condition>(<expr><name>storeOffsets</name></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>int</name></type> <name>pos</name> <init>= <expr><call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+           <expr_stmt><expr><name>startOffset</name> <operator>=</operator> <call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><name>endOffset</name> <operator>=</operator> <call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <return>return <expr><name>pos</name></expr>;</return>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else <block>{<block_content>
+          <return>return <expr><call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></expr>;</return>
+         <expr_stmt/></block_content></block></else></if_stmt>}</block></expr></expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>storePayloads</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>payloadIndex</name> <operator>=</operator> <call><name><name>sliceReader</name><operator>.</operator><name>readInt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>pos</name></expr>;</return>
+       }
+ 
+       @<expr_stmt><expr><name>Override</name>
+@@ <operator>-</operator><literal type="number">1118</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1139</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+ 
+       @<expr><name>Override</name>
+       <specifier>public</specifier> <name>BytesRef</name> <call><name>getPayload</name><argument_list>()</argument_list></call> <block>{
+        <return>return <expr><literal type="null">null</literal></expr>;</return></block></expr>
+        <if_stmt><if>if <condition>(<expr><name>payloadBuilder</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name>payloadIndex</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+          <return>return <expr><literal type="null">null</literal></expr>;</return>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+        <return>return <expr><call><name><name>payloadsBytesRefs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>payloadBuilder</name></expr></argument>, <argument><expr><name>payloadIndex</name></expr></argument>)</argument_list></call></expr>;</return>
+       }
+       
+       @<expr_stmt><expr><name>Override</name>
+@@ <operator>-</operator><literal type="number">1178</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1202</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryIndex</name> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>normSimilarity</name></name> <operator>=</operator> <call><name><name>IndexSearcher</name><operator>.</operator><name>getDefaultSimilarity</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>byteBlockPool</name><operator>.</operator><name>reset</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>; <comment type="line">// no need to 0-fill the buffers</comment>
+     <expr><call><name><name>intBlockPool</name><operator>.</operator><name>reset</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>; <comment type="line">// here must must 0-fill since we use slices</comment>
+    <if_stmt><if>if <condition>(<expr><name>payloadsBytesRefs</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>payloadsBytesRefs</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block>
+     <name><name>this</name><operator>.</operator><name>frozen</name></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+   }
+   
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>TestMemoryIndexAgainstRAMDir</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>TestMemoryIndexAgainstRAMDir</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">65c140cff09</literal><operator>..</operator><name>a507552ce5d</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>TestMemoryIndexAgainstRAMDir</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>memory</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name>memory</name><operator>/</operator><name><name>TestMemoryIndexAgainstRAMDir</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>spans</name><operator>.</operator><name>SpanOrQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>spans</name><operator>.</operator><name>SpanQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>RAMDirectory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>ByteBlockPool</name><operator>.</operator><name>Allocator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>ByteBlockPool</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>ByteBlockPool</name><operator>.</operator><name>Allocator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRef</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>IOUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LineFileDocs</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">116</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">116</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+    <expr><operator>*</operator> <name>runs</name> <name>random</name> <name>tests</name></expr>, <expr><name>up</name> <name>to</name> <name>ITERATIONS</name> <name><name>times</name><operator>.</operator></name>
+    *<operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>testRandomQueries</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>MemoryIndex</name> <name>index</name> <operator>=</operator>  <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><name>MemoryIndex</name> <name>index</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr>;
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>ITERATIONS</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+       <expr_stmt><expr><call><name>assertAgainstRAMDirectory</name><argument_list>(<argument><expr><name>index</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></for>}</block>
+@@ <operator>-</operator><literal type="number">148</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">148</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+     <expr><name>Directory</name> <name>ramdir</name> <operator>=</operator> <operator>new</operator> <call><name>RAMDirectory</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>Analyzer</name> <name>analyzer</name> <operator>=</operator> <call><name>randomAnalyzer</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>IndexWriter</name> <name>writer</name> <operator>=</operator> <operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>ramdir</name></expr></argument>,
+                                         <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>(<argument><expr><name>analyzer</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>setCodec</name><argument_list>(<argument><expr><call><name><name>TestUtil</name><operator>.</operator><name>alwaysPostingsFormat</name></name><argument_list>(<argument><expr><call><name><name>TestUtil</name><operator>.</operator><name>getDefaultPostingsFormat</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                                         <expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>(<argument><expr><name>analyzer</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>setCodec</name><argument_list>(
+                                             <argument><expr><call><name><name>TestUtil</name><operator>.</operator><name>alwaysPostingsFormat</name></name><argument_list>(<argument><expr><call><name><name>TestUtil</name><operator>.</operator><name>getDefaultPostingsFormat</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</block></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Field</name></type> <name>field1</name> <init>= <expr><call><name>newTextField</name><argument_list>(<argument><expr><literal type="string">"foo"</literal></expr></argument>, <argument><expr><call><name><name>fooField</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>NO</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Field</name></type> <name>field2</name> <init>= <expr><call><name>newTextField</name><argument_list>(<argument><expr><literal type="string">"term"</literal></expr></argument>, <argument><expr><call><name><name>termField</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>Field</name><operator>.</operator><name>Store</name><operator>.</operator><name>NO</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">209</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">210</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+                   <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>iwDocsAndPos</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>memDocsAndPos</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                   <expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>iwDocsAndPos</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>memDocsAndPos</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                 }</block></expr></expr_stmt>
+
+                <if_stmt><if>if <condition>(<expr><call><name><name>iwTerms</name><operator>.</operator><name>hasPayloads</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                  <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><call><name><name>iwDocsAndPos</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>memDocsAndPos</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+               }
+               
+             }
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">311</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">316</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+   
+   <expr><specifier>public</specifier> <name>void</name> <call><name>testDocsEnumStart</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><name>Analyzer</name> <name>analyzer</name> <operator>=</operator> <operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><name>MemoryIndex</name> <name>memory</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>MemoryIndex</name> <name>memory</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>memory</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"foo"</literal></expr></argument>, <argument><expr><literal type="string">"bar"</literal></expr></argument>, <argument><expr><name>analyzer</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>LeafReader</name> <name>reader</name> <operator>=</operator> <operator>(</operator><name>LeafReader</name><operator>)</operator> <call><name><name>memory</name><operator>.</operator><name>createSearcher</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getIndexReader</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>DocsEnum</name> <name>disi</name> <operator>=</operator> <call><name><name>TestUtil</name><operator>.</operator><name>docs</name></name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>reader</name></expr></argument>, <argument><expr><literal type="string">"foo"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><literal type="string">"bar"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>DocsEnum</name><operator>.</operator><name>FLAG_NONE</name></name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">336</literal></expr>,<expr><literal type="number">11</literal> <operator>+</operator><literal type="number">341</literal></expr>,<expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+       <return>return <expr><operator>new</operator> <call><name><name>ByteBlockPool</name><operator>.</operator><name>DirectAllocator</name></name><argument_list>()</argument_list></call></expr>;</return></block></expr>
+     }</block></expr></expr_stmt>
+   }
+  
+
+  private <function><type><name>MemoryIndex</name></type> <name>randomMemoryIndex</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>testDocsAndPositionsEnumStart</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>Analyzer</name></type> <name>analyzer</name> <init>= <expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>int</name></type> <name>numIters</name> <init>= <expr><call><name>atLeast</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>MemoryIndex</name></type> <name>memory</name> <init>= <expr><operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>MemoryIndex</name></type> <name>memory</name> <init>= <expr><operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numIters</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// check reuse</comment>
+       <expr_stmt><expr><call><name><name>memory</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"foo"</literal></expr></argument>, <argument><expr><literal type="string">"bar"</literal></expr></argument>, <argument><expr><name>analyzer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>LeafReader</name></type> <name>reader</name> <init>= <expr><operator>(</operator><name>LeafReader</name><operator>)</operator> <call><name><name>memory</name><operator>.</operator><name>createSearcher</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getIndexReader</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">370</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">379</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+     <expr><name>RegexpQuery</name> <name>regex</name> <operator>=</operator> <operator>new</operator> <call><name>RegexpQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"worl."</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>SpanQuery</name> <name>wrappedquery</name> <operator>=</operator> <operator>new</operator> <call><name><name>SpanMultiTermQueryWrapper</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><name>regex</name></expr></argument>)</argument_list></call></expr>;
+         
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>mindex</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>tokenStream</name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"hello there"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// This throws an NPE</comment>
+@@ <expr><operator>-</operator><literal type="number">382</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">391</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+     <expr><name>RegexpQuery</name> <name>regex</name> <operator>=</operator> <operator>new</operator> <call><name>RegexpQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"worl."</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>SpanQuery</name> <name>wrappedquery</name> <operator>=</operator> <operator>new</operator> <call><name>SpanOrQuery</name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>SpanMultiTermQueryWrapper</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><name>regex</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>mindex</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>tokenStream</name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"hello there"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// This passes though</comment>
+@@ <expr><operator>-</operator><literal type="number">390</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">399</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+   }</block>
+   
+   <specifier>public</specifier> <name>void</name> <call><name>testSameFieldAddedMultipleTimes</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>MockAnalyzer</name> <name>mockAnalyzer</name> <operator>=</operator> <operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>mindex</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"the quick brown fox"</literal></expr></argument>, <argument><expr><name>mockAnalyzer</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>mindex</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"jumps over the"</literal></expr></argument>, <argument><expr><name>mockAnalyzer</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">409</literal></expr>,<expr><literal type="number">8</literal> <operator>+</operator><literal type="number">418</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+     <expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"posGap"</literal> <operator>+</operator> <call><name><name>mockAnalyzer</name><operator>.</operator><name>getPositionIncrementGap</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>)</argument_list></call></expr></argument> , <argument><expr><call><name><name>mindex</name><operator>.</operator><name>search</name></name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call> <operator>&gt;</operator> <literal type="number">0.0001</literal></expr></argument>)</argument_list></call></expr>;
+   }</block>
+   
+  <specifier>public</specifier> <name>void</name> <call><name>testNonExistingsField</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+  <expr><specifier>public</specifier> <name>void</name> <call><name>testNonExistentField</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><name>MemoryIndex</name> <name>mindex</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <expr><name>MockAnalyzer</name> <name>mockAnalyzer</name> <operator>=</operator> <operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>mindex</name><operator>.</operator><name>addField</name></name><argument_list>(<argument><expr><literal type="string">"field"</literal></expr></argument>, <argument><expr><literal type="string">"the quick brown fox"</literal></expr></argument>, <argument><expr><name>mockAnalyzer</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>LeafReader</name> <name>reader</name> <operator>=</operator> <operator>(</operator><name>LeafReader</name><operator>)</operator> <call><name><name>mindex</name><operator>.</operator><name>createSearcher</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getIndexReader</name><argument_list>()</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">420</literal></expr>,<expr><literal type="number">11</literal> <operator>+</operator><literal type="number">429</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>reader</name><operator>.</operator><name>termPositionsEnum</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Term</name><argument_list>(<argument><expr><literal type="string">"not-in-index"</literal></expr></argument>, <argument><expr><literal type="string">"foo"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>reader</name><operator>.</operator><name>terms</name></name><argument_list>(<argument><expr><literal type="string">"not-in-index"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+  
+
+   <specifier>public</specifier> <name>void</name> <call><name>testDuellMemIndex</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <expr><name>LineFileDocs</name> <name>lineFileDocs</name> <operator>=</operator> <operator>new</operator> <call><name>LineFileDocs</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <expr><name>int</name> <name>numDocs</name> <operator>=</operator> <call><name>atLeast</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>MemoryIndex</name> <name>memory</name> <operator>=</operator> <operator>new</operator> <call><name>MemoryIndex</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextBoolean</name><argument_list>()</argument_list></call></expr></argument>,  <argument><expr><call><name>random</name><argument_list>()</argument_list></call><operator>.</operator><call><name>nextInt</name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>MemoryIndex</name> <name>memory</name> <operator>=</operator> <call><name>randomMemoryIndex</name><argument_list>()</argument_list></call></expr>;
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numDocs</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+       <decl_stmt><decl><type><name>Directory</name></type> <name>dir</name> <init>= <expr><call><name>newDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>MockAnalyzer</name></type> <name>mockAnalyzer</name> <init>= <expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>(<argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">535</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">544</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestMemoryIndexAgainstRAMDir</name> extends <name>BaseTokenStreamTestCase</name> <block>{
+         <expr><call><name>assertThat</name><argument_list>(<argument><expr><literal type="string">"Position test failed"</literal> <operator>+</operator> <name>failDesc</name></expr></argument>, <argument><expr><name>memPos</name></expr></argument>, <argument><expr><call><name>equalTo</name><argument_list>(<argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name>assertThat</name><argument_list>(<argument><expr><literal type="string">"Start offset test failed"</literal> <operator>+</operator> <name>failDesc</name></expr></argument>, <argument><expr><call><name><name>memDocsPosEnum</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>equalTo</name><argument_list>(<argument><expr><call><name><name>docsPosEnum</name><operator>.</operator><name>startOffset</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name>assertThat</name><argument_list>(<argument><expr><literal type="string">"End offset test failed"</literal> <operator>+</operator> <name>failDesc</name></expr></argument>, <argument><expr><call><name><name>memDocsPosEnum</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>equalTo</name><argument_list>(<argument><expr><call><name><name>docsPosEnum</name><operator>.</operator><name>endOffset</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>assertThat</name><argument_list>(<argument><expr><literal type="string">"Missing payload test failed"</literal> <operator>+</operator> <name>failDesc</name></expr></argument>, <argument><expr><call><name><name>docsPosEnum</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>equalTo</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>assertThat</name><argument_list>(<argument><expr><literal type="string">"Missing payload test failed"</literal> <operator>+</operator> <name>failDesc</name></expr></argument>, <argument><expr><call><name><name>docsPosEnum</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>equalTo</name><argument_list>(<argument><expr><call><name><name>docsPosEnum</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+       }</block></expr></expr_stmt></block_content></block></for>
+     }</block>
+     <call><name>assertNull</name><argument_list>(<argument><expr><literal type="string">"Still some tokens not processed"</literal></expr></argument>, <argument><expr><call><name><name>memTermEnum</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block></expr></expr_stmt></block_content></block></for></block_content></block></function>
+
+</unit>

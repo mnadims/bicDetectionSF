@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/a98c7f89.java"><expr_stmt><expr><name>From</name> <name>a98c7f89a4515c4c86c291929b735f582a9a7a23</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name><name>rkanter</name> <argument_list type="generic">&lt;<argument><name>rkanter</name><annotation>@<name>unknown</name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">10</literal> <name>Jul</name> <literal type="number">2013</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">37</literal><operator>:</operator><literal type="number">01</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">1447</literal> <name>Sqoop</name> <name>actions</name> <name>that</name> <name>don</name><literal type="char">'t launch a map reduce job
+ fail with an IllegalArgumentException (jarcec via rkanter)
+
+git-svn-id: https://svn.apache.org/repos/asf/oozie/trunk@1502059 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../action/hadoop/SqoopActionExecutor.java    | 33 +++++-----
+ release-log.txt                               |  1 +
+ .../hadoop/TestSqoopActionExecutor.java       | 63 +++++++++++++++++++
+ 3 files changed, 82 insertions(+), 15 deletions(-)
+
+diff --git a/core/src/main/java/org/apache/oozie/action/hadoop/SqoopActionExecutor.java b/core/src/main/java/org/apache/oozie/action/hadoop/SqoopActionExecutor.java
+index a82aa9165..24f20cfd3 100644
+-- a/core/src/main/java/org/apache/oozie/action/hadoop/SqoopActionExecutor.java
+++ b/core/src/main/java/org/apache/oozie/action/hadoop/SqoopActionExecutor.java
+@@ -142,26 +142,29 @@ public class SqoopActionExecutor extends JavaActionExecutor {
+                 // Cumulative counters for all Sqoop mapreduce jobs
+                 Counters counters = null;
+ 
+                // Sqoop do not have to create mapreduce job each time
+                 String externalIds = action.getExternalChildIDs();
+                String []jobIds = externalIds.split(",");
+                if (externalIds != null &amp;&amp; !externalIds.trim().isEmpty()) {
+                    String []jobIds = externalIds.split(",");
+ 
+                for(String jobId : jobIds) {
+                    RunningJob runningJob = jobClient.getJob(JobID.forName(jobId));
+                    if (runningJob == null) {
+                      throw new ActionExecutorException(ActionExecutorException.ErrorType.FAILED, "SQOOP001",
+                        "Unknown hadoop job [{0}] associated with action [{1}].  Failing this action!", action
+                        .getExternalId(), action.getId());
+                    }
+                    for(String jobId : jobIds) {
+                        RunningJob runningJob = jobClient.getJob(JobID.forName(jobId));
+                        if (runningJob == null) {
+                          throw new ActionExecutorException(ActionExecutorException.ErrorType.FAILED, "SQOOP001",
+                            "Unknown hadoop job [{0}] associated with action [{1}].  Failing this action!", action
+                            .getExternalId(), action.getId());
+                        }
+ 
+                    Counters taskCounters = runningJob.getCounters();
+                    if(taskCounters != null) {
+                        if(counters == null) {
+                          counters = taskCounters;
+                        Counters taskCounters = runningJob.getCounters();
+                        if(taskCounters != null) {
+                            if(counters == null) {
+                              counters = taskCounters;
+                            } else {
+                              counters.incrAllCounters(taskCounters);
+                            }
+                         } else {
+                          counters.incrAllCounters(taskCounters);
+                          XLog.getLog(getClass()).warn("Could not find Hadoop Counters for job: [{0}]", jobId);
+                         }
+                    } else {
+                      XLog.getLog(getClass()).warn("Could not find Hadoop Counters for job: [{0}]", jobId);
+                     }
+                 }
+ 
+diff --git a/release-log.txt b/release-log.txt
+index dc915641a..0bb204b94 100644
+-- a/release-log.txt
+++ b/release-log.txt
+@@ -1,5 +1,6 @@
+ -- Oozie 4.1.0 release (trunk - unreleased)
+ 
+OOZIE-1447 Sqoop actions that don'</literal><name>t</name> <name>launch</name> <name>a</name> <name>map</name> <name>reduce</name> <name>job</name> <name>fail</name> <name>with</name> <name>an</name> <call><name>IllegalArgumentException</name> <argument_list>(<argument><expr><name>jarcec</name> <name>via</name> <name>rkanter</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1440</literal> <name>Build</name> <name>fails</name> <name>in</name> <name>certain</name> <name>environments</name> <name>due</name> <name>to</name> <name>xerces</name> <name>OpenJPA</name> <call><name>issue</name> <argument_list>(<argument><expr><name>mackrorysd</name> <name>via</name> <name>rkanter</name></expr></argument>)</argument_list></call>
+ 
+ <operator>--</operator> <name>Oozie</name> <literal type="number">4.0.0</literal> <name>release</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>sharelib</name><operator>/</operator><name>sqoop</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>action</name><operator>/</operator><name>hadoop</name><operator>/</operator><name><name>TestSqoopActionExecutor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>sharelib</name><operator>/</operator><name>sqoop</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>action</name><operator>/</operator><name>hadoop</name><operator>/</operator><name><name>TestSqoopActionExecutor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">1f7e62561</literal><operator>..</operator><name>c790e0af2</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>sharelib</name><operator>/</operator><name>sqoop</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>action</name><operator>/</operator><name>hadoop</name><operator>/</operator><name><name>TestSqoopActionExecutor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>sharelib</name><operator>/</operator><name>sqoop</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>action</name><operator>/</operator><name>hadoop</name><operator>/</operator><name><name>TestSqoopActionExecutor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">95</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">95</literal></expr><operator>,</operator><expr><literal type="number">27</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestSqoopActionExecutor</name> extends <name>ActionExecutorTestCase</name> <block>{
+             <expr><literal type="string">"&lt;arg&gt;I&lt;/arg&gt;"</literal> <operator>+</operator>
+             <literal type="string">"&lt;/sqoop&gt;"</literal></expr>;
+ 
+    <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>SQOOP_ACTION_EVAL_XML</name> <operator>=</operator>
+            <literal type="string">"&lt;sqoop xmlns=\"uri:oozie:sqoop-action:0.1\"&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;job-tracker&gt;{0}&lt;/job-tracker&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;name-node&gt;{1}&lt;/name-node&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;configuration&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;property&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;name&gt;oozie.sqoop.log.level&lt;/name&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;value&gt;INFO&lt;/value&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;/property&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;/configuration&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;eval&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;--connect&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;{2}&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;--username&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;sa&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;--password&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;--verbose&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;--query&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;arg&gt;{3}&lt;/arg&gt;"</literal> <operator>+</operator>
+            <literal type="string">"&lt;/sqoop&gt;"</literal></expr>;
+ 
+     @<expr><name>Override</name>
+     <specifier>protected</specifier> <name>void</name> <call><name>setSystemProps</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{</block></expr></argument>
+@<argument>@ <expr><operator>-</operator><literal type="number">168</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">189</literal></expr></argument>,<argument><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestSqoopActionExecutor</name> extends <name>ActionExecutorTestCase</name></expr></argument></throws> <block>{<block_content>
+                                     <expr_stmt><expr><literal type="string">"dummy"</literal></expr><operator>,</operator> <expr><literal type="string">"dummyValue"</literal></expr><operator>,</operator> <expr><name>command</name></expr></expr_stmt>)</block_content></block></expr>;
+     }</block>
+ 
+    <specifier>private</specifier> <name>String</name> <call><name>getActionXmlEval</name><argument_list>()</argument_list></call> <block>{
+      <expr><name>String</name> <name>query</name> <operator>=</operator> <literal type="string">"select TT.I, TT.S from TT"</literal></expr>;
+      <return>return <expr><call><name><name>MessageFormat</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><name>SQOOP_ACTION_EVAL_XML</name></expr></argument>, <argument><expr><call><name>getJobTrackerUri</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getNameNodeUri</name><argument_list>()</argument_list></call></expr></argument>,
+        <argument><expr><call><name>getActionJdbcUri</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>query</name></expr></argument>)</argument_list></call></expr>;</return>
+    }</block></expr></expr_stmt>
+
+     <function><type><specifier>private</specifier> <name>String</name></type> <name>getActionXmlFreeFromQuery</name><parameter_list>()</parameter_list> <block>{<block_content>
+         <decl_stmt><decl><type><name>String</name></type> <name>query</name> <init>= <expr><literal type="string">"select TT.I, TT.S from TT where $CONDITIONS"</literal></expr></init></decl>;</decl_stmt>
+         <return>return <expr><call><name><name>MessageFormat</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><name>SQOOP_ACTION_ARGS_XML</name></expr></argument>, <argument><expr><call><name>getJobTrackerUri</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getNameNodeUri</name><argument_list>()</argument_list></call></expr></argument>,
+<argument>@@ <expr><operator>-</operator><literal type="number">233</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">260</literal></expr></argument>,<argument><expr><literal type="number">42</literal> @@ <specifier>public</specifier> class <name>TestSqoopActionExecutor</name> extends <name>ActionExecutorTestCase</name> <block>{
+         <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>outputData</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name><name>LauncherMain</name><operator>.</operator><name>HADOOP_JOBS</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call><operator>.</operator><call><name>length</name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;
+     }</block>
+ 
+    <specifier>public</specifier> <name>void</name> <call><name>testSqoopEval</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+        <expr><call><name>createDB</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr></argument>;
+
+        <argument><expr><name>Context</name> <name>context</name> <operator>=</operator> <call><name>createContext</name><argument_list>(<argument><expr><call><name>getActionXmlEval</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><name>final</name> <name>RunningJob</name> <name>launcherJob</name> <operator>=</operator> <call><name>submitAction</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><name>String</name> <name>launcherId</name> <operator>=</operator> <call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getExternalId</name><argument_list>()</argument_list></call></expr></argument>;
+        <argument><expr><call><name>waitFor</name><argument_list>(<argument><expr><literal type="number">120</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>, <argument><expr><operator>new</operator> <class><super><name>Predicate</name></super><argument_list>()</argument_list> <block>{
+            <function><type><specifier>public</specifier> <name>boolean</name></type> <name>evaluate</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+                <return>return <expr><call><name><name>launcherJob</name><operator>.</operator><name>isComplete</name></name><argument_list>()</argument_list></call></expr>;</return>
+            </block_content>}</block></function>
+        }</block></class></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>launcherJob</name><operator>.</operator><name>isSuccessful</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+
+        <argument><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>LauncherMapperHelper</name><operator>.</operator><name>hasIdSwap</name></name><argument_list>(<argument><expr><name>launcherJob</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+
+        <argument><expr><name>SqoopActionExecutor</name> <name>ae</name> <operator>=</operator> <operator>new</operator> <call><name>SqoopActionExecutor</name><argument_list>()</argument_list></call></expr></argument>;
+        <argument><expr><call><name><name>ae</name><operator>.</operator><name>check</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>launcherId</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getExternalId</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"SUCCEEDED"</literal></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getExternalStatus</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getData</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getExternalChildIDs</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getExternalChildIDs</name><argument_list>()</argument_list></call><operator>.</operator><call><name>length</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name><name>ae</name><operator>.</operator><name>end</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>WorkflowAction</name><operator>.</operator><name>Status</name><operator>.</operator><name>OK</name></name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getStatus</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+
+        <argument><expr><name>String</name> <name>hadoopCounters</name> <operator>=</operator> <call><name><name>context</name><operator>.</operator><name>getVar</name></name><argument_list>(<argument><expr><name><name>MapReduceActionExecutor</name><operator>.</operator><name>HADOOP_COUNTERS</name></name></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>hadoopCounters</name></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>hadoopCounters</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+
+        <argument><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getData</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><name>Properties</name> <name>outputData</name> <operator>=</operator> <operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></argument>;
+        <argument><expr><call><name><name>outputData</name><operator>.</operator><name>load</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getAction</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getData</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>outputData</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name><name>LauncherMain</name><operator>.</operator><name>HADOOP_JOBS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+        <argument><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>outputData</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><name><name>LauncherMain</name><operator>.</operator><name>HADOOP_JOBS</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>trim</name><argument_list>()</argument_list></call><operator>.</operator><call><name>length</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></return>
+    </block_content>}</block></function>
+
+     <function><type><specifier>public</specifier> <name>void</name></type> <name>testSqoopActionFreeFormQuery</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+         <expr_stmt><expr><call><name>createDB</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function>
+
+</unit>

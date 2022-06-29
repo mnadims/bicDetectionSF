@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/18256fc287.java"><expr_stmt><expr><name>From</name> <literal type="number">18256fc2873f198e8e577c6eb0f337df1d1cda24</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Chris</name> <name><name>Hostetter</name> <argument_list type="generic">&lt;<argument><name>hossman</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">31</literal> <name>May</name> <literal type="number">2016</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">12</literal><operator>:</operator><literal type="number">24</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">8940</literal><operator>:</operator> <name>Fix</name> <name><name>group</name><operator>.</operator><name>sort</name></name> <name>option</name>
+
+<operator>--</operator>
+ <name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                              <operator>|</operator>  <literal type="number">2</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>TopGroupsResultTransformer</name><operator>.</operator><name>java</name></name>           <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>TestDistributedGrouping</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">34</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">36</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">2</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">59d4aafb8dd</literal><operator>..</operator><literal type="number">532f0b4047a</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">245</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">245</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Bug</name> <name>Fixes</name>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">9165</literal><operator>:</operator> <name>Spellcheck</name> <name>does</name> <name>not</name></expr></expr_stmt> <return>return <expr><name>collations</name></expr></return> <if_stmt><if>if "maxCollationTries" is used with "cursorMark".
+   <condition>(<expr><name>James</name> <name>Dyer</name></expr>)</condition><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">8940</literal><operator>:</operator> <name>Fix</name> <name><name>group</name><operator>.</operator><name>sort</name></name> <call><name>option</name> <argument_list>(<argument><expr><name>hossman</name></expr></argument>)</argument_list></call>
+
+ <name>Optimizations</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">8722</literal><operator>:</operator> <name>Don</name><literal type="char">'t force a full ZkStateReader refresh on every Overseer operation.
+diff --git a/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/TopGroupsResultTransformer.java b/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/TopGroupsResultTransformer.java
+index f65bcf24ca7..37e837e664e 100644
+-- a/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/TopGroupsResultTransformer.java
+++ b/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/TopGroupsResultTransformer.java
+@@ -134,7 +134,7 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+ 
+         @SuppressWarnings("unchecked")
+         List&lt;NamedList&lt;Object&gt;&gt; documents = (List&lt;NamedList&lt;Object&gt;&gt;) groupResult.get("documents");
+        ScoreDoc[] scoreDocs = transformToNativeShardDoc(documents, groupSort, shard, schema);
+        ScoreDoc[] scoreDocs = transformToNativeShardDoc(documents, sortWithinGroup, shard, schema);
+ 
+         BytesRef groupValueRef = groupValue != null ? new BytesRef(groupValue) : null;
+         groupDocs.add(new GroupDocs&lt;&gt;(Float.NaN, maxScore, totalGroupHits, scoreDocs, groupValueRef, null));
+diff --git a/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java b/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+index 5d19fd60506..af42ff419c8 100644
+-- a/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+++ b/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+@@ -23,9 +23,11 @@ import org.apache.solr.client.solrj.response.QueryResponse;
+ import org.apache.solr.common.params.CommonParams;
+ import org.apache.solr.common.params.ModifiableSolrParams;
+ import org.apache.solr.common.util.NamedList;
+import org.apache.solr.common.SolrDocumentList;
+ import org.junit.Test;
+ 
+ import java.io.IOException;
+import java.util.List;
+ 
+ /**
+  * TODO? perhaps use:
+@@ -44,7 +46,7 @@ public class TestDistributedGrouping extends BaseDistributedSearchTestCase {
+   String tlong = "other_tl1";
+   String tdate_a = "a_n_tdt";
+   String tdate_b = "b_n_tdt";
+  String oddField="oddField_s";
+  String oddField="oddField_s1";
+ 
+   @Test
+   public void test() throws Exception {
+@@ -265,6 +267,36 @@ public class TestDistributedGrouping extends BaseDistributedSearchTestCase {
+     query("q", "{!func}id", "rows", 100, "fl", "score,id," + i1, "group", "true", "group.field", i1, "group.limit", 10, "sort", "score desc, _docid_ asc, id asc");
+     query("q", "{!func}id", "rows", 100, "fl", "score,id," + i1, "group", "true", "group.field", i1, "group.limit", 10);
+ 
+    // some explicit checks of non default sorting, and sort/group.sort with diff clauses
+    query("q", "{!func}id", "rows", 100, "fl", tlong + ",id," + i1, "group", "true",
+          "group.field", i1, "group.limit", 10,
+          "sort", tlong+" asc, id desc");
+    query("q", "{!func}id", "rows", 100, "fl", tlong + ",id," + i1, "group", "true",
+          "group.field", i1, "group.limit", 10,
+          "sort", "id asc",
+          "group.sort", tlong+" asc, id desc");
+    query("q", "{!func}id", "rows", 100, "fl", tlong + ",id," + i1, "group", "true",
+          "group.field", i1, "group.limit", 10,
+          "sort", tlong+" asc, id desc",
+          "group.sort", "id asc");
+    rsp = query("q", "{!func}id", "fq", oddField+":[* TO *]",
+                "rows", 100, "fl", tlong + ",id," + i1, "group", "true",
+                "group.field", i1, "group.limit", 10,
+                "sort", tlong+" asc",
+                "group.sort", oddField+" asc");
+    nl = (NamedList&lt;?&gt;) rsp.getResponse().get("grouped");
+    nl = (NamedList&lt;?&gt;) nl.get(i1);
+    assertEquals(rsp.toString(), 6, nl.get("matches"));
+    assertEquals(rsp.toString(), 2, ((List&lt;NamedList&lt;?&gt;&gt;)nl.get("groups")).size());
+    nl = ((List&lt;NamedList&lt;?&gt;&gt;)nl.get("groups")).get(0);
+    assertEquals(rsp.toString(), 232, nl.get("groupValue"));
+    SolrDocumentList docs = (SolrDocumentList) nl.get("doclist");
+    assertEquals(docs.toString(), 5, docs.getNumFound());
+    assertEquals(docs.toString(), 22, docs.get(0).getFirstValue("id"));
+    assertEquals(docs.toString(), 21, docs.get(4).getFirstValue("id"));
+
+    
+
+     // Can'</literal><name>t</name> <name>validate</name> <name>the</name> <name>response</name></expr><operator>,</operator> <expr><name>but</name> <name>can</name> <name>check</name></expr></expr_stmt></block_content></block></if></if_stmt> <if_stmt><if>if no errors occur.
+     simpleQuery<condition>(<expr><literal type="string">"q"</literal></expr><operator>,</operator> <expr><literal type="string">"*:*"</literal></expr><operator>,</operator> <expr><literal type="string">"rows"</literal></expr><operator>,</operator> <expr><literal type="number">100</literal></expr><operator>,</operator> <expr><literal type="string">"fl"</literal></expr><operator>,</operator> <expr><literal type="string">"id,"</literal> <operator>+</operator> <name>i1</name></expr><operator>,</operator> <expr><literal type="string">"group"</literal></expr><operator>,</operator> <expr><literal type="string">"true"</literal></expr><operator>,</operator> <expr><literal type="string">"group.query"</literal></expr><operator>,</operator> <expr><name>t1</name> <operator>+</operator> <literal type="string">":kings OR "</literal> <operator>+</operator> <name>t1</name> <operator>+</operator> <literal type="string">":eggs"</literal></expr><operator>,</operator> <expr><literal type="string">"group.limit"</literal></expr><operator>,</operator> <expr><literal type="number">10</literal></expr><operator>,</operator> <expr><literal type="string">"sort"</literal></expr><operator>,</operator> <expr><name>i1</name> <operator>+</operator> <literal type="string">" asc, id asc"</literal></expr><operator>,</operator> <expr><name><name>CommonParams</name><operator>.</operator><name>TIME_ALLOWED</name></name></expr><operator>,</operator> <expr><literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content><empty_stmt>;</empty_stmt></block_content></block></if></if_stmt>
+     
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

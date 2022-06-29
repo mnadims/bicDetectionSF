@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/c7c9ef6a63.java"><expr_stmt><expr><name>From</name> <name>c7c9ef6a6346fc41f7a5fae6d0f188b8ee34a3e5</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Grant</name> <name><name>Ingersoll</name> <argument_list type="generic">&lt;<argument><name>gsingers</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">1</literal> <name>Apr</name> <literal type="number">2009</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">07</literal><operator>:</operator><literal type="number">44</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">1095</literal><operator>:</operator> <name>fix</name> <name>stopword</name> <name>and</name> <name>keep</name> <name>filter</name> <name>performance</name> <name>issue</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/solr/trunk@761036 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilter</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">42</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">22</literal> <operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestKeepFilterFactory</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">65</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestStopFilterFactory</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">66</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">4</literal> <operator>++</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">1.txt</literal>      <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">2.txt</literal>      <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>schema</name><operator>-</operator><name>stop</name><operator>-</operator><name><name>keep</name><operator>.</operator><name>xml</name></name> <operator>|</operator> <literal type="number">67</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">1.txt</literal>      <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">2.txt</literal>      <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">12</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">305</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">33</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestKeepFilterFactory</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestStopFilterFactory</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">1.txt</literal>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">2.txt</literal>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>schema</name><operator>-</operator><name>stop</name><operator>-</operator><name><name>keep</name><operator>.</operator><name>xml</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">1.txt</literal>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">2.txt</literal>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>bd462d9c735</name><operator>..</operator><name>b76be9dfdaf</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">191</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">191</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>New</name> <name>Features</name>
+ 
+ <literal type="number">33.</literal> <name>SOLR</name><operator>-</operator><literal type="number">939</literal><operator>:</operator> <name>ValueSourceRangeFilter</name><operator>/</operator><name>Query</name> <operator>-</operator> <name>filter</name> <name>based</name> <name>on</name> <name>values</name> <name>in</name> <name>a</name> <name>FieldCache</name> <name>entry</name> <name>or</name> <name>on</name> <name>any</name> <name>arbitrary</name> <name>function</name> <name>of</name> <name>field</name> <name><name>values</name><operator>.</operator></name> (<name>yonik</name></expr></expr_stmt>)
+ 
+<expr_stmt><expr><literal type="number">34.</literal> <name>SOLR</name><operator>-</operator><literal type="number">1095</literal><operator>:</operator> <name>Fixed</name> <name>performance</name> <name>problem</name> <name>in</name> <name>the</name> <name>StopFilterFactory</name> <name>and</name> <name>simplified</name> <name><name>code</name><operator>.</operator>  <name>Added</name></name> <name>tests</name> <name>as</name> <name><name>well</name><operator>.</operator></name>  (<name>gsingers</name></expr></expr_stmt>)
+
+ 
+ <expr_stmt><expr><name>Optimizations</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5ff2881c92d</literal><operator>..</operator><name>cd8ad472d29</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>KeepWordFilter</name> extends <name>TokenFilter</name> <block>{
+ 
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>final</name> <name>Token</name> <call><name>next</name><argument_list>(<argument><expr><name>Token</name> <name>in</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <for>for <control>(<init><decl><type><name>Token</name></type> <name>token</name><init>=<expr><call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr></init></decl>;</init> <condition><expr><name>token</name><operator>!=</operator><literal type="null">null</literal></expr>;</condition> <incr><expr><name>token</name><operator>=</operator><call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></incr>)</control> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>Token</name></type> <name>token</name><init>=<expr><call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr></init></decl>;</init> <condition><expr><name>token</name><operator>!=</operator><literal type="null">null</literal></expr>;</condition> <incr><expr><name>token</name><operator>=</operator><call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>(<argument><expr><name>token</name></expr></argument>)</argument_list></call></expr></incr>)</control> <block>{<block_content>
+       <if_stmt><if>if<condition>( <expr><call><name><name>words</name><operator>.</operator><name>contains</name></name><argument_list>( <argument><expr><call><name><name>token</name><operator>.</operator><name>termBuffer</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>token</name><operator>.</operator><name>termLength</name></name><argument_list>()</argument_list></call></expr></argument> )</argument_list></call></expr> )</condition> <block>{<block_content>
+         <return>return <expr><name>token</name></expr>;</return>
+       <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for></block_content></block></for>}</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">101df6394ef</literal><operator>..</operator><literal type="number">66f5709dcb8</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>StrUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>plugin</name><operator>.</operator><name>ResourceLoaderAware</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>StopFilter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>CharArraySet</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">36</literal></expr><operator>,</operator><expr><literal type="number">31</literal> <operator>+</operator><literal type="number">37</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> <name>class</name> <name>KeepWordFilterFactory</name> extends <name>BaseTokenFilterFactory</name> implements <name>ResourceLoaderAware</name> <block>{
+ 
+  <expr><specifier>private</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>words</name></expr>;
+  <expr><specifier>private</specifier> <name>CharArraySet</name> <name>words</name></expr>;
+   <expr><specifier>private</specifier> <name>boolean</name> <name>ignoreCase</name></expr>;
+ 
+   @<expr><call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unchecked"</literal></expr></argument>)</argument_list></call>
+   <specifier>public</specifier> <name>void</name> <call><name>inform</name><argument_list>(<argument><expr><name>ResourceLoader</name> <name>loader</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name>String</name> <name>wordFiles</name> <operator>=</operator> <call><name><name>args</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"words"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>ignoreCase</name> <operator>=</operator> <call><name>getBoolean</name><argument_list>(<argument><expr><literal type="string">"ignoreCase"</literal></expr></argument>,<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+
+    <expr><name>ignoreCase</name> <operator>=</operator> <call><name>getBoolean</name><argument_list>(<argument><expr><literal type="string">"ignoreCase"</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+     <if_stmt><if>if <condition>(<expr><name>wordFiles</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>words</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>words</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+       <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name></type> <name>keepWordsFile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>wordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>keepWordsFile</name><operator>.</operator><name>exists</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>wlist</name> <init>= <expr><call><name><name>loader</name><operator>.</operator><name>getLines</name></name><argument_list>(<argument><expr><name>wordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>words</name> <operator>=</operator> <call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(
+              <argument><expr><operator>(</operator><name><name>String</name><index>[]</index></name><operator>)</operator><call><name><name>wlist</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></try></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else  <block>{<block_content>
+          <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>files</name> <init>= <expr><call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><name>wordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <for>for <control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><name>files</name></expr></range></decl></init>)</control> <block>{<block_content>
+            <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>wlist</name> <init>= <expr><call><name><name>loader</name><operator>.</operator><name>getLines</name></name><argument_list>(<argument><expr><call><name><name>file</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>words</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>String</name><index>[]</index></name><operator>)</operator><call><name><name>wlist</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt/></block_content></block></for></block_content></block></else></if_stmt>}</block>
+        <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>files</name> <operator>=</operator> <call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><name>wordFiles</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>words</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>files</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{<block_content>
+          <expr_stmt><expr><name>words</name> <operator>=</operator> <operator>new</operator> <call><name>CharArraySet</name><argument_list>(<argument><expr><call><name><name>files</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>*</operator> <literal type="number">10</literal></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <for>for <control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><name>files</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>wlist</name> <init>= <expr><call><name><name>loader</name><operator>.</operator><name>getLines</name></name><argument_list>(<argument><expr><call><name><name>file</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <comment type="line">//TODO: once StopFilter.makeStopSet(List) method is available, switch to using that so we can avoid a toArray() call</comment>
+          <expr_stmt><expr><call><name><name>words</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>String</name><index>[]</index></name><operator>)</operator> <call><name><name>wlist</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></for>
+      } 
+      }
+       <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></catch>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>KeepWordFilterFactory</name> extends <name>BaseTokenFilterFactory</name> implements <name>Res</name>
+    <operator>*</operator> <name>NOTE</name><operator>:</operator></expr></expr_stmt> <if_stmt><if>if ignoreCase==true<operator>,</operator> <expr_stmt><expr><name>the</name> <name>words</name> <name>are</name> <name>expected</name> <name>to</name> <name>be</name> <name>lowercase</name>
+    <operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>setWords</name><argument_list>(<argument><expr><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>words</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>words</name></name> <operator>=</operator> <name>words</name></expr>;
+    <name><name>this</name><operator>.</operator><name>words</name></name> <operator>=</operator> <operator>new</operator> <call><name>CharArraySet</name><argument_list>(<argument><expr><name>words</name></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt></if></if_stmt>
+   }
+ 
+   public <function><type><name>void</name></type> <name>setIgnoreCase</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>ignoreCase</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>ignoreCase</name></name> <operator>=</operator> <name>ignoreCase</name></expr>;</expr_stmt>
+   </block_content>}</block></function>
+  
+
+   <function><type><specifier>public</specifier> <name>KeepWordFilter</name></type> <name>create</name><parameter_list>(<parameter><decl><type><name>TokenStream</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>new</operator> <call><name>KeepWordFilter</name><argument_list>(<argument><expr><name>input</name></expr></argument>,<argument><expr><name>words</name></expr></argument>,<argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><operator>new</operator> <call><name>KeepWordFilter</name><argument_list>(<argument><expr><name>input</name></expr></argument>, <argument><expr><name>words</name></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <function><type><specifier>public</specifier> <name>CharArraySet</name></type> <name>getWords</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>words</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isIgnoreCase</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>ignoreCase</name></expr>;</return>
+  </block_content>}</block></function>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">0126952a7bc</literal><operator>..</operator><literal type="number">0b4f6b780a1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>plugin</name><operator>.</operator><name>ResourceLoaderAware</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>StopFilter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>StopAnalyzer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>CharArraySet</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">42</literal></expr><operator>,</operator><expr><literal type="number">29</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">26</literal> @@ <specifier>public</specifier> <name>class</name> <name>StopFilterFactory</name> extends <name>BaseTokenFilterFactory</name> implements <name>Resourc</name>
+     <name>enablePositionIncrements</name> <operator>=</operator> <call><name>getBoolean</name><argument_list>(<argument><expr><literal type="string">"enablePositionIncrements"</literal></expr></argument>,<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <if_stmt><if>if <condition>(<expr><name>stopWordFiles</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>stopWords</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>stopWords</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+       <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name></type> <name>keepWordsFile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>stopWordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>keepWordsFile</name><operator>.</operator><name>exists</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>wlist</name> <init>= <expr><call><name><name>loader</name><operator>.</operator><name>getLines</name></name><argument_list>(<argument><expr><name>stopWordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>stopWords</name> <operator>=</operator> <call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>String</name><index>[]</index></name><operator>)</operator><call><name><name>wlist</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else  <block>{<block_content>
+          <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>files</name> <init>= <expr><call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><name>stopWordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>files</name> <init>= <expr><call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><name>stopWordFiles</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>stopWords</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>files</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{<block_content>
+            <comment type="line">//default stopwords list has 35 or so words, but maybe don't make it that big to start</comment>
+            <expr_stmt><expr><name>stopWords</name> <operator>=</operator> <operator>new</operator> <call><name>CharArraySet</name><argument_list>(<argument><expr><call><name><name>files</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>*</operator> <literal type="number">10</literal></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+           <for>for <control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><name>files</name></expr></range></decl></init>)</control> <block>{<block_content>
+             <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>wlist</name> <init>= <expr><call><name><name>loader</name><operator>.</operator><name>getLines</name></name><argument_list>(<argument><expr><call><name><name>file</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">//TODO: once StopFilter.makeStopSet(List) method is available, switch to using that so we can avoid a toArray() call</comment>
+             <expr_stmt><expr><call><name><name>stopWords</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>String</name><index>[]</index></name><operator>)</operator><call><name><name>wlist</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           </block_content>}</block></for>
+        </block_content>}</block></else></if_stmt>
+       </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></catch></try>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><name>stopWords</name> <operator>=</operator> <call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><name><name>StopAnalyzer</name><operator>.</operator><name>ENGLISH_STOP_WORDS</name></name></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>stopWords</name> <operator>=</operator> <operator>(</operator><name>CharArraySet</name><operator>)</operator> <call><name><name>StopFilter</name><operator>.</operator><name>makeStopSet</name></name><argument_list>(<argument><expr><name><name>StopAnalyzer</name><operator>.</operator><name>ENGLISH_STOP_WORDS</name></name></expr></argument>, <argument><expr><name>ignoreCase</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></else></if_stmt>
+   }
+
+  private <decl_stmt><decl><type><name>Set</name></type> <name>stopWords</name></decl>;</decl_stmt>
+  <comment type="line">//Force the use of a char array set, as it is the most performant, although this may break things if Lucene ever goes away from it.  See SOLR-1095</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>CharArraySet</name></type> <name>stopWords</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>ignoreCase</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>enablePositionIncrements</name></decl>;</decl_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestKeepFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestKeepFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..5c0607fa6e0</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestKeepFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">65</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>analysis</name></name>;</package>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>AbstractSolrTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>ResourceLoader</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+
+
+<comment type="block" format="javadoc">/**
+ *
+ *
+ **/</comment>
+<class><specifier>public</specifier> class <name>TestKeepFilterFactory</name> <super_list><extends>extends <super><name>AbstractSolrTestCase</name></super></extends></super_list><block>{
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSchemaFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"schema-stop-keep.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSolrConfigFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"solrconfig.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testInform</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>ResourceLoader</name></type> <name>loader</name> <init>= <expr><call><name><name>solrConfig</name><operator>.</operator><name>getResourceLoader</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"loader is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>loader</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>KeepWordFilterFactory</name></type> <name>factory</name> <init>= <expr><operator>new</operator> <call><name>KeepWordFilterFactory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>args</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"words"</literal></expr></argument>, <argument><expr><literal type="string">"keep-1.txt"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"ignoreCase"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>inform</name></name><argument_list>(<argument><expr><name>loader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Set</name></type> <name>words</name> <init>= <expr><call><name><name>factory</name><operator>.</operator><name>getWords</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>words</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words Size: "</literal> <operator>+</operator> <call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" is not: "</literal> <operator>+</operator> <literal type="number">2</literal></expr></argument>, <argument><expr><call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+
+    <expr_stmt><expr><name>factory</name> <operator>=</operator> <operator>new</operator> <call><name>KeepWordFilterFactory</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"words"</literal></expr></argument>, <argument><expr><literal type="string">"keep-1.txt, keep-2.txt"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>inform</name></name><argument_list>(<argument><expr><name>loader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>words</name> <operator>=</operator> <call><name><name>factory</name><operator>.</operator><name>getWords</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>words</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words Size: "</literal> <operator>+</operator> <call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" is not: "</literal> <operator>+</operator> <literal type="number">4</literal></expr></argument>, <argument><expr><call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">4</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+
+
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestStopFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestStopFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..00b9ccfa3f9</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestStopFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">66</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>analysis</name></name>;</package>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>AbstractSolrTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>ResourceLoader</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+
+
+<comment type="block" format="javadoc">/**
+ *
+ *
+ **/</comment>
+<class><specifier>public</specifier> class <name>TestStopFilterFactory</name> <super_list><extends>extends <super><name>AbstractSolrTestCase</name></super></extends></super_list><block>{
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSchemaFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"schema-stop-keep.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>getSolrConfigFile</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"solrconfig.xml"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testInform</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>ResourceLoader</name></type> <name>loader</name> <init>= <expr><call><name><name>solrConfig</name><operator>.</operator><name>getResourceLoader</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"loader is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>loader</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>StopFilterFactory</name></type> <name>factory</name> <init>= <expr><operator>new</operator> <call><name>StopFilterFactory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>args</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"words"</literal></expr></argument>, <argument><expr><literal type="string">"stop-1.txt"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"ignoreCase"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>inform</name></name><argument_list>(<argument><expr><name>loader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Set</name></type> <name>words</name> <init>= <expr><call><name><name>factory</name><operator>.</operator><name>getStopWords</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>words</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words Size: "</literal> <operator>+</operator> <call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" is not: "</literal> <operator>+</operator> <literal type="number">2</literal></expr></argument>, <argument><expr><call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>factory</name><operator>.</operator><name>isIgnoreCase</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" does not equal: "</literal> <operator>+</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><call><name><name>factory</name><operator>.</operator><name>isIgnoreCase</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>factory</name> <operator>=</operator> <operator>new</operator> <call><name>StopFilterFactory</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>args</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"words"</literal></expr></argument>, <argument><expr><literal type="string">"stop-1.txt, stop-2.txt"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>factory</name><operator>.</operator><name>inform</name></name><argument_list>(<argument><expr><name>loader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>words</name> <operator>=</operator> <call><name><name>factory</name><operator>.</operator><name>getStopWords</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words is null and it shouldn't be"</literal></expr></argument>, <argument><expr><name>words</name> <operator>!=</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"words Size: "</literal> <operator>+</operator> <call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" is not: "</literal> <operator>+</operator> <literal type="number">4</literal></expr></argument>, <argument><expr><call><name><name>words</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">4</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>factory</name><operator>.</operator><name>isIgnoreCase</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" does not equal: "</literal> <operator>+</operator> <literal type="boolean">true</literal></expr></argument>, <argument><expr><call><name><name>factory</name><operator>.</operator><name>isIgnoreCase</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d8e47528abf</name><operator>..</operator><literal type="number">1ee2c068cf8</literal> <literal type="number">100755</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestUtils</name> extends <name>TestCase</name> <block>{
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"/h/s"</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"/h/,s"</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+
+    <expr><name>arr</name> <operator>=</operator> <call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><literal type="string">"/h/s"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"/h/s"</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+   <specifier>public</specifier> <name>void</name> <call><name>testNamedLists</name><argument_list>()</argument_list></call>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">1.txt</literal> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">1.txt</literal>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..8dfe80902d2</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>keep</name><operator>-</operator><literal type="number">1.txt</literal>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@
+# <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+# <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+# <name>this</name> <name>work</name></expr></expr_stmt> <for>for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+# <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+# <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+#
+#     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+#
+# <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+# <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+# <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+# <name>See</name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+# limitations under the License.
+
+foo
+bar
+\ No newline at end of file
+diff --git a/src/test/test-files/solr/conf/keep-2.txt b/src/test/test-files/solr/conf/keep-2.txt
+new file mode 100644
+index 00000000000..646b7ff4ddb
+-- /dev/null
+++ b/src/test/test-files/solr/conf/keep-2.txt
+@@ -0<operator>,</operator><expr_stmt><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@
+# <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+# <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+# <name>this</name> <name>work</name></expr></expr_stmt></for> <for>for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+# <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+# <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+#
+#     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+#
+# <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+# <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+# <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+# <name>See</name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+# limitations under the License.
+
+junk
+more
+\ No newline at end of file
+diff --git a/src/test/test-files/solr/conf/schema-stop-keep.xml b/src/test/test-files/solr/conf/schema-stop-keep.xml
+new file mode 100644
+index 00000000000..13229f2bb01
+-- /dev/null
+++ b/src/test/test-files/solr/conf/schema-stop-keep.xml
+@@ -0<operator>,</operator><expr_stmt><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><ternary><condition><expr><literal type="number">67</literal> @@
+<operator>&lt;</operator></expr>?</condition><then><expr><name>xml</name> <name>version</name><operator>=</operator><ternary><condition><expr><literal type="string">"1.0"</literal></expr> ?</condition><then><expr><operator>&gt;</operator>
+<operator>&lt;</operator><operator>!</operator><operator>--</operator>
+ <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+ <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+ <name>this</name> <name>work</name></expr></then></ternary></expr></then></ternary></expr></expr_stmt></for> <for>for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+ <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+ <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+
+     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+
+ <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+ <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+ <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator>
+ <name>See</name></name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+ limitations under the License.
+--&gt;
+
+&lt;!--
+
+  For testing stopword configuration and keep word configuration
+
+     $Id: schema.xml 382610 2006-03-03 01:43:03Z yonik $
+     $Source: /cvs/main/searching/solr-configs/test/WEB-INF/classes/schema.xml<operator>,</operator><expr_stmt><expr><name>v</name> <name>$</name>
+     <name>$Name</name><operator>:</operator>  <name>$</name>
+  <operator>--</operator><operator>&gt;</operator>
+
+<operator>&lt;</operator><name>schema</name> <name>name</name><operator>=</operator><literal type="string">"test"</literal> <name>version</name><operator>=</operator><literal type="string">"1.0"</literal><operator>&gt;</operator>
+  <operator>&lt;</operator><name>types</name><operator>&gt;</operator>
+
+
+    <operator>&lt;</operator><name>fieldtype</name> <name>name</name><operator>=</operator><literal type="string">"integer"</literal> <name>class</name><operator>=</operator><literal type="string">"solr.IntField"</literal> <operator>/</operator><operator>&gt;</operator>
+
+    <operator>&lt;</operator><name>fieldtype</name> <name>name</name><operator>=</operator><literal type="string">"string"</literal> <name>class</name><operator>=</operator><literal type="string">"solr.StrField"</literal> <name>sortMissingLast</name><operator>=</operator><literal type="string">"true"</literal><operator>/</operator><operator>&gt;</operator>
+    <operator>&lt;</operator><name>fieldtype</name> <name>name</name><operator>=</operator><literal type="string">"stop-one"</literal> <name>class</name><operator>=</operator><literal type="string">"solr.TextField"</literal><operator>&gt;</operator>
+      <operator>&lt;</operator><name>analyzer</name><operator>&gt;</operator>
+        <operator>&lt;</operator><name>tokenizer</name> <name>class</name><operator>=</operator><literal type="string">"solr.WhitespaceTokenizerFactory"</literal><operator>/</operator><operator>&gt;</operator>
+        <operator>&lt;</operator><name>filter</name> <name>class</name><operator>=</operator><literal type="string">"solr.LowerCaseFilterFactory"</literal><operator>/</operator><operator>&gt;</operator>
+        <operator>&lt;</operator><name>filter</name> <name>class</name><operator>=</operator><literal type="string">"solr.StopFilterFactory"</literal> <name>ignoreCase</name><operator>=</operator><literal type="string">"true"</literal>
+                <name>words</name><operator>=</operator><literal type="string">"stop-1.txt"</literal><operator>/</operator><operator>&gt;</operator>
+
+      <operator>&lt;</operator><operator>/</operator><name>analyzer</name><operator>&gt;</operator>
+    <operator>&lt;</operator><operator>/</operator><name>fieldtype</name><operator>&gt;</operator>
+    <operator>&lt;</operator><name>fieldtype</name> <name>name</name><operator>=</operator><literal type="string">"stop-two"</literal> <name>class</name><operator>=</operator><literal type="string">"solr.TextField"</literal><operator>&gt;</operator>
+      <operator>&lt;</operator><name>analyzer</name><operator>&gt;</operator>
+        <operator>&lt;</operator><name>tokenizer</name> <name>class</name><operator>=</operator><literal type="string">"solr.WhitespaceTokenizerFactory"</literal><operator>/</operator><operator>&gt;</operator>
+        <operator>&lt;</operator><name>filter</name> <name>class</name><operator>=</operator><literal type="string">"solr.LowerCaseFilterFactory"</literal><operator>/</operator><operator>&gt;</operator>
+        <operator>&lt;</operator><name>filter</name> <name>class</name><operator>=</operator><literal type="string">"solr.StopFilterFactory"</literal> <name>ignoreCase</name><operator>=</operator><literal type="string">"true"</literal>
+                <name>words</name><operator>=</operator><literal type="string">"stop-1.txt,stop-2.txt"</literal><operator>/</operator><operator>&gt;</operator>
+
+      <operator>&lt;</operator><operator>/</operator><name>analyzer</name><operator>&gt;</operator>
+    <operator>&lt;</operator><operator>/</operator><name>fieldtype</name><operator>&gt;</operator>
+ <operator>&lt;</operator><operator>/</operator><name>types</name><operator>&gt;</operator>
+
+
+ <operator>&lt;</operator><name>fields</name><operator>&gt;</operator>
+   <operator>&lt;</operator><name>field</name> <name>name</name><operator>=</operator><literal type="string">"id"</literal> <name>type</name><operator>=</operator><literal type="string">"integer"</literal> <name>indexed</name><operator>=</operator><literal type="string">"true"</literal> <name>stored</name><operator>=</operator><literal type="string">"true"</literal> <name>multiValued</name><operator>=</operator><literal type="string">"false"</literal> <name>required</name><operator>=</operator><literal type="string">"false"</literal><operator>/</operator><operator>&gt;</operator>
+   <operator>&lt;</operator><name>field</name> <name>name</name><operator>=</operator><literal type="string">"one"</literal> <name>type</name><operator>=</operator><literal type="string">"stop-one"</literal> <name>indexed</name><operator>=</operator><literal type="string">"true"</literal> <name>stored</name><operator>=</operator><literal type="string">"false"</literal><operator>/</operator><operator>&gt;</operator>
+   <operator>&lt;</operator><name>field</name> <name>name</name><operator>=</operator><literal type="string">"two"</literal> <name>type</name><operator>=</operator><literal type="string">"stop-two"</literal> <name>indexed</name><operator>=</operator><literal type="string">"true"</literal> <name>stored</name><operator>=</operator><literal type="string">"false"</literal><operator>/</operator><operator>&gt;</operator>
+
+ <operator>&lt;</operator><operator>/</operator><name>fields</name><operator>&gt;</operator>
+
+ <operator>&lt;</operator><name>defaultSearchField</name><operator>&gt;</operator><name><name>one</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>defaultSearchField</name></argument>&gt;</argument_list></name>
+ <operator>&lt;</operator><name>uniqueKey</name><operator>&gt;</operator><name><name>id</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>uniqueKey</name></argument>&gt;</argument_list></name>
+
+
+<operator>&lt;</operator><operator>/</operator><name>schema</name><operator>&gt;</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">1.txt</literal> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">1.txt</literal>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..8dfe80902d2</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>test</name><operator>-</operator><name>files</name><operator>/</operator><name>solr</name><operator>/</operator><name>conf</name><operator>/</operator><name>stop</name><operator>-</operator><literal type="number">1.txt</literal>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@
+# <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+# <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+# <name>this</name> <name>work</name></expr></expr_stmt></for> <for>for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+# <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+# <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+#
+#     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+#
+# <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+# <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+# <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+# <name>See</name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+# limitations under the License.
+
+foo
+bar
+\ No newline at end of file
+diff --git a/src/test/test-files/solr/conf/stop-2.txt b/src/test/test-files/solr/conf/stop-2.txt
+new file mode 100644
+index 00000000000..646b7ff4ddb
+-- /dev/null
+++ b/src/test/test-files/solr/conf/stop-2.txt
+@@ -0<operator>,</operator><expr_stmt><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@
+# <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+# <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+# <name>this</name> <name>work</name></expr></expr_stmt></for> <for>for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+# <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+# <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+#
+#     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+#
+# <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+# <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+# <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+# <name>See</name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+# limitations under the License.
+
+junk
+more
+\ No newline at end of file
+- 
+2.19.1.windows.1</for>
+
+</unit>

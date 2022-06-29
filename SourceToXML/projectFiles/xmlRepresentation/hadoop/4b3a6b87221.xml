@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/4b3a6b87221.java"><expr_stmt><expr><name>From</name> <literal type="number">4b3a6b87221076a6b5df2bf4243575018e5f1793</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Arpit</name> <name><name>Agarwal</name> <argument_list type="generic">&lt;<argument><name>arp</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">22</literal> <name>Aug</name> <literal type="number">2014</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">16</literal><operator>:</operator><literal type="number">15</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">10282.</literal> <name>Create</name> <name>a</name> <name>FairCallQueue</name><operator>:</operator> <name>a</name> <name>multi</name><operator>-</operator><name>level</name> <name>call</name>
+ <name>queue</name> <name>which</name> <name>schedules</name> <name>incoming</name> <name>calls</name> <name>and</name> <name>multiplexes</name> <name>outgoing</name> <name><name>calls</name><operator>.</operator></name>
+ (<name>Contributed</name> <name>by</name> <name>Chris</name> <name>Li</name></expr></expr_stmt>)
+
+<expr_stmt><expr><name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1619938 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueue</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">449</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueueMXBean</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">27</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>RpcMultiplexer</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">32</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>ipc</name><operator>/</operator><name><name>WeightedRoundRobinMultiplexer</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestFairCallQueue</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">392</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">6</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">905</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">1</literal> <call><name>deletion</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueue</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueueMXBean</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>RpcMultiplexer</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestFairCallQueue</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">50a6b82afd0</literal><operator>..</operator><literal type="number">0291c758e03</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">560</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">560</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>Release</name> <literal type="number">2.6.0</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">10224.</literal> <name>JavaKeyStoreProvider</name> <name>has</name> <name>to</name> <name>protect</name> <name>against</name> <name>corrupting</name>
+     <name>underlying</name> <name><name>store</name><operator>.</operator></name> (<name>asuresh</name> <name>via</name> <name>tucu</name></expr></expr_stmt>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">10282.</literal> <name>Create</name> <name>a</name> <name>FairCallQueue</name><operator>:</operator> <name>a</name> <name>multi</name><operator>-</operator><name>level</name> <name>call</name> <name>queue</name> <name>which</name>
+    <name>schedules</name> <name>incoming</name> <name>calls</name> <name>and</name> <name>multiplexes</name> <name>outgoing</name> <name><name>calls</name><operator>.</operator></name> (<name>Chris</name> <name>Li</name> <name>via</name>
+    <name>Arpit</name> <name>Agarwal</name></expr></expr_stmt>)
+
+   <expr_stmt><expr><name>BUG</name> <name>FIXES</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">10781.</literal> <name>Unportable</name> <call><name>getgrouplist</name><argument_list>()</argument_list></call> <name>usage</name> <name>breaks</name> <call><name>FreeBSD</name> <argument_list>(<argument><expr><name>Dmitry</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueue</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueue</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..0b56243db58</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueue</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">449</literal> @@</expr></argument>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name></name>;</package></argument_list></call></expr></expr_stmt>
+
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>ref</name><operator>.</operator><name>WeakReference</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>AbstractQueue</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>BlockingQueue</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>LinkedBlockingQueue</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>ReentrantLock</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>Condition</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicLong</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>NotImplementedException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>logging</name><operator>.</operator><name>Log</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>logging</name><operator>.</operator><name>LogFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>metrics2</name><operator>.</operator><name>util</name><operator>.</operator><name>MBeans</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * A queue with multiple levels for each priority.
+ */</comment>
+<class><specifier>public</specifier> class <name><name>FairCallQueue</name><parameter_list>&lt;<parameter><name>E</name> <extends>extends <name>Schedulable</name></extends></parameter>&gt;</parameter_list></name> <super_list><extends>extends <super><name><name>AbstractQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></super></extends>
+  <implements>implements <super><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></super></implements></super_list> <block>{
+  <comment type="line">// Configuration Keys</comment>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>    <name>IPC_CALLQUEUE_PRIORITY_LEVELS_DEFAULT</name> <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name> <init>=
+    <expr><literal type="string">"faircallqueue.priority-levels"</literal></expr></init></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Log</name></type> <name>LOG</name> <init>= <expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><name><name>FairCallQueue</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <comment type="block">/* The queues */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>queues</name></decl>;</decl_stmt>
+
+  <comment type="block">/* Read locks */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>ReentrantLock</name></type> <name>takeLock</name> <init>= <expr><operator>new</operator> <call><name>ReentrantLock</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Condition</name></type> <name>notEmpty</name> <init>= <expr><call><name><name>takeLock</name><operator>.</operator><name>newCondition</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>signalNotEmpty</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>lock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><call><name><name>notEmpty</name><operator>.</operator><name>signal</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <comment type="block">/* Scheduler picks which queue to place in */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>RpcScheduler</name></type> <name>scheduler</name></decl>;</decl_stmt>
+
+  <comment type="block">/* Multiplexer picks which queue to draw from */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>RpcMultiplexer</name></type> <name>multiplexer</name></decl>;</decl_stmt>
+
+  <comment type="block">/* Statistic tracking */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>AtomicLong</name></argument>&gt;</argument_list></name></type> <name>overflowedCalls</name></decl>;</decl_stmt>
+
+  <comment type="block" format="javadoc">/**
+   * Create a FairCallQueue.
+   * @param capacity the maximum size of each sub-queue
+   * @param ns the prefix to use for configuration
+   * @param conf the configuration to read from
+   * Notes: the FairCallQueue has no fixed capacity. Rather, it has a minimum
+   * capacity of `capacity` and a maximum capacity of `capacity * number_queues`
+   */</comment>
+  <constructor><specifier>public</specifier> <name>FairCallQueue</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>capacity</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>ns</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>numQueues</name> <init>= <expr><call><name>parseNumQueues</name><argument_list>(<argument><expr><name>ns</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"FairCallQueue is in use with "</literal> <operator>+</operator> <name>numQueues</name> <operator>+</operator> <literal type="string">" queues."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>queues</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>numQueues</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>overflowedCalls</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>AtomicLong</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>numQueues</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numQueues</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>LinkedBlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>capacity</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>overflowedCalls</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>AtomicLong</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>scheduler</name></name> <operator>=</operator> <operator>new</operator> <call><name>DecayRpcScheduler</name><argument_list>(<argument><expr><name>numQueues</name></expr></argument>, <argument><expr><name>ns</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>multiplexer</name></name> <operator>=</operator> <operator>new</operator> <call><name>WeightedRoundRobinMultiplexer</name><argument_list>(<argument><expr><name>numQueues</name></expr></argument>, <argument><expr><name>ns</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Make this the active source of metrics</comment>
+    <decl_stmt><decl><type><name>MetricsProxy</name></type> <name>mp</name> <init>= <expr><call><name><name>MetricsProxy</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>ns</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>mp</name><operator>.</operator><name>setDelegate</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <comment type="block" format="javadoc">/**
+   * Read the number of queues from the configuration.
+   * This will affect the FairCallQueue's overall capacity.
+   * @throws IllegalArgumentException on invalid queue count
+   */</comment>
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>int</name></type> <name>parseNumQueues</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>ns</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>conf</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>retval</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>getInt</name></name><argument_list>(<argument><expr><name>ns</name> <operator>+</operator> <literal type="string">"."</literal> <operator>+</operator> <name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name></expr></argument>,
+      <argument><expr><name>IPC_CALLQUEUE_PRIORITY_LEVELS_DEFAULT</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if<condition>(<expr><name>retval</name> <operator>&lt;</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"numQueues must be at least 1"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>retval</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the first non-empty queue with equal or lesser priority
+   * than &lt;i&gt;startIdx&lt;/i&gt;. Wraps around, searching a maximum of N
+   * queues, where N is this.queues.size().
+   *
+   * @param startIdx the queue number to start searching at
+   * @return the first non-empty queue with less priority, or null if
+   * everything was empty
+   */</comment>
+  <function><type><specifier>private</specifier> <name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>getFirstNonEmptyQueue</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>startIdx</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>numQueues</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numQueues</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><operator>(</operator><name>i</name> <operator>+</operator> <name>startIdx</name><operator>)</operator> <operator>%</operator> <name>numQueues</name></expr></init></decl>;</decl_stmt> <comment type="line">// offset and wrap around</comment>
+      <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>queue</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>queue</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <return>return <expr><name>queue</name></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+
+    <comment type="line">// All queues were empty</comment>
+    <return>return <expr><literal type="null">null</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block">/* AbstractQueue and BlockingQueue methods */</comment>
+
+  <comment type="block" format="javadoc">/**
+   * Put and offer follow the same pattern:
+   * 1. Get a priorityLevel from the scheduler
+   * 2. Get the nth sub-queue matching this priorityLevel
+   * 3. delegate the call to this sub-queue.
+   *
+   * But differ in how they handle overflow:
+   * - Put will move on to the next queue until it lands on the last queue
+   * - Offer does not attempt other queues on overflow
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>put</name><parameter_list>(<parameter><decl><type><name>E</name></type> <name>e</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>priorityLevel</name> <init>= <expr><call><name><name>scheduler</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>numLevels</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>priorityLevel</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>boolean</name></type> <name>res</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><name>res</name></expr>)</condition> <block>{<block_content>
+        <comment type="line">// Update stats</comment>
+        <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>overflowedCalls</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>priorityLevel</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getAndIncrement</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// If we failed to insert, try again on the next level</comment>
+        <expr_stmt><expr><name>priorityLevel</name><operator>++</operator></expr>;</expr_stmt>
+
+        <if_stmt><if>if <condition>(<expr><name>priorityLevel</name> <operator>==</operator> <name>numLevels</name></expr>)</condition> <block>{<block_content>
+          <comment type="line">// That was the last one, we will block on put in the last queue</comment>
+          <comment type="line">// Delete this line to drop the call</comment>
+          <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>priorityLevel</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>put</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <break>break;</break>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <break>break;</break>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block></while>
+
+
+    <expr_stmt><expr><call><name>signalNotEmpty</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>boolean</name></type> <name>offer</name><parameter_list>(<parameter><decl><type><name>E</name></type> <name>e</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>timeout</name></decl></parameter>, <parameter><decl><type><name>TimeUnit</name></type> <name>unit</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>priorityLevel</name> <init>= <expr><call><name><name>scheduler</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>priorityLevel</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>ret</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>, <argument><expr><name>timeout</name></expr></argument>, <argument><expr><name>unit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>signalNotEmpty</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><name>ret</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>boolean</name></type> <name>offer</name><parameter_list>(<parameter><decl><type><name>E</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>priorityLevel</name> <init>= <expr><call><name><name>scheduler</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>priorityLevel</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>ret</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>signalNotEmpty</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><name>ret</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>E</name></type> <name>take</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>startIdx</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>multiplexer</name><operator>.</operator><name>getAndAdvanceCurrentIndex</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>lockInterruptibly</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <comment type="line">// Wait while queue is empty</comment>
+      <for>for <control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>getFirstNonEmptyQueue</name></name><argument_list>(<argument><expr><name>startIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>q</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <comment type="line">// Got queue, so return if we can poll out an object</comment>
+          <decl_stmt><decl><type><name>E</name></type> <name>e</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>e</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <return>return <expr><name>e</name></expr>;</return>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></if></if_stmt>
+
+        <expr_stmt><expr><call><name><name>notEmpty</name><operator>.</operator><name>await</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>E</name></type> <name>poll</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>timeout</name></decl></parameter>, <parameter><decl><type><name>TimeUnit</name></type> <name>unit</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>startIdx</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>multiplexer</name><operator>.</operator><name>getAndAdvanceCurrentIndex</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>long</name></type> <name>nanos</name> <init>= <expr><call><name><name>unit</name><operator>.</operator><name>toNanos</name></name><argument_list>(<argument><expr><name>timeout</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>lockInterruptibly</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <for>for <control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>getFirstNonEmptyQueue</name></name><argument_list>(<argument><expr><name>startIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>q</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>E</name></type> <name>e</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>e</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <comment type="line">// Escape condition: there might be something available</comment>
+            <return>return <expr><name>e</name></expr>;</return>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></if></if_stmt>
+
+        <if_stmt><if>if <condition>(<expr><name>nanos</name> <operator>&lt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <comment type="line">// Wait has elapsed</comment>
+          <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></if></if_stmt>
+
+        <try>try <block>{<block_content>
+          <comment type="line">// Now wait on the condition for a bit. If we get</comment>
+          <comment type="line">// spuriously awoken we'll re-loop</comment>
+          <expr_stmt><expr><name>nanos</name> <operator>=</operator> <call><name><name>notEmpty</name><operator>.</operator><name>awaitNanos</name></name><argument_list>(<argument><expr><name>nanos</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>ie</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>notEmpty</name><operator>.</operator><name>signal</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt> <comment type="line">// propagate to a non-interrupted thread</comment>
+          <throw>throw <expr><name>ie</name></expr>;</throw>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></for>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>takeLock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * poll() provides no strict consistency: it is possible for poll to return
+   * null even though an element is in the queue.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>E</name></type> <name>poll</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>startIdx</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>multiplexer</name><operator>.</operator><name>getAndAdvanceCurrentIndex</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>getFirstNonEmptyQueue</name></name><argument_list>(<argument><expr><name>startIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>q</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="null">null</literal></expr>;</return> <comment type="line">// everything is empty</comment>
+    </block_content>}</block></if></if_stmt>
+
+    <comment type="line">// Delegate to the sub-queue's poll, which could still return null</comment>
+    <return>return <expr><call><name><name>q</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Peek, like poll, provides no strict consistency.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>E</name></type> <name>peek</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>getFirstNonEmptyQueue</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>q</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <return>return <expr><call><name><name>q</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Size returns the sum of all sub-queue sizes, so it may be greater than
+   * capacity.
+   * Note: size provides no strict consistency, and should not be used to
+   * control queue IO.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>int</name></type> <name>size</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>size</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>BlockingQueue</name></type> <name>q</name> <range>: <expr><name><name>this</name><operator>.</operator><name>queues</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>size</name> <operator>+=</operator> <call><name><name>q</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>size</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Iterator is not implemented, as it is not needed.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>Iterator</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>iterator</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <throw>throw <expr><operator>new</operator> <call><name>NotImplementedException</name><argument_list>()</argument_list></call></expr>;</throw>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * drainTo defers to each sub-queue. Note that draining from a FairCallQueue
+   * to another FairCallQueue will likely fail, since the incoming calls
+   * may be scheduled differently in the new FairCallQueue. Nonetheless this
+   * method is provided for completeness.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>int</name></type> <name>drainTo</name><parameter_list>(<parameter><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>?</name> <super>super <name>E</name></super></argument>&gt;</argument_list></name></type> <name>c</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>maxElements</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>sum</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <range>: <expr><name><name>this</name><operator>.</operator><name>queues</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>sum</name> <operator>+=</operator> <call><name><name>q</name><operator>.</operator><name>drainTo</name></name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><name>maxElements</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>sum</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>int</name></type> <name>drainTo</name><parameter_list>(<parameter><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>?</name> <super>super <name>E</name></super></argument>&gt;</argument_list></name></type> <name>c</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>sum</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>E</name></argument>&gt;</argument_list></name></type> <name>q</name> <range>: <expr><name><name>this</name><operator>.</operator><name>queues</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>sum</name> <operator>+=</operator> <call><name><name>q</name><operator>.</operator><name>drainTo</name></name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>sum</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns maximum remaining capacity. This does not reflect how much you can
+   * ideally fit in this FairCallQueue, as that would depend on the scheduler's
+   * decisions.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>int</name></type> <name>remainingCapacity</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>sum</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>BlockingQueue</name></type> <name>q</name> <range>: <expr><name><name>this</name><operator>.</operator><name>queues</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>sum</name> <operator>+=</operator> <call><name><name>q</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>sum</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * MetricsProxy is a singleton because we may init multiple
+   * FairCallQueues, but the metrics system cannot unregister beans cleanly.
+   */</comment>
+  <class><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> class <name>MetricsProxy</name> <super_list><implements>implements <super><name>FairCallQueueMXBean</name></super></implements></super_list> <block>{
+    <comment type="line">// One singleton per namespace</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>MetricsProxy</name></argument>&gt;</argument_list></name></type> <name>INSTANCES</name> <init>=
+      <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>MetricsProxy</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// Weakref for delegate, so we don't retain it forever if it can be GC'd</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name><name>WeakReference</name><argument_list type="generic">&lt;<argument><name>FairCallQueue</name></argument>&gt;</argument_list></name></type> <name>delegate</name></decl>;</decl_stmt>
+
+    <comment type="line">// Keep track of how many objects we registered</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>revisionNumber</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+    <constructor><specifier>private</specifier> <name>MetricsProxy</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>namespace</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>MBeans</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><name>namespace</name></expr></argument>, <argument><expr><literal type="string">"FairCallQueue"</literal></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <specifier>synchronized</specifier> <name>MetricsProxy</name></type> <name>getInstance</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>namespace</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>MetricsProxy</name></type> <name>mp</name> <init>= <expr><call><name><name>INSTANCES</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>namespace</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>mp</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <comment type="line">// We must create one</comment>
+        <expr_stmt><expr><name>mp</name> <operator>=</operator> <operator>new</operator> <call><name>MetricsProxy</name><argument_list>(<argument><expr><name>namespace</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>INSTANCES</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>namespace</name></expr></argument>, <argument><expr><name>mp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <return>return <expr><name>mp</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setDelegate</name><parameter_list>(<parameter><decl><type><name>FairCallQueue</name></type> <name>obj</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>delegate</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>WeakReference</name><argument_list type="generic">&lt;<argument><name>FairCallQueue</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>obj</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>revisionNumber</name></name><operator>++</operator></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name><name>int</name><index>[]</index></name></type> <name>getQueueSizes</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>FairCallQueue</name></type> <name>obj</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>delegate</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>obj</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <return>return <expr><operator>new</operator> <name><name>int</name><index>[]</index></name><block>{}</block></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+
+      <return>return <expr><call><name><name>obj</name><operator>.</operator><name>getQueueSizes</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name><name>long</name><index>[]</index></name></type> <name>getOverflowedCalls</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>FairCallQueue</name></type> <name>obj</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>delegate</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>obj</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <return>return <expr><operator>new</operator> <name><name>long</name><index>[]</index></name><block>{}</block></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+
+      <return>return <expr><call><name><name>obj</name><operator>.</operator><name>getOverflowedCalls</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation> <type><specifier>public</specifier> <name>int</name></type> <name>getRevision</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>revisionNumber</name></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <comment type="line">// FairCallQueueMXBean</comment>
+  <function><type><specifier>public</specifier> <name><name>int</name><index>[]</index></name></type> <name>getQueueSizes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>numQueues</name> <init>= <expr><call><name><name>queues</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>sizes</name> <init>= <expr><operator>new</operator> <name><name>int</name><index>[<expr><name>numQueues</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numQueues</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>sizes</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>queues</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>sizes</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name><name>long</name><index>[]</index></name></type> <name>getOverflowedCalls</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>numQueues</name> <init>= <expr><call><name><name>queues</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>long</name><index>[]</index></name></type> <name>calls</name> <init>= <expr><operator>new</operator> <name><name>long</name><index>[<expr><name>numQueues</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>numQueues</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>calls</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>overflowedCalls</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>calls</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="line">// For testing</comment>
+  <function><annotation>@<name>VisibleForTesting</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setScheduler</name><parameter_list>(<parameter><decl><type><name>RpcScheduler</name></type> <name>newScheduler</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>scheduler</name></name> <operator>=</operator> <name>newScheduler</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>VisibleForTesting</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setMultiplexer</name><parameter_list>(<parameter><decl><type><name>RpcMultiplexer</name></type> <name>newMux</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>multiplexer</name></name> <operator>=</operator> <name>newMux</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueueMXBean</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueueMXBean</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..bd68ecb1ad3</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>FairCallQueueMXBean</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">27</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name></name>;</package>
+
+<interface><specifier>public</specifier> interface <name>FairCallQueueMXBean</name> <block>{
+  <comment type="line">// Get the size of each subqueue, the index corrosponding to the priority</comment>
+  <comment type="line">// level.</comment>
+  <function_decl><type><name><name>int</name><index>[]</index></name></type> <name>getQueueSizes</name><parameter_list>()</parameter_list>;</function_decl>
+  <function_decl><type><name><name>long</name><index>[]</index></name></type> <name>getOverflowedCalls</name><parameter_list>()</parameter_list>;</function_decl>
+  <function_decl><type><name>int</name></type> <name>getRevision</name><parameter_list>()</parameter_list>;</function_decl>
+}</block></interface>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>RpcMultiplexer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>RpcMultiplexer</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..01eecc55cfa</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>RpcMultiplexer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name></name>;</package>
+
+<comment type="block" format="javadoc">/**
+ * Implement this interface to make a pluggable multiplexer in the
+ * FairCallQueue.
+ */</comment>
+<interface><specifier>public</specifier> interface <name>RpcMultiplexer</name> <block>{
+  <comment type="block" format="javadoc">/**
+   * Should get current index and optionally perform whatever is needed
+   * to prepare the next index.
+   * @return current index
+   */</comment>
+  <function_decl><type><name>int</name></type> <name>getAndAdvanceCurrentIndex</name><parameter_list>()</parameter_list>;</function_decl>
+}</block></interface>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>WeightedRoundRobinMultiplexer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>WeightedRoundRobinMultiplexer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">497ca757461</literal><operator>..</operator><name>cfda94734cf</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>WeightedRoundRobinMultiplexer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>WeightedRoundRobinMultiplexer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">38</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">38</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@
+  <operator>*</operator> <name>There</name> <name>may</name> <name>be</name> <name>more</name> <name>reads</name> <name>than</name> <name>the</name> <name>minimum</name> <name>due</name> <name>to</name> <name>race</name> <name><name>conditions</name><operator>.</operator> <name>This</name></name> <name>is</name>
+  <operator>*</operator> <name>allowed</name> <name>by</name> <name>design</name></expr></expr_stmt> <for>for performance reasons.
+  */
+public class WeightedRoundRobinMultiplexer <block>{<block_content>
+<class><specifier>public</specifier> class <name>WeightedRoundRobinMultiplexer</name> <super_list><implements>implements <super><name>RpcMultiplexer</name></super></implements></super_list> <block>{
+   <comment type="line">// Config keys</comment>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>IPC_CALLQUEUE_WRRMUX_WEIGHTS_KEY</name> <init>=
+     <expr><literal type="string">"faircallqueue.multiplexer.weights"</literal></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestFairCallQueue</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestFairCallQueue</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..acbedc50f9f</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestFairCallQueue</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">392</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name></name>;</package>
+
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertEquals</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertFalse</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertNotNull</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertNull</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertTrue</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>mock</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Mockito</name><operator>.</operator><name>when</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>BlockingQueue</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>UserGroupInformation</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>mockito</name><operator>.</operator><name>Matchers</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>FairCallQueue</name><operator>.</operator><name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestFairCallQueue</name> <super_list><extends>extends <super><name>TestCase</name></super></extends></super_list> <block>{
+  <decl_stmt><decl><type><specifier>private</specifier> <name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>fcq</name></decl>;</decl_stmt>
+
+  <function><type><specifier>private</specifier> <name>Schedulable</name></type> <name>mockCall</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>id</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>mockCall</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>Schedulable</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>UserGroupInformation</name></type> <name>ugi</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>UserGroupInformation</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>ugi</name><operator>.</operator><name>getUserName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>mockCall</name><operator>.</operator><name>getUserGroupInformation</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><name>ugi</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><name>mockCall</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="line">// A scheduler which always schedules into priority zero</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>RpcScheduler</name></type> <name>alwaysZeroScheduler</name></decl>;</decl_stmt>
+  <block>{<block_content>
+    <decl_stmt><decl><type><name>RpcScheduler</name></type> <name>sched</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>sched</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name><name>Matchers</name><operator>.</operator></name>&lt;<name>Schedulable</name><operator>&gt;</operator><call><name>any</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// always queue 0</comment>
+    <expr_stmt><expr><name>alwaysZeroScheduler</name> <operator>=</operator> <name>sched</name></expr>;</expr_stmt>
+  </block_content>}</block>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setUp</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Configuration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"ns."</literal> <operator>+</operator> <name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>fcq</name> <operator>=</operator> <operator>new</operator> <call><name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><literal type="string">"ns"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">//</comment>
+  <comment type="line">// Ensure that FairCallQueue properly implements BlockingQueue</comment>
+  <comment type="line">//</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPollReturnsNullWhenEmpty</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPollReturnsTopCallWhenNotEmpty</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Poll took it out so the fcq is empty</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testOfferSucceeds</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">5</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <comment type="line">// We can fit 10 calls</comment>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testOfferFailsWhenFull</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">5</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// It's full</comment>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testOfferSucceedsWhenScheduledLowPriority</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <comment type="line">// Scheduler will schedule into queue 0 x 5, then queue 1</comment>
+    <decl_stmt><decl><type><name>RpcScheduler</name></type> <name>sched</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>sched</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name><name>Matchers</name><operator>.</operator></name>&lt;<name>Schedulable</name><operator>&gt;</operator><call><name>any</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>sched</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">5</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">6</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPeekNullWhenEmpty</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPeekNonDestructive</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// Non-destructive</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPeekPointsAtHead</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>next</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"b"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>next</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// Peek points at the head</comment>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPollTimeout</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>poll</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPollSuccess</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>poll</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testOfferTimeout</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">5</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"e"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// It's full</comment>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testDrainTo</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Configuration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"ns."</literal> <operator>+</operator> <name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>fcq2</name> <init>= <expr><operator>new</operator> <call><name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><literal type="string">"ns"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq2</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Start with 3 in fcq, to be drained</comment>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">3</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>drainTo</name></name><argument_list>(<argument><expr><name>fcq2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><call><name><name>fcq2</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testDrainToWithLimit</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Configuration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"ns."</literal> <operator>+</operator> <name>IPC_CALLQUEUE_PRIORITY_LEVELS_KEY</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>fcq2</name> <init>= <expr><operator>new</operator> <call><name><name>FairCallQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><literal type="string">"ns"</literal></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq2</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Start with 3 in fcq, to be drained</comment>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">3</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>drainTo</name></name><argument_list>(<argument><expr><name>fcq2</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name><name>fcq2</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testInitialRemainingCapacity</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFirstQueueFullRemainingCapacity</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <while>while <condition>(<expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <empty_stmt>;</empty_stmt></block_content></block></while> <comment type="line">// Queue 0 will fill up first, then queue 1</comment>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testAllQueuesFullRemainingCapacity</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RpcScheduler</name></type> <name>sched</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>sched</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name><name>Matchers</name><operator>.</operator></name>&lt;<name>Schedulable</name><operator>&gt;</operator><call><name>any</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>sched</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <while>while <condition>(<expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <empty_stmt>;</empty_stmt></block_content></block></while>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testQueuesPartialFilledRemainingCapacity</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>RpcScheduler</name></type> <name>sched</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>sched</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name><name>Matchers</name><operator>.</operator></name>&lt;<name>Schedulable</name><operator>&gt;</operator><call><name>any</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>sched</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">5</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>remainingCapacity</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Putter produces FakeCalls
+   */</comment>
+  <class><specifier>public</specifier> class <name>Putter</name> <super_list><implements>implements <super><name>Runnable</name></super></implements></super_list> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>cq</name></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>final</specifier> <name>String</name></type> <name>tag</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>volatile</specifier> <name>int</name></type> <name>callsAdded</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">// How many calls we added, accurate unless interrupted</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>int</name></type> <name>maxCalls</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>Putter</name><parameter_list>(<parameter><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>aCq</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>maxCalls</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>tag</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>maxCalls</name></name> <operator>=</operator> <name>maxCalls</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>cq</name></name> <operator>=</operator> <name>aCq</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>tag</name></name> <operator>=</operator> <name>tag</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>private</specifier> <name>String</name></type> <name>getTag</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>this</name><operator>.</operator><name>tag</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name><name>this</name><operator>.</operator><name>tag</name></name></expr>;</return></block_content></block></if></if_stmt>
+      <return>return <expr><literal type="string">""</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <comment type="line">// Fill up to max (which is infinite if maxCalls &lt; 0)</comment>
+        <while>while <condition>(<expr><name>callsAdded</name> <operator>&lt;</operator> <name>maxCalls</name> <operator>||</operator> <name>maxCalls</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>cq</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name>mockCall</name><argument_list>(<argument><expr><call><name>getTag</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>callsAdded</name><operator>++</operator></expr>;</expr_stmt>
+        </block_content>}</block></while>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return;</return>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <comment type="block" format="javadoc">/**
+   * Taker consumes FakeCalls
+   */</comment>
+  <class><specifier>public</specifier> class <name>Taker</name> <super_list><implements>implements <super><name>Runnable</name></super></implements></super_list> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>cq</name></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>final</specifier> <name>String</name></type> <name>tag</name></decl>;</decl_stmt> <comment type="line">// if &gt;= 0 means we will only take the matching tag, and put back</comment>
+                          <comment type="line">// anything else</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>volatile</specifier> <name>int</name></type> <name>callsTaken</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">// total calls taken, accurate if we aren't interrupted</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>volatile</specifier> <name>Schedulable</name></type> <name>lastResult</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt> <comment type="line">// the last thing we took</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>int</name></type> <name>maxCalls</name></decl>;</decl_stmt> <comment type="line">// maximum calls to take</comment>
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name>IdentityProvider</name></type> <name>uip</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>Taker</name><parameter_list>(<parameter><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>aCq</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>maxCalls</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>tag</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>maxCalls</name></name> <operator>=</operator> <name>maxCalls</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>cq</name></name> <operator>=</operator> <name>aCq</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>tag</name></name> <operator>=</operator> <name>tag</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>uip</name></name> <operator>=</operator> <operator>new</operator> <call><name>UserIdentityProvider</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <comment type="line">// Take while we don't exceed maxCalls, or if maxCalls is undefined (&lt; 0)</comment>
+        <while>while <condition>(<expr><name>callsTaken</name> <operator>&lt;</operator> <name>maxCalls</name> <operator>||</operator> <name>maxCalls</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>Schedulable</name></type> <name>res</name> <init>= <expr><call><name><name>cq</name><operator>.</operator><name>take</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>identity</name> <init>= <expr><call><name><name>uip</name><operator>.</operator><name>makeIdentity</name></name><argument_list>(<argument><expr><name>res</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <if_stmt><if>if <condition>(<expr><name>tag</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>this</name><operator>.</operator><name>tag</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>identity</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <comment type="line">// This call does not match our tag, we should put it back and try again</comment>
+            <expr_stmt><expr><call><name><name>cq</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>res</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name>callsTaken</name><operator>++</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>lastResult</name> <operator>=</operator> <name>res</name></expr>;</expr_stmt>
+          </block_content>}</block></else></if_stmt>
+        </block_content>}</block></while>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return;</return>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <comment type="line">// Assert we can take exactly the numberOfTakes</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertCanTake</name><parameter_list>(<parameter><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>cq</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numberOfTakes</name></decl></parameter>,
+    <parameter><decl><type><name>int</name></type> <name>takeAttempts</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>Taker</name></type> <name>taker</name> <init>= <expr><operator>new</operator> <call><name>Taker</name><argument_list>(<argument><expr><name>cq</name></expr></argument>, <argument><expr><name>takeAttempts</name></expr></argument>, <argument><expr><literal type="string">"default"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Thread</name></type> <name>t</name> <init>= <expr><operator>new</operator> <call><name>Thread</name><argument_list>(<argument><expr><name>taker</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>start</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>join</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>numberOfTakes</name></expr></argument>, <argument><expr><name><name>taker</name><operator>.</operator><name>callsTaken</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>interrupt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// Assert we can put exactly the numberOfPuts</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertCanPut</name><parameter_list>(<parameter><decl><type><name><name>BlockingQueue</name><argument_list type="generic">&lt;<argument><name>Schedulable</name></argument>&gt;</argument_list></name></type> <name>cq</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numberOfPuts</name></decl></parameter>,
+    <parameter><decl><type><name>int</name></type> <name>putAttempts</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>Putter</name></type> <name>putter</name> <init>= <expr><operator>new</operator> <call><name>Putter</name><argument_list>(<argument><expr><name>cq</name></expr></argument>, <argument><expr><name>putAttempts</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Thread</name></type> <name>t</name> <init>= <expr><operator>new</operator> <call><name>Thread</name><argument_list>(<argument><expr><name>putter</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>start</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>join</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>numberOfPuts</name></expr></argument>, <argument><expr><name><name>putter</name><operator>.</operator><name>callsAdded</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>interrupt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// Make sure put will overflow into lower queues when the top is full</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPutOverflows</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// We can fit more than 5, even though the scheduler suggests the top queue</comment>
+    <expr_stmt><expr><call><name>assertCanPut</name><argument_list>(<argument><expr><name>fcq</name></expr></argument>, <argument><expr><literal type="number">8</literal></expr></argument>, <argument><expr><literal type="number">8</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">8</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPutBlocksWhenAllFull</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertCanPut</name><argument_list>(<argument><expr><name>fcq</name></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// Fill up</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Put more which causes overflow</comment>
+    <expr_stmt><expr><call><name>assertCanPut</name><argument_list>(<argument><expr><name>fcq</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// Will block</comment>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testTakeBlocksWhenEmpty</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertCanTake</name><argument_list>(<argument><expr><name>fcq</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testTakeRemovesCall</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>alwaysZeroScheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>take</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testTakeTriesNextQueue</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// Make a FCQ filled with calls in q 1 but empty in q 0</comment>
+    <decl_stmt><decl><type><name>RpcScheduler</name></type> <name>q1Scheduler</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcScheduler</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>q1Scheduler</name><operator>.</operator><name>getPriorityLevel</name></name><argument_list>(<argument><expr><name><name>Matchers</name><operator>.</operator></name>&lt;<name>Schedulable</name><operator>&gt;</operator><call><name>any</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setScheduler</name></name><argument_list>(<argument><expr><name>q1Scheduler</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// A mux which only draws from q 0</comment>
+    <decl_stmt><decl><type><name>RpcMultiplexer</name></type> <name>q0mux</name> <init>= <expr><call><name>mock</name><argument_list>(<argument><expr><name><name>RpcMultiplexer</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>when</name><argument_list>(<argument><expr><call><name><name>q0mux</name><operator>.</operator><name>getAndAdvanceCurrentIndex</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>thenReturn</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>setMultiplexer</name></name><argument_list>(<argument><expr><name>q0mux</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>Schedulable</name></type> <name>call</name> <init>= <expr><call><name>mockCall</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>fcq</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>call</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Take from q1 even though mux said q0, since q0 empty</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>call</name></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>take</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>fcq</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block></class></block_content></block></for>
+
+</unit>

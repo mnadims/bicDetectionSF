@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/81039015.java"><expr_stmt><expr><name>From</name> <literal type="number">8103901558938b017d06a03010b485818d3f8d0f</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Andras</name> <name><name>Piros</name> <argument_list type="generic">&lt;<argument><name><name>andras</name><operator>.</operator><name>piros</name></name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">31</literal> <name>Jul</name> <literal type="number">2018</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">53</literal><operator>:</operator><literal type="number">29</literal> <operator>+</operator><literal type="number">0200</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">2942</literal> <index>[<expr><name>examples</name></expr>]</index> <name>Fix</name> <name>Findbugs</name> <call><name>warnings</name> <argument_list>(<argument><expr><name>Jan</name> <name>Hentschel</name></expr></argument>,
+ <argument><expr><name>kmarton</name> <name>via</name> <name><name>andras</name><operator>.</operator><name>piros</name></name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>DateList</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">118</literal> <operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>LocalOozieExample</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">5</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>Repeatable</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">347</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">234</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">237</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>DateList</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>DateList</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7e574cbec</literal><operator>..</operator><literal type="number">731fe4130</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>DateList</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>DateList</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">72</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">64</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>DateList</name> <block>{
+	<decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TimeZone</name></type> <name>UTC</name> <init>= <expr><call><name>getTimeZone</name><argument_list>(<argument><expr><literal type="string">"UTC"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>DATE_LIST_SEPARATOR</name> <init>= <expr><literal type="string">","</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TimeZone</name></type> <name>UTC</name> <init>= <expr><call><name>getTimeZone</name><argument_list>(<argument><expr><literal type="string">"UTC"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>DATE_LIST_SEPARATOR</name> <init>= <expr><literal type="string">","</literal></expr></init></decl>;</decl_stmt>
+ 
+	<function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+		<if_stmt><if>if <condition>(<expr><name><name>args</name><operator>.</operator><name>length</name></name> <operator>&lt;</operator> <literal type="number">5</literal></expr>)</condition> <block>{<block_content>
+			<expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name>
+					<operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"Usage: java DateList &lt;start_time&gt;  &lt;end_time&gt; &lt;frequency&gt; &lt;timeunit&gt; &lt;timezone&gt;"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name>
+					<operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"Example: java DateList 2009-02-01T01:00Z 2009-02-01T02:00Z 15 MINUTES UTC"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>exit</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		</block_content>}</block></if></if_stmt>
+		<decl_stmt><decl><type><name>Date</name></type> <name>startTime</name> <init>= <expr><call><name>parseDateUTC</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>Date</name></type> <name>endTime</name> <init>= <expr><call><name>parseDateUTC</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>Repeatable</name></type> <name>rep</name> <init>= <expr><operator>new</operator> <call><name>Repeatable</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setBaseline</name></name><argument_list>(<argument><expr><name>startTime</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setFrequency</name></name><argument_list>(<argument><expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setTimeUnit</name></name><argument_list>(<argument><expr><call><name><name>TimeUnit</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>Date</name></type> <name>date</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>StringBuilder</name></type> <name>dateList</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<do>do <block>{<block_content>
+			<expr_stmt><expr><name>date</name> <operator>=</operator> <call><name><name>rep</name><operator>.</operator><name>getOccurrenceTime</name></name><argument_list>(<argument><expr><name>startTime</name></expr></argument>, <argument><expr><name>occurrence</name><operator>++</operator></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>date</name><operator>.</operator><name>before</name></name><argument_list>(<argument><expr><name>endTime</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+				<break>break;</break>
+			</block_content>}</block></if></if_stmt>
+			<if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+				<expr_stmt><expr><call><name><name>dateList</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>DATE_LIST_SEPARATOR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			</block_content>}</block></if></if_stmt>
+			<expr_stmt><expr><call><name><name>dateList</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name>formatDateUTC</name><argument_list>(<argument><expr><name>date</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		</block_content>}</block> while <condition>(<expr><name>date</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition>;</do>
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>args</name><operator>.</operator><name>length</name></name> <operator>&lt;</operator> <literal type="number">5</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name>
+                    <operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"Usage: java DateList &lt;start_time&gt;  &lt;end_time&gt; &lt;frequency&gt; &lt;timeunit&gt; &lt;timezone&gt;"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name>
+                    <operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"Example: java DateList 2009-02-01T01:00Z 2009-02-01T02:00Z 15 MINUTES UTC"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>exit</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>Date</name></type> <name>startTime</name> <init>= <expr><call><name>parseDateUTC</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Date</name></type> <name>endTime</name> <init>= <expr><call><name>parseDateUTC</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Repeatable</name></type> <name>rep</name> <init>= <expr><operator>new</operator> <call><name>Repeatable</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setBaseline</name></name><argument_list>(<argument><expr><name>startTime</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setFrequency</name></name><argument_list>(<argument><expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setTimeUnit</name></name><argument_list>(<argument><expr><call><name><name>TimeUnit</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>rep</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>(<argument><expr><name><name>args</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Date</name></type> <name>date</name> <init>= <expr><call><name><name>rep</name><operator>.</operator><name>getOccurrenceTime</name></name><argument_list>(<argument><expr><name>startTime</name></expr></argument>, <argument><expr><name>occurrence</name><operator>++</operator></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>StringBuilder</name></type> <name>dateList</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <while>while <condition>(<expr><name>date</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>date</name><operator>.</operator><name>before</name></name><argument_list>(<argument><expr><name>endTime</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>date</name> <operator>=</operator> <call><name><name>rep</name><operator>.</operator><name>getOccurrenceTime</name></name><argument_list>(<argument><expr><name>startTime</name></expr></argument>, <argument><expr><name>occurrence</name><operator>++</operator></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>dateList</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>DATE_LIST_SEPARATOR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><call><name><name>dateList</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name>formatDateUTC</name><argument_list>(<argument><expr><name>date</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></while>
+ 
+		<expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"datelist :"</literal> <operator>+</operator> <name>dateList</name><operator>+</operator> <literal type="string">":"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<comment type="line">//Passing the variable to WF that could be referred by subsequent actions</comment>
+		<decl_stmt><decl><type><name>File</name></type> <name>file</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"oozie.action.output.properties"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>Properties</name></type> <name>props</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"datelist"</literal></expr></argument>, <argument><expr><call><name><name>dateList</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>OutputStream</name></type> <name>os</name> <init>= <expr><operator>new</operator> <call><name>FileOutputStream</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        	<expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>store</name></name><argument_list>(<argument><expr><name>os</name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        	<expr_stmt><expr><call><name><name>os</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	</block_content>}</block></function>
+        <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"datelist :"</literal> <operator>+</operator> <name>dateList</name><operator>+</operator> <literal type="string">":"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">//Passing the variable to WF that could be referred by subsequent actions</comment>
+        <decl_stmt><decl><type><name>File</name></type> <name>file</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"oozie.action.output.properties"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Properties</name></type> <name>props</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"datelist"</literal></expr></argument>, <argument><expr><call><name><name>dateList</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <try>try <init>(<decl><type><name>OutputStream</name></type> <name>os</name> <init>= <expr><operator>new</operator> <call><name>FileOutputStream</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>store</name></name><argument_list>(<argument><expr><name>os</name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></try>
+    </block_content>}</block></function>
+    <comment type="line">//Utility methods</comment>
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>DateFormat</name></type> <name>getISO8601DateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>DateFormat</name></type> <name>dateFormat</name> <init>= <expr><operator>new</operator> <call><name>SimpleDateFormat</name><argument_list>(<argument><expr><literal type="string">"yyyy-MM-dd'T'HH:mm'Z'"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>dateFormat</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><name>UTC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><name>dateFormat</name></expr>;</return>
+    </block_content>}</block></function>
+ 
+	<comment type="line">//Utility methods</comment>
+	<function><type><specifier>private</specifier> <specifier>static</specifier> <name>DateFormat</name></type> <name>getISO8601DateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<decl_stmt><decl><type><name>DateFormat</name></type> <name>dateFormat</name> <init>= <expr><operator>new</operator> <call><name>SimpleDateFormat</name><argument_list>(<argument><expr><literal type="string">"yyyy-MM-dd'T'HH:mm'Z'"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name><name>dateFormat</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><name>UTC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><name>dateFormat</name></expr>;</return>
+	</block_content>}</block></function>
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>TimeZone</name></type> <name>getTimeZone</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>tzId</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>TimeZone</name></type> <name>tz</name> <init>= <expr><call><name><name>TimeZone</name><operator>.</operator><name>getTimeZone</name></name><argument_list>(<argument><expr><name>tzId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>tz</name><operator>.</operator><name>getID</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>tzId</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Invalid TimeZone: "</literal> <operator>+</operator> <name>tzId</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>tz</name></expr>;</return>
+    </block_content>}</block></function>
+ 
+	<function><type><specifier>private</specifier> <specifier>static</specifier> <name>TimeZone</name></type> <name>getTimeZone</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>tzId</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<decl_stmt><decl><type><name>TimeZone</name></type> <name>tz</name> <init>= <expr><call><name><name>TimeZone</name><operator>.</operator><name>getTimeZone</name></name><argument_list>(<argument><expr><name>tzId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>tz</name><operator>.</operator><name>getID</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>tzId</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+			<throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Invalid TimeZone: "</literal> <operator>+</operator> <name>tzId</name></expr></argument>)</argument_list></call></expr>;</throw>
+		</block_content>}</block></if></if_stmt>
+		<return>return <expr><name>tz</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>private</specifier> <specifier>static</specifier> <name>Date</name></type> <name>parseDateUTC</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>s</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+		<return>return <expr><call><name>getISO8601DateFormat</name><argument_list>()</argument_list></call><operator>.</operator><call><name>parse</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</return>
+	</block_content>}</block></function>
+	<function><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>formatDateUTC</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>d</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+		<return>return <expr><ternary><condition><expr><operator>(</operator><name>d</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><call><name>getISO8601DateFormat</name><argument_list>()</argument_list></call><operator>.</operator><call><name>format</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="string">"NULL"</literal></expr></else></ternary></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>formatDateUTC</name><parameter_list>(<parameter><decl><type><name>Calendar</name></type> <name>c</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+		<return>return <expr><ternary><condition><expr><operator>(</operator><name>c</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><call><name>formatDateUTC</name><argument_list>(<argument><expr><call><name><name>c</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="string">"NULL"</literal></expr></else></ternary></expr>;</return>
+	</block_content>}</block></function>
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>Date</name></type> <name>parseDateUTC</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>s</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><call><name>getISO8601DateFormat</name><argument_list>()</argument_list></call><operator>.</operator><call><name>parse</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+ 
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>String</name></type> <name>formatDateUTC</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>d</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><ternary><condition><expr><operator>(</operator><name>d</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><call><name>getISO8601DateFormat</name><argument_list>()</argument_list></call><operator>.</operator><call><name>format</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr> </then><else>: <expr><literal type="string">"NULL"</literal></expr></else></ternary></expr>;</return>
+    </block_content>}</block></function>
+ }</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>LocalOozieExample</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>LocalOozieExample</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c9f5697c2</name><operator>..</operator><literal type="number">7cb8ed253</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>LocalOozieExample</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>LocalOozieExample</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">69</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">69</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>LocalOozieExample</name> <block>{
+             <expr><call><name><name>conf</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><name><name>OozieClient</name><operator>.</operator><name>APP_PATH</name></name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>appUri</name></expr></argument>, <argument><expr><literal type="string">"workflow.xml"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+             <comment type="line">// load additional workflow job parameters from properties file</comment>
+             <if_stmt><if>if <condition>(<expr><name>propertiesFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>load</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><name>propertiesFile</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <try>try <init>(<decl><type><name>FileInputStream</name></type> <name>properties</name> <init>= <expr><operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><name>propertiesFile</name></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>load</name></name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt/></block_content></block></try></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+             }
+ 
+             <comment type="line">// submit and start the workflow job</comment>
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">112</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">114</literal></expr><operator>,</operator><expr><literal type="number">4</literal> @@ <specifier>public</specifier> <name>class</name> <name>LocalOozieExample</name> <block>{
+         }</block>
+         <call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     }
+
+ }
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>Repeatable</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>Repeatable</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ee8632518</name><operator>..</operator><literal type="number">198f3873f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>Repeatable</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>examples</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>example</name><operator>/</operator><name><name>Repeatable</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">177</literal> <operator>+</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">180</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Calendar</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>Repeatable</name> <block>{
+	<decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>name</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>private</specifier> <name>Date</name></type> <name>baseline</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>private</specifier> <name>TimeZone</name></type> <name>timeZone</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>frequency</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>private</specifier> <name>TimeUnit</name></type> <name>timeUnit</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TimeZone</name></type> <name>UTC</name> <init>= <expr><call><name><name>TimeZone</name><operator>.</operator><name>getTimeZone</name></name><argument_list>(<argument><expr><literal type="string">"UTC"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+	<comment type="block" format="javadoc">/**
+	 * Compute the occurrence number for the given nominal time using a TZ-DST
+	 * sensitive frequency If nominal time is before baseline return -1
+	 *
+	 * @param nominalTime
+	 *            :baseline time
+	 * @param timeLimit
+	 *            : Max end time
+	 * @return occurrence number
+	 */</comment>
+	<function><type><name>int</name></type> <name>getOccurrence</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>Date</name></type> <name>timeLimit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<comment type="line">// ensure nominal time is greater than initial-instance</comment>
+		<decl_stmt><decl><type><name>long</name></type> <name>positiveDiff</name> <init>= <expr><call><name><name>nominalTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name>getBaseline</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if_stmt><if>if <condition>(<expr><name>positiveDiff</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+			<decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>occurrence</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+			<comment type="line">// starting from initial instance increment frequencies until</comment>
+			<comment type="line">// passing nominal time</comment>
+			<while>while <condition>(<expr><call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>compareTo</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+				<if_stmt><if>if <condition>(<expr><name>timeLimit</name> <operator>!=</operator> <literal type="null">null</literal>
+						<operator>&amp;&amp;</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>compareTo</name><argument_list>(<argument><expr><name>timeLimit</name></expr></argument>)</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+					<return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+				</block_content>}</block></if></if_stmt>
+				<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<expr_stmt><expr><name>occurrence</name><operator>++</operator></expr>;</expr_stmt>
+			</block_content>}</block></while>
+			<comment type="line">// compute reminder delta between nominal time and closest greater</comment>
+			<comment type="line">// frequency tick time</comment>
+			<decl_stmt><decl><type><name>long</name></type> <name>nominalCurrentDelta</name> <init>= <expr><call><name><name>nominalTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call>
+					<operator>-</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+			<comment type="line">// ensure that computed current is greater than initial-instance</comment>
+			<comment type="line">// the nominalCurrentDelta has to be used to cover the case when the</comment>
+			<comment type="line">// computed current</comment>
+			<comment type="line">// falls between (-1*f ... 0*f)</comment>
+			<expr_stmt><expr><name>positiveDiff</name> <operator>=</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call>
+					<operator>-</operator> <call><name>getBaseline</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call> <operator>+</operator> <name>nominalCurrentDelta</name></expr>;</expr_stmt>
+			<if_stmt><if>if <condition>(<expr><name>positiveDiff</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+				<expr_stmt><expr><name>occurrence</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+			</block_content>}</block></if></if_stmt>
+		</block_content>}</block></if></if_stmt>
+		<return>return <expr><name>occurrence</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<comment type="block" format="javadoc">/**
+	 * Compute the occurrence number for the given nominal time using a TZ-DST
+	 * sensitive frequency If nominal time is before baseline return -1
+	 *
+	 * @param nominalTime
+	 *            :baseline time
+	 * @return occurrence number
+	 */</comment>
+	<function><type><specifier>public</specifier> <name>int</name></type> <name>getOccurrence</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<return>return <expr><call><name>getOccurrence</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+	</block_content>}</block></function>
+
+	<comment type="block" format="javadoc">/**
+	 * Compute the occurrence nominal time for the given nominal-time and
+	 * occurrence-offset using a TZ-DST sensitive frequency If the computed
+	 * occurrence is before baseline time returns NULL
+	 *
+	 * @param nominalTime
+	 *            :baseline time
+	 * @param occurrenceOffset
+	 *            : offset
+	 * @param timeLimit
+	 *            : Max end time
+	 * @return Date after 'occurrenceOffset' instance
+	 */</comment>
+	<function><type><name>Date</name></type> <name>getOccurrenceTime</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>occurrenceOffset</name></decl></parameter>,
+			<parameter><decl><type><name>Date</name></type> <name>timeLimit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<decl_stmt><decl><type><name>Date</name></type> <name>date</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><call><name>getOccurrence</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><name>timeLimit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+			<expr_stmt><expr><name>occurrence</name> <operator>+=</operator> <name>occurrenceOffset</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>occurrence</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>occurrence</name> <operator>&gt;=</operator> <literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><name>occurrence</name></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary></expr>;</expr_stmt>
+		</block_content>}</block></if></if_stmt>
+		<if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+			<decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call>
+					<operator>*</operator> <name>occurrence</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>date</name> <operator>=</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+		</block_content>}</block></if></if_stmt>
+		<return>return <expr><name>date</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<comment type="block" format="javadoc">/**
+	 * Compute the occurrence nominal time for the given nominal-time and
+	 * occurrence-offset using a TZ-DST sensitive frequency If the computed
+	 * occurrence is before baseline time returns NULL
+	 *
+	 * @param nominalTime
+	 *            :baseline time
+	 * @param occurrenceOffset
+	 *            : offset
+	 * @return Date after 'occurrenceOffset' instance
+	 */</comment>
+	<function><type><specifier>public</specifier> <name>Date</name></type> <name>getOccurrenceTime</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>occurrenceOffset</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<return>return <expr><call><name>getOccurrenceTime</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><name>occurrenceOffset</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+	</block_content>}</block></function>
+
+	<comment type="block" format="javadoc">/**
+	 * computes the nominal time for the Nth occurrence of the Repeatable
+	 *
+	 * @param occurrence
+	 *            : instance numbner
+	 * @return TimeStamp of the Nth instance
+	 */</comment>
+	<function><type><specifier>public</specifier> <name>Date</name></type> <name>getTime</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>occurrence</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+			<throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"occurrence cannot be &lt;0"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+		</block_content>}</block></if></if_stmt>
+		<decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call>
+				<operator>*</operator> <name>occurrence</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr>;</return>
+	</block_content>}</block></function>
+
+	<comment type="line">// Setters and getters</comment>
+	<function><type><specifier>public</specifier> <name>String</name></type> <name>getName</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<return>return <expr><name>name</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>void</name></type> <name>setName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<expr_stmt><expr><name><name>this</name><operator>.</operator><name>name</name></name> <operator>=</operator> <name>name</name></expr>;</expr_stmt>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>Date</name></type> <name>getBaseline</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<return>return <expr><name>baseline</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>void</name></type> <name>setBaseline</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>baseline</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<expr_stmt><expr><name><name>this</name><operator>.</operator><name>baseline</name></name> <operator>=</operator> <name>baseline</name></expr>;</expr_stmt>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>TimeZone</name></type> <name>getTimeZone</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<return>return <expr><name>timeZone</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>void</name></type> <name>setTimeZone</name><parameter_list>(<parameter><decl><type><name>TimeZone</name></type> <name>timeZone</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<expr_stmt><expr><name><name>this</name><operator>.</operator><name>timeZone</name></name> <operator>=</operator> <name>timeZone</name></expr>;</expr_stmt>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>int</name></type> <name>getFrequency</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<return>return <expr><name>frequency</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>void</name></type> <name>setFrequency</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>frequency</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<expr_stmt><expr><name><name>this</name><operator>.</operator><name>frequency</name></name> <operator>=</operator> <name>frequency</name></expr>;</expr_stmt>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>TimeUnit</name></type> <name>getTimeUnit</name><parameter_list>()</parameter_list> <block>{<block_content>
+		<return>return <expr><name>timeUnit</name></expr>;</return>
+	</block_content>}</block></function>
+
+	<function><type><specifier>public</specifier> <name>void</name></type> <name>setTimeUnit</name><parameter_list>(<parameter><decl><type><name>TimeUnit</name></type> <name>timeUnit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+		<expr_stmt><expr><name><name>this</name><operator>.</operator><name>timeUnit</name></name> <operator>=</operator> <name>timeUnit</name></expr>;</expr_stmt>
+	</block_content>}</block></function>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>name</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>Date</name></type> <name>baseline</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>TimeZone</name></type> <name>timeZone</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>frequency</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>TimeUnit</name></type> <name>timeUnit</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TimeZone</name></type> <name>UTC</name> <init>= <expr><call><name><name>TimeZone</name><operator>.</operator><name>getTimeZone</name></name><argument_list>(<argument><expr><literal type="string">"UTC"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * Compute the occurrence number for the given nominal time using a TZ-DST
+     * sensitive frequency If nominal time is before baseline return -1
+     *
+     * @param nominalTime
+     *            :baseline time
+     * @param timeLimit
+     *            : Max end time
+     * @return occurrence number
+     */</comment>
+    <function><type><name>int</name></type> <name>getOccurrence</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>Date</name></type> <name>timeLimit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+        <comment type="line">// ensure nominal time is greater than initial-instance</comment>
+        <decl_stmt><decl><type><name>long</name></type> <name>positiveDiff</name> <init>= <expr><call><name><name>nominalTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name>getBaseline</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>positiveDiff</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>occurrence</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+            <comment type="line">// starting from initial instance increment frequencies until</comment>
+            <comment type="line">// passing nominal time</comment>
+            <while>while <condition>(<expr><call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>compareTo</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><name>timeLimit</name> <operator>!=</operator> <literal type="null">null</literal>
+                        <operator>&amp;&amp;</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>compareTo</name><argument_list>(<argument><expr><name>timeLimit</name></expr></argument>)</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                    <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+                </block_content>}</block></if></if_stmt>
+                <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>occurrence</name><operator>++</operator></expr>;</expr_stmt>
+            </block_content>}</block></while>
+            <comment type="line">// compute reminder delta between nominal time and closest greater</comment>
+            <comment type="line">// frequency tick time</comment>
+            <decl_stmt><decl><type><name>long</name></type> <name>nominalCurrentDelta</name> <init>= <expr><call><name><name>nominalTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call>
+                    <operator>-</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// ensure that computed current is greater than initial-instance</comment>
+            <comment type="line">// the nominalCurrentDelta has to be used to cover the case when the</comment>
+            <comment type="line">// computed current</comment>
+            <comment type="line">// falls between (-1*f ... 0*f)</comment>
+            <expr_stmt><expr><name>positiveDiff</name> <operator>=</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call>
+                    <operator>-</operator> <call><name>getBaseline</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call> <operator>+</operator> <name>nominalCurrentDelta</name></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>positiveDiff</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>occurrence</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>occurrence</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Compute the occurrence number for the given nominal time using a TZ-DST
+     * sensitive frequency If nominal time is before baseline return -1
+     *
+     * @param nominalTime
+     *            :baseline time
+     * @return occurrence number
+     */</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getOccurrence</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name>getOccurrence</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Compute the occurrence nominal time for the given nominal-time and
+     * occurrence-offset using a TZ-DST sensitive frequency If the computed
+     * occurrence is before baseline time returns NULL
+     *
+     * @param nominalTime
+     *            :baseline time
+     * @param occurrenceOffset
+     *            : offset
+     * @param timeLimit
+     *            : Max end time
+     * @return Date after 'occurrenceOffset' instance
+     */</comment>
+    <function><type><name>Date</name></type> <name>getOccurrenceTime</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>occurrenceOffset</name></decl></parameter>,
+            <parameter><decl><type><name>Date</name></type> <name>timeLimit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>Date</name></type> <name>date</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>occurrence</name> <init>= <expr><call><name>getOccurrence</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><name>timeLimit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>occurrence</name> <operator>+=</operator> <name>occurrenceOffset</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>occurrence</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>occurrence</name> <operator>&gt;=</operator> <literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><name>occurrence</name></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&gt;</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call>
+                    <operator>*</operator> <name>occurrence</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>date</name> <operator>=</operator> <call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>date</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Compute the occurrence nominal time for the given nominal-time and
+     * occurrence-offset using a TZ-DST sensitive frequency If the computed
+     * occurrence is before baseline time returns NULL
+     *
+     * @param nominalTime
+     *            :baseline time
+     * @param occurrenceOffset
+     *            : offset
+     * @return Date after 'occurrenceOffset' instance
+     */</comment>
+    <function><type><specifier>public</specifier> <name>Date</name></type> <name>getOccurrenceTime</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>nominalTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>occurrenceOffset</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name>getOccurrenceTime</name><argument_list>(<argument><expr><name>nominalTime</name></expr></argument>, <argument><expr><name>occurrenceOffset</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * computes the nominal time for the Nth occurrence of the Repeatable
+     *
+     * @param occurrence
+     *            : instance numbner
+     * @return TimeStamp of the Nth instance
+     */</comment>
+    <function><type><specifier>public</specifier> <name>Date</name></type> <name>getTime</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>occurrence</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>occurrence</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"occurrence cannot be &lt;0"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>Calendar</name></type> <name>calendar</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><call><name>getTimeZone</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setLenient</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><call><name>getBaseline</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>calendar</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getTimeUnit</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCalendarUnit</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getFrequency</name><argument_list>()</argument_list></call>
+                <operator>*</operator> <name>occurrence</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><call><name><name>calendar</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">// Setters and getters</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getName</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>name</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>name</name></name> <operator>=</operator> <name>name</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>Date</name></type> <name>getBaseline</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>this</name><operator>.</operator><name>baseline</name></name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>baseline</name></name> <operator>=</operator> <operator>new</operator> <call><name>Date</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><call><name><name>baseline</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setBaseline</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>baseline</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>baseline</name></name> <operator>=</operator> <name>baseline</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>TimeZone</name></type> <name>getTimeZone</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>timeZone</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setTimeZone</name><parameter_list>(<parameter><decl><type><name>TimeZone</name></type> <name>timeZone</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>timeZone</name></name> <operator>=</operator> <name>timeZone</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getFrequency</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>frequency</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setFrequency</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>frequency</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>frequency</name></name> <operator>=</operator> <name>frequency</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>TimeUnit</name></type> <name>getTimeUnit</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>timeUnit</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setTimeUnit</name><parameter_list>(<parameter><decl><type><name>TimeUnit</name></type> <name>timeUnit</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>timeUnit</name></name> <operator>=</operator> <name>timeUnit</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+ 
+ }</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>fb0e020e7</name><operator>..</operator><name>bb98c3d38</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+ <operator>--</operator> <name>Oozie</name> <literal type="number">5.1.0</literal> <call><name>release</name> <argument_list>(<argument><expr><name>trunk</name> <operator>-</operator> <name>unreleased</name></expr></argument>)</argument_list></call>
+ 
+<name>OOZIE</name><operator>-</operator><literal type="number">2942</literal> <index>[<expr><name>examples</name></expr>]</index> <name>Fix</name> <name>Findbugs</name> <call><name>warnings</name> <argument_list>(<argument><expr><name>Jan</name> <name>Hentschel</name></expr></argument>, <argument><expr><name>kmarton</name> <name>via</name> <name><name>andras</name><operator>.</operator><name>piros</name></name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">2718</literal> <name>Improve</name> <operator>-</operator><name>dryrun</name></expr></expr_stmt> <for>for bundles <control>(<init><expr><name>zhengxb2005</name></expr><operator>,</operator> <expr><name>asalamon74</name> <name>via</name> <name><name>andras</name><operator>.</operator><name>piros</name></name></expr></init>)</control><block type="pseudo"><block_content>
+ <expr_stmt><expr><name>OOZIE</name><operator>-</operator><literal type="number">3156</literal> <name>amend</name> <name>Retry</name> <name>SSH</name> <name>action</name> <name>check</name> <name>when</name> <name>cannot</name> <name>connect</name> <name>to</name> <name>remote</name> <call><name>host</name> <argument_list>(<argument><expr><name>txsing</name></expr></argument>, <argument><expr><name>matijhs</name> <name>via</name> <name><name>andras</name><operator>.</operator><name>piros</name></name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">3303</literal> <name>Oozie</name> <name>UI</name> <name>does</name> <name>not</name> <name>work</name> <name>after</name> <name>Jetty</name> <literal type="number">9.3</literal> <call><name>upgrade</name> <argument_list>(<argument><expr><name>asalamon74</name> <name>via</name> <name>gezapeti</name></expr></argument>)</argument_list></call>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></for>
+
+</unit>

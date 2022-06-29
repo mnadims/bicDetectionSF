@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/47a091ade.java"><expr_stmt><expr><name>From</name> <literal type="number">47a091adec4a40cdf6852cc0f8c432c15034cb5e</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Keith</name> <name><name>Turner</name> <argument_list type="generic">&lt;<argument><name>kturner</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Jan</name> <literal type="number">2015</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">20</literal><operator>:</operator><literal type="number">52</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">3467</literal> <name>fixed</name> <name>bug</name> <name>with</name> <name>concurrent</name> <name>compactions</name>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionConfig</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">9</literal> <operator>++</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionStrategyConfig</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">10</literal> <operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>TableOperations</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>impl</name><operator>/</operator><name><name>CompactionStrategyConfigUtil</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">9</literal> <operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>master</name><operator>/</operator><name>tableOps</name><operator>/</operator><name><name>UserCompactionConfig</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>master</name><operator>/</operator><name>tableOps</name><operator>/</operator><name><name>CompactRange</name><operator>.</operator><name>java</name></name>         <operator>|</operator> <literal type="number">12</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>test</name><operator>/</operator><name><name>UserCompactionStrategyIT</name><operator>.</operator><name>java</name></name>        <operator>|</operator> <literal type="number">35</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">7</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">69</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">10</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionConfig</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionConfig</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">38e5efd6a</literal><operator>..</operator><literal type="number">064d8363d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionConfig</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>admin</name><operator>/</operator><name><name>CompactionConfig</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>admin</name></name>;</package>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>IteratorSetting</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>impl</name><operator>.</operator><name>CompactionStrategyConfigUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>Text</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Preconditions</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CompactionConfig</name> <block>{
+   <expr><specifier>private</specifier> <name>boolean</name> <name>flush</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;
+   <expr><specifier>private</specifier> <name>boolean</name> <name>wait</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;
+   <expr><specifier>private</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>IteratorSetting</name></argument>&gt;</argument_list></name> <name>iterators</name> <operator>=</operator> <call><name><name>Collections</name><operator>.</operator><name>emptyList</name></name><argument_list>()</argument_list></call></expr>;
+  <expr><specifier>private</specifier> <name>CompactionStrategyConfig</name> <name>compactionStrategy</name> <operator>=</operator> <operator>new</operator> <class><super><name>CompactionStrategyConfig</name></super><argument_list>(<argument><expr><literal type="string">"org.apache.accumulo.tserver.compaction.EverythingCompactionStrategy"</literal></expr></argument>)</argument_list> <block>{
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>CompactionStrategyConfig</name></type> <name>setOptions</name><parameter_list>(<parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>opts</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    <expr_stmt/></block_content></block></function></block></class></expr>}</block></expr></expr_stmt>
+  };
+  <decl_stmt><decl><type><specifier>private</specifier> <name>CompactionStrategyConfig</name></type> <name>compactionStrategy</name> <init>= <expr><name><name>CompactionStrategyConfigUtil</name><operator>.</operator><name>DEFAULT_STRATEGY</name></name></expr></init></decl>;</decl_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * @param start
+diff --git a/core/src/main/java/org/apache/accumulo/core/client/admin/CompactionStrategyConfig.java b/core/src/main/java/org/apache/accumulo/core/client/admin/CompactionStrategyConfig.java
+index c23b5115b..0992ba9c8 100644
+-- a/core/src/main/java/org/apache/accumulo/core/client/admin/CompactionStrategyConfig.java
+++ b/core/src/main/java/org/apache/accumulo/core/client/admin/CompactionStrategyConfig.java
+@@ -71,4 +71,14 @@ public class CompactionStrategyConfig {
+   public Map&lt;String,String&gt; getOptions() {
+     return Collections.unmodifiableMap(options);
+   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof CompactionStrategyConfig) {
+      CompactionStrategyConfig ocsc = (CompactionStrategyConfig) o;
+      return className.equals(ocsc.className) &amp;&amp; options.equals(ocsc.options);
+    }
+
+    return false;
+  }
+ }
+diff --git a/core/src/main/java/org/apache/accumulo/core/client/admin/TableOperations.java b/core/src/main/java/org/apache/accumulo/core/client/admin/TableOperations.java
+index 5c1260ccf..41021b1e9 100644
+-- a/core/src/main/java/org/apache/accumulo/core/client/admin/TableOperations.java
+++ b/core/src/main/java/org/apache/accumulo/core/client/admin/TableOperations.java
+@@ -300,7 +300,8 @@ public interface TableOperations {
+    * @param end
+    *          last tablet to be merged contains this row, null means the last tablet in table
+    * @param iterators
+   *          A set of iterators that will be applied to each tablet compacted
+   *          A set of iterators that will be applied to each tablet compacted. If two or more concurrent calls to compact pass iterators, then only one will
+   *          succeed and the others will fail.
+    * @param flush
+    *          when true, table memory is flushed before compaction starts
+    * @param wait
+diff --git a/core/src/main/java/org/apache/accumulo/core/client/impl/CompactionStrategyConfigUtil.java b/core/src/main/java/org/apache/accumulo/core/client/impl/CompactionStrategyConfigUtil.java
+index 8dce87764..758f44547 100644
+-- a/core/src/main/java/org/apache/accumulo/core/client/impl/CompactionStrategyConfigUtil.java
+++ b/core/src/main/java/org/apache/accumulo/core/client/impl/CompactionStrategyConfigUtil.java
+@@ -25,12 +25,21 @@ import java.io.DataOutput;
+ import java.io.DataOutputStream;
+ import java.io.IOException;
+ import java.util.HashMap;
+import java.util.Map;
+ import java.util.Map.Entry;
+ 
+ import org.apache.accumulo.core.client.admin.CompactionStrategyConfig;
+ 
+ public class CompactionStrategyConfigUtil {
+ 
+  public static final CompactionStrategyConfig DEFAULT_STRATEGY = new CompactionStrategyConfig(
+      "org.apache.accumulo.tserver.compaction.EverythingCompactionStrategy") {
+    @Override
+    public CompactionStrategyConfig setOptions(Map&lt;String,String&gt; opts) {
+      throw new UnsupportedOperationException();
+    }
+  };
+
+   private static final int MAGIC = 0xcc5e6024;
+ 
+   public static void encode(DataOutput dout, CompactionStrategyConfig csc) throws IOException {
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/master/tableOps/UserCompactionConfig.java b/server/base/src/main/java/org/apache/accumulo/server/master/tableOps/UserCompactionConfig.java
+index 98d7fd71e..02c6ac354 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/master/tableOps/UserCompactionConfig.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/master/tableOps/UserCompactionConfig.java
+@@ -46,6 +46,7 @@ public class UserCompactionConfig implements Writable {
+     startRow = null;
+     endRow = null;
+     iterators = Collections.emptyList();
+    compactionStrategy = CompactionStrategyConfigUtil.DEFAULT_STRATEGY;
+   }
+ 
+   @Override
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/tableOps/CompactRange.java b/server/master/src/main/java/org/apache/accumulo/master/tableOps/CompactRange.java
+index fd7decff7..580852d80 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/tableOps/CompactRange.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/tableOps/CompactRange.java
+@@ -31,6 +31,7 @@ import org.apache.accumulo.core.client.IteratorSetting;
+ import org.apache.accumulo.core.client.RowIterator;
+ import org.apache.accumulo.core.client.Scanner;
+ import org.apache.accumulo.core.client.admin.CompactionStrategyConfig;
+import org.apache.accumulo.core.client.impl.CompactionStrategyConfigUtil;
+ import org.apache.accumulo.core.client.impl.Tables;
+ import org.apache.accumulo.core.client.impl.thrift.TableOperation;
+ import org.apache.accumulo.core.client.impl.thrift.TableOperationExceptionType;
+@@ -61,6 +62,8 @@ import org.apache.log4j.Logger;
+ import org.apache.thrift.TException;
+ import org.apache.zookeeper.KeeperException.NoNodeException;
+ 
+import com.google.common.base.Preconditions;
+
+ class CompactionDriver extends MasterRepo {
+ 
+   private static final long serialVersionUID = 1L;
+@@ -207,11 +210,16 @@ public class CompactRange extends MasterRepo {
+ 
+   public CompactRange(String tableId, byte[] startRow, byte[] endRow, List&lt;IteratorSetting&gt; iterators, CompactionStrategyConfig compactionStrategy)
+       throws ThriftTableOperationException {
+
+    Preconditions.checkNotNull(tableId, "Invalid argument: null tableId");
+    Preconditions.checkNotNull(iterators, "Invalid argument: null iterator list");
+    Preconditions.checkNotNull(compactionStrategy, "Invalid argument: null compactionStrategy");
+
+     this.tableId = tableId;
+     this.startRow = startRow.length == 0 ? null : startRow;
+     this.endRow = endRow.length == 0 ? null : endRow;
+ 
+    if (iterators.size() &gt; 0 || compactionStrategy != null) {
+    if (iterators.size() &gt; 0 || !compactionStrategy.equals(CompactionStrategyConfigUtil.DEFAULT_STRATEGY)) {
+       this.config = WritableUtils.toByteArray(new UserCompactionConfig(this.startRow, this.endRow, iterators, compactionStrategy));
+     }
+ 
+@@ -249,7 +257,7 @@ public class CompactRange extends MasterRepo {
+               continue; // skip self
+ 
+             throw new ThriftTableOperationException(tableId, null, TableOperation.COMPACT, TableOperationExceptionType.OTHER,
+                "Another compaction with iterators is running");
+                "Another compaction with iterators and/or a compaction strategy is running");
+           }
+ 
+           StringBuilder encodedIterators = new StringBuilder();
+diff --git a/test/src/test/java/org/apache/accumulo/test/UserCompactionStrategyIT.java b/test/src/test/java/org/apache/accumulo/test/UserCompactionStrategyIT.java
+index 5421f520b..7a3162bb7 100644
+-- a/test/src/test/java/org/apache/accumulo/test/UserCompactionStrategyIT.java
+++ b/test/src/test/java/org/apache/accumulo/test/UserCompactionStrategyIT.java
+@@ -26,6 +26,7 @@ import java.util.Random;
+ import java.util.Set;
+ import java.util.TreeSet;
+ 
+import org.apache.accumulo.core.client.AccumuloException;
+ import org.apache.accumulo.core.client.BatchWriter;
+ import org.apache.accumulo.core.client.BatchWriterConfig;
+ import org.apache.accumulo.core.client.Connector;
+@@ -44,6 +45,7 @@ import org.apache.accumulo.core.security.Authorizations;
+ import org.apache.accumulo.harness.AccumuloClusterIT;
+ import org.apache.accumulo.server.fs.FileRef;
+ import org.apache.accumulo.test.functional.FunctionalTestUtils;
+import org.apache.accumulo.test.functional.SlowIterator;
+ import org.apache.accumulo.tserver.compaction.CompactionPlan;
+ import org.apache.accumulo.tserver.compaction.CompactionStrategy;
+ import org.apache.accumulo.tserver.compaction.MajorCompactionRequest;
+@@ -300,6 +302,39 @@ public class UserCompactionStrategyIT extends AccumuloClusterIT {
+ 
+   }
+ 
+  @Test
+  public void testConcurrent() throws Exception {
+    // two compactions without iterators or strategy should be able to run concurrently
+
+    Connector c = getConnector();
+
+    String tableName = getUniqueNames(1)[0];
+    c.tableOperations().create(tableName);
+
+    // write random data because its very unlikely it will compress
+    writeRandomValue(c, tableName, 1 &lt;&lt; 16);
+    writeRandomValue(c, tableName, 1 &lt;&lt; 16);
+
+    c.tableOperations().compact(tableName, new CompactionConfig().setWait(false));
+    c.tableOperations().compact(tableName, new CompactionConfig().setWait(true));
+
+    Assert.assertEquals(1, FunctionalTestUtils.countRFiles(c, tableName));
+
+    writeRandomValue(c, tableName, 1 &lt;&lt; 16);
+
+    IteratorSetting iterConfig = new IteratorSetting(30, SlowIterator.class);
+    SlowIterator.setSleepTime(iterConfig, 1000);
+
+    long t1 = System.currentTimeMillis();
+    c.tableOperations().compact(tableName, new CompactionConfig().setWait(false).setIterators(Arrays.asList(iterConfig)));
+    try {
+      // this compaction should fail because previous one set iterators
+      c.tableOperations().compact(tableName, new CompactionConfig().setWait(true));
+      if (System.currentTimeMillis() - t1 &lt; 2000)
+        Assert.fail("Expected compaction to fail because another concurrent compaction set iterators");
+    } catch (AccumuloException e) {}
+  }
+
+   void writeRandomValue(Connector c, String tableName, int size) throws Exception {
+     Random rand = new Random();
+ 
+- 
+2.19.1.windows.1
+
+</comment></unit>

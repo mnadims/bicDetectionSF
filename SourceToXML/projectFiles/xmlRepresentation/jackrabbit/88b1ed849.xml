@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/88b1ed849.java"><expr><name>From</name> <literal type="number">88b1ed849256d2300f52a79f41bf9385956e41b7</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Julian</name> <name><name>Reschke</name> <argument_list type="generic">&lt;<argument><name>reschke</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">19</literal> <name>Oct</name> <literal type="number">2011</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">50</literal><operator>:</operator><literal type="number">35</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">3115</literal><operator>:</operator> <name>Versioning</name> <name>fixup</name> <name>leaves</name> <name>persistence</name> <name>in</name> <name>a</name> <name>state</name>
+ <name>where</name> <name>the</name> <name>node</name> <name>can</name><literal type="char">'</literal></expr>t be made versionable again
+
+Augment another InconsistentVersioningState exception with the VH node ID
+
+git-svn-id: https://svn.apache.org/repos/asf/jackrabbit/trunk@1186285 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../jackrabbit/core/version/InternalVersionManagerBase.java    | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/version/InternalVersionManagerBase.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/version/InternalVersionManagerBase.java
+index 3924c87a9..e4fb1045f 100755
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/version/InternalVersionManagerBase.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/version/InternalVersionManagerBase.java
+@@ -325,7 +325,8 @@ abstract class InternalVersionManagerBase implements InternalVersionManager {
+                 }
+                 ChildNodeEntry rootv = history.getState().getChildNodeEntry(JCR_ROOTVERSION, 1);
+                 if (rootv == null) {
+                    throw new InconsistentVersioningState("missing child node entry for " + JCR_ROOTVERSION + " on version history node " + history.getNodeId());
+                    throw new InconsistentVersioningState("missing child node entry for " + JCR_ROOTVERSION + " on version history node " + history.getNodeId(),
+                            history.getNodeId(), null);
+                 }
+                 info = new VersionHistoryInfo(history.getNodeId(),
+                         rootv.getId());
+- 
+2.19.1.windows.1
+
+</unit>

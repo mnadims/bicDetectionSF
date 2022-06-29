@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/ca083a5b8.java"><expr_stmt><expr><name>From</name> <name>ca083a5b864b57650073204344bd5461d2a3d78e</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jenna</name> <name><name>Huston</name> <argument_list type="generic">&lt;<argument><name><name>jenna</name><operator>.</operator><name>huston22</name></name><annotation>@<name><name>gmail</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">9</literal> <name>Oct</name> <literal type="number">2014</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">07</literal><operator>:</operator><literal type="number">33</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">3181</literal> <name>VolumeChooser</name> <name>usage</name> <name>doesn</name><literal type="char">'t always comply with
+ implied API contract
+
+Signed-off-by: Sean Busbey &lt;busbey@cloudera.com&gt;
+--
+ .../org/apache/accumulo/server/ServerConstants.java |  4 ----
+ .../org/apache/accumulo/server/fs/VolumeUtil.java   |  3 ++-
+ .../org/apache/accumulo/server/init/Initialize.java | 13 ++++++++-----
+ .../org/apache/accumulo/server/util/FileUtil.java   |  4 ++--
+ .../accumulo/server/util/MetadataTableUtil.java     |  3 ++-
+ .../accumulo/server/util/TabletOperations.java      |  2 +-
+ .../java/org/apache/accumulo/master/Master.java     |  2 +-
+ .../apache/accumulo/master/TabletGroupWatcher.java  |  6 +++---
+ .../accumulo/master/tableOps/CreateTable.java       |  3 ++-
+ .../org/apache/accumulo/tserver/log/DfsLogger.java  |  3 ++-
+ 10 files changed, 23 insertions(+), 20 deletions(-)
+
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java b/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+index 10a864c5e..880e2db72 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/ServerConstants.java
+@@ -143,10 +143,6 @@ public class ServerConstants {
+     return VolumeConfiguration.prefix(getTablesDirs(), MetadataTable.ID);
+   }
+ 
+  public static String[] getTemporaryDirs() {
+    return VolumeConfiguration.prefix(getBaseUris(), "tmp");
+  }
+
+   public static synchronized List&lt;Pair&lt;Path,Path&gt;&gt; getVolumeReplacements() {
+ 
+     if (replacementsList == null) {
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeUtil.java b/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeUtil.java
+index c87074b88..ea69f80e7 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeUtil.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeUtil.java
+@@ -248,7 +248,8 @@ public class VolumeUtil {
+       throw new IllegalArgumentException("Unexpected table dir " + dir);
+     }
+ 
+    Path newDir = new Path(vm.choose(ServerConstants.getTablesDirs()) + "/" + dir.getParent().getName() + "/" + dir.getName());
+    Path newDir = new Path(vm.choose(ServerConstants.getBaseUris()) + Path.SEPARATOR + ServerConstants.TABLE_DIR + Path.SEPARATOR + dir.getParent().getName()
+        + Path.SEPARATOR + dir.getName());
+ 
+     log.info("Updating directory for " + extent + " from " + dir + " to " + newDir);
+     if (extent.isRootTablet()) {
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java b/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+index fcecc37b4..14d5e98b1 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/init/Initialize.java
+@@ -224,9 +224,10 @@ public class Initialize {
+ 
+     UUID uuid = UUID.randomUUID();
+     // the actual disk locations of the root table and tablets
+    String[] configuredTableDirs = VolumeConfiguration.prefix(VolumeConfiguration.getVolumeUris(ServerConfiguration.getSiteConfiguration()),
+        ServerConstants.TABLE_DIR);
+    final Path rootTablet = new Path(fs.choose(configuredTableDirs) + "/" + RootTable.ID + RootTable.ROOT_TABLET_LOCATION);
+    String[] configuredVolumes = VolumeConfiguration.getVolumeUris(ServerConfiguration.getSiteConfiguration());
+    final Path rootTablet = new Path(fs.choose(configuredVolumes) + Path.SEPARATOR + ServerConstants.TABLE_DIR + Path.SEPARATOR + RootTable.ID
+        + RootTable.ROOT_TABLET_LOCATION);
+
+     try {
+       initZooKeeper(opts, uuid.toString(), instanceNamePath, rootTablet);
+     } catch (Exception e) {
+@@ -305,8 +306,10 @@ public class Initialize {
+     // the actual disk locations of the metadata table and tablets
+     final Path[] metadataTableDirs = paths(ServerConstants.getMetadataTableDirs());
+ 
+    String tableMetadataTabletDir = fs.choose(VolumeConfiguration.prefix(ServerConstants.getMetadataTableDirs(), TABLE_TABLETS_TABLET_DIR));
+    String defaultMetadataTabletDir = fs.choose(VolumeConfiguration.prefix(ServerConstants.getMetadataTableDirs(), Constants.DEFAULT_TABLET_LOCATION));
+    String tableMetadataTabletDir = fs.choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR + MetadataTable.ID
+        + TABLE_TABLETS_TABLET_DIR;
+    String defaultMetadataTabletDir = fs.choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR + MetadataTable.ID
+        + Constants.DEFAULT_TABLET_LOCATION;
+ 
+     // initialize initial metadata config in zookeeper
+     initMetadataConfig();
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/util/FileUtil.java b/server/base/src/main/java/org/apache/accumulo/server/util/FileUtil.java
+index 0f7ac22cb..aa37e350b 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/util/FileUtil.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/util/FileUtil.java
+@@ -79,11 +79,11 @@ public class FileUtil {
+   private static final Logger log = Logger.getLogger(FileUtil.class);
+   
+   private static Path createTmpDir(AccumuloConfiguration acuConf, VolumeManager fs) throws IOException {
+    String accumuloDir = fs.choose(ServerConstants.getTemporaryDirs());
+    String accumuloDir = fs.choose(ServerConstants.getBaseUris());
+     
+     Path result = null;
+     while (result == null) {
+      result = new Path(accumuloDir + "/tmp/idxReduce_" + String.format("%09d", new Random().nextInt(Integer.MAX_VALUE)));
+      result = new Path(accumuloDir + Path.SEPARATOR + "tmp/idxReduce_" + String.format("%09d", new Random().nextInt(Integer.MAX_VALUE)));
+       
+       try {
+         fs.getFileStatus(result);
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/util/MetadataTableUtil.java b/server/base/src/main/java/org/apache/accumulo/server/util/MetadataTableUtil.java
+index f908d25f7..03635cc8c 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/util/MetadataTableUtil.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/util/MetadataTableUtil.java
+@@ -880,9 +880,10 @@ public class MetadataTableUtil {
+       Key k = entry.getKey();
+       Mutation m = new Mutation(k.getRow());
+       m.putDelete(k.getColumnFamily(), k.getColumnQualifier());
+      String dir = volumeManager.choose(ServerConstants.getTablesDirs()) + "/" + tableId
+      String dir = volumeManager.choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR + tableId
+           + new String(FastFormat.toZeroPaddedString(dirCount++, 8, 16, Constants.CLONE_PREFIX_BYTES));
+       TabletsSection.ServerColumnFamily.DIRECTORY_COLUMN.put(m, new Value(dir.getBytes(Constants.UTF8)));
+
+       bw.addMutation(m);
+     }
+ 
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/util/TabletOperations.java b/server/base/src/main/java/org/apache/accumulo/server/util/TabletOperations.java
+index b8e7113ff..2c9fe9c3e 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/util/TabletOperations.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/util/TabletOperations.java
+@@ -38,7 +38,7 @@ public class TabletOperations {
+     String lowDirectory;
+     
+     UniqueNameAllocator namer = UniqueNameAllocator.getInstance();
+    String volume = fs.choose(ServerConstants.getTablesDirs());
+    String volume = fs.choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR;
+     
+     while (true) {
+       try {
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/Master.java b/server/master/src/main/java/org/apache/accumulo/master/Master.java
+index 52f116fbf..ce4bc4165 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/Master.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/Master.java
+@@ -236,7 +236,7 @@ public class Master implements LiveTServerSet.Listener, TableObserver, CurrentSt
+     if (!zoo.exists(dirZPath)) {
+       Path oldPath = fs.getFullPath(FileType.TABLE, "/" + MetadataTable.ID + "/root_tablet");
+       if (fs.exists(oldPath)) {
+        String newPath = fs.choose(ServerConstants.getTablesDirs()) + "/" + RootTable.ID;
+        String newPath = fs.choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR + RootTable.ID;
+         fs.mkdirs(new Path(newPath));
+         if (!fs.rename(oldPath, new Path(newPath))) {
+           throw new IOException("Failed to move root tablet from " + oldPath + " to " + newPath);
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/TabletGroupWatcher.java b/server/master/src/main/java/org/apache/accumulo/master/TabletGroupWatcher.java
+index 0a3d1d0b1..f5ed9412f 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/TabletGroupWatcher.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/TabletGroupWatcher.java
+@@ -550,9 +550,9 @@ class TabletGroupWatcher extends Daemon {
+       } else {
+         // Recreate the default tablet to hold the end of the table
+         Master.log.debug("Recreating the last tablet to point to " + extent.getPrevEndRow());
+        String tdir = master.getFileSystem().choose(ServerConstants.getTablesDirs()) + "/" + extent.getTableId() + Constants.DEFAULT_TABLET_LOCATION;
+        MetadataTableUtil.addTablet(new KeyExtent(extent.getTableId(), null, extent.getPrevEndRow()), tdir,
+            SystemCredentials.get(), timeType, this.master.masterLock);
+        String tdir = master.getFileSystem().choose(ServerConstants.getBaseUris()) + Constants.HDFS_TABLES_DIR + Path.SEPARATOR + extent.getTableId()
+            + Constants.DEFAULT_TABLET_LOCATION;
+        MetadataTableUtil.addTablet(new KeyExtent(extent.getTableId(), null, extent.getPrevEndRow()), tdir, SystemCredentials.get(), timeType, this.master.masterLock);
+       }
+     } catch (Exception ex) {
+       throw new AccumuloException(ex);
+diff --git a/server/master/src/main/java/org/apache/accumulo/master/tableOps/CreateTable.java b/server/master/src/main/java/org/apache/accumulo/master/tableOps/CreateTable.java
+index 5b64053c7..45164e107 100644
+-- a/server/master/src/main/java/org/apache/accumulo/master/tableOps/CreateTable.java
+++ b/server/master/src/main/java/org/apache/accumulo/master/tableOps/CreateTable.java
+@@ -176,7 +176,8 @@ class ChooseDir extends MasterRepo {
+   @Override
+   public Repo&lt;Master&gt; call(long tid, Master master) throws Exception {
+     // Constants.DEFAULT_TABLET_LOCATION has a leading slash prepended to it so we don'</literal><name>t</name> <name>need</name> <name>to</name> <name>add</name> <name>one</name> <name>here</name>
+    <name><name>tableInfo</name><operator>.</operator><name>dir</name></name> <operator>=</operator> <call><name><name>master</name><operator>.</operator><name>getFileSystem</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>choose</name><argument_list>(<argument><expr><call><name><name>ServerConstants</name><operator>.</operator><name>getTablesDirs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name><name>tableInfo</name><operator>.</operator><name>tableId</name></name> <operator>+</operator> <name><name>Constants</name><operator>.</operator><name>DEFAULT_TABLET_LOCATION</name></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>tableInfo</name><operator>.</operator><name>dir</name></name> <operator>=</operator> <call><name><name>master</name><operator>.</operator><name>getFileSystem</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>choose</name><argument_list>(<argument><expr><call><name><name>ServerConstants</name><operator>.</operator><name>getBaseUris</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>+</operator> <name><name>Constants</name><operator>.</operator><name>HDFS_TABLES_DIR</name></name> <operator>+</operator> <name><name>Path</name><operator>.</operator><name>SEPARATOR</name></name> <operator>+</operator> <name><name>tableInfo</name><operator>.</operator><name>tableId</name></name>
+        <operator>+</operator> <name><name>Constants</name><operator>.</operator><name>DEFAULT_TABLET_LOCATION</name></name></expr>;</expr_stmt>
+     <return>return <expr><operator>new</operator> <call><name>CreateDir</name><argument_list>(<argument><expr><name>tableInfo</name></expr></argument>)</argument_list></call></expr>;</return>
+   }
+ 
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2bd0b473a</literal><operator>..</operator><literal type="number">0e02f05c0</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">351</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">351</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>DfsLogger</name> <block>{
+     <expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"DfsLogger.open() begin"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><name>VolumeManager</name> <name>fs</name> <operator>=</operator> <call><name><name>conf</name><operator>.</operator><name>getFileSystem</name></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><name>logPath</name> <operator>=</operator> <call><name><name>fs</name><operator>.</operator><name>choose</name></name><argument_list>(<argument><expr><call><name><name>ServerConstants</name><operator>.</operator><name>getWalDirs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>logger</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>filename</name></expr>;
+    <expr><name>logPath</name> <operator>=</operator> <call><name><name>fs</name><operator>.</operator><name>choose</name></name><argument_list>(<argument><expr><call><name><name>ServerConstants</name><operator>.</operator><name>getBaseUris</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>+</operator> <name><name>Path</name><operator>.</operator><name>SEPARATOR</name></name> <operator>+</operator> <name><name>ServerConstants</name><operator>.</operator><name>WAL_DIR</name></name> <operator>+</operator> <name><name>Path</name><operator>.</operator><name>SEPARATOR</name></name> <operator>+</operator> <name>logger</name> <operator>+</operator> <name><name>Path</name><operator>.</operator><name>SEPARATOR</name></name> <operator>+</operator> <name>filename</name></expr>;
+
+     <expr><name>metaReference</name> <operator>=</operator> <call><name>toString</name><argument_list>()</argument_list></call></expr>;
+     <try>try <block>{<block_content>
+       <decl_stmt><decl><type><name>short</name></type> <name>replication</name> <init>= <expr><operator>(</operator><name>short</name><operator>)</operator> <call><name><name>conf</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCount</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_WAL_REPLICATION</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block_content></block></try></block></expr></expr_stmt>
+
+</unit>

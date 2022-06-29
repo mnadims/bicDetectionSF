@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/f60122e08d.java"><expr_stmt><expr><name>From</name> <name>f60122e08d23fc641410b80bd6debed6f8a62538</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <literal type="string">"Chris M. Hostetter"</literal> <operator>&lt;</operator><name>hossman</name>@<name><name>apache</name><operator>.</operator><name>org</name></name><operator>&gt;</operator>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">19</literal> <name>May</name> <literal type="number">2008</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">22</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">470</literal></expr><operator>,</operator> <expr><name>SOLR</name><operator>-</operator><literal type="number">552</literal></expr><operator>,</operator> <expr><name>and</name> <name>SOLR</name><operator>-</operator><literal type="number">544</literal><operator>:</operator> <name>Multiple</name> <name>fixes</name> <name>to</name> <name>DateField</name>
+ <name>regarding</name> <name>lenient</name> <name>parsing</name> <name>of</name> <name>optional</name> <name>milliseconds</name></expr><operator>,</operator> <expr><name>and</name> <name>correct</name> <name>formating</name>
+ <name>using</name> <name>the</name> <name>canonical</name> <name><name>representation</name><operator>.</operator>  <name>LegacyDateField</name></name> <name>has</name> <name>been</name> <name>added</name></expr></expr_stmt> <for>for
+ people who have come to depend on the existing broken behavior.
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/lucene/solr/trunk@658003 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ CHANGES.txt                                   <operator>|</operator>  21 +++
+ .../org/apache/solr/schema/DateField.java     <operator>|</operator> 158 ++++++++++++++----
+ .../apache/solr/schema/LegacyDateField.java   <operator>|</operator> 117 +++++++++++++
+ .../apache/solr/BasicFunctionalityTest.java   <operator>|</operator>  72 ++++----
+ .../org/apache/solr/schema/DateFieldTest.java <operator>|</operator> 110 ++++++++++++
+ .../solr/schema/LegacyDateFieldTest.java      <operator>|</operator> 105 ++++++++++++
+ 6 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">515</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">68</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateField</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateFieldTest</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateFieldTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">418d2e6a5e1</literal><operator>..</operator><literal type="number">09003279818</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">48</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">48</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@ <name>option</name> <name>can</name> <name>be</name> <name>added</name> <name>to</name> <name>your</name> <name><name>solrconfig</name><operator>.</operator><name>xml</name><operator>.</operator>  <name>See</name></name> <name>the</name> <call><name>wiki</name> <argument_list>(<argument><expr><name>or</name> <name>the</name>
+ <name>example</name> <name><name>solrconfig</name><operator>.</operator><name>xml</name></name></expr></argument>)</argument_list></call></expr></expr_stmt></for> <for>for more details...  
+    http:<comment type="line">//wiki.apache.org/solr/SolrConfigXml#HTTPCaching</comment>
+ 
+In Solr 1.2<operator>,</operator> <expr_stmt><expr><name>DateField</name> <name>did</name> <name>not</name> <name>enforce</name> <name>the</name> <name>canonical</name> <name>representation</name> <name>of</name>
+<name>the</name> <name>ISO</name> <literal type="number">8601</literal> <name>format</name> <name>when</name> <name>parsing</name> <name>incoming</name> <name>data</name></expr><operator>,</operator> <expr><name>and</name> <name>did</name> <name>not</name> <name>generation</name>
+<name>the</name> <name>canonical</name> <name>format</name> <name>when</name> <name>generating</name> <name>dates</name> <name>from</name> <literal type="string">"Date Math"</literal> <call><name>strings</name>
+<argument_list>(<argument><expr><name>particularly</name> <name>as</name> <name>it</name> <name>pertains</name> <name>to</name> <name>milliseconds</name> <name>ending</name> <name>in</name> <name>trailing</name> <name>zeros</name></expr></argument>)</argument_list></call>
+<operator>--</operator> <name>As</name> <name>a</name> <name>result</name> <name>equivalent</name> <name>dates</name> <name>could</name> <name>not</name> <name>always</name> <name>be</name> <name>compared</name> <name><name>properly</name><operator>.</operator>
+<name>This</name></name> <name>problem</name> <name>is</name> <name>corrected</name> <name>in</name> <name>Solr</name> <literal type="number">1.3</literal></expr><operator>,</operator> <expr><name>but</name> <name>DateField</name> <name>users</name> <name>that</name> <name>might</name>
+<name>have</name> <name>been</name> <name>affected</name> <name>by</name> <name>indexing</name> <name>inconsistent</name> <name>formats</name> <name>of</name> <name>equivilent</name>
+<call><name>dates</name> <argument_list>(<argument><expr><name>ie</name><operator>:</operator> <literal type="number">1995</literal><operator>-</operator><literal type="number">12</literal><operator>-</operator><literal type="number">31T23</literal><operator>:</operator><literal type="number">59</literal><operator>:</operator><literal type="number">59Z</literal> <name>vs</name> <literal type="number">1995</literal><operator>-</operator><literal type="number">12</literal><operator>-</operator><literal type="number">31T23</literal><operator>:</operator><literal type="number">59</literal><operator>:</operator><literal type="number">59.000Z</literal></expr></argument>)</argument_list></call> <name>may</name> <name>want</name>
+<name>to</name> <name>consider</name> <name>reindexing</name> <name>to</name> <name>correct</name> <name>these</name> <name><name>inconsistencies</name><operator>.</operator>  <name>Users</name></name> <name>who</name>
+<name>depend</name> <name>on</name> <name>some</name> <name>of</name> <name>the</name> <name>the</name> <literal type="string">"broken"</literal> <name>behavior</name> <name>of</name> <name>DateField</name> <name>in</name> <name>Solr</name> <literal type="number">1.2</literal>
+<operator>(</operator><name>specificly</name><operator>:</operator> <name>accepting</name> <name>any</name> <name>input</name> <name>that</name> <name>ends</name> <name>in</name> <name>a</name> <literal type="char">'Z'</literal><operator>)</operator> <name>should</name> <name>consider</name>
+<name>using</name> <name>the</name> <name>LegacyDateField</name> <name>class</name> <name>as</name> <name>a</name> <name>possible</name> <name><name>alternative</name><operator>.</operator>  <name>Users</name></name> <name>that</name>
+<name>desire</name> <literal type="number">100</literal><operator>%</operator> <name>backwards</name> <name>compatibility</name> <name>should</name> <name>consider</name> <name>using</name> <name>the</name> <name>Solr</name> <literal type="number">1.2</literal>
+<name>version</name> <name>of</name> <name><name>DateField</name><operator>.</operator>
+ 
+   
+ <name>Detailed</name></name> <name>Change</name> <name>List</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+@@ <operator>-</operator><literal type="number">383</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">398</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <name>Bug</name> <name>Fixes</name>
+ 
+ <literal type="number">28.</literal> <name>SOLR</name><operator>-</operator><literal type="number">509</literal><operator>:</operator> <name>Moved</name> <name>firstSearcher</name> <name>event</name> <name>notification</name> <name>to</name> <name>the</name> <name>end</name> <name>of</name> <name>the</name> <name>SolrCore</name> <call><name>constructor</name> <argument_list>(<argument><expr><name>Koji</name> <name>Sekiguchi</name> <name>via</name> <name>gsingers</name></expr></argument>)</argument_list></call>
+ 
+<literal type="number">29.</literal> <name>SOLR</name><operator>-</operator><literal type="number">470</literal></expr><operator>,</operator> <expr><name>SOLR</name><operator>-</operator><literal type="number">552</literal></expr><operator>,</operator> <expr><name>and</name> <name>SOLR</name><operator>-</operator><literal type="number">544</literal><operator>:</operator> <name>Multiple</name> <name>fixes</name> <name>to</name> <name>DateField</name>
+    <name>regarding</name> <name>lenient</name> <name>parsing</name> <name>of</name> <name>optional</name> <name>milliseconds</name></expr><operator>,</operator> <expr><name>and</name> <name>correct</name>
+    <name>formating</name> <name>using</name> <name>the</name> <name>canonical</name> <name><name>representation</name><operator>.</operator>  <name>LegacyDateField</name></name> <name>has</name>
+    <name>been</name> <name>added</name></expr></expr_stmt></for> <for>for people who have come to depend on the existing
+    broken behavior. <control>(<init><expr><name>hossman</name></expr></init>)</control><block type="pseudo"><block_content>
+
+ <expr_stmt><expr><name>Other</name> <name>Changes</name>
+  <literal type="number">1.</literal> <name>SOLR</name><operator>-</operator><literal type="number">135</literal><operator>:</operator> <name>Moved</name> <name>common</name> <name>classes</name> <name>to</name> <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name></name> <name>and</name> <name>altered</name> <name>the</name>
+     <name>build</name> <name>scripts</name> <name>to</name> <name>make</name> <name>two</name> <name>jars</name><operator>:</operator> <name>apache</name><operator>-</operator><name>solr</name><operator>-</operator><literal type="number">1.3.jar</literal> <name>and</name> 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateField</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateField</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">91d38e7d235</literal><operator>..</operator><literal type="number">645b15fd423</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateField</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateField</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt></block_content></block></for> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>SimpleDateFormat</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>DateFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>NumberFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>DecimalFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>ParsePosition</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>ParseException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>FieldPosition</name></name>;</import>
+ 
+ <comment type="line">// TODO: make a FlexibleDateField that can accept dates in multiple</comment>
+ <comment type="line">// formats, better for human entered dates.</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">42</literal></expr><operator>,</operator><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">46</literal></expr><operator>,</operator><expr><literal type="number">45</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>ParseException</name></name>;</import>
+ 
+ 
+ <comment type="block" format="javadoc">/**
+ * FieldType that can represent any Date/Time with millisecond precisison.
+ * FieldType that can represent any Date/Time with millisecond precision.
+  * &lt;p&gt;
+  * Date Format for the XML, incoming and outgoing:
+  * &lt;/p&gt;
+  * &lt;blockquote&gt;
+  * A date field shall be of the form 1995-12-31T23:59:59Z
+ * The trailing "Z" designates UTC time and is mandatory.
+ * Optional fractional seconds are allowed: 1995-12-31T23:59:59.999Z
+ * The trailing "Z" designates UTC time and is mandatory
+ * (See below for an explanation of UTC).
+ * Optional fractional seconds are allowed, as long as they do not end
+ * in a trailing 0 (but any precision beyond milliseconds will be ignored).
+  * All other parts are mandatory.
+  * &lt;/blockquote&gt;
+  * &lt;p&gt;
+  * This format was derived to be standards compliant (ISO 8601) and is a more
+ * restricted form of the canonical representation of dateTime from XML
+ * schema part 2.
+ * http://www.w3.org/TR/xmlschema-2/#dateTime
+ * restricted form of the
+ * &lt;a href="http://www.w3.org/TR/xmlschema-2/#dateTime-canonical-representation"&gt;canonical
+ * representation of dateTime&lt;/a&gt; from XML schema part 2.  Examples...
+ * &lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;1995-12-31T23:59:59Z&lt;/li&gt;
+ *   &lt;li&gt;1995-12-31T23:59:59.9Z&lt;/li&gt;
+ *   &lt;li&gt;1995-12-31T23:59:59.99Z&lt;/li&gt;
+ *   &lt;li&gt;1995-12-31T23:59:59.999Z&lt;/li&gt;
+ * &lt;/ul&gt;
+ * &lt;p&gt;
+ * Note that DateField is lenient with regards to parsing fractional
+ * seconds that end in trailing zeros and will ensure that those values
+ * are indexed in the correct canonical format.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * This FieldType also supports incoming "Date Math" strings for computing
+ * values by adding/rounding internals of time relative either an explicit
+ * datetime (in the format specified above) or the literal string "NOW",
+ * ie: "NOW+1YEAR", "NOW/DAY", "1995-12-31T23:59:59.999Z+5MINUTES", etc...
+ * -- see {@link DateMathParser} for more examples.
+ * &lt;/p&gt;
+ *
+ * &lt;p&gt;
+ * Explanation of "UTC"...
+  * &lt;/p&gt;
+  * &lt;blockquote&gt;
+  * "In 1970 the Coordinated Universal Time system was devised by an
+@@ -68,14 +96,6 @@ import java.text.ParseException;
+  * acronym UTC was chosen as a compromise."
+  * &lt;/blockquote&gt;
+  *
+ * &lt;p&gt;
+ * This FieldType also supports incoming "Date Math" strings for computing
+ * values by adding/rounding internals of time relative either an explicit
+ * datetime (in theformat specified above) or the literal string "NOW",
+ * ie: "NOW+1YEAR", "NOW/DAY", 1995-12-31T23:59:59.999Z+5MINUTES, etc...
+ * -- see {@link DateMathParser} for more examples.
+ * &lt;/p&gt;
+ *
+  * @version $Id$
+  * @see &lt;a href="http://www.w3.org/TR/xmlschema-2/#dateTime"&gt;XML schema part 2&lt;/a&gt;
+  *
+@@ -96,12 +116,6 @@ public class DateField extends FieldType {
+   protected static char Z = 'Z';
+   
+   public String toInternal(String val) {
+    final int len=val.length();
+    if (val.charAt(len-1) == Z) {
+      // check common case first, simple datetime
+      // NOTE: not parsed to ensure correctness
+      return val.substring(0,len-1);
+    }
+     return toInternal(parseMath(null, val));
+   }
+ 
+@@ -150,7 +164,7 @@ public class DateField extends FieldType {
+   }
+   
+   public String toInternal(Date val) {
+    return getThreadLocalDateFormat().format(val);
+    return formatDate(val);
+   }
+ 
+   public String indexedToReadable(String indexedForm) {
+@@ -161,13 +175,13 @@ public class DateField extends FieldType {
+     return indexedToReadable(f.stringValue());
+   }
+   public Date toObject(String indexedForm) throws java.text.ParseException {
+    return getThreadLocalDateFormat().parse(indexedToReadable(indexedForm));
+    return parseDate(indexedToReadable(indexedForm));
+   }
+ 
+   @Override
+   public Date toObject(Fieldable f) {
+     try {
+      return getThreadLocalDateFormat().parse( toExternal(f) );
+      return parseDate( toExternal(f) );
+     }
+     catch( ParseException ex ) {
+       throw new RuntimeException( ex );
+@@ -193,25 +207,105 @@ public class DateField extends FieldType {
+   /**
+    * Returns a formatter that can be use by the current thread if needed to
+    * convert Date objects to the Internal representation.
+   *
+   * Only the &lt;tt&gt;format(Date)&lt;/tt&gt; can be used safely.
+   * 
+   * @deprecated - use formatDate(Date) instead
+    */</comment>
+   <function><type><specifier>protected</specifier> <name>DateFormat</name></type> <name>getThreadLocalDateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+  
+     <return>return <expr><call><name><name>fmtThreadLocal</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>ThreadLocalDateFormat</name></type> <name>fmtThreadLocal</name>
+    <init>= <expr><operator>new</operator> <call><name>ThreadLocalDateFormat</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <comment type="block" format="javadoc">/**
+   * Thread safe method that can be used by subclasses to format a Date
+   * using the Internal representation.
+   */</comment>
+  <function><type><specifier>protected</specifier> <name>String</name></type> <name>formatDate</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>d</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>fmtThreadLocal</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>format</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Thread safe method that can be used by subclasses to parse a Date
+   * that is already in the internal representation
+   */</comment>
+   <function><type><specifier>protected</specifier> <name>Date</name></type> <name>parseDate</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>s</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>ParseException</name></expr></argument></throws> <block>{<block_content>
+     <return>return <expr><call><name><name>fmtThreadLocal</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>parse</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/**
+   * Thread safe DateFormat that can &lt;b&gt;format&lt;/b&gt; in the canonical
+   * ISO8601 date format, not including the trailing "Z" (since it is
+   * left off in the internal indexed values)
+   */</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <specifier>static</specifier> <name>ThreadLocalDateFormat</name></type> <name>fmtThreadLocal</name>
+    <init>= <expr><operator>new</operator> <call><name>ThreadLocalDateFormat</name><argument_list>(<argument><expr><operator>new</operator> <call><name>ISO8601CanonicalDateFormat</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>ISO8601CanonicalDateFormat</name> <super_list><extends>extends <super><name>SimpleDateFormat</name></super></extends></super_list> <block>{
+    
+    <decl_stmt><decl><type><specifier>protected</specifier> <name>NumberFormat</name></type> <name>millisParser</name>
+      <init>= <expr><call><name><name>NumberFormat</name><operator>.</operator><name>getIntegerInstance</name></name><argument_list>(<argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>protected</specifier> <name>NumberFormat</name></type> <name>millisFormat</name> <init>= <expr><operator>new</operator> <call><name>DecimalFormat</name><argument_list>(<argument><expr><literal type="string">".###"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>ISO8601CanonicalDateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><literal type="string">"yyyy-MM-dd'T'HH:mm:ss"</literal></expr></argument>, <argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><name>UTC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>Date</name></type> <name>parse</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>ParsePosition</name></type> <name>p</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="block">/* delegate to SimpleDateFormat for easy stuff */</comment>
+      <decl_stmt><decl><type><name>Date</name></type> <name>d</name> <init>= <expr><call><name><name>super</name><operator>.</operator><name>parse</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>p</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>milliIndex</name> <init>= <expr><call><name><name>p</name><operator>.</operator><name>getIndex</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="block">/* worry aboutthe milliseconds ourselves */</comment>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>d</name> <operator>&amp;&amp;</operator>
+          <operator>-</operator><literal type="number">1</literal> <operator>==</operator> <call><name><name>p</name><operator>.</operator><name>getErrorIndex</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+          <name>milliIndex</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;</operator> <call><name><name>i</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+          <literal type="char">'.'</literal> <operator>==</operator> <call><name><name>i</name><operator>.</operator><name>charAt</name></name><argument_list>(<argument><expr><name>milliIndex</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>p</name><operator>.</operator><name>setIndex</name></name><argument_list>( <argument><expr><operator>++</operator><name>milliIndex</name></expr></argument> )</argument_list></call></expr>;</expr_stmt> <comment type="line">// NOTE: ++ to chomp '.'</comment>
+        <decl_stmt><decl><type><name>Number</name></type> <name>millis</name> <init>= <expr><call><name><name>millisParser</name><operator>.</operator><name>parse</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>p</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>-</operator><literal type="number">1</literal> <operator>==</operator> <call><name><name>p</name><operator>.</operator><name>getErrorIndex</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>int</name></type> <name>endIndex</name> <init>= <expr><call><name><name>p</name><operator>.</operator><name>getIndex</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>d</name> <operator>=</operator> <operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><call><name><name>d</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call>
+                         <operator>+</operator> <operator>(</operator><name>long</name><operator>)</operator><operator>(</operator><call><name><name>millis</name><operator>.</operator><name>doubleValue</name></name><argument_list>()</argument_list></call> <operator>*</operator>
+                                  <call><name><name>Math</name><operator>.</operator><name>pow</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><operator>(</operator><literal type="number">3</literal><operator>-</operator><name>endIndex</name><operator>+</operator><name>milliIndex</name><operator>)</operator></expr></argument>)</argument_list></call><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></if></if_stmt>
+      <return>return <expr><name>d</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>StringBuffer</name></type> <name>format</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>d</name></decl></parameter>, <parameter><decl><type><name>StringBuffer</name></type> <name>toAppendTo</name></decl></parameter>,
+                               <parameter><decl><type><name>FieldPosition</name></type> <name>pos</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="block">/* delegate to SimpleDateFormat for easy stuff */</comment>
+      <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>toAppendTo</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <comment type="block">/* worry aboutthe milliseconds ourselves */</comment>
+      <decl_stmt><decl><type><name>long</name></type> <name>millis</name> <init>= <expr><call><name><name>d</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>%</operator> <literal type="number">1000l</literal></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><literal type="number">0l</literal> <operator>==</operator> <name>millis</name></expr>)</condition> <block>{<block_content>
+        <return>return <expr><name>toAppendTo</name></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>posBegin</name> <init>= <expr><call><name><name>toAppendTo</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>toAppendTo</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name><name>millisFormat</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><name>millis</name> <operator>/</operator> <literal type="number">1000d</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name><name>DateFormat</name><operator>.</operator><name>MILLISECOND_FIELD</name></name> <operator>==</operator> <call><name><name>pos</name><operator>.</operator><name>getField</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>pos</name><operator>.</operator><name>setBeginIndex</name></name><argument_list>(<argument><expr><name>posBegin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>pos</name><operator>.</operator><name>setEndIndex</name></name><argument_list>(<argument><expr><call><name><name>toAppendTo</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <return>return <expr><name>toAppendTo</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>Object</name></type> <name>clone</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>ISO8601CanonicalDateFormat</name></type> <name>c</name>
+        <init>= <expr><operator>(</operator><name>ISO8601CanonicalDateFormat</name><operator>)</operator> <call><name><name>super</name><operator>.</operator><name>clone</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>c</name><operator>.</operator><name>millisParser</name></name> <operator>=</operator> <call><name><name>NumberFormat</name><operator>.</operator><name>getIntegerInstance</name></name><argument_list>(<argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>c</name><operator>.</operator><name>millisFormat</name></name> <operator>=</operator> <operator>new</operator> <call><name>DecimalFormat</name><argument_list>(<argument><expr><literal type="string">".###"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><name>c</name></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+   
+   <class><specifier>private</specifier> <specifier>static</specifier> class <name>ThreadLocalDateFormat</name> <super_list><extends>extends <super><name><name>ThreadLocal</name><argument_list type="generic">&lt;<argument><name>DateFormat</name></argument>&gt;</argument_list></name></super></extends></super_list> <block>{
+     <decl_stmt><decl><type><name>DateFormat</name></type> <name>proto</name></decl>;</decl_stmt>
+    <constructor><specifier>public</specifier> <name>ThreadLocalDateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <constructor><specifier>public</specifier> <name>ThreadLocalDateFormat</name><parameter_list>(<parameter><decl><type><name>DateFormat</name></type> <name>d</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name>super</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>SimpleDateFormat</name></type> <name>tmp</name> <init>=
+        <expr><operator>new</operator> <call><name>SimpleDateFormat</name><argument_list>(<argument><expr><literal type="string">"yyyy-MM-dd'T'HH:mm:ss.SSS"</literal></expr></argument>, <argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>tmp</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><name>UTC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>proto</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>proto</name> <operator>=</operator> <name>d</name></expr>;</expr_stmt>
+     </block_content>}</block></constructor>
+    
+     <function><type><specifier>protected</specifier> <name>DateFormat</name></type> <name>initialValue</name><parameter_list>()</parameter_list> <block>{<block_content>
+       <return>return <expr><operator>(</operator><name>DateFormat</name><operator>)</operator> <call><name><name>proto</name><operator>.</operator><name>clone</name></name><argument_list>()</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateField</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateField</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..8a6364fba33</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateField</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">117</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>request</name><operator>.</operator><name>XMLWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>request</name><operator>.</operator><name>TextResponseWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Fieldable</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>SortField</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name><operator>.</operator><name>ValueSource</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>function</name><operator>.</operator><name>OrdFieldSource</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>DateMathParser</name></name>;</import>
+  
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>SimpleDateFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>DateFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>NumberFormat</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>ParsePosition</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>ParseException</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * This class is &lt;b&gt;NOT&lt;/b&gt; recommended for new users and should be
+ * considered &lt;b&gt;UNSUPPORTED&lt;/b&gt;.
+ * &lt;p&gt;
+ * In Solr 1.2, &lt;tt&gt;DateField&lt;/tt&gt; did not enforce
+ * the canonical representation of the ISO 8601 format when parsing
+ * incoming data, and did not generation the canonical format when
+ * generating dates from "Date Math" strings (particularly as
+ * it pertains to milliseconds ending in trailing zeros) -- As a result
+ * equivalent dates could not always be compared properly.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * This class is provided as possible alternative for people who depend on
+ * the "broken" behavior of DateField in Solr 1.2
+ * (specificly: accepting any input that ends in a 'Z', and
+ * formating DateMath expressions using 3 decimals of milliseconds) while
+ * still supporting some newer functionality of DateField (ie: DateMath on
+ * explicit strings in addition to "NOW")
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * Users that desire 100% backwards compatibility should consider using
+ * the Solr 1.2 version of &lt;tt&gt;DateField&lt;/tt&gt;
+ * &lt;/p&gt;
+ *
+ * @see &lt;a href="https://issues.apache.org/jira/browse/SOLR-552"&gt;SOLR-552&lt;/a&gt;
+ * @see &lt;a href="https://issues.apache.org/jira/browse/SOLR-470"&gt;SOLR-470&lt;/a&gt;
+ * @see &lt;a href="https://issues.apache.org/jira/browse/SOLR-521"&gt;SOLR-521&lt;/a&gt;
+ * @deprecated use {@link DateField}
+ */</comment>
+<class><annotation>@<name>Deprecated</name></annotation>
+<specifier>public</specifier> <specifier>final</specifier> class <name>LegacyDateField</name> <super_list><extends>extends <super><name>DateField</name></super></extends></super_list> <block>{
+
+  <comment type="block" format="javadoc">/**
+   * Overrides the super class to short circut and do no enforcing of
+   * the canonical format
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>toInternal</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>val</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>len</name><init>=<expr><call><name><name>val</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>val</name><operator>.</operator><name>charAt</name></name><argument_list>(<argument><expr><name>len</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call> <operator>==</operator> <name>Z</name></expr>)</condition> <block>{<block_content>
+      <comment type="line">// check common case first, simple datetime</comment>
+      <comment type="line">// NOTE: not parsed to ensure correctness</comment>
+      <return>return <expr><call><name><name>val</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><name>len</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><call><name>toInternal</name><argument_list>(<argument><expr><call><name>parseMath</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>val</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/**
+   * This method returns a DateFormat which does &lt;b&gt;NOT&lt;/b&gt; respect the
+   * ISO 8601 canonical format with regards to trailing zeros in milliseconds,
+   * instead if always formats milliseconds to 3 decimal points.
+   */</comment>
+  <function><type><specifier>protected</specifier> <name>DateFormat</name></type> <name>getThreadLocalDateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>fmtThreadLocal</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>protected</specifier> <name>String</name></type> <name>formatDate</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>d</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name>getThreadLocalDateFormat</name><argument_list>()</argument_list></call><operator>.</operator><call><name>format</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>ThreadLocalDateFormat</name></type> <name>fmtThreadLocal</name>
+    <init>= <expr><operator>new</operator> <call><name>ThreadLocalDateFormat</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>ThreadLocalDateFormat</name> <super_list><extends>extends <super><name><name>ThreadLocal</name><argument_list type="generic">&lt;<argument><name>DateFormat</name></argument>&gt;</argument_list></name></super></extends></super_list> <block>{
+    <decl_stmt><decl><type><name>DateFormat</name></type> <name>proto</name></decl>;</decl_stmt>
+    <constructor><specifier>public</specifier> <name>ThreadLocalDateFormat</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>SimpleDateFormat</name></type> <name>tmp</name> <init>=
+        <expr><operator>new</operator> <call><name>SimpleDateFormat</name><argument_list>(<argument><expr><literal type="string">"yyyy-MM-dd'T'HH:mm:ss.SSS"</literal></expr></argument>, <argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>tmp</name><operator>.</operator><name>setTimeZone</name></name><argument_list>(<argument><expr><name>UTC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>proto</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>protected</specifier> <name>DateFormat</name></type> <name>initialValue</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><operator>(</operator><name>DateFormat</name><operator>)</operator> <call><name><name>proto</name><operator>.</operator><name>clone</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+  
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>BasicFunctionalityTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>BasicFunctionalityTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3eaae0708a5</literal><operator>..</operator><literal type="number">61bcc474f1b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>BasicFunctionalityTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>BasicFunctionalityTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">656</literal></expr><operator>,</operator><expr><literal type="number">38</literal> <operator>+</operator><literal type="number">656</literal></expr><operator>,</operator><expr><literal type="number">38</literal> @@ <specifier>public</specifier> <name>class</name> <name>BasicFunctionalityTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+                 )
+             <comment type="line">// 31 days + pre+post+inner = 34</comment>
+             <operator>,</operator><literal type="string">"*[count("</literal><operator>+</operator><name>pre</name><operator>+</operator><literal type="string">"/int)=34]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00.000Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-02T00:00:00.000Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-03T00:00:00.000Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-02T00:00:00Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"</literal>
+             <comment type="line">// july4th = 2 because exists doc @ 00:00:00.000 on July5</comment>
+             <comment type="line">// (date faceting is inclusive)</comment>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-04T00:00:00.000Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-05T00:00:00.000Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-07T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-08T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-09T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-10T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-12T00:00:00.000Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-13T00:00:00.000Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-14T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-15T00:00:00.000Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-16T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-17T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-18T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-19T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-21T00:00:00.000Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-22T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-23T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-24T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-25T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-26T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-27T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-28T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-29T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-30T00:00:00.000Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-31T00:00:00.000Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-05T00:00:00Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-07T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-08T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-09T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-10T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-12T00:00:00Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-13T00:00:00Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-14T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-15T00:00:00Z'][.='2'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-16T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-17T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-18T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-19T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-21T00:00:00Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-22T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-23T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-24T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-25T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-26T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-27T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-28T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-29T00:00:00Z'][.='0']"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-30T00:00:00Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-31T00:00:00Z'][.='0']"</literal>
+             
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='before' ][.='2']"</literal>
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='after'  ][.='1']"</literal>
+@@ <operator>-</operator><literal type="number">708</literal><operator>,</operator><literal type="number">9</literal> <operator>+</operator><literal type="number">708</literal><operator>,</operator><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>BasicFunctionalityTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+                 )
+             <comment type="line">// 3 gaps + pre+post+inner = 6</comment>
+             <operator>,</operator><literal type="string">"*[count("</literal><operator>+</operator><name>pre</name><operator>+</operator><literal type="string">"/int)=6]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00.000Z'][.='5'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00.000Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00.000Z'][.='4'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00Z'][.='5'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00Z'][.='4'  ]"</literal>
+             
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='before' ][.='2']"</literal>
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='after'  ][.='3']"</literal>
+@@ <operator>-</operator><literal type="number">730</literal><operator>,</operator><literal type="number">9</literal> <operator>+</operator><literal type="number">730</literal><operator>,</operator><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>BasicFunctionalityTest</name> extends <name>AbstractSolrTestCase</name> <block>{
+                 )
+             <comment type="line">// 3 gaps + pre+post+inner = 6</comment>
+             <operator>,</operator><literal type="string">"*[count("</literal><operator>+</operator><name>pre</name><operator>+</operator><literal type="string">"/int)=6]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00.000Z'][.='5'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00.000Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00.000Z'][.='1'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-01T00:00:00Z'][.='5'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-06T00:00:00Z'][.='0'  ]"</literal>
+            <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='1976-07-11T00:00:00Z'][.='1'  ]"</literal>
+             
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='before' ][.='2']"</literal>
+             <operator>,</operator><name>pre</name><operator>+</operator><literal type="string">"/int[@name='after'  ][.='6']"</literal>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateFieldTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateFieldTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..785db52fedc</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>DateFieldTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal><operator>,</operator><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal><operator>,</operator><literal type="number">110</literal> @@</block></block></block></expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>DateField</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>DateMathParser</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Fieldable</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>DateFormat</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>DateFieldTest</name> <super_list><extends>extends <super><name>LegacyDateFieldTest</name></super></extends></super_list> <block>{
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setUp</name><parameter_list>()</parameter_list>  <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setUp</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>f</name> <operator>=</operator> <operator>new</operator> <call><name>DateField</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testToInternal</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999666Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.99"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.99Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.9Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// here the input isn't in the canonical form, but we should be forgiving</comment>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.99"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.990Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.900Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.90Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59.000Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59.00Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59.0Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// kind of kludgy, but we have other tests for the actual date math</comment>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><call><name><name>f</name><operator>.</operator><name>toInternal</name></name><argument_list>(<argument><expr><call><name><name>p</name><operator>.</operator><name>parseMath</name></name><argument_list>(<argument><expr><literal type="string">"/DAY"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"NOW/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// as of Solr 1.3</comment>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T00:00:00"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T00:00:00"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.123Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T00:00:00"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.123999Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testToInternalObj</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>, <argument><expr><literal type="number">820454399999l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.99"</literal></expr></argument>,  <argument><expr><literal type="number">820454399990l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>,   <argument><expr><literal type="number">820454399900l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="number">820454399000l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+    
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertParseMath</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>expected</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Date</name></type> <name>d</name> <init>= <expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Input: "</literal><operator>+</operator><name>input</name></expr></argument>, <argument><expr><name>expected</name></expr></argument>, <argument><expr><call><name><name>f</name><operator>.</operator><name>parseMath</name></name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>input</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <comment type="line">// as of Solr1.3</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testParseMath</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">820454699999l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999765Z+5MINUTES"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">820454699999l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999Z+5MINUTES"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">820454699990l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.99Z+5MINUTES"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">194918400000l</literal></expr></argument>, <argument><expr><literal type="string">"1976-03-06T03:06:00Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// here the input isn't in the canonical form, but we should be forgiving</comment>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">820454699990l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.990Z+5MINUTES"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">194918400000l</literal></expr></argument>, <argument><expr><literal type="string">"1976-03-06T03:06:00.0Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">194918400000l</literal></expr></argument>, <argument><expr><literal type="string">"1976-03-06T03:06:00.00Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertParseMath</name><argument_list>(<argument><expr><literal type="number">194918400000l</literal></expr></argument>, <argument><expr><literal type="string">"1976-03-06T03:06:00.000Z/DAY"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertToObject</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>expected</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>input</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Input: "</literal><operator>+</operator><name>input</name></expr></argument>, <argument><expr><name>expected</name></expr></argument>, <argument><expr><call><name><name>f</name><operator>.</operator><name>toObject</name></name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getTime</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <comment type="line">// as of Solr1.3</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testToObject</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertToObject</name><argument_list>(<argument><expr><literal type="number">820454399987l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.987666Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToObject</name><argument_list>(<argument><expr><literal type="number">820454399987l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.987Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToObject</name><argument_list>(<argument><expr><literal type="number">820454399980l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.98Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToObject</name><argument_list>(<argument><expr><literal type="number">820454399900l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.9Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToObject</name><argument_list>(<argument><expr><literal type="number">820454399000l</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFormatter</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>DateFormat</name></type> <name>fmt</name> <init>= <expr><call><name><name>f</name><operator>.</operator><name>getThreadLocalDateFormat</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.005"</literal></expr></argument>, <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00"</literal></expr></argument>,     <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.37"</literal></expr></argument>,  <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">370</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.9"</literal></expr></argument>,   <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">900</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  </block_content>}</block></function>
+
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateFieldTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateFieldTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..201db568c19</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>LegacyDateFieldTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">105</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>DateField</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>DateMathParser</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Fieldable</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>text</name><operator>.</operator><name>DateFormat</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>LegacyDateFieldTest</name> <super_list><extends>extends <super><name>TestCase</name></super></extends></super_list> <block>{
+  <comment type="line">// if and when this class is removed, make sure to refactor all</comment>
+  <comment type="line">// appropriate code to DateFieldTest</comment>
+
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>TimeZone</name></type> <name>UTC</name> <init>= <expr><call><name><name>TimeZone</name><operator>.</operator><name>getTimeZone</name></name><argument_list>(<argument><expr><literal type="string">"UTC"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>protected</specifier> <name>DateField</name></type> <name>f</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>protected</specifier> <name>DateMathParser</name></type> <name>p</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setUp</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setUp</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>p</name> <operator>=</operator> <operator>new</operator> <call><name>DateMathParser</name><argument_list>(<argument><expr><name>UTC</name></expr></argument>, <argument><expr><name><name>Locale</name><operator>.</operator><name>US</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>f</name> <operator>=</operator> <operator>new</operator> <call><name>DateField</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// so test can be run against Solr 1.2...</comment>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>Class</name></type> <name>clazz</name> <init>= <expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><literal type="string">"org.apache.solr.schema.LegacyDateField"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name>f</name> <operator>=</operator> <operator>(</operator><name>DateField</name><operator>)</operator> <call><name><name>clazz</name><operator>.</operator><name>newInstance</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>ignored</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// NOOP</comment>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertToI</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>expected</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Input: "</literal> <operator>+</operator> <name>input</name></expr></argument>, <argument><expr><name>expected</name></expr></argument>, <argument><expr><call><name><name>f</name><operator>.</operator><name>toInternal</name></name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testToInternal</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.99"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.99Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.9Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// this is the broken behavior</comment>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9998"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.9998Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9990"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.9990Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.990"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.990Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.900"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.900Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.90"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.90Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.000"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.000Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.00"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.00Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.0"</literal></expr></argument>,    <argument><expr><literal type="string">"1995-12-31T23:59:59.0Z"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+  </block_content>}</block></function>
+    
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertToI</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>expected</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Input: "</literal> <operator>+</operator> <name>input</name></expr></argument>, <argument><expr><name>expected</name></expr></argument>, <argument><expr><call><name><name>f</name><operator>.</operator><name>toInternal</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testToInternalObj</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>, <argument><expr><literal type="number">820454399999l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// this is the broken behavior</comment>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.990"</literal></expr></argument>,  <argument><expr><literal type="number">820454399990l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.900"</literal></expr></argument>,  <argument><expr><literal type="number">820454399900l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertToI</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.000"</literal></expr></argument>,  <argument><expr><literal type="number">820454399000l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertItoR</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>expected</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"Input: "</literal> <operator>+</operator> <name>input</name></expr></argument>, <argument><expr><name>expected</name></expr></argument>, <argument><expr><call><name><name>f</name><operator>.</operator><name>indexedToReadable</name></name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testIndexedToReadable</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>assertItoR</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.999Z"</literal></expr></argument>, <argument><expr><literal type="string">"1995-12-31T23:59:59.999"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertItoR</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.99Z"</literal></expr></argument>,  <argument><expr><literal type="string">"1995-12-31T23:59:59.99"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertItoR</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59.9Z"</literal></expr></argument>,   <argument><expr><literal type="string">"1995-12-31T23:59:59.9"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertItoR</name><argument_list>(<argument><expr><literal type="string">"1995-12-31T23:59:59Z"</literal></expr></argument>,     <argument><expr><literal type="string">"1995-12-31T23:59:59"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testFormatter</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>DateFormat</name></type> <name>fmt</name> <init>= <expr><call><name><name>f</name><operator>.</operator><name>getThreadLocalDateFormat</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.005"</literal></expr></argument>, <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// all of this is broken behavior</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.000"</literal></expr></argument>, <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.370"</literal></expr></argument>, <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">370</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"1970-01-01T00:00:00.900"</literal></expr></argument>, <argument><expr><call><name><name>fmt</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Date</name><argument_list>(<argument><expr><literal type="number">900</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></constructor></block></class>
+
+</unit>

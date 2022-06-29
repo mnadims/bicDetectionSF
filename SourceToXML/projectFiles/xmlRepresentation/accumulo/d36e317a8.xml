@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/d36e317a8.java"><expr><name>From</name> <name>d36e317a83765984cb83aee27b7616bb2aee226d</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Christopher</name> <name><name>Tubbs</name> <argument_list type="generic">&lt;<argument><name>ctubbsii</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">10</literal> <name>Feb</name> <literal type="number">2016</literal> <literal type="number">12</literal><operator>:</operator><literal type="number">58</literal><operator>:</operator><literal type="number">07</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">4139</literal> <name>Fix</name> <name>ExistingMacIT</name> <name>test</name> <name>bug</name>
+
+<name>Make</name> <name>ExistingMacIT</name> <name>wait</name> <name>the</name> <name>full</name> <name>ZK</name> <call><name>timeout</name> <argument_list>(<argument><expr><name>plus</name> <name>half</name> <name>a</name> <name>second</name></expr></argument>)</argument_list></call> <name>based</name> <name>on</name> <name>mini</name><literal type="char">'</literal></expr>s
+configured ZK timeout value.
+--
+ .../src/test/java/org/apache/accumulo/test/ExistingMacIT.java | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/test/src/test/java/org/apache/accumulo/test/ExistingMacIT.java b/test/src/test/java/org/apache/accumulo/test/ExistingMacIT.java
+index 323888a56..bef24863c 100644
+-- a/test/src/test/java/org/apache/accumulo/test/ExistingMacIT.java
+++ b/test/src/test/java/org/apache/accumulo/test/ExistingMacIT.java
+@@ -29,6 +29,7 @@ import org.apache.accumulo.core.client.BatchWriterConfig;
+ import org.apache.accumulo.core.client.Connector;
+ import org.apache.accumulo.core.client.Scanner;
+ import org.apache.accumulo.core.client.security.tokens.PasswordToken;
+import org.apache.accumulo.core.conf.AccumuloConfiguration;
+ import org.apache.accumulo.core.conf.Property;
+ import org.apache.accumulo.core.data.Key;
+ import org.apache.accumulo.core.data.Mutation;
+@@ -100,7 +101,8 @@ public class ExistingMacIT extends ConfigurableMacIT {
+     }
+ 
+     // TODO clean out zookeeper? following sleep waits for ephemeral nodes to go away
+    UtilWaitThread.sleep(10000);
+    long zkTimeout = AccumuloConfiguration.getTimeInMillis(getCluster().getConfig().getSiteConfig().get(Property.INSTANCE_ZK_TIMEOUT.getKey()));
+    UtilWaitThread.sleep(zkTimeout + 500);
+ 
+     File hadoopConfDir = createTestDir(ExistingMacIT.class.getSimpleName() + "_hadoop_conf");
+     FileUtils.deleteQuietly(hadoopConfDir);
+- 
+2.19.1.windows.1
+
+</unit>

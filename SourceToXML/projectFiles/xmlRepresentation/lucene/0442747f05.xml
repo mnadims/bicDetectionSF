@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/0442747f05.java"><expr_stmt><expr><name>From</name> <literal type="number">0442747f05d870684689be971d58d39b9c4dd526</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>David</name> <name>Wayne</name> <name><name>Smiley</name> <argument_list type="generic">&lt;<argument><name>dsmiley</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">26</literal> <name>Nov</name> <literal type="number">2015</literal> <literal type="number">04</literal><operator>:</operator><literal type="number">56</literal><operator>:</operator><literal type="number">47</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">6900</literal><operator>:</operator> <name>Grouping</name> <name>sortWithinGroup</name> <name>shouldn</name><literal type="char">'t be null; use
+ Sort.RELEVANCE. Enhanced related Solr side a bit.
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1716569 13f79535-47bb-0310-9956-ffa450edef68
+--
+ lucene/CHANGES.txt                            |   6 +-
+ .../AbstractSecondPassGroupingCollector.java  |  21 ++-
+ .../grouping/BlockGroupingCollector.java      |  10 +-
+ .../search/grouping/GroupingSearch.java       |   2 +-
+ .../lucene/search/grouping/TopGroups.java     |  10 +-
+ .../term/TermSecondPassGroupingCollector.java |   7 +-
+ .../lucene/search/grouping/TestGrouping.java  |   2 +-
+ solr/CHANGES.txt                              |  10 +-
+ .../java/org/apache/solr/search/Grouping.java |  42 +++---
+ .../SearchGroupShardResponseProcessor.java    |   6 +-
+ .../TopGroupsShardResponseProcessor.java      |   5 +-
+ .../TopGroupsResultTransformer.java           | 120 ++++++++----------
+ .../apache/solr/TestDistributedGrouping.java  |  10 +-
+ .../solr/BaseDistributedSearchTestCase.java   |   5 +-
+ 14 files changed, 129 insertions(+), 127 deletions(-)
+
+diff --git a/lucene/CHANGES.txt b/lucene/CHANGES.txt
+index 1bcf2783c08..4609a81d9fa 100644
+-- a/lucene/CHANGES.txt
+++ b/lucene/CHANGES.txt
+@@ -104,7 +104,11 @@ Changes in Runtime Behavior
+   (Robert Muir, Mike McCandless)
+ 
+ ======================= Lucene 5.5.0 =======================
+(No Changes)
+
+API Changes
+
+* LUCENE-6900: Grouping sortWithinGroup variables used to allow null to mean
+  Sort.RELEVANCE.  Null is no longer permitted.  (David Smiley)
+ 
+ ======================= Lucene 5.4.0 =======================
+ 
+diff --git a/lucene/grouping/src/java/org/apache/lucene/search/grouping/AbstractSecondPassGroupingCollector.java b/lucene/grouping/src/java/org/apache/lucene/search/grouping/AbstractSecondPassGroupingCollector.java
+index 0634ee14ec4..ea3812c30ff 100644
+-- a/lucene/grouping/src/java/org/apache/lucene/search/grouping/AbstractSecondPassGroupingCollector.java
+++ b/lucene/grouping/src/java/org/apache/lucene/search/grouping/AbstractSecondPassGroupingCollector.java
+@@ -24,6 +24,7 @@ import java.io.IOException;
+ import java.util.Collection;
+ import java.util.HashMap;
+ import java.util.Map;
+import java.util.Objects;
+ 
+ /**
+  * SecondPassGroupingCollector is the second of two passes
+@@ -54,29 +55,27 @@ public abstract class AbstractSecondPassGroupingCollector&lt;GROUP_VALUE_TYPE&gt; exte
+     throws IOException {
+ 
+     //System.out.println("SP init");
+    if (groups.size() == 0) {
+      throw new IllegalArgumentException("no groups to collect (groups.size() is 0)");
+    if (groups.isEmpty()) {
+      throw new IllegalArgumentException("no groups to collect (groups is empty)");
+     }
+ 
+    this.groupSort = groupSort;
+    this.withinGroupSort = withinGroupSort;
+    this.groups = groups;
+    this.groupSort = Objects.requireNonNull(groupSort);
+    this.withinGroupSort = Objects.requireNonNull(withinGroupSort);
+    this.groups = Objects.requireNonNull(groups);
+     this.maxDocsPerGroup = maxDocsPerGroup;
+    groupMap = new HashMap&lt;&gt;(groups.size());
+    this.groupMap = new HashMap&lt;&gt;(groups.size());
+ 
+     for (SearchGroup&lt;GROUP_VALUE_TYPE&gt; group : groups) {
+       //System.out.println("  prep group=" + (group.groupValue == null ? "null" : group.groupValue.utf8ToString()));
+       final TopDocsCollector&lt;?&gt; collector;
+      if (withinGroupSort == null) {
+      if (withinGroupSort.equals(Sort.RELEVANCE)) { // optimize to use TopScoreDocCollector
+         // Sort by score
+         collector = TopScoreDocCollector.create(maxDocsPerGroup);
+       } else {
+         // Sort by fields
+         collector = TopFieldCollector.create(withinGroupSort, maxDocsPerGroup, fillSortFields, getScores, getMaxScores);
+       }
+      groupMap.put(group.groupValue,
+          new SearchGroupDocs&lt;&gt;(group.groupValue,
+              collector));
+      groupMap.put(group.groupValue, new SearchGroupDocs&lt;&gt;(group.groupValue, collector));
+     }
+   }
+ 
+@@ -133,7 +132,7 @@ public abstract class AbstractSecondPassGroupingCollector&lt;GROUP_VALUE_TYPE&gt; exte
+     }
+ 
+     return new TopGroups&lt;&gt;(groupSort.getSort(),
+                                           withinGroupSort == null ? null : withinGroupSort.getSort(),
+                                           withinGroupSort.getSort(),
+                                            totalHitCount, totalGroupedHitCount, groupDocsResult,
+                                            maxScore);
+   }
+diff --git a/lucene/grouping/src/java/org/apache/lucene/search/grouping/BlockGroupingCollector.java b/lucene/grouping/src/java/org/apache/lucene/search/grouping/BlockGroupingCollector.java
+index c501c5bae35..9bcfa4da527 100644
+-- a/lucene/grouping/src/java/org/apache/lucene/search/grouping/BlockGroupingCollector.java
+++ b/lucene/grouping/src/java/org/apache/lucene/search/grouping/BlockGroupingCollector.java
+@@ -231,8 +231,7 @@ public class BlockGroupingCollector extends SimpleCollector {
+ 
+     this.needsScores = needsScores;
+     this.lastDocPerGroup = lastDocPerGroup;
+    // TODO: allow null groupSort to mean "by relevance",
+    // and specialize it?
+
+     this.groupSort = groupSort;
+     
+     this.topNGroups = topNGroups;
+@@ -265,8 +264,7 @@ public class BlockGroupingCollector extends SimpleCollector {
+    *  DocValues, etc.)
+    *
+    *  @param withinGroupSort The {@link Sort} used to sort
+   *    documents within each group.  Passing null is
+   *    allowed, to sort by relevance.
+   *    documents within each group.
+    *  @param groupOffset Which group to start from
+    *  @param withinGroupOffset Which document to start from
+    *    within each group
+@@ -300,7 +298,7 @@ public class BlockGroupingCollector extends SimpleCollector {
+       // At this point we hold all docs w/ in each group,
+       // unsorted; we now sort them:
+       final TopDocsCollector&lt;?&gt; collector;
+      if (withinGroupSort == null) {
+      if (withinGroupSort.equals(Sort.RELEVANCE)) {
+         // Sort by score
+         if (!needsScores) {
+           throw new IllegalArgumentException("cannot sort by relevance within group: needsScores=false");
+@@ -356,7 +354,7 @@ public class BlockGroupingCollector extends SimpleCollector {
+     */
+ 
+     return new TopGroups&lt;&gt;(new TopGroups&lt;&gt;(groupSort.getSort(),
+                                       withinGroupSort == null ? null : withinGroupSort.getSort(),
+                                       withinGroupSort.getSort(),
+                                        totalHitCount, totalGroupedHitCount, groups, maxScore),
+                          totalGroupCount);
+   }
+diff --git a/lucene/grouping/src/java/org/apache/lucene/search/grouping/GroupingSearch.java b/lucene/grouping/src/java/org/apache/lucene/search/grouping/GroupingSearch.java
+index bc6aba1da18..affa5c087f7 100644
+-- a/lucene/grouping/src/java/org/apache/lucene/search/grouping/GroupingSearch.java
+++ b/lucene/grouping/src/java/org/apache/lucene/search/grouping/GroupingSearch.java
+@@ -58,7 +58,7 @@ public class GroupingSearch {
+   private final Query groupEndDocs;
+ 
+   private Sort groupSort = Sort.RELEVANCE;
+  private Sort sortWithinGroup;
+  private Sort sortWithinGroup = Sort.RELEVANCE;
+ 
+   private int groupDocsOffset;
+   private int groupDocsLimit = 1;
+diff --git a/lucene/grouping/src/java/org/apache/lucene/search/grouping/TopGroups.java b/lucene/grouping/src/java/org/apache/lucene/search/grouping/TopGroups.java
+index 1c9fa8a296e..981aef0d381 100644
+-- a/lucene/grouping/src/java/org/apache/lucene/search/grouping/TopGroups.java
+++ b/lucene/grouping/src/java/org/apache/lucene/search/grouping/TopGroups.java
+@@ -132,7 +132,7 @@ public class TopGroups&lt;GROUP_VALUE_TYPE&gt; {
+     final GroupDocs&lt;T&gt;[] mergedGroupDocs = new GroupDocs[numGroups];
+ 
+     final TopDocs[] shardTopDocs;
+    if (docSort == null) {
+    if (docSort.equals(Sort.RELEVANCE)) {
+       shardTopDocs = new TopDocs[shardGroups.length];
+     } else {
+       shardTopDocs = new TopFieldDocs[shardGroups.length];
+@@ -163,7 +163,7 @@ public class TopGroups&lt;GROUP_VALUE_TYPE&gt; {
+         }
+         */
+ 
+        if (docSort == null) {
+        if (docSort.equals(Sort.RELEVANCE)) {
+           shardTopDocs[shardIDX] = new TopDocs(shardGroupDocs.totalHits,
+                                                shardGroupDocs.scoreDocs,
+                                                shardGroupDocs.maxScore);
+@@ -179,7 +179,7 @@ public class TopGroups&lt;GROUP_VALUE_TYPE&gt; {
+       }
+ 
+       final TopDocs mergedTopDocs;
+      if (docSort == null) {
+      if (docSort.equals(Sort.RELEVANCE)) {
+         mergedTopDocs = TopDocs.merge(docOffset + docTopN, shardTopDocs);
+       } else {
+         mergedTopDocs = TopDocs.merge(docSort, docOffset + docTopN, (TopFieldDocs[]) shardTopDocs);
+@@ -231,7 +231,7 @@ public class TopGroups&lt;GROUP_VALUE_TYPE&gt; {
+ 
+     if (totalGroupCount != null) {
+       TopGroups&lt;T&gt; result = new TopGroups&lt;&gt;(groupSort.getSort(),
+                              docSort == null ? null : docSort.getSort(),
+                              docSort.getSort(),
+                               totalHitCount,
+                               totalGroupedHitCount,
+                               mergedGroupDocs,
+@@ -239,7 +239,7 @@ public class TopGroups&lt;GROUP_VALUE_TYPE&gt; {
+       return new TopGroups&lt;&gt;(result, totalGroupCount);
+     } else {
+       return new TopGroups&lt;&gt;(groupSort.getSort(),
+                              docSort == null ? null : docSort.getSort(),
+                              docSort.getSort(),
+                               totalHitCount,
+                               totalGroupedHitCount,
+                               mergedGroupDocs,
+diff --git a/lucene/grouping/src/java/org/apache/lucene/search/grouping/term/TermSecondPassGroupingCollector.java b/lucene/grouping/src/java/org/apache/lucene/search/grouping/term/TermSecondPassGroupingCollector.java
+index 236781a557a..3f6744411c2 100644
+-- a/lucene/grouping/src/java/org/apache/lucene/search/grouping/term/TermSecondPassGroupingCollector.java
+++ b/lucene/grouping/src/java/org/apache/lucene/search/grouping/term/TermSecondPassGroupingCollector.java
+@@ -38,18 +38,19 @@ import org.apache.lucene.util.SentinelIntSet;
+  */
+ public class TermSecondPassGroupingCollector extends AbstractSecondPassGroupingCollector&lt;BytesRef&gt; {
+ 
+  private final String groupField;
+   private final SentinelIntSet ordSet;
+
+   private SortedDocValues index;
+  private final String groupField;
+ 
+   @SuppressWarnings({"unchecked", "rawtypes"})
+   public TermSecondPassGroupingCollector(String groupField, Collection&lt;SearchGroup&lt;BytesRef&gt;&gt; groups, Sort groupSort, Sort withinGroupSort,
+                                          int maxDocsPerGroup, boolean getScores, boolean getMaxScores, boolean fillSortFields)
+       throws IOException {
+     super(groups, groupSort, withinGroupSort, maxDocsPerGroup, getScores, getMaxScores, fillSortFields);
+    ordSet = new SentinelIntSet(groupMap.size(), -2);
+     this.groupField = groupField;
+    groupDocs = (SearchGroupDocs&lt;BytesRef&gt;[]) new SearchGroupDocs[ordSet.keys.length];
+    this.ordSet = new SentinelIntSet(groupMap.size(), -2);
+    super.groupDocs = (SearchGroupDocs&lt;BytesRef&gt;[]) new SearchGroupDocs[ordSet.keys.length];
+   }
+ 
+   @Override
+diff --git a/lucene/grouping/src/test/org/apache/lucene/search/grouping/TestGrouping.java b/lucene/grouping/src/test/org/apache/lucene/search/grouping/TestGrouping.java
+index c7aa9380140..0b8db3cd883 100644
+-- a/lucene/grouping/src/test/org/apache/lucene/search/grouping/TestGrouping.java
+++ b/lucene/grouping/src/test/org/apache/lucene/search/grouping/TestGrouping.java
+@@ -150,7 +150,7 @@ public class TestGrouping extends LuceneTestCase {
+     final AbstractFirstPassGroupingCollector&lt;?&gt; c1 = createRandomFirstPassCollector(groupField, groupSort, 10);
+     indexSearcher.search(new TermQuery(new Term("content", "random")), c1);
+ 
+    final AbstractSecondPassGroupingCollector&lt;?&gt; c2 = createSecondPassCollector(c1, groupField, groupSort, null, 0, 5, true, true, true);
+    final AbstractSecondPassGroupingCollector&lt;?&gt; c2 = createSecondPassCollector(c1, groupField, groupSort, Sort.RELEVANCE, 0, 5, true, true, true);
+     indexSearcher.search(new TermQuery(new Term("content", "random")), c2);
+ 
+     final TopGroups&lt;?&gt; groups = c2.getTopGroups(0);
+diff --git a/solr/CHANGES.txt b/solr/CHANGES.txt
+index d93bcb3de37..318a5c85d79 100644
+-- a/solr/CHANGES.txt
+++ b/solr/CHANGES.txt
+@@ -159,8 +159,14 @@ Other Changes
+ * SOLR-8179: SQL JDBC - DriverImpl loadParams doesn'</literal><name>t</name> <name>support</name> <name>keys</name> <name>with</name> <name>no</name> <name>values</name> <name>in</name> <name>the</name> <name>connection</name> <call><name>string</name>
+   <argument_list>(<argument><expr><name>Kevin</name> <name>Risden</name></expr></argument>, <argument><expr><name>Joel</name> <name>Bernstein</name></expr></argument>)</argument_list></call>
+ 
+<operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>  <literal type="number">5.5.0</literal> <operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>
+<operator>(</operator><name>No</name> <name>Changes</name><operator>)</operator>
+<operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>=</operator> <name>Lucene</name> <literal type="number">5.5.0</literal> <operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>=</operator>
+
+<name>Other</name> <name>Changes</name>
+<operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+
+<operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">6900</literal><operator>:</operator> <name>Added</name> <name>test</name></expr></expr_stmt> <for>for score ordered grouping<operator>,</operator> <expr_stmt><expr><name>and</name> <name>refactored</name> <name><name>TopGroupsResultTransformer</name><operator>.</operator></name>
+  (<name>David</name> <name>Smiley</name></expr></expr_stmt></for>)
+
+ 
+ <expr_stmt><expr><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>  <literal type="number">5.4.0</literal> <operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>Grouping</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>Grouping</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">410142303e3</literal><operator>..</operator><name>b6730a68478</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>Grouping</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name><name>Grouping</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">40</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">40</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MultiCollector</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Query</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>ScoreDoc</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>SortField</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TimeLimitingCollector</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TopDocs</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TopDocsCollector</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">74</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">73</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Basic Solr Grouping infrastructure.
+ * Warning NOT thread save!
+ * Warning NOT thread safe!
+  *
+  * @lucene.experimental
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">109</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">108</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+   <expr><specifier>private</specifier> <name>NamedList</name> <name>grouped</name> <operator>=</operator> <operator>new</operator> <call><name>SimpleOrderedMap</name><argument_list>()</argument_list></call></expr>;
+   <expr><specifier>private</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name> <name>idSet</name> <operator>=</operator> <operator>new</operator> <call><name><name>LinkedHashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;  <comment type="line">// used for tracking unique docs when we need a doclist</comment>
+   <expr><specifier>private</specifier> <name>int</name> <name>maxMatches</name></expr>;  <comment type="line">// max number of matches from any grouping command</comment>
+  <expr><specifier>private</specifier> <name>float</name> <name>maxScore</name> <operator>=</operator> <name><name>Float</name><operator>.</operator><name>NEGATIVE_INFINITY</name></name></expr>;  <comment type="line">// max score seen in any doclist</comment>
+  <expr><specifier>private</specifier> <name>float</name> <name>maxScore</name> <operator>=</operator> <name><name>Float</name><operator>.</operator><name>NaN</name></name></expr>;  <comment type="line">// max score seen in any doclist</comment>
+   <expr><specifier>private</specifier> <name>boolean</name> <name>signalCacheWarning</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+   <expr><specifier>private</specifier> <name>TimeLimitingCollector</name> <name>timeLimitingCollector</name></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">311</literal></expr>,<expr><literal type="number">16</literal> <operator>+</operator><literal type="number">310</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+     <expr><name>boolean</name> <name>cacheScores</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+     <comment type="line">// NOTE: Change this when withinGroupSort can be specified per group</comment>
+     <if_stmt><if>if <condition>(<expr><operator>!</operator><name>needScores</name> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>commands</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>commands</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><name>withinGroupSort</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>cacheScores</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else <block>{<block_content>
+        <for>for <control>(<init><decl><type><name>SortField</name></type> <name>field</name> <range>: <expr><call><name><name>commands</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name><name>withinGroupSort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>field</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>SortField</name><operator>.</operator><name>Type</name><operator>.</operator><name>SCORE</name></name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>cacheScores</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <break>break;</break>
+          <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for></block_content></block></else></if_stmt>}</block></expr></expr_stmt>
+        }
+      }
+      <decl_stmt><decl><type><name>Sort</name></type> <name>withinGroupSort</name> <init>= <expr><call><name><name>commands</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><name>withinGroupSort</name></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name>cacheScores</name> <operator>=</operator> <name>withinGroupSort</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>withinGroupSort</name><operator>.</operator><name>needsScores</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     } else <if_stmt><if>if <condition>(<expr><name>needScores</name></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><name>cacheScores</name> <operator>=</operator> <name>needScores</name></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">638</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">629</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+       }</block>
+ 
+       <name>float</name> <name>score</name> <operator>=</operator> <name><name>groups</name><operator>.</operator><name>maxScore</name></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>maxScore</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><name>maxScore</name></expr></argument>, <argument><expr><name>score</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>maxScore</name> <operator>=</operator> <call><name>maxAvoidNaN</name><argument_list>(<argument><expr><name>score</name></expr></argument>, <argument><expr><name>maxScore</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>DocSlice</name></type> <name>docs</name> <init>= <expr><operator>new</operator> <call><name>DocSlice</name><argument_list>(<argument><expr><name>off</name></expr></argument>, <argument><expr><call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name><name>ids</name><operator>.</operator><name>length</name></name> <operator>-</operator> <name>off</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>ids</name></expr></argument>, <argument><expr><name>scores</name></expr></argument>, <argument><expr><name><name>groups</name><operator>.</operator><name>totalHits</name></name></expr></argument>, <argument><expr><name>score</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <if_stmt><if>if <condition>(<expr><name>getDocList</name></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">661</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">652</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+       <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>Float</name></argument>&gt;</argument_list></name> <name>scores</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+       <name>int</name> <name>docsToGather</name> <operator>=</operator> <call><name>getMax</name><argument_list>(<argument><expr><name>offset</name></expr></argument>, <argument><expr><name>numGroups</name></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>int</name></type> <name>docsGathered</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>float</name></type> <name>maxScore</name> <init>= <expr><name><name>Float</name><operator>.</operator><name>NEGATIVE_INFINITY</name></name></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>float</name></type> <name>maxScore</name> <init>= <expr><name><name>Float</name><operator>.</operator><name>NaN</name></name></expr></init></decl>;</decl_stmt>
+ 
+       <label><name>outer</name>:</label>
+       <for>for <control>(<init><decl><type><name>GroupDocs</name></type> <name>group</name> <range>: <expr><name>groups</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>group</name><operator>.</operator><name>maxScore</name></name> <operator>&gt;</operator> <name>maxScore</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>maxScore</name> <operator>=</operator> <name><name>group</name><operator>.</operator><name>maxScore</name></name></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name>maxScore</name> <operator>=</operator> <call><name>maxAvoidNaN</name><argument_list>(<argument><expr><name>maxScore</name></expr></argument>, <argument><expr><name><name>group</name><operator>.</operator><name>maxScore</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+         <for>for <control>(<init><decl><type><name>ScoreDoc</name></type> <name>scoreDoc</name> <range>: <expr><name><name>group</name><operator>.</operator><name>scoreDocs</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+           <if_stmt><if>if <condition>(<expr><name>docsGathered</name> <operator>&gt;=</operator> <name>docsToGather</name></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">696</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">685</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+ 
+   }</block>
+ 
+  <comment type="block" format="javadoc">/** Differs from {@link Math#max(float, float)} in that if only one side is NaN, we return the other. */</comment>
+  <specifier>private</specifier> <name>float</name> <call><name>maxAvoidNaN</name><argument_list>(<argument><expr><name>float</name> <name>valA</name></expr></argument>, <argument><expr><name>float</name> <name>valB</name></expr></argument>)</argument_list></call> <block>{
+    <if_stmt><if>if <condition>(<expr><call><name><name>Float</name><operator>.</operator><name>isNaN</name></name><argument_list>(<argument><expr><name>valA</name></expr></argument>)</argument_list></call> <operator>||</operator> <name>valB</name> <operator>&gt;</operator> <name>valA</name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name>valB</name></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <return>return <expr><name>valA</name></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  }</block></expr></expr_stmt>
+
+   <comment type="block" format="javadoc">/**
+    * A group command for grouping on a field.
+    */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">759</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">757</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+ 
+       <expr><name>int</name> <name>groupedDocsToCollect</name> <operator>=</operator> <call><name>getMax</name><argument_list>(<argument><expr><name>groupOffset</name></expr></argument>, <argument><expr><name>docsPerGroup</name></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>)</argument_list></call></expr>;
+       <name>groupedDocsToCollect</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><name>groupedDocsToCollect</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>Sort</name></type> <name>withinGroupSort</name> <init>= <expr><ternary><condition><expr><name><name>this</name><operator>.</operator><name>withinGroupSort</name></name> <operator>!=</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name><name>this</name><operator>.</operator><name>withinGroupSort</name></name></expr> </then><else>: <expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><name>secondPass</name> <operator>=</operator> <operator>new</operator> <call><name>TermSecondPassGroupingCollector</name><argument_list>(
+           <argument><expr><name>groupBy</name></expr></argument>, <argument><expr><name>topGroups</name></expr></argument>, <argument><expr><name>groupSort</name></expr></argument>, <argument><expr><name>withinGroupSort</name></expr></argument>, <argument><expr><name>groupedDocsToCollect</name></expr></argument>, <argument><expr><name>needScores</name></expr></argument>, <argument><expr><name>needScores</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>
+       )</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">776</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">775</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+      <expr><operator>*</operator><operator>/</operator>
+     @<name>Override</name>
+     <specifier>public</specifier> <name><name>AbstractAllGroupHeadsCollector</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name> <call><name>createAllGroupCollector</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><name>Sort</name> <name>sortWithinGroup</name> <operator>=</operator> <name>withinGroupSort</name> <operator>!=</operator> <literal type="null">null</literal> <operator>?</operator> <name>withinGroupSort</name></expr></block></expr></argument></throws> <operator>:</operator> <operator>new</operator> <call><name>Sort</name><argument_list>()</argument_list></call></expr>;
+      <name>Sort</name> <name>sortWithinGroup</name> <operator>=</operator> <ternary><condition><expr><name>withinGroupSort</name> <operator>!=</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name>withinGroupSort</name></expr> </then><else>: <expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></else></ternary></block></expr>;</expr_stmt>
+       <return>return <expr><call><name><name>TermAllGroupHeadsCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>groupBy</name></expr></argument>, <argument><expr><name>sortWithinGroup</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">882</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">881</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+ 
+     <expr><name>TopDocsCollector</name> <call><name>newCollector</name><argument_list>(<argument><expr><name>Sort</name> <name>sort</name></expr></argument>, <argument><expr><name>boolean</name> <name>needScores</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+       <expr><name>int</name> <name>groupDocsToCollect</name> <operator>=</operator> <call><name>getMax</name><argument_list>(<argument><expr><name>groupOffset</name></expr></argument>, <argument><expr><name>docsPerGroup</name></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</block></expr></expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>sort</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name>sort</name> <operator>==</operator> <name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>sort</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>sort</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+         <return>return <expr><call><name><name>TopScoreDocCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>groupDocsToCollect</name></expr></argument>)</argument_list></call></expr>;</return>
+       </block_content>}</block></if> <else>else <block>{<block_content>
+         <return>return <expr><call><name><name>TopFieldCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><call><name><name>searcher</name><operator>.</operator><name>weightSort</name></name><argument_list>(<argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>groupDocsToCollect</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>needScores</name></expr></argument>, <argument><expr><name>needScores</name></expr></argument>)</argument_list></call></expr>;</return>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">979</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">978</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+ 
+       <expr><name>int</name> <name>groupdDocsToCollect</name> <operator>=</operator> <call><name>getMax</name><argument_list>(<argument><expr><name>groupOffset</name></expr></argument>, <argument><expr><name>docsPerGroup</name></expr></argument>, <argument><expr><name>maxDoc</name></expr></argument>)</argument_list></call></expr>;
+       <name>groupdDocsToCollect</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><name>groupdDocsToCollect</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>Sort</name></type> <name>withinGroupSort</name> <init>= <expr><ternary><condition><expr><name><name>this</name><operator>.</operator><name>withinGroupSort</name></name> <operator>!=</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name><name>this</name><operator>.</operator><name>withinGroupSort</name></name></expr> </then><else>: <expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><name>secondPass</name> <operator>=</operator> <operator>new</operator> <call><name>FunctionSecondPassGroupingCollector</name><argument_list>(
+           <argument><expr><name>topGroups</name></expr></argument>, <argument><expr><name>groupSort</name></expr></argument>, <argument><expr><name>withinGroupSort</name></expr></argument>, <argument><expr><name>groupdDocsToCollect</name></expr></argument>, <argument><expr><name>needScores</name></expr></argument>, <argument><expr><name>needScores</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>groupBy</name></expr></argument>, <argument><expr><name>context</name></expr></argument>
+       )</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">993</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">993</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Grouping</name> <block>{
+ 
+     @<expr><name>Override</name>
+     <specifier>public</specifier> <name><name>AbstractAllGroupHeadsCollector</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name> <call><name>createAllGroupCollector</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><name>Sort</name> <name>sortWithinGroup</name> <operator>=</operator> <name>withinGroupSort</name> <operator>!=</operator> <literal type="null">null</literal> <operator>?</operator> <name>withinGroupSort</name></expr></block></expr></argument></throws> <operator>:</operator> <operator>new</operator> <call><name>Sort</name><argument_list>()</argument_list></call></expr>;
+      <name>Sort</name> <name>sortWithinGroup</name> <operator>=</operator> <ternary><condition><expr><name>withinGroupSort</name> <operator>!=</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name>withinGroupSort</name></expr> </then><else>: <expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></else></ternary></block></expr>;</expr_stmt>
+       <return>return <expr><operator>new</operator> <call><name>FunctionAllGroupHeadsCollector</name><argument_list>(<argument><expr><name>groupBy</name></expr></argument>, <argument><expr><name>context</name></expr></argument>, <argument><expr><name>sortWithinGroup</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></else></if_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>SearchGroupShardResponseProcessor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>SearchGroupShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">79f87b768c7</literal><operator>..</operator><name>fac56966cca</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>SearchGroupShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>SearchGroupShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>SearchGroupShardResponseProcessor</name> implements <name>ShardResponseProcessor</name>
+     <name>SortSpec</name> <name>ss</name> <operator>=</operator> <call><name><name>rb</name><operator>.</operator><name>getSortSpec</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>Sort</name></type> <name>groupSort</name> <init>= <expr><call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getGroupSort</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>fields</name> <init>= <expr><call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getFields</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Sort</name></type> <name>sortWithinGroup</name> <init>= <expr><call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSortWithinGroup</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>sortWithinGroup</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content> <comment type="line">// TODO prevent it from being null in the first place</comment>
+      <expr_stmt><expr><name>sortWithinGroup</name> <operator>=</operator> <name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+ 
+     <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name><name>SearchGroup</name><argument_list type="generic">&lt;<argument><name>BytesRef</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>commandSearchGroups</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name><name>SearchGroup</name><argument_list type="generic">&lt;<argument><name>BytesRef</name></argument>&gt;</argument_list></name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>tempSearchGroupToShards</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">106</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">110</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>SearchGroupShardResponseProcessor</name> implements <name>ShardResponseProcessor</name>
+         <name>maxElapsedTime</name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><name>maxElapsedTime</name></expr></argument>, <argument><expr><call><name><name>srsp</name><operator>.</operator><name>getSolrResponse</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getElapsedTime</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <decl_stmt><decl><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unchecked"</literal></expr></argument>)</argument_list></annotation>
+         <type><name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>NamedList</name></argument>&gt;</argument_list></name></type> <name>firstPhaseResult</name> <init>= <expr><operator>(</operator><name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>NamedList</name></argument>&gt;</argument_list></name><operator>)</operator> <call><name><name>srsp</name><operator>.</operator><name>getSolrResponse</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getResponse</name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"firstPhase"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>final</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>SearchGroupsFieldCommandResult</name></argument>&gt;</argument_list></name></type> <name>result</name> <init>= <expr><call><name><name>serializer</name><operator>.</operator><name>transformToNative</name></name><argument_list>(<argument><expr><name>firstPhaseResult</name></expr></argument>, <argument><expr><name>groupSort</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>srsp</name><operator>.</operator><name>getShard</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>final</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>SearchGroupsFieldCommandResult</name></argument>&gt;</argument_list></name></type> <name>result</name> <init>= <expr><call><name><name>serializer</name><operator>.</operator><name>transformToNative</name></name><argument_list>(<argument><expr><name>firstPhaseResult</name></expr></argument>, <argument><expr><name>groupSort</name></expr></argument>, <argument><expr><name>sortWithinGroup</name></expr></argument>, <argument><expr><call><name><name>srsp</name><operator>.</operator><name>getShard</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <for>for <control>(<init><decl><type><name>String</name></type> <name>field</name> <range>: <expr><call><name><name>commandSearchGroups</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+           <decl_stmt><decl><type><specifier>final</specifier> <name>SearchGroupsFieldCommandResult</name></type> <name>firstPhaseCommandResult</name> <init>= <expr><call><name><name>result</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>TopGroupsShardResponseProcessor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>TopGroupsShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7c564b92838</literal><operator>..</operator><name>abe4cc2e562</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>TopGroupsShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>responseprocessor</name><operator>/</operator><name><name>TopGroupsShardResponseProcessor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">61</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">61</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>TopGroupsShardResponseProcessor</name> implements <name>ShardResponseProcessor</name> <block>{
+     <expr><name><name>String</name><index>[]</index></name> <name>fields</name> <operator>=</operator> <call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getFields</name><argument_list>()</argument_list></call></expr>;
+     <name><name>String</name><index>[]</index></name> <name>queries</name> <operator>=</operator> <call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getQueries</name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>Sort</name></type> <name>sortWithinGroup</name> <init>= <expr><call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSortWithinGroup</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>sortWithinGroup</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content> <comment type="line">// TODO prevent it from being null in the first place</comment>
+      <expr_stmt><expr><name>sortWithinGroup</name> <operator>=</operator> <name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+ 
+     <comment type="line">// If group.format=simple group.offset doesn't make sense</comment>
+     <decl_stmt><decl><type><name>int</name></type> <name>groupOffsetDefault</name></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">173</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">176</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TopGroupsShardResponseProcessor</name> implements <name>ShardResponseProcessor</name> <block>{
+ 
+         <expr><name>int</name> <name>topN</name> <operator>=</operator> <call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getOffset</name><argument_list>()</argument_list></call> <operator>+</operator> <call><name><name>rb</name><operator>.</operator><name>getGroupingSpec</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getLimit</name><argument_list>()</argument_list></call></expr>;
+         <name>final</name> <name>TopDocs</name> <name>mergedTopDocs</name></block></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>sortWithinGroup</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>sortWithinGroup</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>Sort</name><operator>.</operator><name>RELEVANCE</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><name>mergedTopDocs</name> <operator>=</operator> <call><name><name>TopDocs</name><operator>.</operator><name>merge</name></name><argument_list>(<argument><expr><name>topN</name></expr></argument>, <argument><expr><call><name><name>topDocs</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>TopDocs</name><index>[<expr><call><name><name>topDocs</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if> <else>else <block>{<block_content>
+           <expr_stmt><expr><name>mergedTopDocs</name> <operator>=</operator> <call><name><name>TopDocs</name><operator>.</operator><name>merge</name></name><argument_list>(<argument><expr><name>sortWithinGroup</name></expr></argument>, <argument><expr><name>topN</name></expr></argument>, <argument><expr><call><name><name>topDocs</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>TopFieldDocs</name><index>[<expr><call><name><name>topDocs</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>shardresultserializer</name><operator>/</operator><name><name>TopGroupsResultTransformer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>shardresultserializer</name><operator>/</operator><name><name>TopGroupsResultTransformer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>df0aaf1c2fd</name><operator>..</operator><literal type="number">9589896cc14</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>shardresultserializer</name><operator>/</operator><name><name>TopGroupsResultTransformer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>grouping</name><operator>/</operator><name>distributed</name><operator>/</operator><name>shardresultserializer</name><operator>/</operator><name><name>TopGroupsResultTransformer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>grouping</name><operator>.</operator><name>distributed</name><operator>.</operator><name>shardresultserializer</name></name>;</package>
+  <expr_stmt><expr><operator>*</operator> <name>limitations</name> <name>under</name> <name>the</name> <name><name>License</name><operator>.</operator></name>
+  *<operator>/</operator></expr></expr_stmt>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>DocumentStoredFieldVisitor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>StoredDocument</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>FieldDoc</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TopFieldDocs</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>grouping</name><operator>.</operator><name>GroupDocs</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>grouping</name><operator>.</operator><name>TopGroups</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>CharsRef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>UnicodeUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>NamedList</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>handler</name><operator>.</operator><name>component</name><operator>.</operator><name>ResponseBuilder</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>handler</name><operator>.</operator><name>component</name><operator>.</operator><name>ShardDoc</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">42</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">46</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>search</name><operator>.</operator><name>grouping</name><operator>.</operator><name>distributed</name><operator>.</operator><name>command</name><operator>.</operator><name>TopGroupsFieldCommand</name></name>
+ <name>import</name> <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import></block_content></block></else></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></for></block_content></block></for></block_content></block></if></if_stmt>
+
+ <comment type="block" format="javadoc">/**
+  * Implementation for transforming {@link TopGroups} and {@link TopDocs} into a {@link NamedList} structure and
+  * visa versa.
+@@ -110,40 +108,9 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+ 
+         @SuppressWarnings("unchecked")
+         List&lt;NamedList&lt;Object&gt;&gt; documents = (List&lt;NamedList&lt;Object&gt;&gt;) commandResult.get("documents");
+        ScoreDoc[] scoreDocs = new ScoreDoc[documents.size()];
+        int j = 0;
+        for (NamedList&lt;Object&gt; document : documents) {
+          Object docId = document.get("id");
+          Object uniqueId = null;
+          if (docId != null)
+            uniqueId = docId.toString();
+          else
+            log.warn("doc {} has null 'id'", document);
+          Float score = (Float) document.get("score");
+          if (score == null) {
+            score = Float.NaN;
+          }
+          Object[] sortValues = null;
+          Object sortValuesVal = document.get("sortValues");
+          if (sortValuesVal != null) {
+            sortValues = ((List) sortValuesVal).toArray();
+            for (int k = 0; k &lt; sortValues.length; k++) {
+              SchemaField field = groupSort.getSort()[k].getField() != null ? schema.getFieldOrNull(groupSort.getSort()[k].getField()) : null;
+              if (field != null) {
+                FieldType fieldType = field.getType();
+                if (sortValues[k] != null) {
+                  sortValues[k] = fieldType.unmarshalSortValue(sortValues[k]);
+                }
+              }
+            }
+          }
+          else {
+            log.warn("doc {} has null 'sortValues'", document);
+          }
+          scoreDocs[j++] = new ShardDoc(score, sortValues, uniqueId, shard);
+        }
+        ScoreDoc[] scoreDocs = transformToNativeShardDoc(documents, groupSort, shard, schema);
+         final TopDocs topDocs;
+        if (sortWithinGroup == null) {
+        if (sortWithinGroup.equals(Sort.RELEVANCE)) {
+           topDocs = new TopDocs(totalHits, scoreDocs, maxScore);
+         } else {
+           topDocs = new TopFieldDocs(totalHits, scoreDocs, sortWithinGroup.getSort(), maxScore);
+@@ -167,26 +134,7 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+ 
+         @SuppressWarnings("unchecked")
+         List&lt;NamedList&lt;Object&gt;&gt; documents = (List&lt;NamedList&lt;Object&gt;&gt;) groupResult.get("documents");
+        ScoreDoc[] scoreDocs = new ScoreDoc[documents.size()];
+        int j = 0;
+        for (NamedList&lt;Object&gt; document : documents) {
+          Object uniqueId = document.get("id").toString();
+          Float score = (Float) document.get("score");
+          if (score == null) {
+            score = Float.NaN;
+          }
+          Object[] sortValues = ((List) document.get("sortValues")).toArray();
+          for (int k = 0; k &lt; sortValues.length; k++) {
+            SchemaField field = sortWithinGroup.getSort()[k].getField() != null ? schema.getFieldOrNull(sortWithinGroup.getSort()[k].getField()) : null;
+            if (field != null) {
+              FieldType fieldType = field.getType();
+              if (sortValues[k] != null) {
+                sortValues[k] = fieldType.unmarshalSortValue(sortValues[k]);
+              }
+            }
+          }
+          scoreDocs[j++] = new ShardDoc(score, sortValues, uniqueId, shard);
+        }
+        ScoreDoc[] scoreDocs = transformToNativeShardDoc(documents, groupSort, shard, schema);
+ 
+         BytesRef groupValueRef = groupValue != null ? new BytesRef(groupValue) : null;
+         groupDocs.add(new GroupDocs&lt;&gt;(Float.NaN, maxScore, totalGroupHits, scoreDocs, groupValueRef, null));
+@@ -204,6 +152,43 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+     return result;
+   }
+ 
+  protected ScoreDoc[] transformToNativeShardDoc(List&lt;NamedList&lt;Object&gt;&gt; documents, Sort groupSort, String shard,
+                                                 IndexSchema schema) {
+    ScoreDoc[] scoreDocs = new ScoreDoc[documents.size()];
+    int j = 0;
+    for (NamedList&lt;Object&gt; document : documents) {
+      Object docId = document.get("id");
+      if (docId != null) {
+        docId = docId.toString();
+      } else {
+        log.error("doc {} has null 'id'", document);
+      }
+      Float score = (Float) document.get("score");
+      if (score == null) {
+        score = Float.NaN;
+      }
+      Object[] sortValues = null;
+      Object sortValuesVal = document.get("sortValues");
+      if (sortValuesVal != null) {
+        sortValues = ((List) sortValuesVal).toArray();
+        for (int k = 0; k &lt; sortValues.length; k++) {
+          SchemaField field = groupSort.getSort()[k].getField() != null
+              ? schema.getFieldOrNull(groupSort.getSort()[k].getField()) : null;
+          if (field != null) {
+            FieldType fieldType = field.getType();
+            if (sortValues[k] != null) {
+              sortValues[k] = fieldType.unmarshalSortValue(sortValues[k]);
+            }
+          }
+        }
+      } else {
+        log.debug("doc {} has null 'sortValues'", document);
+      }
+      scoreDocs[j++] = new ShardDoc(score, sortValues, docId, shard);
+    }
+    return scoreDocs;
+  }
+
+   protected NamedList serializeTopGroups(TopGroups&lt;BytesRef&gt; data, SchemaField groupField) throws IOException {
+     NamedList&lt;Object&gt; result = new NamedList&lt;&gt;();
+     result.add("totalGroupedHitCount", data.totalGroupedHitCount);
+@@ -211,7 +196,6 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+     if (data.totalGroupCount != null) {
+       result.add("totalGroupCount", data.totalGroupCount);
+     }
+    CharsRef spare = new CharsRef();
+ 
+     final IndexSchema schema = rb.req.getSearcher().getSchema();
+     SchemaField uniqueField = schema.getUniqueKeyField();
+@@ -233,7 +217,7 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+           document.add("score", searchGroup.scoreDocs[i].score);
+         }
+         if (!(searchGroup.scoreDocs[i] instanceof FieldDoc)) {
+          continue;
+          continue; // thus don't add sortValues below
+         }
+ 
+         FieldDoc fieldDoc = (FieldDoc) searchGroup.scoreDocs[i];
+@@ -264,7 +248,8 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+     NamedList&lt;Object&gt; queryResult = new NamedList&lt;&gt;();
+     queryResult.add("matches", result.getMatches());
+     queryResult.add("totalHits", result.getTopDocs().totalHits);
+    if (rb.getGroupingSpec().isNeedScore()) {
+    // debug: assert !Float.isNaN(result.getTopDocs().getMaxScore()) == rb.getGroupingSpec().isNeedScore();
+    if (!Float.isNaN(result.getTopDocs().getMaxScore())) {
+       queryResult.add("maxScore", result.getTopDocs().getMaxScore());
+     }
+     List&lt;NamedList&gt; documents = new ArrayList&lt;&gt;();
+@@ -272,18 +257,17 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+ 
+     final IndexSchema schema = rb.req.getSearcher().getSchema();
+     SchemaField uniqueField = schema.getUniqueKeyField();
+    CharsRef spare = new CharsRef();
+     for (ScoreDoc scoreDoc : result.getTopDocs().scoreDocs) {
+       NamedList&lt;Object&gt; document = new NamedList&lt;&gt;();
+       documents.add(document);
+ 
+       StoredDocument doc = retrieveDocument(uniqueField, scoreDoc.doc);
+       document.add("id", uniqueField.getType().toExternal(doc.getField(uniqueField.getName())));
+      if (rb.getGroupingSpec().isNeedScore())  {
+      if (!Float.isNaN(scoreDoc.score))  {
+         document.add("score", scoreDoc.score);
+       }
+       if (!FieldDoc.class.isInstance(scoreDoc)) {
+        continue;
+        continue; // thus don't add sortValues below
+       }
+ 
+       FieldDoc fieldDoc = (FieldDoc) scoreDoc;
+@@ -291,7 +275,7 @@ public class TopGroupsResultTransformer implements ShardResultTransformer&lt;List&lt;C
+       for (int j = 0; j &lt; fieldDoc.fields.length; j++) {
+         Object sortValue  = fieldDoc.fields[j];
+         Sort groupSort = rb.getGroupingSpec().getGroupSort();
+        SchemaField field = groupSort.getSort()[j].getField() != null 
+        SchemaField field = groupSort.getSort()[j].getField() != null
+                           ? schema.getFieldOrNull(groupSort.getSort()[j].getField()) : null;
+         if (field != null) {
+           FieldType fieldType = field.getType();
+diff --git a/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java b/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+index db290c4d837..bce93c012c2 100644
+-- a/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+++ b/solr/core/src/test/org/apache/solr/TestDistributedGrouping.java
+@@ -259,10 +259,12 @@ public class TestDistributedGrouping extends BaseDistributedSearchTestCase {
+     assertEquals(shardsArr.length, groupCount);
+ 
+ 
+    // We cannot validate distributed grouping with scoring as first sort. since there is no global idf. We can check if no errors occur
+    simpleQuery("q", "*:*", "rows", 100, "fl", "id," + i1, "group", "true", "group.field", i1, "group.limit", 10, "sort", i1 + " desc", "group.sort", "score desc"); // SOLR-2955
+    simpleQuery("q", "*:*", "rows", 100, "fl", "id," + i1, "group", "true", "group.field", i1, "group.limit", 10, "sort", "score desc, _docid_ asc, id asc");
+    simpleQuery("q", "*:*", "rows", 100, "fl", "id," + i1, "group", "true", "group.field", i1, "group.limit", 10);
+    // We validate distributed grouping with scoring as first sort.
+    // note: this 'q' matches all docs and returns the 'id' as the score, which is unique and so our results should be deterministic.
+    handle.put("maxScore", SKIP);// TODO see SOLR-6612
+    query("q", "{!func}id", "rows", 100, "fl", "score,id," + i1, "group", "true", "group.field", i1, "group.limit", 10, "sort", i1 + " desc", "group.sort", "score desc"); // SOLR-2955
+    query("q", "{!func}id", "rows", 100, "fl", "score,id," + i1, "group", "true", "group.field", i1, "group.limit", 10, "sort", "score desc, _docid_ asc, id asc");
+    query("q", "{!func}id", "rows", 100, "fl", "score,id," + i1, "group", "true", "group.field", i1, "group.limit", 10);
+ 
+     // Can't validate the response, but can check if no errors occur.
+     simpleQuery("q", "*:*", "rows", 100, "fl", "id," + i1, "group", "true", "group.query", t1 + ":kings OR " + t1 + ":eggs", "group.limit", 10, "sort", i1 + " asc, id asc", CommonParams.TIME_ALLOWED, 1);
+diff --git a/solr/test-framework/src/java/org/apache/solr/BaseDistributedSearchTestCase.java b/solr/test-framework/src/java/org/apache/solr/BaseDistributedSearchTestCase.java
+index 89a12ea1315..2bad5ff89e4 100644
+-- a/solr/test-framework/src/java/org/apache/solr/BaseDistributedSearchTestCase.java
+++ b/solr/test-framework/src/java/org/apache/solr/BaseDistributedSearchTestCase.java
+@@ -778,10 +778,11 @@ public abstract class BaseDistributedSearchTestCase extends SolrTestCaseJ4 {
+ 
+     String cmp;
+     int f = flags(handle, "maxScore");
+    if ((f &amp; SKIPVAL) == 0) {
+    if (f == 0) {
+       cmp = compare(a.getMaxScore(), b.getMaxScore(), 0, handle);
+       if (cmp != null) return ".maxScore" + cmp;
+    } else {
+    } else if ((f &amp; SKIP) == 0) { // so we skip val but otherwise both should be present
+      assert (f &amp; SKIPVAL) != 0;
+       if (b.getMaxScore() != null) {
+         if (a.getMaxScore() == null) {
+           return ".maxScore missing";
+- 
+2.19.1.windows.1
+
+</comment></unit>

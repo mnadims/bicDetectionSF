@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/a2c2d38aa.java"><expr_stmt><expr><name>From</name> <name>a2c2d38aa248056c1cf592e8a2a0ada17eb518e2</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Keith</name> <name><name>Turner</name> <argument_list type="generic">&lt;<argument><name>kturner</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">19</literal> <name>Jan</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">55</literal><operator>:</operator><literal type="number">34</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">4098</literal> <name>Fixed</name> <name>bug</name> <name>with</name> <name>ByteBuffers</name> <name>thats</name></expr></expr_stmt> <do>do<block type="pseudo"><block_content> <expr_stmt><expr><name>not</name> <name>start</name>
+ <name>at</name> <literal type="number">0</literal>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBufferTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">56</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">58</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">2</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBufferTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">6947d64f6</literal><operator>..</operator><name>f35361384</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">118</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">118</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>UnsynchronizedBuffer</name> <block>{
+     }</block>
+ 
+     <specifier>public</specifier> <call><name>Reader</name><argument_list>(<argument><expr><name>ByteBuffer</name> <name>buffer</name></expr></argument>)</argument_list></call> <block>{
+      <if_stmt><if>if <condition>(<expr><call><name><name>buffer</name><operator>.</operator><name>hasArray</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>offset</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>arrayOffset</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>buffer</name><operator>.</operator><name>hasArray</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>buffer</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name> <operator>==</operator> <call><name><name>buffer</name><operator>.</operator><name>arrayOffset</name></name><argument_list>()</argument_list></call> <operator>+</operator> <call><name><name>buffer</name><operator>.</operator><name>limit</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>offset</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>arrayOffset</name></name><argument_list>()</argument_list></call> <operator>+</operator> <call><name><name>buffer</name><operator>.</operator><name>position</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>data</name> <operator>=</operator> <call><name><name>buffer</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr></expr_stmt></block_content></block> <if_stmt><else>else <block>{<block_content>
+         <expr_stmt><expr><name>data</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><call><name><name>buffer</name><operator>.</operator><name>remaining</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBufferTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBufferTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..64162194a</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>util</name><operator>/</operator><name><name>UnsynchronizedBufferTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">56</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>util</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>ByteBuffer</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Rule</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>rules</name><operator>.</operator><name>ExpectedException</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Charsets</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>UnsynchronizedBufferTest</name> <block>{
+
+  <decl_stmt><decl><annotation>@<name>Rule</name></annotation>
+  <type><specifier>public</specifier> <name>ExpectedException</name></type> <name>thrown</name> <init>= <expr><call><name><name>ExpectedException</name><operator>.</operator><name>none</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testByteBufferConstructor</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>test</name> <init>= <expr><literal type="string">"0123456789"</literal><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><name><name>Charsets</name><operator>.</operator><name>UTF_8</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>ByteBuffer</name></type> <name>bb1</name> <init>= <expr><call><name><name>ByteBuffer</name><operator>.</operator><name>wrap</name></name><argument_list>(<argument><expr><name>test</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>Reader</name></name></type> <name>ub</name> <init>= <expr><operator>new</operator> <call><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>bb1</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>buf</name> <init>= <expr><operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">10</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>ub</name><operator>.</operator><name>readBytes</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="string">"0123456789"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>String</name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><name><name>Charsets</name><operator>.</operator><name>UTF_8</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>ByteBuffer</name></type> <name>bb2</name> <init>= <expr><call><name><name>ByteBuffer</name><operator>.</operator><name>wrap</name></name><argument_list>(<argument><expr><name>test</name></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name>ub</name> <operator>=</operator> <operator>new</operator> <call><name><name>UnsynchronizedBuffer</name><operator>.</operator><name>Reader</name></name><argument_list>(<argument><expr><name>bb2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>buf</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">5</literal></expr>]</index></name></expr>;</expr_stmt>
+    <comment type="line">// should read data from offset 3 where the byte buffer starts</comment>
+    <expr_stmt><expr><call><name><name>ub</name><operator>.</operator><name>readBytes</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="string">"34567"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>String</name><argument_list>(<argument><expr><name>buf</name></expr></argument>, <argument><expr><name><name>Charsets</name><operator>.</operator><name>UTF_8</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>buf</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">6</literal></expr>]</index></name></expr>;</expr_stmt>
+    <comment type="line">// the byte buffer has the extra byte, but should not be able to read it...</comment>
+    <expr_stmt><expr><call><name><name>thrown</name><operator>.</operator><name>expect</name></name><argument_list>(<argument><expr><name><name>ArrayIndexOutOfBoundsException</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>ub</name><operator>.</operator><name>readBytes</name></name><argument_list>(<argument><expr><name>buf</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></else></if_stmt></do>
+
+</unit>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/accf46005.java"><expr><name>From</name> <name>accf4600511a63f7b0d6559b8e24ee40912c9341</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Julian</name> <name><name>Reschke</name> <argument_list type="generic">&lt;<argument><name>reschke</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">21</literal> <name>Oct</name> <literal type="number">2011</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">50</literal><operator>:</operator><literal type="number">46</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">3115</literal><operator>:</operator> <name>Versioning</name> <name>fixup</name> <name>leaves</name> <name>persistence</name> <name>in</name> <name>a</name> <name>state</name>
+ <name>where</name> <name>the</name> <name>node</name> <name>can</name><literal type="char">'</literal></expr>t be made versionable again
+
+Modify checker to also inspect "candidate" version histories (additional test case)
+
+git-svn-id: https://svn.apache.org/repos/asf/jackrabbit/trunk@1187345 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../core/persistence/AutoFixCorruptNode.java  | 87 ++++++++++++++++++-
+ 1 file changed, 85 insertions(+), 2 deletions(-)
+
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/persistence/AutoFixCorruptNode.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/persistence/AutoFixCorruptNode.java
+index 302285405..104311332 100644
+-- a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/persistence/AutoFixCorruptNode.java
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/persistence/AutoFixCorruptNode.java
+@@ -101,7 +101,6 @@ public class AutoFixCorruptNode extends TestCase {
+         try {
+             Node root = s.getRootNode();
+ 
+            // add nodes /test and /test/missing
+             Node test = root.addNode("test");
+             test.addMixin("mix:versionable");
+ 
+@@ -114,7 +113,6 @@ public class AutoFixCorruptNode extends TestCase {
+ 
+             Node brokenNode = vhr;
+             String vhrRootVersionId = vhr.getNode("jcr:rootVersion").getIdentifier();
+            
+             UUID destroy = UUID.fromString(brokenNode.getIdentifier());
+             s.logout();
+             
+@@ -168,6 +166,10 @@ public class AutoFixCorruptNode extends TestCase {
+             report = TestHelper.checkVersionStoreConsistency(s, false);
+             assertTrue("Some problems should have been fixed but are not: " + report, report.getItems().size() &lt; reportitems);
+             
+            // get a fresh session
+            s.logout();
+            s = openSession(rep, false);
+
+             test = s.getRootNode().getNode("test");
+             // versioning should be disabled now
+             assertFalse(test.isNodeType("mix:versionable"));
+@@ -309,6 +311,87 @@ public class AutoFixCorruptNode extends TestCase {
+         }
+     }
+ 
+    // similar to above, but disconnects version history before damaging the repository
+    public void testMissingRootVersion2() throws Exception {
+
+        // new repository
+        TransientRepository rep = new TransientRepository(new File(TEST_DIR));
+        Session s = openSession(rep, false);
+
+        String oldVersionRecoveryProp = System
+                .getProperty("org.apache.jackrabbit.version.recovery");
+
+        try {
+            Node root = s.getRootNode();
+
+            // add nodes /test and /test/missing
+            Node test = root.addNode("test");
+            test.addMixin("mix:versionable");
+
+            s.save();
+
+            Node vhr = s.getWorkspace().getVersionManager()
+                    .getVersionHistory(test.getPath());
+
+            assertNotNull(vhr);
+
+            Node brokenNode = vhr.getNode("jcr:rootVersion");
+            String vhrId = vhr.getIdentifier();
+            
+            UUID destroy = UUID.fromString(brokenNode.getIdentifier());
+
+            // disable versioning
+            test.removeMixin("mix:versionable");
+            s.save();
+            
+            s.logout();
+            
+            
+            destroyBundle(destroy, "version");
+
+            s = openSession(rep, false);
+
+            ConsistencyReport report = TestHelper.checkVersionStoreConsistency(s, false);
+            assertTrue("Report should have reported broken nodes", !report.getItems().isEmpty());
+            
+            s.logout();
+
+            System.setProperty("org.apache.jackrabbit.version.recovery", "true");
+
+            s = openSession(rep, false);
+            s.logout();
+
+            s = openSession(rep, false);
+
+            test = s.getRootNode().getNode("test");
+            // versioning should still be disabled
+            assertFalse(test.isNodeType("mix:versionable"));
+            
+            // try to enable versioning again
+            test.addMixin("mix:versionable");
+            s.save();
+
+            Node oldVHR = s.getNodeByIdentifier(vhrId);
+            Node newVHR = s.getWorkspace().getVersionManager().getVersionHistory(test.getPath());
+
+            assertTrue("old and new version history path should be different: "
+                    + oldVHR.getPath() + " vs " + newVHR.getPath(), !oldVHR
+                    .getPath().equals(newVHR.getPath()));
+
+            // name should be same plus suffix
+            assertTrue(oldVHR.getName().startsWith(newVHR.getName()));
+            
+            // try a checkout / checkin
+            s.getWorkspace().getVersionManager().checkout(test.getPath());
+            s.getWorkspace().getVersionManager().checkin(test.getPath());
+        } finally {
+            s.logout();
+            System.setProperty("org.apache.jackrabbit.version.recovery",
+                    oldVersionRecoveryProp == null ? ""
+                            : oldVersionRecoveryProp);
+        }
+    }
+
+     public void testAutoFix() throws Exception {
+ 
+         // new repository
+- 
+2.19.1.windows.1
+
+</unit>

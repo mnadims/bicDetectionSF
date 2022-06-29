@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/e43561112.java"><expr_stmt><expr><name>From</name> <name>e435611127905f924dab9a8fdcd36c4518871ba7</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Josh</name> <name><name>Elser</name> <argument_list type="generic">&lt;<argument><name>elserj</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Dec</name> <literal type="number">2014</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">24</literal><operator>:</operator><literal type="number">55</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">3421</literal> <name>Retry</name> <name>initialization</name> <name>of</name> <name>trace</name> <name>client</name>
+
+<name>If</name> <name>we</name> <name>fail</name> <name>to</name> <name>connect</name> <name>to</name> <name>ZK</name></expr></expr_stmt> <for>for some reason<operator>,</operator>
+<expr_stmt><expr><name>we</name> <name>will</name> <name>never</name> <name>get</name> <name>the</name> <name>watcher</name> <name>set</name> <name>and</name> <name>tracing</name> <name>will</name>
+<name>never</name> <name>be</name> <name>initialized</name> <name><name>properly</name><operator>.</operator> <name>Add</name></name> <name>a</name> <name>simple</name> <name>retry</name>
+<name>to</name> <name>ensure</name> <name>that</name> <name>it</name> <name><name>happens</name><operator>.</operator></name>
+--
+ <name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>                         <operator>|</operator>  <literal type="number">5</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClient</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">53</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClientTest</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">42</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>log4j</name><operator>.</operator><name>properties</name></name>       <operator>|</operator> <literal type="number">21</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">114</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">7</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClientTest</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>log4j</name><operator>.</operator><name>properties</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <literal type="number">859a471e1</literal><operator>..</operator><name>ac9f45fde</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+@@ <operator>-</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@
+       <operator>&lt;</operator><name>artifactId</name><operator>&gt;</operator><name><name>junit</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>artifactId</name></argument>&gt;</argument_list></name>
+       <operator>&lt;</operator><name>scope</name><operator>&gt;</operator><name><name>test</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>scope</name></argument>&gt;</argument_list></name>
+     <operator>&lt;</operator><operator>/</operator><name>dependency</name><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name><operator>&gt;</operator>
+      <operator>&lt;</operator><name>groupId</name><operator>&gt;</operator><name><name>org</name><operator>.</operator><name><name>easymock</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>groupId</name></argument>&gt;</argument_list></name></name>
+      <operator>&lt;</operator><name>artifactId</name><operator>&gt;</operator><name><name>easymock</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>artifactId</name></argument>&gt;</argument_list></name>
+      <operator>&lt;</operator><name>scope</name><operator>&gt;</operator><name><name>test</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>scope</name></argument>&gt;</argument_list></name>
+    <operator>&lt;</operator><operator>/</operator><name>dependency</name><operator>&gt;</operator>
+     <operator>&lt;</operator><name>dependency</name><operator>&gt;</operator>
+       <operator>&lt;</operator><name>groupId</name><operator>&gt;</operator><name><name>org</name><operator>.</operator><name><name>slf4j</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>groupId</name></argument>&gt;</argument_list></name></name>
+       <operator>&lt;</operator><name>artifactId</name><operator>&gt;</operator><name>slf4j</name><operator>-</operator><name><name>log4j12</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>artifactId</name></argument>&gt;</argument_list></name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClient</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClient</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cfb65de37</name><operator>..</operator><literal type="number">7b3ee2e81</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClient</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClient</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">23</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@</expr></expr_stmt></for> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Random</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Executors</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ScheduledExecutorService</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>Constants</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>trace</name><operator>.</operator><name>DistributedTrace</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>fate</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>ZooReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>KeeperException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>WatchedEvent</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>Watcher</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>htrace</name><operator>.</operator><name>HTraceConfiguration</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ThreadFactoryBuilder</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  * Find a Span collector via zookeeper and push spans there via Thrift RPC
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">45</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZooTraceClient</name> extends <name>SendSpansViaThrift</name> implements <name>Watcher</name> <block>{
+   <expr><name>boolean</name> <name>pathExists</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+   <expr><name>final</name> <name>Random</name> <name>random</name> <operator>=</operator> <operator>new</operator> <call><name>Random</name><argument_list>()</argument_list></call></expr>;
+   <expr><name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>hosts</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+  <expr><name>long</name> <name>retryPause</name> <operator>=</operator> <literal type="number">5000l</literal></expr>;
+ 
+   <expr><specifier>public</specifier> <call><name>ZooTraceClient</name><argument_list>()</argument_list></call> <block>{
+     <expr><call><name>super</name><argument_list>()</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">54</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">61</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZooTraceClient</name> extends <name>SendSpansViaThrift</name> implements <name>Watcher</name> <block>{
+     <expr><call><name>super</name><argument_list>(<argument><expr><name>millis</name></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+  <comment type="line">// Visibile for testing</comment>
+  <specifier>protected</specifier> <name>void</name> <call><name>setRetryPause</name><argument_list>(<argument><expr><name>long</name> <name>pause</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>retryPause</name> <operator>=</operator> <name>pause</name></expr>;
+  }</block>
+
+   @<name>Override</name>
+   <specifier>synchronized</specifier> <specifier>protected</specifier> <name>String</name> <call><name>getSpanKey</name><argument_list>(<argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>ByteBuffer</name></argument>,<argument><name>ByteBuffer</name></argument>&gt;</argument_list></name> <name>data</name></expr></argument>)</argument_list></call> <block>{
+     <if_stmt><if>if <condition>(<expr><call><name><name>hosts</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">24</literal> <operator>+</operator><literal type="number">84</literal></expr><operator>,</operator><expr><literal type="number">51</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZooTraceClient</name> extends <name>SendSpansViaThrift</name> implements <name>Watcher</name> <block>{
+     <expr><name>int</name> <name>timeout</name> <operator>=</operator> <call><name><name>conf</name><operator>.</operator><name>getInt</name></name><argument_list>(<argument><expr><name><name>DistributedTrace</name><operator>.</operator><name>TRACER_ZK_TIMEOUT</name></name></expr></argument>, <argument><expr><name>DEFAULT_TIMEOUT</name></expr></argument>)</argument_list></call></expr>;
+     <name>zoo</name> <operator>=</operator> <operator>new</operator> <call><name>ZooReader</name><argument_list>(<argument><expr><name>keepers</name></expr></argument>, <argument><expr><name>timeout</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+     <expr_stmt><expr><name>path</name> <operator>=</operator> <call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>DistributedTrace</name><operator>.</operator><name>TRACER_ZK_PATH</name></name></expr></argument>, <argument><expr><name><name>Constants</name><operator>.</operator><name>ZTRACERS</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>process</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setInitialTraceHosts</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+   <expr_stmt/></block_content></block></if></if_stmt>}</block>
+ 
+   @<name>Override</name>
+   <specifier>public</specifier> <name>void</name> <call><name>process</name><argument_list>(<argument><expr><name>WatchedEvent</name> <name>event</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Processing event for trace server zk watch"</literal></expr></argument>)</argument_list></call></expr>;
+     <try>try <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>pathExists</name> <operator>||</operator> <call><name><name>zoo</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>pathExists</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>updateHosts</name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><call><name><name>zoo</name><operator>.</operator><name>getChildren</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt></block_content></block></try>}</block></expr> <if_stmt><else>else <block>{<block_content>
+        <expr_stmt><expr><call><name><name>zoo</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></else></if_stmt>}</block>
+      <call><name>updateHostsFromZooKeeper</name><argument_list>()</argument_list></call></expr>;
+     }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"unable to get destination hosts in zookeeper"</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></catch>
+   }
+ 
+  protected <function><type><name>void</name></type> <name>setInitialTraceHosts</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <comment type="line">// Make a single thread pool with a daemon thread</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>ScheduledExecutorService</name></type> <name>svc</name> <init>= <expr><call><name><name>Executors</name><operator>.</operator><name>newScheduledThreadPool</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>ThreadFactoryBuilder</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setDaemon</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>build</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Runnable</name></type> <name>task</name> <init>= <expr><operator>new</operator> <class><super><name>Runnable</name></super><argument_list>()</argument_list> <block>{
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <try>try <block>{<block_content>
+          <expr_stmt><expr><call><name>updateHostsFromZooKeeper</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Successfully initialized tracer hosts from ZooKeeper"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// Once this passes, we can issue a shutdown of the pool</comment>
+          <expr_stmt><expr><call><name><name>svc</name><operator>.</operator><name>shutdown</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Unabled to get destination tracer hosts in ZooKeeper, will retry in 5 seconds"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// We failed to connect to ZK, try again in 5seconds</comment>
+          <expr_stmt><expr><call><name><name>svc</name><operator>.</operator><name>schedule</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>, <argument><expr><name>retryPause</name></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></function>
+    }</block></class></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// Start things off</comment>
+    <expr_stmt><expr><call><name><name>task</name><operator>.</operator><name>run</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>protected</specifier> <name>void</name></type> <name>updateHostsFromZooKeeper</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>KeeperException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>pathExists</name> <operator>||</operator> <call><name><name>zoo</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>pathExists</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>updateHosts</name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><call><name><name>zoo</name><operator>.</operator><name>getChildren</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name><name>zoo</name><operator>.</operator><name>exists</name></name><argument_list>(<argument><expr><name>path</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>protected</specifier> <name>void</name></type> <name>sendSpans</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <if_stmt><if>if <condition>(<expr><call><name><name>hosts</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClientTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClientTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..ebb2a7cee</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>ZooTraceClientTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">42</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tracer</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>ZooTraceClientTest</name> <block>{
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testConnectFailureRetries</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>ZooTraceClient</name></type> <name>client</name> <init>= <expr><call><name><name>EasyMock</name><operator>.</operator><name>createMockBuilder</name></name><argument_list>(<argument><expr><name><name>ZooTraceClient</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>addMockedMethod</name><argument_list>(<argument><expr><literal type="string">"updateHostsFromZooKeeper"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>createStrictMock</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>setRetryPause</name></name><argument_list>(<argument><expr><literal type="number">0l</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>updateHostsFromZooKeeper</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>andThrow</name><argument_list>(<argument><expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>updateHostsFromZooKeeper</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>replay</name></name><argument_list>(<argument><expr><name>client</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>setInitialTraceHosts</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>verify</name></name><argument_list>(<argument><expr><name>client</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  </block_content>}</block></function>
+
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>log4j</name><operator>.</operator><name>properties</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>log4j</name><operator>.</operator><name>properties</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..320683261</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>log4j</name><operator>.</operator><name>properties</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@
+# <name>Licensed</name> <name>to</name> <name>the</name> <name>Apache</name> <name>Software</name> <call><name>Foundation</name> <argument_list>(<argument><expr><name>ASF</name></expr></argument>)</argument_list></call> <name>under</name> <name>one</name> <name>or</name> <name>more</name>
+# <name>contributor</name> <name>license</name> <name><name>agreements</name><operator>.</operator>  <name>See</name></name> <name>the</name> <name>NOTICE</name> <name>file</name> <name>distributed</name> <name>with</name>
+# <name>this</name> <name>work</name></expr></expr_stmt> <for>for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License<operator>,</operator> <expr_stmt><expr><name>Version</name> <literal type="number">2.0</literal>
+# <operator>(</operator><name>the</name> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></for> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name> <name>with</name>
+# <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+#
+#     <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+#
+# <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+# <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+# <expr><name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+# <name>See</name> <name>the</name> <name>License</name></expr></expr_stmt> <for>for the specific language governing permissions and
+# limitations under the License.
+
+log4j.rootLogger=INFO<operator>,</operator> <decl_stmt><decl><type><name>CA</name></type>
+<name><name>log4j</name><operator>.</operator><name>appender</name><operator>.</operator><name>CA</name></name><init>=<expr><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>ConsoleAppender</name></name>
+<name><name>log4j</name><operator>.</operator><name>appender</name><operator>.</operator><name>CA</name><operator>.</operator><name>layout</name></name><operator>=</operator><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>PatternLayout</name></name>
+<name><name>log4j</name><operator>.</operator><name>appender</name><operator>.</operator><name>CA</name><operator>.</operator><name>layout</name><operator>.</operator><name>ConversionPattern</name></name><operator>=</operator><operator>%</operator><name>d</name><block>{<expr><name>ISO8601</name></expr>}</block> <index>[<expr><operator>%</operator><operator>-</operator><literal type="number">8c</literal><block>{<expr><literal type="number">2</literal></expr>}</block></expr>]</index> <operator>%</operator><operator>-</operator><literal type="number">5p</literal><operator>:</operator> <operator>%</operator><name>m</name><operator>%</operator><name>n</name>
+
+<name><name>log4j</name><operator>.</operator><name>logger</name><operator>.</operator><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>util</name><operator>.</operator><name>TabletIterator</name></name><operator>=</operator><name>ERROR</name>
+<operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></init></decl></decl_stmt></for></block_content></block></if></if_stmt></block_content></block></function>
+
+</unit>

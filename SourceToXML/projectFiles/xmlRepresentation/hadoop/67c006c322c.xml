@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/67c006c322c.java"><expr_stmt><expr><name>From</name> <literal type="number">67c006c322c3925b42322f6ced841a54084f582a</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Suresh</name> <name><name>Srinivas</name> <argument_list type="generic">&lt;<argument><name>suresh</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Apr</name> <literal type="number">2010</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">01</literal><operator>:</operator><literal type="number">27</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">6521.</literal> <name>User</name> <name>specified</name> <name>umask</name> <name>using</name> <name>deprecated</name> <name><name>dfs</name><operator>.</operator><name>umask</name></name>
+ <name>must</name> <name>override</name> <name>server</name> <name>configured</name> <name>using</name> <operator>new</operator> <name><name>dfs</name><operator>.</operator><name>umaskmode</name></name></expr></expr_stmt> <for>for backward
+ compatibility. Contributed by Suresh Srinivas.
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@937559 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ CHANGES.txt                                   <operator>|</operator>  4 ++
+ .../org/apache/hadoop/conf/Configuration.java <operator>|</operator> 19 -------
+ .../hadoop/fs/permission/FsPermission.java    <operator>|</operator> 53 +++++++++++++------
+ .../conf/TestConfigurationDeprecation.java    <operator>|</operator> 24 ---------
+ .../hadoop/conf/TestDeprecatedKeys.java       <operator>|</operator> 10 ----
+ 5 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">40</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">70</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">34be5b663b0</literal><operator>..</operator><name>d833ec3d029</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">276</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">276</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <call><name>Trunk</name> <argument_list>(<argument><expr><name>unreleased</name> <name>changes</name></expr></argument>)</argument_list></call>
+     <name>HADOOP</name><operator>-</operator><literal type="number">6540.</literal> <name>Contrib</name> <name>unit</name> <name>tests</name> <name>have</name> <name>invalid</name> <name>XML</name></expr></expr_stmt></for> <for>for core-site<operator>,</operator> <expr_stmt><expr><name><name>etc</name><operator>.</operator></name>
+     (<name>Aaron</name> <name>Kimball</name> <name>via</name> <name>tomwhite</name></expr></expr_stmt></for>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">6521.</literal> <name>User</name> <name>specified</name> <name>umask</name> <name>using</name> <name>deprecated</name> <name><name>dfs</name><operator>.</operator><name>umask</name></name> <name>must</name> <name>override</name>
+    <name>server</name> <name>configured</name> <name>using</name> <operator>new</operator> <name><name>dfs</name><operator>.</operator><name>umaskmode</name></name></expr></expr_stmt> <for>for backward compatibility.
+    <control>(<init><expr><name>suresh</name></expr></init>)</control><block type="pseudo"><block_content>
+    
+     <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">6522.</literal> <name>Fix</name> <name>decoding</name> <name>of</name> <name>codepoint</name> <name>zero</name> <name>in</name> <name><name>UTF8</name><operator>.</operator></name> (<name>cutting</name></expr></expr_stmt></block_content></block></for>)
+ 
+     <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">6505.</literal> <name>Use</name> <name>tr</name> <name>rather</name> <name>than</name> <name>sed</name> <name>to</name> <name>effect</name> <name>literal</name> <name>substitution</name> <name>in</name> <name>the</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5db9f19d21b</literal><operator>..</operator><name>d49fd1c3825</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">295</literal></expr><operator>,</operator><expr><literal type="number">20</literal> <operator>+</operator><literal type="number">295</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>private</specifier> <specifier>static</specifier> <name>boolean</name> <call><name>isDeprecated</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>)</argument_list></call> <block>{
+     <return>return <expr><call><name><name>deprecatedKeyMap</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+  
+  <comment type="block" format="javadoc">/**
+   * Check whether or not the deprecated key has been specified in the
+   * configuration file rather than the new key
+   * 
+   * Returns false if the specified key is not included in the deprecated
+   * key mapping.
+   * 
+   * @param oldKey Old configuration key 
+   * @return If the old configuration key was specified rather than the new one
+   */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>deprecatedKeyWasSet</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>oldKey</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name>isDeprecated</name><argument_list>(<argument><expr><name>oldKey</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>deprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>oldKey</name></expr></argument>)</argument_list></call><operator>.</operator><name>accessed</name></expr>;</return>
+  </block_content>}</block></function>
+  
+   <comment type="block" format="javadoc">/**
+    * Checks for the presence of the property &lt;code&gt;name&lt;/code&gt; in the
+    * deprecation map. Returns the first of the list of new keys if present
+@@ -1876,11 +1862,6 @@ private static void addDeprecatedKeys() {
+                new String[]{CommonConfigurationKeys.NET_TOPOLOGY_CONFIGURED_NODE_MAPPING_KEY});
+     Configuration.addDeprecation("topology.node.switch.mapping.impl", 
+                new String[]{CommonConfigurationKeys.NET_TOPOLOGY_NODE_SWITCH_MAPPING_IMPL_KEY});
+    Configuration.addDeprecation("dfs.umask", 
+               new String[]{CommonConfigurationKeys.FS_PERMISSIONS_UMASK_KEY},
+               "dfs.umask is deprecated, use " + 
+               CommonConfigurationKeys.FS_PERMISSIONS_UMASK_KEY + 
+               " with octal or symbolic specifications.");
+     Configuration.addDeprecation("dfs.df.interval", 
+                new String[]{CommonConfigurationKeys.FS_DF_INTERVAL_KEY});
+     Configuration.addDeprecation("dfs.client.buffer.dir", 
+diff --git a/src/java/org/apache/hadoop/fs/permission/FsPermission.java b/src/java/org/apache/hadoop/fs/permission/FsPermission.java
+index 572441c5b6b..b5f9d7be3ac 100644
+-- a/src/java/org/apache/hadoop/fs/permission/FsPermission.java
+++ b/src/java/org/apache/hadoop/fs/permission/FsPermission.java
+@@ -21,6 +21,8 @@
+ import java.io.DataOutput;
+ import java.io.IOException;
+ 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+ import org.apache.hadoop.conf.Configuration;
+ import org.apache.hadoop.fs.CommonConfigurationKeys;
+ import org.apache.hadoop.io.Writable;
+@@ -31,6 +33,8 @@
+  * A class for file/directory permissions.
+  */</comment>
+ <class><specifier>public</specifier> class <name>FsPermission</name> <super_list><implements>implements <super><name>Writable</name></super></implements></super_list> <block>{
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Log</name></type> <name>LOG</name> <init>= <expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><name><name>FsPermission</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+   <decl_stmt><decl><type><specifier>static</specifier> <specifier>final</specifier> <name>WritableFactory</name></type> <name>FACTORY</name> <init>= <expr><operator>new</operator> <class><super><name>WritableFactory</name></super><argument_list>()</argument_list> <block>{
+     <function><type><specifier>public</specifier> <name>Writable</name></type> <name>newInstance</name><parameter_list>()</parameter_list> <block>{<block_content> <return>return <expr><operator>new</operator> <call><name>FsPermission</name><argument_list>()</argument_list></call></expr>;</return> </block_content>}</block></function>
+   }</block></class></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">199</literal></expr><operator>,</operator><expr><literal type="number">25</literal> <operator>+</operator><literal type="number">203</literal></expr><operator>,</operator><expr><literal type="number">39</literal> @@ <specifier>public</specifier> <name>FsPermission</name> <call><name>applyUMask</name><argument_list>(<argument><expr><name>FsPermission</name> <name>umask</name></expr></argument>)</argument_list></call> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>FsPermission</name> <call><name>getUMask</name><argument_list>(<argument><expr><name>Configuration</name> <name>conf</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name>int</name> <name>umask</name> <operator>=</operator> <name>DEFAULT_UMASK</name></expr>;
+     
+    <comment type="line">// Attempt to pull value from configuration, trying new key first and then</comment>
+    <comment type="line">// deprecated key, along with a warning, if not present</comment>
+    <comment type="line">// To ensure backward compatibility first use the deprecated key.</comment>
+    <comment type="line">// If the deprecated key is not present then check for the new key</comment>
+     <if_stmt><if>if<condition>(<expr><name>conf</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>String</name></type> <name>confUmask</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>UMASK_LABEL</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if<condition>(<expr><name>confUmask</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content> <comment type="line">// UMASK_LABEL is set</comment>
+        <try>try <block>{<block_content>
+          <if_stmt><if>if<condition>(<expr><call><name><name>conf</name><operator>.</operator><name>deprecatedKeyWasSet</name></name><argument_list>(<argument><expr><name>DEPRECATED_UMASK_LABEL</name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> 
+            <expr_stmt><expr><name>umask</name> <operator>=</operator> <call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>confUmask</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if> <comment type="line">// Evaluate as decimal value</comment>
+          <else>else<block type="pseudo"><block_content>
+            <return>return <expr><operator>new</operator> <call><name>FsPermission</name><argument_list>(<argument><expr><name>confUmask</name></expr></argument>)</argument_list></call></expr>;</return></block_content></block></else></if_stmt>
+        <expr_stmt/></block_content></block></try></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr> <catch>catch<parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>iae</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <comment type="line">// Provide more explanation for user-facing message</comment>
+          <decl_stmt><decl><type><name>String</name></type> <name>type</name> <init>= <expr><ternary><condition><expr><name>iae</name> <operator>instanceof</operator> <name>NumberFormatException</name></expr> ?</condition><then> <expr><literal type="string">"decimal"</literal></expr> 
+                                                          </then><else>: <expr><literal type="string">"octal or symbolic"</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+          
+          <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Unable to parse "</literal> <operator>+</operator> <name>confUmask</name> <operator>+</operator> 
+                                              <literal type="string">" as "</literal> <operator>+</operator> <name>type</name> <operator>+</operator> <literal type="string">" umask."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+      <decl_stmt><decl><type><name>int</name></type> <name>oldUmask</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>getInt</name></name><argument_list>(<argument><expr><name>DEPRECATED_UMASK_LABEL</name></expr></argument>, <argument><expr><name><name>Integer</name><operator>.</operator><name>MIN_VALUE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <if_stmt><if>if<condition>(<expr><name>confUmask</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>umask</name> <operator>=</operator> <operator>new</operator> <call><name>UmaskParser</name><argument_list>(<argument><expr><name>confUmask</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getUMask</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></try></block_content></block></catch>}</block></expr></expr_stmt>
+      }</block></class> <catch>catch<parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>iae</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// Provide more explanation for user-facing message</comment>
+        <decl_stmt><decl><type><name>String</name></type> <name>type</name> <init>= <expr><ternary><condition><expr><name>iae</name> <operator>instanceof</operator> <name>NumberFormatException</name></expr> ?</condition><then> <expr><literal type="string">"decimal"</literal></expr>
+            </then><else>: <expr><literal type="string">"octal or symbolic"</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>error</name> <init>= <expr><literal type="string">"Unable to parse configuration "</literal> <operator>+</operator> <name>UMASK_LABEL</name>
+            <operator>+</operator> <literal type="string">" with value "</literal> <operator>+</operator> <name>confUmask</name> <operator>+</operator> <literal type="string">" as "</literal> <operator>+</operator> <name>type</name> <operator>+</operator> <literal type="string">" umask."</literal></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><name>error</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        
+        <comment type="line">// If oldUmask is not set, then throw the exception</comment>
+        <if_stmt><if>if <condition>(<expr><name>oldUmask</name> <operator>==</operator> <name><name>Integer</name><operator>.</operator><name>MIN_VALUE</name></name></expr>)</condition> <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><name>error</name></expr></argument>)</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+      </block_content>}</block></catch> 
+      }
+        
+      if<expr_stmt><expr><operator>(</operator><name>oldUmask</name> <operator>!=</operator> <name><name>Integer</name><operator>.</operator><name>MIN_VALUE</name></name><operator>)</operator> <block>{ <comment type="line">// Property was set with old key</comment>
+        <if_stmt><if>if <condition>(<expr><name>umask</name> <operator>!=</operator> <name>oldUmask</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><name>DEPRECATED_UMASK_LABEL</name>
+              <operator>+</operator> <literal type="string">" configuration key is deprecated. "</literal> <operator>+</operator> <literal type="string">"Convert to "</literal>
+              <operator>+</operator> <name>UMASK_LABEL</name> <operator>+</operator> <literal type="string">", using octal or symbolic umask "</literal>
+              <operator>+</operator> <literal type="string">"specifications."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// Old and new umask values do not match - Use old umask</comment>
+          <expr_stmt><expr><name>umask</name> <operator>=</operator> <name>oldUmask</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+      }
+     }
+     
+     <return>return <expr><operator>new</operator> <call><name>FsPermission</name><argument_list>(<argument><expr><operator>(</operator><name>short</name><operator>)</operator><name>umask</name></expr></argument>)</argument_list></call></expr>;</return>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">229</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">247</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>boolean</name> <call><name>getStickyBit</name><argument_list>()</argument_list></call> <block>{
+ 
+   <comment type="block" format="javadoc">/** Set the user file creation mask (umask) */</comment>
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>setUMask</name><argument_list>(<argument><expr><name>Configuration</name> <name>conf</name></expr></argument>, <argument><expr><name>FsPermission</name> <name>umask</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><name>UMASK_LABEL</name></expr></argument>, <argument><expr><call><name><name>umask</name><operator>.</operator><name>toShort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name>UMASK_LABEL</name></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><literal type="string">"%1$03o"</literal></expr></argument>, <argument><expr><call><name><name>umask</name><operator>.</operator><name>toShort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><name>DEPRECATED_UMASK_LABEL</name></expr></argument>, <argument><expr><call><name><name>umask</name><operator>.</operator><name>toShort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/** Get the default permission. */</comment>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">21c7d7955b1</literal><operator>..</operator><name>a55781e49d6</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">249</literal></expr>,<expr><literal type="number">28</literal> <operator>+</operator><literal type="number">249</literal></expr>,<expr><literal type="number">4</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>testDeprecationForFinalParameters</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"I"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"J"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+  
+  <comment type="line">// Ensure that wasDeprecatedKeySet returns the correct result under</comment>
+  <comment type="line">// the three code paths possible </comment>
+  @<name>Test</name>
+  <specifier>public</specifier> <name>void</name> <call><name>testWasDeprecatedKeySet</name><argument_list>()</argument_list></call> <block>{
+    <expr><call><name><name>Configuration</name><operator>.</operator><name>addDeprecation</name></name><argument_list>(<argument><expr><literal type="string">"oldKeyA"</literal></expr></argument>, <argument><expr><operator>new</operator> <name><name>String</name> <index>[]</index></name> <block>{ <expr><literal type="string">"newKeyA"</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Configuration</name><operator>.</operator><name>addDeprecation</name></name><argument_list>(<argument><expr><literal type="string">"oldKeyB"</literal></expr></argument>, <argument><expr><operator>new</operator> <name><name>String</name> <index>[]</index></name> <block>{ <expr><literal type="string">"newKeyB"</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;
+    
+    <comment type="line">// Used the deprecated key rather than the new, therefore should trigger</comment>
+    <expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="string">"oldKeyA"</literal></expr></argument>, <argument><expr><literal type="string">"AAA"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"AAA"</literal></expr></argument>, <argument><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"newKeyA"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>deprecatedKeyWasSet</name></name><argument_list>(<argument><expr><literal type="string">"oldKeyA"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+  
+    <comment type="line">// There is a deprecated key, but it wasn't specified. Therefore, don't trigger</comment>
+    <expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="string">"newKeyB"</literal></expr></argument>, <argument><expr><literal type="string">"AndrewBird"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"AndrewBird"</literal></expr></argument>, <argument><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"newKeyB"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>deprecatedKeyWasSet</name></name><argument_list>(<argument><expr><literal type="string">"oldKeyB"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+    <comment type="line">// Not a deprecated key, therefore shouldn't trigger deprecatedKeyWasSet</comment>
+    <expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="string">"BrandNewKey"</literal></expr></argument>, <argument><expr><literal type="string">"BrandNewValue"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"BrandNewValue"</literal></expr></argument>, <argument><expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"BrandNewKey"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>deprecatedKeyWasSet</name></name><argument_list>(<argument><expr><literal type="string">"BrandNewKey"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+  }</block></expr></expr_stmt>
+
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestDeprecatedKeys</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestDeprecatedKeys</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">93c5d80346e</literal><operator>..</operator><literal type="number">7008544f7b8</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestDeprecatedKeys</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>core</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestDeprecatedKeys</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>CommonConfigurationKeys</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>logging</name><operator>.</operator><name>impl</name><operator>.</operator><name>Log4JLogger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Level</name></name>;</import>
+ 
+ <import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">5</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>testDeprecatedKeys</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><literal type="string">"topology.script.file.name"</literal></expr></argument>, <argument><expr><literal type="string">"xyz"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>String</name></type> <name>scriptFile</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>NET_TOPOLOGY_SCRIPT_FILE_NAME_KEY</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>scriptFile</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">"xyz"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>getInt</name></name><argument_list>(<argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_KEY</name></name></expr></argument>, <argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_DEFAULT</name></name></expr></argument>)</argument_list></call></expr></init></decl> ;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><name>m</name> <operator>==</operator> <literal type="number">0022</literal></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>setInt</name></name><argument_list>(<argument><expr><literal type="string">"dfs.umask"</literal></expr></argument>, <argument><expr><literal type="number">0077</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>m</name> <operator>=</operator> <call><name><name>conf</name><operator>.</operator><name>getInt</name></name><argument_list>(<argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_KEY</name></name></expr></argument>, <argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_DEFAULT</name></name></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><name>m</name> <operator>==</operator> <literal type="number">0077</literal></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <expr_stmt><expr><call><name><name>conf</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_KEY</name></name></expr></argument>, <argument><expr><literal type="string">"405"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>umask</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>CommonConfigurationKeys</name><operator>.</operator><name>FS_PERMISSIONS_UMASK_KEY</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>umask</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">"405"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   }
+ }
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

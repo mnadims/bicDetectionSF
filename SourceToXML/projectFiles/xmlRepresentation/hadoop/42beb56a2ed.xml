@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/42beb56a2ed.java"><expr_stmt><expr><name>From</name> <literal type="number">42beb56a2ed0176bf0c47fe1b844f01d459130d1</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name>Joseph</name> <name><name>Evans</name> <argument_list type="generic">&lt;<argument><name>bobby</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">23</literal> <name>Aug</name> <literal type="number">2012</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">24</literal><operator>:</operator><literal type="number">46</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">8632.</literal> <name>Configuration</name> <name>leaking</name> <name>class</name><operator>-</operator><call><name>loaders</name> <argument_list>(<argument><expr><name>Costin</name> <name>Leau</name>
+ <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1376543 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>  <literal type="number">2</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">20</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfiguration</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">7</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">22</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">7</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>a9fef8e9803</name><operator>..</operator><name>ca47619fa89</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">426</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">426</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Branch</name><operator>-</operator><literal type="number">2</literal> <operator>(</operator> <name>Unreleased</name> <name>changes</name> <operator>)</operator>
+     <name>HADOOP</name><operator>-</operator><literal type="number">8721.</literal> <name>ZKFC</name> <name>should</name> <name>not</name> <name>retry</name> <literal type="number">45</literal> <name>times</name> <name>when</name> <name>attempting</name> <name>a</name> <name>graceful</name>
+     <name>fence</name> <name>during</name> <name>a</name> <name><name>failover</name><operator>.</operator></name> (<name>Vinayakumar</name> <name>B</name> <name>via</name> <name>atm</name></expr></expr_stmt>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">8632.</literal> <name>Configuration</name> <name>leaking</name> <name>class</name><operator>-</operator><call><name>loaders</name> <argument_list>(<argument><expr><name>Costin</name> <name>Leau</name> <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call>
+
+   <name>BREAKDOWN</name> <name>OF</name> <name>HDFS</name><operator>-</operator><literal type="number">3042</literal> <name>SUBTASKS</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">8220.</literal> <name>ZKFailoverController</name> <name>doesn</name><literal type="char">'t handle failure to become active
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
+index 83ac3867494..e9b76609adf 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/conf/Configuration.java
+@@ -30,6 +30,7 @@
+ import java.io.OutputStreamWriter;
+ import java.io.Reader;
+ import java.io.Writer;
+import java.lang.ref.WeakReference;
+ import java.net.InetSocketAddress;
+ import java.net.URL;
+ import java.util.ArrayList;
+@@ -219,8 +220,8 @@ public String toString() {
+   private static final CopyOnWriteArrayList&lt;String&gt; defaultResources =
+     new CopyOnWriteArrayList&lt;String&gt;();
+ 
+  private static final Map&lt;ClassLoader, Map&lt;String, Class&lt;?&gt;&gt;&gt;
+    CACHE_CLASSES = new WeakHashMap&lt;ClassLoader, Map&lt;String, Class&lt;?&gt;&gt;&gt;();
+  private static final Map&lt;ClassLoader, Map&lt;String, WeakReference&lt;Class&lt;?&gt;&gt;&gt;&gt;
+    CACHE_CLASSES = new WeakHashMap&lt;ClassLoader, Map&lt;String, WeakReference&lt;Class&lt;?&gt;&gt;&gt;&gt;();
+ 
+   /**
+    * Sentinel value to store negative cache results in {@link #CACHE_CLASSES}.
+@@ -1531,28 +1532,33 @@ public InetSocketAddress updateConnectAddr(String name,
+    * @return the class object, or null if it could not be found.
+    */
+   public Class&lt;?&gt; getClassByNameOrNull(String name) {
+    Map&lt;String, Class&lt;?&gt;&gt; map;
+    Map&lt;String, WeakReference&lt;Class&lt;?&gt;&gt;&gt; map;
+     
+     synchronized (CACHE_CLASSES) {
+       map = CACHE_CLASSES.get(classLoader);
+       if (map == null) {
+         map = Collections.synchronizedMap(
+          new WeakHashMap&lt;String, Class&lt;?&gt;&gt;());
+          new WeakHashMap&lt;String, WeakReference&lt;Class&lt;?&gt;&gt;&gt;());
+         CACHE_CLASSES.put(classLoader, map);
+       }
+     }
+ 
+    Class&lt;?&gt; clazz = map.get(name);
+    Class&lt;?&gt; clazz = null;
+    WeakReference&lt;Class&lt;?&gt;&gt; ref = map.get(name); 
+    if (ref != null) {
+       clazz = ref.get();
+    }
+     
+     if (clazz == null) {
+       try {
+         clazz = Class.forName(name, true, classLoader);
+       } catch (ClassNotFoundException e) {
+         // Leave a marker that the class isn'</literal><name>t</name> <name>found</name>
+        <call><name><name>map</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>NEGATIVE_CACHE_SENTINEL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>map</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>WeakReference</name><argument_list type="generic">&lt;<argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>NEGATIVE_CACHE_SENTINEL</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <return>return <expr><literal type="null">null</literal></expr>;</return>
+       }
+       <comment type="line">// two putters can race here, but they'll put the same class</comment>
+      map<expr_stmt><expr><operator>.</operator><call><name>put</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>map</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>WeakReference</name><argument_list type="generic">&lt;<argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <return>return <expr><name>clazz</name></expr>;</return>
+     } else <if_stmt><if>if <condition>(<expr><name>clazz</name> <operator>==</operator> <name>NEGATIVE_CACHE_SENTINEL</name></expr>)</condition> <block>{<block_content>
+       <return>return <expr><literal type="null">null</literal></expr>;</return> <comment type="line">// not found</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfiguration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfiguration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">576d9210007</literal><operator>..</operator><literal type="number">679ced34eec</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfiguration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfiguration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ 
+ <import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+ <import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertArrayEquals</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertNotNull</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name><operator>.</operator><name>IntegerRanges</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1157</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1158</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>testSetPattern</name><argument_list>()</argument_list></call> <block>{
+         <expr><call><name><name>configuration</name><operator>.</operator><name>getPattern</name></name><argument_list>(<argument><expr><literal type="string">"testPattern"</literal></expr></argument>, <argument><expr><call><name><name>Pattern</name><operator>.</operator><name>compile</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>pattern</name><argument_list>()</argument_list></call></expr>)</block></expr>;</expr_stmt>
+   </block_content>}</block></if></if_stmt>
+   
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testGetClassByNameOrNull</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+   <decl_stmt><decl><type><name>Configuration</name></type> <name>config</name> <init>= <expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></type> <name>clazz</name> <init>= <expr><call><name><name>config</name><operator>.</operator><name>getClassByNameOrNull</name></name><argument_list>(<argument><expr><literal type="string">"java.lang.Object"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+   <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>argv</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+     <expr_stmt><expr><call><name><name>junit</name><operator>.</operator><name>textui</name><operator>.</operator><name>TestRunner</name><operator>.</operator><name>main</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name><block>{
+       <expr><call><name><name>TestConfiguration</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block></expr></argument></argument_list></call></expr></expr_stmt></block_content></block></function>
+
+</unit>

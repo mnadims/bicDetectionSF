@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/9cee40724.java"><expr><name>From</name> <literal type="number">9cee40724f739fc5e4591321c1c5adfb5364c5a1</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Josh</name> <name><name>Elser</name> <argument_list type="generic">&lt;<argument><name>elserj</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">4</literal> <name>Jul</name> <literal type="number">2014</literal> <literal type="number">03</literal><operator>:</operator><literal type="number">14</literal><operator>:</operator><literal type="number">38</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">2974</literal> <name>Hadoop</name><literal type="char">'</literal></expr>s StringUtils changes across 1 and 2, so
+ switch it to commons-lang
+
+--
+ .../java/org/apache/accumulo/server/fs/VolumeManagerImpl.java   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeManagerImpl.java b/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeManagerImpl.java
+index 2cdd3fe6f..6e8439fdb 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeManagerImpl.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/fs/VolumeManagerImpl.java
+@@ -44,6 +44,7 @@ import org.apache.accumulo.core.volume.Volume;
+ import org.apache.accumulo.core.volume.VolumeConfiguration;
+ import org.apache.accumulo.server.conf.ServerConfiguration;
+ import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang.StringUtils;
+ import org.apache.hadoop.conf.Configuration;
+ import org.apache.hadoop.fs.ContentSummary;
+ import org.apache.hadoop.fs.FSDataInputStream;
+@@ -56,7 +57,6 @@ import org.apache.hadoop.fs.permission.FsPermission;
+ import org.apache.hadoop.hdfs.DFSConfigKeys;
+ import org.apache.hadoop.hdfs.DistributedFileSystem;
+ import org.apache.hadoop.util.Progressable;
+import org.apache.hadoop.util.StringUtils;
+ import org.apache.log4j.Logger;
+ 
+ import com.google.common.collect.HashMultimap;
+- 
+2.19.1.windows.1
+
+</unit>

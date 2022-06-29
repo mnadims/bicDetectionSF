@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/21d10ccc6e4.java"><expr_stmt><expr><name>From</name> <literal type="number">21d10ccc6e463cf250414264c78acb4a6e7c83e3</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Colin</name> <name>Patrick</name> <name><name>Mccabe</name> <argument_list type="generic">&lt;<argument><name>cmccabe</name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">31</literal> <name>Jul</name> <literal type="number">2015</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">55</literal><operator>:</operator><literal type="number">14</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">7824.</literal> <name><name>NativeIO</name><operator>.</operator><name>java</name></name> <name>flags</name> <name>and</name> <name>identifiers</name> <name>must</name> <name>be</name> <name>set</name>
+ <name>correctly</name></expr></expr_stmt> <for>for each platform<operator>,</operator> <decl_stmt><decl><type><name>not</name> <name>hardcoded</name> <name>to</name> <name>their</name> <name>Linux</name></type> <name>values</name> <argument_list>(<argument><expr><name>Martin</name>
+ <name>Walsh</name> <name>via</name> <name>Colin</name> <name><name>P</name><operator>.</operator> <name>McCabe</name></name></expr></argument>)</argument_list>
+
+--
+ <modifier>...</modifier>/<name>hadoop</name>-<name>common</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>   4 +
+ <modifier>...</modifier>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name><name>ReadaheadPool</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   4 +-
+ <modifier>...</modifier>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name>nativeio</name>/<name><name>NativeIO</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  83 +++++-----
+ <modifier>...</modifier>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name>nativeio</name>/<name><name>NativeIO</name><operator>.</operator><name>c</name></name>  <operator>|</operator> 147 +++++++++++-------
+ <modifier>...</modifier>/<name>hadoop</name>/<name>io</name>/<name>nativeio</name>/<name><name>TestNativeIO</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  90 +++++++----
+ <modifier>...</modifier>/<name>hdfs</name>/<name>server</name>/<name>datanode</name>/<name><name>BlockReceiver</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  14 +-
+ <modifier>...</modifier>/<name>hdfs</name>/<name>server</name>/<name>datanode</name>/<name><name>BlockSender</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  11 +-
+ <modifier>...</modifier>/<name>server</name>/<name>datanode</name>/<name><name>TestCachingStrategy</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   5 +-
+ <modifier>...</modifier>/<name>hadoop</name>/<name>mapred</name>/<name><name>FadvisedChunkedFile</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   5 +-
+ <modifier>...</modifier>/<name>hadoop</name>/<name>mapred</name>/<name><name>FadvisedFileRegion</name><operator>.</operator><name>java</name></name>     <operator>|</operator>   6 +-
+ 10 <name>files</name> <name>changed</name></decl>, 232 <decl><type ref="prev"/><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></decl>, 137 <decl><type ref="prev"/><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list>
+
+<name>diff</name> --<name>git</name> <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> 5020e91ec2c..675902db887 100644
+-- <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+++ <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ -1033</decl>,6 +1033,10 @@ <decl><type ref="prev"/><name>Release</name> 2.8.0 - <name>UNRELEASED</name>
+     <name>HADOOP</name>-10945. 4-<name>digit</name> <name>octal</name> <name>umask</name> <name>permissions</name> <throws>throws <argument><expr><name>a</name> <name>parse</name> <call><name>error</name> <argument_list>(<argument><expr><name>Chang</name>
+     <name>Li</name> <name>via</name> <name>jlowe</name></expr></argument>)</argument_list></call>
+ 
+    <name>HADOOP</name><operator>-</operator><literal type="number">7824.</literal> <name><name>NativeIO</name><operator>.</operator><name>java</name></name> <name>flags</name> <name>and</name> <name>identifiers</name> <name>must</name> <name>be</name> <name>set</name> <name>correctly</name></expr></argument></throws> for
+    <name>each</name> <name>platform</name></decl>, <decl><type ref="prev"/><name>not</name> <name>hardcoded</name> <name>to</name> <name>their</name> <name>Linux</name> <name>values</name> <argument_list>(<argument><expr><name>Martin</name> <name>Walsh</name> <name>via</name> <name>Colin</name>
+    <name><name>P</name><operator>.</operator> <name>McCabe</name></name></expr></argument>)</argument_list>
+
+ <name>Release</name> 2.7.2 - <name>UNRELEASED</name>
+ 
+   <name>INCOMPATIBLE</name> <name>CHANGES</name>
+<name>diff</name> --<name>git</name> <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name><name>ReadaheadPool</name><operator>.</operator><name>java</name></name> <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name><name>ReadaheadPool</name><operator>.</operator><name>java</name></name>
+<name>index</name> 18099dbb191..<name>a8c06902b11</name> 100644
+-- <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name><name>ReadaheadPool</name><operator>.</operator><name>java</name></name>
+++ <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>io</name>/<name><name>ReadaheadPool</name><operator>.</operator><name>java</name></name>
+@@ -29</decl>,6 +29,8 @@
+ <decl><type ref="prev"/><name>import</name> <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceStability</name></name></decl>;</decl_stmt></for>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>nativeio</name><operator>.</operator><name>NativeIO</name></name>;</import>
+ 
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>nativeio</name><operator>.</operator><name>NativeIO</name><operator>.</operator><name>POSIX</name><operator>.</operator><name>POSIX_FADV_WILLNEED</name></name>;</import>
+
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Preconditions</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ThreadFactoryBuilder</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">206</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>run</name><argument_list>()</argument_list></call> <block>{
+       <comment type="line">// other FD, which may be wasted work, but won't cause a problem.</comment>
+       <try>try <block>{<block_content>
+         <expr_stmt><expr><call><name><name>NativeIO</name><operator>.</operator><name>POSIX</name><operator>.</operator><name>getCacheManipulator</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>posixFadviseIfPossible</name><argument_list>(<argument><expr><name>identifier</name></expr></argument>,
+            <argument><expr><name>fd</name></expr></argument>, <argument><expr><name>off</name></expr></argument>, <argument><expr><name>len</name></expr></argument>, <argument><expr><name><name>NativeIO</name><operator>.</operator><name>POSIX</name><operator>.</operator><name>POSIX_FADV_WILLNEED</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>fd</name></expr><operator>,</operator> <expr><name>off</name></expr><operator>,</operator> <expr><name>len</name></expr><operator>,</operator> <expr><name>POSIX_FADV_WILLNEED</name></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></try>
+       }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ioe</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><name>canceled</name></expr>)</condition> <block>{<block_content>
+           <comment type="line">// no big deal - the reader canceled the request and closed</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">77a40ea76ff</literal><operator>..</operator><name>a123f182592</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">51</literal> <operator>+</operator><literal type="number">56</literal></expr><operator>,</operator><expr><literal type="number">54</literal> @@
+ @<name><name>InterfaceStability</name><operator>.</operator><name>Unstable</name></name>
+ <specifier>public</specifier> <name>class</name> <name>NativeIO</name> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>class</name> <name>POSIX</name> <block>{
+    <comment type="line">// Flags for open() call from bits/fcntl.h</comment>
+    <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>O_RDONLY</name>   <operator>=</operator>    <literal type="number">00</literal></expr>;
+    <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>O_WRONLY</name>   <operator>=</operator>    <literal type="number">01</literal></block></expr>;
+    <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>O_RDWR</name>     <operator>=</operator>    <literal type="number">02</literal></block></expr>;</expr_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_CREAT</name>    <init>=  <expr><literal type="number">0100</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_EXCL</name>     <init>=  <expr><literal type="number">0200</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_NOCTTY</name>   <init>=  <expr><literal type="number">0400</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_TRUNC</name>    <init>= <expr><literal type="number">01000</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_APPEND</name>   <init>= <expr><literal type="number">02000</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_NONBLOCK</name> <init>= <expr><literal type="number">04000</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>O_SYNC</name>   <init>=  <expr><literal type="number">010000</literal></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// Flags for posix_fadvise() from bits/fcntl.h</comment>
+    <comment type="line">// Flags for open() call from bits/fcntl.h - Set by JNI</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_RDONLY</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_WRONLY</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_RDWR</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_CREAT</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_EXCL</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_NOCTTY</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_TRUNC</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_APPEND</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_NONBLOCK</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>O_SYNC</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// Flags for posix_fadvise() from bits/fcntl.h - Set by JNI</comment>
+     <comment type="block">/* No further special treatment.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_NORMAL</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_NORMAL</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Expect random page references.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_RANDOM</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_RANDOM</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Expect sequential page references.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_SEQUENTIAL</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_SEQUENTIAL</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Will need these pages.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_WILLNEED</name> <init>= <expr><literal type="number">3</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_WILLNEED</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Don't need these pages.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_DONTNEED</name> <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_DONTNEED</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Data will be accessed once.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>POSIX_FADV_NOREUSE</name> <init>= <expr><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>POSIX_FADV_NOREUSE</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+ 
+ 
+    <comment type="line">// Updated by JNI when supported by glibc.  Leave defaults in case kernel</comment>
+    <comment type="line">// supports sync_file_range, but glibc does not.</comment>
+     <comment type="block">/* Wait upon writeout of all pages
+        in the range before performing the
+        write.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WAIT_BEFORE</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WAIT_BEFORE</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Initiate writeout of all those
+        dirty pages in the range which are
+        not presently under writeback.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WRITE</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WRITE</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+     <comment type="block">/* Wait upon writeout of all pages in
+        the range after performing the
+        write.  */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WAIT_AFTER</name> <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>SYNC_FILE_RANGE_WAIT_AFTER</name> <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Log</name></type> <name>LOG</name> <init>= <expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><name><name>NativeIO</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+    <comment type="line">// Set to true via JNI if possible</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>fadvisePossible</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>nativeLoaded</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>fadvisePossible</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>syncFileRangePossible</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>WORKAROUND_NON_THREADSAFE_CALLS_KEY</name> <init>=
+@@ <expr><operator>-</operator><literal type="number">262</literal></expr></init></decl>,8 +265,6 @@ static <decl><type ref="prev"/><name>void</name> <name>posixFadviseIfPossible</name><argument_list>(<argument><expr><name>String</name> <name>identifier</name></expr></argument>,
+       if <argument><expr><operator>(</operator><name>nativeLoaded</name> <operator>&amp;&amp;</operator> <name>fadvisePossible</name><operator>)</operator> <block>{
+         <try>try <block>{<block_content>
+           <expr_stmt><expr><call><name>posix_fadvise</name><argument_list>(<argument><expr><name>fd</name></expr></argument>, <argument><expr><name>offset</name></expr></argument>, <argument><expr><name>len</name></expr></argument>, <argument><expr><name>flags</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>UnsupportedOperationException</name></type> <name>uoe</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><name>fadvisePossible</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+         </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name>UnsatisfiedLinkError</name></type> <name>ule</name></decl></parameter>)</parameter_list> <block>{<block_content>
+           <expr_stmt><expr><name>fadvisePossible</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+         </block_content>}</block></catch></try>
+@@ <operator>-</operator><literal type="number">344</literal><operator>,</operator><literal type="number">21</literal> <operator>+</operator><literal type="number">345</literal><operator>,</operator><literal type="number">21</literal> @@ <specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>munmap</name><argument_list>(<argument><expr><name>MappedByteBuffer</name> <name>buffer</name></expr></argument>)</argument_list></call> <block>{
+       <expr><specifier>private</specifier> <name>String</name> <name>owner</name></expr>, <expr><name>group</name></expr>;
+       <specifier>private</specifier> <name>int</name> <name>mode</name></block></block></expr></argument>;</argument_list></decl></decl_stmt>
+ 
+      <comment type="line">// Mode constants</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_IFMT</name> <init>= <expr><literal type="number">0170000</literal></expr></init></decl>;</decl_stmt>      <comment type="block">/* type of file */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFIFO</name>  <init>= <expr><literal type="number">0010000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* named pipe (fifo) */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFCHR</name>  <init>= <expr><literal type="number">0020000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* character special */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFDIR</name>  <init>= <expr><literal type="number">0040000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* directory */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFBLK</name>  <init>= <expr><literal type="number">0060000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* block special */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFREG</name>  <init>= <expr><literal type="number">0100000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* regular */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFLNK</name>  <init>= <expr><literal type="number">0120000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* symbolic link */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type>   <name>S_IFSOCK</name> <init>= <expr><literal type="number">0140000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* socket */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_ISUID</name> <init>= <expr><literal type="number">0004000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* set user id on execution */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_ISGID</name> <init>= <expr><literal type="number">0002000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* set group id on execution */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_ISVTX</name> <init>= <expr><literal type="number">0001000</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* save swapped text even after use */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_IRUSR</name> <init>= <expr><literal type="number">0000400</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* read permission, owner */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_IWUSR</name> <init>= <expr><literal type="number">0000200</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* write permission, owner */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>S_IXUSR</name> <init>= <expr><literal type="number">0000100</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* execute/search permission, owner */</comment>
+      <comment type="line">// Mode constants - Set by JNI</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFMT</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>    <comment type="block">/* type of file */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFIFO</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* named pipe (fifo) */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFCHR</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* character special */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFDIR</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* directory */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFBLK</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* block special */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFREG</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* regular */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFLNK</name>  <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* symbolic link */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IFSOCK</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* socket */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_ISUID</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* set user id on execution */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_ISGID</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* set group id on execution */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_ISVTX</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* save swapped text even after use */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IRUSR</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* read permission, owner */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IWUSR</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* write permission, owner */</comment>
+      <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>int</name></type> <name>S_IXUSR</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  <comment type="block">/* execute/search permission, owner */</comment>
+ 
+       <expr_stmt><expr><call><name>Stat</name><argument_list>(<argument><expr><name>int</name> <name>ownerId</name></expr></argument>, <argument><expr><name>int</name> <name>groupId</name></expr></argument>, <argument><expr><name>int</name> <name>mode</name></expr></argument>)</argument_list></call> <block>{
+         <expr><name><name>this</name><operator>.</operator><name>ownerId</name></name> <operator>=</operator> <name>ownerId</name></expr>;
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><specifier>native</specifier><operator>/</operator><name>src</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>c</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><specifier>native</specifier><operator>/</operator><name>src</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>c</name></name>
+<name>index</name> <name>bc78ab2bc0a</name><operator>..</operator><name>a716a02a8f7</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><specifier>native</specifier><operator>/</operator><name>src</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>c</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><specifier>native</specifier><operator>/</operator><name>src</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>io</name><operator>/</operator><name>nativeio</name><operator>/</operator><name><name>NativeIO</name><operator>.</operator><name>c</name></name>
+@@ <operator>-</operator><literal type="number">58</literal><operator>,</operator><literal type="number">6</literal> <operator>+</operator><literal type="number">58</literal><operator>,</operator><literal type="number">15</literal> @@
+ #<name>define</name> <name>MMAP_PROT_WRITE</name> <name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_MMAP_PROT_WRITE</name>
+ #<name>define</name> <name>MMAP_PROT_EXEC</name> <name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_MMAP_PROT_EXEC</name>
+ 
+#<name>define</name> <name>NATIVE_IO_POSIX_CLASS</name> <literal type="string">"org/apache/hadoop/io/nativeio/NativeIO$POSIX"</literal>
+#<name>define</name> <name>NATIVE_IO_STAT_CLASS</name> <literal type="string">"org/apache/hadoop/io/nativeio/NativeIO$POSIX$Stat"</literal>
+
+#<name>define</name> <call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>E</name></expr></argument>, <argument><expr><name>C</name></expr></argument>, <argument><expr><name>F</name></expr></argument>)</argument_list></call> \
+  <block>{ \
+    <expr><call><name>setStaticInt</name><argument_list>(<argument><expr><name>E</name></expr></argument>, <argument><expr><name>C</name></expr></argument>, <argument><expr><operator>#</operator><name>F</name></expr></argument>, <argument><expr><name>F</name></expr></argument>)</argument_list></call></expr>;</block></block></expr></expr_stmt> \
+    <if_stmt><if>if <condition>(<expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*E</lambda></expr>)</condition><block type="pseudo"><block_content><expr_stmt><expr><operator>-&gt;</operator><call><name>ExceptionCheck</name><argument_list>(<argument><expr><name>E</name></expr></argument>)</argument_list></call></expr></expr_stmt></block_content></block></if></if_stmt>)</block_content> return</block><empty_stmt>;</empty_stmt></if></if_stmt> \
+  </block_content>}</block></catch>
+
+ <comment type="line">// the NativeIO$POSIX$Stat inner class and its constructor</comment>
+ <decl_stmt><decl><type><specifier>static</specifier> <name>jclass</name></type> <name>stat_clazz</name></decl>;</decl_stmt>
+ <decl_stmt><decl><type><specifier>static</specifier> <name>jmethodID</name></type> <name>stat_ctor</name></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">101</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">110</literal></expr><operator>,</operator><expr><literal type="number">90</literal> @@ <specifier>static</specifier> <name>int</name> <call><name>workaround_non_threadsafe_calls</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>, <argument><expr><name>jclass</name> <name>clazz</name></expr></argument>)</argument_list></call> <block>{
+   <return>return <expr><name>result</name></expr>;</return>
+ }</block></expr></expr_stmt>
+ 
+<comment type="block" format="javadoc">/**
+ * Sets a static boolean field to the specified value.
+ */</comment>
+<decl_stmt><decl><type><specifier>static</specifier> <name>void</name></type> <name>setStaticBoolean</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>, <argument><expr><name>jclass</name> <name>clazz</name></expr></argument>, <argument><expr><name>char</name> <operator>*</operator><name>field</name></expr></argument>,
+  <argument><expr><name>jboolean</name> <name>val</name></expr></argument>)</argument_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>jfieldID</name></type> <name>fid</name> <init>= <expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr>)</init>-&gt;<name>GetStaticFieldID</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>field</name></expr></argument>, <argument><expr><literal type="string">"Z"</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>fid</name> <operator>!=</operator> <name>NULL</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr></expr_stmt>)</block_content>-&gt;SetStaticBooleanField(env</block><operator>,</operator> <expr_stmt><expr><name>clazz</name></expr><operator>,</operator> <expr><name>fid</name></expr><operator>,</operator> <expr><name>val</name></expr></expr_stmt></if></if_stmt>)</block_content></block></decl>;</decl_stmt>
+    }
+}
+
+<comment type="block" format="javadoc">/**
+ * Sets a static int field to the specified value.
+ */</comment>
+<decl_stmt><decl><type><specifier>static</specifier> <name>void</name></type> <name>setStaticInt</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>, <argument><expr><name>jclass</name> <name>clazz</name></expr></argument>, <argument><expr><name>char</name> <operator>*</operator><name>field</name></expr></argument>,
+  <argument><expr><name>jint</name> <name>val</name></expr></argument>)</argument_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>jfieldID</name></type> <name>fid</name> <init>= <expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr>)</init>-&gt;<name>GetStaticFieldID</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>field</name></expr></argument>, <argument><expr><literal type="string">"I"</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>fid</name> <operator>!=</operator> <name>NULL</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr></expr_stmt>)</block_content>-&gt;SetStaticIntField(env</block><operator>,</operator> <expr_stmt><expr><name>clazz</name></expr><operator>,</operator> <expr><name>fid</name></expr><operator>,</operator> <expr><name>val</name></expr></expr_stmt></if></if_stmt>)</block_content></block></decl>;</decl_stmt>
+    }
+}
+
+<comment type="block" format="javadoc">/**
+ * Initialises a list of java constants that are platform specific.
+ * These are only initialized in UNIX.
+ * Any exceptions that occur will be dealt at the level above.
+**/</comment>
+<decl_stmt><decl><type><specifier>static</specifier> <name>void</name></type> <name>consts_init</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>)</argument_list> <block>{<block_content>
+  <decl_stmt><decl><type><name>jclass</name></type> <name>clazz</name> <init>= <expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr>)</init>-&gt;<name>FindClass</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>NATIVE_IO_POSIX_CLASS</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <if_stmt><if>if <condition>(<expr><name>clazz</name> <operator>==</operator> <name>NULL</name></expr>)</condition> <block>{<block_content>
+    <return>return;</return> <comment type="line">// exception has been raised</comment>
+  </block_content>}</block></if></if_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_RDONLY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_WRONLY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_RDWR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_CREAT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_EXCL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_NOCTTY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_TRUNC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_APPEND</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_NONBLOCK</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>O_SYNC</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+#<decl_stmt><decl><type><name>ifdef</name> <name>HAVE_POSIX_FADVISE</name></type>
+  <name>setStaticBoolean</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><literal type="string">"fadvisePossible"</literal></expr></argument>, <argument><expr><name>JNI_TRUE</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_NORMAL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_RANDOM</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_SEQUENTIAL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_WILLNEED</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_DONTNEED</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>POSIX_FADV_NOREUSE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+#<if_stmt><else>else<block type="pseudo"><block_content>
+  <expr_stmt><expr><call><name>setStaticBoolean</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><literal type="string">"fadvisePossible"</literal></expr></argument>, <argument><expr><name>JNI_FALSE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></else></if_stmt>
+#<expr_stmt><expr><name>endif</name>
+#<name>ifdef</name> <name>HAVE_SYNC_FILE_RANGE</name>
+  <call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>SYNC_FILE_RANGE_WAIT_BEFORE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>SYNC_FILE_RANGE_WRITE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>SYNC_FILE_RANGE_WAIT_AFTER</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+#<decl_stmt><decl><type><name>endif</name></type>
+  <name>clazz</name> <init>= <expr><lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr>)</init>-&gt;<name>FindClass</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>NATIVE_IO_STAT_CLASS</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <if_stmt><if>if <condition>(<expr><name>clazz</name> <operator>==</operator> <name>NULL</name></expr>)</condition> <block>{<block_content>
+    <return>return;</return> <comment type="line">// exception has been raised</comment>
+  </block_content>}</block></if></if_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFMT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFIFO</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFCHR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFDIR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFBLK</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFREG</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFLNK</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IFSOCK</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_ISUID</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_ISGID</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_ISVTX</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IRUSR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IWUSR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>SET_INT_OR_RETURN</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>, <argument><expr><name>S_IXUSR</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+</block_content>}</block></decl></decl_stmt>
+
+ <decl_stmt><decl><type><specifier>static</specifier> <name>void</name></type> <name>stat_init</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>, <argument><expr><name>jclass</name> <name>nativeio_class</name></expr></argument>)</argument_list> <block>{<block_content>
+   <decl_stmt><decl><type><name>jclass</name></type> <name>clazz</name> <init>= <expr><name>NULL</name></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><name>jclass</name></type> <name>obj_class</name> <init>= <expr><name>NULL</name></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><name>jmethodID</name></type>  <name>obj_ctor</name> <init>= <expr><name>NULL</name></expr></init></decl>;</decl_stmt>
+   <comment type="line">// Init Stat</comment>
+  <expr_stmt><expr><name>clazz</name> <operator>=</operator> <lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr></expr_stmt>)</block_content>-&gt;FindClass(env</block></decl>, "org/apache/hadoop/io/nativeio/NativeIO$POSIX$Stat");</decl_stmt>
+  <expr_stmt><expr><name>clazz</name> <operator>=</operator> <lambda><parameter_list>(<parameter><decl/></parameter></parameter_list>*env</lambda></expr></expr_stmt>)<expr_stmt><expr><operator>-&gt;</operator><call><name>FindClass</name><argument_list>(<argument><expr><name>env</name></expr></argument>, <argument><expr><name>NATIVE_IO_STAT_CLASS</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   <if_stmt><if>if <condition>(<expr><operator>!</operator><name>clazz</name></expr>)</condition> <block>{<block_content>
+     <return>return;</return> <comment type="line">// exception has been raised</comment>
+   </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">180</literal></expr><operator>,</operator><expr><literal type="number">39</literal> <operator>+</operator><literal type="number">267</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>static</specifier> <name>void</name> <call><name>nioe_deinit</name><argument_list>(<argument><expr><name>JNIEnv</name> <operator>*</operator><name>env</name></expr></argument>)</argument_list></call> <block>{
+   <expr><name>nioe_ctor</name> <operator>=</operator> <name>NULL</name></expr>;
+ }</block>
+ 
+<comment type="block">/*
+ * Compatibility mapping for fadvise flags. Return the proper value from fnctl.h.
+ * If the value is not known, return the argument unchanged.
+ */</comment>
+<specifier>static</specifier> <name>int</name> <call><name>map_fadvise_flag</name><argument_list>(<argument><expr><name>jint</name> <name>flag</name></expr></argument>)</argument_list></call> <block>{
+#<expr><name>ifdef</name> <name>HAVE_POSIX_FADVISE</name></expr>
+  <switch>switch<condition>(<expr><name>flag</name></expr>)</condition> <block>{<block_content>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_NORMAL</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_NORMAL</name></expr>;</return>
+      <break>break;</break>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_RANDOM</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_RANDOM</name></expr>;</return>
+      <break>break;</break>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_SEQUENTIAL</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_SEQUENTIAL</name></expr>;</return>
+      <break>break;</break>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_WILLNEED</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_WILLNEED</name></expr>;</return>
+      <break>break;</break>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_DONTNEED</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_DONTNEED</name></expr>;</return>
+      <break>break;</break>
+    <case>case <expr><name>org_apache_hadoop_io_nativeio_NativeIO_POSIX_POSIX_FADV_NOREUSE</name></expr>:</case>
+      <return>return <expr><name>POSIX_FADV_NOREUSE</name></expr>;</return>
+      <break>break;</break>
+    <default>default:</default>
+      <return>return <expr><name>flag</name></expr>;</return>
+  <expr_stmt/></block_content></block></switch>}</block>
+#</expr></expr_stmt><if_stmt><else>else<block type="pseudo"><block_content>
+  <return>return <expr><name>flag</name></expr>;</return></block_content></block></else></if_stmt>
+#<expr_stmt><expr><name>endif</name></expr></expr_stmt>
+}
+
+ <comment type="block">/*
+  * private static native void initNative();
+  *
+@@ -223,6 +277,10 @@ static int map_fadvise_flag(jint flag) {
+ JNIEXPORT void JNICALL
+ Java_org_apache_hadoop_io_nativeio_NativeIO_initNative(
+   JNIEnv *env, jclass clazz) {
+#ifdef UNIX
+  consts_init(env);
+  PASS_EXCEPTIONS_GOTO(env, error);
+#endif
+   stat_init(env, clazz);
+   PASS_EXCEPTIONS_GOTO(env, error);
+   nioe_init(env);
+@@ -345,7 +403,7 @@ Java_org_apache_hadoop_io_nativeio_NativeIO_00024POSIX_posix_1fadvise(
+   PASS_EXCEPTIONS(env);
+ 
+   int err = 0;
+  if ((err = posix_fadvise(fd, (off_t)offset, (off_t)len, map_fadvise_flag(flags)))) {
+  if ((err = posix_fadvise(fd, (off_t)offset, (off_t)len, flags))) {
+ #ifdef __FreeBSD__
+     throw_ioe(env, errno);
+ #else
+@@ -448,22 +506,6 @@ Java_org_apache_hadoop_io_nativeio_NativeIO_00024POSIX_mlock_1native(
+ #endif
+ }
+ 
+#ifdef __FreeBSD__
+static int toFreeBSDFlags(int flags)
+{
+  int rc = flags &amp; 03;
+  if ( flags &amp;  0100 ) rc |= O_CREAT;
+  if ( flags &amp;  0200 ) rc |= O_EXCL;
+  if ( flags &amp;  0400 ) rc |= O_NOCTTY;
+  if ( flags &amp; 01000 ) rc |= O_TRUNC;
+  if ( flags &amp; 02000 ) rc |= O_APPEND;
+  if ( flags &amp; 04000 ) rc |= O_NONBLOCK;
+  if ( flags &amp;010000 ) rc |= O_SYNC;
+  if ( flags &amp;020000 ) rc |= O_ASYNC;
+  return rc;
+}
+#endif
+
+ /*
+  * Class:     org_apache_hadoop_io_nativeio_NativeIO_POSIX
+  * Method:    open
+@@ -479,9 +521,6 @@ Java_org_apache_hadoop_io_nativeio_NativeIO_00024POSIX_open(
+   jint flags, jint mode)
+ {
+ #ifdef UNIX
+#ifdef __FreeBSD__
+  flags = toFreeBSDFlags(flags);
+#endif
+   jobject ret = NULL;
+ 
+   const char *path = (*env)-&gt;GetStringUTFChars(env, j_path, NULL);
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/io/nativeio/TestNativeIO.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/io/nativeio/TestNativeIO.java
+index bf3ece7894c..13fdbc17a40 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/io/nativeio/TestNativeIO.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/io/nativeio/TestNativeIO.java
+@@ -55,6 +55,9 @@
+ import org.apache.hadoop.util.NativeCodeLoader;
+ import org.apache.hadoop.util.Time;
+ 
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.*;
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.Stat.*;
+
+ public class TestNativeIO {
+   static final Log LOG = LogFactory.getLog(TestNativeIO.class);
+ 
+@@ -93,9 +96,8 @@ public void testFstat() throws Exception {
+     assertEquals(expectedOwner, owner);
+     assertNotNull(stat.getGroup());
+     assertTrue(!stat.getGroup().isEmpty());
+    assertEquals("Stat mode field should indicate a regular file",
+      NativeIO.POSIX.Stat.S_IFREG,
+      stat.getMode() &amp; NativeIO.POSIX.Stat.S_IFMT);
+    assertEquals("Stat mode field should indicate a regular file", S_IFREG,
+      stat.getMode() &amp; S_IFMT);
+   }
+ 
+   /**
+@@ -128,8 +130,7 @@ public void run() {
+               assertNotNull(stat.getGroup());
+               assertTrue(!stat.getGroup().isEmpty());
+               assertEquals("Stat mode field should indicate a regular file",
+                NativeIO.POSIX.Stat.S_IFREG,
+                stat.getMode() &amp; NativeIO.POSIX.Stat.S_IFMT);
+                S_IFREG, stat.getMode() &amp; S_IFMT);
+             } catch (Throwable t) {
+               thrown.set(t);
+             }
+@@ -338,8 +339,7 @@ public void testOpenMissingWithoutCreate() throws Exception {
+     LOG.info("Open a missing file without O_CREAT and it should fail");
+     try {
+       FileDescriptor fd = NativeIO.POSIX.open(
+        new File(TEST_DIR, "doesntexist").getAbsolutePath(),
+        NativeIO.POSIX.O_WRONLY, 0700);
+        new File(TEST_DIR, "doesntexist").getAbsolutePath(), O_WRONLY, 0700);
+       fail("Able to open a new file without O_CREAT");
+     } catch (NativeIOException nioe) {
+       LOG.info("Got expected exception", nioe);
+@@ -356,7 +356,7 @@ public void testOpenWithCreate() throws Exception {
+     LOG.info("Test creating a file with O_CREAT");
+     FileDescriptor fd = NativeIO.POSIX.open(
+       new File(TEST_DIR, "testWorkingOpen").getAbsolutePath(),
+      NativeIO.POSIX.O_WRONLY | NativeIO.POSIX.O_CREAT, 0700);
+      O_WRONLY | O_CREAT, 0700);
+     assertNotNull(true);
+     assertTrue(fd.valid());
+     FileOutputStream fos = new FileOutputStream(fd);
+@@ -369,7 +369,7 @@ public void testOpenWithCreate() throws Exception {
+     try {
+       fd = NativeIO.POSIX.open(
+         new File(TEST_DIR, "testWorkingOpen").getAbsolutePath(),
+        NativeIO.POSIX.O_WRONLY | NativeIO.POSIX.O_CREAT | NativeIO.POSIX.O_EXCL, 0700);
+        O_WRONLY | O_CREAT | O_EXCL, 0700);
+       fail("Was able to create existing file with O_EXCL");
+     } catch (NativeIOException nioe) {
+       LOG.info("Got expected exception for failed exclusive create", nioe);
+@@ -390,7 +390,7 @@ public void testFDDoesntLeak() throws IOException {
+     for (int i = 0; i &lt; 10000; i++) {
+       FileDescriptor fd = NativeIO.POSIX.open(
+         new File(TEST_DIR, "testNoFdLeak").getAbsolutePath(),
+        NativeIO.POSIX.O_WRONLY | NativeIO.POSIX.O_CREAT, 0700);
+        O_WRONLY | O_CREAT, 0700);
+       assertNotNull(true);
+       assertTrue(fd.valid());
+       FileOutputStream fos = new FileOutputStream(fd);
+@@ -436,8 +436,7 @@ public void testPosixFadvise() throws Exception {
+     FileInputStream fis = new FileInputStream("/dev/zero");
+     try {
+       NativeIO.POSIX.posix_fadvise(
+          fis.getFD(), 0, 0,
+          NativeIO.POSIX.POSIX_FADV_SEQUENTIAL);
+          fis.getFD(), 0, 0, POSIX_FADV_SEQUENTIAL);
+     } catch (UnsupportedOperationException uoe) {
+       // we should just skip the unit test on machines where we don't
+       // have fadvise support
+@@ -450,20 +449,14 @@ public void testPosixFadvise() throws Exception {
+     }
+ 
+     try {
+      NativeIO.POSIX.posix_fadvise(
+          fis.getFD(), 0, 1024,
+          NativeIO.POSIX.POSIX_FADV_SEQUENTIAL);
+
+      NativeIO.POSIX.posix_fadvise(fis.getFD(), 0, 1024, POSIX_FADV_SEQUENTIAL);
+       fail("Did not throw on bad file");
+     } catch (NativeIOException nioe) {
+       assertEquals(Errno.EBADF, nioe.getErrno());
+     }
+     
+     try {
+      NativeIO.POSIX.posix_fadvise(
+          null, 0, 1024,
+          NativeIO.POSIX.POSIX_FADV_SEQUENTIAL);
+
+      NativeIO.POSIX.posix_fadvise(null, 0, 1024, POSIX_FADV_SEQUENTIAL);
+       fail("Did not throw on null file");
+     } catch (NullPointerException npe) {
+       // expected
+@@ -476,9 +469,8 @@ public void testSyncFileRange() throws Exception {
+       new File(TEST_DIR, "testSyncFileRange"));
+     try {
+       fos.write("foo".getBytes());
+      NativeIO.POSIX.sync_file_range(
+          fos.getFD(), 0, 1024,
+          NativeIO.POSIX.SYNC_FILE_RANGE_WRITE);
+      NativeIO.POSIX.sync_file_range(fos.getFD(), 0, 1024,
+        SYNC_FILE_RANGE_WRITE);
+       // no way to verify that this actually has synced,
+       // but if it doesn't throw, we can assume it worked
+     } catch (UnsupportedOperationException uoe) {
+@@ -489,9 +481,8 @@ public void testSyncFileRange() throws Exception {
+       fos.close();
+     }
+     try {
+      NativeIO.POSIX.sync_file_range(
+          fos.getFD(), 0, 1024,
+          NativeIO.POSIX.SYNC_FILE_RANGE_WRITE);
+      NativeIO.POSIX.sync_file_range(fos.getFD(), 0, 1024,
+	   SYNC_FILE_RANGE_WRITE);
+       fail("Did not throw on bad file");
+     } catch (NativeIOException nioe) {
+       assertEquals(Errno.EBADF, nioe.getErrno());
+@@ -657,4 +648,51 @@ public void testCopyFileUnbuffered() throws Exception {
+       FileUtils.deleteQuietly(TEST_DIR);
+     }
+   }
+
+  @Test (timeout=10000)
+  public void testNativePosixConsts() {
+    assumeTrue("Native POSIX constants not required for Windows",
+      !Path.WINDOWS);
+    assertTrue("Native 0_RDONLY const not set", O_RDONLY &gt;= 0);
+    assertTrue("Native 0_WRONLY const not set", O_WRONLY &gt;= 0);
+    assertTrue("Native 0_RDWR const not set", O_RDWR &gt;= 0);
+    assertTrue("Native 0_CREAT const not set", O_CREAT &gt;= 0);
+    assertTrue("Native 0_EXCL const not set", O_EXCL &gt;= 0);
+    assertTrue("Native 0_NOCTTY const not set", O_NOCTTY &gt;= 0);
+    assertTrue("Native 0_TRUNC const not set", O_TRUNC &gt;= 0);
+    assertTrue("Native 0_APPEND const not set", O_APPEND &gt;= 0);
+    assertTrue("Native 0_NONBLOCK const not set", O_NONBLOCK &gt;= 0);
+    assertTrue("Native 0_SYNC const not set", O_SYNC &gt;= 0);
+    assertTrue("Native S_IFMT const not set", S_IFMT &gt;= 0);
+    assertTrue("Native S_IFIFO const not set", S_IFIFO &gt;= 0);
+    assertTrue("Native S_IFCHR const not set", S_IFCHR &gt;= 0);
+    assertTrue("Native S_IFDIR const not set", S_IFDIR &gt;= 0);
+    assertTrue("Native S_IFBLK const not set", S_IFBLK &gt;= 0);
+    assertTrue("Native S_IFREG const not set", S_IFREG &gt;= 0);
+    assertTrue("Native S_IFLNK const not set", S_IFLNK &gt;= 0);
+    assertTrue("Native S_IFSOCK const not set", S_IFSOCK &gt;= 0);
+    assertTrue("Native S_ISUID const not set", S_ISUID &gt;= 0);
+    assertTrue("Native S_ISGID const not set", S_ISGID &gt;= 0);
+    assertTrue("Native S_ISVTX const not set", S_ISVTX &gt;= 0);
+    assertTrue("Native S_IRUSR const not set", S_IRUSR &gt;= 0);
+    assertTrue("Native S_IWUSR const not set", S_IWUSR &gt;= 0);
+    assertTrue("Native S_IXUSR const not set", S_IXUSR &gt;= 0);
+  }
+
+  @Test (timeout=10000)
+  public void testNativeFadviseConsts() {
+    assumeTrue("Fadvise constants not supported", fadvisePossible);
+    assertTrue("Native POSIX_FADV_NORMAL const not set",
+      POSIX_FADV_NORMAL &gt;= 0);
+    assertTrue("Native POSIX_FADV_RANDOM const not set",
+      POSIX_FADV_RANDOM &gt;= 0);
+    assertTrue("Native POSIX_FADV_SEQUENTIAL const not set",
+      POSIX_FADV_SEQUENTIAL &gt;= 0);
+    assertTrue("Native POSIX_FADV_WILLNEED const not set",
+      POSIX_FADV_WILLNEED &gt;= 0);
+    assertTrue("Native POSIX_FADV_DONTNEED const not set",
+      POSIX_FADV_DONTNEED &gt;= 0);
+    assertTrue("Native POSIX_FADV_NOREUSE const not set",
+      POSIX_FADV_NOREUSE &gt;= 0);
+  }
+ }
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockReceiver.java b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockReceiver.java
+index 55c9d572c82..1cb308f7319 100644
+-- a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockReceiver.java
+++ b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockReceiver.java
+@@ -58,6 +58,9 @@
+ import org.apache.hadoop.util.StringUtils;
+ import org.apache.hadoop.util.Time;
+ 
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_DONTNEED;
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.SYNC_FILE_RANGE_WRITE;
+
+ import com.google.common.annotations.VisibleForTesting;
+ 
+ /** A class that receives a block and writes to its own disk, meanwhile
+@@ -791,12 +794,12 @@ private void manageWriterOsCache(long offsetInBlock) {
+             this.datanode.getFSDataset().submitBackgroundSyncFileRangeRequest(
+                 block, outFd, lastCacheManagementOffset,
+                 offsetInBlock - lastCacheManagementOffset,
+                NativeIO.POSIX.SYNC_FILE_RANGE_WRITE);
+                SYNC_FILE_RANGE_WRITE);
+           } else {
+             NativeIO.POSIX.syncFileRangeIfPossible(outFd,
+                lastCacheManagementOffset, offsetInBlock
+                    - lastCacheManagementOffset,
+                NativeIO.POSIX.SYNC_FILE_RANGE_WRITE);
+                lastCacheManagementOffset,
+                offsetInBlock - lastCacheManagementOffset,
+                SYNC_FILE_RANGE_WRITE);
+           }
+         }
+         //
+@@ -812,8 +815,7 @@ private void manageWriterOsCache(long offsetInBlock) {
+         long dropPos = lastCacheManagementOffset - CACHE_DROP_LAG_BYTES;
+         if (dropPos &gt; 0 &amp;&amp; dropCacheBehindWrites) {
+           NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(
+              block.getBlockName(), outFd, 0, dropPos,
+              NativeIO.POSIX.POSIX_FADV_DONTNEED);
+              block.getBlockName(), outFd, 0, dropPos, POSIX_FADV_DONTNEED);
+         }
+         lastCacheManagementOffset = offsetInBlock;
+         long duration = Time.monotonicNow() - begin;
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockSender.java b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockSender.java
+index 79f4dd7aa2e..fb8b132dfb4 100644
+-- a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockSender.java
+++ b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/datanode/BlockSender.java
+@@ -51,6 +51,9 @@
+ import org.apache.htrace.Trace;
+ import org.apache.htrace.TraceScope;
+ 
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_DONTNEED;
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_SEQUENTIAL;
+
+ import com.google.common.annotations.VisibleForTesting;
+ import com.google.common.base.Preconditions;
+ 
+@@ -411,8 +414,7 @@ public void close() throws IOException {
+       try {
+         NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(
+             block.getBlockName(), blockInFd, lastCacheDropOffset,
+            offset - lastCacheDropOffset,
+            NativeIO.POSIX.POSIX_FADV_DONTNEED);
+            offset - lastCacheDropOffset, POSIX_FADV_DONTNEED);
+       } catch (Exception e) {
+         LOG.warn("Unable to drop cache on file close", e);
+       }
+@@ -729,8 +731,7 @@ private long doSendBlock(DataOutputStream out, OutputStream baseStream,
+     if (isLongRead() &amp;&amp; blockInFd != null) {
+       // Advise that this file descriptor will be accessed sequentially.
+       NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(
+          block.getBlockName(), blockInFd, 0, 0,
+          NativeIO.POSIX.POSIX_FADV_SEQUENTIAL);
+          block.getBlockName(), blockInFd, 0, 0, POSIX_FADV_SEQUENTIAL);
+     }
+     
+     // Trigger readahead of beginning of file if configured.
+@@ -818,7 +819,7 @@ private void manageOsCache() throws IOException {
+         long dropLength = offset - lastCacheDropOffset;
+         NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(
+             block.getBlockName(), blockInFd, lastCacheDropOffset,
+            dropLength, NativeIO.POSIX.POSIX_FADV_DONTNEED);
+            dropLength, POSIX_FADV_DONTNEED);
+         lastCacheDropOffset = offset;
+       }
+     }
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/datanode/TestCachingStrategy.java b/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/datanode/TestCachingStrategy.java
+index 709554a0ea4..bd1a7771a14 100644
+-- a/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/datanode/TestCachingStrategy.java
+++ b/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/datanode/TestCachingStrategy.java
+@@ -39,6 +39,9 @@
+ import org.apache.hadoop.io.nativeio.NativeIO;
+ import org.apache.hadoop.io.nativeio.NativeIO.POSIX.CacheManipulator;
+ import org.apache.hadoop.io.nativeio.NativeIOException;
+
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_DONTNEED;
+
+ import org.junit.Assert;
+ import org.junit.BeforeClass;
+ import org.junit.Test;
+@@ -78,7 +81,7 @@ public static void setupTest() {
+     synchronized void fadvise(int offset, int len, int flags) {
+       LOG.debug("got fadvise(offset=" + offset + ", len=" + len +
+           ",flags=" + flags + ")");
+      if (flags == NativeIO.POSIX.POSIX_FADV_DONTNEED) {
+      if (flags == POSIX_FADV_DONTNEED) {
+         for (int i = 0; i &lt; len; i++) {
+           dropped[(offset + i)] = true;
+         }
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedChunkedFile.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedChunkedFile.java
+index 70e68292b95..7e24e8985b1 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedChunkedFile.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedChunkedFile.java
+@@ -27,6 +27,9 @@
+ import org.apache.hadoop.io.ReadaheadPool;
+ import org.apache.hadoop.io.ReadaheadPool.ReadaheadRequest;
+ import org.apache.hadoop.io.nativeio.NativeIO;
+
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_DONTNEED;
+
+ import org.jboss.netty.handler.stream.ChunkedFile;
+ 
+ public class FadvisedChunkedFile extends ChunkedFile {
+@@ -72,7 +75,7 @@ public void close() throws Exception {
+         NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(identifier,
+             fd,
+             getStartOffset(), getEndOffset() - getStartOffset(),
+            NativeIO.POSIX.POSIX_FADV_DONTNEED);
+            POSIX_FADV_DONTNEED);
+       } catch (Throwable t) {
+         LOG.warn("Failed to manage OS cache for " + identifier, t);
+       }
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedFileRegion.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedFileRegion.java
+index f1acfff9b25..6fd46a5310c 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedFileRegion.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/FadvisedFileRegion.java
+@@ -30,6 +30,9 @@
+ import org.apache.hadoop.io.ReadaheadPool;
+ import org.apache.hadoop.io.ReadaheadPool.ReadaheadRequest;
+ import org.apache.hadoop.io.nativeio.NativeIO;
+
+import static org.apache.hadoop.io.nativeio.NativeIO.POSIX.POSIX_FADV_DONTNEED;
+
+ import org.jboss.netty.channel.DefaultFileRegion;
+ 
+ import com.google.common.annotations.VisibleForTesting;
+@@ -155,8 +158,7 @@ public void transferSuccessful() {
+     if (manageOsCache &amp;&amp; getCount() &gt; 0) {
+       try {
+         NativeIO.POSIX.getCacheManipulator().posixFadviseIfPossible(identifier,
+           fd, getPosition(), getCount(),
+           NativeIO.POSIX.POSIX_FADV_DONTNEED);
+            fd, getPosition(), getCount(), POSIX_FADV_DONTNEED);
+       } catch (Throwable t) {
+         LOG.warn("Failed to manage OS cache for " + identifier, t);
+       }
+- 
+2.19.1.windows.1
+
+</comment></unit>

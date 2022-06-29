@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/d4d455f1f.java"><expr_stmt><expr><name>From</name> <name>d4d455f1f3beded6f20b6c3946a7b867d6b3e2d4</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Sean</name> <name><name>Busbey</name> <argument_list type="generic">&lt;<argument><name>busbey</name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">1</literal> <name>Jul</name> <literal type="number">2014</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">48</literal><operator>:</operator><literal type="number">43</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">2967</literal> <name>Unknown</name> <name>Host</name> <name>should</name> <name>result</name> <name>in</name> <name><name>timeout</name><operator>.</operator>
+
+ <name>Tests</name></name> <name>that</name> <name>we</name> <name>get</name> <name>an</name> <name>exception</name> <name>within</name> <name>a</name> <name>reasonable</name> <name>bound</name>
+ <name>Changes</name> <name>timeout</name> <name>condition</name> <name>to</name> <name>check</name> <name>prior</name> <name>to</name> <name>place</name> <name>where</name> <name>an</name> <name>exception</name> <name>can</name> <name>be</name> <name><name>thrown</name><operator>.</operator></name>
+--
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSession</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">14</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSessionTest</name><operator>.</operator><name>java</name></name>        <operator>|</operator> <literal type="number">32</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">43</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">3</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>fate</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSessionTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>fate</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSession</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>fate</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSession</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">205ff0180</literal><operator>..</operator><name>a9f630efe</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>fate</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSession</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>fate</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>fate</name><operator>/</operator><name>zookeeper</name><operator>/</operator><name><name>ZooSession</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZooSession</name> <block>{
+     
+   }</block>
+   
+  <comment type="block" format="javadoc">/**
+   * @param host comma separated list of zk servers
+   * @param timeout in milliseconds
+   * @param scheme authentication type, e.g. 'digest', may be null
+   * @param auth authentication-scheme-specific token, may be null
+   * @param watcher ZK notifications, may be null
+   */</comment>
+   <specifier>public</specifier> <specifier>static</specifier> <name>ZooKeeper</name> <call><name>connect</name><argument_list>(<argument><expr><name>String</name> <name>host</name></expr></argument>, <argument><expr><name>int</name> <name>timeout</name></expr></argument>, <argument><expr><name>String</name> <name>scheme</name></expr></argument>, <argument><expr><name><name>byte</name><index>[]</index></name> <name>auth</name></expr></argument>, <argument><expr><name>Watcher</name> <name>watcher</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name>final</name> <name>int</name> <name>TIME_BETWEEN_CONNECT_CHECKS_MS</name> <operator>=</operator> <literal type="number">100</literal></expr>;
+     <expr><name>final</name> <name>int</name> <name>TOTAL_CONNECT_TIME_WAIT_MS</name> <operator>=</operator> <literal type="number">10</literal> <operator>*</operator> <literal type="number">1000</literal></expr>;
+@@ <expr><operator>-</operator><literal type="number">88</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">95</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZooSession</name> <block>{
+             <expr><call><name><name>UtilWaitThread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><name>TIME_BETWEEN_CONNECT_CHECKS_MS</name></expr></argument>)</argument_list></call></expr>;
+         }</block></expr>
+         
+        <if_stmt><if>if <condition>(<expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call> <operator>-</operator> <name>startTime</name> <operator>&gt;</operator> <literal type="number">2</literal> <operator>*</operator> <name>timeout</name></expr>)</condition><block type="pseudo"><block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"Failed to connect to zookeeper ("</literal> <operator>+</operator> <name>host</name> <operator>+</operator> <literal type="string">") within 2x zookeeper timeout period "</literal> <operator>+</operator> <name>timeout</name></expr></argument>)</argument_list></call></expr>;</throw></block_content></block></if></if_stmt>
+
+       }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><name>e</name> <operator>instanceof</operator> <name>UnknownHostException</name></expr>)</condition> <block>{<block_content>
+           <comment type="block">/*
+@@ -108,6 +112,10 @@ public class ZooSession {
+             log.warn("interrupted", e);
+           }
+       }
+
+      if (System.currentTimeMillis() - startTime &gt; 2 * timeout) {
+        throw new RuntimeException("Failed to connect to zookeeper (" + host + ") within 2x zookeeper timeout period " + timeout);
+      }
+       
+       if (tryAgain) {
+         UtilWaitThread.sleep(sleepTime);
+diff --git a/fate/src/test/java/org/apache/accumulo/fate/zookeeper/ZooSessionTest.java b/fate/src/test/java/org/apache/accumulo/fate/zookeeper/ZooSessionTest.java
+new file mode 100644
+index 000000000..6f7928da8
+-- /dev/null
+++ b/fate/src/test/java/org/apache/accumulo/fate/zookeeper/ZooSessionTest.java
+@@ -0,0 +1,32 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>fate</name><operator>.</operator><name>zookeeper</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>ZooKeeper</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>ZooSessionTest</name> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>MINIMUM_TIMEOUT</name><init>=<expr><literal type="number">10000</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>UNKNOWN_HOST</name> <init>= <expr><literal type="string">"hostname.that.should.not.exist.example.com:2181"</literal></expr></init></decl>;</decl_stmt>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>expected</name><operator>=</operator><name><name>RuntimeException</name><operator>.</operator><name>class</name></name></expr></argument>, <argument><expr><name>timeout</name><operator>=</operator><name>MINIMUM_TIMEOUT</name><operator>*</operator><literal type="number">4</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testUnknownHost</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>ZooKeeper</name></type> <name>session</name> <init>= <expr><call><name><name>ZooSession</name><operator>.</operator><name>connect</name></name><argument_list>(<argument><expr><name>UNKNOWN_HOST</name></expr></argument>, <argument><expr><name>MINIMUM_TIMEOUT</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  </block_content>}</block></function>
+
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></if></if_stmt></block_content></block></catch>
+
+</unit>

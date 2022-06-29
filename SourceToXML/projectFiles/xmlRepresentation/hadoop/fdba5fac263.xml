@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/fdba5fac263.java"><expr_stmt><expr><name>From</name> <name>fdba5fac263f9bf79fccf566c36bbc42ef67e875</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Colin</name> <name><name>McCabe</name> <argument_list type="generic">&lt;<argument><name>cmccabe</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">14</literal> <name>Aug</name> <literal type="number">2013</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">12</literal><operator>:</operator><literal type="number">55</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">9652.</literal>  <name>RawLocalFs</name><operator>#</operator><name>getFileLinkStatus</name> <name>does</name> <name>not</name> <name>fill</name> <name>in</name>
+ <name>the</name> <name>link</name> <name>owner</name> <name>and</name> <name><name>mode</name><operator>.</operator></name>  (<name>Andrew</name> <name>Wang</name> <name>via</name> <name>Colin</name> <name>Patrick</name> <name>McCabe</name></expr></expr_stmt>)
+
+<expr_stmt><expr><name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1514088 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>DelegateToFileSystem</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">19</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>HardLink</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">40</literal> <operator>+</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>RawLocalFileSystem</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">74</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>Stat</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">167</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name>local</name><operator>/</operator><name><name>RawLocalFs</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">94</literal> <operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">56</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestLocalFileSystem</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">19</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestStat</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">122</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestSymlinkLocalFS</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">15</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">10</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">453</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">157</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>Stat</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestStat</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">77f735504b6</literal><operator>..</operator><literal type="number">52073fa31c8</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">331</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">331</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>Release</name> <literal type="number">2.3.0</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">9817.</literal> <name>FileSystem</name><operator>#</operator><name>globStatus</name> <name>and</name> <name>FileContext</name><operator>#</operator><name>globStatus</name> <name>need</name> <name>to</name> <name>work</name>
+     <name>with</name> <name><name>symlinks</name><operator>.</operator></name> (<name>Colin</name> <name>Patrick</name> <name>McCabe</name> <name>via</name> <name>Andrew</name> <name>Wang</name></expr></expr_stmt>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">9652.</literal>  <name>RawLocalFs</name><operator>#</operator><name>getFileLinkStatus</name> <name>does</name> <name>not</name> <name>fill</name> <name>in</name> <name>the</name> <name>link</name> <name>owner</name>
+    <name>and</name> <name><name>mode</name><operator>.</operator></name>  (<name>Andrew</name> <name>Wang</name> <name>via</name> <name>Colin</name> <name>Patrick</name> <name>McCabe</name></expr></expr_stmt>)
+
+
+ <expr_stmt><expr><name>Release</name> <literal type="number">2.1.1</literal><operator>-</operator><name>beta</name> <operator>-</operator> <name>UNRELEASED</name>
+ 
+   <name>INCOMPATIBLE</name> <name>CHANGES</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>DelegateToFileSystem</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>DelegateToFileSystem</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">1293448eea3</literal><operator>..</operator><literal type="number">708ca4ada5b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>DelegateToFileSystem</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>DelegateToFileSystem</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>FileStatus</name> <call><name>getFileStatus</name><argument_list>(<argument><expr><name>Path</name> <name>f</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+ 
+   <expr><annotation>@<name>Override</name></annotation>
+   <specifier>public</specifier> <name>FileStatus</name> <call><name>getFileLinkStatus</name><argument_list>(<argument><expr><name>final</name> <name>Path</name> <name>f</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+    <return>return <expr><call><name>getFileStatus</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>status</name> <init>= <expr><call><name><name>fsImpl</name><operator>.</operator><name>getFileLinkStatus</name></name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// FileSystem#getFileLinkStatus qualifies the link target</comment>
+    <comment type="line">// AbstractFileSystem needs to return it plain since it's qualified</comment>
+    <comment type="line">// in FileContext, so re-get and set the plain target</comment>
+    <if_stmt><if>if <condition>(<expr><call><name><name>status</name><operator>.</operator><name>isSymlink</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>status</name><operator>.</operator><name>setSymlink</name></name><argument_list>(<argument><expr><call><name><name>fsImpl</name><operator>.</operator><name>getLinkTarget</name></name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>status</name></expr>;</return>
+   }
+ 
+   @<expr_stmt><expr><name>Override</name>
+@@ <operator>-</operator><literal type="number">199</literal></expr><operator>,</operator><expr><literal type="number">22</literal> <operator>+</operator><literal type="number">206</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>setVerifyChecksum</name><argument_list>(<argument><expr><name>boolean</name> <name>verifyChecksum</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+ 
+   <expr><annotation>@<name>Override</name></annotation>
+   <specifier>public</specifier> <name>boolean</name> <call><name>supportsSymlinks</name><argument_list>()</argument_list></call> <block>{</block></expr></block></expr></argument></throws></expr></expr_stmt>
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+    <return>return <expr><call><name><name>fsImpl</name><operator>.</operator><name>supportsSymlinks</name></name><argument_list>()</argument_list></call></expr>;</return>
+   }  
+   
+   @<function><type><name>Override</name>
+   <specifier>public</specifier> <name>void</name></type> <name>createSymlink</name><parameter_list>(<parameter><decl><type><name>Path</name></type> <name>target</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>link</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>createParent</name></decl></parameter>)</parameter_list> 
+       <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content> 
+    <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"File system does not support symlinks"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    <expr_stmt><expr><call><name><name>fsImpl</name><operator>.</operator><name>createSymlink</name></name><argument_list>(<argument><expr><name>target</name></expr></argument>, <argument><expr><name>link</name></expr></argument>, <argument><expr><name>createParent</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function> 
+   
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>Path</name></type> <name>getLinkTarget</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="block">/* We should never get here. Any file system that threw an 
+     * UnresolvedLinkException, causing this function to be called,
+     * should override getLinkTarget. 
+     */</comment>
+    <throw>throw <expr><operator>new</operator> <call><name>AssertionError</name><argument_list>()</argument_list></call></expr>;</throw>
+    <return>return <expr><call><name><name>fsImpl</name><operator>.</operator><name>getLinkTarget</name></name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <annotation>@<name>Override</name></annotation> <comment type="line">//AbstractFileSystem</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>HardLink</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>HardLink</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5e462cdc441</literal><operator>..</operator><name>bf5ed6d58f7</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>HardLink</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>HardLink</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+  <operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> <name>class</name> <name>HardLink</name> <block>{ 
+ 
+  <expr><specifier>public</specifier> enum <name>OSType</name> <block>{
+    <expr><name>OS_TYPE_UNIX</name></expr>,
+    <expr><name>OS_TYPE_WIN</name></expr>,
+    <expr><name>OS_TYPE_SOLARIS</name></expr>,
+    <expr><name>OS_TYPE_MAC</name></expr>,
+    <expr><name>OS_TYPE_FREEBSD</name></expr>
+  }</block>
+  
+  <specifier>public</specifier> <specifier>static</specifier> <name>OSType</name> <name>osType</name></expr>;
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>HardLinkCommandGetter</name> <name>getHardLinkCommand</name></expr>;
+   
+   <expr><specifier>public</specifier> <name>final</name> <name>LinkStats</name> <name>linkStats</name></expr>; <comment type="line">//not static</comment>
+@@ <expr><operator>-</operator><literal type="number">57</literal></expr>,<expr><literal type="number">19</literal> <operator>+</operator><literal type="number">48</literal></expr>,<expr><literal type="number">18</literal> @@</expr>
+   <comment type="line">//initialize the command "getters" statically, so can use their </comment>
+   <comment type="line">//methods without instantiating the HardLink object</comment>
+   <static>static <block>{<block_content> 
+    <expr_stmt><expr><name>osType</name> <operator>=</operator> <call><name>getOSType</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_WIN</name></name></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>WINDOWS</name></name></expr>)</condition> <block>{<block_content>
+       <comment type="line">// Windows</comment>
+       <expr_stmt><expr><name>getHardLinkCommand</name> <operator>=</operator> <operator>new</operator> <call><name>HardLinkCGWin</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></static>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+      <comment type="line">// Unix</comment>
+      <comment type="line">// Unix or Linux</comment>
+       <expr_stmt><expr><name>getHardLinkCommand</name> <operator>=</operator> <operator>new</operator> <call><name>HardLinkCGUnix</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <comment type="line">//override getLinkCountCommand for the particular Unix variant</comment>
+       <comment type="line">//Linux is already set as the default - {"stat","-c%h", null}</comment>
+      <if_stmt><if>if <condition>(<expr><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_MAC</name></name> <operator>||</operator> <name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_FREEBSD</name></name></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>MAC</name></name> <operator>||</operator> <name><name>Shell</name><operator>.</operator><name>FREEBSD</name></name></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>linkCountCmdTemplate</name> <init>= <expr><block>{<expr><literal type="string">"/usr/bin/stat"</literal></expr>,<expr><literal type="string">"-f%l"</literal></expr>, <expr><literal type="null">null</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>HardLinkCGUnix</name><operator>.</operator><name>setLinkCountCmdTemplate</name></name><argument_list>(<argument><expr><name>linkCountCmdTemplate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_SOLARIS</name></name></expr>)</condition> <block>{<block_content>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>SOLARIS</name></name></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>linkCountCmdTemplate</name> <init>= <expr><block>{<expr><literal type="string">"ls"</literal></expr>,<expr><literal type="string">"-l"</literal></expr>, <expr><literal type="null">null</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>HardLinkCGUnix</name><operator>.</operator><name>setLinkCountCmdTemplate</name></name><argument_list>(<argument><expr><name>linkCountCmdTemplate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>        
+       </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">80</literal></expr><operator>,</operator><expr><literal type="number">26</literal> <operator>+</operator><literal type="number">70</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <call><name>HardLink</name><argument_list>()</argument_list></call> <block>{
+     <expr><name>linkStats</name> <operator>=</operator> <operator>new</operator> <call><name>LinkStats</name><argument_list>()</argument_list></call></expr>;
+   }</block></expr></expr_stmt>
+   
+  <function><type><specifier>static</specifier> <specifier>private</specifier> <name>OSType</name></type> <name>getOSType</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>osName</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"os.name"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>WINDOWS</name></name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_WIN</name></name></expr>;</return>
+    </block_content>}</block></if>
+    <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"SunOS"</literal></expr></argument>)</argument_list></call> 
+            <operator>||</operator> <call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"Solaris"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+       <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_SOLARIS</name></name></expr>;</return>
+    </block_content>}</block></if>
+    <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"Mac"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+       <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_MAC</name></name></expr>;</return>
+    </block_content>}</block></if>
+    <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"FreeBSD"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+       <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_FREEBSD</name></name></expr>;</return>
+    </block_content>}</block></if>
+    <else>else <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_UNIX</name></name></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+  
+   <comment type="block" format="javadoc">/**
+    * This abstract class bridges the OS-dependent implementations of the 
+    * needed functionality for creating hardlinks and querying link counts.
+@@ -548,7 +518,7 @@ public static int getLinkCount(File fileName) throws IOException {
+       if (inpMsg == null || exitValue != 0) {
+         throw createIOException(fileName, inpMsg, errMsg, exitValue, null);
+       }
+      if (osType == OSType.OS_TYPE_SOLARIS) {
+      if (Shell.SOLARIS) {
+         String[] result = inpMsg.split("\\s+");
+         return Integer.parseInt(result[1]);
+       } else {
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+index d693214163b..42f77fc3508 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/RawLocalFileSystem.java
+@@ -51,6 +51,7 @@
+ public class RawLocalFileSystem extends FileSystem {
+   static final URI NAME = URI.create("file:///");
+   private Path workingDir;
+  private static final boolean useDeprecatedFileStatus = !Stat.isAvailable();
+   
+   public RawLocalFileSystem() {
+     workingDir = getInitialWorkingDirectory();
+@@ -385,8 +386,11 @@ public boolean delete(Path p, boolean recursive) throws IOException {
+       throw new FileNotFoundException("File " + f + " does not exist");
+     }
+     if (localf.isFile()) {
+      if (!useDeprecatedFileStatus) {
+        return new FileStatus[] { getFileStatus(f) };
+      }
+       return new FileStatus[] {
+        new RawLocalFileStatus(localf, getDefaultBlockSize(f), this) };
+        new DeprecatedRawLocalFileStatus(localf, getDefaultBlockSize(f), this)};
+     }
+ 
+     File[] names = localf.listFiles();
+@@ -516,15 +520,22 @@ public String toString() {
+   
+   @Override
+   public FileStatus getFileStatus(Path f) throws IOException {
+    return getFileLinkStatusInternal(f, true);
+  }
+
+  @Deprecated
+  private FileStatus deprecatedGetFileStatus(Path f) throws IOException {
+     File path = pathToFile(f);
+     if (path.exists()) {
+      return new RawLocalFileStatus(pathToFile(f), getDefaultBlockSize(f), this);
+      return new DeprecatedRawLocalFileStatus(pathToFile(f),
+          getDefaultBlockSize(f), this);
+     } else {
+       throw new FileNotFoundException("File " + f + " does not exist");
+     }
+   }
+ 
+  static class RawLocalFileStatus extends FileStatus {
+  @Deprecated
+  static class DeprecatedRawLocalFileStatus extends FileStatus {
+     /* We can add extra fields here. It breaks at least CopyFiles.FilePair().
+      * We recognize if the information is already loaded by check if
+      * onwer.equals("").
+@@ -533,7 +544,7 @@ private boolean isPermissionLoaded() {
+       return !super.getOwner().isEmpty(); 
+     }
+     
+    RawLocalFileStatus(File f, long defaultBlockSize, FileSystem fs) { 
+    DeprecatedRawLocalFileStatus(File f, long defaultBlockSize, FileSystem fs) {
+       super(f.length(), f.isDirectory(), 1, defaultBlockSize,
+           f.lastModified(), new Path(f.getPath()).makeQualified(fs.getUri(),
+             fs.getWorkingDirectory()));
+@@ -699,7 +710,7 @@ public void createSymlink(Path target, Path link, boolean createParent)
+    */</comment>
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>FileStatus</name></type> <name>getFileLinkStatus</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>fi</name> <init>= <expr><call><name>getFileLinkStatusInternal</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>fi</name> <init>= <expr><call><name>getFileLinkStatusInternal</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">// getFileLinkStatus is supposed to return a symlink with a</comment>
+     <comment type="line">// qualified path</comment>
+     <if_stmt><if>if <condition>(<expr><call><name><name>fi</name><operator>.</operator><name>isSymlink</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">710</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">721</literal></expr><operator>,</operator><expr><literal type="number">35</literal> @@ <specifier>public</specifier> <name>FileStatus</name> <call><name>getFileLinkStatus</name><argument_list>(<argument><expr><name>final</name> <name>Path</name> <name>f</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+     <return>return <expr><name>fi</name></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+  <function><type><specifier>private</specifier> <name>FileStatus</name></type> <name>getFileLinkStatusInternal</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+  <comment type="block" format="javadoc">/**
+   * Public {@link FileStatus} methods delegate to this function, which in turn
+   * either call the new {@link Stat} based implementation or the deprecated
+   * methods based on platform support.
+   * 
+   * @param f Path to stat
+   * @param dereference whether to dereference the final path component if a
+   *          symlink
+   * @return FileStatus of f
+   * @throws IOException
+   */</comment>
+  <function><type><specifier>private</specifier> <name>FileStatus</name></type> <name>getFileLinkStatusInternal</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>,
+      <parameter><decl><type><name>boolean</name></type> <name>dereference</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><name>useDeprecatedFileStatus</name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><call><name>getNativeFileLinkStatus</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><name>dereference</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>dereference</name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><call><name>deprecatedGetFileStatus</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <return>return <expr><call><name>deprecatedGetFileLinkStatusInternal</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Deprecated. Remains for legacy support. Should be removed when {@link Stat}
+   * gains support for Windows and other operating systems.
+   */</comment>
+  <function><annotation>@<name>Deprecated</name></annotation>
+  <type><specifier>private</specifier> <name>FileStatus</name></type> <name>deprecatedGetFileLinkStatusInternal</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>String</name></type> <name>target</name> <init>= <expr><call><name><name>FileUtil</name><operator>.</operator><name>readLink</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>f</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <try>try <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">746</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">785</literal></expr><operator>,</operator><expr><literal type="number">31</literal> @@ <specifier>private</specifier> <name>FileStatus</name> <call><name>getFileLinkStatusInternal</name><argument_list>(<argument><expr><name>final</name> <name>Path</name> <name>f</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws>
+       <throw>throw <argument_list>e</argument_list></throw></expr>;</expr_stmt>
+     </block_content>}</block></try>
+   </block_content>}</block></function>
+  <comment type="block" format="javadoc">/**
+   * Calls out to platform's native stat(1) implementation to get file metadata
+   * (permissions, user, group, atime, mtime, etc). This works around the lack
+   * of lstat(2) in Java 6.
+   * 
+   *  Currently, the {@link Stat} class used to do this only supports Linux
+   *  and FreeBSD, so the old {@link #deprecatedGetFileLinkStatusInternal(Path)}
+   *  implementation (deprecated) remains further OS support is added.
+   *
+   * @param f File to stat
+   * @param dereference whether to dereference symlinks
+   * @return FileStatus of f
+   * @throws IOException
+   */</comment>
+  <function><type><specifier>private</specifier> <name>FileStatus</name></type> <name>getNativeFileLinkStatus</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>,
+      <parameter><decl><type><name>boolean</name></type> <name>dereference</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>checkPath</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Stat</name></type> <name>stat</name> <init>= <expr><operator>new</operator> <call><name>Stat</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><call><name>getDefaultBlockSize</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>dereference</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>status</name> <init>= <expr><call><name><name>stat</name><operator>.</operator><name>getFileStatus</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><name>status</name></expr>;</return>
+  </block_content>}</block></function>
+ 
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>Path</name></type> <name>getLinkTarget</name><parameter_list>(<parameter><decl><type><name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>fi</name> <init>= <expr><call><name>getFileLinkStatusInternal</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileStatus</name></type> <name>fi</name> <init>= <expr><call><name>getFileLinkStatusInternal</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">// return an unqualified symlink target</comment>
+     <return>return <expr><call><name><name>fi</name><operator>.</operator><name>getSymlink</name></name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>Stat</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>Stat</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..36dd8811e77</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>Stat</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">167</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>BufferedReader</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileNotFoundException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>NoSuchElementException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>StringTokenizer</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceAudience</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceStability</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>permission</name><operator>.</operator><name>FsPermission</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>util</name><operator>.</operator><name>Shell</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * Wrapper for the Unix stat(1) command. Used to workaround the lack of 
+ * lstat(2) in Java 6.
+ */</comment>
+<class><annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>LimitedPrivate</name></name><argument_list>(<argument><expr><block>{<expr><literal type="string">"HDFS"</literal></expr>, <argument><expr><literal type="string">"MapReduce"</literal></expr></argument>}</block></expr></argument>)</argument_list></annotation>
+<annotation>@<name><name>InterfaceStability</name><operator>.</operator><name>Evolving</name></name></annotation>
+<specifier>public</specifier> class <name>Stat</name> <super_list><extends>extends <super><name>Shell</name></super></extends></super_list> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Path</name></type> <name>original</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Path</name></type> <name>qualified</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Path</name></type> <name>path</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>long</name></type> <name>blockSize</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>dereference</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <name>FileStatus</name></type> <name>stat</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>Stat</name><parameter_list>(<parameter><decl><type><name>Path</name></type> <name>path</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>blockSize</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>deref</name></decl></parameter>, <parameter><decl><type><name>FileSystem</name></type> <name>fs</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><literal type="number">0L</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// Original path</comment>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>original</name></name> <operator>=</operator> <name>path</name></expr>;</expr_stmt>
+    <comment type="line">// Qualify the original and strip out URI fragment via toUri().getPath()</comment>
+    <decl_stmt><decl><type><name>Path</name></type> <name>stripped</name> <init>= <expr><operator>new</operator> <call><name>Path</name><argument_list>(
+        <argument><expr><call><name><name>original</name><operator>.</operator><name>makeQualified</name></name><argument_list>(<argument><expr><call><name><name>fs</name><operator>.</operator><name>getUri</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>fs</name><operator>.</operator><name>getWorkingDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+        <operator>.</operator><call><name>toUri</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPath</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Re-qualify the bare stripped path and store it</comment>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>qualified</name></name> <operator>=</operator> 
+        <call><name><name>stripped</name><operator>.</operator><name>makeQualified</name></name><argument_list>(<argument><expr><call><name><name>fs</name><operator>.</operator><name>getUri</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>fs</name><operator>.</operator><name>getWorkingDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// Strip back down to a plain path</comment>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>path</name></name> <operator>=</operator> <operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><call><name><name>qualified</name><operator>.</operator><name>toUri</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPath</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>blockSize</name></name> <operator>=</operator> <name>blockSize</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>dereference</name></name> <operator>=</operator> <name>deref</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><type><specifier>public</specifier> <name>FileStatus</name></type> <name>getFileStatus</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>run</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><name>stat</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Whether Stat is supported on the current platform
+   * @return
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>isAvailable</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>LINUX</name></name> <operator>||</operator> <name><name>Shell</name><operator>.</operator><name>FREEBSD</name></name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>VisibleForTesting</name></annotation>
+  <type><name>FileStatus</name></type> <name>getFileStatusForTesting</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>stat</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name><name>String</name><index>[]</index></name></type> <name>getExecString</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>derefFlag</name> <init>= <expr><literal type="string">"-"</literal></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>dereference</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>derefFlag</name> <operator>=</operator> <literal type="string">"-L"</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>LINUX</name></name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{
+          <expr><literal type="string">"stat"</literal></expr>, <expr><name>derefFlag</name> <operator>+</operator> <literal type="string">"c"</literal></expr>, <expr><literal type="string">"%s,%F,%Y,%X,%a,%U,%G,%N"</literal></expr>, <expr><call><name><name>path</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr> }</block></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name><name>Shell</name><operator>.</operator><name>FREEBSD</name></name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{
+          <expr><literal type="string">"stat"</literal></expr>, <expr><name>derefFlag</name> <operator>+</operator> <literal type="string">"f"</literal></expr>, <expr><literal type="string">"%z,%HT,%m,%a,%Op,%Su,%Sg,`link' -&gt; `%Y'"</literal></expr>,
+          <expr><call><name><name>path</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr> }</block></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>(
+          <argument><expr><literal type="string">"stat is not supported on this platform"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name>void</name></type> <name>parseExecResult</name><parameter_list>(<parameter><decl><type><name>BufferedReader</name></type> <name>lines</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// Reset stat</comment>
+    <expr_stmt><expr><name>stat</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>line</name> <init>= <expr><call><name><name>lines</name><operator>.</operator><name>readLine</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>line</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Unable to stat path: "</literal> <operator>+</operator> <name>original</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>line</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">"No such file or directory"</literal></expr></argument>)</argument_list></call> <operator>||</operator>
+        <call><name><name>line</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">"Not a directory"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>FileNotFoundException</name><argument_list>(<argument><expr><literal type="string">"File "</literal> <operator>+</operator> <name>original</name> <operator>+</operator> <literal type="string">" does not exist"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>line</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">"Too many levels of symbolic links"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Possible cyclic loop while following symbolic"</literal> <operator>+</operator>
+          <literal type="string">" link "</literal> <operator>+</operator> <name>original</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <comment type="line">// 6,symbolic link,6,1373584236,1373584236,lrwxrwxrwx,andrew,andrew,`link' -&gt; `target'</comment>
+    <decl_stmt><decl><type><name>StringTokenizer</name></type> <name>tokens</name> <init>= <expr><operator>new</operator> <call><name>StringTokenizer</name><argument_list>(<argument><expr><name>line</name></expr></argument>, <argument><expr><literal type="string">","</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>long</name></type> <name>length</name> <init>= <expr><call><name><name>Long</name><operator>.</operator><name>parseLong</name></name><argument_list>(<argument><expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>boolean</name></type> <name>isDir</name> <init>= <expr><ternary><condition><expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equalsIgnoreCase</name><argument_list>(<argument><expr><literal type="string">"directory"</literal></expr></argument>)</argument_list></call></expr> ?</condition><then> <expr><literal type="boolean">true</literal></expr>
+          </then><else>: <expr><literal type="boolean">false</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+      <comment type="line">// Convert from seconds to milliseconds</comment>
+      <decl_stmt><decl><type><name>long</name></type> <name>modTime</name> <init>= <expr><call><name><name>Long</name><operator>.</operator><name>parseLong</name></name><argument_list>(<argument><expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>*</operator><literal type="number">1000</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>long</name></type> <name>accessTime</name> <init>= <expr><call><name><name>Long</name><operator>.</operator><name>parseLong</name></name><argument_list>(<argument><expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>*</operator><literal type="number">1000</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>octalPerms</name> <init>= <expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="line">// FreeBSD has extra digits beyond 4, truncate them</comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>octalPerms</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">4</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>len</name> <init>= <expr><call><name><name>octalPerms</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>octalPerms</name> <operator>=</operator> <call><name><name>octalPerms</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><name>len</name><operator>-</operator><literal type="number">4</literal></expr></argument>, <argument><expr><name>len</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <decl_stmt><decl><type><name>FsPermission</name></type> <name>perms</name> <init>= <expr><operator>new</operator> <call><name>FsPermission</name><argument_list>(<argument><expr><call><name><name>Short</name><operator>.</operator><name>parseShort</name></name><argument_list>(<argument><expr><name>octalPerms</name></expr></argument>, <argument><expr><literal type="number">8</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>owner</name> <init>= <expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>group</name> <init>= <expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>symStr</name> <init>= <expr><call><name><name>tokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="line">// 'notalink'</comment>
+      <comment type="line">// 'link' -&gt; `target'</comment>
+      <comment type="line">// '' -&gt; ''</comment>
+      <decl_stmt><decl><type><name>Path</name></type> <name>symlink</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>StringTokenizer</name></type> <name>symTokens</name> <init>= <expr><operator>new</operator> <call><name>StringTokenizer</name><argument_list>(<argument><expr><name>symStr</name></expr></argument>, <argument><expr><literal type="string">"`"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>symTokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>target</name> <init>= <expr><call><name><name>symTokens</name><operator>.</operator><name>nextToken</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>target</name> <operator>=</operator> <call><name><name>target</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>target</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>target</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>symlink</name> <operator>=</operator> <operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>target</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>NoSuchElementException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// null if not a symlink</comment>
+      </block_content>}</block></catch></try>
+      <comment type="line">// Set stat</comment>
+      <expr_stmt><expr><name>stat</name> <operator>=</operator> <operator>new</operator> <call><name>FileStatus</name><argument_list>(<argument><expr><name>length</name></expr></argument>, <argument><expr><name>isDir</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>blockSize</name></expr></argument>, <argument><expr><name>modTime</name></expr></argument>, <argument><expr><name>accessTime</name></expr></argument>,
+          <argument><expr><name>perms</name></expr></argument>, <argument><expr><name>owner</name></expr></argument>, <argument><expr><name>group</name></expr></argument>, <argument><expr><name>symlink</name></expr></argument>, <argument><expr><name>qualified</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>NumberFormatException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Unexpected stat output: "</literal> <operator>+</operator> <name>line</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name>NoSuchElementException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Unexpected stat output: "</literal> <operator>+</operator> <name>line</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name>local</name><operator>/</operator><name><name>RawLocalFs</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name>local</name><operator>/</operator><name><name>RawLocalFs</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">605bade09a8</literal><operator>..</operator><literal type="number">6cb2792eebc</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name>local</name><operator>/</operator><name><name>RawLocalFs</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name>local</name><operator>/</operator><name><name>RawLocalFs</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>local</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileNotFoundException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URI</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URISyntaxException</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">26</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>AbstractFileSystem</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>DelegateToFileSystem</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileStatus</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FsConstants</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FsServerDefaults</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>Path</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>RawLocalFileSystem</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>permission</name><operator>.</operator><name>FsPermission</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * The RawLocalFs implementation of AbstractFileSystem.
+@@ -72,90 +66,12 @@ public int getUriDefaultPort() {
+   public FsServerDefaults getServerDefaults() throws IOException {
+     return LocalConfigKeys.getServerDefaults();
+   }
+  
+  @Override
+  public boolean supportsSymlinks() {
+    return true;
+  }
+
+  @Override
+  public void createSymlink(Path target, Path link, boolean createParent)
+      throws IOException {
+    final String targetScheme = target.toUri().getScheme();
+    if (targetScheme != null &amp;&amp; !"file".equals(targetScheme)) {
+      throw new IOException("Unable to create symlink to non-local file "+
+          "system: "+target.toString());
+    }
+
+    if (createParent) {
+      mkdir(link.getParent(), FsPermission.getDirDefault(), true);
+    }
+
+    // NB: Use createSymbolicLink in java.nio.file.Path once available
+    int result = FileUtil.symLink(target.toString(), link.toString());
+    if (result != 0) {
+      throw new IOException("Error " + result + " creating symlink " +
+          link + " to " + target);
+    }
+  }
+ 
+  /**
+   * Return a FileStatus representing the given path. If the path refers 
+   * to a symlink return a FileStatus representing the link rather than
+   * the object the link refers to.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>FileStatus</name></type> <name>getFileLinkStatus</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>target</name> <init>= <expr><call><name><name>FileUtil</name><operator>.</operator><name>readLink</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>f</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>FileStatus</name></type> <name>fs</name> <init>= <expr><call><name>getFileStatus</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="line">// If f refers to a regular file or directory      </comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>target</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><name>fs</name></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+      <comment type="line">// Otherwise f refers to a symlink</comment>
+      <return>return <expr><operator>new</operator> <call><name>FileStatus</name><argument_list>(<argument><expr><call><name><name>fs</name><operator>.</operator><name>getLen</name></name><argument_list>()</argument_list></call></expr></argument>, 
+          <argument><expr><literal type="boolean">false</literal></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getReplication</name></name><argument_list>()</argument_list></call></expr></argument>, 
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getBlockSize</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getModificationTime</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getAccessTime</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getPermission</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getOwner</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>fs</name><operator>.</operator><name>getGroup</name></name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>target</name></expr></argument>)</argument_list></call></expr></argument>,
+          <argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>FileNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="block">/* The exists method in the File class returns false for dangling 
+       * links so we can get a FileNotFoundException for links that exist.
+       * It's also possible that we raced with a delete of the link. Use
+       * the readBasicFileAttributes method in java.nio.file.attributes 
+       * when available.
+       */</comment>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>target</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><operator>new</operator> <call><name>FileStatus</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>FsPermission</name><operator>.</operator><name>getDefault</name></name><argument_list>()</argument_list></call></expr></argument>, 
+            <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><name>target</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>f</name></expr></argument>)</argument_list></call></expr>;</return>        
+      </block_content>}</block></if></if_stmt>
+      <comment type="line">// f refers to a file or directory that does not exist</comment>
+      <throw>throw <expr><name>e</name></expr>;</throw>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+  
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>boolean</name></type> <name>isValidName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>src</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <comment type="line">// Different local file systems have different validation rules.  Skip</comment>
+     <comment type="line">// validation here and just let the OS handle it.  This is consistent with</comment>
+     <comment type="line">// RawLocalFileSystem.</comment>
+     <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+   </block_content>}</block></function>
+  
+   <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>Path</name></type> <name>getLinkTarget</name><parameter_list>(<parameter><decl><type><name>Path</name></type> <name>f</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="block">/* We should never get here. Valid local links are resolved transparently
+     * by the underlying local file system and accessing a dangling link will 
+     * result in an IOException, not an UnresolvedLinkException, so FileContext
+     * should never call this function.
+     */</comment>
+    <throw>throw <expr><operator>new</operator> <call><name>AssertionError</name><argument_list>()</argument_list></call></expr>;</throw>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isValidName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>src</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// Different local file systems have different validation rules. Skip</comment>
+    <comment type="line">// validation here and just let the OS handle it. This is consistent with</comment>
+    <comment type="line">// RawLocalFileSystem.</comment>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+   </block_content>}</block></function>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2817736f281</literal><operator>..</operator><literal type="number">0a8ce2e9983</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Shell</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">45</literal> @@ <specifier>public</specifier> <specifier>static</specifier> <name>boolean</name> <call><name>isJava7OrAbove</name><argument_list>()</argument_list></call> <block>{
+   <comment type="block" format="javadoc">/** Windows CreateProcess synchronization object */</comment>
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>Object</name> <name>WindowsProcessLaunchLock</name> <operator>=</operator> <operator>new</operator> <call><name>Object</name><argument_list>()</argument_list></call></expr>;
+ 
+  <comment type="line">// OSType detection</comment>
+
+  <specifier>public</specifier> enum <name>OSType</name> <block>{
+    <expr><name>OS_TYPE_LINUX</name></expr>,
+    <expr><name>OS_TYPE_WIN</name></expr>,
+    <expr><name>OS_TYPE_SOLARIS</name></expr>,
+    <expr><name>OS_TYPE_MAC</name></expr>,
+    <expr><name>OS_TYPE_FREEBSD</name></expr>,
+    <expr><name>OS_TYPE_OTHER</name></expr>
+  }</block></block>
+
+  <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>OSType</name> <name>osType</name> <operator>=</operator> <call><name>getOSType</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+  <function><type><specifier>static</specifier> <specifier>private</specifier> <name>OSType</name></type> <name>getOSType</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>osName</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"os.name"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>startsWith</name></name><argument_list>(<argument><expr><literal type="string">"Windows"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_WIN</name></name></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"SunOS"</literal></expr></argument>)</argument_list></call> <operator>||</operator> <call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"Solaris"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_SOLARIS</name></name></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"Mac"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_MAC</name></name></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"FreeBSD"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_FREEBSD</name></name></expr>;</return>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>osName</name><operator>.</operator><name>startsWith</name></name><argument_list>(<argument><expr><literal type="string">"Linux"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_LINUX</name></name></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <comment type="line">// Some other form of Unix</comment>
+      <return>return <expr><name><name>OSType</name><operator>.</operator><name>OS_TYPE_OTHER</name></name></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// Helper static vars for each platform</comment>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>WINDOWS</name> <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_WIN</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>SOLARIS</name> <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_SOLARIS</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>MAC</name>     <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_MAC</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>FREEBSD</name> <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_FREEBSD</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>LINUX</name>   <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_LINUX</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>OTHER</name>   <init>= <expr><operator>(</operator><name>osType</name> <operator>==</operator> <name><name>OSType</name><operator>.</operator><name>OS_TYPE_OTHER</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+
+   <comment type="block" format="javadoc">/** a Unix command to get the current user's groups list */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>String</name><index>[]</index></name></type> <name>getGroupsCommand</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><ternary><condition><expr><operator>(</operator><name>WINDOWS</name><operator>)</operator></expr>?</condition><then> <expr><operator>new</operator> <name><name>String</name><index>[]</index></name><block>{<expr><literal type="string">"cmd"</literal></expr>, <expr><literal type="string">"/c"</literal></expr>, <expr><literal type="string">"groups"</literal></expr>}</block>
+@@ <operator>-</operator><literal type="number">282</literal></expr></then></ternary></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">321</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <call><name>getQualifiedBinPath</name><argument_list>(<argument><expr><name>String</name> <name>executable</name></expr></argument>)</argument_list></call></expr></return>
+     <return>return <expr><call><name><name>exeFile</name><operator>.</operator><name>getCanonicalPath</name></name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Set to true on Windows platforms */</comment>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>WINDOWS</name> <comment type="block">/* borrowed from Path.WINDOWS */</comment>
+                <init>= <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"os.name"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>startsWith</name><argument_list>(<argument><expr><literal type="string">"Windows"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>LINUX</name>
+                <init>= <expr><call><name><name>System</name><operator>.</operator><name>getProperty</name></name><argument_list>(<argument><expr><literal type="string">"os.name"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>startsWith</name><argument_list>(<argument><expr><literal type="string">"Linux"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  
+   <comment type="block" format="javadoc">/** a Windows utility to emulate Unix commands */</comment>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>WINUTILS</name> <init>= <expr><call><name>getWinUtilsPath</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">336</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">368</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <specifier>static</specifier> <name>boolean</name> <call><name>isSetsidSupported</name><argument_list>()</argument_list></call> <block>{
+ 
+   <expr><specifier>private</specifier> <name>long</name>    <name>interval</name></expr>;   <comment type="line">// refresh interval in msec</comment>
+   <specifier>private</specifier> <name>long</name>    <name>lastTime</name></block></expr>;</expr_stmt>   <comment type="line">// last time the command was performed</comment>
+  <decl_stmt><decl><type><specifier>final</specifier> <specifier>private</specifier> <name>boolean</name></type> <name>redirectErrorStream</name></decl>;</decl_stmt> <comment type="line">// merge stdout and stderr</comment>
+   <decl_stmt><decl><type><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>environment</name></decl>;</decl_stmt> <comment type="line">// env for the command execution</comment>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>File</name></type> <name>dir</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>Process</name></type> <name>process</name></decl>;</decl_stmt> <comment type="line">// sub process used to execute the command</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">348</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">381</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <call><name>Shell</name><argument_list>()</argument_list></call> <block>{
+     <expr><call><name>this</name><argument_list>(<argument><expr><literal type="number">0L</literal></expr></argument>)</argument_list></call></expr>;
+   }</block></expr></expr_stmt>
+   
+  <constructor><specifier>public</specifier> <name>Shell</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>interval</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>this</name><argument_list>(<argument><expr><name>interval</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+   <comment type="block" format="javadoc">/**
+    * @param interval the minimum duration to wait before re-executing the 
+    *        command.
+    */</comment>
+  <constructor><specifier>public</specifier> <name>Shell</name><parameter_list>( <parameter><decl><type><name>long</name></type> <name>interval</name></decl></parameter> )</parameter_list> <block>{<block_content>
+  <constructor><specifier>public</specifier> <name>Shell</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>interval</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>redirectErrorStream</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>interval</name></name> <operator>=</operator> <name>interval</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lastTime</name></name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>interval</name><operator>&lt;</operator><literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>-</operator><name>interval</name></expr></else></ternary></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>redirectErrorStream</name></name> <operator>=</operator> <name>redirectErrorStream</name></expr>;</expr_stmt>
+   </block_content>}</block></constructor>
+   
+   <comment type="block" format="javadoc">/** set the environment for the command 
+@@ -393,6 +431,8 @@ private void runCommand() throws IOException {
+     if (dir != null) {
+       builder.directory(this.dir);
+     }
+
+    builder.redirectErrorStream(redirectErrorStream);
+     
+     if (Shell.WINDOWS) {
+       synchronized (WindowsProcessLaunchLock) {
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestLocalFileSystem.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestLocalFileSystem.java
+index cb6a6421134..dacb2c9b82f 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestLocalFileSystem.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestLocalFileSystem.java
+@@ -26,6 +26,7 @@
+ import static org.apache.hadoop.fs.FileSystemTestHelper.*;
+ 
+ import java.io.*;
+import java.net.URI;
+ import java.util.Arrays;
+ import java.util.Random;
+ 
+@@ -363,12 +364,12 @@ public void testSetTimes() throws Exception {
+ 
+     FileStatus status = fileSys.getFileStatus(path);
+     assertTrue("check we're actually changing something", newModTime != status.getModificationTime());
+    assertEquals(0, status.getAccessTime());
+    long accessTime = status.getAccessTime();
+ 
+     fileSys.setTimes(path, newModTime, -1);
+     status = fileSys.getFileStatus(path);
+     assertEquals(newModTime, status.getModificationTime());
+    assertEquals(0, status.getAccessTime());
+    assertEquals(accessTime, status.getAccessTime());
+   }
+ 
+   /**
+@@ -520,4 +521,18 @@ private void verifyRead(FSDataInputStream stm, byte[] fileContents,
+       fail(s);
+     }
+   }
+
+  @Test
+  public void testStripFragmentFromPath() throws Exception {
+    FileSystem fs = FileSystem.getLocal(new Configuration());
+    Path pathQualified = TEST_PATH.makeQualified(fs.getUri(),
+        fs.getWorkingDirectory());
+    Path pathWithFragment = new Path(
+        new URI(pathQualified.toString() + "#glacier"));
+    // Create test file with fragment
+    FileSystemTestHelper.createFile(fs, pathWithFragment);
+    Path resolved = fs.resolvePath(pathWithFragment);
+    assertEquals("resolvePath did not strip fragment from Path", pathQualified,
+        resolved);
+  }
+ }
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestStat.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestStat.java
+new file mode 100644
+index 00000000000..4397f2d534c
+-- /dev/null
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/fs/TestStat.java
+@@ -0,0 +1,122 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name></name>;</package>
+
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertTrue</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>fail</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>BufferedReader</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileNotFoundException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>StringReader</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>BeforeClass</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestStat</name> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>Stat</name></type> <name>stat</name></decl>;</decl_stmt>
+
+  <function><annotation>@<name>BeforeClass</name></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>setup</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><name>stat</name> <operator>=</operator> <operator>new</operator> <call><name>Stat</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><literal type="string">"/dummypath"</literal></expr></argument>)</argument_list></call></expr></argument>,
+        <argument><expr><literal type="number">4096l</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><call><name><name>FileSystem</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Configuration</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <class><specifier>private</specifier> class <name>StatOutput</name> <block>{
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>doesNotExist</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>directory</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>file</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>symlink</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>stickydir</name></decl>;</decl_stmt>
+
+    <constructor><name>StatOutput</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>doesNotExist</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>directory</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>file</name></decl></parameter>,
+        <parameter><decl><type><name>String</name></type> <name>symlink</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>stickydir</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>doesNotExist</name></name> <operator>=</operator> <name>doesNotExist</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <name>directory</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>file</name></name> <operator>=</operator> <name>file</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>symlink</name></name> <operator>=</operator> <name>symlink</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>stickydir</name></name> <operator>=</operator> <name>stickydir</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><name>void</name></type> <name>test</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>BufferedReader</name></type> <name>br</name></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>FileStatus</name></type> <name>status</name></decl>;</decl_stmt>
+
+      <try>try <block>{<block_content>
+        <expr_stmt><expr><name>br</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedReader</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>doesNotExist</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>parseExecResult</name></name><argument_list>(<argument><expr><name>br</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>FileNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// expected</comment>
+      </block_content>}</block></catch></try>
+
+      <expr_stmt><expr><name>br</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedReader</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>directory</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>parseExecResult</name></name><argument_list>(<argument><expr><name>br</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <call><name><name>stat</name><operator>.</operator><name>getFileStatusForTesting</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>status</name><operator>.</operator><name>isDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><name>br</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedReader</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>parseExecResult</name></name><argument_list>(<argument><expr><name>br</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <call><name><name>stat</name><operator>.</operator><name>getFileStatusForTesting</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>status</name><operator>.</operator><name>isFile</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><name>br</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedReader</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>symlink</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>parseExecResult</name></name><argument_list>(<argument><expr><name>br</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <call><name><name>stat</name><operator>.</operator><name>getFileStatusForTesting</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>status</name><operator>.</operator><name>isSymlink</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><name>br</name> <operator>=</operator> <operator>new</operator> <call><name>BufferedReader</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>stickydir</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>parseExecResult</name></name><argument_list>(<argument><expr><name>br</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <call><name><name>stat</name><operator>.</operator><name>getFileStatusForTesting</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>status</name><operator>.</operator><name>isDirectory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>status</name><operator>.</operator><name>getPermission</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getStickyBit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name><operator>=</operator><literal type="number">10000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStatLinux</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>StatOutput</name></type> <name>linux</name> <init>= <expr><operator>new</operator> <call><name>StatOutput</name><argument_list>(
+        <argument><expr><literal type="string">"stat: cannot stat `watermelon': No such file or directory"</literal></expr></argument>,
+        <argument><expr><literal type="string">"4096,directory,1373584236,1373586485,755,andrew,root,`.'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"0,regular empty file,1373584228,1373584228,644,andrew,andrew,`target'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"6,symbolic link,1373584236,1373584236,777,andrew,andrew,`link' -&gt; `target'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"4096,directory,1374622334,1375124212,1755,andrew,andrew,`stickydir'"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>linux</name><operator>.</operator><name>test</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name><operator>=</operator><literal type="number">10000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStatFreeBSD</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>StatOutput</name></type> <name>freebsd</name> <init>= <expr><operator>new</operator> <call><name>StatOutput</name><argument_list>(
+        <argument><expr><literal type="string">"stat: symtest/link: stat: No such file or directory"</literal></expr></argument>,
+        <argument><expr><literal type="string">"512,Directory,1373583695,1373583669,40755,awang,awang,`link' -&gt; `'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"0,Regular File,1373508937,1373508937,100644,awang,awang,`link' -&gt; `'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"6,Symbolic Link,1373508941,1373508941,120755,awang,awang,`link' -&gt; `target'"</literal></expr></argument>,
+        <argument><expr><literal type="string">"512,Directory,1375139537,1375139537,41755,awang,awang,`link' -&gt; `'"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>freebsd</name><operator>.</operator><name>test</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name><operator>=</operator><literal type="number">10000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStatFileNotFound</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><call><name><name>stat</name><operator>.</operator><name>getFileStatus</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><literal type="string">"Expected FileNotFoundException"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>FileNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// expected</comment>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestSymlinkLocalFS</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestSymlinkLocalFS</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>eb0e1089bf3</name><operator>..</operator><name>c82dcc8a124</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestSymlinkLocalFS</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>TestSymlinkLocalFS</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>permission</name><operator>.</operator><name>FsPermission</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>util</name><operator>.</operator><name>Shell</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>UserGroupInformation</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import></block_content></block></constructor></block_content></block></function></block_content></block></function></block_content></block></if></if_stmt></block_content></block></else></if_stmt>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -134,6 +135,7 @@ public void testDanglingLink() throws IOException {
+     Path fileAbs  = new Path(testBaseDir1()+"/file");
+     Path fileQual = new Path(testURI().toString(), fileAbs);
+     Path link     = new Path(testBaseDir1()+"/linkToFile");
+    Path linkQual = new Path(testURI().toString(), link.toString());
+     wrapper.createSymlink(fileAbs, link, false);
+     // Deleting the link using FileContext currently fails because
+     // resolve looks up LocalFs rather than RawLocalFs for the path 
+@@ -151,18 +153,15 @@ public void testDanglingLink() throws IOException {
+       // Expected. File's exists method returns false for dangling links
+     }
+     // We can stat a dangling link
+    UserGroupInformation user = UserGroupInformation.getCurrentUser();
+     FileStatus fsd = wrapper.getFileLinkStatus(link);
+     assertEquals(fileQual, fsd.getSymlink());
+     assertTrue(fsd.isSymlink());
+     assertFalse(fsd.isDirectory());
+    assertEquals("", fsd.getOwner());
+    assertEquals("", fsd.getGroup());
+    assertEquals(link, fsd.getPath());
+    assertEquals(0, fsd.getLen());
+    assertEquals(0, fsd.getBlockSize());
+    assertEquals(0, fsd.getReplication());
+    assertEquals(0, fsd.getAccessTime());
+    assertEquals(FsPermission.getDefault(), fsd.getPermission());
+    assertEquals(user.getUserName(), fsd.getOwner());
+    // Compare against user's primary group
+    assertEquals(user.getGroupNames()[0], fsd.getGroup());
+    assertEquals(linkQual, fsd.getPath());
+     // Accessing the link 
+     try {
+       readFile(link);
+- 
+2.19.1.windows.1
+
+</comment></unit>

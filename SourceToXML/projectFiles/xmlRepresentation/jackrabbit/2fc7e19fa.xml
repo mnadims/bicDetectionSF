@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/2fc7e19fa.java"><expr_stmt><expr><name>From</name> <literal type="number">2fc7e19faa7cac6c46dce7d67cb95d1d902c7e1c</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Marcel</name> <name><name>Reutegger</name> <argument_list type="generic">&lt;<argument><name>mreutegg</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">20</literal> <name>Feb</name> <literal type="number">2008</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">34</literal><operator>:</operator><literal type="number">50</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">1365</literal><operator>:</operator> <name>Query</name> <name>path</name> <name>constraints</name> <name>like</name> <name>foo</name><comment type="line">//*/bar do not scale</comment>
+ <operator>-</operator> <name>more</name> <name>performance</name> <name>improvements</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@629453 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>AbstractQueryHits</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">19</literal> <operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildAxisQuery</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">37</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildNodesQueryHits</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">110</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>DescendantSelfAxisQuery</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">124</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>FilterQueryHits</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">69</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitIndexSearcher</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">24</literal> <operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitQuery</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">52</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryBuilder</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">1</literal> <operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryHits</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">7</literal> <operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MatchAllDocsQuery</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">52</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>NodeTraversingQueryHits</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">85</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>SearchIndex</name><operator>.</operator><name>java</name></name>        <operator>|</operator>  <literal type="number">13</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">12</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">515</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">78</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildNodesQueryHits</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>FilterQueryHits</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitQuery</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MatchAllDocsQuery</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>AbstractQueryHits</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>AbstractQueryHits</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fc2bbc13c</name><operator>..</operator><name>bafd623b9</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>AbstractQueryHits</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>AbstractQueryHits</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">25</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">25</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <class><specifier>public</specifier> <specifier>abstract</specifier> class <name>AbstractQueryHits</name> <super_list><implements>implements <super><name>QueryHits</name></super></implements></super_list> <block>{
+ 
+     <comment type="block" format="javadoc">/**
+     * Calls {@link #doClose()} and disposes the {@link PerQueryCache}.
+     *
+     * @throws IOException if an error occurs while releasing resources.
+     * This default implemetation does nothing.
+      */</comment>
+    <function><type><specifier>public</specifier> <specifier>final</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name>doClose</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <finally>finally <block>{<block_content>
+            <expr_stmt><expr><call><name><name>PerQueryCache</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>dispose</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></finally></try>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     </block_content>}</block></function>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -61,9 +54,11 @@ public abstract class AbstractQueryHits implements QueryHits {
+     }
+ 
+     /**
+     * Releases resources held by this hits instance.
+     * This default implementation returns &lt;code&gt;-1&lt;/code&gt;.
+      *
+     * @throws IOException if an error occurs while releasing resources.
+     * @return &lt;code&gt;-1&lt;/code&gt;.
+      */</comment>
+    <function_decl><type><specifier>protected</specifier> <specifier>abstract</specifier> <name>void</name></type> <name>doClose</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws>;</function_decl>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getSize</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildAxisQuery</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildAxisQuery</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>eae583d24</name><operator>..</operator><literal type="number">58b53d135</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildAxisQuery</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>ChildAxisQuery</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>NodeId</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>hits</name><operator>.</operator><name>AdaptingHits</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>hits</name><operator>.</operator><name>Hits</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name><operator>.</operator><name>hits</name><operator>.</operator><name>ScorerHits</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">38</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Searcher</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Similarity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TermQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Weight</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">52</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator> <name>Implements</name> <name>a</name> <name><name>lucene</name> <argument_list type="generic">&lt;<argument><name>code</name></argument>&gt;</argument_list></name><name><name>Query</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>code</name></argument>&gt;</argument_list></name> <name>which</name> <name>returns</name> <name>the</name> <name>child</name> <name>nodes</name> <name>of</name> <name>the</name>
+  <operator>*</operator> <name>nodes</name> <name>selected</name> <name>by</name> <name><name>another</name> <argument_list type="generic">&lt;<argument><name>code</name></argument>&gt;</argument_list></name><name><name><name>Query</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>code</name></argument>&gt;</argument_list></name><operator>.</operator></name>
+  *<operator>/</operator>
+<name>class</name> <name>ChildAxisQuery</name> extends <name>Query</name> <block>{
+<expr><name>class</name> <name>ChildAxisQuery</name> extends <name>Query</name> implements <name>JackrabbitQuery</name> <block>{
+ 
+     <comment type="block" format="javadoc">/**
+      * The item state manager containing persistent item states.
+@@ -117,6 +118,21 @@ class ChildAxisQuery extends Query {
+         this.position = position;
+     }
+ 
+    /**
+     * @return the context query of this child axis query.
+     */</comment>
+    <expr><name>Query</name> <call><name>getContextQuery</name><argument_list>()</argument_list></call> <block>{
+        <return>return <expr><name>contextQuery</name></expr>;</return></block></expr>
+    }</block>
+
+    <comment type="block" format="javadoc">/**
+     * @return &lt;code&gt;true&lt;/code&gt; if this child axis query matches any child
+     *         node; &lt;code&gt;false&lt;/code&gt; otherwise.
+     */</comment>
+    <name>boolean</name> <call><name>matchesAnyChildNode</name><argument_list>()</argument_list></call> <block>{
+        <return>return <expr><name>nameTest</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>position</name> <operator>==</operator> <name><name>LocationStepQueryNode</name><operator>.</operator><name>NONE</name></name></expr>;</return></block></expr>
+    }</block>
+
+     <comment type="block" format="javadoc">/**
+      * @return the name test or &lt;code&gt;null&lt;/code&gt; if none was specified.
+      */</comment>
+@@ <operator>-</operator><literal type="number">189</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">205</literal></expr><operator>,</operator><expr><literal type="number">23</literal> @@ <name>class</name> <name>ChildAxisQuery</name> extends <name>Query</name> <block>{
+         <return>return <expr><literal type="string">"ChildAxisQuery"</literal></expr>;</return>
+     }</block></expr></expr_stmt>
+ 
+    <comment type="line">//-------------------&lt; JackrabbitQuery &gt;------------------------------------</comment>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>QueryHits</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name>JackrabbitIndexSearcher</name></type> <name>searcher</name></decl></parameter>,
+                             <parameter><decl><type><name>SessionImpl</name></type> <name>session</name></decl></parameter>,
+                             <parameter><decl><type><name>Sort</name></type> <name>sort</name></decl></parameter>)</parameter_list>
+            <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>matchesAnyChildNode</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>Query</name></type> <name>context</name> <init>= <expr><call><name>getContextQuery</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <return>return <expr><operator>new</operator> <call><name>ChildNodesQueryHits</name><argument_list>(<argument><expr><call><name><name>searcher</name><operator>.</operator><name>execute</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>session</name></expr></argument>)</argument_list></call></expr>;</return>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+
+     <comment type="line">//-------------------&lt; ChildAxisWeight &gt;------------------------------------</comment>
+ 
+     <comment type="block" format="javadoc">/**
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/ChildNodesQueryHits.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/ChildNodesQueryHits.java
+new file mode 100644
+index 000000000..6cf9217bb
+-- /dev/null
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/ChildNodesQueryHits.java
+@@ -0,0 +1,110 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>Node</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;code&gt;ChildNodesQueryHits&lt;/code&gt; implements query hits that returns the child
+ * nodes of another given query hits.
+ */</comment>
+<class><specifier>public</specifier> class <name>ChildNodesQueryHits</name> <super_list><extends>extends <super><name>AbstractQueryHits</name></super></extends></super_list> <block>{
+
+    <comment type="block" format="javadoc">/**
+     * The parent query hits.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>QueryHits</name></type> <name>parents</name></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * This session that executes the query.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>SessionImpl</name></type> <name>session</name></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * The current child hits.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>QueryHits</name></type> <name>childHits</name></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * Creates a new &lt;code&gt;ChildNodesQueryHits&lt;/code&gt; that returns the child
+     * nodes of all query hits from the given &lt;code&gt;parents&lt;/code&gt;.
+     *
+     * @param parents the parent query hits.
+     * @param session the session that executes the query.
+     * @throws IOException if an error occurs while reading from
+     *                     &lt;code&gt;parents&lt;/code&gt;
+     */</comment>
+    <constructor><specifier>public</specifier> <name>ChildNodesQueryHits</name><parameter_list>(<parameter><decl><type><name>QueryHits</name></type> <name>parents</name></decl></parameter>, <parameter><decl><type><name>SessionImpl</name></type> <name>session</name></decl></parameter>)</parameter_list>
+            <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>parents</name></name> <operator>=</operator> <name>parents</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>session</name></name> <operator>=</operator> <name>session</name></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>fetchNextChildHits</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>childHits</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>childHits</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>parents</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>ScoreNode</name></type> <name>nextScoreNode</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <while>while <condition>(<expr><name>childHits</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>ScoreNode</name></type> <name>sn</name> <init>= <expr><call><name><name>childHits</name><operator>.</operator><name>nextScoreNode</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>sn</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <return>return <expr><name>sn</name></expr>;</return>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name>fetchNextChildHits</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></while>
+        <comment type="line">// if we get here there are no more score nodes</comment>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Fetches the next {@link #childHits}
+     * @throws IOException
+     */</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>fetchNextChildHits</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>childHits</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>childHits</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>ScoreNode</name></type> <name>nextParent</name> <init>= <expr><call><name><name>parents</name><operator>.</operator><name>nextScoreNode</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>nextParent</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <decl_stmt><decl><type><name>Node</name></type> <name>parent</name> <init>= <expr><call><name><name>session</name><operator>.</operator><name>getNodeById</name></name><argument_list>(<argument><expr><call><name><name>nextParent</name><operator>.</operator><name>getNodeId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><name>childHits</name> <operator>=</operator> <operator>new</operator> <call><name>NodeTraversingQueryHits</name><argument_list>(<argument><expr><name>parent</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <decl_stmt><decl><type><name>IOException</name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>initCause</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <throw>throw <expr><name>ex</name></expr>;</throw>
+            </block_content>}</block></catch></try>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name>childHits</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>DescendantSelfAxisQuery</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>DescendantSelfAxisQuery</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>eac0155d9</name><operator>..</operator><literal type="number">6142416c3</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>DescendantSelfAxisQuery</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>DescendantSelfAxisQuery</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">24</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Scorer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Searcher</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Similarity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Weight</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+ 
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>Node</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>BitSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TreeMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Implements a lucene &lt;code&gt;Query&lt;/code&gt; which filters a sub query by checking
+  * whether the nodes selected by that sub query are descendants or self of
+  * nodes selected by a context query.
+  */</comment>
+<class>class <name>DescendantSelfAxisQuery</name> <super_list><extends>extends <super><name>Query</name></super></extends></super_list> <block>{
+<class>class <name>DescendantSelfAxisQuery</name> <super_list><extends>extends <super><name>Query</name></super></extends> <implements>implements <super><name>JackrabbitQuery</name></super></implements></super_list> <block>{
+ 
+     <comment type="block" format="javadoc">/**
+      * The context query
+@@ -134,6 +140,17 @@ class DescendantSelfAxisQuery extends Query {
+     }
+ 
+     /**
+     * Returns the minimal levels required between context and sub nodes for a
+     * sub node to match.
+     * &lt;ul&gt;
+     * &lt;li&gt;&lt;code&gt;0&lt;/code&gt;: a sub node &lt;code&gt;S&lt;/code&gt; matches if it is a context
+     * node or one of the ancestors of &lt;code&gt;S&lt;/code&gt; is a context node.&lt;/li&gt;
+     * &lt;li&gt;&lt;code&gt;1&lt;/code&gt;: a sub node &lt;code&gt;S&lt;/code&gt; matches if one of the
+     * ancestors of &lt;code&gt;S&lt;/code&gt; is a context node.&lt;/li&gt;
+     * &lt;li&gt;&lt;code&gt;n&lt;/code&gt;: a sub node &lt;code&gt;S&lt;/code&gt; matches if
+     * &lt;code&gt;S.getAncestor(S.getDepth() - n)&lt;/code&gt; is a context node.&lt;/li&gt;
+     * &lt;/ul&gt;
+     *
+      * @return the minimal levels required between context and sub nodes for a
+      *         sub node to match.
+      */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">189</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">206</literal></expr><operator>,</operator><expr><literal type="number">108</literal> @@ <name>class</name> <name>DescendantSelfAxisQuery</name> extends <name>Query</name> <block>{
+         }</block></expr></expr_stmt>
+     }</block></class>
+ 
+    <comment type="line">//------------------------&lt; DescendantSelfAxisWeight &gt;--------------------------</comment>
+    <comment type="line">//------------------------&lt; JackrabbitQuery &gt;-------------------------------</comment>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>QueryHits</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>JackrabbitIndexSearcher</name></type> <name>searcher</name></decl></parameter>,
+                             <parameter><decl><type><specifier>final</specifier> <name>SessionImpl</name></type> <name>session</name></decl></parameter>,
+                             <parameter><decl><type><specifier>final</specifier> <name>Sort</name></type> <name>sort</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>subQueryMatchesAll</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <comment type="line">// maps path String to NodeId</comment>
+            <decl_stmt><decl><type><name>Map</name></type> <name>startingPoints</name> <init>= <expr><operator>new</operator> <call><name>TreeMap</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>QueryHits</name></type> <name>result</name> <init>= <expr><call><name><name>searcher</name><operator>.</operator><name>execute</name></name><argument_list>(<argument><expr><call><name>getContextQuery</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <try>try <block>{<block_content>
+                <comment type="line">// minLevels 0 and 1 are handled with a series of</comment>
+                <comment type="line">// NodeTraversingQueryHits directly on result. For minLevels &gt;= 2</comment>
+                <comment type="line">// intermediate ChildNodesQueryHits are required.</comment>
+                <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <call><name>getMinLevels</name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+                    <expr_stmt><expr><name>result</name> <operator>=</operator> <operator>new</operator> <call><name>ChildNodesQueryHits</name><argument_list>(<argument><expr><name>result</name></expr></argument>, <argument><expr><name>session</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></for>
+
+                <decl_stmt><decl><type><name>ScoreNode</name></type> <name>sn</name></decl>;</decl_stmt>
+                <try>try <block>{<block_content>
+                    <while>while <condition>(<expr><operator>(</operator><name>sn</name> <operator>=</operator> <call><name><name>result</name><operator>.</operator><name>nextScoreNode</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                        <decl_stmt><decl><type><name>Node</name></type> <name>node</name> <init>= <expr><call><name><name>session</name><operator>.</operator><name>getNodeById</name></name><argument_list>(<argument><expr><call><name><name>sn</name><operator>.</operator><name>getNodeId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                        <expr_stmt><expr><call><name><name>startingPoints</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>node</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>sn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    </block_content>}</block></while>
+                </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                    <decl_stmt><decl><type><name>IOException</name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>initCause</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <throw>throw <expr><name>ex</name></expr>;</throw>
+                </block_content>}</block></catch></try>
+            </block_content>}</block> <finally>finally <block>{<block_content>
+                <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></finally></try>
+
+            <comment type="line">// prune overlapping starting points</comment>
+            <decl_stmt><decl><type><name>String</name></type> <name>previousPath</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>Iterator</name></type> <name>it</name> <init>= <expr><call><name><name>startingPoints</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></init></decl>;</init> <condition><expr><call><name><name>it</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr/>)</control> <block>{<block_content>
+                <decl_stmt><decl><type><name>String</name></type> <name>path</name> <init>= <expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>it</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <comment type="line">// if the previous path is a prefix of this path then the</comment>
+                <comment type="line">// current path is obsolete</comment>
+                <if_stmt><if>if <condition>(<expr><name>previousPath</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>path</name><operator>.</operator><name>startsWith</name></name><argument_list>(<argument><expr><name>previousPath</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>it</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><name>previousPath</name> <operator>=</operator> <name>path</name></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></for>
+
+            <decl_stmt><decl><type><specifier>final</specifier> <name>Iterator</name></type> <name>scoreNodes</name> <init>= <expr><call><name><name>startingPoints</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <return>return <expr><operator>new</operator> <class><super><name>AbstractQueryHits</name></super><argument_list>()</argument_list> <block>{
+
+                <decl_stmt><decl><type><specifier>private</specifier> <name>NodeTraversingQueryHits</name></type> <name>currentTraversal</name></decl>;</decl_stmt>
+
+                <block>{<block_content>
+                    <constructor_decl><name>fetchNextTraversal</name><parameter_list>()</parameter_list>;</constructor_decl>
+                </block_content>}</block>
+
+                <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                    <if_stmt><if>if <condition>(<expr><name>currentTraversal</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>currentTraversal</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    </block_content>}</block></if></if_stmt>
+                </block_content>}</block></function>
+
+                <function><type><specifier>public</specifier> <name>ScoreNode</name></type> <name>nextScoreNode</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                    <while>while <condition>(<expr><name>currentTraversal</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                        <decl_stmt><decl><type><name>ScoreNode</name></type> <name>sn</name> <init>= <expr><call><name><name>currentTraversal</name><operator>.</operator><name>nextScoreNode</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                        <if_stmt><if>if <condition>(<expr><name>sn</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                            <return>return <expr><name>sn</name></expr>;</return>
+                        </block_content>}</block></if> <else>else <block>{<block_content>
+                            <expr_stmt><expr><call><name>fetchNextTraversal</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                        </block_content>}</block></else></if_stmt>
+                    </block_content>}</block></while>
+                    <comment type="line">// if we get here there are no more score nodes</comment>
+                    <return>return <expr><literal type="null">null</literal></expr>;</return>
+                </block_content>}</block></function>
+
+                <function><type><specifier>private</specifier> <name>void</name></type> <name>fetchNextTraversal</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                    <if_stmt><if>if <condition>(<expr><name>currentTraversal</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>currentTraversal</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    </block_content>}</block></if></if_stmt>
+                    <if_stmt><if>if <condition>(<expr><call><name><name>scoreNodes</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                        <decl_stmt><decl><type><name>ScoreNode</name></type> <name>sn</name> <init>= <expr><operator>(</operator><name>ScoreNode</name><operator>)</operator> <call><name><name>scoreNodes</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                        <try>try <block>{<block_content>
+                            <decl_stmt><decl><type><name>Node</name></type> <name>node</name> <init>= <expr><call><name><name>session</name><operator>.</operator><name>getNodeById</name></name><argument_list>(<argument><expr><call><name><name>sn</name><operator>.</operator><name>getNodeId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                            <expr_stmt><expr><name>currentTraversal</name> <operator>=</operator> <operator>new</operator> <call><name>NodeTraversingQueryHits</name><argument_list>(<argument><expr><name>node</name></expr></argument>,
+                                    <argument><expr><call><name>getMinLevels</name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                            <decl_stmt><decl><type><name>IOException</name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                            <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>initCause</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            <throw>throw <expr><name>ex</name></expr>;</throw>
+                        </block_content>}</block></catch></try>
+                    </block_content>}</block></if> <else>else <block>{<block_content>
+                        <expr_stmt><expr><name>currentTraversal</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+                    </block_content>}</block></else></if_stmt>
+                </block_content>}</block></function>
+            }</block></class></expr>;</return>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+
+    <comment type="line">//--------------------&lt; DescendantSelfAxisWeight &gt;--------------------------</comment>
+ 
+     <comment type="block" format="javadoc">/**
+      * The &lt;code&gt;Weight&lt;/code&gt; implementation for this
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/FilterQueryHits.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/FilterQueryHits.java
+new file mode 100644
+index 000000000..7f987042c
+-- /dev/null
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/query/lucene/FilterQueryHits.java
+@@ -0,0 +1,69 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;code&gt;FilterQueryHits&lt;/code&gt; implements a {@link QueryHits} filter that
+ * forwards each call to the underlying query hits.
+ */</comment>
+<class><specifier>public</specifier> class <name>FilterQueryHits</name> <super_list><implements>implements <super><name>QueryHits</name></super></implements></super_list> <block>{
+
+    <comment type="block" format="javadoc">/**
+     * The underlying query hits.
+     */</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>QueryHits</name></type> <name>hits</name></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * Creates a new &lt;code&gt;FilterQueryHits&lt;/code&gt;, which forwards each call to
+     * &lt;code&gt;hits&lt;/code&gt;.
+     *
+     * @param hits the underlying query hits.
+     */</comment>
+    <constructor><specifier>public</specifier> <name>FilterQueryHits</name><parameter_list>(<parameter><decl><type><name>QueryHits</name></type> <name>hits</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>hits</name></name> <operator>=</operator> <name>hits</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>hits</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getSize</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name><name>hits</name><operator>.</operator><name>getSize</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>ScoreNode</name></type> <name>nextScoreNode</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><call><name><name>hits</name><operator>.</operator><name>nextScoreNode</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>skip</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>hits</name><operator>.</operator><name>skip</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitIndexSearcher</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitIndexSearcher</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8d6b3556c</literal><operator>..</operator><name>db9bd54a1</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitIndexSearcher</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitIndexSearcher</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">19</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">19</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>IndexSearcher</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Query</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+ 
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -63,20 +61,14 @@ public class JackrabbitIndexSearcher extends IndexSearcher {
+      * @throws IOException if an error occurs while executing the query.
+      */</comment>
+     <function><type><specifier>public</specifier> <name>QueryHits</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name>Query</name></type> <name>query</name></decl></parameter>, <parameter><decl><type><name>Sort</name></type> <name>sort</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <comment type="line">// optimize certain queries</comment>
+        <if_stmt><if>if <condition>(<expr><call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>query</name> <operator>=</operator> <call><name><name>query</name><operator>.</operator><name>rewrite</name></name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>query</name> <operator>instanceof</operator> <name>MatchAllDocsQuery</name></expr>)</condition> <block>{<block_content>
+                <try>try <block>{<block_content>
+                    <return>return <expr><operator>new</operator> <call><name>NodeTraversingQueryHits</name><argument_list>(
+                            <argument><expr><call><name><name>session</name><operator>.</operator><name>getRootNode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</return>
+                </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                    <decl_stmt><decl><type><name>IOException</name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>initCause</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <throw>throw <expr><name>ex</name></expr>;</throw>
+                </block_content>}</block></catch></try>
+            </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name>query</name> <operator>=</operator> <call><name><name>query</name><operator>.</operator><name>rewrite</name></name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>QueryHits</name></type> <name>hits</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>query</name> <operator>instanceof</operator> <name>JackrabbitQuery</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>hits</name> <operator>=</operator> <operator>(</operator><operator>(</operator><name>JackrabbitQuery</name><operator>)</operator> <name>query</name><operator>)</operator><operator>.</operator><call><name>execute</name><argument_list>(<argument><expr><name>this</name></expr></argument>, <argument><expr><name>session</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+        <return>return <expr><operator>new</operator> <call><name>LuceneQueryHits</name><argument_list>(<argument><expr><call><name>search</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</return>
+        <if_stmt><if>if <condition>(<expr><name>hits</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>hits</name> <operator>=</operator> <operator>new</operator> <call><name>LuceneQueryHits</name><argument_list>(<argument><expr><call><name>search</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>hits</name></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitQuery</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitQuery</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..32489969e</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>JackrabbitQuery</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">52</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;code&gt;JackrabbitQuery&lt;/code&gt; defines an interface for Jackrabbit query
+ * implementations that are at the root of the lucene query tree. It gives the
+ * implementation the opportunity to execute in an optimized way returning
+ * {@link QueryHits} instead of a result that is tied to Lucene.
+ */</comment>
+<interface><specifier>public</specifier> interface <name>JackrabbitQuery</name> <block>{
+
+    <comment type="block" format="javadoc">/**
+     * Executes this query and returns {@link QueryHits} or &lt;code&gt;null&lt;/code&gt; if
+     * this query should be executed using the regular Lucene API.
+     * &lt;p/&gt;
+     * &lt;b&gt;Important note:&lt;/b&gt; an implementation &lt;b&gt;must not&lt;/b&gt; call {@link
+     * JackrabbitIndexSearcher#execute(Query, Sort)} with this query instance as
+     * a parameter, otherwise a stack overflow will occur.
+     *
+     * @param searcher the jackrabbit index searcher.
+     * @param session  the session that executes the query.
+     * @param sort     the sort criteria that must be reflected in the returned
+     *                 {@link QueryHits}.
+     * @return the query hits or &lt;code&gt;null&lt;/code&gt; if the regular Lucene API
+     *         should be used by the caller.
+     * @throws IOException if an error occurs while executing the query.
+     */</comment>
+    <function_decl><type><specifier>public</specifier> <name>QueryHits</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name>JackrabbitIndexSearcher</name></type> <name>searcher</name></decl></parameter>,
+                             <parameter><decl><type><name>SessionImpl</name></type> <name>session</name></decl></parameter>,
+                             <parameter><decl><type><name>Sort</name></type> <name>sort</name></decl></parameter>)</parameter_list>
+            <throws>throws <argument><expr><name>IOException</name></expr></argument></throws>;</function_decl>
+}</block></interface>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryBuilder</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryBuilder</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fdf054579</name><operator>..</operator><literal type="number">25b29b9e3</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryBuilder</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryBuilder</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">59</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">59</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>BooleanClause</name><operator>.</operator><name>Occur</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>BooleanQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Query</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>TermQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryHits</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryHits</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">05cb66d34</literal><operator>..</operator><name>b59245830</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryHits</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>LuceneQueryHits</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">54</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">54</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>LuceneQueryHits</name> extends <name>AbstractQueryHits</name> <block>{
+         <expr><name><name>this</name><operator>.</operator><name>reader</name></name> <operator>=</operator> <name>reader</name></expr>;
+     }</block>
+ 
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <specifier>protected</specifier> <name>final</name> <name>void</name> <call><name>doClose</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+        <expr><call><name><name>reader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+    }</block></class>
+
+     <comment type="block" format="javadoc">/**
+      * {@inheritDoc}
+      */</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MatchAllDocsQuery</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MatchAllDocsQuery</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..2338ad03d</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>MatchAllDocsQuery</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">52</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>query</name><operator>.</operator><name>lucene</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>Sort</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;code&gt;MatchAllDocsQuery&lt;/code&gt; extends the lucene &lt;code&gt;MatchAllDocsQuery&lt;/code&gt;
+ * and in addition implements {@link JackrabbitQuery}.
+ */</comment>
+<class><specifier>public</specifier> class <name>MatchAllDocsQuery</name>
+        <super_list><extends>extends <super><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name></super></extends>
+        <implements>implements <super><name>JackrabbitQuery</name></super></implements></super_list> <block>{
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>QueryHits</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name>JackrabbitIndexSearcher</name></type> <name>searcher</name></decl></parameter>,
+                             <parameter><decl><type><name>SessionImpl</name></type> <name>session</name></decl></parameter>,
+                             <parameter><decl><type><name>Sort</name></type> <name>sort</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>sort</name><operator>.</operator><name>getSort</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <return>return <expr><operator>new</operator> <call><name>NodeTraversingQueryHits</name><argument_list>(
+                        <argument><expr><call><name><name>session</name><operator>.</operator><name>getRootNode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</return>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <decl_stmt><decl><type><name>IOException</name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>initCause</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <throw>throw <expr><name>ex</name></expr>;</throw>
+            </block_content>}</block></catch></try>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>NodeTraversingQueryHits</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>NodeTraversingQueryHits</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f02114038</name><operator>..</operator><name>dd6e5297d</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>NodeTraversingQueryHits</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>NodeTraversingQueryHits</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt> <import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>NodeIterator</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * &lt;code&gt;NodeTraversingQueryHits&lt;/code&gt; implements query hits that traverse
+@@ -40,36 +40,31 @@ public class NodeTraversingQueryHits extends AbstractQueryHits {
+     private final Iterator nodes;
+ 
+     /**
+     * Creates query hits that consist of the nodes that are traversed from
+     * a given &lt;code&gt;start&lt;/code&gt; node.
+     * Creates query hits that consist of the nodes that are traversed from a
+     * given &lt;code&gt;start&lt;/code&gt; node.
+      *
+     * @param start the start node of the traversal.
+     * @param start        the start node of the traversal.
+      * @param includeStart whether to include the start node in the result.
+      */</comment>
+     <constructor><specifier>public</specifier> <name>NodeTraversingQueryHits</name><parameter_list>(<parameter><decl><type><name>Node</name></type> <name>start</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>includeStart</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>nodes</name></name> <operator>=</operator> <operator>new</operator> <call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><name>start</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>includeStart</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>nodes</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+    </block_content>}</block></constructor>
+
+    <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     * &lt;p/&gt;
+     * Does nothing.
+     */</comment>
+    <function><type><specifier>protected</specifier> <name>void</name></type> <name>doClose</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+        <comment type="line">// nothing to do</comment>
+        <expr_stmt><expr><call><name>this</name><argument_list>(<argument><expr><name>start</name></expr></argument>, <argument><expr><name>includeStart</name></expr></argument>, <argument><expr><name><name>Integer</name><operator>.</operator><name>MAX_VALUE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></function>
+ 
+     <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     * &lt;p/&gt;
+     * This implementation always returns &lt;code&gt;-1&lt;/code&gt;.
+     * Creates query hits that consist of the nodes that are traversed from a
+     * given &lt;code&gt;start&lt;/code&gt; node.
+     *
+     * @param start        the start node of the traversal.
+     * @param includeStart whether to include the start node in the result.
+     * @param maxDepth     the maximum depth of nodes to traverse.
+      */</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getSize</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <comment type="line">// don't know</comment>
+        <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+    <constructor><specifier>public</specifier> <name>NodeTraversingQueryHits</name><parameter_list>(<parameter><decl><type><name>Node</name></type> <name>start</name></decl></parameter>,
+                                   <parameter><decl><type><name>boolean</name></type> <name>includeStart</name></decl></parameter>,
+                                   <parameter><decl><type><name>int</name></type> <name>maxDepth</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>nodes</name></name> <operator>=</operator> <operator>new</operator> <call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><name>start</name></expr></argument>, <argument><expr><name>maxDepth</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><name>includeStart</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>nodes</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+     </block_content>}</block></constructor>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -96,18 +91,29 @@ public class NodeTraversingQueryHits extends AbstractQueryHits {
+          */</comment>
+         <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Node</name></type> <name>currentNode</name></decl>;</decl_stmt>
+ 
+        <comment type="block" format="javadoc">/**
+         * The maximum depth of the traversal.
+         */</comment>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>int</name></type> <name>maxDepth</name></decl>;</decl_stmt>
+
+         <comment type="block" format="javadoc">/**
+          * The chain of iterators which includes the iterators of the children
+          * of the current node.
+          */</comment>
+        <decl_stmt><decl><type><specifier>private</specifier> <name>IteratorChain</name></type> <name>selfAndChildren</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <name>Iterator</name></type> <name>selfAndChildren</name></decl>;</decl_stmt>
+ 
+         <comment type="block" format="javadoc">/**
+          * Creates a &lt;code&gt;TraversingNodeIterator&lt;/code&gt;.
+         * @param start the node from where to start the traversal.
+         *
+         * @param start    the node from where to start the traversal.
+         * @param maxDepth the maximum depth of nodes to traverse.
+          */</comment>
+        <expr_stmt><expr><call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><name>Node</name> <name>start</name></expr></argument>)</argument_list></call> <block>{
+        <expr><call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><name>Node</name> <name>start</name></expr></argument>, <argument><expr><name>int</name> <name>maxDepth</name></expr></argument>)</argument_list></call> <block>{
+            <if_stmt><if>if <condition>(<expr><name>maxDepth</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"maxDepth must be &gt;= 0"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+            <expr_stmt/></block_content></block></if></if_stmt>}</block>
+             <name>currentNode</name> <operator>=</operator> <name>start</name></expr>;
+            <expr><name><name>this</name><operator>.</operator><name>maxDepth</name></name> <operator>=</operator> <name>maxDepth</name></expr>;
+         }</block>
+ 
+         <comment type="block" format="javadoc">/**
+@@ -139,18 +145,27 @@ public class NodeTraversingQueryHits extends AbstractQueryHits {
+          */</comment>
+         <specifier>private</specifier> <name>void</name> <call><name>init</name><argument_list>()</argument_list></call> <block>{
+             <if_stmt><if>if <condition>(<expr><name>selfAndChildren</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name>Iterator</name></type> <name>current</name> <init>= <expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>Node</name><index>[]</index></name><block>{<expr><name>currentNode</name></expr>}</block></expr></argument>)</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                 <decl_stmt><decl><type><name>List</name></type> <name>allIterators</name> <init>= <expr><operator>new</operator> <call><name>ArrayList</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>Iterator</name></type> <name>current</name> <init>= <expr><call><name><name>Collections</name><operator>.</operator><name>singletonList</name></name><argument_list>(<argument><expr><name>currentNode</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                 <expr_stmt><expr><call><name><name>allIterators</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>current</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                <comment type="line">// create new TraversingNodeIterator for each child</comment>
+                <try>try <block>{<block_content>
+                    <decl_stmt><decl><type><name>NodeIterator</name></type> <name>children</name> <init>= <expr><call><name><name>currentNode</name><operator>.</operator><name>getNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                    <while>while <condition>(<expr><call><name><name>children</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>allIterators</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><call><name><name>children</name><operator>.</operator><name>nextNode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><name>maxDepth</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                    <comment type="line">// only current node</comment>
+                <expr_stmt/></block_content></block></if></if_stmt></block_content></block></while></block_content></block></try></block_content></block></if></if_stmt>}</block></expr></expr_stmt> <if_stmt><if type="elseif">else if <condition>(<expr><name>maxDepth</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+                    <try>try <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>allIterators</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>currentNode</name><operator>.</operator><name>getNodes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                        <comment type="line">// currentNode is probably stale</comment>
+                    </block_content>}</block></catch></try>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <comment type="line">// create new TraversingNodeIterator for each child</comment>
+                    <try>try <block>{<block_content>
+                        <decl_stmt><decl><type><name>NodeIterator</name></type> <name>children</name> <init>= <expr><call><name><name>currentNode</name><operator>.</operator><name>getNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                        <while>while <condition>(<expr><call><name><name>children</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                            <expr_stmt><expr><call><name><name>allIterators</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>TraversingNodeIterator</name><argument_list>(<argument><expr><call><name><name>children</name><operator>.</operator><name>nextNode</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>maxDepth</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                        </block_content>}</block></while>
+                    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                        <comment type="line">// currentNode is probably stale</comment>
+                     </block_content>}</block></catch></try>
+                </block_content>}</block></else></if_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                    <comment type="line">// currentNode is probably stale</comment>
+                 </block_content>}</block></catch>
+                 <expr_stmt><expr><name>selfAndChildren</name> <operator>=</operator> <operator>new</operator> <call><name>IteratorChain</name><argument_list>(<argument><expr><name>allIterators</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>SearchIndex</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>SearchIndex</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">053492699..98223eb44</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>SearchIndex</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>query</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>SearchIndex</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">655</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">655</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>SearchIndex</name> extends <name>AbstractQueryHandler</name> <block>{
+ 
+         <expr><name>Sort</name> <name>sort</name> <operator>=</operator> <operator>new</operator> <call><name>Sort</name><argument_list>(<argument><expr><call><name>createSortFields</name><argument_list>(<argument><expr><name>orderProps</name></expr></argument>, <argument><expr><name>orderSpecs</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+        <expr><name>IndexReader</name> <name>reader</name> <operator>=</operator> <call><name>getIndexReader</name><argument_list>(<argument><expr><call><name><name>queryImpl</name><operator>.</operator><name>needsSystemTree</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <return>return <expr><operator>new</operator> <call><name>JackrabbitIndexSearcher</name><argument_list>(<argument><expr><name>session</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>execute</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr>;</return>
+        <name>final</name> <name>IndexReader</name> <name>reader</name> <operator>=</operator> <call><name>getIndexReader</name><argument_list>(<argument><expr><call><name><name>queryImpl</name><operator>.</operator><name>needsSystemTree</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+        <return>return <expr><operator>new</operator> <class><super><name>FilterQueryHits</name></super><argument_list>(<argument><expr><operator>new</operator> <call><name>JackrabbitIndexSearcher</name><argument_list>(<argument><expr><name>session</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>execute</name><argument_list>(<argument><expr><name>query</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list> <block>{
+            <function><type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+                <try>try <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block> <finally>finally <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>PerQueryCache</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>dispose</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>reader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></finally></try>
+            </block_content>}</block></function>
+        }</block></class></expr>;</return>
+     }</block></class>
+ 
+     <comment type="block" format="javadoc">/**
+- 
+2.19.1.windows.1
+
+</comment></unit>

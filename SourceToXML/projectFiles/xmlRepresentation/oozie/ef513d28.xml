@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/ef513d28.java"><expr_stmt><expr><name>From</name> <name>ef513d2853ce943ce3fea6aa6a3f6c9bdec25f63</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Rohini</name> <name>Palaniswamy</name> <operator>&lt;</operator><name>rohinip</name>@<name>yahoo</name><operator>-</operator><name><name>inc</name><operator>.</operator><name>com</name></name><operator>&gt;</operator>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">1</literal> <name>May</name> <literal type="number">2014</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">16</literal><operator>:</operator><literal type="number">07</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">1709</literal> <call><name><name>CoordELFunctions</name><operator>.</operator><name>getCurrentInstance</name></name><argument_list>()</argument_list></call> <name>is</name> <call><name>expensive</name>
+ <argument_list>(<argument><expr><name>shwethags</name> <name>via</name> <name>rohini</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">119</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">15</literal> <operator>++</operator><operator>-</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">102</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">33</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d73bc7dc1</name><operator>..</operator><name>db3259bb2</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">25</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">28</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>coord</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URI</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Calendar</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Lists</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>ErrorCode</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>client</name><operator>.</operator><name>OozieClient</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>command</name><operator>.</operator><name>CommandException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>dependency</name><operator>.</operator><name>URIHandler</name><operator>.</operator><name>Context</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>dependency</name><operator>.</operator><name>URIHandler</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>dependency</name><operator>.</operator><name>URIHandler</name><operator>.</operator><name>Context</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>Services</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>URIHandlerService</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>DateUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>ELEvaluator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>ParamChecker</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>XLog</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>Services</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>URIHandlerService</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URI</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Calendar</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>GregorianCalendar</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TimeZone</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * This class implements the EL function related to coordinator
+@@ -52,6 +55,12 @@ public class CoordELFunctions {
+     // TODO: in next release, support flexibility
+     private static String END_OF_OPERATION_INDICATOR_FILE = "_SUCCESS";
+ 
+    public static final long MINUTE_MSEC = 60 * 1000L;
+    public static final long HOUR_MSEC = 60 * MINUTE_MSEC;
+    public static final long DAY_MSEC = 24 * HOUR_MSEC;
+    public static final long MONTH_MSEC = 30 * DAY_MSEC;
+    public static final long YEAR_MSEC = 365 * DAY_MSEC;
+
+     /**
+      * Used in defining the frequency in 'day' unit. &lt;p/&gt; domain: &lt;code&gt; val &amp;gt; 0&lt;/code&gt; and should be integer.
+      *
+@@ -922,7 +931,6 @@ public class CoordELFunctions {
+         TimeUnit dsTimeUnit = getDSTimeUnit();
+         int[] instCount = new int[1];// used as pass by ref
+         Calendar nominalInstanceCal = getCurrentInstance(getActionCreationtime(), instCount);
+        StringBuilder instanceList = new StringBuilder();
+         if (nominalInstanceCal == null) {
+             LOG.warn("If the initial instance of the dataset is later than the nominal time, an empty string is"
+                     + " returned. This means that no data is available at the current-instance specified by the user"
+@@ -930,33 +938,25 @@ public class CoordELFunctions {
+             return "";
+         } else {
+             Calendar initInstance = getInitialInstanceCal();
+            instCount[0] = instCount[0] + end;
+             // Add in the reverse order - newest instance first.
+            for (int i = end; i &gt;= start; i--) {
+                // Tried to avoid the clone. But subtracting datasetFrequency gives different results than multiplying
+                // and Spring DST transition test in TestCoordELfunctions.testCurrent() fails
+                //nominalInstanceCal.add(dsTimeUnit.getCalendarUnit(), -datasetFrequency);
+                nominalInstanceCal = (Calendar) initInstance.clone();
+                nominalInstanceCal.add(dsTimeUnit.getCalendarUnit(), instCount[0] * datasetFrequency);
+                instCount[0]--;
+            nominalInstanceCal = (Calendar) initInstance.clone();
+            nominalInstanceCal.add(dsTimeUnit.getCalendarUnit(), (instCount[0] + start) * datasetFrequency);
+            List&lt;String&gt; instances = new ArrayList&lt;String&gt;();
+            for (int i = start; i &lt;= end; i++) {
+                 if (nominalInstanceCal.compareTo(initInstance) &lt; 0) {
+                     LOG.warn("If the initial instance of the dataset is later than the current-instance specified,"
+                             + " such as coord:current({0}) in this case, an empty string is returned. This means that"
+                             + " no data is available at the current-instance specified by the user and the user could"
+                             + " try modifying his initial-instance to an earlier time.", start);
+                    break;
+                 }
+                 else {
+                    instanceList.append(DateUtils.formatDateOozieTZ(nominalInstanceCal));
+                    instanceList.append(CoordELFunctions.INSTANCE_SEPARATOR);
+                    instances.add(DateUtils.formatDateOozieTZ(nominalInstanceCal));
+                 }
+                nominalInstanceCal.add(dsTimeUnit.getCalendarUnit(), datasetFrequency);
+             }
+            instances = Lists.reverse(instances);
+            return StringUtils.join(instances, CoordELFunctions.INSTANCE_SEPARATOR);
+         }
+
+        if (instanceList.length() &gt; 0) {
+            instanceList.setLength(instanceList.length() - CoordELFunctions.INSTANCE_SEPARATOR.length());
+        }
+        return instanceList.toString();
+     }
+ 
+     /**
+@@ -1223,9 +1223,8 @@ public class CoordELFunctions {
+         if (ds == null) {
+             throw new RuntimeException("Associated Dataset should be defined with key " + DATASET);
+         }
+        Calendar effInitTS = Calendar.getInstance();
+        Calendar effInitTS = new GregorianCalendar(ds.getTimeZone());
+         effInitTS.setTime(ds.getInitInstance());
+        effInitTS.setTimeZone(ds.getTimeZone());
+         // To adjust EOD/EOM
+         DateUtils.moveToEnd(effInitTS, getDSEndOfFlag(eval));
+         return effInitTS;
+@@ -1293,6 +1292,68 @@ public class CoordELFunctions {
+      *         the dataset.
+      */</comment>
+     <function><type><specifier>private</specifier> <specifier>static</specifier> <name>Calendar</name></type> <name>getCurrentInstance</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>effectiveTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name><name>instanceCount</name><index>[]</index></name></decl></parameter>, <parameter><decl><type><name>ELEvaluator</name></type> <name>eval</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>Date</name></type> <name>datasetInitialInstance</name> <init>= <expr><call><name>getInitialInstance</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>TimeUnit</name></type> <name>dsTimeUnit</name> <init>= <expr><call><name>getDSTimeUnit</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>TimeZone</name></type> <name>dsTZ</name> <init>= <expr><call><name>getDatasetTZ</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>dsFreq</name> <init>= <expr><call><name>getDSFrequency</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <comment type="line">// Convert Date to Calendar for corresponding TZ</comment>
+        <decl_stmt><decl><type><name>Calendar</name></type> <name>current</name> <init>= <expr><call><name><name>Calendar</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>dsTZ</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>current</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><name>datasetInitialInstance</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>Calendar</name></type> <name>calEffectiveTime</name> <init>= <expr><operator>new</operator> <call><name>GregorianCalendar</name><argument_list>(<argument><expr><name>dsTZ</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>calEffectiveTime</name><operator>.</operator><name>setTime</name></name><argument_list>(<argument><expr><name>effectiveTime</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>instanceCount</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>    <comment type="line">// caller doesn't care about this value</comment>
+            <expr_stmt><expr><name>instanceCount</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>current</name><operator>.</operator><name>compareTo</name></name><argument_list>(<argument><expr><name>calEffectiveTime</name></expr></argument>)</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <return>return <expr><literal type="null">null</literal></expr>;</return>
+        </block_content>}</block></if></if_stmt>
+
+        <switch>switch<condition>(<expr><name>dsTimeUnit</name></expr>)</condition> <block>{<block_content>
+            <case>case <expr><name>MINUTE</name></expr>:</case>
+                <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><call><name><name>effectiveTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name><name>datasetInitialInstance</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>/</operator> <name>MINUTE_MSEC</name><operator>)</operator></expr>;</expr_stmt>
+                <break>break;</break>
+            <case>case <expr><name>HOUR</name></expr>:</case>
+                <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><call><name><name>effectiveTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name><name>datasetInitialInstance</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>/</operator> <name>HOUR_MSEC</name><operator>)</operator></expr>;</expr_stmt>
+                <break>break;</break>
+            <case>case <expr><name>DAY</name></expr>:</case>
+            <case>case <expr><name>END_OF_DAY</name></expr>:</case>
+                <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><call><name><name>effectiveTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name><name>datasetInitialInstance</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>/</operator> <name>DAY_MSEC</name><operator>)</operator></expr>;</expr_stmt>
+                <break>break;</break>
+            <case>case <expr><name>MONTH</name></expr>:</case>
+            <case>case <expr><name>END_OF_MONTH</name></expr>:</case>
+                <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><call><name><name>effectiveTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name><name>datasetInitialInstance</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>/</operator> <name>MONTH_MSEC</name><operator>)</operator></expr>;</expr_stmt>
+                <break>break;</break>
+            <case>case <expr><name>YEAR</name></expr>:</case>
+                <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><operator>(</operator><call><name><name>effectiveTime</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call> <operator>-</operator> <call><name><name>datasetInitialInstance</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>/</operator> <name>YEAR_MSEC</name><operator>)</operator></expr>;</expr_stmt>
+                <break>break;</break>
+            <default>default:</default>
+                <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Unhandled dataset time unit "</literal> <operator>+</operator> <name>dsTimeUnit</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></switch>
+
+        <if_stmt><if>if <condition>(<expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&gt;</operator> <literal type="number">2</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>/</operator> <name>dsFreq</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>current</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>dsTimeUnit</name><operator>.</operator><name>getCalendarUnit</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>*</operator> <name>dsFreq</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+        <while>while <condition>(<expr><operator>!</operator><call><name><name>current</name><operator>.</operator><name>getTime</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>after</name><argument_list>(<argument><expr><name>effectiveTime</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>current</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>dsTimeUnit</name><operator>.</operator><name>getCalendarUnit</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>dsFreq</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+        </block_content>}</block></while>
+        <expr_stmt><expr><call><name><name>current</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>dsTimeUnit</name><operator>.</operator><name>getCalendarUnit</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>-</operator><name>dsFreq</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>instanceCount</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>--</operator></expr>;</expr_stmt>
+        <return>return <expr><name>current</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Find the current instance based on effectiveTime (i.e Action_Creation_Time or Action_Start_Time)
+     *
+     * @return current instance i.e. current(0) returns null if effectiveTime is earlier than Initial Instance time of
+     *         the dataset.
+     */</comment>
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>Calendar</name></type> <name>getCurrentInstance_old</name><parameter_list>(<parameter><decl><type><name>Date</name></type> <name>effectiveTime</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name><name>instanceCount</name><index>[]</index></name></decl></parameter>, <parameter><decl><type><name>ELEvaluator</name></type> <name>eval</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <decl_stmt><decl><type><name>Date</name></type> <name>datasetInitialInstance</name> <init>= <expr><call><name>getInitialInstance</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>TimeUnit</name></type> <name>dsTimeUnit</name> <init>= <expr><call><name>getDSTimeUnit</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>TimeZone</name></type> <name>dsTZ</name> <init>= <expr><call><name>getDatasetTZ</name><argument_list>(<argument><expr><name>eval</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>be35ce4a8</name><operator>..</operator><literal type="number">13315b91c</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">184</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">184</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordELFunctions</name> extends <name>XTestCase</name> <block>{
+ 
+         <expr><name>SyncCoordAction</name> <name>appInst</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordAction</name><argument_list>()</argument_list></call></expr>;
+         <expr><name>SyncCoordDataset</name> <name>ds</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordDataset</name><argument_list>()</argument_list></call></expr>;
+        ;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setFrequency</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setTimeUnit</name></name><argument_list>(<argument><expr><name><name>TimeUnit</name><operator>.</operator><name>DAY</name></name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setInitInstance</name></name><argument_list>(<argument><expr><call><name><name>DateUtils</name><operator>.</operator><name>parseDateOozieTZ</name></name><argument_list>(<argument><expr><literal type="string">"2009-01-02T00:00Z"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">260</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">259</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordELFunctions</name> extends <name>XTestCase</name> <block>{
+ 
+         <expr><name>SyncCoordAction</name> <name>appInst</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordAction</name><argument_list>()</argument_list></call></expr>;
+         <expr><name>SyncCoordDataset</name> <name>ds</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordDataset</name><argument_list>()</argument_list></call></expr>;
+        ;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setFrequency</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setTimeUnit</name></name><argument_list>(<argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MONTH</name></name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setInitInstance</name></name><argument_list>(<argument><expr><call><name><name>DateUtils</name><operator>.</operator><name>parseDateOozieTZ</name></name><argument_list>(<argument><expr><literal type="string">"2009-01-02T00:00Z"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">371</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">369</literal></expr>,<expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordELFunctions</name> extends <name>XTestCase</name> <block>{
+         <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"2010-09-08T23:59Z"</literal></expr></argument>, <argument><expr><call><name><name>CoordELFunctions</name><operator>.</operator><name>evalAndWrap</name></name><argument_list>(<argument><expr><name>eval</name></expr></argument>, <argument><expr><name>expr</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     }</block>
+ 
+    <specifier>public</specifier> <name>void</name> <call><name>testCurrentRange</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+        <expr><call><name>init</name><argument_list>(<argument><expr><literal type="string">"coord-action-create"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+        <expr><name>String</name> <name>expr</name> <operator>=</operator> <literal type="string">"${coord:currentRange(-1, 0)}"</literal></expr>;
+        <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"2009-09-09T23:59Z#2009-09-08T23:59Z"</literal></expr></argument>, <argument><expr><call><name><name>CoordELFunctions</name><operator>.</operator><name>evalAndWrap</name></name><argument_list>(<argument><expr><name>eval</name></expr></argument>, <argument><expr><name>expr</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+
+        <comment type="line">//test out of range instances, EL should return partial instances</comment>
+        <expr><call><name><name>appInst</name><operator>.</operator><name>setNominalTime</name></name><argument_list>(<argument><expr><call><name><name>DateUtils</name><operator>.</operator><name>parseDateOozieTZ</name></name><argument_list>(<argument><expr><literal type="string">"2009-09-01T23:59Z"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"2009-09-01T23:59Z"</literal></expr></argument>, <argument><expr><call><name><name>CoordELFunctions</name><operator>.</operator><name>evalAndWrap</name></name><argument_list>(<argument><expr><name>eval</name></expr></argument>, <argument><expr><name>expr</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    }</block>
+
+     <specifier>public</specifier> <name>void</name> <call><name>testCurrent</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+         <expr><call><name>init</name><argument_list>(<argument><expr><literal type="string">"coord-action-create"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+         <expr><name>String</name> <name>expr</name> <operator>=</operator> <literal type="string">"${coord:current(-1)}"</literal></expr>;
+@@ <expr><operator>-</operator><literal type="number">395</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">403</literal></expr>,<expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordELFunctions</name> extends <name>XTestCase</name> <block>{
+ 
+         <expr><name>SyncCoordAction</name> <name>appInst</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordAction</name><argument_list>()</argument_list></call></expr>;
+         <expr><name>SyncCoordDataset</name> <name>ds</name> <operator>=</operator> <operator>new</operator> <call><name>SyncCoordDataset</name><argument_list>()</argument_list></call></expr>;
+        ;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setFrequency</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setTimeUnit</name></name><argument_list>(<argument><expr><name><name>TimeUnit</name><operator>.</operator><name>DAY</name></name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>ds</name><operator>.</operator><name>setInitInstance</name></name><argument_list>(<argument><expr><call><name><name>DateUtils</name><operator>.</operator><name>parseDateOozieTZ</name></name><argument_list>(<argument><expr><literal type="string">"2009-01-02T00:00Z"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">1026</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1033</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordELFunctions</name> extends <name>XTestCase</name> <block>{
+      <expr><operator>*</operator> <specifier>public</specifier> <name>void</name> <call><name>testDetach</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{ <expr><call><name><name>Services</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>destroy</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>; }</block>
+      <operator>*</operator><operator>/</operator>
+ 
+    <specifier>private</specifier> <name>void</name> <call><name>init</name><argument_list>(<argument><expr><name>String</name> <name>tag</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>void</name> <call><name>init</name><argument_list>(<argument><expr><name>String</name> <name>tag</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>Exception</name> <block>{
+         <expr><call><name>init</name><argument_list>(<argument><expr><name>tag</name></expr></argument>, <argument><expr><literal type="string">"hdfs://localhost:9000/user/"</literal> <operator>+</operator> <call><name>getTestUser</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"/US/${YEAR}/${MONTH}/${DAY}"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+     }</block>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>eb9e40cbd</name><operator>..</operator><literal type="number">030fe981b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr>,<expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr>,<expr><literal type="number">6</literal> @@
+ <operator>--</operator> <name>Oozie</name> <literal type="number">4.1.0</literal> <call><name>release</name> <argument_list>(<argument><expr><name>trunk</name> <operator>-</operator> <name>unreleased</name></expr></argument>)</argument_list></call>
+ 
+<name>OOZIE</name><operator>-</operator><literal type="number">1709</literal> <call><name><name>CoordELFunctions</name><operator>.</operator><name>getCurrentInstance</name></name><argument_list>()</argument_list></call> <name>is</name> <call><name>expensive</name> <argument_list>(<argument><expr><name>shwethags</name> <name>via</name> <name>rohini</name></expr></argument>)</argument_list></call> 
+ <name>OOZIE</name><operator>-</operator><literal type="number">1787</literal> <name>parameterize</name> <name>interval</name> <name>of</name> <name>SLAService</name> <name>updating</name> <call><name>SlaStatus</name> <argument_list>(<argument><expr><name>ryota</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1777</literal> <name>duplicated</name> <name>log</name> <name>message</name> <name>in</name> <name>Pig</name> <name>launcher</name><literal type="char">'</literal></expr></block></expr></expr_stmt></block_content></block></function>s stdout (ryota)
+ OOZIE-1748 When using cron-like syntax, the "Time Unit" field says "MINUTE"
+- 
+2.19.1.windows.1
+
+</unit>

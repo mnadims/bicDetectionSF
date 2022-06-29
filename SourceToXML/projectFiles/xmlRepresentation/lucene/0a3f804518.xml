@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/0a3f804518.java"><expr_stmt><expr><name>From</name> <literal type="number">0a3f80451848fa683ac72ecde1c1818912cc76ae</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Mark</name> <name>Robert</name> <name><name>Miller</name> <argument_list type="generic">&lt;<argument><name>markrmiller</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">6</literal> <name>Jul</name> <literal type="number">2011</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">37</literal><operator>:</operator><literal type="number">21</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">2331</literal><operator>:</operator> <name>Refactor</name> <name>CoreContainer</name><literal type="char">'s SolrXML serialization
+ code and improve testing
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1143235 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../org/apache/solr/core/CoreContainer.java   | 233 ++++++------------
+ .../apache/solr/core/SolrXMLSerializer.java   | 218 ++++++++++++++++
+ .../solrj/embedded/TestSolrProperties.java    |   3 +-
+ .../solr/core/TestSolrXMLSerializer.java      | 154 ++++++++++++
+ 4 files changed, 445 insertions(+), 163 deletions(-)
+ create mode 100644 solr/src/java/org/apache/solr/core/SolrXMLSerializer.java
+ create mode 100644 solr/src/test/org/apache/solr/core/TestSolrXMLSerializer.java
+
+diff --git a/solr/src/java/org/apache/solr/core/CoreContainer.java b/solr/src/java/org/apache/solr/core/CoreContainer.java
+index 3ec0023d70f..05bf268988a 100644
+-- a/solr/src/java/org/apache/solr/core/CoreContainer.java
+++ b/solr/src/java/org/apache/solr/core/CoreContainer.java
+@@ -18,7 +18,6 @@
+ package org.apache.solr.core;
+ 
+ import java.io.*;
+import java.nio.channels.FileChannel;
+ import java.util.*;
+ import java.util.concurrent.ConcurrentHashMap;
+ import java.util.concurrent.TimeoutException;
+@@ -43,6 +42,8 @@ import org.apache.solr.common.util.DOMUtil;
+ import org.apache.solr.common.util.XML;
+ import org.apache.solr.common.util.FileUtils;
+ import org.apache.solr.common.util.SystemIdResolver;
+import org.apache.solr.core.SolrXMLSerializer.SolrCoreXMLDef;
+import org.apache.solr.core.SolrXMLSerializer.SolrXMLDef;
+ import org.apache.solr.handler.admin.CoreAdminHandler;
+ import org.apache.solr.schema.IndexSchema;
+ import org.apache.zookeeper.KeeperException;
+@@ -82,6 +83,7 @@ public class CoreContainer
+   protected Integer zkClientTimeout;
+   protected String solrHome;
+   protected String defaultCoreName = "";
+  private SolrXMLSerializer solrXMLSerializer = new SolrXMLSerializer();
+   private ZkController zkController;
+   private SolrZkServer zkServer;
+ 
+@@ -846,172 +848,79 @@ public class CoreContainer
+ 
+   /** Persists the cores config file in a user provided file. */
+   public void persistFile(File file) {
+    log.info("Persisting cores config to " + (file==null ? configFile : file));
+
+    File tmpFile = null;
+    try {
+      // write in temp first
+      if (file == null) {
+        file = tmpFile = File.createTempFile("solr", ".xml", configFile.getParentFile());
+      }
+      java.io.FileOutputStream out = new java.io.FileOutputStream(file);
+        Writer writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+        persist(writer);
+        writer.flush();
+        writer.close();
+        out.close();
+        // rename over origin or copy it this fails
+        if (tmpFile != null) {
+          if (tmpFile.renameTo(configFile))
+            tmpFile = null;
+          else
+            fileCopy(tmpFile, configFile);
+        }
+    } 
+    catch(java.io.FileNotFoundException xnf) {
+      throw new SolrException(SolrException.ErrorCode.SERVER_ERROR, xnf);
+    } 
+    catch(java.io.IOException xio) {
+      throw new SolrException(SolrException.ErrorCode.SERVER_ERROR, xio);
+    } 
+    finally {
+      if (tmpFile != null) {
+        if (!tmpFile.delete())
+          tmpFile.deleteOnExit();
+      }
+    }
+  }
+  
+  /** Write the cores configuration through a writer.*/
+  void persist(Writer w) throws IOException {
+    w.write("&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;\n");
+    w.write("&lt;solr");
+    if (this.libDir != null) {
+      writeAttribute(w,"sharedLib",libDir);
+    }
+    if(zkHost != null) writeAttribute(w, "zkHost", zkHost);
+    writeAttribute(w,"persistent",isPersistent());
+    w.write("&gt;\n");
+
+    if (containerProperties != null &amp;&amp; !containerProperties.isEmpty())  {
+      writeProperties(w, containerProperties, "  ");
+    }
+    w.write("  &lt;cores");
+    writeAttribute(w, "adminPath",adminPath);
+    if(adminHandler != null) writeAttribute(w, "adminHandler", adminHandler);
+    if(shareSchema) writeAttribute(w, "shareSchema", "true");
+    if(!defaultCoreName.equals("")) writeAttribute(w, "defaultCoreName", defaultCoreName);
+    if(host != null) writeAttribute(w, "host", host);
+    if(hostPort != null) writeAttribute(w, "hostPort", hostPort);
+    if(zkClientTimeout != null) writeAttribute(w, "zkClientTimeout", zkClientTimeout);
+    if(hostContext != null) writeAttribute(w, "hostContext", hostContext);
+    w.write("&gt;\n");
+
+    synchronized(cores) {
+    log.info("Persisting cores config to " + (file == null ? configFile : file));
+    // &lt;solr attrib="value"&gt;
+    Map&lt;String,String&gt; rootSolrAttribs = new HashMap&lt;String,String&gt;();
+    if (libDir != null) rootSolrAttribs.put("sharedLib", libDir);
+    rootSolrAttribs.put("persistent", Boolean.toString(isPersistent()));
+    
+    // &lt;solr attrib="value"&gt; &lt;cores attrib="value"&gt;
+    Map&lt;String,String&gt; coresAttribs = new HashMap&lt;String,String&gt;();
+    coresAttribs.put("adminPath", adminPath);
+    if (adminHandler != null) coresAttribs.put("adminHandler", adminHandler);
+    if (shareSchema) coresAttribs.put("shareSchema", "true");
+    if (!defaultCoreName.equals("")) coresAttribs.put("defaultCoreName",
+        defaultCoreName);
+    if (host != null) coresAttribs.put("host", host);
+    if (hostPort != null) coresAttribs.put("hostPort", hostPort);
+    if (zkClientTimeout != null) coresAttribs.put("zkClientTimeout", Integer.toString(zkClientTimeout));
+    if (hostContext != null) coresAttribs.put("hostContext", hostContext);
+    
+    List&lt;SolrCoreXMLDef&gt; solrCoreXMLDefs = new ArrayList&lt;SolrCoreXMLDef&gt;();
+    
+    synchronized (cores) {
+      Map&lt;String,String&gt; coreAttribs = new HashMap&lt;String,String&gt;();
+       for (SolrCore solrCore : cores.values()) {
+        persist(w,solrCore.getCoreDescriptor());
+        CoreDescriptor dcore = solrCore.getCoreDescriptor();
+        
+        coreAttribs.put("name", dcore.name.equals("") ? defaultCoreName
+            : dcore.name);
+        coreAttribs.put("instanceDir", dcore.getInstanceDir());
+        // write config (if not default)
+        String opt = dcore.getConfigName();
+        if (opt != null &amp;&amp; !opt.equals(dcore.getDefaultConfigName())) {
+          coreAttribs.put("config", opt);
+        }
+        // write schema (if not default)
+        opt = dcore.getSchemaName();
+        if (opt != null &amp;&amp; !opt.equals(dcore.getDefaultSchemaName())) {
+          coreAttribs.put("schema", opt);
+        }
+        opt = dcore.getPropertiesName();
+        if (opt != null) {
+          coreAttribs.put("properties", opt);
+        }
+        opt = dcore.dataDir;
+        if (opt != null) coreAttribs.put("dataDir", opt);
+        
+        CloudDescriptor cd = dcore.getCloudDescriptor();
+        if (cd != null) {
+          opt = cd.getShardId();
+          if (opt != null) coreAttribs.put("shard", opt);
+          // only write out the collection name if it'</literal><name>s</name> <name>not</name> <name>the</name> default <operator>(</operator><name>the</name>
+          <comment type="line">// core</comment>
+          <comment type="line">// name)</comment>
+          <name>opt</name> <operator>=</operator> <call><name><name>cd</name><operator>.</operator><name>getCollectionName</name></name><argument_list>()</argument_list></call>;
+          <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>opt</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>dcore</name><operator>.</operator><name>name</name></name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>coreAttribs</name><operator>.</operator><name>put</name></name><argument_list>(
+              <argument><expr><literal type="string">"collection"</literal></expr></argument>, <argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt></expr></expr_stmt>
+        }
+        
+        SolrCoreXMLDef <expr_stmt><expr><name>solrCoreXMLDef</name> <operator>=</operator> <operator>new</operator> <call><name>SolrCoreXMLDef</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>solrCoreXMLDef</name><operator>.</operator><name>coreAttribs</name></name> <operator>=</operator> <name>coreAttribs</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>solrCoreXMLDef</name><operator>.</operator><name>coreProperties</name></name> <operator>=</operator> <call><name><name>dcore</name><operator>.</operator><name>getCoreProperties</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>solrCoreXMLDefs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>solrCoreXMLDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       }
+    }
+
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"  &lt;/cores&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&lt;/solr&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }
+
+  private <function><type><name>void</name></type> <name>writeAttribute</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>, <parameter><decl><type><name>Object</name></type> <name>value</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>value</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return;</return></block_content></block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">" "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"=\""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>XML</name><operator>.</operator><name>escapeAttributeValue</name></name><argument_list>(<argument><expr><call><name><name>value</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>w</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"\""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/** Writes the cores configuration node for a given core. */</comment>
+  <function><type><name>void</name></type> <name>persist</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>CoreDescriptor</name></type> <name>dcore</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"    &lt;core"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"name"</literal></expr></argument>,<argument><expr><ternary><condition><expr><call><name><name>dcore</name><operator>.</operator><name>name</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr> ?</condition><then> <expr><name>defaultCoreName</name></expr> </then><else>: <expr><name><name>dcore</name><operator>.</operator><name>name</name></name></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"instanceDir"</literal></expr></argument>,<argument><expr><call><name><name>dcore</name><operator>.</operator><name>getInstanceDir</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//write config (if not default)</comment>
+    <decl_stmt><decl><type><name>String</name></type> <name>opt</name> <init>= <expr><call><name><name>dcore</name><operator>.</operator><name>getConfigName</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>opt</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>dcore</name><operator>.</operator><name>getDefaultConfigName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><literal type="string">"config"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <comment type="line">//write schema (if not default)</comment>
+    <expr_stmt><expr><name>opt</name> <operator>=</operator> <call><name><name>dcore</name><operator>.</operator><name>getSchemaName</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>opt</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>dcore</name><operator>.</operator><name>getDefaultSchemaName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"schema"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><name>opt</name> <operator>=</operator> <call><name><name>dcore</name><operator>.</operator><name>getPropertiesName</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"properties"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><name>opt</name> <operator>=</operator> <name><name>dcore</name><operator>.</operator><name>dataDir</name></name></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"dataDir"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+
+    <decl_stmt><decl><type><name>CloudDescriptor</name></type> <name>cd</name> <init>= <expr><call><name><name>dcore</name><operator>.</operator><name>getCloudDescriptor</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>cd</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>opt</name> <operator>=</operator> <call><name><name>cd</name><operator>.</operator><name>getShardId</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"shard"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      <comment type="line">// only write out the collection name if it's not the default (the core name)</comment>
+      <expr_stmt><expr><name>opt</name> <operator>=</operator> <call><name><name>cd</name><operator>.</operator><name>getCollectionName</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>opt</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>opt</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>dcore</name><operator>.</operator><name>name</name></name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"collection"</literal></expr></argument>,<argument><expr><name>opt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name><name>dcore</name><operator>.</operator><name>getCoreProperties</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>dcore</name><operator>.</operator><name>getCoreProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"/&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if> <comment type="line">// core</comment>
+    <else>else  <block>{<block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeProperties</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><call><name><name>dcore</name><operator>.</operator><name>getCoreProperties</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"      "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"    &lt;/core&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>writeProperties</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>Properties</name></type> <name>props</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>indent</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>props</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>indent</name> <operator>+</operator> <literal type="string">"&lt;property"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"name"</literal></expr></argument>,<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>,<argument><expr><literal type="string">"value"</literal></expr></argument>,<argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"/&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <decl_stmt><decl><type><name>SolrXMLDef</name></type> <name>solrXMLDef</name> <init>= <expr><operator>new</operator> <call><name>SolrXMLDef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>coresDefs</name></name> <operator>=</operator> <name>solrCoreXMLDefs</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>containerProperties</name></name> <operator>=</operator> <name>containerProperties</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>solrAttribs</name></name> <operator>=</operator> <name>rootSolrAttribs</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>coresAttribs</name></name> <operator>=</operator> <name>coresAttribs</name></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>solrXMLSerializer</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><ternary><condition><expr><name>file</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name>configFile</name></expr> </then><else>: <expr><name>file</name></expr></else></ternary></expr></argument>,
+          <argument><expr><name>solrXMLDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></for>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/** Copies a src file to a dest file:
+   *  used to circumvent the platform discrepancies regarding renaming files.
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>fileCopy</name><parameter_list>(<parameter><decl><type><name>File</name></type> <name>src</name></decl></parameter>, <parameter><decl><type><name>File</name></type> <name>dest</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>IOException</name></type> <name>xforward</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileInputStream</name></type> <name>fis</name> <init>=  <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileOutputStream</name></type> <name>fos</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileChannel</name></type> <name>fcin</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileChannel</name></type> <name>fcout</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>fis</name> <operator>=</operator> <operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><name>src</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fos</name> <operator>=</operator> <operator>new</operator> <call><name>FileOutputStream</name><argument_list>(<argument><expr><name>dest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fcin</name> <operator>=</operator> <call><name><name>fis</name><operator>.</operator><name>getChannel</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fcout</name> <operator>=</operator> <call><name><name>fos</name><operator>.</operator><name>getChannel</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">// do the file copy 32Mb at a time</comment>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>MB32</name> <init>= <expr><literal type="number">32</literal><operator>*</operator><literal type="number">1024</literal><operator>*</operator><literal type="number">1024</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>long</name></type> <name>size</name> <init>= <expr><call><name><name>fcin</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>long</name></type> <name>position</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <while>while <condition>(<expr><name>position</name> <operator>&lt;</operator> <name>size</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>position</name> <operator>+=</operator> <call><name><name>fcin</name><operator>.</operator><name>transferTo</name></name><argument_list>(<argument><expr><name>position</name></expr></argument>, <argument><expr><name>MB32</name></expr></argument>, <argument><expr><name>fcout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></while>
+    </block_content>}</block> 
+    <catch>catch<parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name>xforward</name> <operator>=</operator> <name>xio</name></expr>;</expr_stmt>
+    </block_content>}</block></catch> 
+    <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>fis</name>   <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content> <expr_stmt><expr><call><name><name>fis</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><name>fis</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt> </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fos</name>   <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content> <expr_stmt><expr><call><name><name>fos</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><name>fos</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt> </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fcin</name>  <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>fcin</name><operator>.</operator><name>isOpen</name></name><argument_list>()</argument_list></call></expr> )</condition><block type="pseudo"><block_content> <try>try <block>{<block_content> <expr_stmt><expr><call><name><name>fcin</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>  <expr_stmt><expr><name>fcin</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>  </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fcout</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>fcout</name><operator>.</operator><name>isOpen</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content> <expr_stmt><expr><call><name><name>fcout</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><name>fcout</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt> </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+    </block_content>}</block></finally></try>
+    <if_stmt><if>if <condition>(<expr><name>xforward</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><name>xforward</name></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+ 
+   <function><type><specifier>public</specifier> <name>String</name></type> <name>getSolrHome</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><name>solrHome</name></expr>;</return>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>SolrXMLSerializer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>SolrXMLSerializer</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..e882ddfa5d0</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>SolrXMLSerializer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">218</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name></name>;</package>
+
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>BufferedWriter</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileInputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileOutputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>OutputStreamWriter</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Writer</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>channels</name><operator>.</operator><name>FileChannel</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>XML</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>SolrXMLSerializer</name> <block>{
+  <decl_stmt><decl><type><specifier>protected</specifier> <specifier>static</specifier> <name>Logger</name></type> <name>log</name> <init>= <expr><call><name><name>LoggerFactory</name>
+      <operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>SolrXMLSerializer</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <specifier>static</specifier> <name>String</name></type> <name>INDENT</name> <init>= <expr><literal type="string">"  "</literal></expr></init></decl>;</decl_stmt>
+  
+  
+  <comment type="block" format="javadoc">/**
+   * @param w
+   *          Writer to use
+   * @param defaultCoreName
+   *          to use for cores with name ""
+   * @param coreDescriptors
+   *          to persist
+   * @param rootSolrAttribs
+   *          solrxml solr attribs
+   * @param containerProperties
+   *          to persist
+   * @param coresAttribs
+   *          solrxml cores attribs
+   * @throws IOException
+   */</comment>
+  <function><type><name>void</name></type> <name>persist</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>SolrXMLDef</name></type> <name>solrXMLDef</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&lt;solr"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>rootSolrAttribs</name> <init>= <expr><name><name>solrXMLDef</name><operator>.</operator><name>solrAttribs</name></name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>solrAttribKeys</name> <init>= <expr><call><name><name>rootSolrAttribs</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>key</name> <range>: <expr><name>solrAttribKeys</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>value</name> <init>= <expr><call><name><name>rootSolrAttribs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>key</name></expr></argument>, <argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Properties</name></type> <name>containerProperties</name> <init>= <expr><name><name>solrXMLDef</name><operator>.</operator><name>containerProperties</name></name></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>containerProperties</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>containerProperties</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>writeProperties</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>containerProperties</name></expr></argument>, <argument><expr><literal type="string">"  "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>INDENT</name> <operator>+</operator> <literal type="string">"&lt;cores"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coresAttribs</name> <init>= <expr><name><name>solrXMLDef</name><operator>.</operator><name>coresAttribs</name></name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coreAttribKeys</name> <init>= <expr><call><name><name>coresAttribs</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>key</name> <range>: <expr><name>coreAttribKeys</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>value</name> <init>= <expr><call><name><name>coresAttribs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>key</name></expr></argument>, <argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <for>for <control>(<init><decl><type><name>SolrCoreXMLDef</name></type> <name>coreDef</name> <range>: <expr><name><name>solrXMLDef</name><operator>.</operator><name>coresDefs</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>persist</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>coreDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>INDENT</name> <operator>+</operator> <literal type="string">"&lt;/cores&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&lt;/solr&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/** Writes the cores configuration node for a given core. */</comment>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>persist</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>SolrCoreXMLDef</name></type> <name>coreDef</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>INDENT</name> <operator>+</operator> <name>INDENT</name> <operator>+</operator> <literal type="string">"&lt;core"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>keys</name> <init>= <expr><call><name><name>coreDef</name><operator>.</operator><name>coreAttribs</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>key</name> <range>: <expr><name>keys</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>key</name></expr></argument>, <argument><expr><call><name><name>coreDef</name><operator>.</operator><name>coreAttribs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <decl_stmt><decl><type><name>Properties</name></type> <name>properties</name> <init>= <expr><name><name>coreDef</name><operator>.</operator><name>coreProperties</name></name></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>properties</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>properties</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"/&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if> <comment type="line">// core</comment>
+    <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeProperties</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>properties</name></expr></argument>, <argument><expr><literal type="string">"      "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>INDENT</name> <operator>+</operator> <name>INDENT</name> <operator>+</operator> <literal type="string">"&lt;/core&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>writeProperties</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>Properties</name></type> <name>props</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>indent</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>,<argument><name>Object</name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>props</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>indent</name> <operator>+</operator> <literal type="string">"&lt;property"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><literal type="string">"name"</literal></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>writeAttribute</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><literal type="string">"value"</literal></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"/&gt;\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>writeAttribute</name><parameter_list>(<parameter><decl><type><name>Writer</name></type> <name>w</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>, <parameter><decl><type><name>Object</name></type> <name>value</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>value</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return;</return></block_content></block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">" "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"=\""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>XML</name><operator>.</operator><name>escapeAttributeValue</name></name><argument_list>(<argument><expr><call><name><name>value</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>w</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"\""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><type><name>void</name></type> <name>persistFile</name><parameter_list>(<parameter><decl><type><name>File</name></type> <name>file</name></decl></parameter>, <parameter><decl><type><name>SolrXMLDef</name></type> <name>solrXMLDef</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Persisting cores config to "</literal> <operator>+</operator> <name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>File</name></type> <name>tmpFile</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <comment type="line">// write in temp first</comment>
+      <expr_stmt><expr><name>tmpFile</name> <operator>=</operator> <call><name><name>File</name><operator>.</operator><name>createTempFile</name></name><argument_list>(<argument><expr><literal type="string">"solr"</literal></expr></argument>, <argument><expr><literal type="string">".xml"</literal></expr></argument>, <argument><expr><call><name><name>file</name><operator>.</operator><name>getParentFile</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <decl_stmt><decl><type><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileOutputStream</name></name></type> <name>out</name> <init>= <expr><operator>new</operator> <call><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileOutputStream</name></name><argument_list>(<argument><expr><name>tmpFile</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Writer</name></type> <name>writer</name> <init>= <expr><operator>new</operator> <call><name>BufferedWriter</name><argument_list>(<argument><expr><operator>new</operator> <call><name>OutputStreamWriter</name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name>persist</name><argument_list>(<argument><expr><name>writer</name></expr></argument>, <argument><expr><name>solrXMLDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <finally>finally <block>{<block_content>
+        <expr_stmt><expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>out</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></finally></try>
+      <comment type="line">// rename over origin or copy if this fails</comment>
+      <if_stmt><if>if <condition>(<expr><name>tmpFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>tmpFile</name><operator>.</operator><name>renameTo</name></name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><name>tmpFile</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt></block_content></block></if>
+        <else>else<block type="pseudo"><block_content> <expr_stmt><expr><call><name>fileCopy</name><argument_list>(<argument><expr><name>tmpFile</name></expr></argument>, <argument><expr><name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></else></if_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>FileNotFoundException</name></name></type> <name>xnf</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><name>xnf</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><name>xio</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>tmpFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>tmpFile</name><operator>.</operator><name>delete</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>tmpFile</name><operator>.</operator><name>deleteOnExit</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+  
+  <comment type="block" format="javadoc">/**
+   * Copies a src file to a dest file: used to circumvent the platform
+   * discrepancies regarding renaming files.
+   */</comment>
+  <function><type><specifier>private</specifier> <specifier>static</specifier> <name>void</name></type> <name>fileCopy</name><parameter_list>(<parameter><decl><type><name>File</name></type> <name>src</name></decl></parameter>, <parameter><decl><type><name>File</name></type> <name>dest</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>IOException</name></type> <name>xforward</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileInputStream</name></type> <name>fis</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileOutputStream</name></type> <name>fos</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileChannel</name></type> <name>fcin</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FileChannel</name></type> <name>fcout</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>fis</name> <operator>=</operator> <operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><name>src</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fos</name> <operator>=</operator> <operator>new</operator> <call><name>FileOutputStream</name><argument_list>(<argument><expr><name>dest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fcin</name> <operator>=</operator> <call><name><name>fis</name><operator>.</operator><name>getChannel</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>fcout</name> <operator>=</operator> <call><name><name>fos</name><operator>.</operator><name>getChannel</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">// do the file copy 32Mb at a time</comment>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>MB32</name> <init>= <expr><literal type="number">32</literal> <operator>*</operator> <literal type="number">1024</literal> <operator>*</operator> <literal type="number">1024</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>long</name></type> <name>size</name> <init>= <expr><call><name><name>fcin</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>long</name></type> <name>position</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <while>while <condition>(<expr><name>position</name> <operator>&lt;</operator> <name>size</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>position</name> <operator>+=</operator> <call><name><name>fcin</name><operator>.</operator><name>transferTo</name></name><argument_list>(<argument><expr><name>position</name></expr></argument>, <argument><expr><name>MB32</name></expr></argument>, <argument><expr><name>fcout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></while>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name>xforward</name> <operator>=</operator> <name>xio</name></expr>;</expr_stmt>
+    </block_content>}</block></catch> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>fis</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fis</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>fis</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fos</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fos</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>fos</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fcin</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>fcin</name><operator>.</operator><name>isOpen</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fcin</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>fcin</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>fcout</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>fcout</name><operator>.</operator><name>isOpen</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name><name>fcout</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>fcout</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>xio</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></catch></try></block_content></block></if></if_stmt>
+    </block_content>}</block></finally></try>
+    <if_stmt><if>if <condition>(<expr><name>xforward</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><name>xforward</name></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+  
+  <class><specifier>static</specifier> <specifier>public</specifier> class <name>SolrXMLDef</name> <block>{
+    <decl_stmt><decl><type><name>Properties</name></type> <name>containerProperties</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>solrAttribs</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coresAttribs</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>SolrCoreXMLDef</name></argument>&gt;</argument_list></name></type> <name>coresDefs</name></decl>;</decl_stmt>
+  }</block></class>
+  
+  <class><specifier>static</specifier> <specifier>public</specifier> class <name>SolrCoreXMLDef</name> <block>{
+    <decl_stmt><decl><type><name>Properties</name></type> <name>coreProperties</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coreAttribs</name></decl>;</decl_stmt>
+  }</block></class>
+}</block></class>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>embedded</name><operator>/</operator><name><name>TestSolrProperties</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>embedded</name><operator>/</operator><name><name>TestSolrProperties</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">4df93f2d120</literal><operator>..</operator><literal type="number">975aa200f84</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>embedded</name><operator>/</operator><name><name>TestSolrProperties</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>embedded</name><operator>/</operator><name><name>TestSolrProperties</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">27</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathConstants</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathExpressionException</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathFactory</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>io</name><operator>.</operator><name>IOUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LuceneTestCase</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>client</name><operator>.</operator><name>solrj</name><operator>.</operator><name>SolrQuery</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">202</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">203</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestSolrProperties</name> extends <name>LuceneTestCase</name> <block>{
+ 
+     <expr><name>mcr</name> <operator>=</operator> <call><name><name>CoreAdminRequest</name><operator>.</operator><name>persist</name></name><argument_list>(<argument><expr><literal type="string">"solr-persist.xml"</literal></expr></argument>, <argument><expr><name>coreadmin</name></expr></argument>)</argument_list></call></expr>;
+     
+    <comment type="line">//System.out.println(IOUtils.toString(new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"))));</comment>
+    <expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><call><name><name>IOUtils</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>solrXml</name><operator>.</operator><name>getParent</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"solr-persist.xml"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name>DocumentBuilder</name> <name>builder</name> <operator>=</operator> <call><name><name>DocumentBuilderFactory</name><operator>.</operator><name>newInstance</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>newDocumentBuilder</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>FileInputStream</name> <name>fis</name> <operator>=</operator> <operator>new</operator> <call><name>FileInputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><call><name><name>solrXml</name><operator>.</operator><name>getParent</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"solr-persist.xml"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <try>try <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestSolrXMLSerializer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestSolrXMLSerializer</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..d8b1877b269</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestSolrXMLSerializer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">154</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name></name>;</package>
+
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>BufferedInputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>ByteArrayInputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>StringWriter</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>UnsupportedEncodingException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>Writer</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>parsers</name><operator>.</operator><name>DocumentBuilder</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>parsers</name><operator>.</operator><name>DocumentBuilderFactory</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>parsers</name><operator>.</operator><name>ParserConfigurationException</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPath</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathConstants</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathExpressionException</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathFactory</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>io</name><operator>.</operator><name>FileUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LuceneTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name><operator>.</operator><name>SolrXMLSerializer</name><operator>.</operator><name>SolrCoreXMLDef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name><operator>.</operator><name>SolrXMLSerializer</name><operator>.</operator><name>SolrXMLDef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>w3c</name><operator>.</operator><name>dom</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>w3c</name><operator>.</operator><name>dom</name><operator>.</operator><name>Node</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>xml</name><operator>.</operator><name>sax</name><operator>.</operator><name>SAXException</name></name>;</import>
+
+
+<class><specifier>public</specifier> class <name>TestSolrXMLSerializer</name> <super_list><extends>extends <super><name>LuceneTestCase</name></super></extends></super_list> <block>{
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>XPathFactory</name></type> <name>xpathFactory</name> <init>= <expr><call><name><name>XPathFactory</name><operator>.</operator><name>newInstance</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>defaultCoreNameKey</name> <init>= <expr><literal type="string">"defaultCoreName"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>defaultCoreNameVal</name> <init>= <expr><literal type="string">"collection1"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>peristentKey</name> <init>= <expr><literal type="string">"persistent"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>persistentVal</name> <init>= <expr><literal type="string">"true"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>sharedLibKey</name> <init>= <expr><literal type="string">"sharedLib"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>sharedLibVal</name> <init>= <expr><literal type="string">"true"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>adminPathKey</name> <init>= <expr><literal type="string">"adminPath"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>adminPathVal</name> <init>= <expr><literal type="string">"/admin"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>shareSchemaKey</name> <init>= <expr><literal type="string">"admin"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>shareSchemaVal</name> <init>= <expr><literal type="string">"true"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>instanceDirKey</name> <init>= <expr><literal type="string">"instanceDir"</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>instanceDirVal</name> <init>= <expr><literal type="string">"core1"</literal></expr></init></decl>;</decl_stmt>
+  
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>basicUsageTest</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>SolrXMLSerializer</name></type> <name>serializer</name> <init>= <expr><operator>new</operator> <call><name>SolrXMLSerializer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>SolrXMLDef</name></type> <name>solrXMLDef</name> <init>= <expr><call><name>getTestSolrXMLDef</name><argument_list>(<argument><expr><name>defaultCoreNameKey</name></expr></argument>,
+        <argument><expr><name>defaultCoreNameVal</name></expr></argument>, <argument><expr><name>peristentKey</name></expr></argument>, <argument><expr><name>persistentVal</name></expr></argument>, <argument><expr><name>sharedLibKey</name></expr></argument>,
+        <argument><expr><name>sharedLibVal</name></expr></argument>, <argument><expr><name>adminPathKey</name></expr></argument>, <argument><expr><name>adminPathVal</name></expr></argument>, <argument><expr><name>shareSchemaKey</name></expr></argument>,
+        <argument><expr><name>shareSchemaVal</name></expr></argument>, <argument><expr><name>instanceDirKey</name></expr></argument>, <argument><expr><name>instanceDirVal</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>Writer</name></type> <name>w</name> <init>= <expr><operator>new</operator> <call><name>StringWriter</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><call><name><name>serializer</name><operator>.</operator><name>persist</name></name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>solrXMLDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></try></block_content></block></function></block></class></block_content></block></try>}</block></expr></expr_stmt> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally>
+    
+    <expr_stmt><expr><call><name>assertResults</name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>StringWriter</name><operator>)</operator> <name>w</name><operator>)</operator><operator>.</operator><call><name>getBuffer</name><argument_list>()</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// again with default file</comment>
+    <decl_stmt><decl><type><name>File</name></type> <name>tmpFile</name> <init>= <expr><call><name><name>File</name><operator>.</operator><name>createTempFile</name></name><argument_list>(<argument><expr><literal type="string">"solr"</literal></expr></argument>, <argument><expr><literal type="string">".xml"</literal></expr></argument>, <argument><expr><name>TEMP_DIR</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <expr_stmt><expr><call><name><name>serializer</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><name>tmpFile</name></expr></argument>, <argument><expr><name>solrXMLDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertResults</name><argument_list>(<argument><expr><call><name><name>FileUtils</name><operator>.</operator><name>readFileToString</name></name><argument_list>(<argument><expr><name>tmpFile</name></expr></argument>, <argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>assertResults</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>bytes</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>ParserConfigurationException</name></expr></argument>, <argument><expr><name>UnsupportedEncodingException</name></expr></argument>,
+      <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>SAXException</name></expr></argument>, <argument><expr><name>XPathExpressionException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>DocumentBuilder</name></type> <name>builder</name> <init>= <expr><call><name><name>DocumentBuilderFactory</name><operator>.</operator><name>newInstance</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>newDocumentBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>BufferedInputStream</name></type> <name>is</name> <init>= <expr><operator>new</operator> <call><name>BufferedInputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>ByteArrayInputStream</name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Document</name></type> <name>document</name></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+<comment type="line">//      is.mark(0);</comment>
+<comment type="line">//      System.out.println("SolrXML:" + IOUtils.toString(is, "UTF-8"));</comment>
+<comment type="line">//      is.reset();</comment>
+      <expr_stmt><expr><name>document</name> <operator>=</operator> <call><name><name>builder</name><operator>.</operator><name>parse</name></name><argument_list>(<argument><expr><name>is</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>is</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+    
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name>exists</name><argument_list>(<argument><expr><literal type="string">"/solr[@"</literal> <operator>+</operator> <name>peristentKey</name> <operator>+</operator> <literal type="string">"='"</literal> <operator>+</operator> <name>persistentVal</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><name>document</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name>exists</name><argument_list>(<argument><expr><literal type="string">"/solr[@"</literal> <operator>+</operator> <name>sharedLibKey</name> <operator>+</operator> <literal type="string">"='"</literal> <operator>+</operator> <name>sharedLibVal</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><name>document</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name>exists</name><argument_list>(<argument><expr><literal type="string">"/solr/cores[@"</literal> <operator>+</operator> <name>defaultCoreNameKey</name> <operator>+</operator> <literal type="string">"='"</literal> <operator>+</operator> <name>defaultCoreNameVal</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><name>document</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name>exists</name><argument_list>(<argument><expr><literal type="string">"/solr/cores[@"</literal> <operator>+</operator> <name>adminPathKey</name> <operator>+</operator> <literal type="string">"='"</literal> <operator>+</operator> <name>adminPathVal</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><name>document</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name>exists</name><argument_list>(<argument><expr><literal type="string">"/solr/cores/core[@"</literal> <operator>+</operator> <name>instanceDirKey</name> <operator>+</operator> <literal type="string">"='"</literal> <operator>+</operator> <name>instanceDirVal</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><name>document</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>SolrXMLDef</name></type> <name>getTestSolrXMLDef</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>defaultCoreNameKey</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>defaultCoreNameVal</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>peristentKey</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>persistentVal</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>sharedLibKey</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>sharedLibVal</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>adminPathKey</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>adminPathVal</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>shareSchemaKey</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>shareSchemaVal</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>instanceDirKey</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>instanceDirVal</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// &lt;solr attrib="value"&gt;</comment>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>rootSolrAttribs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>rootSolrAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>sharedLibKey</name></expr></argument>, <argument><expr><name>sharedLibVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>rootSolrAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>peristentKey</name></expr></argument>, <argument><expr><name>persistentVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// &lt;solr attrib="value"&gt; &lt;cores attrib="value"&gt;</comment>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coresAttribs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>coresAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>adminPathKey</name></expr></argument>, <argument><expr><name>adminPathVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>coresAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>shareSchemaKey</name></expr></argument>, <argument><expr><name>shareSchemaVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>coresAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>defaultCoreNameKey</name></expr></argument>, <argument><expr><name>defaultCoreNameVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>SolrXMLDef</name></type> <name>solrXMLDef</name> <init>= <expr><operator>new</operator> <call><name>SolrXMLDef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <comment type="line">// &lt;solr attrib="value"&gt; &lt;cores attrib="value"&gt; &lt;core attrib="value"&gt;</comment>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>SolrCoreXMLDef</name></argument>&gt;</argument_list></name></type> <name>solrCoreXMLDefs</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>SolrCoreXMLDef</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>SolrCoreXMLDef</name></type> <name>coreDef</name> <init>= <expr><operator>new</operator> <call><name>SolrCoreXMLDef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coreAttribs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>coreAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>instanceDirKey</name></expr></argument>, <argument><expr><name>instanceDirVal</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>coreDef</name><operator>.</operator><name>coreAttribs</name></name> <operator>=</operator> <name>coreAttribs</name></expr> ;</expr_stmt>
+    <expr_stmt><expr><name><name>coreDef</name><operator>.</operator><name>coreProperties</name></name> <operator>=</operator> <operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>solrCoreXMLDefs</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>coreDef</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>coresDefs</name></name> <operator>=</operator> <name>solrCoreXMLDefs</name></expr> ;</expr_stmt>
+    <decl_stmt><decl><type><name>Properties</name></type> <name>containerProperties</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>containerProperties</name></name> <operator>=</operator> <name>containerProperties</name></expr> ;</expr_stmt>
+    <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>solrAttribs</name></name> <operator>=</operator> <name>rootSolrAttribs</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>solrXMLDef</name><operator>.</operator><name>coresAttribs</name></name> <operator>=</operator> <name>coresAttribs</name></expr>;</expr_stmt>
+    <return>return <expr><name>solrXMLDef</name></expr>;</return>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>exists</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>xpathStr</name></decl></parameter>, <parameter><decl><type><name>Node</name></type> <name>node</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>XPathExpressionException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>XPath</name></type> <name>xpath</name> <init>= <expr><call><name><name>xpathFactory</name><operator>.</operator><name>newXPath</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><operator>(</operator><name>Boolean</name><operator>)</operator> <call><name><name>xpath</name><operator>.</operator><name>evaluate</name></name><argument_list>(<argument><expr><name>xpathStr</name></expr></argument>, <argument><expr><name>node</name></expr></argument>, <argument><expr><name><name>XPathConstants</name><operator>.</operator><name>BOOLEAN</name></name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+}
+- 
+<expr><literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

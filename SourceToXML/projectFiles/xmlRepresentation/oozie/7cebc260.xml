@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/7cebc260.java"><expr_stmt><expr><name>From</name> <literal type="number">7cebc2604d6813fd1e2929a1b8334a8ba8df4cf8</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shwetha</name> <name><name>GS</name> <argument_list type="generic">&lt;<argument><name>sshivalingamurthy</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Nov</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">19</literal><operator>:</operator><literal type="number">06</literal> <operator>+</operator><literal type="number">0530</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">2724</literal> <name>coord</name><operator>:</operator><name>current</name> <name>resolves</name> <name>monthly</name><operator>/</operator><name>yearly</name> <name>dependencies</name>
+ <call><name>incorrectly</name> <argument_list>(<argument><expr><name>satishsaley</name> <name>via</name> <name>shwethags</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">7</literal> <operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordELFunctions</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">36</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">40</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">4</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">22eb1c359</literal><operator>..</operator><literal type="number">925a7aa5d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>CoordELFunctions</name> <block>{
+     <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>long</name> <name>MINUTE_MSEC</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000L</literal></expr>;
+     <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>long</name> <name>HOUR_MSEC</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <name>MINUTE_MSEC</name></expr>;
+     <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>long</name> <name>DAY_MSEC</name> <operator>=</operator> <literal type="number">24</literal> <operator>*</operator> <name>HOUR_MSEC</name></expr>;
+    <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>long</name> <name>MONTH_MSEC</name> <operator>=</operator> <literal type="number">30</literal> <operator>*</operator> <name>DAY_MSEC</name></expr>;
+    <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>long</name> <name>YEAR_MSEC</name> <operator>=</operator> <literal type="number">365</literal> <operator>*</operator> <name>DAY_MSEC</name></expr>;</block></expr></expr_stmt>
+     <comment type="block" format="javadoc">/**
+      * Used in defining the frequency in 'day' unit. &lt;p&gt; domain: &lt;code&gt; val &amp;gt; 0&lt;/code&gt; and should be integer.
+      *
+@@ -1401,10 +1399,11 @@ public class CoordELFunctions {
+                 break;
+             case MONTH:
+             case END_OF_MONTH:
+                instanceCount[0] = (int) ((effectiveTime.getTime() - datasetInitialInstance.getTime()) / MONTH_MSEC);
+                int diffYear = calEffectiveTime.get(Calendar.YEAR) - current.get(Calendar.YEAR);
+                instanceCount[0] = diffYear * 12 + calEffectiveTime.get(Calendar.MONTH) - current.get(Calendar.MONTH);
+                 break;
+             case YEAR:
+                instanceCount[0] = (int) ((effectiveTime.getTime() - datasetInitialInstance.getTime()) / YEAR_MSEC);
+                instanceCount[0] = calEffectiveTime.get(Calendar.YEAR) - current.get(Calendar.YEAR);
+                 break;
+             default:
+                 throw new IllegalArgumentException("Unhandled dataset time unit " + dsTimeUnit);
+diff --git a/core/src/test/java/org/apache/oozie/coord/TestCoordELFunctions.java b/core/src/test/java/org/apache/oozie/coord/TestCoordELFunctions.java
+index fb7e0303d..be60133a5 100644
+-- a/core/src/test/java/org/apache/oozie/coord/TestCoordELFunctions.java
+++ b/core/src/test/java/org/apache/oozie/coord/TestCoordELFunctions.java
+@@ -702,6 +702,42 @@ public class TestCoordELFunctions extends XTestCase {
+ 
+         expr = "${coord:current(1)}";
+         assertEquals("2009-06-01T07:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        // Case 8
+        ds.setEndOfDuration(TimeUnit.END_OF_MONTH);
+        ds.setFrequency(1);
+        ds.setTimeZone(DateUtils.getTimeZone("UTC"));
+        ds.setInitInstance(DateUtils.parseDateOozieTZ("2010-01-01T00:00Z"));
+        appInst.setNominalTime(DateUtils.parseDateOozieTZ("2016-10-31T00:55Z"));
+        CoordELFunctions.configureEvaluator(eval, ds, appInst);
+
+        expr = "${coord:current(0)}";
+        assertEquals("2016-10-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        expr = "${coord:current(1)}";
+        assertEquals("2016-11-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        expr = "${coord:current(-1)}";
+        assertEquals("2016-09-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        // Test with YEAR
+        ds.setTimeUnit(TimeUnit.YEAR);
+        ds.setEndOfDuration(TimeUnit.YEAR);
+        ds.setFrequency(1);
+        ds.setTimeZone(DateUtils.getTimeZone("UTC"));
+        // Initial instance is far behind to accumulate effect of leap years
+        ds.setInitInstance(DateUtils.parseDateOozieTZ("1963-01-01T00:00Z"));
+        appInst.setNominalTime(DateUtils.parseDateOozieTZ("2016-10-31T00:55Z"));
+        CoordELFunctions.configureEvaluator(eval, ds, appInst);
+
+        expr = "${coord:current(0)}";
+        assertEquals("2016-01-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        expr = "${coord:current(1)}";
+        assertEquals("2017-01-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+
+        expr = "${coord:current(-1)}";
+        assertEquals("2015-01-01T00:00Z", CoordELFunctions.evalAndWrap(eval, expr));
+     }
+ 
+     public void testOffset() throws Exception {
+diff --git a/release-log.txt b/release-log.txt
+index 3071c7ba3..fead3961c 100644
+-- a/release-log.txt
+++ b/release-log.txt
+@@ -10,6 +10,7 @@ OOZIE-2634 Queue dump command message is confusing when the queue is empty (andr
+ 
+ -- Oozie 4.3.0 release
+ 
+OOZIE-2724 coord:current resolves monthly/yearly dependencies incorrectly (satishsaley via shwethags)
+ OOZIE-2719 Test case failure (abhishekbafna via jaydeepvishwakarma)
+ OOZIE-2674 Improve oozie commads documentation (abhishekbafna via rkanter)
+ OOZIE-2710 Oozie HCatalog example workflow fails (abhishekbafna via shwethags)
+- 
+2.19.1.windows.1
+
+</comment></unit>

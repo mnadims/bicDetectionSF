@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/af6aba67bb.java"><expr_stmt><expr><name>From</name> <name>af6aba67bbb26d4116532d45f3ea0117aa3cb6a8</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Bob</name> <name><name>Nettleton</name> <argument_list type="generic">&lt;<argument><name>rnettleton</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Dec</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">26</literal><operator>:</operator><literal type="number">41</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">19105.</literal> <name>Ambari</name> <name>LogSearch</name> <name>REST</name> <name>Layer</name> <name>should</name> <name>use</name> <name>a</name>
+ <name>configurable</name> <name>timeout</name></expr></expr_stmt> <for>for HTTP connections to LogSearch Server. <control>(<init><expr><name>rnettleton</name></expr></init>)</control><block type="pseudo"><block_content>
+
+<expr_stmt><expr><operator>--</operator>
+ <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>docs</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>index</name><operator>.</operator><name>md</name></name>     <operator>|</operator> <literal type="number">15</literal> <operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>ClusterService</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingService</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">19</literal> <operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">34</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementController</name><operator>.</operator><name>java</name></name>           <operator>|</operator> <literal type="number">12</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">8</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>LoggingResourceProvider</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">24</literal> <operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>LogSearchDataRetrievalService</name><operator>.</operator><name>java</name></name>        <operator>|</operator> <literal type="number">32</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>LoggingRequestHelperFactoryImpl</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">27</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">35</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>java</name></name>        <operator>|</operator> <literal type="number">14</literal> <operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>Utils</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingServiceTest</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>LogSearchDataRetrievalServiceTest</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>LoggingRequestHelperFactoryImplTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">66</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImplTest</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">84</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>UtilsTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">17</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">340</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">56</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>docs</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>index</name><operator>.</operator><name>md</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>docs</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>index</name><operator>.</operator><name>md</name></name>
+<name>index</name> <literal type="number">6ff263c395</literal><operator>..</operator><literal type="number">50864f2da2</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>docs</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>index</name><operator>.</operator><name>md</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>docs</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>index</name><operator>.</operator><name>md</name></name>
+@@ <operator>-</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>The</name> <name>following</name> <name>are</name> <name>the</name> <name>properties</name> <name>which</name> <name>can</name> <name>be</name> <name>used</name> <name>to</name> <name>configure</name> <name><name>Ambari</name><operator>.</operator></name>
+ | default<operator>.</operator><name><name>kdcserver</name><operator>.</operator><name>port</name></name> <operator>|</operator> <name>The</name> <name>port</name> <name>used</name> <name>to</name> <name>communicate</name> <name>with</name> <name>the</name> <name>Kerberos</name> <name>Key</name> <name>Distribution</name> <name><name>Center</name><operator>.</operator></name> |<operator>`</operator><literal type="number">88</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>extensions</name><operator>.</operator><name>path</name></name> <operator>|</operator> <name>The</name> <name>location</name> <name>on</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>where</name> <name>stack</name> <name>extensions</name> <name><name>exist</name><operator>.</operator></name>&lt;<name>br</name><operator>/</operator><operator>&gt;</operator><operator>&lt;</operator><name>br</name><operator>/</operator><operator>&gt;</operator><name>The</name> <name>following</name> <name>are</name> <name>examples</name> <name>of</name> <name>valid</name> <name>values</name><operator>:</operator><operator>&lt;</operator><name>ul</name><operator>&gt;</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><operator>/</operator><name>var</name><operator>/</operator><name>lib</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>resources</name><operator>/</operator><name>extensions</name><operator>`</operator><operator>&lt;</operator><operator>/</operator><name>ul</name><operator>&gt;</operator> <operator>|</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>http</name><operator>.</operator><name>cache</name></name><operator>-</operator><name>control</name> <operator>|</operator> <name>The</name> <name>value</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>set</name> <name>the</name> <operator>`</operator><name>Cache</name><operator>-</operator><name>Control</name><operator>`</operator> <name>HTTP</name> <name>response</name> <name><name>header</name><operator>.</operator></name> |<operator>`</operator><name>no</name><operator>-</operator><name>store</name><operator>`</operator> <operator>|</operator> 
+<operator>|</operator> <name><name>http</name><operator>.</operator><name>charset</name></name> <operator>|</operator> <name>The</name> <name>value</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>set</name> <name>the</name> <name>Character</name> <name>encoding</name> <name>to</name> <name>HTTP</name> <name>response</name> <name><name>header</name><operator>.</operator></name> |<operator>`</operator><name>utf</name><operator>-</operator><literal type="number">8</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>http</name><operator>.</operator><name>pragma</name></name> <operator>|</operator> <name>The</name> <name>value</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>set</name> <name>the</name> <operator>`</operator><name>PRAGMA</name><operator>`</operator> <name>HTTP</name> <name>response</name> <name><name>header</name><operator>.</operator></name> |<operator>`</operator><name>no</name><operator>-</operator><name>cache</name><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>http</name><operator>.</operator><name>strict</name></name><operator>-</operator><name>transport</name><operator>-</operator><name>security</name> <operator>|</operator> <name>When</name> <name>using</name> <name>SSL</name></expr><operator>,</operator> <expr><name>this</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>set</name> <name>the</name> <operator>`</operator><name>Strict</name><operator>-</operator><name>Transport</name><operator>-</operator><name>Security</name><operator>`</operator> <name>response</name> <name><name>header</name><operator>.</operator></name> |<operator>`</operator><name>max</name><operator>-</operator><name>age</name><operator>=</operator><literal type="number">31536000</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>http</name><operator>.</operator><name>x</name></name><operator>-</operator><name>content</name><operator>-</operator><name>type</name><operator>-</operator><name>options</name> <operator>|</operator> <name>The</name> <name>value</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>set</name> <name>the</name> <operator>`</operator><name>X</name><operator>-</operator><name>CONTENT</name><operator>-</operator><name>TYPE</name><operator>`</operator> <name>HTTP</name> <name>response</name> <name><name>header</name><operator>.</operator></name> |<operator>`</operator><name>nosniff</name><operator>`</operator> <operator>|</operator> 
+@@ <operator>-</operator><literal type="number">147</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">148</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>The</name> <name>following</name> <name>are</name> <name>the</name> <name>properties</name> <name>which</name> <name>can</name> <name>be</name> <name>used</name> <name>to</name> <name>configure</name> <name><name>Ambari</name><operator>.</operator></name>
+ | <name><name>kerberos</name><operator>.</operator><name>operation</name><operator>.</operator><name>retry</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>time</name> <name>to</name> <call><name>wait</name> <argument_list>(<argument><expr><name>in</name> <name>seconds</name></expr></argument>)</argument_list></call> <name>between</name> <name>failed</name> <name>kerberos</name> <name>operations</name> <name><name>retries</name><operator>.</operator></name> |<operator>`</operator><literal type="number">10</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>ldap</name><operator>.</operator><name>sync</name><operator>.</operator><name>username</name><operator>.</operator><name>collision</name><operator>.</operator><name>behavior</name></name> <operator>|</operator> <name>Determines</name> <name>how</name> <name>to</name> <name>handle</name> <name>username</name> <name>collision</name></expr></expr_stmt></block_content></block></for> <while>while updating from LDAP.&lt;br/&gt;&lt;br/&gt;The following are examples of valid values:&lt;ul&gt;&lt;li&gt;`skip`&lt;li&gt;`convert`&lt;/ul&gt; <operator>|</operator>`convert` <operator>|</operator> 
+ <operator>|</operator> log4j.monitor.delay <operator>|</operator> Indicates the delay<operator>,</operator> <decl_stmt><decl><type><name>in</name></type> <name>milliseconds</name></decl>, for <decl><type ref="prev"/><name>the</name> <name>log4j</name> <name>monitor</name> <name>to</name> <name>check</name> for <name>changes</name> <operator>|</operator>`300000` <operator>|</operator> 
+<operator>|</operator> <name><name>logsearch</name><operator>.</operator><name>portal</name><operator>.</operator><name>connect</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>time</name></decl>, <decl><type ref="prev"/><name>in</name> <name>milliseconds</name></decl>, <decl><type ref="prev"/><name>that</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>will</name> <name>wait</name> while <name>attempting</name> <name>to</name> <name>connect</name> <name>to</name> <name>the</name> <name>LogSearch</name> <name>Portal</name> <name><name>service</name><operator>.</operator></name> |`5000` <operator>|</operator> 
+<operator>|</operator> <name><name>logsearch</name><operator>.</operator><name>portal</name><operator>.</operator><name>read</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>time</name></decl>, <decl><type ref="prev"/><name>in</name> <name>milliseconds</name></decl>, <decl><type ref="prev"/><name>that</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>will</name> <name>wait</name> while <name>attempting</name> <name>to</name> <name>read</name> <name>a</name> <name>response</name> <name>from</name> <name>the</name> <name>LogSearch</name> <name>Portal</name> <name><name>service</name><operator>.</operator></name> |`5000` <operator>|</operator> 
+ <operator>|</operator> <name><name>metadata</name><operator>.</operator><name>path</name></name> <operator>|</operator> <name>The</name> <name>location</name> <name>on</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>where</name> <name>the</name> <name>stack</name> <name>resources</name> <name><name>exist</name><operator>.</operator></name>&lt;<name>br</name>/&gt;<argument_list type="generic">&lt;<argument><name>br</name><operator>/</operator></argument>&gt;</argument_list><name>The</name> <name>following</name> <name>are</name> <name>examples</name> <name>of</name> <name>valid</name> <name>values</name><range>:<expr><operator>&lt;</operator><name>ul</name><operator>&gt;</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><operator>/</operator><name>var</name><operator>/</operator><name>lib</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>`</operator><operator>&lt;</operator><operator>/</operator><name>ul</name><operator>&gt;</operator> <operator>|</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>metrics</name><operator>.</operator><name>retrieval</name></name><operator>-</operator><name><name>service</name><operator>.</operator><name>cache</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>amount</name> <name>of</name> <name>time</name></expr></range></decl>, <decl><type ref="prev"/><name>in</name> <name>minutes</name></decl>, <decl><type ref="prev"/><name>that</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>retrieved</name> <name>directly</name> <name>can</name> <name>remain</name> <name>in</name> <name>the</name> <name><name>cache</name><operator>.</operator></name> |`30` <operator>|</operator> 
+ <operator>|</operator> <name><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>request</name><operator>.</operator><name>ttl</name></name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>seconds</name> <name>to</name> <name>wait</name> <name>between</name> <name>issuing</name> <name>JMX</name> <name>or</name> <name>REST</name> <name>metric</name> <name>requests</name> <name>to</name> <name>the</name> <name>same</name> <name><name>endpoint</name><operator>.</operator> <name>This</name></name> <name>property</name> <name>is</name> <name>used</name> <name>to</name> <name>throttle</name> <name>requests</name> <name>to</name> <name>the</name> <name>same</name> <name>URL</name> <name>being</name> <name>made</name> <name>too</name> <name>close</name> <name><name>together</name><argument_list type="generic">&lt;<argument><name>br</name><operator>/</operator></argument>&gt;</argument_list></name><argument_list type="generic">&lt;<argument><name>br</name><operator>/</operator></argument>&gt;</argument_list> <name>This</name> <name>property</name> <name>is</name> <name>related</name> <name>to</name> `<name><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>request</name><operator>.</operator><name>ttl</name><operator>.</operator><name>enabled</name></name>`. <operator>|</operator>`5` <operator>|</operator> 
+@@ -231</decl>,16 +234,16 @@ <decl><type ref="prev"/><name>The</name> <name>following</name> <name>are</name> <name>the</name> <name>properties</name> <name>which</name> <name>can</name> <name>be</name> <name>used</name> <name>to</name> <name>configure</name> <name><name>Ambari</name><operator>.</operator></name>
+ | <name><name>server</name><operator>.</operator><name>jdbc</name><operator>.</operator><name>user</name><operator>.</operator><name>passwd</name></name> <operator>|</operator> <name>The</name> <name>password</name> for <name>the</name> <name>user</name> <name>when</name> <name>logging</name> <name>into</name> <name>the</name> <name><name>database</name><operator>.</operator></name> |`<name>bigdata</name>` <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>locks</name><operator>.</operator><name>profiling</name></name> <operator>|</operator> <name>Enable</name> <name>the</name> <name>profiling</name> <name>of</name> <name>internal</name> <name><name>locks</name><operator>.</operator></name> |`false` <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>thread</name><operator>.</operator><name>priority</name></name> <operator>|</operator> <name>The</name> <name>priority</name> <name>of</name> <name>threads</name> <name>used</name> <name>by</name> <name>the</name> <name>service</name> <name>which</name> <name>retrieves</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>directly</name> <name>from</name> <name>their</name> <name>respective</name> <name><name>endpoints</name><operator>.</operator></name> |`5` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>core</name></name> <operator>|</operator> <name>The</name> <name>core</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>directly</name> <name>from</name> <name>their</name> <name>respective</name> <name><name>endpoints</name><operator>.</operator></name> |`8` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>max</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>directly</name> <name>from</name> <name>their</name> <name>respective</name> <name><name>endpoints</name><operator>.</operator></name> |`16` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>worker</name><operator>.</operator><name>size</name></name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>queued</name> <name>requests</name> <name>allowed</name> for <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>before</name> <name>discarding</name> <name>old</name> <name>requests</name> <name>which</name> <name>have</name> <name>not</name> <name>been</name> <name><name>fullfilled</name><operator>.</operator></name> |`160` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>core</name></name> <operator>|</operator> <name>The</name> <name>core</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>directly</name> <name>from</name> <name>their</name> <name>respective</name> <name><name>endpoints</name><operator>.</operator></name> |`16` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>max</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>directly</name> <name>from</name> <name>their</name> <name>respective</name> <name><name>endpoints</name><operator>.</operator></name> |`32` <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>metrics</name><operator>.</operator><name>retrieval</name></name>-<name><name>service</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>worker</name><operator>.</operator><name>size</name></name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>queued</name> <name>requests</name> <name>allowed</name> for <name>JMX</name> <name>and</name> <name>REST</name> <name>metrics</name> <name>before</name> <name>discarding</name> <name>old</name> <name>requests</name> <name>which</name> <name>have</name> <name>not</name> <name>been</name> <name><name>fullfilled</name><operator>.</operator></name> |`320` <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>operations</name><operator>.</operator><name>retry</name></name>-<name>attempts</name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>retry</name> <name>attempts</name> for <name>failed</name> <name>API</name> <name>and</name> <name>blueprint</name> <name><name>operations</name><operator>.</operator></name> |`0` <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>os_family</name></name> <operator>|</operator> <name>The</name> <name>operating</name> <name>system</name> <name>family</name> for <name>all</name> <name>hosts</name> <name>in</name> <name>the</name> <name><name>cluster</name><operator>.</operator> <name>This</name></name> <name>is</name> <name>used</name> <name>when</name> <name>bootstrapping</name> <name>agents</name> <name>and</name> <name>when</name> <name>enabling</name> <name><name>Kerberos</name><operator>.</operator></name>&lt;<name>br</name>/&gt;<argument_list type="generic">&lt;<argument><name>br</name><operator>/</operator></argument>&gt;</argument_list><name>The</name> <name>following</name> <name>are</name> <name>examples</name> <name>of</name> <name>valid</name> <name>values</name><range>:<expr><operator>&lt;</operator><name>ul</name><operator>&gt;</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><name>redhat</name><operator>`</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><name>ubuntu</name><operator>`</operator><operator>&lt;</operator><operator>/</operator><name>ul</name><operator>&gt;</operator> <operator>|</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>os_type</name></name> <operator>|</operator> <name>The</name> <name>operating</name> <name>system</name> <name>version</name></expr></range></decl></decl_stmt></while> <for>for all hosts in the cluster. This is used when bootstrapping agents and when enabling Kerberos.&lt;br/&gt;&lt;br/&gt;The following are examples of valid values:&lt;ul&gt;&lt;li&gt;`6`&lt;li&gt;`7`&lt;/ul&gt; <operator>|</operator> <operator>|</operator> 
+ <operator>|</operator> server.persistence.type <operator>|</operator> The type of database connection being used. Unless using an embedded PostgresSQL server<operator>,</operator> <expr_stmt><expr><name>then</name> <name>this</name> <name>should</name> <name>be</name> <operator>`</operator><name>remote</name><operator>`</operator><operator>.</operator><operator>&lt;</operator><name>br</name><operator>/</operator><operator>&gt;</operator><operator>&lt;</operator><name>br</name><operator>/</operator><operator>&gt;</operator><name>The</name> <name>following</name> <name>are</name> <name>examples</name> <name>of</name> <name>valid</name> <name>values</name><operator>:</operator><operator>&lt;</operator><name>ul</name><operator>&gt;</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><name>local</name><operator>`</operator><operator>&lt;</operator><name>li</name><operator>&gt;</operator><operator>`</operator><name>remote</name><operator>`</operator><operator>&lt;</operator><operator>/</operator><name>ul</name><operator>&gt;</operator> <operator>|</operator><operator>`</operator><name>local</name><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>property</name></name><operator>-</operator><name><name>provider</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>completion</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>time</name></expr><operator>,</operator> <expr><name>in</name> <name>milliseconds</name></expr><operator>,</operator> <expr><name>that</name> <name>federated</name> <name>requests</name></expr></expr_stmt></for> <for>for data can execute before being terminated. Increasing this value could result in degraded performanc from the REST APIs. <operator>|</operator>`5000` <operator>|</operator> 
+<operator>|</operator> server.property-provider.threadpool.size.core <operator>|</operator> The core number of threads that will be used to retrieve data from federated datasources<operator>,</operator> <expr_stmt><expr><name>such</name> <name>as</name> <name>remote</name> <name>JMX</name> <name><name>endpoints</name><operator>.</operator></name> |<operator>`</operator><literal type="number">8</literal><operator>`</operator> <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>property</name></name><operator>-</operator><name><name>provider</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>max</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>threads</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>data</name> <name>from</name> <name>federated</name> <name>datasources</name></expr><operator>,</operator> <expr><name>such</name> <name>as</name> <name>remote</name> <name>JMX</name> <name><name>endpoints</name><operator>.</operator></name> |<operator>`</operator><literal type="number">16</literal><operator>`</operator> <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>property</name></name><operator>-</operator><name><name>provider</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>core</name></name> <operator>|</operator> <name>The</name> <name>core</name> <name>number</name> <name>of</name> <name>threads</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>data</name> <name>from</name> <name>federated</name> <name>datasources</name></expr><operator>,</operator> <expr><name>such</name> <name>as</name> <name>remote</name> <name>JMX</name> <name><name>endpoints</name><operator>.</operator></name> |<operator>`</operator><literal type="number">16</literal><operator>`</operator> <operator>|</operator> 
+<operator>|</operator> <name><name>server</name><operator>.</operator><name>property</name></name><operator>-</operator><name><name>provider</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>max</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>threads</name> <name>that</name> <name>will</name> <name>be</name> <name>used</name> <name>to</name> <name>retrieve</name> <name>data</name> <name>from</name> <name>federated</name> <name>datasources</name></expr><operator>,</operator> <expr><name>such</name> <name>as</name> <name>remote</name> <name>JMX</name> <name><name>endpoints</name><operator>.</operator></name> |<operator>`</operator><literal type="number">32</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>property</name></name><operator>-</operator><name><name>provider</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>worker</name><operator>.</operator><name>size</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>size</name> <name>of</name> <name>pending</name> <name>federated</name> <name>datasource</name> <name>requests</name></expr><operator>,</operator> <expr><name>such</name> <name>as</name> <name>those</name> <name>to</name> <name>JMX</name> <name>endpoints</name></expr><operator>,</operator> <expr><name>which</name> <name>can</name> <name>be</name> <name>queued</name> <name>before</name> <name>rejecting</name> <operator>new</operator> <name><name>requests</name><operator>.</operator></name> |<operator>`</operator><literal type="number">2147483647</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>requestlogs</name><operator>.</operator><name>namepattern</name></name> <operator>|</operator> <name>The</name> <name>pattern</name> <name>of</name> <name>request</name> <name>log</name> <name>file</name> <name>name</name> <operator>|</operator><operator>`</operator><name>ambari</name><operator>-</operator><name>access</name><operator>-</operator><name><name>yyyy_mm_dd</name><operator>.</operator><name>log</name></name><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>server</name><operator>.</operator><name>requestlogs</name><operator>.</operator><name>path</name></name> <operator>|</operator> <name>The</name> <name>location</name> <name>on</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>where</name> <name>request</name> <name>logs</name> <name>can</name> <name>be</name> <name><name>created</name><operator>.</operator></name> | <operator>|</operator> 
+@@ <operator>-</operator><literal type="number">276</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">279</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>The</name> <name>following</name> <name>are</name> <name>the</name> <name>properties</name> <name>which</name> <name>can</name> <name>be</name> <name>used</name> <name>to</name> <name>configure</name> <name><name>Ambari</name><operator>.</operator></name>
+ | <name><name>task</name><operator>.</operator><name>query</name><operator>.</operator><name>parameterlist</name><operator>.</operator><name>size</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>tasks</name> <name>which</name> <name>can</name> <name>be</name> <name>queried</name> <name>by</name> <name>ID</name> <name>from</name> <name>the</name> <name><name>database</name><operator>.</operator></name> |<operator>`</operator><literal type="number">999</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>topology</name><operator>.</operator><name>task</name><operator>.</operator><name>creation</name><operator>.</operator><name>parallel</name></name> <operator>|</operator> <name>Indicates</name> <name>whether</name> <name>parallel</name> <name>topology</name> <name>task</name> <name>creation</name> <name>is</name> <name>enabled</name> <operator>|</operator><operator>`</operator><literal type="boolean">false</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>topology</name><operator>.</operator><name>task</name><operator>.</operator><name>creation</name><operator>.</operator><name>parallel</name><operator>.</operator><name>threads</name></name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>threads</name> <name>to</name> <name>use</name></expr></expr_stmt></for> <for>for parallel topology task creation if enabled <operator>|</operator>`10` <operator>|</operator> 
+<operator>|</operator> view.extract-after-cluster-config <operator>|</operator> Drives view extraction in case of blueprint deployments<empty_stmt>;</empty_stmt></for> <expr_stmt><expr><name>non</name><operator>-</operator><name>system</name> <name>views</name> <name>are</name> <name>deployed</name> <name>when</name> <name>cluster</name> <name>configuration</name> <name>is</name> <name>successful</name> <operator>|</operator><operator>`</operator><literal type="boolean">false</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>view</name><operator>.</operator><name>extraction</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>core</name></name> <operator>|</operator> <name>The</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>extract</name> <name>Ambari</name> <name>Views</name> <name>when</name> <name>Ambari</name> <name>Server</name> <name>is</name> <name>starting</name> <name><name>up</name><operator>.</operator></name> |<operator>`</operator><literal type="number">10</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>view</name><operator>.</operator><name>extraction</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>size</name><operator>.</operator><name>max</name></name> <operator>|</operator> <name>The</name> <name>maximum</name> <name>number</name> <name>of</name> <name>threads</name> <name>used</name> <name>to</name> <name>extract</name> <name>Ambari</name> <name>Views</name> <name>when</name> <name>Ambari</name> <name>Server</name> <name>is</name> <name>starting</name> <name><name>up</name><operator>.</operator></name> |<operator>`</operator><literal type="number">20</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>view</name><operator>.</operator><name>extraction</name><operator>.</operator><name>threadpool</name><operator>.</operator><name>timeout</name></name> <operator>|</operator> <name>The</name> <name>time</name></expr><operator>,</operator> <expr><name>in</name> <name>milliseconds</name></expr><operator>,</operator> <expr><name>that</name> <name>non</name><operator>-</operator><name>core</name> <name>threads</name> <name>will</name> <name>live</name> <name>when</name> <name>extraction</name> <name>views</name> <name>on</name> <name>Ambari</name> <name>Server</name> <name><name>startup</name><operator>.</operator></name> |<operator>`</operator><literal type="number">100000</literal><operator>`</operator> <operator>|</operator> 
+@@ <operator>-</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">289</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>The</name> <name>following</name> <name>are</name> <name>the</name> <name>properties</name> <name>which</name> <name>can</name> <name>be</name> <name>used</name> <name>to</name> <name>configure</name> <name><name>Ambari</name><operator>.</operator></name>
+ | <name><name>views</name><operator>.</operator><name>ambari</name><operator>.</operator><name>request</name><operator>.</operator><name>read</name><operator>.</operator><name>timeout</name><operator>.</operator><name>millis</name></name> <operator>|</operator> <name>The</name> <name>amount</name> <name>of</name> <name>time</name></expr><operator>,</operator> <expr><name>in</name> <name>milliseconds</name></expr><operator>,</operator> <expr><name>that</name> <name>a</name> <name>view</name> <name>will</name> <name>wait</name> <name>before</name> <name>terminating</name> <name>an</name> <call><name>HTTP</name><argument_list>(<argument><expr><name>S</name></expr></argument>)</argument_list></call> <name>read</name> <name>request</name> <name>to</name> <name>the</name> <name>Ambari</name> <name>REST</name> <name><name>API</name><operator>.</operator></name> |<operator>`</operator><literal type="number">45000</literal><operator>`</operator> <operator>|</operator> 
+ <operator>|</operator> <name><name>views</name><operator>.</operator><name>dir</name></name> <operator>|</operator> <name>The</name> <name>directory</name> <name>on</name> <name>the</name> <name>Ambari</name> <name>Server</name> <name>file</name> <name>system</name> <name>used</name></expr></expr_stmt> <for>for expanding Views and storing webapp work. <operator>|</operator>`/var/lib/ambari-server/resources/views` <operator>|</operator> 
+ <operator>|</operator> views.http.cache-control <operator>|</operator> The value that will be used to set the `Cache-Control` HTTP response header for Ambari View requests. <operator>|</operator>`no-store` <operator>|</operator> 
+<operator>|</operator> views.http.charset <operator>|</operator> The value that will be used to set the Character encoding to HTTP response header for Ambari View requests. <operator>|</operator>`utf-8` <operator>|</operator> 
+ <operator>|</operator> views.http.pragma <operator>|</operator> The value that will be used to set the `PRAGMA` HTTP response header for Ambari View requests. <operator>|</operator>`no-cache` <operator>|</operator> 
+ <operator>|</operator> views.http.strict-transport-security <operator>|</operator> The value that will be used to set the `Strict-Transport-Security` HTTP response header for Ambari View requests. <operator>|</operator>`max-age=31536000` <operator>|</operator> 
+ <operator>|</operator> views.http.x-content-type-options <operator>|</operator> The value that will be used to set the `X-CONTENT-TYPE` HTTP response header for Ambari View requests. <operator>|</operator>`nosniff` <operator>|</operator> 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/api/services/ClusterService.java b/ambari-server/src/main/java/org/apache/ambari/server/api/services/ClusterService.java
+index 072c4a29fa..9f6feaa691 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/api/services/ClusterService.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/api/services/ClusterService.java
+@@ -662<operator>,</operator><expr_stmt><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">662</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterService</name> extends <name>BaseService</name> <block>{
+   @<expr><call><name>Path</name><argument_list>(<argument><expr><literal type="string">"{clusterName}/logging"</literal></expr></argument>)</argument_list></call>
+   <specifier>public</specifier> <name>LoggingService</name> <call><name>getLogging</name><argument_list>(<argument><expr><annotation>@<name>Context</name></annotation> <name><name>javax</name><operator>.</operator><name>ws</name><operator>.</operator><name>rs</name><operator>.</operator><name>core</name><operator>.</operator><name>Request</name></name> <name>request</name></expr></argument>,
+                                    <argument><expr><annotation>@<name>PathParam</name><argument_list>(<argument><expr><literal type="string">"clusterName"</literal></expr></argument>)</argument_list></annotation> <name>String</name> <name>clusterName</name></expr></argument>)</argument_list></call> <block>{
+    <return>return <expr><operator>new</operator> <call><name>LoggingService</name><argument_list>(<argument><expr><name>clusterName</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+    <return>return <expr><call><name><name>AmbariServer</name><operator>.</operator><name>getController</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getLoggingService</name><argument_list>(<argument><expr><name>clusterName</name></expr></argument>)</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt></for>
+ 
+   <comment type="line">// ----- helper methods ----------------------------------------------------</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingService</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingService</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ea4960fdf0</name><operator>..</operator><name>d83aa253f0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingService</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>api</name><operator>/</operator><name>services</name><operator>/</operator><name><name>LoggingService</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">42</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">42</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name><operator>.</operator><name>ResourceImpl</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name><operator>.</operator><name>LogQueryResponse</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name><operator>.</operator><name>LoggingRequestHelper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name><operator>.</operator><name>LoggingRequestHelperFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name><operator>.</operator><name>LoggingRequestHelperFactoryImpl</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>spi</name><operator>.</operator><name>Resource</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name><operator>.</operator><name>AuthorizationException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name><operator>.</operator><name>AuthorizationHelper</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">52</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>Cluster</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>utils</name><operator>.</operator><name>RetryHelper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  * This Service provides access to the LogSearch query services, including:
+  *     - Access to all service log files in a given cluster
+@@ -68,19 +69,19 @@ public class LoggingService extends BaseService {
+ 
+   private final ControllerFactory controllerFactory;
+ 
+  private final LoggingRequestHelperFactory helperFactory;
+  @Inject
+  private LoggingRequestHelperFactory helperFactory;
+ 
+ 
+   private final String clusterName;
+ 
+   public LoggingService(String clusterName) {
+    this(clusterName, new DefaultControllerFactory(), new LoggingRequestHelperFactoryImpl());
+    this(clusterName, new DefaultControllerFactory());
+   }
+ 
+  public LoggingService(String clusterName, ControllerFactory controllerFactory, LoggingRequestHelperFactory helperFactory) {
+  public LoggingService(String clusterName, ControllerFactory controllerFactory) {
+     this.clusterName = clusterName;
+     this.controllerFactory = controllerFactory;
+    this.helperFactory = helperFactory;
+   }
+ 
+   @GET
+@@ -207,6 +208,14 @@ public class LoggingService extends BaseService {
+     return responseBuilder.build();
+   }
+ 
+  /**
+   * Package-level setter that facilitates simpler unit testing
+   *
+   * @param helperFactory
+   */</comment>
+  <function><type><name>void</name></type> <name>setLoggingRequestHelperFactory</name><parameter_list>(<parameter><decl><type><name>LoggingRequestHelperFactory</name></type> <name>helperFactory</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>helperFactory</name></name> <operator>=</operator> <name>helperFactory</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+    * Internal interface that defines an access factory for the
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+index f9b6878b2b..22d8168bd9 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+@@ -2561,6 +2561,22 @@ public class Configuration {
+   public static final ConfigurationProperty&lt;Integer&gt; SRVR_API_ACCEPTOR_THREAD_COUNT = new ConfigurationProperty&lt;&gt;(
+       "client.api.acceptor.count", null);
+ 
+  /**
+   * The time, in milliseconds, that the Ambari Server will wait while attempting to connect to the
+   * LogSearch Portal service.
+   */</comment>
+  <decl_stmt><decl><annotation>@<name>Markdown</name><argument_list>(<argument><expr><name>description</name> <operator>=</operator> <literal type="string">"The time, in milliseconds, that the Ambari Server will wait while attempting to connect to the LogSearch Portal service."</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name><name>ConfigurationProperty</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>LOGSEARCH_PORTAL_CONNECT_TIMEOUT</name> <init>= <expr><operator>new</operator> <call><name><name>ConfigurationProperty</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+          <argument><expr><literal type="string">"logsearch.portal.connect.timeout"</literal></expr></argument>, <argument><expr><literal type="number">5000</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <comment type="block" format="javadoc">/**
+   * The time, in milliseconds, that the Ambari Server will wait while attempting to read a response from the
+   * LogSearch Portal service.
+   */</comment>
+  <decl_stmt><decl><annotation>@<name>Markdown</name><argument_list>(<argument><expr><name>description</name> <operator>=</operator> <literal type="string">"The time, in milliseconds, that the Ambari Server will wait while attempting to read a response from the LogSearch Portal service."</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name><name>ConfigurationProperty</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>LOGSEARCH_PORTAL_READ_TIMEOUT</name> <init>= <expr><operator>new</operator> <call><name><name>ConfigurationProperty</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+    <argument><expr><literal type="string">"logsearch.portal.read.timeout"</literal></expr></argument>, <argument><expr><literal type="number">5000</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(
+     <argument><expr><name><name>Configuration</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">5314</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">5330</literal></expr><operator>,</operator><expr><literal type="number">24</literal> @@ <specifier>public</specifier> <name>class</name> <name>Configuration</name> <block>{
+     <return>return <expr><call><name><name>Boolean</name><operator>.</operator><name>parseBoolean</name></name><argument_list>(<argument><expr><call><name>getProperty</name><argument_list>(<argument><expr><name>TOPOLOGY_TASK_PARALLEL_CREATION_ENABLED</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Get the connect timeout used for connecting to the LogSearch Portal Service
+   *
+   * @return
+   */</comment>
+  <function><type><specifier>public</specifier> <name>int</name></type> <name>getLogSearchPortalConnectTimeout</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>NumberUtils</name><operator>.</operator><name>toInt</name></name><argument_list>(<argument><expr><call><name>getProperty</name><argument_list>(<argument><expr><name>LOGSEARCH_PORTAL_CONNECT_TIMEOUT</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Get the read timeout used for connecting to the LogSearch Portal Service
+   *
+   * @return
+   */</comment>
+  <function><type><specifier>public</specifier> <name>int</name></type> <name>getLogSearchPortalReadTimeout</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>NumberUtils</name><operator>.</operator><name>toInt</name></name><argument_list>(<argument><expr><call><name>getProperty</name><argument_list>(<argument><expr><name>LOGSEARCH_PORTAL_READ_TIMEOUT</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Generates a markdown table which includes:
+    * &lt;ul&gt;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementController.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementController.java
+index 389f973027..cc203242b7 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementController.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementController.java
+@@ -28,6 +28,7 @@ import org.apache.ambari.server.RoleCommand;
+ import org.apache.ambari.server.actionmanager.ActionManager;
+ import org.apache.ambari.server.agent.ExecutionCommand;
+ import org.apache.ambari.server.api.services.AmbariMetaInfo;
+import org.apache.ambari.server.api.services.LoggingService;
+ import org.apache.ambari.server.controller.internal.DeleteStatusMetaData;
+ import org.apache.ambari.server.controller.internal.RequestStageContainer;
+ import org.apache.ambari.server.controller.logging.LoggingSearchPropertyProvider;
+@@ -872,6 +873,17 @@ public interface AmbariManagementController {
+    */</comment>
+   <function_decl><type><name>LoggingSearchPropertyProvider</name></type> <name>getLoggingSearchPropertyProvider</name><parameter_list>()</parameter_list>;</function_decl>
+ 
+
+  <comment type="block" format="javadoc">/**
+   * Gets the LoggingService instance from the dependency injection framework.
+   *
+   * @param clusterName the cluster name associated with this LoggingService instance
+   *
+   * @return an instance of LoggingService associated with the specified cluster.
+   */</comment>
+  <function_decl><type><name>LoggingService</name></type> <name>getLoggingService</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>clusterName</name></decl></parameter>)</parameter_list>;</function_decl>
+
+
+   <comment type="block" format="javadoc">/**
+    * Returns KerberosHelper instance
+    * @return
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index 6b5731cd4d..5fe7585026 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -87,6 +87,7 @@ import org.apache.ambari.server.actionmanager.StageFactory;
+ import org.apache.ambari.server.agent.ExecutionCommand;
+ import org.apache.ambari.server.agent.ExecutionCommand.KeyNames;
+ import org.apache.ambari.server.api.services.AmbariMetaInfo;
+import org.apache.ambari.server.api.services.LoggingService;
+ import org.apache.ambari.server.configuration.Configuration;
+ import org.apache.ambari.server.configuration.Configuration.DatabaseType;
+ import org.apache.ambari.server.controller.internal.DeleteStatusMetaData;
+@@ -5081,6 +5082,13 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+     return injector.getInstance(LoggingSearchPropertyProvider.class);
+   }
+ 
+  @Override
+  public LoggingService getLoggingService(String clusterName) {
+    LoggingService loggingService = new LoggingService(clusterName);
+    injector.injectMembers(loggingService);
+    return loggingService;
+  }
+
+   /**
+    * {@inheritDoc}
+    */</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>LoggingResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>LoggingResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2eb1a639d0</literal><operator>..</operator><name>b46399c0cf</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>LoggingResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>LoggingResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>internal</name></name>;</package>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>LinkedList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">28</literal> <operator>+</operator><literal type="number">111</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingResourceProvider</name> extends <name>AbstractControllerResourceProvider</name></expr></expr_stmt>
+     <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</return>
+   }
+ 
+  private <function><type><specifier>static</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>createTestData</name><parameter_list>(<parameter><decl><type><name>Resource</name></type> <name>resource</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// just create some test data for verifying basic resource code, not an actual result</comment>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>levelCounts</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>levelCounts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"INFO"</literal></expr></argument>, <argument><expr><literal type="string">"100"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>levelCounts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"WARN"</literal></expr></argument>, <argument><expr><literal type="string">"250"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>levelCounts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"DEBUG"</literal></expr></argument>, <argument><expr><literal type="string">"300"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>resource</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"logLevels"</literal></expr></argument>, <argument><expr><name>levelCounts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Map</name> <argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>listOfResults</name> <init>= <expr><operator>new</operator> <call><name><name>LinkedList</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>resultOne</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"data"</literal></expr></argument>, <argument><expr><literal type="string">"This is a test sentence."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"score"</literal></expr></argument>, <argument><expr><literal type="string">"100"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"level"</literal></expr></argument>, <argument><expr><literal type="string">"INFO"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"type"</literal></expr></argument>, <argument><expr><literal type="string">"hdfs_namenode"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"host"</literal></expr></argument>, <argument><expr><literal type="string">"c6401.ambari.apache.org"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resultOne</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"LoggerName"</literal></expr></argument>, <argument><expr><literal type="string">"NameNodeLogger"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>listOfResults</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>resultOne</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><name>listOfResults</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>checkPropertyIds</name><parameter_list>(<parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>propertyIds</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>unSupportedProperties</name> <init>=
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LogSearchDataRetrievalService</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LogSearchDataRetrievalService</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e65cd59f3f</name><operator>..</operator><name>ce6094c0cb</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LogSearchDataRetrievalService</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LogSearchDataRetrievalService</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr></init></decl>,11 +29,14 @@ <decl><type ref="prev"/><name>import</name> <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>collections</name><operator>.</operator><name>CollectionUtils</name></name></decl>;</decl_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>cache</name><operator>.</operator><name>Cache</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>cache</name><operator>.</operator><name>CacheBuilder</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Sets</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>AbstractService</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Injector</name></name>;</import>
+
+ 
+ <comment type="block" format="javadoc">/**
+  * The {@link LogSearchDataRetrievalService} is an Ambari Service that
+@@ -64,9 +67,16 @@ public class LogSearchDataRetrievalService extends AbstractService {
+ 
+   private static Logger LOG = LoggerFactory.getLogger(LogSearchDataRetrievalService.class);
+ 
+  /**
+   * Factory instance used to handle URL string generation requests on the
+   *   main request thread.
+   */</comment>
+   <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+   <type><specifier>private</specifier> <name>LoggingRequestHelperFactory</name></type> <name>loggingRequestHelperFactory</name></decl>;</decl_stmt>
+ 
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><specifier>private</specifier> <name>Injector</name></type> <name>injector</name></decl>;</decl_stmt>
+
+   <comment type="block" format="javadoc">/**
+    * A Cache of host+component names to a set of log files associated with
+    *  that Host/Component combination.  This data is retrieved from the
+@@ -200,6 +210,15 @@ public class LogSearchDataRetrievalService extends AbstractService {
+     this.loggingRequestHelperFactory = loggingRequestHelperFactory;
+   }
+ 
+  /**
+   * Package-level setter to facilitate simpler unit testing
+   *
+   * @param injector
+   */</comment>
+  <function><type><name>void</name></type> <name>setInjector</name><parameter_list>(<parameter><decl><type><name>Injector</name></type> <name>injector</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>injector</name></name> <operator>=</operator> <name>injector</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * This protected method provides a way for unit-tests to insert a
+    * mock executor for simpler unit-testing.
+@@ -220,7 +239,14 @@ public class LogSearchDataRetrievalService extends AbstractService {
+   }
+ 
+   private void startLogSearchFileNameRequest(String host, String component, String cluster) {
+    executor.execute(new LogSearchFileNameRequestRunnable(host, component, cluster, logFileNameCache, currentRequests));
+    // Create a separate instance of LoggingRequestHelperFactory for
+    // each task launched, since these tasks will occur on a separate thread
+    // TODO: In a future patch, this should be refactored, to either remove the need
+    // TODO: for the separate factory instance at the level of this class, or to make
+    // TODO: the LoggingRequestHelperFactory implementation thread-safe, so that
+    // TODO: a single factory instance can be shared across multiple threads safely
+    executor.execute(new LogSearchFileNameRequestRunnable(host, component, cluster, logFileNameCache, currentRequests,
+                                                          injector.getInstance(LoggingRequestHelperFactory.class)));
+   }
+ 
+   private AmbariManagementController getController() {
+@@ -258,8 +284,8 @@ public class LogSearchDataRetrievalService extends AbstractService {
+ 
+     private AmbariManagementController controller;
+ 
+    LogSearchFileNameRequestRunnable(String host, String component, String cluster, Cache&lt;String, Set&lt;String&gt;&gt; logFileNameCache, Set&lt;String&gt; currentRequests) {
+      this(host, component, cluster, logFileNameCache, currentRequests, new LoggingRequestHelperFactoryImpl(), AmbariServer.getController());
+    LogSearchFileNameRequestRunnable(String host, String component, String cluster, Cache&lt;String, Set&lt;String&gt;&gt; logFileNameCache, Set&lt;String&gt; currentRequests, LoggingRequestHelperFactory loggingRequestHelperFactory) {
+      this(host, component, cluster, logFileNameCache, currentRequests, loggingRequestHelperFactory, AmbariServer.getController());
+     }
+ 
+     LogSearchFileNameRequestRunnable(String host, String component, String cluster, Cache&lt;String, Set&lt;String&gt;&gt; logFileNameCache, Set&lt;String&gt; currentRequests,
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
+index afe1757bef..2f4f8d7e6d 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
+@@ -19,7 +19,10 @@ package org.apache.ambari.server.controller.logging;
+ 
+ import java.util.List;
+ 
+import javax.inject.Inject;
+
+ import org.apache.ambari.server.AmbariException;
+import org.apache.ambari.server.configuration.Configuration;
+ import org.apache.ambari.server.controller.AmbariManagementController;
+ import org.apache.ambari.server.state.Cluster;
+ import org.apache.ambari.server.state.Clusters;
+@@ -28,6 +31,7 @@ import org.apache.ambari.server.state.ServiceComponentHost;
+ import org.apache.ambari.server.state.State;
+ import org.apache.log4j.Logger;
+ 
+
+ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFactory {
+ 
+   private static final Logger LOG = Logger.getLogger(LoggingRequestHelperFactoryImpl.class);
+@@ -42,9 +46,17 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+ 
+   private static final String LOGSEARCH_UI_PROTOCOL = "logsearch_ui_protocol";
+ 
+  @Inject
+  private Configuration ambariServerConfiguration;
+ 
+   @Override
+   public LoggingRequestHelper getHelper(AmbariManagementController ambariManagementController, String clusterName) {
+
+    if (ambariServerConfiguration == null) {
+      LOG.error("Ambari Server configuration object not available, cannot create request helper");
+      return null;
+    }
+
+     Clusters clusters =
+       ambariManagementController.getClusters();
+ 
+@@ -90,7 +102,11 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+         final String logSearchProtocol =
+           logSearchEnvConfig.getProperties().get(LOGSEARCH_UI_PROTOCOL);
+ 
+        return new LoggingRequestHelperImpl(logSearchHostName, logSearchPortNumber, logSearchProtocol, ambariManagementController.getCredentialStoreService(), cluster);
+        final LoggingRequestHelperImpl loggingRequestHelper = new LoggingRequestHelperImpl(logSearchHostName, logSearchPortNumber, logSearchProtocol, ambariManagementController.getCredentialStoreService(), cluster);
+        // set configured timeouts for the Ambari connection to the LogSearch Portal service
+        loggingRequestHelper.setLogSearchConnectTimeoutInMilliseconds(ambariServerConfiguration.getLogSearchPortalConnectTimeout());
+        loggingRequestHelper.setLogSearchReadTimeoutInMilliseconds(ambariServerConfiguration.getLogSearchPortalReadTimeout());
+        return loggingRequestHelper;
+       }
+     } catch (AmbariException ambariException) {
+       LOG.error("Error occurred while trying to obtain the cluster, cluster name = " + clusterName, ambariException);
+@@ -99,4 +115,13 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+ 
+     return null;
+   }
+
+  /**
+   * Package-level setter to facilitate simpler unit testing
+   *
+   * @param ambariServerConfiguration the Ambari Server configuration properties
+   */</comment>
+  <function><type><name>void</name></type> <name>setAmbariServerConfiguration</name><parameter_list>(<parameter><decl><type><name>Configuration</name></type> <name>ambariServerConfiguration</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>ambariServerConfiguration</name></name> <operator>=</operator> <name>ambariServerConfiguration</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">88996d7c4d</literal><operator>..</operator><name>e915538869</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>Config</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>codec</name><operator>.</operator><name>binary</name><operator>.</operator><name>Base64</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>client</name><operator>.</operator><name>utils</name><operator>.</operator><name>URIBuilder</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>codehaus</name><operator>.</operator><name>jackson</name><operator>.</operator><name>map</name><operator>.</operator><name>AnnotationIntrospector</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>codehaus</name><operator>.</operator><name>jackson</name><operator>.</operator><name>map</name><operator>.</operator><name>ObjectMapper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>codehaus</name><operator>.</operator><name>jackson</name><operator>.</operator><name>map</name><operator>.</operator><name>ObjectReader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>codehaus</name><operator>.</operator><name>jackson</name><operator>.</operator><name>map</name><operator>.</operator><name>annotate</name><operator>.</operator><name>JsonSerialize</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>codehaus</name><operator>.</operator><name>jackson</name><operator>.</operator><name>map</name><operator>.</operator><name>introspect</name><operator>.</operator><name>JacksonAnnotationIntrospector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+
+ 
+ <comment type="block" format="javadoc">/**
+  * Convenience class to handle the connection details of a LogSearch query request.
+@@ -68,7 +70,7 @@ import org.codehaus.jackson.map.introspect.JacksonAnnotationIntrospector;
+  */</comment>
+ <class><specifier>public</specifier> class <name>LoggingRequestHelperImpl</name> <super_list><implements>implements <super><name>LoggingRequestHelper</name></super></implements></super_list> <block>{
+ 
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>Logger</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>LoggingRequestHelperImpl</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>LOGSEARCH_ADMIN_JSON_CONFIG_TYPE_NAME</name> <init>= <expr><literal type="string">"logsearch-admin-json"</literal></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">114</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">116</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingRequestHelperImpl</name> implements <name>LoggingRequestHelper</name> <block>{
+ 
+   <expr><specifier>private</specifier> <name>SSLSocketFactory</name> <name>sslSocketFactory</name></expr>;
+ 
+  <expr><specifier>private</specifier> <name>int</name> <name>logSearchConnectTimeoutInMilliseconds</name> <operator>=</operator> <name>DEFAULT_LOGSEARCH_CONNECT_TIMEOUT_IN_MILLISECONDS</name></expr>;
+
+  <expr><specifier>private</specifier> <name>int</name> <name>logSearchReadTimeoutInMilliseconds</name> <operator>=</operator> <name>DEFAULT_LOGSEARCH_READ_TIMEOUT_IN_MILLISECONDS</name></expr>;
+
+
+   <expr><specifier>public</specifier> <call><name>LoggingRequestHelperImpl</name><argument_list>(<argument><expr><name>String</name> <name>hostName</name></expr></argument>, <argument><expr><name>String</name> <name>portNumber</name></expr></argument>, <argument><expr><name>String</name> <name>protocol</name></expr></argument>, <argument><expr><name>CredentialStoreService</name> <name>credentialStoreService</name></expr></argument>, <argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>this</name><argument_list>(<argument><expr><name>hostName</name></expr></argument>, <argument><expr><name>portNumber</name></expr></argument>, <argument><expr><name>protocol</name></expr></argument>, <argument><expr><name>credentialStoreService</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>DefaultNetworkConnection</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+@@ <operator>-</operator><literal type="number">127</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">134</literal></expr>,<expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingRequestHelperImpl</name> implements <name>LoggingRequestHelper</name> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>networkConnection</name></name> <operator>=</operator> <name>networkConnection</name></expr>;
+   }</block>
+ 
+  <specifier>public</specifier> <name>int</name> <call><name>getLogSearchConnectTimeoutInMilliseconds</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name><name>this</name><operator>.</operator><name>logSearchConnectTimeoutInMilliseconds</name></name></expr>;</return></block></expr>
+  }</block>
+
+  <specifier>public</specifier> <name>void</name> <call><name>setLogSearchConnectTimeoutInMilliseconds</name><argument_list>(<argument><expr><name>int</name> <name>logSearchConnectTimeoutInMilliseconds</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>logSearchConnectTimeoutInMilliseconds</name></name> <operator>=</operator> <name>logSearchConnectTimeoutInMilliseconds</name></expr>;
+  }</block>
+
+  <specifier>public</specifier> <name>int</name> <call><name>getLogSearchReadTimeoutInMilliseconds</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name><name>this</name><operator>.</operator><name>logSearchReadTimeoutInMilliseconds</name></name></expr>;</return>
+  }</block></expr></expr_stmt>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setLogSearchReadTimeoutInMilliseconds</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>logSearchReadTimeoutInMilliseconds</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>logSearchReadTimeoutInMilliseconds</name></name> <operator>=</operator> <name>logSearchReadTimeoutInMilliseconds</name></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+   <function><type><specifier>public</specifier> <name>LogQueryResponse</name></type> <name>sendQueryRequest</name><parameter_list>(<parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>queryParameters</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <try>try <block>{<block_content>
+       <comment type="line">// use the Apache builder to create the correct URI</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">135</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">158</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingRequestHelperImpl</name> implements <name>LoggingRequestHelper</name> <block>{
+       <expr><name>HttpURLConnection</name> <name>httpURLConnection</name>  <operator>=</operator> <operator>(</operator><name>HttpURLConnection</name><operator>)</operator> <call><name><name>logSearchURI</name><operator>.</operator><name>toURL</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>openConnection</name><argument_list>()</argument_list></call></expr>;
+       <expr><call><name>secure</name><argument_list>(<argument><expr><name>httpURLConnection</name></expr></argument>, <argument><expr><name>protocol</name></expr></argument>)</argument_list></call></expr>;
+       <expr><call><name><name>httpURLConnection</name><operator>.</operator><name>setRequestMethod</name></name><argument_list>(<argument><expr><literal type="string">"GET"</literal></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>httpURLConnection</name><operator>.</operator><name>setConnectTimeout</name></name><argument_list>(<argument><expr><name>DEFAULT_LOGSEARCH_CONNECT_TIMEOUT_IN_MILLISECONDS</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>httpURLConnection</name><operator>.</operator><name>setReadTimeout</name></name><argument_list>(<argument><expr><name>DEFAULT_LOGSEARCH_READ_TIMEOUT_IN_MILLISECONDS</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>httpURLConnection</name><operator>.</operator><name>setConnectTimeout</name></name><argument_list>(<argument><expr><name>logSearchConnectTimeoutInMilliseconds</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>httpURLConnection</name><operator>.</operator><name>setReadTimeout</name></name><argument_list>(<argument><expr><name>logSearchReadTimeoutInMilliseconds</name></expr></argument>)</argument_list></call></expr>;
+ 
+       <expr><call><name>addCookiesFromCookieStore</name><argument_list>(<argument><expr><name>httpURLConnection</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Attempting request to LogSearch Portal Server, with connect timeout = {} milliseconds and read timeout = {} milliseconds"</literal></expr></argument>,
+        <argument><expr><name>logSearchConnectTimeoutInMilliseconds</name></expr></argument>, <argument><expr><name>logSearchReadTimeoutInMilliseconds</name></expr></argument>)</argument_list></call></expr>;
+ 
+       <expr><call><name>setupCredentials</name><argument_list>(<argument><expr><name>httpURLConnection</name></expr></argument>)</argument_list></call></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">282</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">307</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingRequestHelperImpl</name> implements <name>LoggingRequestHelper</name> <block>{
+     <expr><call><name><name>queryParameters</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"pageSize"</literal></expr></argument>, <argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><name>LogQueryResponse</name> <name>response</name> <operator>=</operator> <call><name>sendQueryRequest</name><argument_list>(<argument><expr><name>queryParameters</name></expr></argument>)</argument_list></call></expr>;
+    <if_stmt><if>if <condition>(<expr><operator>(</operator><name>response</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><operator>!</operator><call><name><name>response</name><operator>.</operator><name>getListOfResults</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call><operator>)</operator></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><operator>(</operator><name>response</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><call><name><name>response</name><operator>.</operator><name>getListOfResults</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><operator>!</operator><call><name><name>response</name><operator>.</operator><name>getListOfResults</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call><operator>)</operator></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>LogLineResult</name></type> <name>lineOne</name> <init>= <expr><call><name><name>response</name><operator>.</operator><name>getListOfResults</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <comment type="line">// this assumes that each component has only one associated log file,</comment>
+       <comment type="line">// which may not always hold true</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">6ffcdf9025</literal><operator>..</operator><literal type="number">36c485a525</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>ComponentInfo</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>LogDefinition</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>StackId</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>LoggingSearchPropertyProvider</name> <super_list><implements>implements <super><name>PropertyProvider</name></super></implements></super_list> <block>{
+ 
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>Logger</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>LoggingSearchPropertyProvider</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>CLUSTERS_PATH</name> <init>= <expr><literal type="string">"/api/v1/clusters"</literal></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">69</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingSearchPropertyProvider</name> implements <name>PropertyProvider</name> <block>{
+   @<expr><name>Inject</name>
+   <specifier>private</specifier> <name>LogSearchDataRetrievalService</name> <name>logSearchDataRetrievalService</name></expr>;
+ 
+  @<name>Inject</name>
+   <specifier>private</specifier> <name>LoggingRequestHelperFactory</name> <name>loggingRequestHelperFactory</name></block></expr>;</expr_stmt>
+   
+  <constructor><specifier>public</specifier> <name>LoggingSearchPropertyProvider</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>loggingRequestHelperFactory</name> <operator>=</operator> <operator>new</operator> <call><name>LoggingRequestHelperFactoryImpl</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt/></block_content></block></constructor></block></class></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block>
+
+   @<name>Override</name>
+   <specifier>public</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>Resource</name></argument>&gt;</argument_list></name> <call><name>populateResources</name><argument_list>(<argument><expr><name><name>Set</name><argument_list type="generic">&lt;<argument><name>Resource</name></argument>&gt;</argument_list></name> <name>resources</name></expr></argument>, <argument><expr><name>Request</name> <name>request</name></expr></argument>, <argument><expr><name>Predicate</name> <name>predicate</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>SystemException</name> <block>{
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Boolean</name></argument>&gt;</argument_list></name> <name>isLogSearchRunning</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+@@ <expr><operator>-</operator><literal type="number">223</literal></expr>,<expr><literal type="number">11</literal> <operator>+</operator><literal type="number">221</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>LoggingSearchPropertyProvider</name> implements <name>PropertyProvider</name> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>ambariManagementController</name></name> <operator>=</operator> <name>ambariManagementController</name></expr>;
+   }</block>
+ 
+  <specifier>protected</specifier> <name>void</name> <call><name>setLogSearchDataRetrievalService</name><argument_list>(<argument><expr><name>LogSearchDataRetrievalService</name> <name>logSearchDataRetrievalService</name></expr></argument>)</argument_list></call> <block>{
+  <expr><name>void</name> <call><name>setLogSearchDataRetrievalService</name><argument_list>(<argument><expr><name>LogSearchDataRetrievalService</name> <name>logSearchDataRetrievalService</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>logSearchDataRetrievalService</name></name> <operator>=</operator> <name>logSearchDataRetrievalService</name></expr>;
+   }</block>
+ 
+  <specifier>protected</specifier> <name>void</name> <call><name>setLoggingRequestHelperFactory</name><argument_list>(<argument><expr><name>LoggingRequestHelperFactory</name> <name>loggingRequestHelperFactory</name></expr></argument>)</argument_list></call> <block>{
+  <expr><name>void</name> <call><name>setLoggingRequestHelperFactory</name><argument_list>(<argument><expr><name>LoggingRequestHelperFactory</name> <name>loggingRequestHelperFactory</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>loggingRequestHelperFactory</name></name> <operator>=</operator> <name>loggingRequestHelperFactory</name></expr>;
+   }</block>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>Utils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>Utils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fdc9267ea0</name><operator>..</operator><literal type="number">969d4428aa</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>Utils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>logging</name><operator>/</operator><name><name>Utils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">19</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">19</literal></expr>,<expr><literal type="number">7</literal> @@</expr> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name><operator>.</operator><name>logging</name></name>;</package></block></expr>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicInteger</name></name>;</import></block></expr>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import></block></expr></expr_stmt>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import></block_content></block></try></block_content></block></function></block></class>
+ 
+ <comment type="block" format="javadoc">/**
+  * Utility class to hold static convenience methods for
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/api/services/LoggingServiceTest.java b/ambari-server/src/test/java/org/apache/ambari/server/api/services/LoggingServiceTest.java
+index 64fff1e891..800aca2194 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/api/services/LoggingServiceTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/api/services/LoggingServiceTest.java
+@@ -125,7 +125,8 @@ public class LoggingServiceTest {
+     SecurityContextHolder.getContext().setAuthentication(authentication);
+ 
+     LoggingService loggingService =
+      new LoggingService(expectedClusterName, controllerFactoryMock, helperFactoryMock);
+      new LoggingService(expectedClusterName, controllerFactoryMock);
+    loggingService.setLoggingRequestHelperFactory(helperFactoryMock);
+ 
+     Response resource = loggingService.getSearchEngine("", null, uriInfoMock);
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LogSearchDataRetrievalServiceTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LogSearchDataRetrievalServiceTest.java
+index 0bd681b14d..59aa9c85fa 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LogSearchDataRetrievalServiceTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LogSearchDataRetrievalServiceTest.java
+@@ -28,6 +28,16 @@ import java.util.Collections;
+ import java.util.Set;
+ import java.util.concurrent.Executor;
+ 
+
+import org.apache.ambari.server.controller.AmbariManagementController;
+import org.easymock.EasyMockSupport;
+import org.junit.Test;
+
+import com.google.common.cache.Cache;
+import com.google.inject.Injector;
+
+
+
+ import org.apache.ambari.server.controller.AmbariManagementController;
+ import org.easymock.EasyMockSupport;
+ import org.junit.Test;
+@@ -117,15 +127,21 @@ public class LogSearchDataRetrievalServiceTest {
+ 
+     Executor executorMock = mockSupport.createMock(Executor.class);
+ 
+    Injector injectorMock =
+      mockSupport.createMock(Injector.class);
+
+     // expect the executor to be called to execute the LogSearch request
+     executorMock.execute(isA(LogSearchDataRetrievalService.LogSearchFileNameRequestRunnable.class));
+     // executor should only be called once
+     expectLastCall().once();
+ 
+    expect(injectorMock.getInstance(LoggingRequestHelperFactory.class)).andReturn(helperFactoryMock);
+
+     mockSupport.replayAll();
+ 
+     LogSearchDataRetrievalService retrievalService = new LogSearchDataRetrievalService();
+     retrievalService.setLoggingRequestHelperFactory(helperFactoryMock);
+    retrievalService.setInjector(injectorMock);
+     // call the initialization routine called by the Google framework
+     retrievalService.doStart();
+     retrievalService.setExecutor(executorMock);
+@@ -137,6 +153,7 @@ public class LogSearchDataRetrievalServiceTest {
+ 
+     assertNull("Inital query on the retrieval service should be null, since cache is empty by default", resultSet);
+     assertEquals("Incorrect number of entries in the current request set", 1, retrievalService.getCurrentRequests().size());
+
+     assertTrue("Incorrect HostComponent set on request set",
+                 retrievalService.getCurrentRequests().contains(expectedComponentName + "+" + expectedHostName));
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImplTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImplTest.java
+index 7c8405d488..71a2d4974e 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImplTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImplTest.java
+@@ -19,6 +19,7 @@
+ package org.apache.ambari.server.controller.logging;
+ 
+ import static org.easymock.EasyMock.expect;
+import static org.junit.Assert.assertEquals;
+ import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.assertTrue;
+@@ -27,6 +28,7 @@ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+import org.apache.ambari.server.configuration.Configuration;
+ import org.apache.ambari.server.controller.AmbariManagementController;
+ import org.apache.ambari.server.security.encryption.CredentialStoreService;
+ import org.apache.ambari.server.state.Cluster;
+@@ -38,6 +40,8 @@ import org.apache.ambari.server.state.State;
+ import org.easymock.EasyMockSupport;
+ import org.junit.Test;
+ 
+
+
+ public class LoggingRequestHelperFactoryImplTest {
+ 
+   @Test
+@@ -45,6 +49,8 @@ public class LoggingRequestHelperFactoryImplTest {
+     final String expectedClusterName = "testclusterone";
+     final String expectedHostName = "c6410.ambari.apache.org";
+     final String expectedPortNumber = "61889";
+    final int expectedConnectTimeout = 3000;
+    final int expectedReadTimeout = 3000;
+ 
+     EasyMockSupport mockSupport = new EasyMockSupport();
+ 
+@@ -66,6 +72,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     CredentialStoreService credentialStoreServiceMock =
+       mockSupport.createMock(CredentialStoreService.class);
+ 
+    Configuration serverConfigMock =
+      mockSupport.createMock(Configuration.class);
+
+     Map&lt;String, String&gt; testProperties =
+       new HashMap&lt;String, String&gt;();
+     testProperties.put("logsearch_ui_port", expectedPortNumber);
+@@ -79,13 +88,17 @@ public class LoggingRequestHelperFactoryImplTest {
+     expect(logSearchEnvConfig.getProperties()).andReturn(testProperties).atLeastOnce();
+     expect(serviceComponentHostMock.getHostName()).andReturn(expectedHostName).atLeastOnce();
+     expect(serviceComponentHostMock.getState()).andReturn(State.STARTED).atLeastOnce();
+
+    expect(serverConfigMock.getLogSearchPortalConnectTimeout()).andReturn(expectedConnectTimeout);
+    expect(serverConfigMock.getLogSearchPortalReadTimeout()).andReturn(expectedReadTimeout);
+ 
+     mockSupport.replayAll();
+ 
+     LoggingRequestHelperFactory helperFactory =
+       new LoggingRequestHelperFactoryImpl();
+ 
+    // set the configuration mock using the concrete type
+    ((LoggingRequestHelperFactoryImpl)helperFactory).setAmbariServerConfiguration(serverConfigMock);
+
+     LoggingRequestHelper helper =
+       helperFactory.getHelper(controllerMock, expectedClusterName);
+ 
+@@ -95,6 +108,12 @@ public class LoggingRequestHelperFactoryImplTest {
+     assertTrue("Helper created was not of the expected type",
+       helper instanceof LoggingRequestHelperImpl);
+ 
+    assertEquals("Helper factory did not set the expected connect timeout on the helper instance",
+      expectedConnectTimeout, ((LoggingRequestHelperImpl)helper).getLogSearchConnectTimeoutInMilliseconds());
+
+    assertEquals("Helper factory did not set the expected read timeout on the helper instance",
+      expectedReadTimeout, ((LoggingRequestHelperImpl)helper).getLogSearchReadTimeoutInMilliseconds());
+
+     mockSupport.verifyAll();
+   }
+ 
+@@ -121,6 +140,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     ServiceComponentHost serviceComponentHostMock =
+       mockSupport.createMock(ServiceComponentHost.class);
+ 
+    Configuration serverConfigMock =
+      mockSupport.createMock(Configuration.class);
+
+     Map&lt;String, String&gt; testProperties =
+       new HashMap&lt;String, String&gt;();
+     testProperties.put("logsearch_ui_port", expectedPortNumber);
+@@ -141,6 +163,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     LoggingRequestHelperFactory helperFactory =
+       new LoggingRequestHelperFactoryImpl();
+ 
+    // set the configuration mock using the concrete type
+    ((LoggingRequestHelperFactoryImpl)helperFactory).setAmbariServerConfiguration(serverConfigMock);
+
+     LoggingRequestHelper helper =
+       helperFactory.getHelper(controllerMock, expectedClusterName);
+ 
+@@ -168,6 +193,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     Config logSearchEnvConfig =
+       mockSupport.createMock(Config.class);
+ 
+    Configuration serverConfigMock =
+      mockSupport.createMock(Configuration.class);
+
+     expect(controllerMock.getClusters()).andReturn(clustersMock).atLeastOnce();
+     expect(clustersMock.getCluster(expectedClusterName)).andReturn(clusterMock).atLeastOnce();
+     expect(clusterMock.getDesiredConfigByType("logsearch-env")).andReturn(logSearchEnvConfig).atLeastOnce();
+@@ -179,6 +207,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     LoggingRequestHelperFactory helperFactory =
+       new LoggingRequestHelperFactoryImpl();
+ 
+    // set the configuration mock using the concrete type
+    ((LoggingRequestHelperFactoryImpl)helperFactory).setAmbariServerConfiguration(serverConfigMock);
+
+     LoggingRequestHelper helper =
+       helperFactory.getHelper(controllerMock, expectedClusterName);
+ 
+@@ -203,6 +234,9 @@ public class LoggingRequestHelperFactoryImplTest {
+     Cluster clusterMock =
+       mockSupport.createMock(Cluster.class);
+ 
+    Configuration serverConfigMock =
+      mockSupport.createMock(Configuration.class);
+
+     expect(controllerMock.getClusters()).andReturn(clustersMock).atLeastOnce();
+     expect(clustersMock.getCluster(expectedClusterName)).andReturn(clusterMock).atLeastOnce();
+     // do not include LOGSEARCH in this map, to simulate the case when LogSearch is not deployed
+@@ -213,6 +247,36 @@ public class LoggingRequestHelperFactoryImplTest {
+     LoggingRequestHelperFactory helperFactory =
+       new LoggingRequestHelperFactoryImpl();
+ 
+    // set the configuration mock using the concrete type
+    ((LoggingRequestHelperFactoryImpl)helperFactory).setAmbariServerConfiguration(serverConfigMock);
+
+    LoggingRequestHelper helper =
+      helperFactory.getHelper(controllerMock, expectedClusterName);
+
+    assertNull("LoggingRequestHelper object returned by the factory should have been null",
+      helper);
+
+    mockSupport.verifyAll();
+  }
+
+  @Test
+  public void testHelperCreationWithNoAmbariServerConfiguration() throws Exception {
+    final String expectedClusterName = "testclusterone";
+
+    EasyMockSupport mockSupport = new EasyMockSupport();
+
+    AmbariManagementController controllerMock =
+      mockSupport.createMock(AmbariManagementController.class);
+
+    mockSupport.replayAll();
+
+    LoggingRequestHelperFactory helperFactory =
+      new LoggingRequestHelperFactoryImpl();
+
+    // set the configuration mock using the concrete type
+    // set the configuration object to null, to simulate an error in dependency injection
+    ((LoggingRequestHelperFactoryImpl)helperFactory).setAmbariServerConfiguration(null);
+
+     LoggingRequestHelper helper =
+       helperFactory.getHelper(controllerMock, expectedClusterName);
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java
+index 3129f6e18a..654c02dde0 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java
+@@ -105,6 +105,9 @@ public class LoggingRequestHelperImplTest {
+       "{\"name\":\"WARN\",\"value\":\"41\"},{\"name\":\"INFO\",\"value\":\"186\"},{\"name\":\"DEBUG\",\"value\":\"0\"}," +
+       "{\"name\":\"TRACE\",\"value\":\"0\"}]}";
+ 
+  private static final String TEST_JSON_INPUT_NULL_LOG_LIST =
+    "{\"startIndex\":0,\"pageSize\":0,\"totalCount\":0,\"resultSize\":0,\"sortType\":null,\"sortBy\":null,\"queryTimeMS\":1479850014987,\"logList\":null,\"listSize\":0}";
+
+ 
+   private final String EXPECTED_HOST_NAME = "c6401.ambari.apache.org";
+ 
+@@ -471,6 +474,87 @@ public class LoggingRequestHelperImplTest {
+     assertEquals("Response did not include the expected file name",
+       "/var/log/hadoop/hdfs/hadoop-hdfs-namenode-c6401.ambari.apache.org.log",
+       result.iterator().next());
+
+    mockSupport.verifyAll();
+  }
+
+  @Test
+  public void testLogFileNameRequestWithNullLogList() throws Exception {
+    final String expectedComponentName = "hdfs_namenode";
+
+    EasyMockSupport mockSupport =
+      new EasyMockSupport();
+
+    CredentialStoreService credentialStoreServiceMock =
+      mockSupport.createMock(CredentialStoreService.class);
+
+    Cluster clusterMock =
+      mockSupport.createMock(Cluster.class);
+
+    LoggingRequestHelperImpl.NetworkConnection networkConnectionMock =
+      mockSupport.createMock(LoggingRequestHelperImpl.NetworkConnection.class);
+
+    Config adminPropertiesConfigMock =
+      mockSupport.createMock(Config.class);
+
+    Map&lt;String, String&gt; testConfigProperties =
+      new HashMap&lt;String, String&gt;();
+    testConfigProperties.put("logsearch_admin_username", "admin-user");
+    testConfigProperties.put("logsearch_admin_password", "admin-pwd");
+    testConfigProperties = Collections.unmodifiableMap(testConfigProperties);
+
+    Capture&lt;HttpURLConnection&gt; captureURLConnection = new Capture&lt;HttpURLConnection&gt;();
+    Capture&lt;HttpURLConnection&gt; captureURLConnectionForAuthentication = new Capture&lt;HttpURLConnection&gt;();
+
+    expect(clusterMock.getDesiredConfigByType("logsearch-admin-json")).andReturn(adminPropertiesConfigMock).atLeastOnce();
+    expect(adminPropertiesConfigMock.getProperties()).andReturn(testConfigProperties).atLeastOnce();
+    expect(networkConnectionMock.readQueryResponseFromServer(capture(captureURLConnection))).andReturn(new StringBuffer(TEST_JSON_INPUT_NULL_LOG_LIST)).atLeastOnce();
+
+    // expect that basic authentication is setup, with the expected encoded credentials
+    networkConnectionMock.setupBasicAuthentication(capture(captureURLConnectionForAuthentication), eq(EXPECTED_ENCODED_CREDENTIALS));
+
+    mockSupport.replayAll();
+
+    LoggingRequestHelper helper =
+      new LoggingRequestHelperImpl(EXPECTED_HOST_NAME, EXPECTED_PORT_NUMBER, EXPECTED_PROTOCOL, credentialStoreServiceMock, clusterMock, networkConnectionMock);
+
+    // invoke query request
+    Set&lt;String&gt; result =
+      helper.sendGetLogFileNamesRequest(expectedComponentName, EXPECTED_HOST_NAME);
+
+    // verify that the HttpURLConnection was created with the propert values
+    HttpURLConnection httpURLConnection =
+      captureURLConnection.getValue();
+
+    assertEquals("URLConnection did not have the correct hostname information",
+      EXPECTED_HOST_NAME, httpURLConnection.getURL().getHost());
+    assertEquals("URLConnection did not have the correct port information",
+      EXPECTED_PORT_NUMBER, httpURLConnection.getURL().getPort() + "");
+    assertEquals("URLConnection did not have the expected http protocol scheme",
+      "http", httpURLConnection.getURL().getProtocol());
+    assertEquals("URLConnection did not have the expected method set",
+      "GET", httpURLConnection.getRequestMethod());
+
+    assertSame("HttpUrlConnection instances passed into NetworkConnection mock should have been the same instance",
+      httpURLConnection, captureURLConnectionForAuthentication.getValue());
+
+    final String resultQuery =
+      httpURLConnection.getURL().getQuery();
+
+    // verify that the query contains the three required parameters
+    assertTrue("host_name parameter was not included in query",
+      resultQuery.contains("host_name=c6401.ambari.apache.org"));
+    assertTrue("component_name parameter was not included in the query",
+      resultQuery.contains("component_name=" + expectedComponentName));
+    assertTrue("pageSize parameter was not included in query",
+      resultQuery.contains("pageSize=1"));
+
+    assertNotNull("Response object should not be null",
+      result);
+    assertEquals("Response Set was not of the expected size, expected an empty set",
+      0, result.size());
+
+    mockSupport.verifyAll();
+   }
+ 
+   /**
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/UtilsTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/UtilsTest.java
+index 63b46ac6f7..60f4725b07 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/UtilsTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/logging/UtilsTest.java
+@@ -24,10 +24,10 @@ import static org.junit.Assert.assertSame;
+ 
+ import java.util.concurrent.atomic.AtomicInteger;
+ 
+import org.apache.log4j.Logger;
+ import org.easymock.Capture;
+ import org.easymock.EasyMockSupport;
+ import org.junit.Test;
+import org.slf4j.Logger;
+ 
+ public class UtilsTest {
+ 
+- 
+2.19.1.windows.1
+
+</comment></unit>

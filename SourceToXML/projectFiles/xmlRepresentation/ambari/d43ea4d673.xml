@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/d43ea4d673.java"><expr_stmt><expr><name>From</name> <name>d43ea4d6731cc002d4ddbba16b979804181e1eef</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Lisnichenko</name> <name><name>Dmitro</name> <argument_list type="generic">&lt;<argument><name>dlysnichenko</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">28</literal> <name>Jul</name> <literal type="number">2015</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">30</literal><operator>:</operator><literal type="number">18</literal> <operator>+</operator><literal type="number">0300</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">12517.</literal> <name>Don</name><literal type="char">'t send install_packages command to hosts
+ without versionable components (dlysnichenko)
+
+--
+ .../server/actionmanager/ActionScheduler.java |  11 +-
+ .../ambari/server/agent/HeartBeatHandler.java |   2 +-
+ .../ClusterStackVersionResourceProvider.java  |  93 ++++++++++--
+ .../ActionFinalReportReceivedEvent.java       |  21 ++-
+ .../DistributeRepositoriesActionListener.java |   3 +-
+ .../apache/ambari/server/state/Cluster.java   |   2 +-
+ .../org/apache/ambari/server/state/Host.java  |   2 +-
+ .../ambari/server/state/host/HostImpl.java    |   9 ++
+ .../scripts/install_packages.py               |  13 +-
+ ...usterStackVersionResourceProviderTest.java | 133 +++++++++++------
+ .../custom_actions/TestInstallPackages.py     | 134 ++++--------------
+ 11 files changed, 236 insertions(+), 187 deletions(-)
+
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+index f3714b2126..7d936388f1 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionScheduler.java
+@@ -39,6 +39,7 @@ import org.apache.ambari.server.ServiceComponentNotFoundException;
+ import org.apache.ambari.server.agent.ActionQueue;
+ import org.apache.ambari.server.agent.AgentCommand.AgentCommandType;
+ import org.apache.ambari.server.agent.CancelCommand;
+import org.apache.ambari.server.agent.CommandReport;
+ import org.apache.ambari.server.agent.ExecutionCommand;
+ import org.apache.ambari.server.configuration.Configuration;
+ import org.apache.ambari.server.controller.HostsMap;
+@@ -971,9 +972,15 @@ class ActionScheduler implements Runnable {
+       // against a concrete host without binding to a cluster)
+       Long clusterId = clusterName != null ?
+               clusters.getCluster(clusterName).getClusterId() : null;
+      CommandReport report = new CommandReport();
+      report.setRole(role);
+      report.setStdOut("Action is dead");
+      report.setStdErr("Action is dead");
+      report.setStructuredOut("{}");
+      report.setExitCode(1);
+      report.setStatus(HostRoleStatus.ABORTED.toString());
+       ActionFinalReportReceivedEvent event = new ActionFinalReportReceivedEvent(
+              clusterId, hostname, null,
+              role);
+              clusterId, hostname, report, true);
+       ambariEventPublisher.publish(event);
+     } catch (AmbariException e) {
+       LOG.error(String.format("Can not get cluster %s", clusterName), e);
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/agent/HeartBeatHandler.java b/ambari-server/src/main/java/org/apache/ambari/server/agent/HeartBeatHandler.java
+index 6f34b62d78..29364e9d7b 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/agent/HeartBeatHandler.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/agent/HeartBeatHandler.java
+@@ -462,7 +462,7 @@ public class HeartBeatHandler {
+       if (RoleCommand.valueOf(report.getRoleCommand()) == RoleCommand.ACTIONEXECUTE &amp;&amp;
+           HostRoleStatus.valueOf(report.getStatus()).isCompletedState()) {
+         ActionFinalReportReceivedEvent event = new ActionFinalReportReceivedEvent(
+                clusterId, hostname, report, report.getRole());
+                clusterId, hostname, report, false);
+         ambariEventPublisher.publish(event);
+       }
+ 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProvider.java
+index 972226dacd..6133885c4b 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProvider.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProvider.java
+@@ -20,7 +20,6 @@ package org.apache.ambari.server.controller.internal;
+ import static org.apache.ambari.server.agent.ExecutionCommand.KeyNames.JDK_LOCATION;
+ 
+ import java.util.ArrayList;
+import java.util.Collection;
+ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.HashSet;
+@@ -57,13 +56,14 @@ import org.apache.ambari.server.controller.spi.ResourceAlreadyExistsException;
+ import org.apache.ambari.server.controller.spi.SystemException;
+ import org.apache.ambari.server.controller.spi.UnsupportedPropertyException;
+ import org.apache.ambari.server.controller.utilities.PropertyHelper;
+import org.apache.ambari.server.events.ActionFinalReportReceivedEvent;
+import org.apache.ambari.server.events.publishers.AmbariEventPublisher;
+ import org.apache.ambari.server.orm.dao.ClusterDAO;
+ import org.apache.ambari.server.orm.dao.ClusterVersionDAO;
+ import org.apache.ambari.server.orm.dao.HostVersionDAO;
+ import org.apache.ambari.server.orm.dao.RepositoryVersionDAO;
+ import org.apache.ambari.server.orm.dao.StackDAO;
+ import org.apache.ambari.server.orm.entities.ClusterVersionEntity;
+import org.apache.ambari.server.orm.entities.HostEntity;
+ import org.apache.ambari.server.orm.entities.HostVersionEntity;
+ import org.apache.ambari.server.orm.entities.OperatingSystemEntity;
+ import org.apache.ambari.server.orm.entities.RepositoryEntity;
+@@ -71,6 +71,7 @@ import org.apache.ambari.server.orm.entities.RepositoryVersionEntity;
+ import org.apache.ambari.server.orm.entities.StackEntity;
+ import org.apache.ambari.server.serveraction.upgrades.FinalizeUpgradeAction;
+ import org.apache.ambari.server.state.Cluster;
+import org.apache.ambari.server.state.ComponentInfo;
+ import org.apache.ambari.server.state.Host;
+ import org.apache.ambari.server.state.RepositoryVersionState;
+ import org.apache.ambari.server.state.ServiceComponentHost;
+@@ -78,7 +79,6 @@ import org.apache.ambari.server.state.ServiceInfo;
+ import org.apache.ambari.server.state.ServiceOsSpecific;
+ import org.apache.ambari.server.state.StackId;
+ import org.apache.ambari.server.utils.StageUtils;
+import org.apache.ambari.server.orm.entities.ClusterEntity;
+ 
+ import com.google.gson.Gson;
+ import com.google.inject.Inject;
+@@ -172,6 +172,9 @@ public class ClusterStackVersionResourceProvider extends AbstractControllerResou
+   @Inject
+   private static Configuration configuration;
+ 
+  @Inject
+  private static AmbariEventPublisher ambariEventPublisher;
+
+   @Inject
+   private static Injector injector;
+ 
+@@ -313,8 +316,6 @@ public class ClusterStackVersionResourceProvider extends AbstractControllerResou
+       }
+     } else { // Using stack that is current for cluster
+       StackId currentStackVersion = cluster.getCurrentStackVersion();
+      stackName = currentStackVersion.getStackName();
+      stackVersion = currentStackVersion.getStackVersion();
+       stackId = currentStackVersion;
+     }
+ 
+@@ -342,6 +343,8 @@ public class ClusterStackVersionResourceProvider extends AbstractControllerResou
+     int hostCount = hostsForCluster.size();
+     int batchCount = (int) (Math.ceil((double)hostCount / maxTasks));
+ 
+    ArrayList&lt;Host&gt; directTransitions = new ArrayList&lt;Host&gt;();
+
+     long stageId = req.getLastStageId() + 1;
+     if (0L == stageId) {
+       stageId = 1L;
+@@ -372,8 +375,13 @@ public class ClusterStackVersionResourceProvider extends AbstractControllerResou
+       // Populate with commands for host
+       for (int i = 0; i &lt; maxTasks &amp;&amp; hostsForClusterIter.hasNext(); i++) {
+         Host host = hostsForClusterIter.next();
+        addHostVersionInstallCommandsToStage(desiredRepoVersion,
+                cluster, managementController, ami, stackId, perOsRepos, stage, host);
+        if (hostHasVersionableComponents(cluster, ami, stackId, host)) {
+          addHostVersionInstallCommandsToStage(desiredRepoVersion,
+                  cluster, managementController, ami, stackId, perOsRepos, stage, host);
+        } else {
+          directTransitions.add(host);
+        }
+
+       }
+     }
+     req.addStages(stages);
+@@ -404,6 +412,12 @@ public class ClusterStackVersionResourceProvider extends AbstractControllerResou
+       // Will also initialize all Host Versions in an INSTALLING state.
+       cluster.inferHostVersions(existingCSVer);
+ 
+      // Directly transition host versions to INSTALLED for hosts that don'</literal><name>t</name> <name>have</name></expr></expr_stmt>
+      <comment type="line">// versionable components</comment>
+      <for>for<control>(<init><decl><type><name>Host</name></type> <name>host</name> <range>: <expr><name>directTransitions</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name>transitionHostVersionToInstalled</name><argument_list>(<argument><expr><name>host</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><call><name><name>existingCSVer</name><operator>.</operator><name>getRepositoryVersion</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersion</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+
+       <expr_stmt><expr><call><name><name>req</name><operator>.</operator><name>persist</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+     } catch <expr_stmt><expr><operator>(</operator><name>AmbariException</name> <name>e</name><operator>)</operator> <block>{
+@@ <expr><operator>-</operator><literal type="number">425</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">439</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterStackVersionResourceProvider</name> extends <name>AbstractControllerResou</name>
+                       <literal type="string">"not defined. Repo version=%s, stackId=%s"</literal></expr>,
+               <expr><call><name><name>host</name><operator>.</operator><name>getOsFamily</name></name><argument_list>()</argument_list></call></expr>, <expr><name>desiredRepoVersion</name></expr>, <expr><name>stackId</name></expr>))</block></expr>;</expr_stmt>
+     }
+    <comment type="line">// For every host at cluster, determine packages for all installed services</comment>
+    <comment type="line">// determine packages for all services that are installed on host</comment>
+     List<expr_stmt><expr><operator>&lt;</operator><name><name>ServiceOsSpecific</name><operator>.</operator><name>Package</name></name><operator>&gt;</operator> <name>packages</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>ServiceOsSpecific</name><operator>.</operator><name>Package</name></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>servicesOnHost</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>(<argument><expr><call><name><name>host</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">478</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">492</literal></expr><operator>,</operator><expr><literal type="number">58</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterStackVersionResourceProvider</name> extends <name>AbstractControllerResou</name></expr></expr_stmt>
+   }
+ 
+ 
+  <comment type="block" format="javadoc">/**
+   * Returns true if there is at least one versionable component on host for a given
+   * stack.
+   */</comment>
+  private <function><type><name>boolean</name></type> <name>hostHasVersionableComponents</name><parameter_list>(<parameter><decl><type><name>Cluster</name></type> <name>cluster</name></decl></parameter>, <parameter><decl><type><name>AmbariMetaInfo</name></type> <name>ami</name></decl></parameter>,
+                                               <parameter><decl><type><name>StackId</name></type> <name>stackId</name></decl></parameter>, <parameter><decl><type><name>Host</name></type> <name>host</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>SystemException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>(<argument><expr><call><name><name>host</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>component</name> <range>: <expr><name>components</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>ComponentInfo</name></type> <name>componentInfo</name></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <expr_stmt><expr><name>componentInfo</name> <operator>=</operator> <call><name><name>ami</name><operator>.</operator><name>getComponent</name></name><argument_list>(<argument><expr><call><name><name>stackId</name><operator>.</operator><name>getStackName</name></name><argument_list>()</argument_list></call></expr></argument>,
+                <argument><expr><call><name><name>stackId</name><operator>.</operator><name>getStackVersion</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getServiceComponentName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>AmbariException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>SystemException</name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><literal type="string">"Exception while accessing component %s of service %s for stack %s"</literal></expr></argument>,
+                <argument><expr><call><name><name>component</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getServiceComponentName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>stackId</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></catch></try>
+      <if_stmt><if>if <condition>(<expr><call><name><name>componentInfo</name><operator>.</operator><name>isVersionAdvertised</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+  </block_content>}</block></function>
+
+
+  <comment type="block" format="javadoc">/**
+   *  Sends event for host regarding successful repo version installation
+   *  without actually running any commands on host.
+   *  Transitioning host version to INSTALLED state manually would not be the
+   *  best idea since some additional logic may be bound to event listeners.
+   */</comment>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>transitionHostVersionToInstalled</name><parameter_list>(<parameter><decl><type><name>Host</name></type> <name>host</name></decl></parameter>, <parameter><decl><type><name>Cluster</name></type> <name>cluster</name></decl></parameter>,
+                                                <parameter><decl><type><name>String</name></type> <name>version</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><literal type="string">"Transitioning version %s on host %s directly to installed"</literal> <operator>+</operator>
+                    <literal type="string">" without distributing bits to host since it has no versionable components."</literal></expr></argument>,
+            <argument><expr><name>version</name></expr></argument>, <argument><expr><call><name><name>host</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>CommandReport</name></type> <name>report</name> <init>= <expr><operator>new</operator> <call><name>CommandReport</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setRole</name></name><argument_list>(<argument><expr><name>INSTALL_PACKAGES_ACTION</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setStdOut</name></name><argument_list>(<argument><expr><literal type="string">"Skipped distributing bits to host since it has "</literal> <operator>+</operator>
+            <literal type="string">"no versionable components installed"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setStdErr</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// We don't set actual repo version in structured output in order</comment>
+    <comment type="line">// to avoid confusing server with fake data</comment>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setStructuredOut</name></name><argument_list>(<argument><expr><literal type="string">"{}"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setExitCode</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>report</name><operator>.</operator><name>setStatus</name></name><argument_list>(<argument><expr><call><name><name>HostRoleStatus</name><operator>.</operator><name>COMPLETED</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ActionFinalReportReceivedEvent</name></type> <name>event</name> <init>= <expr><operator>new</operator> <call><name>ActionFinalReportReceivedEvent</name><argument_list>(
+            <argument><expr><call><name><name>cluster</name><operator>.</operator><name>getClusterId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>host</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr></argument>,
+            <argument><expr><name>report</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>ambariEventPublisher</name><operator>.</operator><name>publish</name></name><argument_list>(<argument><expr><name>event</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+
+   <function><type><specifier>private</specifier> <name>RequestStageContainer</name></type> <name>createRequest</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><name>ActionManager</name></type> <name>actionManager</name> <init>= <expr><call><name>getManagementController</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getActionManager</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">552</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">618</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterStackVersionResourceProvider</name> extends <name>AbstractControllerResou</name></expr></expr_stmt>
+       </block_content>}</block></function>
+ 
+       <comment type="line">// Get a host name to populate the hostrolecommand table's hostEntity.</comment>
+      <decl_stmt><decl><type><name>String</name></type> <name>defaultHostName</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <comment type="line">// TODO: remove direct access to cluster entity completely</comment>
+      <decl_stmt><decl><type><name>ClusterEntity</name></type> <name>clusterEntity</name> <init>= <expr><call><name><name>clusterDAO</name><operator>.</operator><name>findByName</name></name><argument_list>(<argument><expr><name>clName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>HostEntity</name></argument>&gt;</argument_list></name></type> <name>hosts</name> <init>= <expr><operator>new</operator> <call><name>ArrayList</name><argument_list>(<argument><expr><call><name><name>clusterEntity</name><operator>.</operator><name>getHostEntities</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>hosts</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>hosts</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>defaultHostName</name></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Host</name></argument>&gt;</argument_list></name></type> <name>hosts</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Host</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getHosts</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>hosts</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+         <expr_stmt><expr><call><name><name>Collections</name><operator>.</operator><name>sort</name></name><argument_list>(<argument><expr><name>hosts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>defaultHostName</name> <operator>=</operator> <call><name><name>hosts</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHostName</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>defaultHostName</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>AmbariException</name><argument_list>(<argument><expr><literal type="string">"Could not find at least one host to set the command for"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></else></if_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name><name>ActionFinalReportReceivedEvent</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name><name>ActionFinalReportReceivedEvent</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3ff5031c98</literal><operator>..</operator><name>de797f33e6</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name><name>ActionFinalReportReceivedEvent</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name><name>ActionFinalReportReceivedEvent</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>ActionFinalReportReceivedEvent</name> extends <name>AmbariEvent</name> <block>{
+   <expr><specifier>private</specifier> <name>String</name> <name>hostname</name></expr>;
+   <specifier>private</specifier> <name>CommandReport</name> <name>commandReport</name></block></expr>;</expr_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>role</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>Boolean</name></type> <name>emulated</name></decl>;</decl_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Constructor.
+@@ -38,16 +39,24 @@ public final class ActionFinalReportReceivedEvent extends AmbariEvent {
+    * @param clusterId (beware, may be null if action is not bound to cluster)
+    * @param hostname host that is an origin for a command report
+    * @param report full command report (may be null if action has been cancelled)
+   * @param role host command role. It is usually present at report entity, but
+   * if report is null, we still need some way to determine action type.
+   * @param emulated true, if event was generated without actually receiving
+   * data from agent (e.g. if we did not perform action, or action timed out,
+   * but we want to trigger event listener anyway). More loose checks against
+   * data will be performed in this case.
+    */</comment>
+   <constructor><specifier>public</specifier> <name>ActionFinalReportReceivedEvent</name><parameter_list>(<parameter><decl><type><name>Long</name></type> <name>clusterId</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>hostname</name></decl></parameter>,
+                                        <parameter><decl><type><name>CommandReport</name></type> <name>report</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>role</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                                        <decl_stmt><decl><type><name>CommandReport</name></type> <name>report</name></decl>,
+                                        <decl><type ref="prev"/><name>Boolean</name> <name>emulated</name></decl>) <block>{<block_content>
+     <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name><name>AmbariEventType</name><operator>.</operator><name>ACTION_EXECUTION_FINISHED</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>clusterId</name></name> <operator>=</operator> <name>clusterId</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>hostname</name></name> <operator>=</operator> <name>hostname</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>commandReport</name></name> <operator>=</operator> <name>report</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>role</name></name> <operator>=</operator> <name>role</name></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>report</name><operator>.</operator><name>getRole</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>role</name></name> <operator>=</operator> <call><name><name>report</name><operator>.</operator><name>getRole</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>role</name></name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>emulated</name></name> <operator>=</operator> <name>emulated</name></expr>;</expr_stmt>
+   </block_content>}</block></decl_stmt>
+ 
+   <function><type><specifier>public</specifier> <name>Long</name></type> <name>getClusterId</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">75</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>ActionFinalReportReceivedEvent</name> extends <name>AmbariEvent</name> <block>{
+     <return>return <expr><name>role</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <function><type><specifier>public</specifier> <name>Boolean</name></type> <name>isEmulated</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>emulated</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><literal type="string">"ActionFinalReportReceivedEvent{"</literal> <operator>+</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name>listeners</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>DistributeRepositoriesActionListener</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name>listeners</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>DistributeRepositoriesActionListener</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5b7c2d6773</literal><operator>..</operator><literal type="number">2c56861809</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name>listeners</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>DistributeRepositoriesActionListener</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>events</name><operator>/</operator><name>listeners</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>DistributeRepositoriesActionListener</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">161</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">161</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributeRepositoriesActionListener</name> <block>{
+       <comment type="line">// provide exact host stack version info) would be ignored</comment>
+     <for>for <control>(<init><decl><type><name>HostVersionEntity</name></type> <name>hostVersion</name> <range>: <expr><name>hostVersions</name></expr></range></decl></init>)</control> <block>{<block_content>
+ 
+      <if_stmt><if>if <condition>(<expr><name>repositoryVersion</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>hostVersion</name><operator>.</operator><name>getRepositoryVersion</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersion</name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>repositoryVersion</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator> <call><name><name>event</name><operator>.</operator><name>isEmulated</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <comment type="line">// Emulated events anyway can not provide actual repo version</comment>
+              <operator>!</operator> <operator>(</operator><name>repositoryVersion</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>hostVersion</name><operator>.</operator><name>getRepositoryVersion</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getVersion</name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>repositoryVersion</name></expr></argument>)</argument_list></call><operator>)</operator></expr>)</condition> <block>{<block_content>
+         <continue>continue;</continue>
+       </block_content>}</block></if></if_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>state</name><operator>/</operator><name><name>Cluster</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>state</name><operator>/</operator><name><name>Cluster</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fe669bd7a3</name><operator>..</operator><name>ad481f307f</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>state</name><operator>/</operator><name><name>Cluster</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>state</name><operator>/</operator><name><name>Cluster</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">96</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">96</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> interface <name>Cluster</name> <block>{
+    <expr><operator>*</operator>
+    <operator>*</operator> @</expr><return>return <expr><name>collection</name> <name>of</name> <name>hosts</name> <name>that</name> <name>are</name> <name>associated</name> <name>with</name> <name>this</name> <name>cluster</name>
+    <operator>*</operator><operator>/</operator>
+  <specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Host</name></argument>&gt;</argument_list></name> <call><name>getHosts</name><argument_list>()</argument_list></call></expr>;</return>
+  <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Host</name></argument>&gt;</argument_list></name> <call><name>getHosts</name><argument_list>()</argument_list></call></block></expr>;</expr_stmt></block_content></block></if></if_stmt></block_content></block></for></block></expr></return></block_content></block></function></block_content></block></function></block_content></block></constructor></block_content></block></if></if_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Get all of the hosts running the provided service and component.
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/state/Host.java b/ambari-server/src/main/java/org/apache/ambari/server/state/Host.java
+index 34fb9958de..92682553a6 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/state/Host.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/state/Host.java
+@@ -30,7 +30,7 @@ import org.apache.ambari.server.controller.HostResponse;
+ import org.apache.ambari.server.orm.entities.HostVersionEntity;
+ import org.apache.ambari.server.state.fsm.InvalidStateTransitionException;
+ 
+public interface Host {
+public interface Host extends Comparable {
+ 
+   /**
+    * @return the hostName
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/state/host/HostImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/state/host/HostImpl.java
+index e20cd2532c..f7b74b917a 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/state/host/HostImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/state/host/HostImpl.java
+@@ -263,6 +263,15 @@ public class HostImpl implements Host {
+ 
+   }
+ 
+  @Override
+  public int compareTo(Object o) {
+    if ((o != null ) &amp;&amp; (o instanceof Host)) {
+      return getHostName().compareTo(((Host) o).getHostName());
+    } else {
+      return -1;
+    }
+  }
+
+   static class HostRegistrationReceived
+       implements SingleArcTransition&lt;HostImpl, HostEvent&gt; {
+ 
+diff --git a/ambari-server/src/main/resources/custom_actions/scripts/install_packages.py b/ambari-server/src/main/resources/custom_actions/scripts/install_packages.py
+index bfcef1abfb..9d68b72cb3 100644
+-- a/ambari-server/src/main/resources/custom_actions/scripts/install_packages.py
+++ b/ambari-server/src/main/resources/custom_actions/scripts/install_packages.py
+@@ -199,17 +199,8 @@ class InstallPackages(Script):
+         self.put_structured_out(self.structured_output)
+         Logger.info("Found actual version {0} by parsing file {1}".format(self.actual_version, REPO_VERSION_HISTORY_FILE))
+       elif self.repo_version_with_build_number is None:
+        # It's likely that this host does not have any Stack Components installed, so only contains AMS.
+        # So just use repo version value provided by server (we already put it to structured output)
+        if not os.path.exists(self.stack_root_folder):
+          # Special case when this host does not contain any HDP components, but still contains other components like AMS.
+          msg = "Could not determine actual version. This stack's root directory ({0}) is not present on this host, so this host does not contain any versionable components. " \
+                "Therefore, ignore this host and allow other hosts to report the correct repository version.".format(self.stack_root_folder)
+          Logger.info(msg)
+        else:
+          msg = "Could not determine actual version. This stack's root directory ({0}) exists but was not able to determine the actual repository version installed. " \
+                "Try reinstalling packages again.".format(self.stack_root_folder)
+          raise Fail(msg)
+        msg = "Could not determine actual version installed. Try reinstalling packages again."
+        raise Fail(msg)
+ 
+ 
+   def install_packages(self, package_list):
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProviderTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProviderTest.java
+index 1dfa2fbd8b..a56823baa9 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProviderTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/ClusterStackVersionResourceProviderTest.java
+@@ -20,10 +20,12 @@ package org.apache.ambari.server.controller.internal;
+ 
+ import static org.easymock.EasyMock.anyLong;
+ import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.capture;
+ import static org.easymock.EasyMock.createMock;
+ import static org.easymock.EasyMock.createNiceMock;
+ import static org.easymock.EasyMock.eq;
+ import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+ import static org.easymock.EasyMock.replay;
+ import static org.easymock.EasyMock.verify;
+ 
+@@ -48,6 +50,7 @@ import org.apache.ambari.server.agent.CommandReport;
+ import org.apache.ambari.server.agent.ExecutionCommand;
+ import org.apache.ambari.server.api.services.AmbariMetaInfo;
+ import org.apache.ambari.server.configuration.Configuration;
+import org.apache.ambari.server.controller.AmbariActionExecutionHelper;
+ import org.apache.ambari.server.controller.AmbariManagementController;
+ import org.apache.ambari.server.controller.RequestStatusResponse;
+ import org.apache.ambari.server.controller.ResourceProviderFactory;
+@@ -60,11 +63,13 @@ import org.apache.ambari.server.orm.GuiceJpaInitializer;
+ import org.apache.ambari.server.orm.InMemoryDefaultTestModule;
+ import org.apache.ambari.server.orm.PersistenceType;
+ import org.apache.ambari.server.orm.dao.ClusterDAO;
+import org.apache.ambari.server.orm.dao.ClusterVersionDAO;
+ import org.apache.ambari.server.orm.dao.HostDAO;
+ import org.apache.ambari.server.orm.dao.RepositoryVersionDAO;
+ import org.apache.ambari.server.orm.dao.ResourceTypeDAO;
+ import org.apache.ambari.server.orm.dao.StackDAO;
+ import org.apache.ambari.server.orm.entities.ClusterEntity;
+import org.apache.ambari.server.orm.entities.ClusterVersionEntity;
+ import org.apache.ambari.server.orm.entities.HostEntity;
+ import org.apache.ambari.server.orm.entities.RepositoryVersionEntity;
+ import org.apache.ambari.server.orm.entities.ResourceEntity;
+@@ -75,11 +80,15 @@ import org.apache.ambari.server.state.Cluster;
+ import org.apache.ambari.server.state.Clusters;
+ import org.apache.ambari.server.state.ConfigHelper;
+ import org.apache.ambari.server.state.Host;
+import org.apache.ambari.server.state.RepositoryVersionState;
+ import org.apache.ambari.server.state.ServiceComponentHost;
+ import org.apache.ambari.server.state.ServiceInfo;
+ import org.apache.ambari.server.state.ServiceOsSpecific;
+ import org.apache.ambari.server.state.StackId;
+ import org.apache.ambari.server.state.cluster.ClusterImpl;
+import org.easymock.Capture;
+import org.easymock.EasyMock;
+import org.easymock.IAnswer;
+ import org.junit.After;
+ import org.junit.Assert;
+ import org.junit.Before;
+@@ -104,10 +113,12 @@ public class ClusterStackVersionResourceProviderTest {
+   private ResourceTypeDAO resourceTypeDAO;
+   private StackDAO stackDAO;
+   private ClusterDAO clusterDAO;
+  private ClusterVersionDAO clusterVersionDAO;
+   private HostDAO hostDAO;
+   private ConfigHelper configHelper;
+   private Configuration configuration;
+   private StageFactory stageFactory;
+  private AmbariActionExecutionHelper actionExecutionHelper;
+ 
+   private String operatingSystemsJson = "[\n" +
+           "   {\n" +
+@@ -139,6 +150,7 @@ public class ClusterStackVersionResourceProviderTest {
+             String.valueOf(MAX_TASKS_PER_STAGE));
+     configuration = new Configuration(properties);
+     stageFactory = createNiceMock(StageFactory.class);
+    clusterVersionDAO = createNiceMock(ClusterVersionDAO.class);
+ 
+     // Initialize injector
+     injector = Guice.createInjector(Modules.override(inMemoryModule).with(new MockModule()));
+@@ -175,15 +187,33 @@ public class ClusterStackVersionResourceProviderTest {
+       hostsForCluster.put(hostname, host);
+     }
+ 
+    ServiceComponentHost sch = createMock(ServiceComponentHost.class);
+    List&lt;ServiceComponentHost&gt; schs = Collections.singletonList(sch);
+    final ServiceComponentHost schDatanode = createMock(ServiceComponentHost.class);
+    expect(schDatanode.getServiceName()).andReturn("HDFS").anyTimes();
+    expect(schDatanode.getServiceComponentName()).andReturn("DATANODE").anyTimes();
+    final ServiceComponentHost schNamenode = createMock(ServiceComponentHost.class);
+    expect(schNamenode.getServiceName()).andReturn("HDFS").anyTimes();
+    expect(schNamenode.getServiceComponentName()).andReturn("NAMENODE").anyTimes();
+    final ServiceComponentHost schAMS = createMock(ServiceComponentHost.class);
+    expect(schAMS.getServiceName()).andReturn("AMBARI_METRICS").anyTimes();
+    expect(schAMS.getServiceComponentName()).andReturn("METRICS_COLLECTOR").anyTimes();
+    // First host contains versionable components
+    final List&lt;ServiceComponentHost&gt; schsH1 = new ArrayList&lt;ServiceComponentHost&gt;(){{
+      add(schDatanode);
+      add(schNamenode);
+      add(schAMS);
+    }};
+    // Second host does not contain versionable components
+    final List&lt;ServiceComponentHost&gt; schsH2 = new ArrayList&lt;ServiceComponentHost&gt;(){{
+      add(schAMS);
+    }};
+ 
+     RepositoryVersionEntity repoVersion = new RepositoryVersionEntity();
+    repoVersion.setId(1l);
+     repoVersion.setOperatingSystems(operatingSystemsJson);
+ 
+    ServiceOsSpecific.Package hivePackage = new ServiceOsSpecific.Package();
+    hivePackage.setName("hive");
+    List&lt;ServiceOsSpecific.Package&gt; packages = Collections.singletonList(hivePackage);
+    ServiceOsSpecific.Package hdfsPackage = new ServiceOsSpecific.Package();
+    hdfsPackage.setName("hdfs");
+    List&lt;ServiceOsSpecific.Package&gt; packages = Collections.singletonList(hdfsPackage);
+ 
+     ActionManager actionManager = createNiceMock(ActionManager.class);
+ 
+@@ -202,7 +232,9 @@ public class ClusterStackVersionResourceProviderTest {
+     expect(managementController.getActionManager()).andReturn(actionManager).anyTimes();
+     expect(managementController.getJdkResourceUrl()).andReturn("/JdkResourceUrl").anyTimes();
+     expect(managementController.getPackagesForServiceHost(anyObject(ServiceInfo.class),
+            (Map&lt;String, String&gt;) anyObject(List.class), anyObject(String.class))).andReturn(packages).anyTimes();
+            (Map&lt;String, String&gt;) anyObject(List.class), anyObject(String.class))).
+            andReturn(packages).times((hostCount - 1) * 2); // 1 host has no versionable components, other hosts have 2 services
+//            // that's why we don't send commands to it
+ 
+     expect(resourceProviderFactory.getHostResourceProvider(anyObject(Set.class), anyObject(Map.class),
+             eq(managementController))).andReturn(csvResourceProvider).anyTimes();
+@@ -210,10 +242,20 @@ public class ClusterStackVersionResourceProviderTest {
+     expect(clusters.getCluster(anyObject(String.class))).andReturn(cluster);
+     expect(clusters.getHostsForCluster(anyObject(String.class))).andReturn(hostsForCluster);
+ 
+    String clusterName = "Cluster100";
+    //expect(cluster.getClusterName()).andReturn(clusterName).anyTimes();
+     expect(cluster.getCurrentStackVersion()).andReturn(stackId);
+    expect(cluster.getServiceComponentHosts(anyObject(String.class))).andReturn(schs).anyTimes();
+
+    expect(sch.getServiceName()).andReturn("HIVE").anyTimes();
+    expect(cluster.getServiceComponentHosts(anyObject(String.class))).andAnswer(new IAnswer&lt;List&lt;ServiceComponentHost&gt;&gt;() {
+      @Override
+      public List&lt;ServiceComponentHost&gt; answer() throws Throwable {
+        String hostname = (String) EasyMock.getCurrentArguments()[0];
+        if (hostname.equals("host2")) {
+          return schsH2;
+        } else {
+          return schsH1;
+        }
+      }
+    }).anyTimes();
+ 
+     ExecutionCommand executionCommand = createNiceMock(ExecutionCommand.class);
+     ExecutionCommandWrapper executionCommandWrapper = createNiceMock(ExecutionCommandWrapper.class);
+@@ -238,10 +280,18 @@ public class ClusterStackVersionResourceProviderTest {
+ 
+     expect(actionManager.getRequestTasks(anyLong())).andReturn(Collections.&lt;HostRoleCommand&gt;emptyList()).anyTimes();
+ 
+    ClusterEntity clusterEntity = new ClusterEntity();
+    clusterEntity.setClusterId(1l);
+    clusterEntity.setClusterName(clusterName);
+    ClusterVersionEntity cve = new ClusterVersionEntity(clusterEntity,
+            repoVersion, RepositoryVersionState.INSTALL_FAILED, 0, "");
+    expect(clusterVersionDAO.findByClusterAndStackAndVersion(anyObject(String.class),
+            anyObject(StackId.class), anyObject(String.class))).andReturn(cve);
+
+     // replay
+     replay(managementController, response, clusters, resourceProviderFactory, csvResourceProvider,
+        cluster, repositoryVersionDAOMock, configHelper, sch, actionManager,
+            executionCommand, executionCommandWrapper,stage, stageFactory);
+            cluster, repositoryVersionDAOMock, configHelper, schDatanode, schNamenode, schAMS, actionManager,
+            executionCommand, executionCommandWrapper,stage, stageFactory, clusterVersionDAO);
+ 
+     ResourceProvider provider = AbstractControllerResourceProvider.getResourceProvider(
+         type,
+@@ -260,10 +310,14 @@ public class ClusterStackVersionResourceProviderTest {
+     properties.put(ClusterStackVersionResourceProvider.CLUSTER_STACK_VERSION_CLUSTER_NAME_PROPERTY_ID, "Cluster100");
+     properties.put(ClusterStackVersionResourceProvider.CLUSTER_STACK_VERSION_REPOSITORY_VERSION_PROPERTY_ID, "2.2.0.1-885");
+     properties.put(ClusterStackVersionResourceProvider.CLUSTER_STACK_VERSION_STACK_PROPERTY_ID, "HDP");
+    properties.put(ClusterStackVersionResourceProvider.CLUSTER_STACK_VERSION_VERSION_PROPERTY_ID, "2.0.7");
+    properties.put(ClusterStackVersionResourceProvider.CLUSTER_STACK_VERSION_VERSION_PROPERTY_ID, "2.1.1");
+ 
+     propertySet.add(properties);
+ 
+
+
+
+
+     // create the request
+     Request request = PropertyHelper.getCreateRequest(propertySet, null);
+ 
+@@ -285,9 +339,7 @@ public class ClusterStackVersionResourceProviderTest {
+     String clusterName = "Cluster100";
+ 
+     AmbariManagementController managementController = createMock(AmbariManagementController.class);
+    Clusters clusters = createNiceMock(Clusters.class);
+    Cluster cluster = createNiceMock(Cluster.class);
+    cluster.setClusterName(clusterName);
+
+     StackId stackId = new StackId("HDP", "2.0.1");
+     StackEntity stackEntity = stackDAO.find(stackId.getStackName(), stackId.getStackVersion());
+     Assert.assertNotNull(stackEntity);
+@@ -302,43 +354,27 @@ public class ClusterStackVersionResourceProviderTest {
+     ResourceEntity resourceEntity = new ResourceEntity();
+     resourceEntity.setResourceType(resourceTypeEntity);
+ 
+    ClusterEntity clusterEntity = new ClusterEntity();
+    clusterEntity.setClusterName(clusterName);
+    clusterEntity.setResource(resourceEntity);
+    clusterEntity.setDesiredStack(stackEntity);
+    clusterDAO.create(clusterEntity);
+
+     final Host host1 = createNiceMock("host1", Host.class);
+     final Host host2 = createNiceMock("host2", Host.class);
+ 
+    List&lt;HostEntity&gt; hostEntities = new ArrayList&lt;HostEntity&gt;();
+    HostEntity hostEntity1 = new HostEntity();
+    HostEntity hostEntity2 = new HostEntity();
+    hostEntity1.setHostName("host1");
+    hostEntity2.setHostName("host2");
+    hostEntities.add(hostEntity1);
+    hostEntities.add(hostEntity2);
+    hostEntity1.setClusterEntities(Arrays.asList(clusterEntity));
+    hostEntity2.setClusterEntities(Arrays.asList(clusterEntity));
+    hostDAO.create(hostEntity1);
+    hostDAO.create(hostEntity2);
+
+    clusterEntity.setHostEntities(hostEntities);
+    clusterDAO.merge(clusterEntity);
+
+     expect(host1.getHostName()).andReturn("host1").anyTimes();
+    expect(host1.getOsFamily()).andReturn("redhat6").anyTimes();
+     expect(host2.getHostName()).andReturn("host2").anyTimes();
+    expect(host2.getOsFamily()).andReturn("redhat6").anyTimes();
+     replay(host1, host2);
+    Map&lt;String, Host&gt; hostsForCluster = new HashMap&lt;String, Host&gt;() {{
+      put(host1.getHostName(), host1);
+      put(host2.getHostName(), host2);
+    }};
+ 
+     ServiceComponentHost sch = createMock(ServiceComponentHost.class);
+     List&lt;ServiceComponentHost&gt; schs = Collections.singletonList(sch);
+ 
+    Cluster cluster = createNiceMock(Cluster.class);
+    cluster.setClusterName(clusterName);
+
+    ArrayList&lt;Host&gt; hosts = new ArrayList&lt;Host&gt;() {{
+      add(host1);
+      add(host2);
+    }};
+
+    Clusters clusters = createNiceMock(Clusters.class);
+    expect(clusters.getCluster(anyObject(String.class))).andReturn(cluster);
+
+     RepositoryVersionEntity repoVersion = new RepositoryVersionEntity();
+     repoVersion.setOperatingSystems(operatingSystemsJson);
+     StackEntity newDesiredStack = stackDAO.find("HDP", "2.0.1");
+@@ -379,12 +415,15 @@ public class ClusterStackVersionResourceProviderTest {
+     expect(resourceProviderFactory.getHostResourceProvider(anyObject(Set.class), anyObject(Map.class),
+             eq(managementController))).andReturn(csvResourceProvider).anyTimes();
+ 
+    expect(clusters.getCluster(anyObject(String.class))).andReturn(cluster);
+    expect(clusters.getHostsForCluster(anyObject(String.class))).andReturn(hostsForCluster);
+
+     expect(cluster.getCurrentStackVersion()).andReturn(stackId);
+     expect(cluster.getServiceComponentHosts(anyObject(String.class))).andReturn(schs).anyTimes();
+ 
+    Capture&lt;StackId&gt; capturedStackId = new Capture&lt;StackId&gt;();
+    cluster.setDesiredStackVersion(capture(capturedStackId));
+      expectLastCall().once();
+    expect(cluster.getHosts()).andReturn(hosts).anyTimes();
+
+
+     expect(sch.getServiceName()).andReturn("HIVE").anyTimes();
+ 
+     expect(repositoryVersionDAOMock.findByDisplayName(anyObject(String.class))).andReturn(repoVersion);
+@@ -430,7 +469,8 @@ public class ClusterStackVersionResourceProviderTest {
+ 
+     // verify
+     verify(managementController, response);
+    Assert.assertEquals(clusterEntity.getDesiredStack(), newDesiredStack);
+    Assert.assertEquals(capturedStackId.getValue(),
+            new StackId(newDesiredStack.getStackName(), newDesiredStack.getStackVersion()));
+   }
+ 
+ 
+@@ -441,6 +481,7 @@ public class ClusterStackVersionResourceProviderTest {
+       bind(ConfigHelper.class).toInstance(configHelper);
+       bind(Configuration.class).toInstance(configuration);
+       bind(StageFactory.class).toInstance(stageFactory);
+      bind(ClusterVersionDAO.class).toInstance(clusterVersionDAO);
+     }
+   }
+ }
+diff --git a/ambari-server/src/test/python/custom_actions/TestInstallPackages.py b/ambari-server/src/test/python/custom_actions/TestInstallPackages.py
+index 5ddfaa8754..5b2a148fc7 100644
+-- a/ambari-server/src/test/python/custom_actions/TestInstallPackages.py
+++ b/ambari-server/src/test/python/custom_actions/TestInstallPackages.py
+@@ -364,7 +364,7 @@ class TestInstallPackages(RMFTestCase):
+   @patch("resource_management.libraries.functions.hdp_select.get_hdp_versions")
+   @patch("resource_management.libraries.functions.repo_version_history.read_actual_version_from_history_file")
+   @patch("resource_management.libraries.functions.repo_version_history.write_actual_version_to_history_file")
+  def test_version_reporting__build_number_defined__usr_hdp_present(self,
+  def test_version_reporting__build_number_defined(self,
+                                                                                    write_actual_version_to_history_file_mock,
+                                                                                    read_actual_version_from_history_file_mock,
+                                                                                    hdp_versions_mock,
+@@ -437,91 +437,6 @@ class TestInstallPackages(RMFTestCase):
+ 
+ 
+ 
+  @patch("resource_management.libraries.functions.list_ambari_managed_repos.list_ambari_managed_repos")
+  @patch("resource_management.libraries.functions.packages_analyzer.allInstalledPackages")
+  @patch("resource_management.libraries.script.Script.put_structured_out")
+  @patch("resource_management.libraries.functions.hdp_select.get_hdp_versions")
+  @patch("resource_management.libraries.functions.repo_version_history.read_actual_version_from_history_file")
+  @patch("resource_management.libraries.functions.repo_version_history.write_actual_version_to_history_file")
+  @patch("os.path.exists")
+  def test_version_reporting__build_number_defined__usr_hdp_not_present(self,
+                                                                    exists_mock,
+                                                                    write_actual_version_to_history_file_mock,
+                                                                    read_actual_version_from_history_file_mock,
+                                                                    hdp_versions_mock,
+                                                                    put_structured_out_mock, allInstalledPackages_mock, list_ambari_managed_repos_mock):
+    exists_mock.return_value = False
+    hdp_versions_mock.side_effect = [
+      [],  # before installation attempt
+      []
+    ]
+    read_actual_version_from_history_file_mock.return_value = None
+
+    config_file = self.get_src_folder() + "/test/python/custom_actions/configs/install_packages_config.json"
+    with open(config_file, "r") as f:
+      command_json = json.load(f)
+
+    command_json['roleParams']['repository_version'] = VERSION_STUB
+
+    allInstalledPackages_mock.side_effect = TestInstallPackages._add_packages
+    list_ambari_managed_repos_mock.return_value = []
+    self.executeScript("scripts/install_packages.py",
+                       classname="InstallPackages",
+                       command="actionexecute",
+                       config_dict=command_json,
+                       target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                       os_type=('Redhat', '6.4', 'Final'),
+                       )
+
+    self.assertTrue(put_structured_out_mock.called)
+    self.assertEquals(put_structured_out_mock.call_args[0][0],
+                      {'package_installation_result': 'SUCCESS',
+                       'stack_id': u'HDP-2.2',
+                       'installed_repository_version': VERSION_STUB,
+                       'actual_version': VERSION_STUB,
+                       'ambari_repositories': []})
+
+    self.assertFalse(write_actual_version_to_history_file_mock.called)
+
+    hdp_versions_mock.reset_mock()
+    write_actual_version_to_history_file_mock.reset_mock()
+    put_structured_out_mock.reset_mock()
+
+    # Test retrying install again
+
+    hdp_versions_mock.side_effect = [
+      [],  # before installation attempt
+      []
+    ]
+    read_actual_version_from_history_file_mock.return_value = None
+
+    config_file = self.get_src_folder() + "/test/python/custom_actions/configs/install_packages_config.json"
+    with open(config_file, "r") as f:
+      command_json = json.load(f)
+
+    command_json['roleParams']['repository_version'] = VERSION_STUB
+
+    allInstalledPackages_mock.side_effect = TestInstallPackages._add_packages
+    list_ambari_managed_repos_mock.return_value = []
+    self.executeScript("scripts/install_packages.py",
+                       classname="InstallPackages",
+                       command="actionexecute",
+                       config_dict=command_json,
+                       target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                       os_type=('Redhat', '6.4', 'Final'),
+                       )
+
+    self.assertTrue(put_structured_out_mock.called)
+    self.assertEquals(put_structured_out_mock.call_args[0][0],
+                      {'package_installation_result': 'SUCCESS',
+                       'stack_id': u'HDP-2.2',
+                       'installed_repository_version': VERSION_STUB,
+                       'actual_version': VERSION_STUB,
+                       'ambari_repositories': []})
+
+    self.assertFalse(write_actual_version_to_history_file_mock.called)
+
+
+   @patch("resource_management.libraries.functions.list_ambari_managed_repos.list_ambari_managed_repos")
+   @patch("resource_management.libraries.functions.packages_analyzer.allInstalledPackages")
+   @patch("resource_management.libraries.script.Script.put_structured_out")
+@@ -563,6 +478,7 @@ class TestInstallPackages(RMFTestCase):
+     except Fail:
+       pass  # Expected
+ 
+
+     self.assertTrue(put_structured_out_mock.called)
+     self.assertEquals(put_structured_out_mock.call_args_list[-1][0][0],
+                       { 'ambari_repositories': [],
+@@ -584,7 +500,7 @@ class TestInstallPackages(RMFTestCase):
+   @patch("resource_management.libraries.functions.repo_version_history.read_actual_version_from_history_file")
+   @patch("resource_management.libraries.functions.repo_version_history.write_actual_version_to_history_file")
+   @patch("os.path.exists")
+  def test_version_reporting__build_number_not_defined__usr_hdp_not_present(self,
+  def test_version_reporting__build_number_not_defined__usr_hdp_absent(self,
+                                                                         exists_mock,
+                                                                         write_actual_version_to_history_file_mock,
+                                                                         read_actual_version_from_history_file_mock,
+@@ -605,17 +521,21 @@ class TestInstallPackages(RMFTestCase):
+ 
+     allInstalledPackages_mock.side_effect = TestInstallPackages._add_packages
+     list_ambari_managed_repos_mock.return_value = []
+    self.executeScript("scripts/install_packages.py",
+                       classname="InstallPackages",
+                       command="actionexecute",
+                       config_dict=command_json,
+                       target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                       os_type=('Redhat', '6.4', 'Final'),
+                       )
+    try:
+      self.executeScript("scripts/install_packages.py",
+                         classname="InstallPackages",
+                         command="actionexecute",
+                         config_dict=command_json,
+                         target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                         os_type=('Redhat', '6.4', 'Final'),
+                         )
+      self.fail("Should throw exception")
+    except Fail:
+      pass  # Expected
+ 
+     self.assertTrue(put_structured_out_mock.called)
+     self.assertEquals(put_structured_out_mock.call_args_list[-1][0][0],
+                      {'package_installation_result': 'SUCCESS',
+                      {'package_installation_result': 'FAIL',
+                        'stack_id': u'HDP-2.2',
+                        'installed_repository_version': '2.2.0.1',
+                        'ambari_repositories': []})
+@@ -626,7 +546,7 @@ class TestInstallPackages(RMFTestCase):
+     write_actual_version_to_history_file_mock.reset_mock()
+     put_structured_out_mock.reset_mock()
+ 
+    # Test retrying install again
+    # Test retrying install again  (correct build number, provided by other nodes, is now received from server)
+ 
+     hdp_versions_mock.side_effect = [
+       [],  # before installation attempt
+@@ -845,17 +765,21 @@ class TestInstallPackages(RMFTestCase):
+ 
+     allInstalledPackages_mock.side_effect = TestInstallPackages._add_packages
+     list_ambari_managed_repos_mock.return_value = []
+    self.executeScript("scripts/install_packages.py",
+                       classname="InstallPackages",
+                       command="actionexecute",
+                       config_dict=command_json,
+                       target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                       os_type=('Redhat', '6.4', 'Final'),
+                       )
+    try:
+      self.executeScript("scripts/install_packages.py",
+                         classname="InstallPackages",
+                         command="actionexecute",
+                         config_dict=command_json,
+                         target=RMFTestCase.TARGET_CUSTOM_ACTIONS,
+                         os_type=('Redhat', '6.4', 'Final'),
+                         )
+      self.fail("Should throw exception")
+    except Fail:
+      pass  # Expected
+ 
+     self.assertTrue(put_structured_out_mock.called)
+     self.assertEquals(put_structured_out_mock.call_args_list[-1][0][0],
+                      {'package_installation_result': 'SUCCESS',
+                      {'package_installation_result': 'FAIL',
+                        'stack_id': u'HDP-2.2',
+                        'installed_repository_version': '2.2.0.1',
+                        'ambari_repositories': []})
+@@ -866,7 +790,7 @@ class TestInstallPackages(RMFTestCase):
+     write_actual_version_to_history_file_mock.reset_mock()
+     put_structured_out_mock.reset_mock()
+ 
+    # Test retrying install again
+    # Test retrying install again (correct build number, provided by other nodes, is now received from server)
+ 
+     hdp_versions_mock.side_effect = [
+       [],  # before installation attempt
+- 
+2.19.1.windows.1
+
+</comment></unit>

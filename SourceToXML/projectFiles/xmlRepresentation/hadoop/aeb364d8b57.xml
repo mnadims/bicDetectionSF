@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/aeb364d8b57.java"><expr_stmt><expr><name>From</name> <name>aeb364d8b57f4de79d3489bef2071cea9c0c840e</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name>Joseph</name> <name><name>Evans</name> <argument_list type="generic">&lt;<argument><name>bobby</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">23</literal> <name>Aug</name> <literal type="number">2012</literal> <literal type="number">18</literal><operator>:</operator><literal type="number">06</literal><operator>:</operator><literal type="number">56</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">8225.</literal> <name>DistCp</name> <name>fails</name> <name>when</name> <name>invoked</name> <name>by</name> <call><name>Oozie</name> <argument_list>(<argument><expr><name>daryn</name> <name>via</name>
+ <name>bobby</name></expr></argument>)</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1376618 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>Credentials</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">6</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">80</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>TestCredentials</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">19</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>security</name><operator>/</operator><name><name>TestUserGroupInformation</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">83</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>mapred</name><operator>/</operator><name><name>YarnChild</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">41</literal> <operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name>v2</name><operator>/</operator><name>app</name><operator>/</operator><name><name>MRAppMaster</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">12</literal> <operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>Job</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">2</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>TestJob</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">19</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>tools</name><operator>/</operator><name><name>DistCp</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">6</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">10</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">206</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">64</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>f2371dc1e99</name><operator>..</operator><literal type="number">2cc443f19a2</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">964</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">964</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Release</name> <literal type="number">0.23.3</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">8611.</literal> <name>Allow</name> <name>fall</name><operator>-</operator><name>back</name> <name>to</name> <name>the</name> <name>shell</name><operator>-</operator><name>based</name> <name>implementation</name> <name>when</name> 
+     <name>JNI</name><operator>-</operator><name>based</name> <name>users</name><operator>-</operator><name>group</name> <name>mapping</name> <call><name>fails</name> <argument_list>(<argument><expr><name>Robert</name> <name>Parker</name> <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call> 
+ 
+    <name>HADOOP</name><operator>-</operator><literal type="number">8225.</literal> <name>DistCp</name> <name>fails</name> <name>when</name> <name>invoked</name> <name>by</name> <call><name>Oozie</name> <argument_list>(<argument><expr><name>daryn</name> <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call>
+
+ <name>Release</name> <literal type="number">0.23.2</literal> <operator>-</operator> <name>UNRELEASED</name> 
+ 
+   <name>INCOMPATIBLE</name> <name>CHANGES</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>Credentials</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>Credentials</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>a258c7f88ca</name><operator>..</operator><literal type="number">6d5b048c8a4</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>Credentials</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>Credentials</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">274</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">274</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>addAll</name><argument_list>(<argument><expr><name>Credentials</name> <name>other</name></expr></argument>, <argument><expr><name>boolean</name> <name>overwrite</name></expr></argument>)</argument_list></call> <block>{
+       }</block></expr></expr_stmt>
+     }
+   }
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>addTokensToUGI</name><parameter_list>(<parameter><decl><type><name>UserGroupInformation</name></type> <name>ugi</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Text</name></argument>, <argument><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>token</name><range>: <expr><call><name><name>tokenMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>ugi</name><operator>.</operator><name>addToken</name></name><argument_list>(<argument><expr><call><name><name>token</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>token</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></function>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">23b333b367b</literal><operator>..</operator><literal type="number">967f0df89ff</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">55</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>classification</name><operator>.</operator><name>InterfaceStability</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>Path</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>Text</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>metrics2</name><operator>.</operator><name>annotation</name><operator>.</operator><name>Metric</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>metrics2</name><operator>.</operator><name>annotation</name><operator>.</operator><name>Metrics</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>metrics2</name><operator>.</operator><name>lib</name><operator>.</operator><name>DefaultMetricsSystem</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">646</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">647</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>static</specifier> <name>UserGroupInformation</name> <call><name>getLoginUser</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+           <comment type="line">// user.</comment>
+           <expr><name>Credentials</name> <name>cred</name> <operator>=</operator> <call><name><name>Credentials</name><operator>.</operator><name>readTokenStorageFile</name></name><argument_list>(
+               <argument><expr><operator>new</operator> <call><name>Path</name><argument_list>(<argument><expr><literal type="string">"file:///"</literal> <operator>+</operator> <name>fileLocation</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>conf</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+          <for>for <control>(<init><decl><type><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></type> <name>token</name><range>: <expr><call><name><name>cred</name><operator>.</operator><name>getAllTokens</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>loginUser</name><operator>.</operator><name>addToken</name></name><argument_list>(<argument><expr><name>token</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></for>
+          <expr_stmt><expr><call><name><name>cred</name><operator>.</operator><name>addTokensToUGI</name></name><argument_list>(<argument><expr><name>loginUser</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         }
+         loginUser<expr_stmt><expr><operator>.</operator><call><name>spawnAutoRenewalThreadForUserCreds</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       } catch <expr_stmt><expr><operator>(</operator><name>LoginException</name> <name>le</name><operator>)</operator> <block>{
+@@ <expr><operator>-</operator><literal type="number">1177</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1176</literal></expr>,<expr><literal type="number">41</literal> @@ <specifier>public</specifier> <specifier>synchronized</specifier> <name>boolean</name> <call><name>addTokenIdentifier</name><argument_list>(<argument><expr><name>TokenIdentifier</name> <name>tokenId</name></expr></argument>)</argument_list></call> <block>{
+   <expr><specifier>public</specifier> <specifier>synchronized</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>TokenIdentifier</name></argument>&gt;</argument_list></name> <call><name>getTokenIdentifiers</name><argument_list>()</argument_list></call> <block>{
+     <return>return <expr><call><name><name>subject</name><operator>.</operator><name>getPublicCredentials</name></name><argument_list>(<argument><expr><name><name>TokenIdentifier</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+   }</block>
+
+  <comment type="line">// wrapper to retain the creds key for the token</comment>
+  <specifier>private</specifier> <name>class</name> <name>NamedToken</name> <block>{
+    <expr><name>Text</name> <name>alias</name></expr>;
+    <expr><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>TokenIdentifier</name></extends></argument>&gt;</argument_list></name> <name>token</name></expr>;
+    <expr><call><name>NamedToken</name><argument_list>(<argument><expr><name>Text</name> <name>alias</name></expr></argument>, <argument><expr><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>TokenIdentifier</name></extends></argument>&gt;</argument_list></name> <name>token</name></expr></argument>)</argument_list></call> <block>{
+      <expr><name><name>this</name><operator>.</operator><name>alias</name></name> <operator>=</operator> <name>alias</name></expr>;
+      <expr><name><name>this</name><operator>.</operator><name>token</name></name> <operator>=</operator> <name>token</name></expr>;
+    }</block>
+    @<name>Override</name>
+    <specifier>public</specifier> <name>boolean</name> <call><name>equals</name><argument_list>(<argument><expr><name>Object</name> <name>o</name></expr></argument>)</argument_list></call> <block>{
+      <expr><name>boolean</name> <name>equals</name></expr>;
+      <if_stmt><if>if <condition>(<expr><name>o</name> <operator>==</operator> <name>this</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>equals</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt>}</block></expr> <if_stmt><if type="elseif">else if <condition>(<expr><operator>!</operator><operator>(</operator><name>o</name> <operator>instanceof</operator> <name>NamedToken</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>equals</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else <block>{<block_content>
+        <decl_stmt><decl><type><name>Text</name></type> <name>otherAlias</name> <init>= <expr><operator>(</operator><operator>(</operator><name>NamedToken</name><operator>)</operator><name>o</name><operator>)</operator><operator>.</operator><name>alias</name></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>alias</name> <operator>==</operator> <name>otherAlias</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>equals</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></else></if_stmt>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+          <expr_stmt><expr><name>equals</name> <operator>=</operator> <operator>(</operator><name>otherAlias</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>otherAlias</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name>alias</name></expr></argument>)</argument_list></call><operator>)</operator></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+      }
+      return <expr_stmt><expr><name>equals</name></expr>;</expr_stmt>
+    }
+    @<function><type><name>Override</name>
+    <specifier>public</specifier> <name>int</name></type> <name>hashCode</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><ternary><condition><expr><operator>(</operator><name>alias</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><call><name><name>alias</name><operator>.</operator><name>hashCode</name></name><argument_list>()</argument_list></call></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary></expr>;</return> 
+    </block_content>}</block></function>
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="string">"NamedToken: alias="</literal><operator>+</operator><name>alias</name><operator>+</operator><literal type="string">" token="</literal><operator>+</operator><name>token</name></expr>;</return>
+    </block_content>}</block></function>
+  }
+   
+   <comment type="block" format="javadoc">/**
+    * Add a token to this UGI
+@@ -1185,7 +1219,22 @@ public synchronized boolean addTokenIdentifier(TokenIdentifier tokenId) {
+    * @return true on successful add of new token
+    */</comment>
+   public <function><type><specifier>synchronized</specifier> <name>boolean</name></type> <name>addToken</name><parameter_list>(<parameter><decl><type><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>TokenIdentifier</name></extends></argument>&gt;</argument_list></name></type> <name>token</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>subject</name><operator>.</operator><name>getPrivateCredentials</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>add</name><argument_list>(<argument><expr><name>token</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name>addToken</name><argument_list>(<argument><expr><call><name><name>token</name><operator>.</operator><name>getService</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>token</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Add a named token to this UGI
+   * 
+   * @param alias Name of the token
+   * @param token Token to be added
+   * @return true on successful add of new token
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>boolean</name></type> <name>addToken</name><parameter_list>(<parameter><decl><type><name>Text</name></type> <name>alias</name></decl></parameter>,
+                                       <parameter><decl><type><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>TokenIdentifier</name></extends></argument>&gt;</argument_list></name></type> <name>token</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>NamedToken</name></type> <name>namedToken</name> <init>= <expr><operator>new</operator> <call><name>NamedToken</name><argument_list>(<argument><expr><name>alias</name></expr></argument>, <argument><expr><name>token</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>ugiCreds</name> <init>= <expr><call><name><name>subject</name><operator>.</operator><name>getPrivateCredentials</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>ugiCreds</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>namedToken</name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// allow token to be replaced</comment>
+    <return>return <expr><call><name><name>ugiCreds</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>NamedToken</name><argument_list>(<argument><expr><name>alias</name></expr></argument>, <argument><expr><name>token</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -1195,14 +1244,23 @@ public synchronized boolean addToken(Token&lt;? extends TokenIdentifier&gt; token) {
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>synchronized</specifier>
+   <name><name>Collection</name><argument_list type="generic">&lt;<argument><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>TokenIdentifier</name></extends></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>getTokens</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>creds</name> <init>= <expr><call><name><name>subject</name><operator>.</operator><name>getPrivateCredentials</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>result</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>creds</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>Object</name></type> <name>o</name><range>: <expr><name>creds</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>o</name> <operator>instanceof</operator> <name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>(</operator><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name><operator>)</operator> <name>o</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>unmodifiableList</name></name><argument_list>(
+        <argument><expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>Token</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name>getCredentials</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getAllTokens</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></for>
+
+  <comment type="block" format="javadoc">/**
+   * Obtain the tokens in credentials form associated with this user.
+   * 
+   * @return Credentials of tokens associated with this user
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>Credentials</name></type> <name>getCredentials</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Credentials</name></type> <name>credentials</name> <init>= <expr><operator>new</operator> <call><name>Credentials</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>NamedToken</name></argument>&gt;</argument_list></name></type> <name>namedTokens</name> <init>=
+        <expr><call><name><name>subject</name><operator>.</operator><name>getPrivateCredentials</name></name><argument_list>(<argument><expr><name><name>NamedToken</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><specifier>final</specifier> <name>NamedToken</name></type> <name>namedToken</name> <range>: <expr><name>namedTokens</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>credentials</name><operator>.</operator><name>addToken</name></name><argument_list>(<argument><expr><name><name>namedToken</name><operator>.</operator><name>alias</name></name></expr></argument>, <argument><expr><name><name>namedToken</name><operator>.</operator><name>token</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></for>
+    <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>unmodifiableList</name></name><argument_list>(<argument><expr><name>result</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><name>credentials</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestCredentials.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestCredentials.java
+index 56b5c32521d..d432623be02 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestCredentials.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestCredentials.java
+@@ -213,5 +213,22 @@ public void mergeAll() {
+     // new token &amp; secret should be added
+     assertEquals(token[2], creds.getToken(service[2]));
+     assertEquals(secret[2], new Text(creds.getSecretKey(secret[2])));
+ }
+  }
+  
+  @Test
+  public void testAddTokensToUGI() {
+    UserGroupInformation ugi = UserGroupInformation.createRemoteUser("someone");
+    Credentials creds = new Credentials();
+    
+    for (int i=0; i &lt; service.length; i++) {
+      creds.addToken(service[i], token[i]);
+    }
+    creds.addTokensToUGI(ugi);
+
+    creds = ugi.getCredentials();
+    for (int i=0; i &lt; service.length; i++) {
+      assertSame(token[i], creds.getToken(service[i]));
+    }
+    assertEquals(service.length, creds.numberOfTokens());
+  }
+ }
+\ No newline at end of file
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestUserGroupInformation.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestUserGroupInformation.java
+index cb6f889e8e2..4d8224b7cca 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestUserGroupInformation.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/security/TestUserGroupInformation.java
+@@ -19,8 +19,7 @@
+ import static org.junit.Assert.*;
+ import org.junit.*;
+ 
+import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+ 
+ import java.io.BufferedReader;
+ import java.io.IOException;
+@@ -35,6 +34,7 @@
+ import javax.security.auth.login.LoginContext;
+ 
+ import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.Text;
+ import org.apache.hadoop.metrics2.MetricsRecordBuilder;
+ import org.apache.hadoop.security.UserGroupInformation.AuthenticationMethod;
+ import org.apache.hadoop.security.token.Token;
+@@ -194,8 +194,6 @@ public void testEquals() throws Exception {
+   public void testEqualsWithRealUser() throws Exception {
+     UserGroupInformation realUgi1 = UserGroupInformation.createUserForTesting(
+         "RealUser", GROUP_NAMES);
+    UserGroupInformation realUgi2 = UserGroupInformation.createUserForTesting(
+        "RealUser", GROUP_NAMES);
+     UserGroupInformation proxyUgi1 = UserGroupInformation.createProxyUser(
+         USER_NAME, realUgi1);
+     UserGroupInformation proxyUgi2 =
+@@ -213,7 +211,82 @@ public void testGettingGroups() throws Exception {
+     assertArrayEquals(new String[]{GROUP1_NAME, GROUP2_NAME, GROUP3_NAME},
+                       uugi.getGroupNames());
+   }
+
+  @SuppressWarnings("unchecked") // from Mockito mocks
+  @Test
+  public &lt;T extends TokenIdentifier&gt; void testAddToken() throws Exception {
+    UserGroupInformation ugi = 
+        UserGroupInformation.createRemoteUser("someone"); 
+    
+    Token&lt;T&gt; t1 = mock(Token.class);
+    Token&lt;T&gt; t2 = mock(Token.class);
+    Token&lt;T&gt; t3 = mock(Token.class);
+    
+    // add token to ugi
+    ugi.addToken(t1);
+    checkTokens(ugi, t1);
+
+    // replace token t1 with t2 - with same key (null)
+    ugi.addToken(t2);
+    checkTokens(ugi, t2);
+    
+    // change t1 service and add token
+    when(t1.getService()).thenReturn(new Text("t1"));
+    ugi.addToken(t1);
+    checkTokens(ugi, t1, t2);
+  
+    // overwrite t1 token with t3 - same key (!null)
+    when(t3.getService()).thenReturn(new Text("t1"));
+    ugi.addToken(t3);
+    checkTokens(ugi, t2, t3);
+
+    // just try to re-add with new name
+    when(t1.getService()).thenReturn(new Text("t1.1"));
+    ugi.addToken(t1);
+    checkTokens(ugi, t1, t2, t3);    
+
+    // just try to re-add with new name again
+    ugi.addToken(t1);
+    checkTokens(ugi, t1, t2, t3);    
+  }
+   
+  private void checkTokens(UserGroupInformation ugi, Token&lt;?&gt; ... tokens) {
+    // check the ugi's token collection
+    Collection&lt;Token&lt;?&gt;&gt; ugiTokens = ugi.getTokens();
+    for (Token&lt;?&gt; t : tokens) {
+      assertTrue(ugiTokens.contains(t));
+    }
+    assertEquals(tokens.length, ugiTokens.size());
+
+    // check the ugi's credentials
+    Credentials ugiCreds = ugi.getCredentials();
+    for (Token&lt;?&gt; t : tokens) {
+      assertSame(t, ugiCreds.getToken(t.getService()));
+    }
+    assertEquals(tokens.length, ugiCreds.numberOfTokens());
+  }
+
+  @SuppressWarnings("unchecked") // from Mockito mocks
+  @Test
+  public &lt;T extends TokenIdentifier&gt; void testAddNamedToken() throws Exception {
+    UserGroupInformation ugi = 
+        UserGroupInformation.createRemoteUser("someone"); 
+    
+    Token&lt;T&gt; t1 = mock(Token.class);
+    Text service1 = new Text("t1");
+    Text service2 = new Text("t2");
+    when(t1.getService()).thenReturn(service1);
+    
+    // add token
+    ugi.addToken(service1, t1);
+    assertSame(t1, ugi.getCredentials().getToken(service1));
+
+    // add token with another name
+    ugi.addToken(service2, t1);
+    assertSame(t1, ugi.getCredentials().getToken(service1));
+    assertSame(t1, ugi.getCredentials().getToken(service2));
+  }
+
+   @SuppressWarnings("unchecked") // from Mockito mocks
+   @Test
+   public &lt;T extends TokenIdentifier&gt; void testUGITokens() throws Exception {
+@@ -221,7 +294,9 @@ public void testGettingGroups() throws Exception {
+       UserGroupInformation.createUserForTesting("TheDoctor", 
+                                                 new String [] { "TheTARDIS"});
+     Token&lt;T&gt; t1 = mock(Token.class);
+    when(t1.getService()).thenReturn(new Text("t1"));
+     Token&lt;T&gt; t2 = mock(Token.class);
+    when(t2.getService()).thenReturn(new Text("t2"));
+     
+     ugi.addToken(t1);
+     ugi.addToken(t2);
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapred/YarnChild.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapred/YarnChild.java
+index 0ca3710fd66..64ac83e8cfd 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapred/YarnChild.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapred/YarnChild.java
+@@ -39,7 +39,6 @@
+ import org.apache.hadoop.fs.Path;
+ import org.apache.hadoop.fs.permission.FsPermission;
+ import org.apache.hadoop.io.IOUtils;
+import org.apache.hadoop.io.Text;
+ import org.apache.hadoop.ipc.RPC;
+ import org.apache.hadoop.mapreduce.MRConfig;
+ import org.apache.hadoop.mapreduce.MRJobConfig;
+@@ -55,7 +54,6 @@
+ import org.apache.hadoop.security.SecurityUtil;
+ import org.apache.hadoop.security.UserGroupInformation;
+ import org.apache.hadoop.security.token.Token;
+import org.apache.hadoop.security.token.TokenIdentifier;
+ import org.apache.hadoop.util.DiskChecker.DiskErrorException;
+ import org.apache.hadoop.util.StringUtils;
+ import org.apache.hadoop.yarn.YarnUncaughtExceptionHandler;
+@@ -92,11 +90,15 @@ public static void main(String[] args) throws Throwable {
+     DefaultMetricsSystem.initialize(
+         StringUtils.camelize(firstTaskid.getTaskType().name()) +"Task");
+ 
+    Token&lt;JobTokenIdentifier&gt; jt = loadCredentials(defaultConf, address);
+
+    // Security framework already loaded the tokens into current ugi
+    Credentials credentials =
+        UserGroupInformation.getCurrentUser().getCredentials();
+    
+     // Create TaskUmbilicalProtocol as actual task owner.
+     UserGroupInformation taskOwner =
+       UserGroupInformation.createRemoteUser(firstTaskid.getJobID().toString());
+    Token&lt;JobTokenIdentifier&gt; jt = TokenCache.getJobToken(credentials);
+    SecurityUtil.setTokenService(jt, address);
+     taskOwner.addToken(jt);
+     final TaskUmbilicalProtocol umbilical =
+       taskOwner.doAs(new PrivilegedExceptionAction&lt;TaskUmbilicalProtocol&gt;() {
+@@ -132,17 +134,14 @@ public TaskUmbilicalProtocol run() throws Exception {
+       YarnChild.taskid = task.getTaskID();
+ 
+       // Create the job-conf and set credentials
+      final JobConf job =
+        configureTask(task, defaultConf.getCredentials(), jt);
+      final JobConf job = configureTask(task, credentials, jt);
+ 
+       // Initiate Java VM metrics
+       JvmMetrics.initSingleton(jvmId.toString(), job.getSessionId());
+       childUGI = UserGroupInformation.createRemoteUser(System
+           .getenv(ApplicationConstants.Environment.USER.toString()));
+       // Add tokens to new user so that it may execute its task correctly.
+      for(Token&lt;?&gt; token : UserGroupInformation.getCurrentUser().getTokens()) {
+        childUGI.addToken(token);
+      }
+      job.getCredentials().addTokensToUGI(childUGI);
+ 
+       // Create a final reference to the task for the doAs block
+       final Task taskFinal = task;
+@@ -206,30 +205,6 @@ public Object run() throws Exception {
+     }
+   }
+ 
+  private static Token&lt;JobTokenIdentifier&gt; loadCredentials(JobConf conf,
+      InetSocketAddress address) throws IOException {
+    //load token cache storage
+    String tokenFileLocation =
+        System.getenv(ApplicationConstants.CONTAINER_TOKEN_FILE_ENV_NAME);
+    String jobTokenFile =
+        new Path(tokenFileLocation).makeQualified(FileSystem.getLocal(conf))
+            .toUri().getPath();
+    Credentials credentials =
+      TokenCache.loadTokens(jobTokenFile, conf);
+    LOG.debug("loading token. # keys =" +credentials.numberOfSecretKeys() +
+        "; from file=" + jobTokenFile);
+    Token&lt;JobTokenIdentifier&gt; jt = TokenCache.getJobToken(credentials);
+    SecurityUtil.setTokenService(jt, address);
+    UserGroupInformation current = UserGroupInformation.getCurrentUser();
+    current.addToken(jt);
+    for (Token&lt;? extends TokenIdentifier&gt; tok : credentials.getAllTokens()) {
+      current.addToken(tok);
+    }
+    // Set the credentials
+    conf.setCredentials(credentials);
+    return jt;
+  }
+
+   /**
+    * Configure mapred-local dirs. This config is used by the task for finding
+    * out an output directory.
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapreduce/v2/app/MRAppMaster.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapreduce/v2/app/MRAppMaster.java
+index e81a4237fb2..463a3edec69 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapreduce/v2/app/MRAppMaster.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src/main/java/org/apache/hadoop/mapreduce/v2/app/MRAppMaster.java
+@@ -87,8 +87,6 @@
+ import org.apache.hadoop.metrics2.lib.DefaultMetricsSystem;
+ import org.apache.hadoop.security.Credentials;
+ import org.apache.hadoop.security.UserGroupInformation;
+import org.apache.hadoop.security.token.Token;
+import org.apache.hadoop.security.token.TokenIdentifier;
+ import org.apache.hadoop.util.ReflectionUtils;
+ import org.apache.hadoop.util.ShutdownHookManager;
+ import org.apache.hadoop.yarn.Clock;
+@@ -489,15 +487,7 @@ protected void downloadTokensAndSetupUGI(Configuration conf) {
+         fsTokens.addAll(Credentials.readTokenStorageFile(jobTokenFile, conf));
+         LOG.info("jobSubmitDir=" + jobSubmitDir + " jobTokenFile="
+             + jobTokenFile);
+
+        for (Token&lt;? extends TokenIdentifier&gt; tk : fsTokens.getAllTokens()) {
+          if (LOG.isDebugEnabled()) {
+            LOG.debug("Token of kind " + tk.getKind()
+                + "in current ugi in the AppMaster for service "
+                + tk.getService());
+          }
+          currentUser.addToken(tk); // For use by AppMaster itself.
+        }
+        fsTokens.addTokensToUGI(currentUser); // For use by AppMaster itself.
+       }
+     } catch (IOException e) {
+       throw new YarnException(e);
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/java/org/apache/hadoop/mapreduce/Job.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/java/org/apache/hadoop/mapreduce/Job.java
+index a2a59005b9d..abbe1e194cc 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/java/org/apache/hadoop/mapreduce/Job.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/java/org/apache/hadoop/mapreduce/Job.java
+@@ -131,6 +131,8 @@ public Job(Configuration conf, String jobName) throws IOException {
+ 
+   Job(JobConf conf) throws IOException {
+     super(conf, null);
+    // propagate existing user credentials to job
+    this.credentials.mergeAll(this.ugi.getCredentials());
+     this.cluster = null;
+   }
+ 
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/test/java/org/apache/hadoop/mapreduce/TestJob.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/test/java/org/apache/hadoop/mapreduce/TestJob.java
+index 110acba2080..6d2f5e6b692 100644
+-- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/test/java/org/apache/hadoop/mapreduce/TestJob.java
+++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/test/java/org/apache/hadoop/mapreduce/TestJob.java
+@@ -18,14 +18,17 @@
+ 
+ package org.apache.hadoop.mapreduce;
+ 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+ 
+ import java.io.IOException;
+ 
+import org.apache.hadoop.io.Text;
+ import org.apache.hadoop.mapred.JobConf;
+ import org.apache.hadoop.mapreduce.JobStatus.State;
+ import org.apache.hadoop.mapreduce.protocol.ClientProtocol;
+import org.apache.hadoop.security.UserGroupInformation;
+import org.apache.hadoop.security.token.Token;
+ import org.junit.Assert;
+ import org.junit.Test;
+ 
+@@ -50,4 +53,16 @@ public void testJobToString() throws IOException, InterruptedException {
+     Assert.assertNotNull(job.toString());
+   }
+ 
+  @Test
+  public void testUGICredentialsPropogation() throws Exception {
+    Token&lt;?&gt; token = mock(Token.class);
+    Text service = new Text("service");
+    
+    UserGroupInformation ugi = UserGroupInformation.getCurrentUser();
+    ugi.addToken(service, token);
+    
+    JobConf jobConf = new JobConf();
+    Job job = new Job(jobConf);
+    assertSame(token, job.getCredentials().getToken(service));
+  }
+ }
+diff --git a/hadoop-tools/hadoop-distcp/src/main/java/org/apache/hadoop/tools/DistCp.java b/hadoop-tools/hadoop-distcp/src/main/java/org/apache/hadoop/tools/DistCp.java
+index 523609b5327..416847b821d 100644
+-- a/hadoop-tools/hadoop-distcp/src/main/java/org/apache/hadoop/tools/DistCp.java
+++ b/hadoop-tools/hadoop-distcp/src/main/java/org/apache/hadoop/tools/DistCp.java
+@@ -359,18 +359,20 @@ private Path createMetaFolderPath() throws Exception {
+    * @param argv Command-line arguments sent to DistCp.
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name><name>argv</name><index>[]</index></name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>exitCode</name></decl>;</decl_stmt>
+     <try>try <block>{<block_content>
+       <decl_stmt><decl><type><name>DistCp</name></type> <name>distCp</name> <init>= <expr><operator>new</operator> <call><name>DistCp</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>Cleanup</name></type> <name>CLEANUP</name> <init>= <expr><operator>new</operator> <call><name>Cleanup</name><argument_list>(<argument><expr><name>distCp</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <expr_stmt><expr><call><name><name>ShutdownHookManager</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>addShutdownHook</name><argument_list>(<argument><expr><name>CLEANUP</name></expr></argument>,
+         <argument><expr><name>SHUTDOWN_HOOK_PRIORITY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>exit</name></name><argument_list>(<argument><expr><call><name><name>ToolRunner</name><operator>.</operator><name>run</name></name><argument_list>(<argument><expr><call><name>getDefaultConf</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>distCp</name></expr></argument>, <argument><expr><name>argv</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>exitCode</name> <operator>=</operator> <call><name><name>ToolRunner</name><operator>.</operator><name>run</name></name><argument_list>(<argument><expr><call><name>getDefaultConf</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>distCp</name></expr></argument>, <argument><expr><name>argv</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block>
+     <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Couldn't complete DistCp operation: "</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>exit</name></name><argument_list>(<argument><expr><name><name>DistCpConstants</name><operator>.</operator><name>UNKNOWN_ERROR</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>exitCode</name> <operator>=</operator> <name><name>DistCpConstants</name><operator>.</operator><name>UNKNOWN_ERROR</name></name></expr>;</expr_stmt>
+     </block_content>}</block></catch></try>
+    <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>exit</name></name><argument_list>(<argument><expr><name>exitCode</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function></block_content></block></function>
+ 
+   <comment type="block" format="javadoc">/**
+- 
+2.19.1.windows.1
+
+</comment></unit>

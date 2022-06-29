@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/65ca08455f.java"><expr_stmt><expr><name>From</name> <literal type="number">65ca08455f05b7c7e9352723f2bea21e86bc43e8</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Swapan</name> <name><name>Shridhar</name> <argument_list type="generic">&lt;<argument><name>sshridhar</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">21</literal> <name>Nov</name> <literal type="number">2017</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">57</literal><operator>:</operator><literal type="number">44</literal> <operator>-</operator><literal type="number">0800</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">22472.</literal> <name>Ambari</name> <name>Upgrade</name> <literal type="number">2.5</literal> <operator>-&gt;</operator> <literal type="number">2.6</literal> <operator>:</operator> <name>Update</name>
+ <name>NodeManager</name><literal type="char">'s HSI identity '</literal><name>llap_zk_hive</name><literal type="char">' and '</literal><name>llap_task_hive</name><literal type="char">' to use
+ '</literal><operator>/</operator><name>HIVE</name><operator>/</operator><name>HIVE_SERVER</name><operator>/</operator><name>hive_server_hive</name><literal type="char">' reference instead of creating the same
+ identity again.
+
+--
+ .../server/upgrade/UpgradeCatalog260.java     | 142 +++++++++
+ .../HDP/2.5/services/YARN/kerberos.json       |  12 +-
+ .../HDP/2.6/services/YARN/kerberos.json       |  24 +-
+ .../server/upgrade/UpgradeCatalog260Test.java | 136 ++++++++-
+ .../test_kerberos_descriptor_ranger_kms.json  | 286 ++++++++++++++++++
+ 5 files changed, 564 insertions(+), 36 deletions(-)
+
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog260.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog260.java
+index 25635b660c..a7e06547ab 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog260.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog260.java
+@@ -45,7 +45,9 @@ import org.apache.ambari.server.state.kerberos.KerberosComponentDescriptor;
+ import org.apache.ambari.server.state.kerberos.KerberosDescriptor;
+ import org.apache.ambari.server.state.kerberos.KerberosDescriptorFactory;
+ import org.apache.ambari.server.state.kerberos.KerberosIdentityDescriptor;
+import org.apache.ambari.server.state.kerberos.KerberosKeytabDescriptor;
+ import org.apache.ambari.server.state.kerberos.KerberosPrincipalDescriptor;
+import org.apache.ambari.server.state.kerberos.KerberosPrincipalType;
+ import org.apache.ambari.server.state.kerberos.KerberosServiceDescriptor;
+ import org.apache.commons.lang.StringUtils;
+ import org.slf4j.Logger;
+@@ -135,6 +137,20 @@ public class UpgradeCatalog260 extends AbstractUpgradeCatalog {
+   private static final String CORE_SITE = "core-site";
+   public static final String AMS_SSL_CLIENT = "ams-ssl-client";
+   public static final String METRIC_TRUSTSTORE_ALIAS = "ssl.client.truststore.alias";
+
+  private static final String HIVE_INTERACTIVE_SITE = "hive-interactive-site";
+  public static final String HIVE_LLAP_DAEMON_KEYTAB_FILE = "hive.llap.daemon.keytab.file";
+  public static final String HIVE_LLAP_ZK_SM_KEYTAB_FILE = "hive.llap.zk.sm.keytab.file";
+  public static final String HIVE_LLAP_TASK_KEYTAB_FILE = "hive.llap.task.keytab.file";
+  public static final String HIVE_SERVER_KERBEROS_PREFIX = "/HIVE/HIVE_SERVER/";
+  public static final String YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY = "llap_zk_hive";
+  public static final String YARN_LLAP_TASK_HIVE_KERBEROS_IDENTITY = "llap_task_hive";
+  public static final String HIVE_SERVER_HIVE_KERBEROS_IDENTITY = "hive_server_hive";
+
+  // Used to track whether YARN -&gt; NODEMANAGER -&gt; '</literal><name>llap_zk_hive</name><literal type="char">' kerberos descriptor was updated or not.
+  private List&lt;String&gt; yarnKerberosDescUpdatedList = new ArrayList&lt;&gt;();
+
+
+   /**
+    * Logger.
+    */
+@@ -497,6 +513,7 @@ public class UpgradeCatalog260 extends AbstractUpgradeCatalog {
+     ensureZeppelinProxyUserConfigs();
+     updateKerberosDescriptorArtifacts();
+     updateAmsConfigs();
+    updateHiveConfigs();
+     updateHDFSWidgetDefinition();
+     updateExistingRepositoriesToBeResolved();
+   }
+@@ -636,6 +653,7 @@ public class UpgradeCatalog260 extends AbstractUpgradeCatalog {
+         if (kerberosDescriptor != null) {
+           fixRangerKMSKerberosDescriptor(kerberosDescriptor);
+           fixIdentityReferences(getCluster(artifactEntity), kerberosDescriptor);
+          fixYarnHsiKerberosDescriptorAndSiteConfig(getCluster(artifactEntity), kerberosDescriptor);
+ 
+           artifactEntity.setArtifactData(kerberosDescriptor.toMap());
+           artifactDAO.merge(artifactEntity);
+@@ -662,6 +680,130 @@ public class UpgradeCatalog260 extends AbstractUpgradeCatalog {
+     }
+   }
+ 
+  /**
+   * Updates YARN'</literal><name>s</name> <name>NM</name> <literal type="char">'llap_zk_hive'</literal> <name>kerberos</name> <name>descriptor</name> <name>as</name> <name>reference</name> <name>and</name> <name>the</name> <name>associated</name> <name>config</name>
+   <operator>*</operator> <name>hive</name><operator>-</operator><name>interactive</name><operator>-</operator><name>site</name><operator>/</operator><name><name>hive</name><operator>.</operator><name>llap</name><operator>.</operator><name>zk</name><operator>.</operator><name>sm</name><operator>.</operator><name>keytab</name><operator>.</operator><name>file</name></name>
+   <operator>*</operator><operator>/</operator>
+  <specifier>protected</specifier> <name>void</name> <call><name>fixYarnHsiKerberosDescriptorAndSiteConfig</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Updating YARN's HSI Kerberos Descriptor ...."</literal></expr></argument>)</argument_list></call></expr>;
+
+    <comment type="line">// Step 1. Get Hive -&gt; HIVE_SERVER -&gt; 'hive_server_hive' kerberos description for referencing later</comment>
+    <expr><name>KerberosServiceDescriptor</name> <name>hiveServiceDescriptor</name> <operator>=</operator> <call><name><name>kerberosDescriptor</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><literal type="string">"HIVE"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><name>KerberosIdentityDescriptor</name> <name>hsh_identityDescriptor</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+    <expr><name>KerberosPrincipalDescriptor</name> <name>hsh_principalDescriptor</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+    <expr><name>KerberosKeytabDescriptor</name> <name>hsh_keytabDescriptor</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+    <if_stmt><if>if <condition>(<expr><name>hiveServiceDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>KerberosComponentDescriptor</name></type> <name>hiveServerKerberosDescriptor</name> <init>= <expr><call><name><name>hiveServiceDescriptor</name><operator>.</operator><name>getComponent</name></name><argument_list>(<argument><expr><literal type="string">"HIVE_SERVER"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>hiveServerKerberosDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>hsh_identityDescriptor</name> <operator>=</operator> <call><name><name>hiveServerKerberosDescriptor</name><operator>.</operator><name>getIdentity</name></name><argument_list>(<argument><expr><name>HIVE_SERVER_HIVE_KERBEROS_IDENTITY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>hsh_identityDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"  Retrieved HIVE-&gt;HIVE_SERVER kerberos descriptor. Name = "</literal> <operator>+</operator> <call><name><name>hsh_identityDescriptor</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>hsh_principalDescriptor</name> <operator>=</operator> <call><name><name>hsh_identityDescriptor</name><operator>.</operator><name>getPrincipalDescriptor</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>hsh_keytabDescriptor</name> <operator>=</operator> <call><name><name>hsh_identityDescriptor</name><operator>.</operator><name>getKeytabDescriptor</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+      }
+
+      <comment type="line">// Step 2. Update YARN -&gt; NODEMANAGER's : (1). 'llap_zk_hive' and (2). 'llap_task_hive' kerberos descriptor as reference to</comment>
+      <comment type="line">// HIVE -&gt; HIVE_SERVER -&gt; 'hive_server_hive' (Same as YARN -&gt; NODEMANAGER -&gt; 'yarn_nodemanager_hive_server_hive')</comment>
+      if <expr_stmt><expr><operator>(</operator><name>hsh_principalDescriptor</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>hsh_keytabDescriptor</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <block>{
+        <expr><name>KerberosServiceDescriptor</name> <name>yarnServiceDescriptor</name> <operator>=</operator> <call><name><name>kerberosDescriptor</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><literal type="string">"YARN"</literal></expr></argument>)</argument_list></call></expr>;
+        <if_stmt><if>if <condition>(<expr><name>yarnServiceDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>KerberosComponentDescriptor</name></type> <name>yarnNmKerberosDescriptor</name> <init>= <expr><call><name><name>yarnServiceDescriptor</name><operator>.</operator><name>getComponent</name></name><argument_list>(<argument><expr><literal type="string">"NODEMANAGER"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>yarnNmKerberosDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>identities</name> <init>= <expr><block>{<expr><name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name></expr>, <expr><name>YARN_LLAP_TASK_HIVE_KERBEROS_IDENTITY</name></expr>}</block></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>String</name></type> <name>identity</name> <range>: <expr><name>identities</name></expr></range></decl></init>)</control> <block>{<block_content>
+              <decl_stmt><decl><type><name>KerberosIdentityDescriptor</name></type> <name>identityDescriptor</name> <init>= <expr><call><name><name>yarnNmKerberosDescriptor</name><operator>.</operator><name>getIdentity</name></name><argument_list>(<argument><expr><name>identity</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+              <decl_stmt><decl><type><name>KerberosPrincipalDescriptor</name></type> <name>principalDescriptor</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+              <decl_stmt><decl><type><name>KerberosKeytabDescriptor</name></type> <name>keytabDescriptor</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+              <if_stmt><if>if <condition>(<expr><name>identityDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"  Retrieved YARN-&gt;NODEMANAGER kerberos descriptor to be updated. Name = "</literal> <operator>+</operator> <call><name><name>identityDescriptor</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>principalDescriptor</name> <operator>=</operator> <call><name><name>identityDescriptor</name><operator>.</operator><name>getPrincipalDescriptor</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>keytabDescriptor</name> <operator>=</operator> <call><name><name>identityDescriptor</name><operator>.</operator><name>getKeytabDescriptor</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+                <expr_stmt><expr><call><name><name>identityDescriptor</name><operator>.</operator><name>setReference</name></name><argument_list>(<argument><expr><name>HIVE_SERVER_KERBEROS_PREFIX</name> <operator>+</operator> <call><name><name>hsh_identityDescriptor</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' identity descriptor reference = '"</literal>
+                        <operator>+</operator> <call><name><name>identityDescriptor</name><operator>.</operator><name>getReference</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>principalDescriptor</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' principal descriptor value = '"</literal>
+                        <operator>+</operator> <call><name><name>principalDescriptor</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                <comment type="line">// Updating keytabs now</comment>
+                <expr_stmt><expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>setFile</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' keytab descriptor file = '"</literal>
+                        <operator>+</operator> <call><name><name>keytabDescriptor</name><operator>.</operator><name>getFile</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>setOwnerName</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' keytab descriptor owner name = '"</literal> <operator>+</operator> <call><name><name>keytabDescriptor</name><operator>.</operator><name>getOwnerName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>setOwnerAccess</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' keytab descriptor owner access = '"</literal> <operator>+</operator> <call><name><name>keytabDescriptor</name><operator>.</operator><name>getOwnerAccess</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>setGroupName</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' keytab descriptor group name = '"</literal> <operator>+</operator> <call><name><name>keytabDescriptor</name><operator>.</operator><name>getGroupName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>setGroupAccess</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated '"</literal> <operator>+</operator> <name>YARN_LLAP_ZK_HIVE_KERBEROS_IDENTITY</name> <operator>+</operator> <literal type="string">"' keytab descriptor group access = '"</literal> <operator>+</operator> <call><name><name>keytabDescriptor</name><operator>.</operator><name>getGroupAccess</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"'"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                <comment type="line">// Need this as trigger to update the HIVE_LLAP_ZK_SM_KEYTAB_FILE configs later.</comment>
+
+                <comment type="line">// Get the keytab file 'config name'.</comment>
+                <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>splits</name> <init>= <expr><call><name><name>keytabDescriptor</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>split</name><argument_list>(<argument><expr><literal type="string">"/"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><name>splits</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name><name>splits</name><operator>.</operator><name>length</name></name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition> <block>{<block_content>
+                  <expr_stmt><expr><call><name>updateYarnKerberosDescUpdatedList</name><argument_list>(<argument><expr><name><name>splits</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"    Updated 'yarnKerberosDescUpdatedList' = "</literal> <operator>+</operator> <call><name>getYarnKerberosDescUpdatedList</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public <function><type><name>void</name></type> <name>updateYarnKerberosDescUpdatedList</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>val</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>yarnKerberosDescUpdatedList</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>val</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getYarnKerberosDescUpdatedList</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>yarnKerberosDescUpdatedList</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>protected</specifier> <name>void</name></type> <name>updateHiveConfigs</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>AmbariException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>AmbariManagementController</name></type> <name>ambariManagementController</name> <init>= <expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>AmbariManagementController</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Clusters</name></type> <name>clusters</name> <init>= <expr><call><name><name>ambariManagementController</name><operator>.</operator><name>getClusters</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>clusters</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Cluster</name></argument>&gt;</argument_list></name></type> <name>clusterMap</name> <init>= <expr><call><name>getCheckedClusterMap</name><argument_list>(<argument><expr><name>clusters</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>clusterMap</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>clusterMap</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <for>for <control>(<init><decl><type><specifier>final</specifier> <name>Cluster</name></type> <name>cluster</name> <range>: <expr><call><name><name>clusterMap</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <comment type="line">// Updating YARN-&gt;NodeManager kerebros descriptor : (1). 'llap_zk_hive' and (2). 'llap_task_hive''s associated configs</comment>
+          <comment type="line">// hive-interactive-site/hive.llap.zk.sm.keytab.file and hive-interactive-site/hive.llap.task.keytab.file respectively,</comment>
+          <comment type="line">// based on what hive-interactive-site/hive.llap.daemon.keytab.file has.</comment>
+          <decl_stmt><decl><type><name>Config</name></type> <name>hsiSiteConfig</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getDesiredConfigByType</name></name><argument_list>(<argument><expr><name>HIVE_INTERACTIVE_SITE</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>hsiSiteConfigProperties</name> <init>= <expr><call><name><name>hsiSiteConfig</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>hsiSiteConfigProperties</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator>
+                  <call><name><name>hsiSiteConfigProperties</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>HIVE_LLAP_DAEMON_KEYTAB_FILE</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>identities</name> <init>= <expr><block>{<expr><name>HIVE_LLAP_ZK_SM_KEYTAB_FILE</name></expr>, <expr><name>HIVE_LLAP_TASK_KEYTAB_FILE</name></expr>}</block></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>newProperties</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>String</name></type> <name>identity</name> <range>: <expr><name>identities</name></expr></range></decl></init>)</control> <block>{<block_content>
+              <comment type="line">// Update only if we were able to modify the corresponding kerberos descriptor,</comment>
+              <comment type="line">// reflected in list 'getYarnKerberosDescUpdatedList'.</comment>
+              <if_stmt><if>if <condition>(<expr><call><name>getYarnKerberosDescUpdatedList</name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><name>identity</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>hsiSiteConfigProperties</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>identity</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>newProperties</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>identity</name></expr></argument>, <argument><expr><call><name><name>hsiSiteConfigProperties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>HIVE_LLAP_DAEMON_KEYTAB_FILE</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></for>
+
+            <comment type="line">// Update step.</comment>
+            <if_stmt><if>if <condition>(<expr><call><name><name>newProperties</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+              <try>try <block>{<block_content>
+                <expr_stmt><expr><call><name>updateConfigurationPropertiesForCluster</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>HIVE_INTERACTIVE_SITE</name></expr></argument>, <argument><expr><name>newProperties</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Updated HSI config(s) : "</literal> <operator>+</operator> <call><name><name>newProperties</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" with value(s) = "</literal> <operator>+</operator> <call><name><name>newProperties</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call><operator>+</operator><literal type="string">" respectively."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>AmbariException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>e</name><operator>.</operator><name>printStackTrace</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block></catch></try>
+            </block_content>}</block></if></if_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+
+   <function><type><specifier>protected</specifier> <name>void</name></type> <name>updateAmsConfigs</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>AmbariException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>AmbariManagementController</name></type> <name>ambariManagementController</name> <init>= <expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>AmbariManagementController</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Clusters</name></type> <name>clusters</name> <init>= <expr><call><name><name>ambariManagementController</name><operator>.</operator><name>getClusters</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.5</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.5</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+<name>index</name> <name>fca14ab9c8</name><operator>..</operator><literal type="number">8e285e909a</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.5</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.5</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+@@ <operator>-</operator><literal type="number">102</literal></expr><operator>,</operator><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">102</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt>
+             </block_content>}</block></function><operator>,</operator>
+             <block>{<block_content>
+               <expr_stmt><expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"llap_zk_hive"</literal></expr><operator>,</operator>
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr><operator>,</operator>
+               <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.principal"</literal></expr>
+               }</block></expr><operator>,</operator>
+               <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.llap.zk.sm.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.keytab.file"</literal></expr>
+               }</block></expr><operator>,</operator>
+               <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.6</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.6</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+<name>index</name> <name>e0417bff39</name><operator>..</operator><name>bd6798cada</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.6</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>stacks</name><operator>/</operator><name>HDP</name><operator>/</operator><literal type="number">2.6</literal><operator>/</operator><name>services</name><operator>/</operator><name>YARN</name><operator>/</operator><name><name>kerberos</name><operator>.</operator><name>json</name></name>
+@@ <operator>-</operator><literal type="number">107</literal></expr>,<expr><literal type="number">21</literal> <operator>+</operator><literal type="number">107</literal></expr>,<expr><literal type="number">11</literal> @@</expr>
+             }</block></expr><operator>,</operator>
+             <expr><block>{
+               <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"llap_task_hive"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>,
+               <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.task.principal"</literal></expr>
+               }</block></expr>,
+               <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.llap.task.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.task.keytab.file"</literal></expr>
+               }</block></expr>,
+               <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+@@ <expr><operator>-</operator><literal type="number">130</literal></expr>,<expr><literal type="number">21</literal> <operator>+</operator><literal type="number">120</literal></expr>,<expr><literal type="number">11</literal> @@</expr>
+             }</block></expr>,
+             <expr><block>{
+               <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"llap_zk_hive"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>,
+               <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.principal"</literal></expr>
+               }</block></expr>,
+               <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.llap.zk.sm.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                 <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.keytab.file"</literal></expr>
+               }</block></expr>,
+               <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog260Test</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog260Test</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cc58988b34</name><operator>..</operator><literal type="number">22e8ccc5ad</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog260Test</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog260Test</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">75</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">75</literal></expr>,<expr><literal type="number">9</literal> @@</expr> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosComponentDescriptor</name></name>;</import></block></expr>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosDescriptor</name></name>;</import></block></expr>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosDescriptorFactory</name></name>;</import></block></expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosIdentityDescriptor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosKeytabDescriptor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosPrincipalDescriptor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosPrincipalType</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>KerberosServiceDescriptor</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>state</name><operator>.</operator><name>stack</name><operator>.</operator><name>OsFamily</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>io</name><operator>.</operator><name>FileUtils</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">648</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">651</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>artifactEntity</name><operator>.</operator><name>getArtifactData</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>toMap</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+ 
+     <expr><name><name>Capture</name><argument_list type="generic">&lt;<argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>captureMap</name> <operator>=</operator> <call><name>newCapture</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>artifactEntity</name><operator>.</operator><name>getForeignKeys</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><call><name><name>Collections</name><operator>.</operator><name>singletonMap</name></name><argument_list>(<argument><expr><literal type="string">"cluster"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>artifactEntity</name><operator>.</operator><name>getForeignKeys</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><call><name><name>Collections</name><operator>.</operator><name>singletonMap</name></name><argument_list>(<argument><expr><literal type="string">"cluster"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>times</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>artifactEntity</name><operator>.</operator><name>setArtifactData</name></name><argument_list>(<argument><expr><call><name>capture</name><argument_list>(<argument><expr><name>captureMap</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>expectLastCall</name><argument_list>()</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">665</literal></expr>,<expr><literal type="number">11</literal> <operator>+</operator><literal type="number">668</literal></expr>,<expr><literal type="number">26</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>config</name><operator>.</operator><name>getTag</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"version1"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>config</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"ranger-kms-audit"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name> <name>hsiProperties</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>hsiProperties</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"hive.llap.daemon.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.service.keytab"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>hsiProperties</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"hive.llap.zk.sm.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.llap.zk.sm.keytab"</literal></expr></argument>)</argument_list></call></expr>;
+
+    <expr><name>Config</name> <name>hsiConfig</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>Config</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>hsiConfig</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>hsiProperties</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>hsiConfig</name><operator>.</operator><name>getPropertiesAttributes</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name><name>Collections</name><operator>.</operator></name>&lt;<name>String</name></expr></argument>, <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name><operator>&gt;</operator><call><name>emptyMap</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>hsiConfig</name><operator>.</operator><name>getTag</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"version1"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>hsiConfig</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+
+     <expr><name>Config</name> <name>newConfig</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>Config</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>newConfig</name><operator>.</operator><name>getTag</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"version2"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>newConfig</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"ranger-kms-audit"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><name>Config</name> <name>newHsiConfig</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>Config</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>newHsiConfig</name><operator>.</operator><name>getTag</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"version2"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>newHsiConfig</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+
+     <expr><name>ServiceConfigVersionResponse</name> <name>response</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>ServiceConfigVersionResponse</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>ServiceConfigVersionResponse</name> <name>response1</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>ServiceConfigVersionResponse</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><name>StackId</name> <name>stackId</name> <operator>=</operator> <call><name>createMock</name><argument_list>(<argument><expr><name><name>StackId</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">683</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">701</literal></expr>,<expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getConfig</name></name><argument_list>(<argument><expr><call><name>eq</name><argument_list>(<argument><expr><literal type="string">"ranger-kms-audit"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyString</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>newConfig</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>addDesiredConfig</name></name><argument_list>(<argument><expr><literal type="string">"ambari-upgrade"</literal></expr></argument>, <argument><expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><name>newConfig</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"Updated ranger-kms-audit during Ambari Upgrade from 2.5.2 to 2.6.0."</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>response</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+ 
+    <comment type="line">//HIVE</comment>
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getDesiredConfigByType</name></name><argument_list>(<argument><expr><literal type="string">"hive-site"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>hsiConfig</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getDesiredConfigByType</name></name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>hsiConfig</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getConfigsByType</name></name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><call><name><name>Collections</name><operator>.</operator><name>singletonMap</name></name><argument_list>(<argument><expr><literal type="string">"version1"</literal></expr></argument>, <argument><expr><name>hsiConfig</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getServiceByConfigType</name></name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="string">"HIVE"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getConfig</name></name><argument_list>(<argument><expr><call><name>eq</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyString</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>newHsiConfig</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+  
+
+     <expr><name>final</name> <name>Clusters</name> <name>clusters</name> <operator>=</operator> <call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>Clusters</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>clusters</name><operator>.</operator><name>getCluster</name></name><argument_list>(<argument><expr><literal type="number">2L</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">693</literal></expr>,<expr><literal type="number">12</literal> <operator>+</operator><literal type="number">719</literal></expr>,<expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+         <expr><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call>
+         <operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><call><name>replay</name><argument_list>(<argument><expr><name>artifactDAO</name></expr></argument>, <argument><expr><name>artifactEntity</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>clusters</name></expr></argument>, <argument><expr><name>config</name></expr></argument>, <argument><expr><name>newConfig</name></expr></argument>, <argument><expr><name>response</name></expr></argument>, <argument><expr><name>controller</name></expr></argument>, <argument><expr><name>stackId</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name><name>Capture</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></extends></argument>&gt;</argument_list></name> <name>captureHsiProperties</name> <operator>=</operator> <call><name>newCapture</name><argument_list>()</argument_list></call></expr>;
+
+    <expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>controller</name><operator>.</operator><name>createConfig</name></name><argument_list>(<argument><expr><call><name>eq</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>eq</name><argument_list>(<argument><expr><name>stackId</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>eq</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>capture</name><argument_list>(<argument><expr><name>captureHsiProperties</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyString</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>anyObject</name><argument_list>(<argument><expr><name><name>Map</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;
+
+    <expr><call><name>replay</name><argument_list>(<argument><expr><name>artifactDAO</name></expr></argument>, <argument><expr><name>artifactEntity</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>clusters</name></expr></argument>, <argument><expr><name>config</name></expr></argument>, <argument><expr><name>newConfig</name></expr></argument>, <argument><expr><name>hsiConfig</name></expr></argument>, <argument><expr><name>newHsiConfig</name></expr></argument>, <argument><expr><name>response</name></expr></argument>, <argument><expr><name>response1</name></expr></argument>, <argument><expr><name>controller</name></expr></argument>, <argument><expr><name>stackId</name></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><name>UpgradeCatalog260</name> <name>upgradeCatalog260</name> <operator>=</operator> <call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>UpgradeCatalog260</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>upgradeCatalog260</name><operator>.</operator><name>updateKerberosDescriptorArtifact</name></name><argument_list>(<argument><expr><name>artifactDAO</name></expr></argument>, <argument><expr><name>artifactEntity</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>verify</name><argument_list>(<argument><expr><name>artifactDAO</name></expr></argument>, <argument><expr><name>artifactEntity</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>clusters</name></expr></argument>, <argument><expr><name>config</name></expr></argument>, <argument><expr><name>newConfig</name></expr></argument>, <argument><expr><name>response</name></expr></argument>, <argument><expr><name>controller</name></expr></argument>, <argument><expr><name>stackId</name></expr></argument>)</argument_list></call></expr>;
+
+     <expr><name>KerberosDescriptor</name> <name>kerberosDescriptorUpdated</name> <operator>=</operator> <operator>new</operator> <call><name>KerberosDescriptorFactory</name><argument_list>()</argument_list></call><operator>.</operator><call><name>createInstance</name><argument_list>(<argument><expr><call><name><name>captureMap</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>kerberosDescriptorUpdated</name></expr></argument>)</argument_list></call></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">722</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">753</literal></expr>,<expr><literal type="number">39</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+     <expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><call><name><name>captureProperties</name><operator>.</operator><name>hasCaptured</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name> <name>newProperties</name> <operator>=</operator> <call><name><name>captureProperties</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="string">"correct_value@EXAMPLE.COM"</literal></expr></argument>, <argument><expr><call><name><name>newProperties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"xasecure.audit.jaas.Client.option.principal"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+
+    <comment type="line">// YARN's NodeManager identities (1). 'llap_zk_hive' and (2). 'llap_task_hive' checks after modifications.</comment>
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>identitiesMap</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>identitiesMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"llap_zk_hive"</literal></expr></argument>, <argument><expr><operator>new</operator> <class><super><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{<block>{<block_content>
+      <expr_stmt><expr><call><name>add</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site/hive.llap.zk.sm.keytab.file"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>add</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site/hive.llap.zk.sm.principal"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/>}</block_content>}</block>)</block><empty_stmt>;</empty_stmt></class></expr></argument></argument_list></call></expr>
+    <call><name><name>identitiesMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"llap_task_hive"</literal></expr></argument>, <argument><expr><operator>new</operator> <class><super><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{<block>{<block_content>
+      <expr_stmt><expr><call><name>add</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site/hive.llap.task.keytab.file"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>add</name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site/hive.llap.task.principal"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/>}</block_content>}</block>)</block><empty_stmt>;</empty_stmt></class></expr></argument></argument_list></call></block></expr>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>llapIdentity</name> <range>: <expr><call><name><name>identitiesMap</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>KerberosIdentityDescriptor</name></type> <name>yarnKerberosIdentityDescriptor</name> <init>= <expr><call><name><name>kerberosDescriptorUpdated</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><literal type="string">"YARN"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getComponent</name><argument_list>(<argument><expr><literal type="string">"NODEMANAGER"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getIdentity</name><argument_list>(<argument><expr><name>llapIdentity</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>yarnKerberosIdentityDescriptor</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosIdentityDescriptor</name><operator>.</operator><name>getReference</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <decl_stmt><decl><type><name>KerberosKeytabDescriptor</name></type> <name>yarnKerberosKeytabDescriptor</name> <init>= <expr><call><name><name>yarnKerberosIdentityDescriptor</name><operator>.</operator><name>getKeytabDescriptor</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>yarnKerberosKeytabDescriptor</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getGroupAccess</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getGroupName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getOwnerAccess</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getOwnerName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getFile</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><call><name><name>identitiesMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>llapIdentity</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>yarnKerberosKeytabDescriptor</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <decl_stmt><decl><type><name>KerberosPrincipalDescriptor</name></type> <name>yarnKerberosPrincipalDescriptor</name> <init>= <expr><call><name><name>yarnKerberosIdentityDescriptor</name><operator>.</operator><name>getPrincipalDescriptor</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>yarnKerberosPrincipalDescriptor</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosPrincipalDescriptor</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>KerberosPrincipalType</name><operator>.</operator><name>SERVICE</name></name></expr></argument>, <argument><expr><call><name><name>yarnKerberosPrincipalDescriptor</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>yarnKerberosPrincipalDescriptor</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><call><name><name>identitiesMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>llapIdentity</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>yarnKerberosPrincipalDescriptor</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></for>}</block></expr>
+   }</block>
+ 
+   @<name>Test</name>
+@@ <operator>-</operator><literal type="number">780</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">844</literal></expr>,<expr><literal type="number">72</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog260Test</name> <block>{
+     <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>Maps</name><operator>.</operator><name>difference</name></name><argument_list>(<argument><expr><name>newProperties</name></expr></argument>, <argument><expr><name>updatedProperties</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>areEqual</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+  @<name>Test</name>
+  <specifier>public</specifier> <name>void</name> <call><name>testUpdateHiveConfigs</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name> <name>oldProperties</name> <operator>=</operator> <operator>new</operator> <class><super><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></super><argument_list>(</argument_list></class></expr></block></expr></argument></throws></expr>) <block>{
+      <expr><block>{
+        <expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.zk.sm.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.llap.zk.sm.keytab"</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.daemon.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.service.keytab"</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.task.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.llap.task.keytab"</literal></expr></argument>)</argument_list></call></expr>;
+      }</block></expr>
+    }</block></block></expr>;
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name> <name>newProperties</name> <operator>=</operator> <operator>new</operator> <class><super><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+      <block>{<block_content>
+        <expr_stmt><expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.zk.sm.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.service.keytab"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.daemon.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.service.keytab"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"hive.llap.task.keytab.file"</literal></expr></argument>, <argument><expr><literal type="string">"/etc/security/keytabs/hive.service.keytab"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></block></class></expr>}</block></expr></expr_stmt>
+    </block_content>}</block><empty_stmt>;</empty_stmt>
+
+    <decl_stmt><decl><type><name>EasyMockSupport</name></type> <name>easyMockSupport</name> <init>= <expr><operator>new</operator> <call><name>EasyMockSupport</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>Clusters</name></type> <name>clusters</name> <init>= <expr><call><name><name>easyMockSupport</name><operator>.</operator><name>createNiceMock</name></name><argument_list>(<argument><expr><name><name>Clusters</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Cluster</name></type> <name>cluster</name> <init>= <expr><call><name><name>easyMockSupport</name><operator>.</operator><name>createNiceMock</name></name><argument_list>(<argument><expr><name><name>Cluster</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Config</name></type> <name>mockHsiConfigs</name> <init>= <expr><call><name><name>easyMockSupport</name><operator>.</operator><name>createNiceMock</name></name><argument_list>(<argument><expr><name><name>Config</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>clusters</name><operator>.</operator><name>getClusters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Cluster</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{<block>{<block_content>
+      <expr_stmt><expr><call><name>put</name><argument_list>(<argument><expr><literal type="string">"normal"</literal></expr></argument>, <argument><expr><name>cluster</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block>}</block></class></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>cluster</name><operator>.</operator><name>getDesiredConfigByType</name></name><argument_list>(<argument><expr><literal type="string">"hive-interactive-site"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>mockHsiConfigs</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>atLeastOnce</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>mockHsiConfigs</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>oldProperties</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>Injector</name></type> <name>injector</name> <init>= <expr><call><name><name>easyMockSupport</name><operator>.</operator><name>createNiceMock</name></name><argument_list>(<argument><expr><name><name>Injector</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>Gson</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>MaintenanceStateHelper</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>replay</name><argument_list>(<argument><expr><name>injector</name></expr></argument>, <argument><expr><name>clusters</name></expr></argument>, <argument><expr><name>mockHsiConfigs</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>AmbariManagementControllerImpl</name></type> <name>controller</name> <init>= <expr><call><name>createMockBuilder</name><argument_list>(<argument><expr><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>addMockedMethod</name><argument_list>(<argument><expr><literal type="string">"createConfiguration"</literal></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>addMockedMethod</name><argument_list>(<argument><expr><literal type="string">"getClusters"</literal></expr></argument>, <argument><expr><operator>new</operator> <name><name>Class</name><index>[]</index></name> <block>{ }</block></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>addMockedMethod</name><argument_list>(<argument><expr><literal type="string">"createConfig"</literal></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>withConstructor</name><argument_list>(<argument><expr><call><name>createNiceMock</name><argument_list>(<argument><expr><name><name>ActionManager</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>clusters</name></expr></argument>, <argument><expr><name>injector</name></expr></argument>)</argument_list></call>
+            <operator>.</operator><call><name>createNiceMock</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>Injector</name></type> <name>injector2</name> <init>= <expr><call><name><name>easyMockSupport</name><operator>.</operator><name>createNiceMock</name></name><argument_list>(<argument><expr><name><name>Injector</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Capture</name><argument_list type="generic">&lt;<argument><name>Map</name></argument>&gt;</argument_list></name></type> <name>propertiesCapture</name> <init>= <expr><call><name><name>EasyMock</name><operator>.</operator><name>newCapture</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>injector2</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>AmbariManagementController</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>controller</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>controller</name><operator>.</operator><name>getClusters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>clusters</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>controller</name><operator>.</operator><name>createConfig</name></name><argument_list>(<argument><expr><call><name>anyObject</name><argument_list>(<argument><expr><name><name>Cluster</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyObject</name><argument_list>(<argument><expr><name><name>StackId</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyString</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>capture</name><argument_list>(<argument><expr><name>propertiesCapture</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>anyString</name><argument_list>()</argument_list></call></expr></argument>,
+            <argument><expr><call><name>anyObject</name><argument_list>(<argument><expr><name><name>Map</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><call><name>createNiceMock</name><argument_list>(<argument><expr><name><name>Config</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>replay</name><argument_list>(<argument><expr><name>controller</name></expr></argument>, <argument><expr><name>injector2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// This tests the update of HSI config 'hive.llap.daemon.keytab.file'.</comment>
+    <decl_stmt><decl><type><name>UpgradeCatalog260</name></type>  <name>upgradeCatalog260</name> <init>= <expr><operator>new</operator> <call><name>UpgradeCatalog260</name><argument_list>(<argument><expr><name>injector2</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Set 'isYarnKerberosDescUpdated' value to true, implying kerberos descriptor was updated.</comment>
+    <expr_stmt><expr><call><name><name>upgradeCatalog260</name><operator>.</operator><name>updateYarnKerberosDescUpdatedList</name></name><argument_list>(<argument><expr><literal type="string">"hive.llap.zk.sm.keytab.file"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>upgradeCatalog260</name><operator>.</operator><name>updateYarnKerberosDescUpdatedList</name></name><argument_list>(<argument><expr><literal type="string">"hive.llap.task.keytab.file"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>upgradeCatalog260</name><operator>.</operator><name>updateHiveConfigs</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>easyMockSupport</name><operator>.</operator><name>verifyAll</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>updatedProperties</name> <init>= <expr><call><name><name>propertiesCapture</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>Maps</name><operator>.</operator><name>difference</name></name><argument_list>(<argument><expr><name>newProperties</name></expr></argument>, <argument><expr><name>updatedProperties</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>areEqual</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }
+
+   @<function><type><name>Test</name>
+    <specifier>public</specifier> <name>void</name></type> <name>testHDFSWidgetUpdate</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+          <decl_stmt><decl><type><specifier>final</specifier> <name>Clusters</name></type> <name>clusters</name> <init>= <expr><call><name>createNiceMock</name><argument_list>(<argument><expr><name><name>Clusters</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name>kerberos</name><operator>/</operator><name><name>test_kerberos_descriptor_ranger_kms</name><operator>.</operator><name>json</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name>kerberos</name><operator>/</operator><name><name>test_kerberos_descriptor_ranger_kms</name><operator>.</operator><name>json</name></name>
+<name>index</name> <name>e17e12120d</name><operator>..</operator><literal type="number">8c27a9af4c</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name>kerberos</name><operator>/</operator><name><name>test_kerberos_descriptor_ranger_kms</name><operator>.</operator><name>json</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>resources</name><operator>/</operator><name>kerberos</name><operator>/</operator><name><name>test_kerberos_descriptor_ranger_kms</name><operator>.</operator><name>json</name></name>
+@@ <operator>-</operator><literal type="number">104</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">104</literal></expr><operator>,</operator><expr><literal type="number">292</literal> @@
+           ]</expr></expr_stmt>
+         </block_content>}</block></function>
+       ]
+    },
+    <block>{<block_content>
+      <expr_stmt><expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"YARN"</literal></expr><operator>,</operator>
+      <expr><literal type="string">"identities"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"yarn_spnego"</literal></expr>,
+          <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/spnego"</literal></expr>
+        }</block></expr><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"yarn_smokeuser"</literal></expr>,
+          <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/smokeuser"</literal></expr>
+        }</block>
+      ]</index></expr><operator>,</operator>
+      <expr><literal type="string">"configurations"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"yarn-site"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"yarn.timeline-service.enabled"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.type"</literal><operator>:</operator> <literal type="string">"kerberos"</literal></expr>,
+            <expr><literal type="string">"yarn.acl.enable"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"yarn.admin.acl"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user},dr.who"</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.signature.secret"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.signature.secret.file"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.signer.secret.provider"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.signer.secret.provider.object"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.token.validity"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.cookie.domain"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.cookie.path"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.proxyuser.*.hosts"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.proxyuser.*.users"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.proxyuser.*.groups"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.timeline-service.http-authentication.kerberos.name.rules"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.resourcemanager.proxyuser.*.groups"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.resourcemanager.proxyuser.*.hosts"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.resourcemanager.proxyuser.*.users"</literal><operator>:</operator> <literal type="string">""</literal></expr>,
+            <expr><literal type="string">"yarn.resourcemanager.proxy-user-privileges.enabled"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"yarn.resourcemanager.zk-acl"</literal> <operator>:</operator> <literal type="string">"sasl:${principals/YARN/RESOURCEMANAGER/resource_manager_rm|principalPrimary()}:rwcda"</literal></expr>,
+            <expr><literal type="string">"hadoop.registry.secure"</literal> <operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"hadoop.registry.system.accounts"</literal> <operator>:</operator> <literal type="string">"sasl:${principals/YARN/APP_TIMELINE_SERVER/app_timeline_server_yarn|principalPrimary()},sasl:${principals/MAPREDUCE2/HISTORYSERVER/history_server_jhs|principalPrimary()},sasl:${principals/HDFS/NAMENODE/hdfs|principalPrimary()},sasl:${principals/YARN/RESOURCEMANAGER/resource_manager_rm|principalPrimary()},sasl:${principals/HIVE/HIVE_SERVER/hive_server_hive|principalPrimary()}"</literal></expr>,
+            <expr><literal type="string">"hadoop.registry.client.auth"</literal> <operator>:</operator> <literal type="string">"kerberos"</literal></expr>,
+            <expr><literal type="string">"hadoop.registry.jaas.context"</literal> <operator>:</operator> <literal type="string">"Client"</literal></expr>
+          }</block></expr>
+        }</block></expr><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"core-site"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"hadoop.proxyuser.${yarn-env/yarn_user}.groups"</literal><operator>:</operator> <literal type="string">"*"</literal></expr>,
+            <expr><literal type="string">"hadoop.proxyuser.${yarn-env/yarn_user}.hosts"</literal><operator>:</operator> <literal type="string">"${clusterHostInfo/rm_host}"</literal></expr>
+          }</block></expr>
+        }</block><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"capacity-scheduler"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"yarn.scheduler.capacity.root.acl_administer_queue"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+            <expr><literal type="string">"yarn.scheduler.capacity.root.default.acl_administer_queue"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+            <expr><literal type="string">"yarn.scheduler.capacity.root.acl_administer_jobs"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+            <expr><literal type="string">"yarn.scheduler.capacity.root.default.acl_administer_jobs"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+            <expr><literal type="string">"yarn.scheduler.capacity.root.default.acl_submit_applications"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>
+          }</block></expr>
+        }</block><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"ranger-yarn-audit"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"xasecure.audit.jaas.Client.loginModuleName"</literal><operator>:</operator> <literal type="string">"com.sun.security.auth.module.Krb5LoginModule"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.loginModuleControlFlag"</literal><operator>:</operator> <literal type="string">"required"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.useKeyTab"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.storeKey"</literal><operator>:</operator> <literal type="string">"false"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.serviceName"</literal><operator>:</operator> <literal type="string">"solr"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.destination.solr.force.use.inmemory.jaas.config"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>
+          }</block></expr>
+        }</block>
+      ]</index></expr><operator>,</operator>
+      <expr><literal type="string">"components"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"NODEMANAGER"</literal></expr>,
+          <expr><literal type="string">"identities"</literal><operator>:</operator> <index>[
+            <expr><block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"nodemanager_nm"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"nm/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"yarn-site/yarn.nodemanager.principal"</literal></expr>,
+                <expr><literal type="string">"local_username"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/nm.service.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">""</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"yarn-site/yarn.nodemanager.keytab"</literal></expr>
+              }</block></expr>
+            }</block></expr><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"yarn_nodemanager_hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.daemon.service.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.daemon.keytab.file"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+                <expr><literal type="string">"contains"</literal> <operator>:</operator> <index>[<expr><literal type="string">"services"</literal></expr><operator>,</operator> <literal type="string">"HIVE"</literal>]</index></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"llap_task_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.task.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.llap.task.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.task.keytab.file"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+                <expr><literal type="string">"contains"</literal> <operator>:</operator> <index>[<expr><literal type="string">"services"</literal></expr><operator>,</operator> <literal type="string">"HIVE"</literal>]</index></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"llap_zk_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal> <operator>:</operator> <literal type="string">"service"</literal></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.llap.zk.sm.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${yarn-env/yarn_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-interactive-site/hive.llap.zk.sm.keytab.file"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"when"</literal> <operator>:</operator> <block>{
+                <expr><literal type="string">"contains"</literal> <operator>:</operator> <index>[<expr><literal type="string">"services"</literal></expr><operator>,</operator> <literal type="string">"HIVE"</literal>]</index></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"yarn_nodemanager_spnego"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/spnego"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"yarn-site/yarn.nodemanager.webapp.spnego-principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"yarn-site/yarn.nodemanager.webapp.spnego-keytab-file"</literal></expr>
+              }</block></expr>
+            }</block>
+          ]</index></expr>,
+          <expr><literal type="string">"configurations"</literal><operator>:</operator> <index>[
+            <expr><block>{
+              <expr><literal type="string">"yarn-site"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"yarn.nodemanager.container-executor.class"</literal><operator>:</operator> <literal type="string">"org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor"</literal></expr>
+              }</block></expr>
+            }</block></expr>
+          ]</index></expr>
+        }</block></expr>
+      ]</index></expr></expr_stmt>
+    </block_content>}</block><operator>,</operator>
+    <block>{<block_content>
+      <expr_stmt><expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"HIVE"</literal></expr><operator>,</operator>
+      <expr><literal type="string">"identities"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_spnego"</literal></expr>,
+          <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/spnego"</literal></expr>
+        }</block></expr><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_smokeuser"</literal></expr>,
+          <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/smokeuser"</literal></expr>
+        }</block>
+      ]</index></expr><operator>,</operator>
+      <expr><literal type="string">"configurations"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"hive-site"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"hive.metastore.sasl.enabled"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"hive.server2.authentication"</literal><operator>:</operator> <literal type="string">"KERBEROS"</literal></expr>
+          }</block></expr>
+        }</block></expr><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"ranger-hive-audit"</literal><operator>:</operator> <block>{
+            <expr><literal type="string">"xasecure.audit.jaas.Client.loginModuleName"</literal><operator>:</operator> <literal type="string">"com.sun.security.auth.module.Krb5LoginModule"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.loginModuleControlFlag"</literal><operator>:</operator> <literal type="string">"required"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.useKeyTab"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.storeKey"</literal><operator>:</operator> <literal type="string">"false"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.jaas.Client.option.serviceName"</literal><operator>:</operator> <literal type="string">"solr"</literal></expr>,
+            <expr><literal type="string">"xasecure.audit.destination.solr.force.use.inmemory.jaas.config"</literal><operator>:</operator> <literal type="string">"true"</literal></expr>
+          }</block></expr>
+        }</block>
+      ]</index></expr><operator>,</operator>
+      <expr><literal type="string">"components"</literal><operator>:</operator> <index>[
+        <expr><block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"HIVE_SERVER"</literal></expr>,
+          <expr><literal type="string">"identities"</literal><operator>:</operator> <index>[
+            <expr><block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_hdfs"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HDFS/NAMENODE/hdfs"</literal></expr>
+            }</block></expr><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"value"</literal><operator>:</operator> <literal type="string">"hive/_HOST@${realm}"</literal></expr>,
+                <expr><literal type="string">"type"</literal><operator>:</operator> <literal type="string">"service"</literal></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-site/hive.server2.authentication.kerberos.principal"</literal></expr>,
+                <expr><literal type="string">"local_username"</literal><operator>:</operator> <literal type="string">"${hive-env/hive_user}"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"file"</literal><operator>:</operator> <literal type="string">"${keytab_dir}/hive.service.keytab"</literal></expr>,
+                <expr><literal type="string">"owner"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${hive-env/hive_user}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"group"</literal><operator>:</operator> <block>{
+                  <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"${cluster-env/user_group}"</literal></expr>,
+                  <expr><literal type="string">"access"</literal><operator>:</operator> <literal type="string">"r"</literal></expr>
+                }</block></expr>,
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-site/hive.server2.authentication.kerberos.keytab"</literal></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"atlas_kafka"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-atlas-application.properties/atlas.jaas.KafkaClient.option.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-atlas-application.properties/atlas.jaas.KafkaClient.option.keyTab"</literal></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_spnego"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/spnego"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-site/hive.server2.authentication.spnego.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"hive-site/hive.server2.authentication.spnego.keytab"</literal></expr>
+              }</block></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"ranger_audit"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"principal"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"ranger-hive-audit/xasecure.audit.jaas.Client.option.principal"</literal></expr>
+              }</block></expr>,
+              <expr><literal type="string">"keytab"</literal><operator>:</operator> <block>{
+                <expr><literal type="string">"configuration"</literal><operator>:</operator> <literal type="string">"ranger-hive-audit/xasecure.audit.jaas.Client.option.keyTab"</literal></expr>
+              }</block></expr>
+            }</block>
+          ]</index></expr>
+        }</block></expr><operator>,</operator>
+        <block>{
+          <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"HIVE_SERVER_INTERACTIVE"</literal></expr>,
+          <expr><literal type="string">"identities"</literal><operator>:</operator> <index>[
+            <expr><block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_interactive_hdfs"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HDFS/NAMENODE/hdfs"</literal></expr>
+            }</block></expr><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_interactive_hive_server_hive"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/hive_server_hive"</literal></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_interactive_spnego"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/HIVE/HIVE_SERVER/spnego"</literal></expr>
+            }</block><operator>,</operator>
+            <block>{
+              <expr><literal type="string">"name"</literal><operator>:</operator> <literal type="string">"hive_hive_server_interactive_llap_zk_hive"</literal></expr>,
+              <expr><literal type="string">"reference"</literal><operator>:</operator> <literal type="string">"/YARN/NODEMANAGER/llap_zk_hive"</literal></expr>
+            }</block>
+          ]</index></expr>
+        }</block>
+      ]</index></expr></expr_stmt>
+     </block_content>}</block>
+   ]
+ }
+\ <expr><name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

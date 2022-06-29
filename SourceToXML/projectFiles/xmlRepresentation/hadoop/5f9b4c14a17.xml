@@ -1,0 +1,1417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/5f9b4c14a17.java"><expr_stmt><expr><name>From</name> <literal type="number">5f9b4c14a175873b4f82654513e289c657c694eb</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Daryn</name> <name><name>Sharp</name> <argument_list type="generic">&lt;<argument><name>daryn</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">21</literal> <name>Jun</name> <literal type="number">2013</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">09</literal><operator>:</operator><literal type="number">31</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">9421.</literal> <index>[<expr><name>RPC</name> <name>v9</name></expr>]</index> <name>Convert</name> <name>SASL</name> <name>to</name> <name>use</name> <name>ProtoBuf</name> <name>and</name>
+ <name>provide</name> <name>negotiation</name> <call><name>capabilities</name> <argument_list>(<argument><expr><name>daryn</name></expr></argument>)</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1495577 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>dev</name><operator>-</operator><name>support</name><operator>/</operator><name><name>findbugsExcludeFile</name><operator>.</operator><name>xml</name></name>       <operator>|</operator>   <literal type="number">9</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Client</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">13</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>ProtobufRpcEngine</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">120</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Server</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">383</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SaslRpcClient</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">210</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>SaslRpcServer</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">106</literal> <operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>security</name><operator>/</operator><name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name> <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>util</name><operator>/</operator><name><name>ProtoUtil</name><operator>.</operator><name>java</name></name>     <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>proto</name><operator>/</operator><name><name>RpcHeader</name><operator>.</operator><name>proto</name></name>            <operator>|</operator>  <literal type="number">23</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestSaslRPC</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">11</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">625</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">250</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">931affe09b2</literal><operator>..</operator><literal type="number">29ee5e96b62</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">319</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">319</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>Release</name> <literal type="number">2.1.0</literal><operator>-</operator><name>beta</name> <operator>-</operator> <name>UNRELEASED</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">9630.</literal> <index>[<expr><name>RPC</name> <name>v9</name></expr>]</index> <name>Remove</name> <name><name>IpcSerializationType</name><operator>.</operator></name> (<name>Junping</name> <name>Du</name> <name>via</name> <name>llu</name></expr></expr_stmt>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">9421.</literal> <index>[<expr><name>RPC</name> <name>v9</name></expr>]</index> <name>Convert</name> <name>SASL</name> <name>to</name> <name>use</name> <name>ProtoBuf</name> <name>and</name> <name>provide</name>
+    <name>negotiation</name> <call><name>capabilities</name> <argument_list>(<argument><expr><name>daryn</name></expr></argument>)</argument_list></call>
+
+   <name>NEW</name> <name>FEATURES</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">9283.</literal> <name>Add</name> <name>support</name></expr></expr_stmt> <for>for running the Hadoop client on AIX. <control>(<init><expr><name>atm</name></expr></init>)</control><block type="pseudo"><block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>dev</name><operator>-</operator><name>support</name><operator>/</operator><name><name>findbugsExcludeFile</name><operator>.</operator><name>xml</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>dev</name><operator>-</operator><name>support</name><operator>/</operator><name><name>findbugsExcludeFile</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <literal type="number">82b2963c70a</literal><operator>..</operator><literal type="number">8bd26db1806</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>dev</name><operator>-</operator><name>support</name><operator>/</operator><name><name>findbugsExcludeFile</name><operator>.</operator><name>xml</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>dev</name><operator>-</operator><name>support</name><operator>/</operator><name><name>findbugsExcludeFile</name><operator>.</operator><name>xml</name></name>
+@@ <operator>-</operator><literal type="number">320</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">320</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@
+        <operator>&lt;</operator><name>Field</name> <name>name</name><operator>=</operator><literal type="string">"in"</literal> <operator>/</operator><operator>&gt;</operator>
+        <operator>&lt;</operator><name>Bug</name> <name>pattern</name><operator>=</operator><literal type="string">"IS2_INCONSISTENT_SYNC"</literal> <operator>/</operator><operator>&gt;</operator>
+      <operator>&lt;</operator><operator>/</operator><name>Match</name><operator>&gt;</operator>
+     <operator>&lt;</operator><operator>!</operator><operator>--</operator> 
+       <name>The</name></expr></expr_stmt></block_content></block></for> <switch>switch condition for INITIATE is expected to fallthru to RESPONSE
+       to process initial sasl response token included in the INITIATE
+     --&gt;
+     &lt;Match&gt;
+       &lt;Class name="org.apache.hadoop.ipc.Server$Connection" /&gt;
+       &lt;Method name="processSaslMessage" /&gt;
+       &lt;Bug pattern="SF_SWITCH_FALLTHROUGH" /&gt;
+     &lt;/Match&gt;
+ 
+      &lt;!-- Synchronization performed on util.concurrent instance. --&gt;
+      &lt;Match&gt;
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/Client.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/Client.java
+index 672be8dd4c7..3782eef61ac 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/Client.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/Client.java
+@@ -62<operator>,</operator><expr_stmt><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></switch>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicies</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicy</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>retry</name><operator>.</operator><name>RetryPolicy</name><operator>.</operator><name>RetryAction</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>Server</name><operator>.</operator><name>AuthProtocol</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcRequestHeaderProto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcRequestHeaderProto</name><operator>.</operator><name>OperationProto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcResponseHeaderProto</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">751</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">752</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>handleConnectionFailure</name><argument_list>(<argument><expr><name>int</name> <name>curRetries</name></expr></argument>, <argument><expr><name>IOException</name> <name>ioe</name>
+      <operator>*</operator> <operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>+</operator>
+      <operator>*</operator> <operator>|</operator>  <name>Service</name> <call><name>Class</name> <argument_list>(<argument><expr><literal type="number">1</literal> <name>byte</name></expr></argument>)</argument_list></call>          <operator>|</operator>
+      <operator>*</operator> <operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>+</operator>
+     <operator>*</operator> <operator>|</operator>  <call><name>Authmethod</name> <argument_list>(<argument><expr><literal type="number">1</literal> <name>byte</name></expr></argument>)</argument_list></call>             <operator>|</operator>      
+     <operator>*</operator> <operator>|</operator>  <call><name>AuthProtocol</name> <argument_list>(<argument><expr><literal type="number">1</literal> <name>byte</name></expr></argument>)</argument_list></call>           <operator>|</operator>      
+      <operator>*</operator> <operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>+</operator>
+      <operator>*</operator><operator>/</operator>
+     <specifier>private</specifier> <name>void</name> <call><name>writeConnectionHeader</name><argument_list>(<argument><expr><name>OutputStream</name> <name>outStream</name></expr></argument>)</argument_list></call>
+@@ <operator>-</operator><literal type="number">761</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">762</literal></expr></argument>,<argument><expr><literal type="number">15</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>writeConnectionHeader</name><argument_list>(<argument><expr><name>OutputStream</name> <name>outStream</name></expr></argument>)</argument_list></call>
+       <call><name><name>out</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><call><name><name>Server</name><operator>.</operator><name>HEADER</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+       <argument><expr><call><name><name>out</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name><name>Server</name><operator>.</operator><name>CURRENT_VERSION</name></name></expr></argument>)</argument_list></call></expr></argument>;
+       <argument><expr><call><name><name>out</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>serviceClass</name></expr></argument>)</argument_list></call></expr></argument>;
+      <argument><expr><call><name><name>authMethod</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>out</name></expr></argument>)</argument_list></call></expr></argument>;
+      <argument><expr><name>final</name> <name>AuthProtocol</name> <name>authProtocol</name></expr></argument>;
+      switch <argument><expr><operator>(</operator><name>authMethod</name><operator>)</operator> <block>{
+        <case>case <expr><name>SIMPLE</name></expr>:</case>
+          <expr><name>authProtocol</name> <operator>=</operator> <name><name>AuthProtocol</name><operator>.</operator><name>NONE</name></name></expr>;
+          <break>break;</break></block></expr></argument>
+        <default>default:</default>
+          <argument><expr><name>authProtocol</name> <operator>=</operator> <name><name>AuthProtocol</name><operator>.</operator><name>SASL</name></name></expr></argument>;</argument_list></call></expr></expr_stmt>
+      }
+      out<expr_stmt><expr><operator>.</operator><call><name>write</name><argument_list>(<argument><expr><name><name>authProtocol</name><operator>.</operator><name>callId</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>out</name><operator>.</operator><name>flush</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     }
+     
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>ProtobufRpcEngine</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>ProtobufRpcEngine</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b880828d06d</name><operator>..</operator><literal type="number">5be96270a89</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>ProtobufRpcEngine</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>ProtobufRpcEngine</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>Client</name><operator>.</operator><name>ConnectionId</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RPC</name><operator>.</operator><name>RpcInvoker</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>ProtobufRpcEngineProtos</name><operator>.</operator><name>RequestHeaderProto</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcRequestHeaderProto</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcResponseHeaderProto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>UserGroupInformation</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>token</name><operator>.</operator><name>SecretManager</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>token</name><operator>.</operator><name>TokenIdentifier</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">48</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">50</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>util</name><operator>.</operator><name>Time</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>AbstractMessageLite</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>BlockingService</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>CodedOutputStream</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>Descriptors</name><operator>.</operator><name>MethodDescriptor</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>GeneratedMessage</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>Message</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>ServiceException</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>TextFormat</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">279</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">281</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>ConnectionId</name> <call><name>getConnectionId</name><argument_list>()</argument_list></call> <block>{
+    <expr><operator>*</operator> <name><name>Protobuf</name><operator>.</operator> <name>Several</name></name> <name>methods</name> <name>on</name> <block>{@<expr><name>link</name> <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>Server</name></name> <name>and</name> <name>RPC</name></expr>}</block> 
+    <operator>*</operator> <name>use</name> <name>type</name> <name>Writable</name> <name>as</name> <name>a</name> <name>wrapper</name> <name>to</name> <name>work</name> <name>across</name> <name>multiple</name> <name>RpcEngine</name> <name><name>kinds</name><operator>.</operator></name>
+    *<operator>/</operator>
+  <specifier>private</specifier> <specifier>static</specifier> <name>class</name> <name>RpcRequestWrapper</name> implements <name>RpcWrapper</name> <block>{
+    <expr><name>RequestHeaderProto</name> <name>requestHeader</name></expr>;
+  <expr><specifier>private</specifier> <specifier>static</specifier> <specifier>abstract</specifier> <name>class</name> <name><name>RpcMessageWithHeader</name><argument_list type="generic">&lt;<argument><name>T</name> <extends>extends <name>GeneratedMessage</name></extends></argument>&gt;</argument_list></name>
+    implements <name>RpcWrapper</name> <block>{
+    <expr><name>T</name> <name>requestHeader</name></expr>;
+     <expr><name>Message</name> <name>theRequest</name></expr>; <comment type="line">// for clientSide, the request is here</comment>
+     <expr><name><name>byte</name><index>[]</index></name> <name>theRequestRead</name></expr>; <comment type="line">// for server side, the request is here</comment>
+ 
+    @<expr><call><name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unused"</literal></expr></argument>)</argument_list></call>
+    <specifier>public</specifier> <call><name>RpcRequestWrapper</name><argument_list>()</argument_list></call> <block>{
+    <expr><specifier>public</specifier> <call><name>RpcMessageWithHeader</name><argument_list>()</argument_list></call> <block>{
+     }</block>
+ 
+    <call><name>RpcRequestWrapper</name><argument_list>(<argument><expr><name>RequestHeaderProto</name> <name>requestHeader</name></expr></argument>, <argument><expr><name>Message</name> <name>theRequest</name></expr></argument>)</argument_list></call> <block>{
+    <expr><specifier>public</specifier> <call><name>RpcMessageWithHeader</name><argument_list>(<argument><expr><name>T</name> <name>requestHeader</name></expr></argument>, <argument><expr><name>Message</name> <name>theRequest</name></expr></argument>)</argument_list></call> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>requestHeader</name></name> <operator>=</operator> <name>requestHeader</name></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>theRequest</name></name> <operator>=</operator> <name>theRequest</name></expr>;
+     }</block>
+@@ <operator>-</operator><literal type="number">303</literal></expr>,<expr><literal type="number">21</literal> <operator>+</operator><literal type="number">305</literal></expr>,<expr><literal type="number">31</literal> @@ <specifier>public</specifier> <name>void</name> <call><name>write</name><argument_list>(<argument><expr><name>DataOutput</name> <name>out</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+ 
+     <expr><annotation>@<name>Override</name></annotation>
+     <specifier>public</specifier> <name>void</name> <call><name>readFields</name><argument_list>(<argument><expr><name>DataInput</name> <name>in</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><name>int</name> <name>length</name> <operator>=</operator> <call><name><name>ProtoUtil</name><operator>.</operator><name>readRawVarint32</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+      <expr><name><name>byte</name><index>[]</index></name> <name>bytes</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><name>length</name></expr>]</index></name></expr>;
+      <expr><name>requestHeader</name> <operator>=</operator> <call><name>parseHeaderFrom</name><argument_list>(<argument><expr><call><name>readVarintBytes</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><name>theRequestRead</name> <operator>=</operator> <call><name>readMessageRequest</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;
+    }</block>
+
+    <specifier>abstract</specifier> <name>T</name> <call><name>parseHeaderFrom</name><argument_list>(<argument><expr><name><name>byte</name><index>[]</index></name> <name>bytes</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr>;
+
+    <expr><name><name>byte</name><index>[]</index></name> <call><name>readMessageRequest</name><argument_list>(<argument><expr><name>DataInput</name> <name>in</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+      <return>return <expr><call><name>readVarintBytes</name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+    }</block>
+
+    <specifier>private</specifier> <specifier>static</specifier> <name><name>byte</name><index>[]</index></name> <call><name>readVarintBytes</name><argument_list>(<argument><expr><name>DataInput</name> <name>in</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+      <expr><name>final</name> <name>int</name> <name>length</name> <operator>=</operator> <call><name><name>ProtoUtil</name><operator>.</operator><name>readRawVarint32</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+      <expr><name>final</name> <name><name>byte</name><index>[]</index></name> <name>bytes</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><name>length</name></expr>]</index></name></expr>;
+       <expr><call><name><name>in</name><operator>.</operator><name>readFully</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;
+      <expr><name>requestHeader</name> <operator>=</operator> <call><name><name>RequestHeaderProto</name><operator>.</operator><name>parseFrom</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;
+      <expr><name>length</name> <operator>=</operator> <call><name><name>ProtoUtil</name><operator>.</operator><name>readRawVarint32</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;
+      <expr><name>theRequestRead</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><name>length</name></expr>]</index></name></expr>;
+      <expr><call><name><name>in</name><operator>.</operator><name>readFully</name></name><argument_list>(<argument><expr><name>theRequestRead</name></expr></argument>)</argument_list></call></expr>;
+      <return>return <expr><name>bytes</name></expr>;</return></block></expr>
+     }</block>
+    
+    @<name>Override</name>
+    <specifier>public</specifier> <name>String</name> <call><name>toString</name><argument_list>()</argument_list></call> <block>{
+      <return>return <expr><call><name><name>requestHeader</name><operator>.</operator><name>getDeclaringClassProtocolName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"."</literal> <operator>+</operator>
+          <call><name><name>requestHeader</name><operator>.</operator><name>getMethodName</name></name><argument_list>()</argument_list></call></expr>;</return>
+
+    <specifier>public</specifier> <name>T</name> <call><name>getMessageHeader</name><argument_list>()</argument_list></call> <block>{
+      <return>return <expr><name>requestHeader</name></expr>;</return>
+     }</block>
+ 
+    <specifier>public</specifier> <name><name>byte</name><index>[]</index></name> <call><name>getMessageBytes</name><argument_list>()</argument_list></call> <block>{
+      <return>return <expr><name>theRequestRead</name></expr>;</return>
+    }</block>
+    
+     @<name>Override</name>
+     <specifier>public</specifier> <name>int</name> <call><name>getLength</name><argument_list>()</argument_list></call> <block>{
+       <expr><name>int</name> <name>headerLen</name> <operator>=</operator> <call><name><name>requestHeader</name><operator>.</operator><name>getSerializedSize</name></name><argument_list>()</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">328</literal></expr>,<expr><literal type="number">12</literal> <operator>+</operator><literal type="number">340</literal></expr>,<expr><literal type="number">78</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>getLength</name><argument_list>()</argument_list></call> <block>{
+         <expr><name>reqLen</name> <operator>=</operator> <name><name>theRequestRead</name><operator>.</operator><name>length</name></name></expr>;
+       }</block></expr> <if_stmt><else>else <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(
+            <argument><expr><literal type="string">"getLenght on uninilialized RpcWrapper"</literal></expr></argument>)</argument_list></call></expr>;</throw>      
+            <expr_stmt><expr><literal type="string">"getLength on uninitialized RpcWrapper"</literal></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></else></if_stmt>      
+       }</block></block></expr></expr_stmt>
+       <return>return <expr><call><name><name>CodedOutputStream</name><operator>.</operator><name>computeRawVarint32Size</name></name><argument_list>(<argument><expr><name>headerLen</name></expr></argument>)</argument_list></call> <operator>+</operator>  <name>headerLen</name>
+           <operator>+</operator> <call><name><name>CodedOutputStream</name><operator>.</operator><name>computeRawVarint32Size</name></name><argument_list>(<argument><expr><name>reqLen</name></expr></argument>)</argument_list></call> <operator>+</operator> <name>reqLen</name></expr>;</return>
+     }
+   }
+  
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>RpcRequestWrapper</name>
+  <super_list><extends>extends <super><name><name>RpcMessageWithHeader</name><argument_list type="generic">&lt;<argument><name>RequestHeaderProto</name></argument>&gt;</argument_list></name></super></extends></super_list> <block>{
+    <constructor><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unused"</literal></expr></argument>)</argument_list></annotation>
+    <specifier>public</specifier> <name>RpcRequestWrapper</name><parameter_list>()</parameter_list> <block>{<block_content/>}</block></constructor>
+    
+    <constructor><specifier>public</specifier> <name>RpcRequestWrapper</name><parameter_list>(
+        <parameter><decl><type><name>RequestHeaderProto</name></type> <name>requestHeader</name></decl></parameter>, <parameter><decl><type><name>Message</name></type> <name>theRequest</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>requestHeader</name></expr></argument>, <argument><expr><name>theRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+    
+    <function><annotation>@<name>Override</name></annotation>
+    <type><name>RequestHeaderProto</name></type> <name>parseHeaderFrom</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>bytes</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <return>return <expr><call><name><name>RequestHeaderProto</name><operator>.</operator><name>parseFrom</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+    
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><call><name><name>requestHeader</name><operator>.</operator><name>getDeclaringClassProtocolName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"."</literal> <operator>+</operator>
+          <call><name><name>requestHeader</name><operator>.</operator><name>getMethodName</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <class><annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>LimitedPrivate</name></name><argument_list>(<argument><expr><block>{<expr><literal type="string">"RPC"</literal></expr>}</block></expr></argument>)</argument_list></annotation>
+  <specifier>public</specifier> <specifier>static</specifier> class <name>RpcRequestMessageWrapper</name>
+  <super_list><extends>extends <super><name><name>RpcMessageWithHeader</name><argument_list type="generic">&lt;<argument><name>RpcRequestHeaderProto</name></argument>&gt;</argument_list></name></super></extends></super_list> <block>{
+    <constructor><specifier>public</specifier> <name>RpcRequestMessageWrapper</name><parameter_list>()</parameter_list> <block>{<block_content/>}</block></constructor>
+    
+    <constructor><specifier>public</specifier> <name>RpcRequestMessageWrapper</name><parameter_list>(
+        <parameter><decl><type><name>RpcRequestHeaderProto</name></type> <name>requestHeader</name></decl></parameter>, <parameter><decl><type><name>Message</name></type> <name>theRequest</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>requestHeader</name></expr></argument>, <argument><expr><name>theRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+    
+    <function><annotation>@<name>Override</name></annotation>
+    <type><name>RpcRequestHeaderProto</name></type> <name>parseHeaderFrom</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>bytes</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <return>return <expr><call><name><name>RpcRequestHeaderProto</name><operator>.</operator><name>parseFrom</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <class><annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>LimitedPrivate</name></name><argument_list>(<argument><expr><block>{<expr><literal type="string">"RPC"</literal></expr>}</block></expr></argument>)</argument_list></annotation>
+  <specifier>public</specifier> <specifier>static</specifier> class <name>RpcResponseMessageWrapper</name>
+  <super_list><extends>extends <super><name><name>RpcMessageWithHeader</name><argument_list type="generic">&lt;<argument><name>RpcResponseHeaderProto</name></argument>&gt;</argument_list></name></super></extends></super_list> <block>{
+    <constructor><specifier>public</specifier> <name>RpcResponseMessageWrapper</name><parameter_list>()</parameter_list> <block>{<block_content/>}</block></constructor>
+    
+    <constructor><specifier>public</specifier> <name>RpcResponseMessageWrapper</name><parameter_list>(
+        <parameter><decl><type><name>RpcResponseHeaderProto</name></type> <name>responseHeader</name></decl></parameter>, <parameter><decl><type><name>Message</name></type> <name>theRequest</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>responseHeader</name></expr></argument>, <argument><expr><name>theRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+    
+    <function><annotation>@<name>Override</name></annotation>
+    <type><name><name>byte</name><index>[]</index></name></type> <name>readMessageRequest</name><parameter_list>(<parameter><decl><type><name>DataInput</name></type> <name>in</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <comment type="line">// error message contain no message body</comment>
+      <switch>switch <condition>(<expr><call><name><name>requestHeader</name><operator>.</operator><name>getStatus</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <case>case <expr><name>ERROR</name></expr>:</case>
+        <case>case <expr><name>FATAL</name></expr>:</case>
+          <return>return <expr><literal type="null">null</literal></expr>;</return>
+        <default>default:</default>
+          <return>return <expr><call><name><name>super</name><operator>.</operator><name>readMessageRequest</name></name><argument_list>(<argument><expr><name>in</name></expr></argument>)</argument_list></call></expr>;</return>
+      </block_content>}</block></switch>
+    </block_content>}</block></function>
+    
+    <function><annotation>@<name>Override</name></annotation>
+    <type><name>RpcResponseHeaderProto</name></type> <name>parseHeaderFrom</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>bytes</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <return>return <expr><call><name><name>RpcResponseHeaderProto</name><operator>.</operator><name>parseFrom</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+ 
+   <comment type="block" format="javadoc">/**
+    *  Wrapper for Protocol Buffer Responses
+@@ -342,11 +420,11 @@ public int getLength() {
+    * Protobuf. Several methods on {@link org.apache.hadoop.ipc.Server and RPC} 
+    * use type Writable as a wrapper to work across multiple RpcEngine kinds.
+    */</comment>
+  <class><specifier>private</specifier> <specifier>static</specifier> class <name>RpcResponseWrapper</name> <super_list><implements>implements <super><name>RpcWrapper</name></super></implements></super_list> <block>{
+  <class><annotation>@<name><name>InterfaceAudience</name><operator>.</operator><name>LimitedPrivate</name></name><argument_list>(<argument><expr><block>{<expr><literal type="string">"RPC"</literal></expr>}</block></expr></argument>)</argument_list></annotation> <comment type="line">// temporarily exposed </comment>
+  <specifier>public</specifier> <specifier>static</specifier> class <name>RpcResponseWrapper</name> <super_list><implements>implements <super><name>RpcWrapper</name></super></implements></super_list> <block>{
+     <decl_stmt><decl><type><name>Message</name></type> <name>theResponse</name></decl>;</decl_stmt> <comment type="line">// for senderSide, the response is here</comment>
+     <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>theResponseRead</name></decl>;</decl_stmt> <comment type="line">// for receiver side, the response is here</comment>
+ 
+    <constructor><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unused"</literal></expr></argument>)</argument_list></annotation>
+     <specifier>public</specifier> <name>RpcResponseWrapper</name><parameter_list>()</parameter_list> <block>{<block_content>
+     </block_content>}</block></constructor>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">376</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">454</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>getLength</name><argument_list>()</argument_list></call> <block>{
+         <expr><name>resLen</name> <operator>=</operator> <name><name>theResponseRead</name><operator>.</operator><name>length</name></name></expr>;
+       }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(
+            <argument><expr><literal type="string">"getLenght on uninilialized RpcWrapper"</literal></expr></argument>)</argument_list></call></expr>;</throw>      
+            <expr_stmt><expr><literal type="string">"getLength on uninitialized RpcWrapper"</literal></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></else></if_stmt>      
+       }</block></class>
+       <return>return <expr><call><name><name>CodedOutputStream</name><operator>.</operator><name>computeRawVarint32Size</name></name><argument_list>(<argument><expr><name>resLen</name></expr></argument>)</argument_list></call> <operator>+</operator> <name>resLen</name></expr>;</return>
+     }</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Server</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Server</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5beac94243e</literal><operator>..</operator><literal type="number">78b3f786b4b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Server</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>Server</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>ByteArrayInputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>ByteArrayOutputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>DataInputStream</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>DataOutput</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>DataOutputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>UndeclaredThrowableException</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">46</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">45</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>EnumSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">59</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">57</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ConcurrentHashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>LinkedBlockingQueue</name></name>;</import>
+ 
+<import>import <name><name>javax</name><operator>.</operator><name>security</name><operator>.</operator><name>auth</name><operator>.</operator><name>callback</name><operator>.</operator><name>CallbackHandler</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>security</name><operator>.</operator><name>sasl</name><operator>.</operator><name>Sasl</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>security</name><operator>.</operator><name>sasl</name><operator>.</operator><name>SaslException</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>security</name><operator>.</operator><name>sasl</name><operator>.</operator><name>SaslServer</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">69</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name><operator>.</operator><name>IntegerRanges</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>CommonConfigurationKeys</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>CommonConfigurationKeysPublic</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>BytesWritable</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>DataOutputBuffer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>IntWritable</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>Writable</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>WritableUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>ProtobufRpcEngine</name><operator>.</operator><name>RpcResponseWrapper</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>ProtobufRpcEngine</name><operator>.</operator><name>RpcRequestMessageWrapper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RPC</name><operator>.</operator><name>RpcInvoker</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>RPC</name><operator>.</operator><name>VersionMismatch</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>metrics</name><operator>.</operator><name>RpcDetailedMetrics</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">84</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">81</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>IpcConnectionContextProtos</name><operator>.</operator><name>IpcConnectionContextProto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcResponseHeaderProto</name><operator>.</operator><name>RpcStatusProto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcResponseHeaderProto</name><operator>.</operator><name>RpcErrorCodeProto</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>RpcSaslProto</name><operator>.</operator><name>*</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>ipc</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>RpcHeaderProtos</name><operator>.</operator><name>*</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>net</name><operator>.</operator><name>NetUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>AccessControlException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SaslRpcServer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SaslRpcServer</name><operator>.</operator><name>AuthMethod</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SaslRpcServer</name><operator>.</operator><name>SaslDigestCallbackHandler</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SaslRpcServer</name><operator>.</operator><name>SaslGssCallbackHandler</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SaslRpcServer</name><operator>.</operator><name>SaslStatus</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>SecurityUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>UserGroupInformation</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>UserGroupInformation</name><operator>.</operator><name>AuthenticationMethod</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>util</name><operator>.</operator><name>KerberosName</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authorize</name><operator>.</operator><name>AuthorizationException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authorize</name><operator>.</operator><name>PolicyProvider</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>security</name><operator>.</operator><name>authorize</name><operator>.</operator><name>ProxyUsers</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">109</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">103</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@</expr></expr_stmt>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>util</name><operator>.</operator><name>Time</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>ByteString</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>CodedOutputStream</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>protobuf</name><operator>.</operator><name>Message</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/** An abstract IPC service.  IPC calls take a single {@link Writable} as a
+  * parameter, and return a {@link Writable} as their value.  A service runs on
+@@ -121,7 +117,8 @@
+ @InterfaceStability.Evolving
+ public abstract class Server {
+   private final boolean authorize;
+  private EnumSet&lt;AuthMethod&gt; enabledAuthMethods;
+  private List&lt;AuthMethod&gt; enabledAuthMethods;
+  private RpcSaslProto negotiateResponse;
+   private ExceptionsHandler exceptionsHandler = new ExceptionsHandler();
+   
+   public void addTerseExceptions(Class&lt;?&gt;... exceptionClass) {
+@@ -1065,6 +1062,26 @@ private synchronized void waitPending() throws InterruptedException {
+     }
+   }
+ 
+  @InterfaceAudience.Private
+  public static enum AuthProtocol {
+    NONE(0),
+    SASL(-33);
+    
+    public final int callId;
+    AuthProtocol(int callId) {
+      this.callId = callId;
+    }
+    
+    static AuthProtocol valueOf(int callId) {
+      for (AuthProtocol authType : AuthProtocol.values()) {
+        if (authType.callId == callId) {
+          return authType;
+        }
+      }
+      return null;
+    }
+  };
+  
+   /** Reads calls from a connection and queues them for handling. */</comment>
+   <class><specifier>public</specifier> class <name>Connection</name> <block>{
+     <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>connectionHeaderRead</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt> <comment type="line">// connection  header is read?</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1089</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1106</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <specifier>synchronized</specifier> <name>void</name> <call><name>waitPending</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>InterruptedException</name> <block>{
+     <expr><name>String</name> <name>protocolName</name></expr></block></expr></argument></throws></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>SaslServer</name></type> <name>saslServer</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>AuthMethod</name></type> <name>authMethod</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>AuthProtocol</name></type> <name>authProtocol</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>saslContextEstablished</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>skipInitialSaslHandshake</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>ByteBuffer</name></type> <name>connectionHeaderBuf</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1104</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">1122</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>private</specifier> <specifier>synchronized</specifier> <name>void</name> <call><name>waitPending</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>InterruptedException</name> <block>{
+     <expr><specifier>private</specifier> <name>final</name> <name>Call</name> <name>authFailedCall</name> <operator>=</operator> 
+       <operator>new</operator> <call><name>Call</name><argument_list>(<argument><expr><name>AUTHORIZATION_FAILED_CALLID</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>ByteArrayOutputStream</name></type> <name>authFailedResponse</name> <init>= <expr><operator>new</operator> <call><name>ByteArrayOutputStream</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Fake 'call' for SASL context setup</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>SASL_CALLID</name> <init>= <expr><operator>-</operator><literal type="number">33</literal></expr></init></decl>;</decl_stmt>
+     
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Call</name></type> <name>saslCall</name> <init>= <expr><operator>new</operator> <call><name>Call</name><argument_list>(<argument><expr><name>SASL_CALLID</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Call</name></type> <name>saslCall</name> <init>= <expr><operator>new</operator> <call><name>Call</name><argument_list>(<argument><expr><name><name>AuthProtocol</name><operator>.</operator><name>SASL</name><operator>.</operator><name>callId</name></name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>ByteArrayOutputStream</name></type> <name>saslResponse</name> <init>= <expr><operator>new</operator> <call><name>ByteArrayOutputStream</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     
+    <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>sentNegotiate</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>useWrap</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+     
+     <expr_stmt><expr><specifier>public</specifier> <call><name>Connection</name><argument_list>(<argument><expr><name>SelectionKey</name> <name>key</name></expr></argument>, <argument><expr><name>SocketChannel</name> <name>channel</name></expr></argument>, 
+<argument>@@ <expr><operator>-</operator><literal type="number">1183</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1200</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <name>boolean</name> <call><name>timedOut</name><argument_list>(<argument><expr><name>long</name> <name>currentTime</name></expr></argument>)</argument_list></call> <block>{
+     
+     <expr><specifier>private</specifier> <name>UserGroupInformation</name> <call><name>getAuthorizedUgi</name><argument_list>(<argument><expr><name>String</name> <name>authorizedId</name></expr></argument>)</argument_list></call>
+         <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+      <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>==</operator> <name><name>SaslRpcServer</name><operator>.</operator><name>AuthMethod</name><operator>.</operator><name>DIGEST</name></name></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>==</operator> <name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name>TokenIdentifier</name></type> <name>tokenId</name> <init>= <expr><call><name><name>SaslRpcServer</name><operator>.</operator><name>getIdentifier</name></name><argument_list>(<argument><expr><name>authorizedId</name></expr></argument>,
+             <argument><expr><name>secretManager</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>UserGroupInformation</name></type> <name>ugi</name> <init>= <expr><call><name><name>tokenId</name><operator>.</operator><name>getUser</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1201</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">1218</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>private</specifier> <name>UserGroupInformation</name> <call><name>getAuthorizedUgi</name><argument_list>(<argument><expr><name>String</name> <name>authorizedId</name></expr></argument>)</argument_list></call>
+     <specifier>private</specifier> <name>void</name> <call><name>saslReadAndProcess</name><argument_list>(<argument><expr><name><name>byte</name><index>[]</index></name> <name>saslToken</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>,
+         <argument><expr><name>InterruptedException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><name>saslContextEstablished</name></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>replyToken</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>RpcSaslProto</name></type> <name>saslResponse</name></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Have read input token of size "</literal> <operator>+</operator> <name><name>saslToken</name><operator>.</operator><name>length</name></name>
+                <operator>+</operator> <literal type="string">" for processing by saslServer.evaluateResponse()"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+          <expr_stmt><expr><name>replyToken</name> <operator>=</operator> <call><name><name>saslServer</name><operator>.</operator><name>evaluateResponse</name></name><argument_list>(<argument><expr><name>saslToken</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>saslResponse</name> <operator>=</operator> <call><name>processSaslMessage</name><argument_list>(<argument><expr><name>saslToken</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/>}</block_content> catch (IOException e</block></try>)</block_content> <block>{<block_content>
+           <decl_stmt><decl><type><name>IOException</name></type> <name>sendToClient</name> <init>= <expr><name>e</name></expr></init></decl>;</decl_stmt>
+           <decl_stmt><decl><type><name>Throwable</name></type> <name>cause</name> <init>= <expr><name>e</name></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1217</literal></expr><operator>,</operator><expr><literal type="number">27</literal> <operator>+</operator><literal type="number">1231</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>saslReadAndProcess</name><argument_list>(<argument><expr><name><name>byte</name><index>[]</index></name> <name>saslToken</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>,
+             <argument/>}</throws>
+             <name>cause</name> <operator>=</operator> <call><name><name>cause</name><operator>.</operator><name>getCause</name></name><argument_list>()</argument_list></call></expr></expr_stmt></block_content></block></block><empty_stmt>;</empty_stmt></if></if_stmt>
+           <expr_stmt/>}</block_content>
+          doSaslReply(SaslStatus.ERROR</block><operator>,</operator> <expr_stmt><expr><literal type="null">null</literal></expr><operator>,</operator> <expr><call><name><name>sendToClient</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr><operator>,</operator> 
+              <expr><call><name><name>sendToClient</name><operator>.</operator><name>getLocalizedMessage</name></name><argument_list>()</argument_list></call></expr></expr_stmt></if></if_stmt></block_content></block></if></if_stmt></block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <constructor_decl><name><name>rpcMetrics</name><operator>.</operator><name>incrAuthenticationFailures</name></name><parameter_list>()</parameter_list>;</constructor_decl>
+           <decl_stmt><decl><type><name>String</name></type> <name>clientIP</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+           <comment type="line">// attempting user could be null</comment>
+           <expr_stmt><expr><call><name><name>AUDITLOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><name>AUTH_FAILED_FOR</name> <operator>+</operator> <name>clientIP</name> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <name>attemptingUser</name> <operator>+</operator>
+             <literal type="string">" ("</literal> <operator>+</operator> <call><name><name>e</name><operator>.</operator><name>getLocalizedMessage</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">")"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// wait to send response until failure is logged</comment>
+          <constructor_decl><name>doSaslReply</name><parameter_list>(<parameter><decl><type><name>sendToClient</name></type></decl></parameter>)</parameter_list>;</constructor_decl>
+           <throw>throw <expr><name>e</name></expr>;</throw>
+         }</block></class>
+        <if_stmt><if>if <condition>(<expr><call><name><name>saslServer</name><operator>.</operator><name>isComplete</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name>replyToken</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <comment type="line">// send final response for success</comment>
+          <expr_stmt><expr><name>replyToken</name> <operator>=</operator> <operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>replyToken</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Will send token of size "</literal> <operator>+</operator> <name><name>replyToken</name><operator>.</operator><name>length</name></name>
+                <operator>+</operator> <literal type="string">" from saslServer."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+          <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name><name>SaslStatus</name><operator>.</operator><name>SUCCESS</name></name></expr></argument>, <argument><expr><operator>new</operator> <call><name>BytesWritable</name><argument_list>(<argument><expr><name>replyToken</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>,
+              <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>saslServer</name><operator>.</operator><name>isComplete</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        
+        <if_stmt><if>if <condition>(<expr><name>saslServer</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>saslServer</name><operator>.</operator><name>isComplete</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+           <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+             <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"SASL server context established. Negotiated QoP is "</literal>
+                 <operator>+</operator> <call><name><name>saslServer</name><operator>.</operator><name>getNegotiatedProperty</name></name><argument_list>(<argument><expr><name><name>Sasl</name><operator>.</operator><name>QOP</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1252</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1256</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>saslReadAndProcess</name><argument_list>(<argument><expr><name><name>byte</name><index>[]</index></name> <name>saslToken</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>,
+           <argument><expr><call><name><name>AUDITLOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><name>AUTH_SUCCESSFUL_FOR</name> <operator>+</operator> <name>user</name></expr></argument>)</argument_list></call></expr></argument></throws></expr>;</expr_stmt>
+           <expr_stmt><expr><name>saslContextEstablished</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+        <comment type="line">// send reply here to avoid a successful auth being logged as a</comment>
+        <comment type="line">// failure if response can't be sent</comment>
+        <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name>saslResponse</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if> <else>else <block>{<block_content>
+         <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+           <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Have read input token of size "</literal> <operator>+</operator> <name><name>saslToken</name><operator>.</operator><name>length</name></name>
+@@ <operator>-</operator><literal type="number">1267</literal></expr></argument>,<argument><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">1274</literal></expr></argument>,<argument><expr><literal type="number">101</literal> @@ <specifier>private</specifier> <name>void</name> <call><name>saslReadAndProcess</name><argument_list>(<argument><expr><name><name>byte</name><index>[]</index></name> <name>saslToken</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>,
+       <argument/>}</throws></expr></argument></argument_list></call></expr></expr_stmt></block_content></block></if></if_stmt>
+     </block_content>}</block></else></if_stmt>
+     
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>doSaslReply</name><parameter_list>(<parameter><decl><type><name>SaslStatus</name></type> <name>status</name></decl></parameter>, <parameter><decl><type><name>Writable</name></type> <name>rv</name></decl></parameter>,
+        <parameter><decl><type><name>String</name></type> <name>errorClass</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>error</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>saslResponse</name><operator>.</operator><name>reset</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>DataOutputStream</name></type> <name>out</name> <init>= <expr><operator>new</operator> <call><name>DataOutputStream</name><argument_list>(<argument><expr><name>saslResponse</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>out</name><operator>.</operator><name>writeInt</name></name><argument_list>(<argument><expr><name><name>status</name><operator>.</operator><name>state</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// write status</comment>
+      <if_stmt><if>if <condition>(<expr><name>status</name> <operator>==</operator> <name><name>SaslStatus</name><operator>.</operator><name>SUCCESS</name></name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>rv</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>out</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <expr_stmt><expr><call><name><name>WritableUtils</name><operator>.</operator><name>writeString</name></name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><name>errorClass</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>WritableUtils</name><operator>.</operator><name>writeString</name></name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><name>error</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <function><type><specifier>private</specifier> <name>RpcSaslProto</name></type> <name>processSaslMessage</name><parameter_list>(<parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>buf</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>DataInputStream</name></type> <name>dis</name> <init>=
+          <expr><operator>new</operator> <call><name>DataInputStream</name><argument_list>(<argument><expr><operator>new</operator> <call><name>ByteArrayInputStream</name><argument_list>(<argument><expr><name>buf</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>RpcRequestMessageWrapper</name></type> <name>requestWrapper</name> <init>= <expr><operator>new</operator> <call><name>RpcRequestMessageWrapper</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>requestWrapper</name><operator>.</operator><name>readFields</name></name><argument_list>(<argument><expr><name>dis</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <decl_stmt><decl><type><specifier>final</specifier> <name>RpcRequestHeaderProto</name></type> <name>rpcHeader</name> <init>= <expr><name><name>requestWrapper</name><operator>.</operator><name>requestHeader</name></name></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>rpcHeader</name><operator>.</operator><name>getCallId</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>AuthProtocol</name><operator>.</operator><name>SASL</name><operator>.</operator><name>callId</name></name></expr>)</condition> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>SaslException</name><argument_list>(<argument><expr><literal type="string">"Client sent non-SASL request"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></if></if_stmt>      
+      <decl_stmt><decl><type><specifier>final</specifier> <name>RpcSaslProto</name></type> <name>saslMessage</name> <init>=
+          <expr><call><name><name>RpcSaslProto</name><operator>.</operator><name>parseFrom</name></name><argument_list>(<argument><expr><name><name>requestWrapper</name><operator>.</operator><name>theRequestRead</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>RpcSaslProto</name></type> <name>saslResponse</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>SaslState</name></type> <name>state</name> <init>= <expr><call><name><name>saslMessage</name><operator>.</operator><name>getState</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt> <comment type="line">// required      </comment>
+      <switch>switch <condition>(<expr><name>state</name></expr>)</condition> <block>{<block_content>
+        <case>case <expr><name>NEGOTIATE</name></expr>:</case> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>sentNegotiate</name></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+                <argument><expr><literal type="string">"Client already attempted negotiation"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name>saslResponse</name> <operator>=</operator> <call><name>buildSaslNegotiateResponse</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <break>break;</break>
+        </block_content>}</block>
+        <case>case <expr><name>INITIATE</name></expr>:</case> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>saslMessage</name><operator>.</operator><name>getAuthsCount</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>SaslException</name><argument_list>(<argument><expr><literal type="string">"Client mechanism is malformed"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>authMethodName</name> <init>= <expr><call><name><name>saslMessage</name><operator>.</operator><name>getAuths</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>getMethod</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <call><name>createSaslServer</name><argument_list>(<argument><expr><name>authMethodName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content> <comment type="line">// the auth method is not supported</comment>
+            <if_stmt><if>if <condition>(<expr><name>sentNegotiate</name></expr>)</condition> <block>{<block_content>
+              <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+                  <argument><expr><name>authMethodName</name> <operator>+</operator> <literal type="string">" authentication is not enabled."</literal>
+                      <operator>+</operator> <literal type="string">"  Available:"</literal> <operator>+</operator> <name>enabledAuthMethods</name></expr></argument>)</argument_list></call></expr>;</throw>
+            </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><name>saslResponse</name> <operator>=</operator> <call><name>buildSaslNegotiateResponse</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <break>break;</break>
+          </block_content>}</block></if></if_stmt>
+          <comment type="line">// fallthru to process sasl token</comment>
+        </block_content>}</block>
+        <case>case <expr><name>RESPONSE</name></expr>:</case> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>saslMessage</name><operator>.</operator><name>hasToken</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>SaslException</name><argument_list>(<argument><expr><literal type="string">"Client did not send a token"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+          <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>saslToken</name> <init>= <expr><call><name><name>saslMessage</name><operator>.</operator><name>getToken</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toByteArray</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Have read input token of size "</literal> <operator>+</operator> <name><name>saslToken</name><operator>.</operator><name>length</name></name>
+                <operator>+</operator> <literal type="string">" for processing by saslServer.evaluateResponse()"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name>saslToken</name> <operator>=</operator> <call><name><name>saslServer</name><operator>.</operator><name>evaluateResponse</name></name><argument_list>(<argument><expr><name>saslToken</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>saslResponse</name> <operator>=</operator> <call><name>buildSaslResponse</name><argument_list>(
+              <argument><expr><ternary><condition><expr><call><name><name>saslServer</name><operator>.</operator><name>isComplete</name></name><argument_list>()</argument_list></call></expr> ?</condition><then> <expr><name><name>SaslState</name><operator>.</operator><name>SUCCESS</name></name></expr> </then><else>: <expr><name><name>SaslState</name><operator>.</operator><name>CHALLENGE</name></name></expr></else></ternary></expr></argument>,
+              <argument><expr><name>saslToken</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <break>break;</break>
+        </block_content>}</block>
+        <default>default:</default>
+          <throw>throw <expr><operator>new</operator> <call><name>SaslException</name><argument_list>(<argument><expr><literal type="string">"Client sent unsupported state "</literal> <operator>+</operator> <name>state</name></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></switch>
+      <return>return <expr><name>saslResponse</name></expr>;</return>
+    </block_content>}</block></function>
+    
+    <function><type><specifier>private</specifier> <name>RpcSaslProto</name></type> <name>buildSaslResponse</name><parameter_list>(<parameter><decl><type><name>SaslState</name></type> <name>state</name></decl></parameter>, <parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>replyToken</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Will send "</literal> <operator>+</operator> <name>state</name> <operator>+</operator> <literal type="string">" token of size "</literal>
+            <operator>+</operator> <operator>(</operator><ternary><condition><expr><operator>(</operator><name>replyToken</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><name><name>replyToken</name><operator>.</operator><name>length</name></name></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary><operator>)</operator>
+            <operator>+</operator> <literal type="string">" from saslServer."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <decl_stmt><decl><type><name><name>RpcSaslProto</name><operator>.</operator><name>Builder</name></name></type> <name>response</name> <init>= <expr><call><name><name>RpcSaslProto</name><operator>.</operator><name>newBuilder</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>response</name><operator>.</operator><name>setState</name></name><argument_list>(<argument><expr><name>state</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>replyToken</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>response</name><operator>.</operator><name>setToken</name></name><argument_list>(<argument><expr><call><name><name>ByteString</name><operator>.</operator><name>copyFrom</name></name><argument_list>(<argument><expr><name>replyToken</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <return>return <expr><call><name><name>response</name><operator>.</operator><name>build</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+    
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>doSaslReply</name><parameter_list>(<parameter><decl><type><name>Message</name></type> <name>message</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Sending sasl message "</literal><operator>+</operator><name>message</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>saslCall</name><operator>.</operator><name>setResponse</name></name><argument_list>(<argument><expr><call><name><name>ByteBuffer</name><operator>.</operator><name>wrap</name></name><argument_list>(<argument><expr><call><name><name>saslResponse</name><operator>.</operator><name>toByteArray</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>setupResponse</name><argument_list>(<argument><expr><name>saslResponse</name></expr></argument>, <argument><expr><name>saslCall</name></expr></argument>,
+          <argument><expr><name><name>RpcStatusProto</name><operator>.</operator><name>SUCCESS</name></name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>,
+          <argument><expr><operator>new</operator> <call><name>RpcResponseWrapper</name><argument_list>(<argument><expr><name>message</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>responder</name><operator>.</operator><name>doRespond</name></name><argument_list>(<argument><expr><name>saslCall</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></function>
+     
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>doSaslReply</name><parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ioe</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><call><name>setupResponse</name><argument_list>(<argument><expr><name>authFailedResponse</name></expr></argument>, <argument><expr><name>authFailedCall</name></expr></argument>,
+          <argument><expr><name><name>RpcStatusProto</name><operator>.</operator><name>FATAL</name></name></expr></argument>, <argument><expr><name><name>RpcErrorCodeProto</name><operator>.</operator><name>FATAL_UNAUTHORIZED</name></name></expr></argument>,
+          <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>ioe</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ioe</name><operator>.</operator><name>getLocalizedMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>responder</name><operator>.</operator><name>doRespond</name></name><argument_list>(<argument><expr><name>authFailedCall</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+    
+     <function><type><specifier>private</specifier> <name>void</name></type> <name>disposeSasl</name><parameter_list>()</parameter_list> <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><name>saslServer</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+         <try>try <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1315</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">1402</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>readAndProcess</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{
+           <expr><name>int</name> <name>version</name> <operator>=</operator> <call><name><name>connectionHeaderBuf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+           <comment type="line">// TODO we should add handler for service class later</comment>
+           <expr_stmt><expr><call><name><name>this</name><operator>.</operator><name>setServiceClass</name></name><argument_list>(<argument><expr><call><name><name>connectionHeaderBuf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+          <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>method</name> <init>= <expr><operator>new</operator> <name><name>byte</name><index>[]</index></name> <block>{<expr><call><name><name>connectionHeaderBuf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>}</block></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <call><name><name>AuthMethod</name><operator>.</operator><name>read</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>DataInputStream</name><argument_list>(
+              <argument><expr><operator>new</operator> <call><name>ByteArrayInputStream</name><argument_list>(<argument><expr><name>method</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><call><name><name>dataLengthBuffer</name><operator>.</operator><name>flip</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+           
+           <comment type="line">// Check if it looks like the user is hitting an IPC port</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1339</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">1422</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>readAndProcess</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+             <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+           </block_content>}</block></try>
+           
+          <expr_stmt><expr><call><name><name>dataLengthBuffer</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>IOException</name><argument_list>(<argument><expr><literal type="string">"Unable to read authentication method"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+  
+          <comment type="line">// this may create a SASL server, or switch us into SIMPLE</comment>
+          <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <call><name>initializeAuthContext</name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// this may switch us into SIMPLE</comment>
+          <expr_stmt><expr><name>authProtocol</name> <operator>=</operator> <call><name>initializeAuthContext</name><argument_list>(<argument><expr><call><name><name>connectionHeaderBuf</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>          
+           
+          <expr_stmt><expr><call><name><name>dataLengthBuffer</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><name>connectionHeaderBuf</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+           <expr_stmt><expr><name>connectionHeaderRead</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+           <continue>continue;</continue>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1373</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">1452</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>readAndProcess</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+         <if_stmt><if>if <condition>(<expr><call><name><name>data</name><operator>.</operator><name>remaining</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><call><name><name>dataLengthBuffer</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt><expr><call><name><name>data</name><operator>.</operator><name>flip</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>skipInitialSaslHandshake</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>data</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>skipInitialSaslHandshake</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+          </block_content>}</block></if></if_stmt>
+           <decl_stmt><decl><type><name>boolean</name></type> <name>isHeaderRead</name> <init>= <expr><name>connectionContextRead</name></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>saslServer</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>saslReadAndProcess</name><argument_list>(<argument><expr><call><name><name>data</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>authProtocol</name> <operator>==</operator> <name><name>AuthProtocol</name><operator>.</operator><name>SASL</name></name></expr>)</condition> <block>{<block_content>
+            <comment type="line">// switch to simple must ignore next negotiate or initiate</comment>
+            <if_stmt><if>if <condition>(<expr><name>skipInitialSaslHandshake</name></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><name>authProtocol</name> <operator>=</operator> <name><name>AuthProtocol</name><operator>.</operator><name>NONE</name></name></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+              <expr_stmt><expr><call><name>saslReadAndProcess</name><argument_list>(<argument><expr><call><name><name>data</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+           </block_content>}</block></if> <else>else <block>{<block_content>
+             <expr_stmt><expr><call><name>processOneRpc</name><argument_list>(<argument><expr><call><name><name>data</name><operator>.</operator><name>array</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           </block_content>}</block></else></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1393</literal></expr><operator>,</operator><expr><literal type="number">102</literal> <operator>+</operator><literal type="number">1472</literal></expr><operator>,</operator><expr><literal type="number">79</literal> @@ <specifier>public</specifier> <name>int</name> <call><name>readAndProcess</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{
+       }</block></expr></argument>
+     }
+ 
+    <argument><expr><specifier>private</specifier> <name>AuthMethod</name> <call><name>initializeAuthContext</name><argument_list>(<argument><expr><name>AuthMethod</name> <name>authMethod</name></expr></argument>)</argument_list></call>
+    <specifier>private</specifier> <name>AuthProtocol</name> <call><name>initializeAuthContext</name><argument_list>(<argument><expr><name>int</name> <name>authType</name></expr></argument>)</argument_list></call>
+         <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{</block></expr></argument></throws></expr></argument></throws></expr></expr_stmt>
+      <try>try <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>enabledAuthMethods</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>saslServer</name> <operator>=</operator> <call><name>createSaslServer</name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>enabledAuthMethods</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>SIMPLE</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name><name>SaslStatus</name><operator>.</operator><name>SUCCESS</name></name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IntWritable</name><argument_list>(
+              <argument><expr><name><name>SaslRpcServer</name><operator>.</operator><name>SWITCH_TO_SIMPLE_AUTH</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <name><name>AuthMethod</name><operator>.</operator><name>SIMPLE</name></name></expr>;</expr_stmt>
+          <comment type="line">// client has already sent the initial Sasl message and we</comment>
+          <comment type="line">// should ignore it. Both client and server should fall back</comment>
+          <comment type="line">// to simple auth from now on.</comment>
+          <expr_stmt><expr><name>skipInitialSaslHandshake</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+              <argument><expr><name>authMethod</name> <operator>+</operator> <literal type="string">" authentication is not enabled."</literal>
+                  <operator>+</operator> <literal type="string">"  Available:"</literal> <operator>+</operator> <name>enabledAuthMethods</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ioe</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>ioeClass</name> <init>= <expr><call><name><name>ioe</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>ioeMessage</name>  <init>= <expr><call><name><name>ioe</name><operator>.</operator><name>getLocalizedMessage</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>==</operator> <name><name>AuthMethod</name><operator>.</operator><name>SIMPLE</name></name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name>setupResponse</name><argument_list>(<argument><expr><name>authFailedResponse</name></expr></argument>, <argument><expr><name>authFailedCall</name></expr></argument>,
+              <argument><expr><name><name>RpcStatusProto</name><operator>.</operator><name>FATAL</name></name></expr></argument>, <argument><expr><name><name>RpcErrorCodeProto</name><operator>.</operator><name>FATAL_UNAUTHORIZED</name></name></expr></argument>, 
+              <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>ioeClass</name></expr></argument>, <argument><expr><name>ioeMessage</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>responder</name><operator>.</operator><name>doRespond</name></name><argument_list>(<argument><expr><name>authFailedCall</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name><name>SaslStatus</name><operator>.</operator><name>ERROR</name></name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>ioeClass</name></expr></argument>, <argument><expr><name>ioeMessage</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+        <throw>throw <expr><name>ioe</name></expr>;</throw>
+      <decl_stmt><decl><type><name>AuthProtocol</name></type> <name>authProtocol</name> <init>= <expr><call><name><name>AuthProtocol</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>authType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>authProtocol</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>IOException</name></type> <name>ioe</name> <init>= <expr><operator>new</operator> <call><name>IpcException</name><argument_list>(<argument><expr><literal type="string">"Unknown auth protocol:"</literal> <operator>+</operator> <name>authType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name>ioe</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <throw>throw <expr><name>ioe</name></expr>;</throw>        
+       </block_content>}</block></if></if_stmt>
+      <return>return <expr><name>authMethod</name></expr>;</return>
+    </block_content>}</block></catch></try>
+
+    <function><type><specifier>private</specifier> <name>SaslServer</name></type> <name>createSaslServer</name><parameter_list>(<parameter><decl><type><name>AuthMethod</name></type> <name>authMethod</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>hostname</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>saslProtocol</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>CallbackHandler</name></type> <name>saslCallback</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      
+      <switch>switch <condition>(<expr><name>authMethod</name></expr>)</condition> <block>{<block_content>
+        <case>case <expr><name>SIMPLE</name></expr>:</case> <block>{<block_content>
+          <return>return <expr><literal type="null">null</literal></expr>;</return> <comment type="line">// no sasl for simple</comment>
+        </block_content>}</block>
+        <case>case <expr><name>DIGEST</name></expr>:</case> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>secretManager</name><operator>.</operator><name>checkAvailableForRead</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>hostname</name> <operator>=</operator> <name><name>SaslRpcServer</name><operator>.</operator><name>SASL_DEFAULT_REALM</name></name></expr>;</expr_stmt>
+          <expr_stmt><expr><name>saslCallback</name> <operator>=</operator> <operator>new</operator> <call><name>SaslDigestCallbackHandler</name><argument_list>(<argument><expr><name>secretManager</name></expr></argument>, <argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>boolean</name></type> <name>isSimpleEnabled</name> <init>= <expr><call><name><name>enabledAuthMethods</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>SIMPLE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <switch>switch <condition>(<expr><name>authProtocol</name></expr>)</condition> <block>{<block_content>
+        <case>case <expr><name>NONE</name></expr>:</case> <block>{<block_content>
+          <comment type="line">// don't reply if client is simple and server is insecure</comment>
+          <if_stmt><if>if <condition>(<expr><operator>!</operator><name>isSimpleEnabled</name></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>IOException</name></type> <name>ioe</name> <init>= <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+                <argument><expr><literal type="string">"SIMPLE authentication is not enabled."</literal>
+                    <operator>+</operator> <literal type="string">"  Available:"</literal> <operator>+</operator> <name>enabledAuthMethods</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><name>ioe</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <throw>throw <expr><name>ioe</name></expr>;</throw>
+          </block_content>}</block></if></if_stmt>
+           <break>break;</break>
+         </block_content>}</block>
+        <case>case <expr><name>KERBEROS</name></expr>:</case> <block>{<block_content>
+          <decl_stmt><decl><type><name>String</name></type> <name>fullName</name> <init>= <expr><call><name><name>UserGroupInformation</name><operator>.</operator><name>getCurrentUser</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getUserName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+            <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Kerberos principal name is "</literal> <operator>+</operator> <name>fullName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+          <decl_stmt><decl><type><name>KerberosName</name></type> <name>krbName</name> <init>= <expr><operator>new</operator> <call><name>KerberosName</name><argument_list>(<argument><expr><name>fullName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>hostname</name> <operator>=</operator> <call><name><name>krbName</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>hostname</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+                <argument><expr><literal type="string">"Kerberos principal name does NOT have the expected "</literal>
+                    <operator>+</operator> <literal type="string">"hostname part: "</literal> <operator>+</operator> <name>fullName</name></expr></argument>)</argument_list></call></expr>;</throw>
+        <case>case <expr><name>SASL</name></expr>:</case> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>isSimpleEnabled</name></expr>)</condition> <block>{<block_content> <comment type="line">// switch to simple hack</comment>
+            <expr_stmt><expr><name>skipInitialSaslHandshake</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>doSaslReply</name><argument_list>(<argument><expr><call><name>buildSaslResponse</name><argument_list>(<argument><expr><name><name>SaslState</name><operator>.</operator><name>SUCCESS</name></name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name>saslProtocol</name> <operator>=</operator> <call><name><name>krbName</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>saslCallback</name> <operator>=</operator> <operator>new</operator> <call><name>SaslGssCallbackHandler</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// else wait for a negotiate or initiate</comment>
+           <break>break;</break>
+         </block_content>}</block>
+        <default>default:</default>
+          <comment type="line">// we should never be able to get here</comment>
+          <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+              <argument><expr><literal type="string">"Server does not support SASL "</literal> <operator>+</operator> <name>authMethod</name></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></if></if_stmt>
+      
+      <return>return <expr><call><name>createSaslServer</name><argument_list>(<argument><expr><call><name><name>authMethod</name><operator>.</operator><name>getMechanismName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>saslProtocol</name></expr></argument>,
+                              <argument><expr><name>hostname</name></expr></argument>, <argument><expr><name>saslCallback</name></expr></argument>)</argument_list></call></expr>;</return>                                    
+    </block_content>}</block>
+
+    <function><type><specifier>private</specifier> <name>SaslServer</name></type> <name>createSaslServer</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>mechanism</name></decl></parameter>,
+                                        <parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>protocol</name></decl></parameter>,
+                                        <parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>hostname</name></decl></parameter>,
+                                        <parameter><decl><type><specifier>final</specifier> <name>CallbackHandler</name></type> <name>callback</name></decl></parameter>
+        )</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>SaslServer</name></type> <name>saslServer</name> <init>= <expr><call><name><name>UserGroupInformation</name><operator>.</operator><name>getCurrentUser</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>doAs</name><argument_list>(
+          <argument><expr><operator>new</operator> <class><super><name><name>PrivilegedExceptionAction</name><argument_list type="generic">&lt;<argument><name>SaslServer</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+            <function><annotation>@<name>Override</name></annotation>
+            <type><specifier>public</specifier> <name>SaslServer</name></type> <name>run</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>SaslException</name></expr></argument></throws>  <block>{<block_content>
+              <return>return <expr><call><name><name>Sasl</name><operator>.</operator><name>createSaslServer</name></name><argument_list>(<argument><expr><name>mechanism</name></expr></argument>, <argument><expr><name>protocol</name></expr></argument>, <argument><expr><name>hostname</name></expr></argument>,
+                                           <argument><expr><name><name>SaslRpcServer</name><operator>.</operator><name>SASL_PROPS</name></name></expr></argument>, <argument><expr><name>callback</name></expr></argument>)</argument_list></call></expr>;</return>
+            </block_content>}</block></function>
+          }</block></class></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>saslServer</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>AccessControlException</name><argument_list>(
+            <argument><expr><literal type="string">"Unable to find SASL server implementation for "</literal> <operator>+</operator> <name>mechanism</name></expr></argument>)</argument_list></call></expr>;</throw>
+      <return>return <expr><name>authProtocol</name></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+
+    <function><type><specifier>private</specifier> <name>RpcSaslProto</name></type> <name>buildSaslNegotiateResponse</name><parameter_list>()</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>RpcSaslProto</name></type> <name>negotiateMessage</name> <init>= <expr><name>negotiateResponse</name></expr></init></decl>;</decl_stmt>
+      <comment type="line">// accelerate token negotiation by sending initial challenge</comment>
+      <comment type="line">// in the negotiation response</comment>
+      <if_stmt><if>if <condition>(<expr><call><name><name>enabledAuthMethods</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>saslServer</name> <operator>=</operator> <call><name>createSaslServer</name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>challenge</name> <init>= <expr><call><name><name>saslServer</name><operator>.</operator><name>evaluateResponse</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>RpcSaslProto</name><operator>.</operator><name>Builder</name></name></type> <name>negotiateBuilder</name> <init>=
+            <expr><call><name><name>RpcSaslProto</name><operator>.</operator><name>newBuilder</name></name><argument_list>(<argument><expr><name>negotiateResponse</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>negotiateBuilder</name><operator>.</operator><name>getAuthsBuilder</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call>  <comment type="line">// TOKEN is always first</comment>
+            <operator>.</operator><call><name>setChallenge</name><argument_list>(<argument><expr><call><name><name>ByteString</name><operator>.</operator><name>copyFrom</name></name><argument_list>(<argument><expr><name>challenge</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>negotiateMessage</name> <operator>=</operator> <call><name><name>negotiateBuilder</name><operator>.</operator><name>build</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>LOG</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Created SASL server with mechanism = "</literal> <operator>+</operator> <name>mechanism</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>sentNegotiate</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      <return>return <expr><name>negotiateMessage</name></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    
+    <function><type><specifier>private</specifier> <name>AuthMethod</name></type> <name>createSaslServer</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>authMethodName</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>AuthMethod</name></type> <name>authMethod</name></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <call><name><name>AuthMethod</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>authMethodName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>enabledAuthMethods</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>iae</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>authMethod</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block></catch></try>
+      <if_stmt><if>if <condition>(<expr><name>authMethod</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator>
+          <comment type="line">// sasl server for tokens may already be instantiated</comment>
+          <operator>(</operator><name>saslServer</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name>authMethod</name> <operator>!=</operator> <name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name><operator>)</operator></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>saslServer</name> <operator>=</operator> <call><name>createSaslServer</name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if></if_stmt>
+      <return>return <expr><name>saslServer</name></expr>;</return>
+      <return>return <expr><name>authMethod</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>SaslServer</name></type> <name>createSaslServer</name><parameter_list>(<parameter><decl><type><name>AuthMethod</name></type> <name>authMethod</name></decl></parameter>)</parameter_list>
+        <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+      <return>return <expr><operator>new</operator> <call><name>SaslRpcServer</name><argument_list>(<argument><expr><name>authMethod</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>create</name><argument_list>(<argument><expr><name>this</name></expr></argument>, <argument><expr><name>secretManager</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+     
+     <comment type="block" format="javadoc">/**
+@@ -1557,7 +1613,7 @@ private void processConnectionContext(byte[] buf) throws IOException {
+         //this is not allowed if user authenticated with DIGEST.
+         if ((protocolUser != null)
+             &amp;&amp; (!protocolUser.getUserName().equals(user.getUserName()))) {
+          if (authMethod == AuthMethod.DIGEST) {
+          if (authMethod == AuthMethod.TOKEN) {
+             // Not allowed to doAs if token authentication is used
+             throw new AccessControlException("Authenticated user (" + user
+                 + ") doesn't match what the client claims to be ("
+@@ -1713,7 +1769,7 @@ private boolean authorizeConnection() throws IOException {
+         // authorize real user. doAs is allowed only for simple or kerberos
+         // authentication
+         if (user != null &amp;&amp; user.getRealUser() != null
+            &amp;&amp; (authMethod != AuthMethod.DIGEST)) {
+            &amp;&amp; (authMethod != AuthMethod.TOKEN)) {
+           ProxyUsers.authorize(user, this.getHostAddress(), conf);
+         }
+         authorize(user, protocolName, getHostInetAddress());
+@@ -1954,6 +2010,7 @@ protected Server(String bindAddress, int port,
+ 
+     // configure supported authentications
+     this.enabledAuthMethods = getAuthMethods(secretManager, conf);
+    this.negotiateResponse = buildNegotiateResponse(enabledAuthMethods);
+     
+     // Start the listener here and let it bind to the port
+     listener = new Listener();
+@@ -1973,17 +2030,33 @@ protected Server(String bindAddress, int port,
+     
+     this.exceptionsHandler.addTerseExceptions(StandbyException.class);
+   }
+  
+  private RpcSaslProto buildNegotiateResponse(List&lt;AuthMethod&gt; authMethods)
+      throws IOException {
+    RpcSaslProto.Builder negotiateBuilder = RpcSaslProto.newBuilder();
+    negotiateBuilder.setState(SaslState.NEGOTIATE);
+    for (AuthMethod authMethod : authMethods) {
+      if (authMethod == AuthMethod.SIMPLE) { // not a SASL method
+        continue;
+      }
+      SaslRpcServer saslRpcServer = new SaslRpcServer(authMethod);      
+      negotiateBuilder.addAuthsBuilder()
+          .setMethod(authMethod.toString())
+          .setMechanism(saslRpcServer.mechanism)
+          .setProtocol(saslRpcServer.protocol)
+          .setServerId(saslRpcServer.serverId);
+    }
+    return negotiateBuilder.build();
+  }
+ 
+   // get the security type from the conf. implicitly include token support
+   // if a secret manager is provided, or fail if token is the conf value but
+   // there is no secret manager
+  private EnumSet&lt;AuthMethod&gt; getAuthMethods(SecretManager&lt;?&gt; secretManager,
+  private List&lt;AuthMethod&gt; getAuthMethods(SecretManager&lt;?&gt; secretManager,
+                                              Configuration conf) {
+     AuthenticationMethod confAuthenticationMethod =
+         SecurityUtil.getAuthenticationMethod(conf);        
+    EnumSet&lt;AuthMethod&gt; authMethods =
+        EnumSet.of(confAuthenticationMethod.getAuthMethod()); 
+        
+    List&lt;AuthMethod&gt; authMethods = new ArrayList&lt;AuthMethod&gt;();
+     if (confAuthenticationMethod == AuthenticationMethod.TOKEN) {
+       if (secretManager == null) {
+         throw new IllegalArgumentException(AuthenticationMethod.TOKEN +
+@@ -1992,8 +2065,10 @@ protected Server(String bindAddress, int port,
+     } else if (secretManager != null) {
+       LOG.debug(AuthenticationMethod.TOKEN +
+           " authentication enabled for secret manager");
+      // most preferred, go to the front of the line!
+       authMethods.add(AuthenticationMethod.TOKEN.getAuthMethod());
+     }
+    authMethods.add(confAuthenticationMethod.getAuthMethod());        
+     
+     LOG.debug("Server accepts auth methods:" + authMethods);
+     return authMethods;
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcClient.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcClient.java
+index ef97eb528c3..372e13b5a11 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcClient.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcClient.java
+@@ -42,14 +42,24 @@
+ import org.apache.commons.logging.LogFactory;
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.classification.InterfaceStability;
+import org.apache.hadoop.io.WritableUtils;
+import org.apache.hadoop.ipc.ProtobufRpcEngine.RpcRequestMessageWrapper;
+import org.apache.hadoop.ipc.ProtobufRpcEngine.RpcResponseMessageWrapper;
+import org.apache.hadoop.ipc.RPC.RpcKind;
+ import org.apache.hadoop.ipc.RemoteException;
+import org.apache.hadoop.ipc.Server.AuthProtocol;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcRequestHeaderProto;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcRequestHeaderProto.OperationProto;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcResponseHeaderProto;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcSaslProto;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcSaslProto.SaslAuth;
+import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcSaslProto.SaslState;
+ import org.apache.hadoop.security.SaslRpcServer.AuthMethod;
+import org.apache.hadoop.security.SaslRpcServer.SaslStatus;
+ import org.apache.hadoop.security.authentication.util.KerberosName;
+ import org.apache.hadoop.security.token.Token;
+ import org.apache.hadoop.security.token.TokenIdentifier;
+import org.apache.hadoop.util.ProtoUtil;
+ 
+import com.google.protobuf.ByteString;
+ /**
+  * A utility class that encapsulates SASL logic for RPC client
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">58</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@
+ <specifier>public</specifier> <name>class</name> <name>SaslRpcClient</name> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>Log</name> <name>LOG</name> <operator>=</operator> <call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><name><name>SaslRpcClient</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+  <specifier>private</specifier> <name>final</name> <name>AuthMethod</name> <name>authMethod</name></block></expr>;</expr_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>SaslClient</name></type> <name>saslClient</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>fallbackAllowed</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>RpcRequestHeaderProto</name></type> <name>saslHeader</name> <init>=
+      <expr><call><name><name>ProtoUtil</name><operator>.</operator><name>makeRpcRequestHeader</name></name><argument_list>(<argument><expr><name><name>RpcKind</name><operator>.</operator><name>RPC_PROTOCOL_BUFFER</name></name></expr></argument>,
+          <argument><expr><name><name>OperationProto</name><operator>.</operator><name>RPC_FINAL_PACKET</name></name></expr></argument>, <argument><expr><name><name>AuthProtocol</name><operator>.</operator><name>SASL</name><operator>.</operator><name>callId</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>RpcSaslProto</name></type> <name>negotiateRequest</name> <init>=
+      <expr><call><name><name>RpcSaslProto</name><operator>.</operator><name>newBuilder</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setState</name><argument_list>(<argument><expr><name><name>SaslState</name><operator>.</operator><name>NEGOTIATE</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>build</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  
+   <comment type="block" format="javadoc">/**
+    * Create a SaslRpcClient for an authentication method
+    * 
+@@ -73,6 +89,7 @@ public SaslRpcClient(AuthMethod method,
+       Token&lt;? extends TokenIdentifier&gt; token, String serverPrincipal,
+       boolean fallbackAllowed)
+       throws IOException {
+    this.authMethod = method;
+     this.fallbackAllowed = fallbackAllowed;
+     String saslUser = null;
+     String saslProtocol = null;
+@@ -81,7 +98,8 @@ public SaslRpcClient(AuthMethod method,
+     CallbackHandler saslCallback = null;
+     
+     switch (method) {
+      case DIGEST: {
+      case TOKEN: {
+        saslProtocol = "";
+         saslServerName = SaslRpcServer.SASL_DEFAULT_REALM;
+         saslCallback = new SaslClientCallbackHandler(token);
+         break;
+@@ -107,7 +125,7 @@ public SaslRpcClient(AuthMethod method,
+     
+     String mechanism = method.getMechanismName();
+     if (LOG.isDebugEnabled()) {
+      LOG.debug("Creating SASL " + mechanism
+      LOG.debug("Creating SASL " + mechanism + "(" + authMethod + ") "
+           + " client to authenticate to service at " + saslServerName);
+     }
+     saslClient = Sasl.createSaslClient(
+@@ -118,14 +136,6 @@ public SaslRpcClient(AuthMethod method,
+     }
+   }
+ 
+  private static void readStatus(DataInputStream inStream) throws IOException {
+    int status = inStream.readInt(); // read status
+    if (status != SaslStatus.SUCCESS.state) {
+      throw new RemoteException(WritableUtils.readString(inStream),
+          WritableUtils.readString(inStream));
+    }
+  }
+  
+   /**
+    * Do client side SASL authentication with server via the given InputStream
+    * and OutputStream
+@@ -143,56 +153,142 @@ public boolean saslConnect(InputStream inS, OutputStream outS)
+     DataInputStream inStream = new DataInputStream(new BufferedInputStream(inS));
+     DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(
+         outS));
+
+    try {
+      byte[] saslToken = new byte[0];
+      if (saslClient.hasInitialResponse())
+        saslToken = saslClient.evaluateChallenge(saslToken);
+      while (saslToken != null) {
+        outStream.writeInt(saslToken.length);
+        outStream.write(saslToken, 0, saslToken.length);
+        outStream.flush();
+        if (LOG.isDebugEnabled())
+          LOG.debug("Have sent token of size " + saslToken.length
+              + " from initSASLContext.");
+        readStatus(inStream);
+        int len = inStream.readInt();
+        if (len == SaslRpcServer.SWITCH_TO_SIMPLE_AUTH) {
+          if (!fallbackAllowed) {
+            throw new IOException("Server asks us to fall back to SIMPLE " +
+                "auth, but this client is configured to only allow secure " +
+                "connections.");
+          }
+          if (LOG.isDebugEnabled())
+            LOG.debug("Server asks us to fall back to simple auth.");
+          saslClient.dispose();
+          return false;
+        } else if ((len == 0) &amp;&amp; saslClient.isComplete()) {
+          break;
+        }
+        saslToken = new byte[len];
+        if (LOG.isDebugEnabled())
+          LOG.debug("Will read input token of size " + saslToken.length
+              + " for processing by initSASLContext");
+        inStream.readFully(saslToken);
+        saslToken = saslClient.evaluateChallenge(saslToken);
+    
+    // track if SASL ever started, or server switched us to simple
+    boolean inSasl = false;
+    sendSaslMessage(outStream, negotiateRequest);
+    
+    // loop until sasl is complete or a rpc error occurs
+    boolean done = false;
+    do {
+      int totalLen = inStream.readInt();
+      RpcResponseMessageWrapper responseWrapper =
+          new RpcResponseMessageWrapper();
+      responseWrapper.readFields(inStream);
+      RpcResponseHeaderProto header = responseWrapper.getMessageHeader();
+      switch (header.getStatus()) {
+        case ERROR: // might get a RPC error during 
+        case FATAL:
+          throw new RemoteException(header.getExceptionClassName(),
+                                    header.getErrorMsg());
+        default: break;
+       }
+      if (!saslClient.isComplete()) { // shouldn't happen
+        throw new SaslException("Internal negotiation error");
+      if (totalLen != responseWrapper.getLength()) {
+        throw new SaslException("Received malformed response length");
+       }
+      
+      if (header.getCallId() != AuthProtocol.SASL.callId) {
+        throw new SaslException("Non-SASL response during negotiation");
+      }
+      RpcSaslProto saslMessage =
+          RpcSaslProto.parseFrom(responseWrapper.getMessageBytes());
+       if (LOG.isDebugEnabled()) {
+        LOG.debug("SASL client context established. Negotiated QoP: "
+            + saslClient.getNegotiatedProperty(Sasl.QOP));
+        LOG.debug("Received SASL message "+saslMessage);
+      }
+      // handle sasl negotiation process
+      RpcSaslProto.Builder response = null;
+      switch (saslMessage.getState()) {
+        case NEGOTIATE: {
+          inSasl = true;
+          // TODO: should instantiate sasl client based on advertisement
+          // but just blindly use the pre-instantiated sasl client for now
+          String clientAuthMethod = authMethod.toString();
+          SaslAuth saslAuthType = null;
+          for (SaslAuth authType : saslMessage.getAuthsList()) {
+            if (clientAuthMethod.equals(authType.getMethod())) {
+              saslAuthType = authType;
+              break;
+            }
+          }
+          if (saslAuthType == null) {
+            saslAuthType = SaslAuth.newBuilder()
+                .setMethod(clientAuthMethod)
+                .setMechanism(saslClient.getMechanismName())
+                .build();
+          }
+          
+          byte[] challengeToken = null;
+          if (saslAuthType != null &amp;&amp; saslAuthType.hasChallenge()) {
+            // server provided the first challenge
+            challengeToken = saslAuthType.getChallenge().toByteArray();
+            saslAuthType =
+              SaslAuth.newBuilder(saslAuthType).clearChallenge().build();
+          } else if (saslClient.hasInitialResponse()) {
+            challengeToken = new byte[0];
+          }
+          byte[] responseToken = (challengeToken != null)
+              ? saslClient.evaluateChallenge(challengeToken)
+              : new byte[0];
+          
+          response = createSaslReply(SaslState.INITIATE, responseToken);
+          response.addAuths(saslAuthType);
+          break;
+        }
+        case CHALLENGE: {
+          inSasl = true;
+          byte[] responseToken = saslEvaluateToken(saslMessage, false);
+          response = createSaslReply(SaslState.RESPONSE, responseToken);
+          break;
+        }
+        case SUCCESS: {
+          if (inSasl &amp;&amp; saslEvaluateToken(saslMessage, true) != null) {
+            throw new SaslException("SASL client generated spurious token");
+          }
+          done = true;
+          break;
+        }
+        default: {
+          throw new SaslException(
+              "RPC client doesn't support SASL " + saslMessage.getState());
+        }
+       }
+      return true;
+    } catch (IOException e) {
+      try {
+        saslClient.dispose();
+      } catch (SaslException ignored) {
+        // ignore further exceptions during cleanup
+      if (response != null) {
+        sendSaslMessage(outStream, response.build());
+       }
+      throw e;
+    } while (!done);
+    if (!inSasl &amp;&amp; !fallbackAllowed) {
+      throw new IOException("Server asks us to fall back to SIMPLE " +
+          "auth, but this client is configured to only allow secure " +
+          "connections.");
+    }
+    return inSasl;
+  }
+  
+  private void sendSaslMessage(DataOutputStream out, RpcSaslProto message)
+      throws IOException {
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("Sending sasl message "+message);
+    }
+    RpcRequestMessageWrapper request =
+        new RpcRequestMessageWrapper(saslHeader, message);
+    out.writeInt(request.getLength());
+    request.write(out);
+    out.flush();    
+  }
+  
+  private byte[] saslEvaluateToken(RpcSaslProto saslResponse,
+      boolean done) throws SaslException {
+    byte[] saslToken = null;
+    if (saslResponse.hasToken()) {
+      saslToken = saslResponse.getToken().toByteArray();
+      saslToken = saslClient.evaluateChallenge(saslToken);
+    } else if (!done) {
+      throw new SaslException("Challenge contains no token");
+    }
+    if (done &amp;&amp; !saslClient.isComplete()) {
+      throw new SaslException("Client is out of sync with server");
+    }
+    return saslToken;
+  }
+  
+  private RpcSaslProto.Builder createSaslReply(SaslState state,
+                                               byte[] responseToken) {
+    RpcSaslProto.Builder response = RpcSaslProto.newBuilder();
+    response.setState(state);
+    if (responseToken != null) {
+      response.setToken(ByteString.copyFrom(responseToken));
+     }
+    return response;
+   }
+ 
+   /**
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcServer.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcServer.java
+index 33942dc0885..2932bb4f064 100644
+-- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcServer.java
+++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/security/SaslRpcServer.java
+@@ -23,6 +23,7 @@
+ import java.io.DataInputStream;
+ import java.io.DataOutput;
+ import java.io.IOException;
+import java.security.PrivilegedExceptionAction;
+ import java.security.Security;
+ import java.util.Map;
+ import java.util.TreeMap;
+@@ -35,6 +36,8 @@
+ import javax.security.sasl.AuthorizeCallback;
+ import javax.security.sasl.RealmCallback;
+ import javax.security.sasl.Sasl;
+import javax.security.sasl.SaslException;
+import javax.security.sasl.SaslServer;
+ 
+ import org.apache.commons.codec.binary.Base64;
+ import org.apache.commons.logging.Log;
+@@ -43,6 +46,8 @@
+ import org.apache.hadoop.classification.InterfaceStability;
+ import org.apache.hadoop.conf.Configuration;
+ import org.apache.hadoop.ipc.Server;
+import org.apache.hadoop.ipc.Server.Connection;
+import org.apache.hadoop.security.authentication.util.KerberosName;
+ import org.apache.hadoop.security.token.SecretManager;
+ import org.apache.hadoop.security.token.TokenIdentifier;
+ import org.apache.hadoop.security.token.SecretManager.InvalidToken;
+@@ -58,8 +63,6 @@
+   public static final Map&lt;String, String&gt; SASL_PROPS = 
+       new TreeMap&lt;String, String&gt;();
+ 
+  public static final int SWITCH_TO_SIMPLE_AUTH = -88;
+
+   public static enum QualityOfProtection {
+     AUTHENTICATION("auth"),
+     INTEGRITY("auth-int"),
+@@ -75,7 +78,93 @@ public String getSaslQop() {
+       return saslQop;
+     }
+   }
+
+  @InterfaceAudience.Private
+  @InterfaceStability.Unstable
+  public AuthMethod authMethod;
+  public String mechanism;
+  public String protocol;
+  public String serverId;
+  
+  @InterfaceAudience.Private
+  @InterfaceStability.Unstable
+  public SaslRpcServer(AuthMethod authMethod) throws IOException {
+    this.authMethod = authMethod;
+    mechanism = authMethod.getMechanismName();    
+    switch (authMethod) {
+      case SIMPLE: {
+        return; // no sasl for simple
+      }
+      case TOKEN: {
+        protocol = "";
+        serverId = SaslRpcServer.SASL_DEFAULT_REALM;
+        break;
+      }
+      case KERBEROS: {
+        String fullName = UserGroupInformation.getCurrentUser().getUserName();
+        if (LOG.isDebugEnabled())
+          LOG.debug("Kerberos principal name is " + fullName);
+        KerberosName krbName = new KerberosName(fullName);
+        serverId = krbName.getHostName();
+        if (serverId == null) {
+          serverId = "";
+        }
+        protocol = krbName.getServiceName();
+        break;
+      }
+      default:
+        // we should never be able to get here
+        throw new AccessControlException(
+            "Server does not support SASL " + authMethod);
+    }
+  }
+   
+  @InterfaceAudience.Private
+  @InterfaceStability.Unstable
+  public SaslServer create(Connection connection,
+                           SecretManager&lt;TokenIdentifier&gt; secretManager
+      ) throws IOException, InterruptedException {
+    UserGroupInformation ugi = UserGroupInformation.getCurrentUser();
+    final CallbackHandler callback;
+    switch (authMethod) {
+      case TOKEN: {
+        secretManager.checkAvailableForRead();
+        callback = new SaslDigestCallbackHandler(secretManager, connection);
+        break;
+      }
+      case KERBEROS: {
+        if (serverId.isEmpty()) {
+          throw new AccessControlException(
+              "Kerberos principal name does NOT have the expected "
+                  + "hostname part: " + ugi.getUserName());
+        }
+        callback = new SaslGssCallbackHandler();
+        break;
+      }
+      default:
+        // we should never be able to get here
+        throw new AccessControlException(
+            "Server does not support SASL " + authMethod);
+    }
+    
+    SaslServer saslServer = ugi.doAs(
+        new PrivilegedExceptionAction&lt;SaslServer&gt;() {
+          @Override
+          public SaslServer run() throws SaslException  {
+            return Sasl.createSaslServer(mechanism, protocol, serverId,
+                SaslRpcServer.SASL_PROPS, callback);
+          }
+        });
+    if (saslServer == null) {
+      throw new AccessControlException(
+          "Unable to find SASL server implementation for " + mechanism);
+    }
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("Created SASL server with mechanism = " + mechanism);
+    }
+    return saslServer;
+  }
+
+   public static void init(Configuration conf) {
+     QualityOfProtection saslQOP = QualityOfProtection.AUTHENTICATION;
+     String rpcProtection = conf.get("hadoop.rpc.protection",
+@@ -124,23 +213,14 @@ static String encodeIdentifier(byte[] identifier) {
+     return fullName.split("[/@]");
+   }
+ 
+  @InterfaceStability.Evolving
+  public enum SaslStatus {
+    SUCCESS (0),
+    ERROR (1);
+    
+    public final int state;
+    private SaslStatus(int state) {
+      this.state = state;
+    }
+  }
+  
+   /** Authentication method */</comment>
+   <enum><annotation>@<name><name>InterfaceStability</name><operator>.</operator><name>Evolving</name></name></annotation>
+   <specifier>public</specifier> <specifier>static</specifier> enum <name>AuthMethod</name> <block>{
+     <decl><name>SIMPLE</name><argument_list>(<argument><expr><operator>(</operator><name>byte</name><operator>)</operator> <literal type="number">80</literal></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></decl>,
+     <decl><name>KERBEROS</name><argument_list>(<argument><expr><operator>(</operator><name>byte</name><operator>)</operator> <literal type="number">81</literal></expr></argument>, <argument><expr><literal type="string">"GSSAPI"</literal></expr></argument>)</argument_list></decl>,
+    @<decl><name>Deprecated</name>
+     <name>DIGEST</name><argument_list>(<argument><expr><operator>(</operator><name>byte</name><operator>)</operator> <literal type="number">82</literal></expr></argument>, <argument><expr><literal type="string">"DIGEST-MD5"</literal></expr></argument>)</argument_list></decl>,
+    <decl><name>TOKEN</name><argument_list>(<argument><expr><operator>(</operator><name>byte</name><operator>)</operator> <literal type="number">82</literal></expr></argument>, <argument><expr><literal type="string">"DIGEST-MD5"</literal></expr></argument>)</argument_list></decl>,
+     <decl><name>PLAIN</name><argument_list>(<argument><expr><operator>(</operator><name>byte</name><operator>)</operator> <literal type="number">83</literal></expr></argument>, <argument><expr><literal type="string">"PLAIN"</literal></expr></argument>)</argument_list></decl>;
+ 
+     <comment type="block" format="javadoc">/** The code for this method. */</comment>
+<decl><name>diff</name> --<name>git</name> <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>security</name>/<name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name> <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>security</name>/<name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+<name>index</name> 990b31c9300..4760a64dff9 100644
+-- <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>security</name>/<name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+++ <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>security</name>/<name><name>UserGroupInformation</name><operator>.</operator><name>java</name></name>
+@@ -1076</decl>,7 +1076,7 @@ public static <decl><name>UserGroupInformation</name> <name>createRemoteUser</name><argument_list>(<argument><expr><name>String</name> <name>user</name></expr></argument>)</argument_list> <block>{
+         <decl><name><name>HadoopConfiguration</name><operator>.</operator><name>SIMPLE_CONFIG_NAME</name></name></decl>),
+     <decl><name>KERBEROS</name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>KERBEROS</name></name></expr></argument>,
+         <argument><expr><name><name>HadoopConfiguration</name><operator>.</operator><name>USER_KERBEROS_CONFIG_NAME</name></name></expr></argument>)</argument_list></decl>,
+    <decl><name>TOKEN</name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>DIGEST</name></name></expr></argument>)</argument_list></decl>,
+    <decl><name>TOKEN</name><argument_list>(<argument><expr><name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name></expr></argument>)</argument_list></decl>,
+     <decl><name>CERTIFICATE</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></decl>,
+     <decl><name>KERBEROS_SSL</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></decl>,
+     <decl><name>PROXY</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></decl>;
+<decl><name>diff</name> --<name>git</name> <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>util</name>/<name><name>ProtoUtil</name><operator>.</operator><name>java</name></name> <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>util</name>/<name><name>ProtoUtil</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>bec2e85af85</name>..<name>ac6c572b346</name> 100644
+-- <name>a</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>util</name>/<name><name>ProtoUtil</name><operator>.</operator><name>java</name></name>
+++ <name>b</name>/<name>hadoop</name>-<name>common</name>-<name>project</name>/<name>hadoop</name>-<name>common</name>/<name>src</name>/<name>main</name>/<name>java</name>/<name>org</name>/<name>apache</name>/<name>hadoop</name>/<name>util</name>/<name><name>ProtoUtil</name><operator>.</operator><name>java</name></name>
+@@ -94</decl>,7 +94,7 @@ public static <decl><name>IpcConnectionContextProto</name> <name>makeIpcConnectionContext</name><argument_list>(
+         <comment type="line">// Real user was established as part of the connection.</comment>
+         <comment type="line">// Send effective user only.</comment>
+         <argument><expr><call><name><name>ugiProto</name><operator>.</operator><name>setEffectiveUser</name></name><argument_list>(<argument><expr><call><name><name>ugi</name><operator>.</operator><name>getUserName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;</argument_list></decl>
+      }</block></decl> <if_stmt><if type="elseif">else if <condition>(<expr><name>authMethod</name> <operator>==</operator> <name><name>AuthMethod</name><operator>.</operator><name>DIGEST</name></name></expr>)</condition> <block>{<block_content>
+      </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>authMethod</name> <operator>==</operator> <name><name>AuthMethod</name><operator>.</operator><name>TOKEN</name></name></expr>)</condition> <block>{<block_content>
+         <comment type="line">// With token, the connection itself establishes </comment>
+         <comment type="line">// both real and effective user. Hence send none in header.</comment>
+       </block_content>}</block></if> <else>else <block>{<block_content>  <comment type="line">// Simple authentication</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>proto</name><operator>/</operator><name><name>RpcHeader</name><operator>.</operator><name>proto</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>proto</name><operator>/</operator><name><name>RpcHeader</name><operator>.</operator><name>proto</name></name>
+<name>index</name> <literal type="number">13d3be6dc1d</literal><operator>..</operator><literal type="number">872f29db730</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>proto</name><operator>/</operator><name><name>RpcHeader</name><operator>.</operator><name>proto</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>proto</name><operator>/</operator><name><name>RpcHeader</name><operator>.</operator><name>proto</name></name>
+@@ <operator>-</operator><literal type="number">127</literal></expr><operator>,</operator><expr><literal type="number">3</literal> <operator>+</operator><literal type="number">127</literal></expr><operator>,</operator><expr><literal type="number">26</literal> @@ <name>message</name> <name>RpcResponseHeaderProto</name> <block>{
+   <expr><name>optional</name> <name>string</name> <name>errorMsg</name> <operator>=</operator> <literal type="number">5</literal></expr>;  <comment type="line">// if request fails, often contains strack trace</comment>
+   <name>optional</name> <name>RpcErrorCodeProto</name> <name>errorDetail</name> <operator>=</operator> <literal type="number">6</literal></block></expr>;</expr_stmt> <comment type="line">// in case of error</comment>
+ </block_content>}</block></else></if_stmt>
+
+<decl_stmt><decl><type><name>message</name></type> <name>RpcSaslProto</name> <block>{<block_content>
+  <enum>enum <name>SaslState</name> <block>{
+    <decl><name>SUCCESS</name>   <init>= <expr><literal type="number">0</literal></expr></init></decl>;
+    <decl><name>NEGOTIATE</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;
+    <decl><name>INITIATE</name>  <init>= <expr><literal type="number">2</literal></expr></init></decl>;
+    <decl><name>CHALLENGE</name> <init>= <expr><literal type="number">3</literal></expr></init></decl>;
+    <decl><name>RESPONSE</name>  <init>= <expr><literal type="number">4</literal></expr></init></decl>;
+  }</block></enum>
+  
+  <decl_stmt><decl><type><name>message</name></type> <name>SaslAuth</name> <block>{<block_content>
+    <decl_stmt><decl><type><name>required</name> <name>string</name></type> <name>method</name>    <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>required</name> <name>string</name></type> <name>mechanism</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>optional</name> <name>string</name></type> <name>protocol</name>  <init>= <expr><literal type="number">3</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>optional</name> <name>string</name></type> <name>serverId</name>  <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>optional</name> <name>bytes</name></type>  <name>challenge</name> <init>= <expr><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+  </block_content>}</block></decl></decl_stmt>
+
+  <decl_stmt><decl><type><name>optional</name> <name>uint32</name></type> <name>version</name>  <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>  
+  <decl_stmt><decl><type><name>required</name> <name>SaslState</name></type> <name>state</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>optional</name> <name>bytes</name></type> <name>token</name>     <init>= <expr><literal type="number">3</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>repeated</name> <name>SaslAuth</name></type> <name>auths</name>  <init>= <expr><literal type="number">4</literal></expr></init></decl>;</decl_stmt>
+</block_content>}</block></decl></decl_stmt>
+<expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestSaslRPC</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestSaslRPC</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cb3e0435ec6</name><operator>..</operator><name>ce44e421054</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestSaslRPC</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>ipc</name><operator>/</operator><name><name>TestSaslRPC</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">674</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">674</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <name>String</name> <call><name>getAuthMethod</name><argument_list>(
+     try <block>{<block_content>
+       <return>return <expr><call><name>internalGetAuthMethod</name><argument_list>(<argument><expr><name>clientAuth</name></expr></argument>, <argument><expr><name>serverAuth</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></argument_list></call></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Auth method failure"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <return>return <expr><call><name><name>e</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>;</return>
+     </block_content>}</block></catch>
+   }</block></enum>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">685</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">686</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <name>String</name> <call><name>getAuthMethod</name><argument_list>(
+     try <block>{<block_content>
+       <return>return <expr><call><name>internalGetAuthMethod</name><argument_list>(<argument><expr><name>clientAuth</name></expr></argument>, <argument><expr><name>serverAuth</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>useValidToken</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></argument_list></call></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Auth method failure"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <return>return <expr><call><name><name>e</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>;</return>
+     </block_content>}</block></catch>
+   </block_content>}</block></function>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">702</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">704</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>private</specifier> <name>String</name> <call><name>internalGetAuthMethod</name><argument_list>(
+     <argument><expr><call><name><name>UserGroupInformation</name><operator>.</operator><name>setConfiguration</name></name><argument_list>(<argument><expr><name>serverConf</name></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+     
+     <decl_stmt><decl><type><specifier>final</specifier> <name>UserGroupInformation</name></type> <name>serverUgi</name> <init>=
+        <expr><call><name><name>UserGroupInformation</name><operator>.</operator><name>createRemoteUser</name></name><argument_list>(<argument><expr><name>currentUser</name> <operator>+</operator> <literal type="string">"-SERVER"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>UserGroupInformation</name><operator>.</operator><name>createRemoteUser</name></name><argument_list>(<argument><expr><name>currentUser</name> <operator>+</operator> <literal type="string">"-SERVER/localhost@NONE"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name><name>serverUgi</name><operator>.</operator><name>setAuthenticationMethod</name></name><argument_list>(<argument><expr><name>serverAuth</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <decl_stmt><decl><type><specifier>final</specifier> <name>TestTokenSecretManager</name></type> <name>sm</name> <init>= <expr><operator>new</operator> <call><name>TestTokenSecretManager</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></switch></block_content></block></block_content></block></switch></block_content></block></function></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></function></block_content></block></else></if_stmt></block_content></block></function></block_content></block></if></if_stmt>
+
+</unit>

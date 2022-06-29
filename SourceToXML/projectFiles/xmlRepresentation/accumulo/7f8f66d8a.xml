@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/7f8f66d8a.java"><expr_stmt><expr><name>From</name> <literal type="number">7f8f66d8a066dbfe118e00e19984bb18f3adfabd</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Dave</name> <name><name>Marion</name> <argument_list type="generic">&lt;<argument><name>dlmarion</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">14</literal> <name>Jun</name> <literal type="number">2016</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">25</literal><operator>:</operator><literal type="number">06</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">4331</literal><operator>:</operator> <name>Add</name> <name>ability</name> <name>to</name> <name>specify</name> <name>range</name> <name>of</name> <name>ports</name> <name>in</name>
+ <name><name>configuration</name><operator>.</operator> <name>Tested</name></name> <name>and</name> <name>works</name> <name>with</name> <operator>*</operator><operator>.</operator><name><name>port</name><operator>.</operator><name>client</name></name> <name><name>properties</name><operator>.</operator> <name>Modified</name></name>
+ <name><name>tserver</name><operator>.</operator><name>port</name><operator>.</operator><name>search</name></name> <name>property</name> <name>to</name> <name>perform</name> <name>a</name> <name>linear</name> <name>search</name></expr></expr_stmt> <for>for free ports
+ instead of random.
+
+--
+ .../core/conf/AccumuloConfiguration.java      <operator>|</operator>  36 ++-
+ .../accumulo/core/conf/PropertyType.java      <operator>|</operator>  53 +++-
+ .../core/conf/AccumuloConfigurationTest.java  <operator>|</operator>  75 +++++
+ .../main/asciidoc/chapters/administration.txt <operator>|</operator>   5 +-
+ .../java/org/apache/accumulo/proxy/Proxy.java <operator>|</operator>   4 +-
+ .../org/apache/accumulo/server/Accumulo.java  <operator>|</operator>   4 +-
+ .../accumulo/server/monitor/LogService.java   <operator>|</operator>   2 +-
+ .../accumulo/server/rpc/TServerUtils.java     <operator>|</operator> 154 ++++++-----
+ .../apache/accumulo/server/util/Admin.java    <operator>|</operator>  20 +-
+ .../server/util/TServerUtilsTest.java         <operator>|</operator> 261 ++++++++++++++++++
+ .../accumulo/gc/SimpleGarbageCollector.java   <operator>|</operator>  13 +-
+ .../org/apache/accumulo/master/Master.java    <operator>|</operator>   2 +-
+ .../accumulo/monitor/EmbeddedWebServer.java   <operator>|</operator>   4 +
+ .../org/apache/accumulo/monitor/Monitor.java  <operator>|</operator>  65 +++--
+ .../apache/accumulo/tracer/TraceServer.java   <operator>|</operator>  21 +-
+ .../test/functional/ZombieTServer.java        <operator>|</operator>   4 +-
+ .../test/performance/thrift/NullTserver.java  <operator>|</operator>   6 +-
+ 17 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">590</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">139</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>AccumuloConfiguration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>AccumuloConfiguration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e74e71b3a</name><operator>..</operator><literal type="number">2e1d9bc2b</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>AccumuloConfiguration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>AccumuloConfiguration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt></for> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>AccumuloException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Connector</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>TableNotFoundException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>impl</name><operator>.</operator><name>Tables</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>PropertyType</name><operator>.</operator><name>PortRange</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>util</name><operator>.</operator><name>Pair</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>start</name><operator>.</operator><name>classloader</name><operator>.</operator><name>vfs</name><operator>.</operator><name>AccumuloVFSClassLoader</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">341</literal></expr><operator>,</operator><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">343</literal></expr><operator>,</operator><expr><literal type="number">38</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AccumuloConfiguration</name> implements <name>Iterable</name><operator>&lt;</operator><name>Entry</name><operator>&lt;</operator><name>String</name></expr><operator>,</operator><expr><name>Str</name>
+    <operator>*</operator></expr></expr_stmt>           <if_stmt><if>if the property is of the wrong type
+    * @see #getTimeInMillis<condition>(<expr><name>String</name></expr>)</condition><block type="pseudo"><block_content>
+    <expr_stmt><expr><operator>*</operator><operator>/</operator>
+  <specifier>public</specifier> <name>int</name> <call><name>getPort</name><argument_list>(<argument><expr><name>Property</name> <name>property</name></expr></argument>)</argument_list></call> <block>{
+  <expr><specifier>public</specifier> <name><name>int</name><index>[]</index></name> <call><name>getPort</name><argument_list>(<argument><expr><name>Property</name> <name>property</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>checkType</name><argument_list>(<argument><expr><name>property</name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>PORT</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+     <name>String</name> <name>portString</name> <operator>=</operator> <call><name>get</name><argument_list>(<argument><expr><name>property</name></expr></argument>)</argument_list></call></block></expr>;
+    <name>int</name> <name>port</name> <operator>=</operator> <call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>portString</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt></block_content></block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><name>port</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>port</name> <operator>&lt;</operator> <literal type="number">1024</literal> <operator>||</operator> <name>port</name> <operator>&gt;</operator> <literal type="number">65535</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Invalid port number "</literal> <operator>+</operator> <name>port</name> <operator>+</operator> <literal type="string">"; Using default "</literal> <operator>+</operator> <call><name><name>property</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>port</name> <operator>=</operator> <call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><call><name><name>property</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>ports</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Pair</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>,<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>portRange</name> <init>= <expr><call><name><name>PortRange</name><operator>.</operator><name>parse</name></name><argument_list>(<argument><expr><name>portString</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>low</name> <init>= <expr><call><name><name>portRange</name><operator>.</operator><name>getFirst</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>high</name> <init>= <expr><call><name><name>portRange</name><operator>.</operator><name>getSecond</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name>ports</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><name>high</name> <operator>-</operator> <name>low</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>j</name> <init>= <expr><name>low</name></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;=</operator> <name>high</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr><operator>,</operator> <expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <expr_stmt><expr><name><name>ports</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>j</name></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name>ports</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+      <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>port</name> <init>= <expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>portString</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>port</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>port</name> <operator>&lt;</operator> <literal type="number">1024</literal> <operator>||</operator> <name>port</name> <operator>&gt;</operator> <literal type="number">65535</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Invalid port number "</literal> <operator>+</operator> <name>port</name> <operator>+</operator> <literal type="string">"; Using default "</literal> <operator>+</operator> <call><name><name>property</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>ports</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><call><name><name>property</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><name><name>ports</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name>port</name></expr>;</expr_stmt>
+          </block_content>}</block></else></if_stmt>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <expr_stmt><expr><name><name>ports</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name>port</name></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>NumberFormatException</name></type> <name>e1</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Invalid port syntax. Must be a single positive integers or a range (M-N) of positive integers"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></catch></try>
+     </block_content>}</block></catch></try>
+    <return>return <expr><name>port</name></expr>;</return>
+    <return>return <expr><name>ports</name></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+diff --git a/core/src/main/java/org/apache/accumulo/core/conf/PropertyType.java b/core/src/main/java/org/apache/accumulo/core/conf/PropertyType.java
+index a0d0f6874..f08ab5b0b 100644
+-- a/core/src/main/java/org/apache/accumulo/core/conf/PropertyType.java
+++ b/core/src/main/java/org/apache/accumulo/core/conf/PropertyType.java
+@@ -24,7 +24,10 @@ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+ 
+ import org.apache.accumulo.core.Constants;
+import org.apache.accumulo.core.util.Pair;
+ import org.apache.hadoop.fs.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+ 
+ import com.google.common.base.Function;
+ import com.google.common.base.Predicate;
+@@ -56,8 +59,10 @@ public enum PropertyType {
+           + "Examples of valid host lists are 'localhost:2000,www.example.com,10.10.1.1:500' and 'localhost'.\n"
+           + "Examples of invalid host lists are '', ':1000', and 'localhost:80000'"),
+ 
+  PORT("port", Predicates.or(new Bounds(1024, 65535), in(true, "0")),
+      "An positive integer in the range 1024-65535, not already in use or specified elsewhere in the configuration"),
+  @SuppressWarnings("unchecked")
+  PORT("port", Predicates.or(new Bounds(1024, 65535), in(true, "0"), new PortRange("\\d{4,5}-\\d{4,5}")),
+      "An positive integer in the range 1024-65535 (not already in use or specified elsewhere in the configuration),\n"
+          + "zero to indicate any open ephemeral port, or a range of positive integers specified as M-N"),
+ 
+   COUNT("count", new Bounds(0, Integer.MAX_VALUE), "A non-negative integer in the range of 0-" + Integer.MAX_VALUE),
+ 
+@@ -237,7 +242,7 @@ public enum PropertyType {
+ 
+   private static class Matches implements Predicate&lt;String&gt; {
+ 
+    private final Pattern pattern;
+    protected final Pattern pattern;
+ 
+     public Matches(final String pattern) {
+       this(pattern, Pattern.DOTALL);
+@@ -262,4 +267,46 @@ public enum PropertyType {
+ 
+   }
+ 
+  public static class PortRange extends Matches {
+
+    private static final Logger log = LoggerFactory.getLogger(PortRange.class);
+
+    public PortRange(final String pattern) {
+      super(pattern);
+    }
+
+    @Override
+    public boolean apply(final String input) {
+      if (super.apply(input)) {
+        try {
+          PortRange.parse(input);
+          return true;
+        } catch (IllegalArgumentException e) {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
+
+    public static Pair&lt;Integer,Integer&gt; parse(String portRange) {
+      int idx = portRange.indexOf('-');
+      if (idx != -1) {
+        int low = Integer.parseInt(portRange.substring(0, idx));
+        if (low &lt; 1024) {
+          log.error("Invalid port number for low end of the range, using 1024");
+          low = 1024;
+        }
+        int high = Integer.parseInt(portRange.substring(idx + 1));
+        if (high &gt; 65535) {
+          log.error("Invalid port number for high end of the range, using 65535");
+          high = 65535;
+        }
+        return new Pair&lt;Integer,Integer&gt;(low, high);
+      }
+      throw new IllegalArgumentException("Invalid port range specification, must use M-N notation.");
+    }
+
+  }
+
+ }
+diff --git a/core/src/test/java/org/apache/accumulo/core/conf/AccumuloConfigurationTest.java b/core/src/test/java/org/apache/accumulo/core/conf/AccumuloConfigurationTest.java
+index efb080dcd..61186bd80 100644
+-- a/core/src/test/java/org/apache/accumulo/core/conf/AccumuloConfigurationTest.java
+++ b/core/src/test/java/org/apache/accumulo/core/conf/AccumuloConfigurationTest.java
+@@ -72,4 +72,79 @@ public class AccumuloConfigurationTest {
+     }
+     assertTrue("test was a dud, and did nothing", found);
+   }
+
+  @Test
+  public void testGetSinglePort() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "9997");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(1, ports.length);
+    assertEquals(9997, ports[0]);
+  }
+
+  @Test
+  public void testGetAnyPort() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "0");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(1, ports.length);
+    assertEquals(0, ports[0]);
+  }
+
+  @Test
+  public void testGetInvalidPort() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "1020");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(1, ports.length);
+    assertEquals(Integer.parseInt(Property.TSERV_CLIENTPORT.getDefaultValue()), ports[0]);
+  }
+
+  @Test
+  public void testGetPortRange() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "9997-9999");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(3, ports.length);
+    assertEquals(9997, ports[0]);
+    assertEquals(9998, ports[1]);
+    assertEquals(9999, ports[2]);
+  }
+
+  @Test
+  public void testGetPortRangeInvalidLow() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "1020-1026");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(3, ports.length);
+    assertEquals(1024, ports[0]);
+    assertEquals(1025, ports[1]);
+    assertEquals(1026, ports[2]);
+  }
+
+  @Test
+  public void testGetPortRangeInvalidHigh() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "65533-65538");
+    int[] ports = cc.getPort(Property.TSERV_CLIENTPORT);
+    assertEquals(3, ports.length);
+    assertEquals(65533, ports[0]);
+    assertEquals(65534, ports[1]);
+    assertEquals(65535, ports[2]);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetPortInvalidSyntax() {
+    AccumuloConfiguration c = AccumuloConfiguration.getDefaultConfiguration();
+    ConfigurationCopy cc = new ConfigurationCopy(c);
+    cc.set(Property.TSERV_CLIENTPORT, "[65533,65538]");
+    cc.getPort(Property.TSERV_CLIENTPORT);
+  }
+
+ }
+diff --git a/docs/src/main/asciidoc/chapters/administration.txt b/docs/src/main/asciidoc/chapters/administration.txt
+index d75c601fe..1935181d5 100644
+-- a/docs/src/main/asciidoc/chapters/administration.txt
+++ b/docs/src/main/asciidoc/chapters/administration.txt
+@@ -63,7 +63,10 @@ In addition, the user can provide +0+ and an ephemeral port will be chosen inste
+ ephemeral port is likely to be unique and not already bound. Thus, configuring ports to
+ use +0+ instead of an explicit value, should, in most cases, work around any issues of
+ running multiple distinct Accumulo instances (or any other process which tries to use the
+same default ports) on the same hardware.
+same default ports) on the same hardware. Finally, the *.port.client properties will work
+with the port range syntax (M-N) allowing the user to specify a range of ports for the
+service to attempt to bind. The ports in the range will be tried in a 1-up manner starting
+at the low end of the range to, and including, the high end of the range.
+ 
+ === Installation
+ Choose a directory for the Accumulo installation. This directory will be referenced
+diff --git a/proxy/src/main/java/org/apache/accumulo/proxy/Proxy.java b/proxy/src/main/java/org/apache/accumulo/proxy/Proxy.java
+index 87e2c58d1..5f3b9915b 100644
+-- a/proxy/src/main/java/org/apache/accumulo/proxy/Proxy.java
+++ b/proxy/src/main/java/org/apache/accumulo/proxy/Proxy.java
+@@ -265,8 +265,8 @@ public class Proxy implements KeywordExecutable {
+     TimedProcessor timedProcessor = new TimedProcessor(metricsFactory, processor, serverName, threadName);
+ 
+     // Create the thrift server with our processor and properties
+    ServerAddress serverAddr = TServerUtils.startTServer(address, serverType, timedProcessor, protocolFactory, serverName, threadName, numThreads,
+        simpleTimerThreadpoolSize, threadpoolResizeInterval, maxFrameSize, sslParams, saslParams, serverSocketTimeout);
+    ServerAddress serverAddr = TServerUtils.startTServer(serverType, timedProcessor, protocolFactory, serverName, threadName, numThreads,
+        simpleTimerThreadpoolSize, threadpoolResizeInterval, maxFrameSize, sslParams, saslParams, serverSocketTimeout, address);
+ 
+     return serverAddr;
+   }
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java b/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+index f55199f60..302b6f96d 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+@@ -168,8 +168,8 @@ public class Accumulo {
+     logConfigWatcher.start();
+ 
+     // Makes sure the log-forwarding to the monitor is configured
+    int logPort = conf.getPort(Property.MONITOR_LOG4J_PORT);
+    System.setProperty("org.apache.accumulo.core.host.log.port", Integer.toString(logPort));
+    int[] logPort = conf.getPort(Property.MONITOR_LOG4J_PORT);
+    System.setProperty("org.apache.accumulo.core.host.log.port", Integer.toString(logPort[0]));
+ 
+     log.info(application + " starting");
+     log.info("Instance " + serverConfig.getInstance().getInstanceID());
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/monitor/LogService.java b/server/base/src/main/java/org/apache/accumulo/server/monitor/LogService.java
+index 8acc764a8..fce1ca91f 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/monitor/LogService.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/monitor/LogService.java
+@@ -94,7 +94,7 @@ public class LogService extends org.apache.log4j.AppenderSkeleton {
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>startLogListener</name><parameter_list>(<parameter><decl><type><name>AccumuloConfiguration</name></type> <name>conf</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>instanceId</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>hostAddress</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>SocketServer</name></type> <name>server</name> <init>= <expr><operator>new</operator> <call><name>SocketServer</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>getPort</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>MONITOR_LOG4J_PORT</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>SocketServer</name></type> <name>server</name> <init>= <expr><operator>new</operator> <call><name>SocketServer</name><argument_list>(<argument><expr><call><name><name>conf</name><operator>.</operator><name>getPort</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>MONITOR_LOG4J_PORT</name></name></expr></argument>)</argument_list></call><index>[<expr><literal type="number">0</literal></expr>]</index></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <comment type="line">// getLocalPort will return the actual ephemeral port used when '0' was provided.</comment>
+       <decl_stmt><decl><type><name>String</name></type> <name>logForwardingAddr</name> <init>= <expr><name>hostAddress</name> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <call><name><name>server</name><operator>.</operator><name>getLocalPort</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">70e1c592c</literal><operator>..</operator><literal type="number">74f4a0c5f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">22</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@</expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name></name>;</package>
+ 
+ <import>import static <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Preconditions</name><operator>.</operator><name>checkArgument</name></name>;</import>
+<import>import static <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Uninterruptibles</name><operator>.</operator><name>sleepUninterruptibly</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>BindException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetAddress</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetSocketAddress</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>ServerSocket</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>UnknownHostException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Random</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutorService</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ThreadPoolExecutor</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+ 
+ <import>import <name><name>javax</name><operator>.</operator><name>net</name><operator>.</operator><name>ssl</name><operator>.</operator><name>SSLServerSocket</name></name>;</import>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">77</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">73</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>TServerUtils</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name><name>ThreadLocal</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>clientAddress</name> <operator>=</operator> <operator>new</operator> <call><name><name>ThreadLocal</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+  <comment type="block" format="javadoc">/**
+   *
+   * @param hostname
+   *          name of the host
+   * @param ports
+   *          array of ports
+   * @return array of HostAndPort objects
+   */</comment>
+  <specifier>public</specifier> <specifier>static</specifier> <name><name>HostAndPort</name><index>[]</index></name> <call><name>getHostAndPorts</name><argument_list>(<argument><expr><name>String</name> <name>hostname</name></expr></argument>, <argument><expr><name><name>int</name><index>[]</index></name> <name>ports</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>HostAndPort</name><index>[]</index></name> <name>addresses</name> <operator>=</operator> <operator>new</operator> <name><name>HostAndPort</name><index>[<expr><name><name>ports</name><operator>.</operator><name>length</name></name></expr>]</index></name></expr>;</block></block></expr></expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>ports</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>addresses</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>HostAndPort</name><operator>.</operator><name>fromParts</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><name><name>ports</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>addresses</name></expr>;</return>
+  </block_content>}</block></try>
+
+   <comment type="block" format="javadoc">/**
+    * Start a server, at the given port, or higher, if that port is not available.
+    *
+@@ -107,7 +119,7 @@ public class TServerUtils {
+       throws UnknownHostException {
+     final AccumuloConfiguration config = service.getConfiguration();
+ 
+    final int portHint = config.getPort(portHintProperty);
+    final int[] portHint = config.getPort(portHintProperty);
+ 
+     int minThreads = 2;
+     if (minThreadProperty != null)
+@@ -135,42 +147,35 @@ public class TServerUtils {
+     // create the TimedProcessor outside the port search loop so we don't try to register the same metrics mbean more than once
+     TimedProcessor timedProcessor = new TimedProcessor(config, processor, serverName, threadName);
+ 
+    Random random = new Random();
+    for (int j = 0; j &lt; 100; j++) {
+
+      // Are we going to slide around, looking for an open port?
+      int portsToSearch = 1;
+      if (portSearch)
+        portsToSearch = 1000;
+
+      for (int i = 0; i &lt; portsToSearch; i++) {
+        int port = portHint + i;
+        if (portHint != 0 &amp;&amp; i &gt; 0)
+          port = 1024 + random.nextInt(65535 - 1024);
+        if (port &gt; 65535)
+          port = 1024 + port % (65535 - 1024);
+        try {
+          HostAndPort addr = HostAndPort.fromParts(hostname, port);
+          return TServerUtils.startTServer(addr, serverType, timedProcessor, serverName, threadName, minThreads, simpleTimerThreadpoolSize,
+              timeBetweenThreadChecks, maxMessageSize, service.getServerSslParams(), service.getSaslParams(), service.getClientTimeoutInMillis());
+        } catch (TTransportException ex) {
+          log.error("Unable to start TServer", ex);
+          if (ex.getCause() == null || ex.getCause().getClass() == BindException.class) {
+            // Note: with a TNonblockingServerSocket a "port taken" exception is a cause-less
+            // TTransportException, and with a TSocket created by TSSLTransportFactory, it
+            // comes through as caused by a BindException.
+            log.info("Unable to use port {}, retrying. (Thread Name = {})", port, threadName);
+            sleepUninterruptibly(250, TimeUnit.MILLISECONDS);
+          } else {
+            // thrift is passing up a nested exception that isn't a BindException,
+            // so no reason to believe retrying on a different port would help.
+            log.error("Unable to start TServer", ex);
+    HostAndPort[] addresses = getHostAndPorts(hostname, portHint);
+    try {
+      return TServerUtils.startTServer(serverType, timedProcessor, serverName, threadName, minThreads, simpleTimerThreadpoolSize, timeBetweenThreadChecks,
+          maxMessageSize, service.getServerSslParams(), service.getSaslParams(), service.getClientTimeoutInMillis(), addresses);
+    } catch (TTransportException e) {
+      if (portSearch) {
+        HostAndPort last = addresses[addresses.length - 1];
+        // Attempt to allocate a port outside of the specified port property
+        // Search sequentially over the next 1000 ports
+        for (int i = last.getPort() + 1; i &lt; last.getPort() + 1001; i++) {
+          int port = i;
+          if (port &gt; 65535) {
+             break;
+           }
+          try {
+            HostAndPort addr = HostAndPort.fromParts(hostname, port);
+            return TServerUtils.startTServer(serverType, timedProcessor, serverName, threadName, minThreads, simpleTimerThreadpoolSize,
+                timeBetweenThreadChecks, maxMessageSize, service.getServerSslParams(), service.getSaslParams(), service.getClientTimeoutInMillis(), addr);
+          } catch (TTransportException tte) {
+            log.info("Unable to use port {}, retrying. (Thread Name = {})", port, threadName);
+          }
+         }
+        log.error("Unable to start TServer", e);
+        throw new UnknownHostException("Unable to find a listen port");
+      } else {
+        log.error("Unable to start TServer", e);
+        throw new UnknownHostException("Unable to find a listen port");
+       }
+     }
+    throw new UnknownHostException("Unable to find a listen port");
+   }
+ 
+   /**
+@@ -456,27 +461,27 @@ public class TServerUtils {
+     return new ServerAddress(server, address);
+   }
+ 
+  public static ServerAddress startTServer(AccumuloConfiguration conf, HostAndPort address, ThriftServerType serverType, TProcessor processor,
+      String serverName, String threadName, int numThreads, int numSTThreads, long timeBetweenThreadChecks, long maxMessageSize, SslConnectionParams sslParams,
+      SaslServerConnectionParams saslParams, long serverSocketTimeout) throws TTransportException {
+  public static ServerAddress startTServer(AccumuloConfiguration conf, ThriftServerType serverType, TProcessor processor, String serverName, String threadName,
+      int numThreads, int numSTThreads, long timeBetweenThreadChecks, long maxMessageSize, SslConnectionParams sslParams,
+      SaslServerConnectionParams saslParams, long serverSocketTimeout, HostAndPort... addresses) throws TTransportException {
+ 
+     if (ThriftServerType.SASL == serverType) {
+       processor = updateSaslProcessor(serverType, processor);
+     }
+ 
+    return startTServer(address, serverType, new TimedProcessor(conf, processor, serverName, threadName), serverName, threadName, numThreads, numSTThreads,
+        timeBetweenThreadChecks, maxMessageSize, sslParams, saslParams, serverSocketTimeout);
+    return startTServer(serverType, new TimedProcessor(conf, processor, serverName, threadName), serverName, threadName, numThreads, numSTThreads,
+        timeBetweenThreadChecks, maxMessageSize, sslParams, saslParams, serverSocketTimeout, addresses);
+   }
+ 
+   /**
+    * @see #startTServer(HostAndPort, ThriftServerType, TimedProcessor, TProtocolFactory, String, String, int, int, long, long, SslConnectionParams,
+    *      SaslServerConnectionParams, long)
+    */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name></type> <name>startTServer</name><parameter_list>(<parameter><decl><type><name>HostAndPort</name></type> <name>address</name></decl></parameter>, <parameter><decl><type><name>ThriftServerType</name></type> <name>serverType</name></decl></parameter>, <parameter><decl><type><name>TimedProcessor</name></type> <name>processor</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>serverName</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>threadName</name></decl></parameter>,
+      <parameter><decl><type><name>int</name></type> <name>numThreads</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numSTThreads</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>timeBetweenThreadChecks</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>maxMessageSize</name></decl></parameter>, <parameter><decl><type><name>SslConnectionParams</name></type> <name>sslParams</name></decl></parameter>,
+      <parameter><decl><type><name>SaslServerConnectionParams</name></type> <name>saslParams</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>serverSocketTimeout</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TTransportException</name></expr></argument></throws> <block>{<block_content>
+    <return>return <expr><call><name>startTServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>serverType</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><call><name><name>ThriftUtil</name><operator>.</operator><name>protocolFactory</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>,
+        <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><name>sslParams</name></expr></argument>, <argument><expr><name>saslParams</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>)</argument_list></call></expr>;</return>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name></type> <name>startTServer</name><parameter_list>(<parameter><decl><type><name>ThriftServerType</name></type> <name>serverType</name></decl></parameter>, <parameter><decl><type><name>TimedProcessor</name></type> <name>processor</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>serverName</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>threadName</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numThreads</name></decl></parameter>,
+      <parameter><decl><type><name>int</name></type> <name>numSTThreads</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>timeBetweenThreadChecks</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>maxMessageSize</name></decl></parameter>, <parameter><decl><type><name>SslConnectionParams</name></type> <name>sslParams</name></decl></parameter>, <parameter><decl><type><name>SaslServerConnectionParams</name></type> <name>saslParams</name></decl></parameter>,
+      <parameter><decl><type><name>long</name></type> <name>serverSocketTimeout</name></decl></parameter>, <parameter><decl><type><name>HostAndPort</name><modifier>...</modifier></type> <name>addresses</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TTransportException</name></expr></argument></throws> <block>{<block_content>
+    <return>return <expr><call><name>startTServer</name><argument_list>(<argument><expr><name>serverType</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><call><name><name>ThriftUtil</name><operator>.</operator><name>protocolFactory</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>,
+        <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><name>sslParams</name></expr></argument>, <argument><expr><name>saslParams</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>, <argument><expr><name>addresses</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -484,35 +489,46 @@ public class TServerUtils {
+    *
+    * @return A ServerAddress encapsulating the Thrift server created and the host/port which it is bound to.
+    */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name></type> <name>startTServer</name><parameter_list>(<parameter><decl><type><name>HostAndPort</name></type> <name>address</name></decl></parameter>, <parameter><decl><type><name>ThriftServerType</name></type> <name>serverType</name></decl></parameter>, <parameter><decl><type><name>TimedProcessor</name></type> <name>processor</name></decl></parameter>, <parameter><decl><type><name>TProtocolFactory</name></type> <name>protocolFactory</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>serverName</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>threadName</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numThreads</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numSTThreads</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>timeBetweenThreadChecks</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>maxMessageSize</name></decl></parameter>, <parameter><decl><type><name>SslConnectionParams</name></type> <name>sslParams</name></decl></parameter>,
+      <parameter><decl><type><name>SaslServerConnectionParams</name></type> <name>saslParams</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>serverSocketTimeout</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TTransportException</name></expr></argument></throws> <block>{<block_content>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name></type> <name>startTServer</name><parameter_list>(<parameter><decl><type><name>ThriftServerType</name></type> <name>serverType</name></decl></parameter>, <parameter><decl><type><name>TimedProcessor</name></type> <name>processor</name></decl></parameter>, <parameter><decl><type><name>TProtocolFactory</name></type> <name>protocolFactory</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>serverName</name></decl></parameter>,
+      <parameter><decl><type><name>String</name></type> <name>threadName</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numThreads</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>numSTThreads</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>timeBetweenThreadChecks</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>maxMessageSize</name></decl></parameter>, <parameter><decl><type><name>SslConnectionParams</name></type> <name>sslParams</name></decl></parameter>,
+      <parameter><decl><type><name>SaslServerConnectionParams</name></type> <name>saslParams</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>serverSocketTimeout</name></decl></parameter>, <parameter><decl><type><name>HostAndPort</name><modifier>...</modifier></type> <name>addresses</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TTransportException</name></expr></argument></throws> <block>{<block_content>
+ 
+     <comment type="line">// This is presently not supported. It's hypothetically possible, I believe, to work, but it would require changes in how the transports</comment>
+     <comment type="line">// work at the Thrift layer to ensure that both the SSL and SASL handshakes function. SASL's quality of protection addresses privacy issues.</comment>
+     <expr_stmt><expr><call><name>checkArgument</name><argument_list>(<argument><expr><operator>!</operator><operator>(</operator><name>sslParams</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>saslParams</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator></expr></argument>, <argument><expr><literal type="string">"Cannot start a Thrift server using both SSL and SASL"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><name>ServerAddress</name></type> <name>serverAddress</name></decl>;</decl_stmt>
+    <switch>switch <condition>(<expr><name>serverType</name></expr>)</condition> <block>{<block_content>
+      <case>case <expr><name>SSL</name></expr>:</case>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating SSL Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createSslThreadPoolServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>, <argument><expr><name>sslParams</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>,
+            <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <break>break;</break>
+      <case>case <expr><name>SASL</name></expr>:</case>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating SASL Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createSaslThreadPoolServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>, <argument><expr><name>saslParams</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>,
+            <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <break>break;</break>
+      <case>case <expr><name>THREADPOOL</name></expr>:</case>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating unsecure TThreadPool Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createBlockingServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ServerAddress</name></type> <name>serverAddress</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>HostAndPort</name></type> <name>address</name> <range>: <expr><name>addresses</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <switch>switch <condition>(<expr><name>serverType</name></expr>)</condition> <block>{<block_content>
+          <case>case <expr><name>SSL</name></expr>:</case>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating SSL Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createSslThreadPoolServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>, <argument><expr><name>sslParams</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>,
+                <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <break>break;</break>
+          <case>case <expr><name>SASL</name></expr>:</case>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating SASL Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createSaslThreadPoolServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverSocketTimeout</name></expr></argument>, <argument><expr><name>saslParams</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>,
+                <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <break>break;</break>
+          <case>case <expr><name>THREADPOOL</name></expr>:</case>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating unsecure TThreadPool Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createBlockingServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>,
+                <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <break>break;</break>
+          <case>case <expr><name>CUSTOM_HS_HA</name></expr>:</case> <comment type="line">// Intentional passthrough -- Our custom wrapper around HsHa is the default</comment>
+          <default>default:</default>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating default, unsecure custom half-async Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createNonBlockingServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>,
+                <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></switch>
+         <break>break;</break>
+      <case>case <expr><name>CUSTOM_HS_HA</name></expr>:</case> <comment type="line">// Intentional passthrough -- Our custom wrapper around HsHa is the default</comment>
+      <default>default:</default>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Instantiating default, unsecure custom half-async Thrift server"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createNonBlockingServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>protocolFactory</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>numSTThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>,
+            <argument><expr><name>maxMessageSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>TTransportException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Error attempting to create server at {}. Error: {}"</literal></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></for>
+    <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>==</operator> <name>serverAddress</name></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>TTransportException</name><argument_list>(<argument><expr><literal type="string">"Unable to create server on addresses: "</literal> <operator>+</operator> <call><name><name>Arrays</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>addresses</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</throw>
+     </block_content>}</block></if></if_stmt>
+ 
+     <decl_stmt><decl><type><specifier>final</specifier> <name>TServer</name></type> <name>finalServer</name> <init>= <expr><name><name>serverAddress</name><operator>.</operator><name>server</name></name></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Admin</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Admin</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d43ce9254</name><operator>..</operator><name>df18fbf87</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Admin</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>Admin</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">374</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">374</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>Admin</name> implements <name>KeywordExecutable</name> <block>{
+     <expr><name>final</name> <name>String</name> <name>zTServerRoot</name> <operator>=</operator> <call><name>getTServersZkPath</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr>;
+     <name>final</name> <name>ZooCache</name> <name>zc</name> <operator>=</operator> <operator>new</operator> <call><name>ZooCacheFactory</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getZooCache</name><argument_list>(<argument><expr><call><name><name>instance</name><operator>.</operator><name>getZooKeepers</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>instance</name><operator>.</operator><name>getZooKeepersSessionTimeOut</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+     <for>for <control>(<init><decl><type><name>String</name></type> <name>server</name> <range>: <expr><name>servers</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>HostAndPort</name></type> <name>address</name> <init>= <expr><call><name><name>AddressUtil</name><operator>.</operator><name>parseAddress</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>finalServer</name> <init>= <expr><call><name>qualifyWithZooKeeperSessionId</name><argument_list>(<argument><expr><name>zTServerRoot</name></expr></argument>, <argument><expr><name>zc</name></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Stopping server "</literal> <operator>+</operator> <name>finalServer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>MasterClient</name><operator>.</operator><name>execute</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><operator>new</operator> <class><super><name><name>ClientExec</name><argument_list type="generic">&lt;<argument><name><name>MasterClientService</name><operator>.</operator><name>Client</name></name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+        <function><annotation>@<name>Override</name></annotation>
+        <type><specifier>public</specifier> <name>void</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name><name>MasterClientService</name><operator>.</operator><name>Client</name></name></type> <name>client</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>shutdownTabletServer</name></name><argument_list>(<argument><expr><call><name><name>Tracer</name><operator>.</operator><name>traceInfo</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>rpcCreds</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>finalServer</name></expr></argument>, <argument><expr><name>force</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></function>
+      }</block></class></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>port</name> <range>: <expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>)</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>HostAndPort</name></type> <name>address</name> <init>= <expr><call><name><name>AddressUtil</name><operator>.</operator><name>parseAddress</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>, <argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>finalServer</name> <init>= <expr><call><name>qualifyWithZooKeeperSessionId</name><argument_list>(<argument><expr><name>zTServerRoot</name></expr></argument>, <argument><expr><name>zc</name></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Stopping server "</literal> <operator>+</operator> <name>finalServer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>MasterClient</name><operator>.</operator><name>execute</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><operator>new</operator> <class><super><name><name>ClientExec</name><argument_list type="generic">&lt;<argument><name><name>MasterClientService</name><operator>.</operator><name>Client</name></name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+          <function><annotation>@<name>Override</name></annotation>
+          <type><specifier>public</specifier> <name>void</name></type> <name>execute</name><parameter_list>(<parameter><decl><type><name><name>MasterClientService</name><operator>.</operator><name>Client</name></name></type> <name>client</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>shutdownTabletServer</name></name><argument_list>(<argument><expr><call><name><name>Tracer</name><operator>.</operator><name>traceInfo</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>rpcCreds</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>finalServer</name></expr></argument>, <argument><expr><name>force</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></function>
+        }</block></class></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+     </block_content>}</block></for>
+   </block_content>}</block></switch>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtilsTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtilsTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">218d82c52</literal><operator>..</operator><name>e6761a570</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtilsTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtilsTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">21</literal></expr><operator>,</operator><expr><literal type="number">119</literal> @@</expr></expr_stmt> <import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>createNiceMock</name></name>;</import>
+ <import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>expect</name></name>;</import>
+ <import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>replay</name></name>;</import>
+ <import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>verify</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertEquals</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertNotNull</name></name>;</import>
+ <import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertTrue</name></name>;</import>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetAddress</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>ServerSocket</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>UnknownHostException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>ByteBuffer</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutorService</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>AccumuloException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>AccumuloSecurityException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Connector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Instance</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>impl</name><operator>.</operator><name>thrift</name><operator>.</operator><name>ClientService</name><operator>.</operator><name>Iface</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>impl</name><operator>.</operator><name>thrift</name><operator>.</operator><name>ClientService</name><operator>.</operator><name>Processor</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>security</name><operator>.</operator><name>tokens</name><operator>.</operator><name>AuthenticationToken</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>AccumuloConfiguration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>ConfigurationCopy</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>Property</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>AccumuloServerContext</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>client</name><operator>.</operator><name>ClientServiceHandler</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>conf</name><operator>.</operator><name>ServerConfigurationFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>RpcWrapper</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>ServerAddress</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>TServerUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>TServer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TServerSocket</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>After</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>TServerUtilsTest</name> <block>{
+
+  <class><specifier>protected</specifier> <specifier>static</specifier> class <name>TestInstance</name> <super_list><implements>implements <super><name>Instance</name></super></implements></super_list> <block>{
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>getRootTabletLocation</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getMasterLocations</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>getInstanceID</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="string">"1111"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>getInstanceName</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="string">"test"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>String</name></type> <name>getZooKeepers</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="string">""</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>int</name></type> <name>getZooKeepersSessionTimeOut</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="number">30</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>Connector</name></type> <name>getConnector</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>user</name></decl></parameter>, <parameter><decl><type><name><name>byte</name><index>[]</index></name></type> <name>pass</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AccumuloException</name></expr></argument>, <argument><expr><name>AccumuloSecurityException</name></expr></argument></throws> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>Connector</name></type> <name>getConnector</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>user</name></decl></parameter>, <parameter><decl><type><name>ByteBuffer</name></type> <name>pass</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AccumuloException</name></expr></argument>, <argument><expr><name>AccumuloSecurityException</name></expr></argument></throws> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>Connector</name></type> <name>getConnector</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>user</name></decl></parameter>, <parameter><decl><type><name>CharSequence</name></type> <name>pass</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AccumuloException</name></expr></argument>, <argument><expr><name>AccumuloSecurityException</name></expr></argument></throws> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>AccumuloConfiguration</name></type> <name>getConfiguration</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>void</name></type> <name>setConfiguration</name><parameter_list>(<parameter><decl><type><name>AccumuloConfiguration</name></type> <name>conf</name></decl></parameter>)</parameter_list> <block>{<block_content/>}</block></function>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>Connector</name></type> <name>getConnector</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>principal</name></decl></parameter>, <parameter><decl><type><name>AuthenticationToken</name></type> <name>token</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AccumuloException</name></expr></argument>, <argument><expr><name>AccumuloSecurityException</name></expr></argument></throws> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>UnsupportedOperationException</name><argument_list>()</argument_list></call></expr>;</throw>
+    </block_content>}</block></function>
+
+  }</block></class>
+
+  <class><specifier>protected</specifier> <specifier>static</specifier> class <name>TestServerConfigurationFactory</name> <super_list><extends>extends <super><name>ServerConfigurationFactory</name></super></extends></super_list> <block>{
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name>ConfigurationCopy</name></type> <name>conf</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>TestServerConfigurationFactory</name><parameter_list>(<parameter><decl><type><name>Instance</name></type> <name>instance</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>ConfigurationCopy</name><argument_list>(<argument><expr><call><name><name>AccumuloConfiguration</name><operator>.</operator><name>getDefaultConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>AccumuloConfiguration</name></type> <name>getConfiguration</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>conf</name></expr>;</return>
+    </block_content>}</block></function>
+
+  }</block></class>
+
+   <class><specifier>private</specifier> <specifier>static</specifier> class <name>TServerWithoutES</name> <super_list><extends>extends <super><name>TServer</name></super></extends></super_list> <block>{
+     <decl_stmt><decl><type><name>boolean</name></type> <name>stopCalled</name></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">81</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">184</literal></expr><operator>,</operator><expr><literal type="number">162</literal> @@ <specifier>public</specifier> <name>class</name> <name>TServerUtilsTest</name> <block>{
+     <expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+     <comment type="line">// not dying is enough</comment>
+   }</block></expr></expr_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TestInstance</name></type> <name>instance</name> <init>= <expr><operator>new</operator> <call><name>TestInstance</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>TestServerConfigurationFactory</name></type> <name>factory</name> <init>= <expr><operator>new</operator> <call><name>TestServerConfigurationFactory</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <function><annotation>@<name>After</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>resetProperty</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><call><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_PORTSEARCH</name></name></expr></argument>, <argument><expr><call><name><name>Property</name><operator>.</operator><name>TSERV_PORTSEARCH</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerZeroPort</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>TServer</name></type> <name>server</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>address</name> <init>= <expr><call><name>startServer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>server</name> <operator>=</operator> <call><name><name>address</name><operator>.</operator><name>getServer</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">1024</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>server</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerFreePort</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>TServer</name></type> <name>server</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>port</name> <init>= <expr><call><name>getFreePort</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>address</name> <init>= <expr><call><name>startServer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>server</name> <operator>=</operator> <call><name><name>address</name><operator>.</operator><name>getServer</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>port</name></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>server</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>expected</name> <operator>=</operator> <name><name>UnknownHostException</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerUsedPort</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>port</name> <init>= <expr><call><name>getFreePort</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Bind to the port</comment>
+    <decl_stmt><decl><type><name>ServerSocket</name></type> <name>s</name> <init>= <expr><operator>new</operator> <call><name>ServerSocket</name><argument_list>(<argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><call><name>startServer</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerUsedPortWithSearch</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>TServer</name></type> <name>server</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>port</name> <init>= <expr><call><name>findTwoFreeSequentialPorts</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Bind to the port</comment>
+    <decl_stmt><decl><type><name>ServerSocket</name></type> <name>s</name> <init>= <expr><operator>new</operator> <call><name>ServerSocket</name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_PORTSEARCH</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>address</name> <init>= <expr><call><name>startServer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>server</name> <operator>=</operator> <call><name><name>address</name><operator>.</operator><name>getServer</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>server</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerPortRange</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>TServer</name></type> <name>server</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>port</name> <init>= <expr><call><name>findTwoFreeSequentialPorts</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>portRange</name> <init>= <expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"-"</literal> <operator>+</operator> <call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><name>portRange</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>address</name> <init>= <expr><call><name>startServer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>server</name> <operator>=</operator> <call><name><name>address</name><operator>.</operator><name>getServer</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call> <operator>||</operator> <name><name>port</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>server</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testStartServerPortRangeFirstPortUsed</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>TServer</name></type> <name>server</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>port</name> <init>= <expr><call><name>findTwoFreeSequentialPorts</name><argument_list>(<argument><expr><literal type="number">1024</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>portRange</name> <init>= <expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">"-"</literal> <operator>+</operator> <call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Bind to the port</comment>
+    <decl_stmt><decl><type><name>ServerSocket</name></type> <name>s</name> <init>= <expr><operator>new</operator> <call><name>ServerSocket</name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ConfigurationCopy</name><operator>)</operator> <call><name><name>factory</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>set</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><name>portRange</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>address</name> <init>= <expr><call><name>startServer</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>server</name> <operator>=</operator> <call><name><name>address</name><operator>.</operator><name>getServer</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><name><name>port</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <call><name><name>address</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>server</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>TServerUtils</name><operator>.</operator><name>stopTServer</name></name><argument_list>(<argument><expr><name>server</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name><name>int</name><index>[]</index></name></type> <name>findTwoFreeSequentialPorts</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>startingAddress</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>sequential</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>low</name> <init>= <expr><name>startingAddress</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>high</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <do>do <block>{<block_content>
+      <expr_stmt><expr><name>low</name> <operator>=</operator> <call><name>getFreePort</name><argument_list>(<argument><expr><name>low</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>high</name> <operator>=</operator> <call><name>getFreePort</name><argument_list>(<argument><expr><name>low</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>sequential</name> <operator>=</operator> <operator>(</operator><operator>(</operator><name>high</name> <operator>-</operator> <name>low</name><operator>)</operator> <operator>==</operator> <literal type="number">1</literal><operator>)</operator></expr>;</expr_stmt>
+    </block_content>}</block> while <condition>(<expr><operator>!</operator><name>sequential</name></expr>)</condition>;</do>
+    <return>return <expr><operator>new</operator> <name><name>int</name><index>[]</index></name> <block>{<expr><name>low</name></expr>, <expr><name>high</name></expr>}</block></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>int</name></type> <name>getFreePort</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>startingAddress</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>startingAddress</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">65535</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name>ServerSocket</name></type> <name>s</name> <init>= <expr><operator>new</operator> <call><name>ServerSocket</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>port</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>getLocalPort</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><name>port</name></expr>;</return>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// keep trying</comment>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></for>
+    <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"Unable to find open port"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>ServerAddress</name></type> <name>startServer</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>AccumuloServerContext</name></type> <name>ctx</name> <init>= <expr><operator>new</operator> <call><name>AccumuloServerContext</name><argument_list>(<argument><expr><name>factory</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ClientServiceHandler</name></type> <name>clientHandler</name> <init>= <expr><operator>new</operator> <call><name>ClientServiceHandler</name><argument_list>(<argument><expr><name>ctx</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Iface</name></type> <name>rpcProxy</name> <init>= <expr><call><name><name>RpcWrapper</name><operator>.</operator><name>service</name></name><argument_list>(<argument><expr><name>clientHandler</name></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>Processor</name><argument_list type="generic">&lt;<argument><name>Iface</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>clientHandler</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Processor</name><argument_list type="generic">&lt;<argument><name>Iface</name></argument>&gt;</argument_list></name></type> <name>processor</name> <init>= <expr><operator>new</operator> <call><name><name>Processor</name><argument_list type="generic">&lt;<argument><name>Iface</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>rpcProxy</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>hostname</name> <init>= <expr><call><name><name>InetAddress</name><operator>.</operator><name>getLocalHost</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getHostName</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <return>return <expr><call><name><name>TServerUtils</name><operator>.</operator><name>startServer</name></name><argument_list>(<argument><expr><name>ctx</name></expr></argument>, <argument><expr><name>hostname</name></expr></argument>, <argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_CLIENTPORT</name></name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><literal type="string">"TServerUtilsTest"</literal></expr></argument>, <argument><expr><literal type="string">"TServerUtilsTestThread"</literal></expr></argument>,
+        <argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_PORTSEARCH</name></name></expr></argument>, <argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_MINTHREADS</name></name></expr></argument>, <argument><expr><name><name>Property</name><operator>.</operator><name>TSERV_THREADCHECK</name></name></expr></argument>, <argument><expr><name><name>Property</name><operator>.</operator><name>GENERAL_MAX_MESSAGE_SIZE</name></name></expr></argument>)</argument_list></call></expr>;</return>
+
+  </block_content>}</block></function>
+ }</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">4fc072721</literal><operator>..</operator><name>c3efe5a4b</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>fs</name><operator>.</operator><name>VolumeManagerImpl</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>fs</name><operator>.</operator><name>VolumeUtil</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>replication</name><operator>.</operator><name>proto</name><operator>.</operator><name>Replication</name><operator>.</operator><name>Status</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>RpcWrapper</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>ServerAddress</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>TCredentialsUpdatingWrapper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>TServerUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>ThriftServerType</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">722</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">723</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>SimpleGarbageCollector</name> extends <name>AccumuloServerContext</name> implements <name>Ifa</name></expr></expr_stmt>
+     }</block></class> <if_stmt><else>else <block>{<block_content>
+       <expr_stmt><expr><name>processor</name> <operator>=</operator> <operator>new</operator> <call><name><name>Processor</name><argument_list type="generic">&lt;<argument><name>Iface</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>rpcProxy</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></else></if_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>port</name> <init>= <expr><call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>GC_PORT</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name><name>port</name><index>[]</index></name> <init>= <expr><call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>GC_PORT</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>HostAndPort</name><index>[]</index></name></type> <name>addresses</name> <init>= <expr><call><name><name>TServerUtils</name><operator>.</operator><name>getHostAndPorts</name></name><argument_list>(<argument><expr><call><name><name>this</name><operator>.</operator><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>long</name></type> <name>maxMessageSize</name> <init>= <expr><call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getMemoryInBytes</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>GENERAL_MAX_MESSAGE_SIZE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>HostAndPort</name></type> <name>result</name> <init>= <expr><call><name><name>HostAndPort</name><operator>.</operator><name>fromParts</name></name><argument_list>(<argument><expr><call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>port</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Starting garbage collector listening on "</literal> <operator>+</operator> <name>result</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <try>try <block>{<block_content>
+      <return>return <expr><call><name><name>TServerUtils</name><operator>.</operator><name>startTServer</name></name><argument_list>(<argument><expr><call><name>getConfiguration</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>result</name></expr></argument>, <argument><expr><call><name>getThriftServerType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><call><name><name>this</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSimpleName</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"GC Monitor Service"</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>,
+          <argument><expr><call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCount</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>GENERAL_SIMPLETIMER_THREADPOOL_SIZE</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">1000</literal></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><call><name>getServerSslParams</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getSaslParams</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>.</operator><name>address</name></expr>;</return>
+      <decl_stmt><decl><type><name>ServerAddress</name></type> <name>server</name> <init>= <expr><call><name><name>TServerUtils</name><operator>.</operator><name>startTServer</name></name><argument_list>(<argument><expr><call><name>getConfiguration</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name>getThriftServerType</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><call><name><name>this</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSimpleName</name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><literal type="string">"GC Monitor Service"</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCount</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>GENERAL_SIMPLETIMER_THREADPOOL_SIZE</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">1000</literal></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>, <argument><expr><call><name>getServerSslParams</name><argument_list>()</argument_list></call></expr></argument>,
+          <argument><expr><call><name>getSaslParams</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>addresses</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Starting garbage collector listening on "</literal> <operator>+</operator> <name><name>server</name><operator>.</operator><name>address</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><name><name>server</name><operator>.</operator><name>address</name></name></expr>;</return>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <comment type="line">// ACCUMULO-3651 Level changed to error and FATAL added to message for slf4j compatibility</comment>
+       <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"FATAL:"</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>acc1d4ef1</name><operator>..</operator><name>f32021443</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">1339</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1339</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Master</name> extends <name>AccumuloServerContext</name> implements <name><name>LiveTServerSet</name><operator>.</operator><name>List</name></name>
+   <specifier>private</specifier> <name>void</name> <call><name>getMasterLock</name><argument_list>(<argument><expr><name>final</name> <name>String</name> <name>zMasterLoc</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>KeeperException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{
+     <expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"trying to get master lock"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>masterClientAddress</name> <init>= <expr><name>hostname</name> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>MASTER_CLIENTPORT</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>masterClientAddress</name> <init>= <expr><name>hostname</name> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <call><name>getConfiguration</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPort</name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>MASTER_CLIENTPORT</name></name></expr></argument>)</argument_list></call><index>[<expr><literal type="number">0</literal></expr>]</index></expr></init></decl>;</decl_stmt>
+ 
+     <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>EmbeddedWebServer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>EmbeddedWebServer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f0213e73e</name><operator>..</operator><name>a292fd9b5</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>EmbeddedWebServer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>EmbeddedWebServer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">129</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">129</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>EmbeddedWebServer</name> <block>{
+   <expr><specifier>public</specifier> <name>boolean</name> <call><name>isUsingSsl</name><argument_list>()</argument_list></call> <block>{
+     <return>return <expr><name>usingSsl</name></expr>;</return></block></expr>
+   }</block>
+
+  <specifier>public</specifier> <name>boolean</name> <call><name>isRunning</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><call><name><name>server</name><operator>.</operator><name>isRunning</name></name><argument_list>()</argument_list></call></expr>;</return>
+  }</block></expr></expr_stmt>
+ </block_content>}</block></while>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">678ddb5d1</literal><operator>..</operator><literal type="number">9dc4cef90</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name></name>;</package>
+ 
+<import>import static <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Uninterruptibles</name><operator>.</operator><name>sleepUninterruptibly</name></name>;</import>
+ <import>import static <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>charset</name><operator>.</operator><name>StandardCharsets</name><operator>.</operator><name>UTF_8</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">98</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">100</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>net</name><operator>.</operator><name>HostAndPort</name></name>;</import>
+<import>import static <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>Uninterruptibles</name><operator>.</operator><name>sleepUninterruptibly</name></name>;</import></block_content></block></catch></try></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></if></if_stmt>
+ 
+ <comment type="block" format="javadoc">/**
+  * Serve master statistics with an embedded web server.
+@@ -454,35 +455,39 @@ public class Monitor {
+     }
+ 
+     Monitor.START_TIME = System.currentTimeMillis();
+    int port = config.getConfiguration().getPort(Property.MONITOR_PORT);
+    try {
+      log.debug("Creating monitor on port " + port);
+      server = new EmbeddedWebServer(hostname, port);
+    } catch (Throwable ex) {
+      log.error("Unable to start embedded web server", ex);
+      throw new RuntimeException(ex);
+    }
+
+    server.addServlet(DefaultServlet.class, "/");
+    server.addServlet(OperationServlet.class, "/op");
+    server.addServlet(MasterServlet.class, "/master");
+    server.addServlet(TablesServlet.class, "/tables");
+    server.addServlet(TServersServlet.class, "/tservers");
+    server.addServlet(ProblemServlet.class, "/problems");
+    server.addServlet(GcStatusServlet.class, "/gc");
+    server.addServlet(LogServlet.class, "/log");
+    server.addServlet(XMLServlet.class, "/xml");
+    server.addServlet(JSONServlet.class, "/json");
+    server.addServlet(VisServlet.class, "/vis");
+    server.addServlet(ScanServlet.class, "/scans");
+    server.addServlet(BulkImportServlet.class, "/bulkImports");
+    server.addServlet(Summary.class, "/trace/summary");
+    server.addServlet(ListType.class, "/trace/listType");
+    server.addServlet(ShowTrace.class, "/trace/show");
+    server.addServlet(ReplicationServlet.class, "/replication");
+    if (server.isUsingSsl())
+      server.addServlet(ShellServlet.class, "/shell");
+    server.start();
+    int ports[] = config.getConfiguration().getPort(Property.MONITOR_PORT);
+    for (int port : ports) {
+      try {
+        log.debug("Creating monitor on port " + port);
+        server = new EmbeddedWebServer(hostname, port);
+        server.addServlet(DefaultServlet.class, "/");
+        server.addServlet(OperationServlet.class, "/op");
+        server.addServlet(MasterServlet.class, "/master");
+        server.addServlet(TablesServlet.class, "/tables");
+        server.addServlet(TServersServlet.class, "/tservers");
+        server.addServlet(ProblemServlet.class, "/problems");
+        server.addServlet(GcStatusServlet.class, "/gc");
+        server.addServlet(LogServlet.class, "/log");
+        server.addServlet(XMLServlet.class, "/xml");
+        server.addServlet(JSONServlet.class, "/json");
+        server.addServlet(VisServlet.class, "/vis");
+        server.addServlet(ScanServlet.class, "/scans");
+        server.addServlet(BulkImportServlet.class, "/bulkImports");
+        server.addServlet(Summary.class, "/trace/summary");
+        server.addServlet(ListType.class, "/trace/listType");
+        server.addServlet(ShowTrace.class, "/trace/show");
+        server.addServlet(ReplicationServlet.class, "/replication");
+        if (server.isUsingSsl())
+          server.addServlet(ShellServlet.class, "/shell");
+        server.start();
+        break;
+      } catch (Throwable ex) {
+        log.error("Unable to start embedded web server", ex);
+      }
+    }
+    if (!server.isRunning()) {
+      throw new RuntimeException("Unable to start embedded web server on ports: " + Arrays.toString(ports));
+    }
+ 
+     try {
+       log.debug("Using " + hostname + " to advertise monitor location in ZooKeeper");
+diff --git a/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java b/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+index f4a99f89f..e74aef5cb 100644
+-- a/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+++ b/server/tracer/src/main/java/org/apache/accumulo/tracer/TraceServer.java
+@@ -22,6 +22,7 @@ import java.io.IOException;
+ import java.net.InetSocketAddress;
+ import java.net.ServerSocket;
+ import java.nio.channels.ServerSocketChannel;
+import java.util.Arrays;
+ import java.util.Map;
+ import java.util.Map.Entry;
+ import java.util.concurrent.TimeUnit;
+@@ -231,10 +232,22 @@ public class TraceServer implements Watcher {
+     // make sure we refer to the final variable from now on.
+     connector = null;
+ 
+    int port = conf.getPort(Property.TRACE_PORT);
+    final ServerSocket sock = ServerSocketChannel.open().socket();
+    sock.setReuseAddress(true);
+    sock.bind(new InetSocketAddress(hostname, port));
+    int ports[] = conf.getPort(Property.TRACE_PORT);
+    ServerSocket sock = null;
+    for (int port : ports) {
+      ServerSocket s = ServerSocketChannel.open().socket();
+      s.setReuseAddress(true);
+      try {
+        s.bind(new InetSocketAddress(hostname, port));
+        sock = s;
+        break;
+      } catch (Exception e) {
+        log.warn("Unable to start trace server on port {}", port);
+      }
+    }
+    if (null == sock) {
+      throw new RuntimeException("Unable to start trace server on configured ports: " + Arrays.toString(ports));
+    }
+     final TServerTransport transport = new TServerSocket(sock);
+     TThreadPoolServer.Args options = new TThreadPoolServer.Args(transport);
+     options.processor(new Processor&lt;Iface&gt;(new Receiver()));
+diff --git a/test/src/main/java/org/apache/accumulo/test/functional/ZombieTServer.java b/test/src/main/java/org/apache/accumulo/test/functional/ZombieTServer.java
+index 82f677b8d..44f2859c3 100644
+-- a/test/src/main/java/org/apache/accumulo/test/functional/ZombieTServer.java
+++ b/test/src/main/java/org/apache/accumulo/test/functional/ZombieTServer.java
+@@ -105,8 +105,8 @@ public class ZombieTServer {
+     TransactionWatcher watcher = new TransactionWatcher();
+     final ThriftClientHandler tch = new ThriftClientHandler(context, watcher);
+     Processor&lt;Iface&gt; processor = new Processor&lt;Iface&gt;(tch);
+    ServerAddress serverPort = TServerUtils.startTServer(context.getConfiguration(), HostAndPort.fromParts("0.0.0.0", port), ThriftServerType.CUSTOM_HS_HA,
+        processor, "ZombieTServer", "walking dead", 2, 1, 1000, 10 * 1024 * 1024, null, null, -1);
+    ServerAddress serverPort = TServerUtils.startTServer(context.getConfiguration(), ThriftServerType.CUSTOM_HS_HA, processor, "ZombieTServer", "walking dead",
+        2, 1, 1000, 10 * 1024 * 1024, null, null, -1, HostAndPort.fromParts("0.0.0.0", port));
+ 
+     String addressString = serverPort.address.toString();
+     String zPath = ZooUtil.getRoot(context.getInstance()) + Constants.ZTSERVERS + "/" + addressString;
+diff --git a/test/src/main/java/org/apache/accumulo/test/performance/thrift/NullTserver.java b/test/src/main/java/org/apache/accumulo/test/performance/thrift/NullTserver.java
+index 978110eb5..4d4402b52 100644
+-- a/test/src/main/java/org/apache/accumulo/test/performance/thrift/NullTserver.java
+++ b/test/src/main/java/org/apache/accumulo/test/performance/thrift/NullTserver.java
+@@ -244,7 +244,7 @@ public class NullTserver {
+     @Parameter(names = "--table", description = "table to adopt", required = true)
+     String tableName = null;
+     @Parameter(names = "--port", description = "port number to use")
+    int port = DefaultConfiguration.getInstance().getPort(Property.TSERV_CLIENTPORT);
+    int port = DefaultConfiguration.getInstance().getPort(Property.TSERV_CLIENTPORT)[0];
+   }
+ 
+   public static void main(String[] args) throws Exception {
+@@ -258,8 +258,8 @@ public class NullTserver {
+     TransactionWatcher watcher = new TransactionWatcher();
+     ThriftClientHandler tch = new ThriftClientHandler(new AccumuloServerContext(new ServerConfigurationFactory(HdfsZooInstance.getInstance())), watcher);
+     Processor&lt;Iface&gt; processor = new Processor&lt;Iface&gt;(tch);
+    TServerUtils.startTServer(context.getConfiguration(), HostAndPort.fromParts("0.0.0.0", opts.port), ThriftServerType.CUSTOM_HS_HA, processor, "NullTServer",
+        "null tserver", 2, 1, 1000, 10 * 1024 * 1024, null, null, -1);
+    TServerUtils.startTServer(context.getConfiguration(), ThriftServerType.CUSTOM_HS_HA, processor, "NullTServer",
+        "null tserver", 2, 1, 1000, 10 * 1024 * 1024, null, null, -1, HostAndPort.fromParts("0.0.0.0", opts.port));
+ 
+     HostAndPort addr = HostAndPort.fromParts(InetAddress.getLocalHost().getHostName(), opts.port);
+ 
+- 
+2.19.1.windows.1
+
+</comment></unit>

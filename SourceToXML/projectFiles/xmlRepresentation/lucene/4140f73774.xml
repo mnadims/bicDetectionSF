@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/4140f73774.java"><expr_stmt><expr><name>From</name> <literal type="number">4140f73774e6c8f1509e13d3e196847500204f0b</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Yonik</name> <name><name>Seeley</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">6</literal> <name>Jan</name> <literal type="number">2011</literal> <literal type="number">01</literal><operator>:</operator><literal type="number">03</literal><operator>:</operator><literal type="number">00</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">2831</literal><operator>:</operator> <name>fix</name> <name>isTopLevel</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1055695 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexReader</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">17</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">5</literal> <operator>+</operator><operator>--</operator><operator>--</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">7</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">15</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexReader</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexReader</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ac0f203a8fb</name><operator>..</operator><name>fb09bbc5917</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexReader</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexReader</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">1471</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">1471</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>IndexReader</name> implements <name>Cloneable</name></expr><operator>,</operator><expr><name>Closeable</name> <block>{
+     <expr><specifier>public</specifier> <name>final</name> <name>int</name> <name>ordInParent</name></expr>;
+     
+     <expr><call><name>ReaderContext</name><argument_list>(<argument><expr><name>ReaderContext</name> <name>parent</name></expr></argument>, <argument><expr><name>IndexReader</name> <name>reader</name></expr></argument>,
+        <argument><expr><name>boolean</name> <name>isAtomic</name></expr></argument>, <argument><expr><name>boolean</name> <name>isTopLevel</name></expr></argument>, <argument><expr><name>int</name> <name>ordInParent</name></expr></argument>, <argument><expr><name>int</name> <name>docBaseInParent</name></expr></argument>)</argument_list></call> <block>{
+        <expr><name>boolean</name> <name>isAtomic</name></expr>, <expr><name>int</name> <name>ordInParent</name></expr>, <expr><name>int</name> <name>docBaseInParent</name></expr>) <block>{
+       <expr><name><name>this</name><operator>.</operator><name>parent</name></name> <operator>=</operator> <name>parent</name></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>reader</name></name> <operator>=</operator> <name>reader</name></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>isAtomic</name></name> <operator>=</operator> <name>isAtomic</name></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>docBaseInParent</name></name> <operator>=</operator> <name>docBaseInParent</name></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>ordInParent</name></name> <operator>=</operator> <name>ordInParent</name></expr>;
+      <expr><name><name>this</name><operator>.</operator><name>isTopLevel</name></name> <operator>=</operator> <name>isTopLevel</name></expr>;
+      <expr><name><name>this</name><operator>.</operator><name>isTopLevel</name></name> <operator>=</operator> <name>parent</name><operator>==</operator><literal type="null">null</literal></expr>;
+     }</block></block>
+     
+     <comment type="block" format="javadoc">/**
+@@ -1533,7 +1533,7 @@ public abstract class IndexReader implements Cloneable,Closeable {
+     private CompositeReaderContext(ReaderContext parent, IndexReader reader,
+         int ordInParent, int docbaseInParent, ReaderContext[] children,
+         AtomicReaderContext[] leaves) {
+      super(parent, reader, false, leaves != null, ordInParent, docbaseInParent);
+      super(parent, reader, false, ordInParent, docbaseInParent);
+       this.children = children;
+       this.leaves = leaves;
+     }
+@@ -1561,15 +1561,10 @@ public abstract class IndexReader implements Cloneable,Closeable {
+     public final int docBase;
+     /**
+      * Creates a new {@link AtomicReaderContext} 
+     */</comment>
+     <operator>*</operator><operator>/</operator>    
+     <specifier>public</specifier> <call><name>AtomicReaderContext</name><argument_list>(<argument><expr><name>ReaderContext</name> <name>parent</name></expr></argument>, <argument><expr><name>IndexReader</name> <name>reader</name></expr></argument>,
+         <argument><expr><name>int</name> <name>ord</name></expr></argument>, <argument><expr><name>int</name> <name>docBase</name></expr></argument>, <argument><expr><name>int</name> <name>leafOrd</name></expr></argument>, <argument><expr><name>int</name> <name>leafDocBase</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>this</name><argument_list>(<argument><expr><name>parent</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>, <argument><expr><name>ord</name></expr></argument>, <argument><expr><name>docBase</name></expr></argument>, <argument><expr><name>leafOrd</name></expr></argument>, <argument><expr><name>leafDocBase</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+    }</block>
+    
+    <specifier>private</specifier> <call><name>AtomicReaderContext</name><argument_list>(<argument><expr><name>ReaderContext</name> <name>parent</name></expr></argument>, <argument><expr><name>IndexReader</name> <name>reader</name></expr></argument>,
+        <argument><expr><name>int</name> <name>ord</name></expr></argument>, <argument><expr><name>int</name> <name>docBase</name></expr></argument>, <argument><expr><name>int</name> <name>leafOrd</name></expr></argument>, <argument><expr><name>int</name> <name>leafDocBase</name></expr></argument>, <argument><expr><name>boolean</name> <name>topLevel</name></expr></argument>)</argument_list></call> <block>{
+      <expr><call><name>super</name><argument_list>(<argument><expr><name>parent</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>topLevel</name></expr></argument>,  <argument><expr><name>ord</name></expr></argument>, <argument><expr><name>docBase</name></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>super</name><argument_list>(<argument><expr><name>parent</name></expr></argument>, <argument><expr><name>reader</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>ord</name></expr></argument>, <argument><expr><name>docBase</name></expr></argument>)</argument_list></call></expr>;
+       <assert>assert <expr><call><name><name>reader</name><operator>.</operator><name>getSequentialSubReaders</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="null">null</literal> <operator>:</operator> <literal type="string">"Atomic readers must not have subreaders"</literal></expr>;</assert>
+       <name><name>this</name><operator>.</operator><name>ord</name></name> <operator>=</operator> <name>leafOrd</name></block></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>docBase</name></name> <operator>=</operator> <name>leafDocBase</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">1580</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1575</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>IndexReader</name> implements <name>Cloneable</name></expr>,<expr><name>Closeable</name> <block>{
+      <expr><operator>*</operator> <name><name>parent</name><operator>.</operator></name>
+      *<operator>/</operator>
+     <specifier>public</specifier> <call><name>AtomicReaderContext</name><argument_list>(<argument><expr><name>IndexReader</name> <name>atomicReader</name></expr></argument>)</argument_list></call> <block>{
+      <expr><call><name>this</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>atomicReader</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>; <comment type="line">// toplevel!!</comment>
+      <expr><call><name>this</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>atomicReader</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;
+     }</block></expr>
+   }</block></expr>
+ }</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>eb2a3809e89</name><operator>..</operator><literal type="number">73f5f834e3e</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">153</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">153</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+   }</block>
+ 
+   <specifier>private</specifier> <call><name>IndexSearcher</name><argument_list>(<argument><expr><name>ReaderContext</name> <name>context</name></expr></argument>, <argument><expr><name>boolean</name> <name>closeReader</name></expr></argument>, <argument><expr><name>ExecutorService</name> <name>executor</name></expr></argument>)</argument_list></call> <block>{
+    <comment type="line">// TODO: eable this assert once SolrIndexReader and friends are refactored to use ReaderContext</comment>
+    <comment type="line">// We can't assert this here since SolrIndexReader will fail in some contexts - once solr is consistent we should be fine here</comment>
+    <comment type="line">// Lucene instead passes all tests even with this assert!</comment>
+    <comment type="line">// assert context.isTopLevel: "IndexSearcher's ReaderContext must be topLevel for reader" + context.reader;</comment>
+    <assert>assert <expr><name><name>context</name><operator>.</operator><name>isTopLevel</name></name><operator>:</operator> <literal type="string">"IndexSearcher's ReaderContext must be topLevel for reader"</literal> <operator>+</operator> <name><name>context</name><operator>.</operator><name>reader</name></name></expr>;</assert>
+     <name>reader</name> <operator>=</operator> <name><name>context</name><operator>.</operator><name>reader</name></name></block></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>executor</name></name> <operator>=</operator> <name>executor</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>closeReader</name></name> <operator>=</operator> <name>closeReader</name></expr>;</expr_stmt>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

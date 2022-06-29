@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/89d108d7.java"><expr_stmt><expr><name>From</name> <literal type="number">89d108d7acbcd527e84e0f41401e800d45e20ea1</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name><name>rohini</name> <argument_list type="generic">&lt;<argument><name>rohini</name><annotation>@<name>unknown</name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Jul</name> <literal type="number">2013</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">34</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">1466</literal> <name>current</name> <name>EL</name> <name>should</name> <name>not</name> <name>check</name></expr></expr_stmt> <for>for less than or equal
+ to zero <control>(<init><expr><name>rohini</name></expr></init>)</control><block type="pseudo"><block_content>
+
+<expr_stmt><expr><name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/oozie/trunk@1506948 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">2</literal> <operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>TestCoordActionInputCheckXCommand</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">43</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">20</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">26</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">192c53032</literal><operator>..</operator><literal type="number">050dcbdbe</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>CoordELFunctions</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">524</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">524</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>CoordELFunctions</name> <block>{
+      <expr><operator>*</operator> @<throws>throws <argument><expr><name>Exception</name>
+      <operator>*</operator><operator>/</operator>
+     <specifier>public</specifier> <specifier>static</specifier> <name>String</name> <call><name>ph2_coord_currentRange</name><argument_list>(<argument><expr><name>int</name> <name>start</name></expr></argument>, <argument><expr><name>int</name> <name>end</name></expr></argument>)</argument_list></call></expr></argument></throws> <throws>throws <argument><expr><name>Exception</name> <block>{
+        <expr><call><name><name>ParamChecker</name><operator>.</operator><name>checkLEZero</name></name><argument_list>(<argument><expr><name>start</name></expr></argument>, <argument><expr><literal type="string">"current:n"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+        <expr><call><name><name>ParamChecker</name><operator>.</operator><name>checkLEZero</name></name><argument_list>(<argument><expr><name>end</name></expr></argument>, <argument><expr><literal type="string">"current:n"</literal></expr></argument>)</argument_list></call></expr>;
+         <if_stmt><if>if <condition>(<expr><call><name>isSyncDataSet</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content> <comment type="line">// For Sync Dataset</comment>
+             <return>return <expr><call><name>coord_currentRange_sync</name><argument_list>(<argument><expr><name>start</name></expr></argument>, <argument><expr><name>end</name></expr></argument>)</argument_list></call></expr>;</return>
+         <expr_stmt/></block_content></block></if></if_stmt>}</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordActionInputCheckXCommand</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordActionInputCheckXCommand</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">290378700..7b8549243</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordActionInputCheckXCommand</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>command</name><operator>/</operator><name>coord</name><operator>/</operator><name><name>TestCoordActionInputCheckXCommand</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">154</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">154</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestCoordActionInputCheckXCommand</name> extends <name>XDataTestCase</name> <block>{
+         <expr><name>Date</name> <name>endTime</name> <operator>=</operator> <call><name><name>DateUtils</name><operator>.</operator><name>parseDateOozieTZ</name></name><argument_list>(<argument><expr><literal type="string">"2009-02-02T23:59"</literal> <operator>+</operator> <name>TZ</name></expr></argument>)</argument_list></call></expr>;
+         <expr><name>CoordinatorJobBean</name> <name>job</name> <operator>=</operator> <call><name>addRecordToCoordJobTable</name><argument_list>(<argument><expr><name>jobId</name></expr></argument>, <argument><expr><name>startTime</name></expr></argument>, <argument><expr><name>endTime</name></expr></argument>)</argument_list></call></expr>;
+         <expr><operator>new</operator> <call><name>CoordMaterializeTransitionXCommand</name><argument_list>(<argument><expr><call><name><name>job</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">3600</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>call</name><argument_list>()</argument_list></call></expr>;
+        <expr><call><name>createDir</name><argument_list>(<argument><expr><call><name>getTestCaseDir</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"/2009/01/29/"</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>createDir</name><argument_list>(<argument><expr><call><name>getTestCaseDir</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"/2009/02/05/"</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name>createDir</name><argument_list>(<argument><expr><call><name>getTestCaseDir</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"/2009/01/15/"</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><operator>new</operator> <call><name>CoordActionInputCheckXCommand</name><argument_list>(<argument><expr><call><name><name>job</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"@1"</literal></expr></argument>, <argument><expr><call><name><name>job</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>call</name><argument_list>()</argument_list></call></expr>;
+        <expr><call><name>checkCoordAction</name><argument_list>(<argument><expr><call><name><name>job</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"@1"</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><name>JPAService</name> <name>jpaService</name> <operator>=</operator> <call><name><name>Services</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><name><name>JPAService</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+        <expr><name>CoordinatorActionBean</name> <name>action</name> <operator>=</operator> <call><name><name>jpaService</name><operator>.</operator><name>execute</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>CoordActionGetJPAExecutor</name><argument_list>(<argument><expr><call><name><name>job</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"@1"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"missingDeps "</literal> <operator>+</operator> <call><name><name>action</name><operator>.</operator><name>getMissingDependencies</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" Xml "</literal> <operator>+</operator> <call><name><name>action</name><operator>.</operator><name>getActionXml</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <if_stmt><if>if <condition>(<expr><call><name><name>action</name><operator>.</operator><name>getMissingDependencies</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><literal type="string">"/2009/02/05/"</literal></expr></argument>)</argument_list></call> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><literal type="string">"directory should be resolved :"</literal> <operator>+</operator> <call><name><name>action</name><operator>.</operator><name>getMissingDependencies</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt></block_content></block></for>
+        <if_stmt><if>if <condition>(<expr><call><name><name>action</name><operator>.</operator><name>getMissingDependencies</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><literal type="string">"/2009/01/15/"</literal></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><literal type="string">"directory should NOT be resolved :"</literal> <operator>+</operator> <call><name><name>action</name><operator>.</operator><name>getMissingDependencies</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+     }
+ 
+     <comment type="block" format="javadoc">/**
+@@ -172,8 +180,8 @@ public class TestCoordActionInputCheckXCommand extends XDataTestCase {
+         new CoordMaterializeTransitionXCommand(job.getId(), 3600).call();
+ 
+         // providing some of the dataset dirs required as per coordinator
+        // specification - /2009/02/12, /2009/02/05, /2009/01/29, /2009/01/22
+        createDir(getTestCaseDir() + "/2009/02/12/");
+        // specification - /2009/02/19, /2009/02/12, /2009/02/05, /2009/01/29, /2009/01/22
+        createDir(getTestCaseDir() + "/2009/02/19/");
+         createDir(getTestCaseDir() + "/2009/01/29/");
+ 
+         new CoordActionInputCheckXCommand(job.getId() + "@1", job.getId()).call();
+@@ -188,9 +196,9 @@ public class TestCoordActionInputCheckXCommand extends XDataTestCase {
+ 
+         // Missing dependencies recorded by the coordinator action after input check
+         String missDepsOrder = action.getMissingDependencies();
+        // Expected missing dependencies are /2009/02/05, /2009/01/29, and /2009/01/22.
+        // Expected missing dependencies are /2009/02/12, /2009/02/05, /2009/01/29, and /2009/01/22.
+ 
+        int index = missDepsOrder.indexOf("/2009/02/12");
+        int index = missDepsOrder.indexOf("/2009/02/19");
+         if( index &gt;= 0) {
+             fail("Dependency should be available! current list: " + missDepsOrder);
+         }
+@@ -836,10 +844,14 @@ public class TestCoordActionInputCheckXCommand extends XDataTestCase {
+             appXml += "&lt;start-instance&gt;${coord:" + dataInType + "(0,5)}&lt;/start-instance&gt;";
+             appXml += "&lt;end-instance&gt;${coord:" + dataInType + "(3,5)}&lt;/end-instance&gt;";
+         }
+        else {
+        else if (dataInType.equals("latest")) {
+             appXml += "&lt;start-instance&gt;${coord:" + dataInType + "(-3)}&lt;/start-instance&gt;";
+             appXml += "&lt;end-instance&gt;${coord:" + dataInType + "(0)}&lt;/end-instance&gt;";
+         }
+        else if (dataInType.equals("current")) {
+            appXml += "&lt;start-instance&gt;${coord:" + dataInType + "(-3)}&lt;/start-instance&gt;";
+            appXml += "&lt;end-instance&gt;${coord:" + dataInType + "(1)}&lt;/end-instance&gt;";
+        }
+         appXml += "&lt;/data-in&gt;";
+         appXml += "&lt;/input-events&gt;";
+         appXml += "&lt;output-events&gt;";
+@@ -888,23 +900,6 @@ public class TestCoordActionInputCheckXCommand extends XDataTestCase {
+         return coordJob;
+     }
+ 
+    private void checkCoordAction(String actionId) {
+        try {
+            JPAService jpaService = Services.get().get(JPAService.class);
+            CoordinatorActionBean action = jpaService.execute(new CoordActionGetJPAExecutor(actionId));
+            System.out.println("missingDeps " + action.getMissingDependencies() + " Xml " + action.getActionXml());
+            if (action.getMissingDependencies().indexOf("/2009/01/29/") &gt;= 0) {
+                fail("directory should be resolved :" + action.getMissingDependencies());
+            }
+            if (action.getMissingDependencies().indexOf("/2009/01/15/") &lt; 0) {
+                fail("directory should NOT be resolved :" + action.getMissingDependencies());
+            }
+        }
+        catch (JPAExecutorException se) {
+            fail("Action ID " + actionId + " was not stored properly in db");
+        }
+    }
+
+     private CoordinatorActionBean checkCoordAction(String actionId, String expDeps, CoordinatorAction.Status stat)
+             throws Exception {
+         try {
+diff --git a/release-log.txt b/release-log.txt
+index 32a014524..2ebef2415 100644
+-- a/release-log.txt
+++ b/release-log.txt
+@@ -7,6 +7,7 @@ OOZIE-1440 Build fails in certain environments due to xerces OpenJPA issue (mack
+ 
+ -- Oozie 4.0.0 release
+ 
+OOZIE-1466 current EL should not check for less than or equal to zero (rohini)
+ OOZIE-1465 Making constants in CoordELFunctions public for el extensions (shwethags via rohini)
+ OOZIE-1450 Duplicate Coord_Action events on Waiting -&gt; Timeout, and Coord Materialize not removing actions on Failure (mona)
+ OOZIE-1451 CoordActionInputCheckX does a redundant eagerLoadState (rohini)
+- 
+2.19.1.windows.1
+
+</comment></unit>

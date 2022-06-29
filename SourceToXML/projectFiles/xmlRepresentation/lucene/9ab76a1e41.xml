@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/9ab76a1e41.java"><expr_stmt><expr><name>From</name> <literal type="number">9ab76a1e41d7019fd07b16a79a587653cf6d76a4</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Chris</name> <name><name>Hostetter</name> <argument_list type="generic">&lt;<argument><name>hossman</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">27</literal> <name>Apr</name> <literal type="number">2016</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">40</literal><operator>:</operator><literal type="number">41</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">9040</literal> <operator>/</operator> <name>SOLR</name><operator>-</operator><literal type="number">4509</literal><operator>:</operator> <name>Fix</name> default <name>SchemaRegistryProvider</name> <name>so</name>
+ <name><name>javax</name><operator>.</operator><name>net</name><operator>.</operator><name>ssl</name><operator>.</operator></name>* <name>system</name> <name>properties</name> <name>are</name> <name>respected</name> <name>by</name> default
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>HttpClientUtil</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">30</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">18</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">12</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>HttpClientUtil</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>HttpClientUtil</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">72297b3499e</literal><operator>..</operator><literal type="number">6318527dc29</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>HttpClientUtil</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>HttpClientUtil</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>config</name><operator>.</operator><name>RegistryBuilder</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>conn</name><operator>.</operator><name>ConnectionKeepAliveStrategy</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>conn</name><operator>.</operator><name>socket</name><operator>.</operator><name>ConnectionSocketFactory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>conn</name><operator>.</operator><name>socket</name><operator>.</operator><name>PlainConnectionSocketFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>conn</name><operator>.</operator><name>ssl</name><operator>.</operator><name>SSLConnectionSocketFactory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>entity</name><operator>.</operator><name>HttpEntityWrapper</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>impl</name><operator>.</operator><name>client</name><operator>.</operator><name>BasicCredentialsProvider</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>impl</name><operator>.</operator><name>client</name><operator>.</operator><name>CloseableHttpClient</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">122</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">123</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>HttpClientUtil</name> <block>{
+   <expr><specifier>static</specifier> <block>{
+     <expr><call><name>resetHttpClientBuilder</name><argument_list>()</argument_list></call></expr>;
+   }</block>
+  
+
+   <specifier>public</specifier> <specifier>static</specifier> <specifier>abstract</specifier> <name>class</name> <name>SchemaRegistryProvider</name> <block>{
+    <comment type="block" format="javadoc">/** Must be non-null */</comment>
+     <expr><specifier>public</specifier> <specifier>abstract</specifier> <name><name>Registry</name><argument_list type="generic">&lt;<argument><name>ConnectionSocketFactory</name></argument>&gt;</argument_list></name> <call><name>getSchemaRegistry</name><argument_list>()</argument_list></call></expr>;
+   }</block>
+   
+@@ <operator>-</operator><literal type="number">172</literal></expr>,<expr><literal type="number">16</literal> <operator>+</operator><literal type="number">174</literal></expr>,<expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>HttpClientUtil</name> <block>{
+   }</block>
+   
+   <specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>resetHttpClientBuilder</name><argument_list>()</argument_list></call> <block>{
+    <expr><name>schemaRegistryProvider</name> <operator>=</operator> <operator>new</operator> <class><super><name>SchemaRegistryProvider</name></super><argument_list>()</argument_list> <block>{
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name><name>Registry</name><argument_list type="generic">&lt;<argument><name>ConnectionSocketFactory</name></argument>&gt;</argument_list></name></type> <name>getSchemaRegistry</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name><name>RegistryBuilder</name><operator>.</operator></name>&lt;<name>ConnectionSocketFactory</name><operator>&gt;</operator> <call><name>create</name><argument_list>()</argument_list></call>
+            <operator>.</operator><call><name>register</name><argument_list>(<argument><expr><literal type="string">"http"</literal></expr></argument>, <argument><expr><call><name><name>PlainConnectionSocketFactory</name><operator>.</operator><name>getSocketFactory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>build</name><argument_list>()</argument_list></call></expr>;</return>
+      <expr_stmt/></block_content></block></function></block></class></expr>}</block></expr>
+    }</block></expr>;</expr_stmt>
+    <expr_stmt><expr><name>schemaRegistryProvider</name> <operator>=</operator> <operator>new</operator> <call><name>DefaultSchemaRegistryProvider</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><name>httpClientBuilder</name> <operator>=</operator> <call><name><name>SolrHttpClientBuilder</name><operator>.</operator><name>create</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }
+ 
+  private <class><specifier>static</specifier> <specifier>final</specifier> class <name>DefaultSchemaRegistryProvider</name> <super_list><extends>extends <super><name>SchemaRegistryProvider</name></super></extends></super_list> <block>{
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name><name>Registry</name><argument_list type="generic">&lt;<argument><name>ConnectionSocketFactory</name></argument>&gt;</argument_list></name></type> <name>getSchemaRegistry</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <comment type="line">// this mimics PoolingHttpClientConnectionManager's default behavior,</comment>
+      <comment type="line">// except that we explicitly use SSLConnectionSocketFactory.getSystemSocketFactory()</comment>
+      <comment type="line">// to pick up the system level default SSLContext (where javax.net.ssl.* properties</comment>
+      <comment type="line">// related to keystore &amp; truststore are specified)</comment>
+      <decl_stmt><decl><type><name><name>RegistryBuilder</name><argument_list type="generic">&lt;<argument><name>ConnectionSocketFactory</name></argument>&gt;</argument_list></name></type> <name>builder</name> <init>= <expr><name><name>RegistryBuilder</name><operator>.</operator></name>&lt;<name>ConnectionSocketFactory</name><operator>&gt;</operator><call><name>create</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>builder</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><literal type="string">"http"</literal></expr></argument>, <argument><expr><call><name><name>PlainConnectionSocketFactory</name><operator>.</operator><name>getSocketFactory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>builder</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><literal type="string">"https"</literal></expr></argument>, <argument><expr><call><name><name>SSLConnectionSocketFactory</name><operator>.</operator><name>getSystemSocketFactory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><call><name><name>builder</name><operator>.</operator><name>build</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+   }</block></class>
+   
+   <comment type="block" format="javadoc">/**
+@@ -192,9 +200,7 @@ public class HttpClientUtil {
+    *          configuration (no additional configuration) is created. 
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>CloseableHttpClient</name></type> <name>createClient</name><parameter_list>(<parameter><decl><type><name>SolrParams</name></type> <name>params</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>PoolingHttpClientConnectionManager</name></type> <name>cm</name> <init>= <expr><operator>new</operator> <call><name>PoolingHttpClientConnectionManager</name><argument_list>(<argument><expr><call><name><name>schemaRegistryProvider</name><operator>.</operator><name>getSchemaRegistry</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <return>return <expr><call><name>createClient</name><argument_list>(<argument><expr><name>params</name></expr></argument>, <argument><expr><name>cm</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name>createClient</name><argument_list>(<argument><expr><name>params</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>PoolingHttpClientConnectionManager</name><argument_list>(<argument><expr><call><name><name>schemaRegistryProvider</name><operator>.</operator><name>getSchemaRegistry</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>CloseableHttpClient</name></type> <name>createClient</name><parameter_list>(<parameter><decl><type><name>SolrParams</name></type> <name>params</name></decl></parameter>, <parameter><decl><type><name>PoolingHttpClientConnectionManager</name></type> <name>cm</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function>
+
+</unit>

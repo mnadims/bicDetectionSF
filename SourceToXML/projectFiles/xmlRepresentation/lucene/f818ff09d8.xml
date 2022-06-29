@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/f818ff09d8.java"><expr_stmt><expr><name>From</name> <name>f818ff09d88c220dbf3eb260772ab9982019fb2c</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Yonik</name> <name><name>Seeley</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">19</literal> <name>Nov</name> <literal type="number">2007</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">45</literal><operator>:</operator><literal type="number">09</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">1057</literal><operator>:</operator> <name>copy</name> <name>payload</name> <name>in</name> <call><name><name>Token</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/java/trunk@596440 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TokenStream</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">9</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestAnalyzers</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">68</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">77</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TokenStream</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TokenStream</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">61bbe3a0409</literal><operator>..</operator><name>def4e3e9b27</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TokenStream</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TokenStream</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name></name>;</package>
+  <expr_stmt><expr><operator>*</operator> <name>limitations</name> <name>under</name> <name>the</name> <name><name>License</name><operator>.</operator></name>
+  *<operator>/</operator></expr></expr_stmt>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>Payload</name></name>;</import>
+
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/** A TokenStream enumerates the sequence of tokens, either from
+@@ -41,6 +43,13 @@ public abstract class TokenStream {
+    *  than calling {@link #next(Token)} instead.. */</comment>
+   <function><type><specifier>public</specifier> <name>Token</name></type> <name>next</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>Token</name></type> <name>result</name> <init>= <expr><call><name>next</name><argument_list>(<argument><expr><operator>new</operator> <call><name>Token</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>result</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>Payload</name></type> <name>p</name> <init>= <expr><call><name><name>result</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>p</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setPayload</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Payload</name><argument_list>(<argument><expr><call><name><name>p</name><operator>.</operator><name>toByteArray</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>p</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+
+     <return>return <expr><name>result</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestAnalyzers</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestAnalyzers</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">76725f06bcf</literal><operator>..</operator><literal type="number">163d8578ef8</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestAnalyzers</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>TestAnalyzers</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name></name>;</package>
+  <expr_stmt><expr><operator>*</operator><operator>/</operator></expr></expr_stmt>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>LinkedList</name></name>;</import>
+
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LuceneTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>Payload</name></name>;</import>
+ 
+ <class><specifier>public</specifier> class <name>TestAnalyzers</name> <super_list><extends>extends <super><name>LuceneTestCase</name></super></extends></super_list> <block>{
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">86</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">90</literal></expr><operator>,</operator><expr><literal type="number">69</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestAnalyzers</name> extends <name>LuceneTestCase</name> <block>{
+     <expr><call><name>assertAnalyzesTo</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><literal type="string">"foo a bar such FOO THESE BAR"</literal></expr></argument>, 
+                      <argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{ <expr><literal type="string">"foo"</literal></expr>, <expr><literal type="string">"bar"</literal></expr>, <expr><literal type="string">"foo"</literal></expr>, <expr><literal type="string">"bar"</literal></expr> }</block></expr></argument>)</argument_list></call></expr>;
+   }</block>
+
+  <name>void</name> <call><name>verifyPayload</name><argument_list>(<argument><expr><name>TokenStream</name> <name>ts</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><name>Token</name> <name>t</name> <operator>=</operator> <operator>new</operator> <call><name>Token</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>byte</name></type> <name>b</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition>;</condition><incr><expr><name>b</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>t</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>t</name> <operator>=</operator> <call><name><name>ts</name><operator>.</operator><name>next</name></name><argument_list>(<argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>t</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <break>break;</break></block_content></block></if></if_stmt>
+      <comment type="line">// System.out.println("id="+System.identityHashCode(t) + " " + t);</comment>
+      <comment type="line">// System.out.println("payload=" + (int)t.getPayload().toByteArray()[0]);</comment>
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><call><name><name>t</name><operator>.</operator><name>getPayload</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toByteArray</name><argument_list>()</argument_list></call><index>[<expr><literal type="number">0</literal></expr>]</index></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+  }</block></class>
+
+  <comment type="line">// Make sure old style next() calls result in a new copy of payloads</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testPayloadCopy</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>s</name> <init>= <expr><literal type="string">"how now brown cow"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>TokenStream</name></type> <name>ts</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>WhitespaceTokenizer</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>BuffTokenFilter</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>PayloadSetter</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>verifyPayload</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>WhitespaceTokenizer</name><argument_list>(<argument><expr><operator>new</operator> <call><name>StringReader</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>PayloadSetter</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ts</name> <operator>=</operator> <operator>new</operator> <call><name>BuffTokenFilter</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>verifyPayload</name><argument_list>(<argument><expr><name>ts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+ }
+ 
+class <expr_stmt><expr><name>BuffTokenFilter</name> extends <name>TokenFilter</name> <block>{
+  <expr><name>List</name> <name>lst</name></expr>;
+
+  <expr><specifier>public</specifier> <call><name>BuffTokenFilter</name><argument_list>(<argument><expr><name>TokenStream</name> <name>input</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name>super</name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr>;
+  }</block>
+
+  <specifier>public</specifier> <name>Token</name> <call><name>next</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <if_stmt><if>if <condition>(<expr><name>lst</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>lst</name> <operator>=</operator> <operator>new</operator> <call><name><name>LinkedList</name><argument_list type="generic">&lt;<argument><name>Token</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <for>for<control>(<init>;</init><condition>;</condition><incr/>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>Token</name></type> <name>t</name> <init>= <expr><call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>t</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <break>break;</break></block_content></block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>lst</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></for></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+    }
+    return <expr_stmt><expr><ternary><condition><expr><call><name><name>lst</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><operator>(</operator><name>Token</name><operator>)</operator><call><name><name>lst</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</expr_stmt>
+  }
+}
+
+<class>class <name>PayloadSetter</name> <super_list><extends>extends <super><name>TokenFilter</name></super></extends></super_list> <block>{
+  <constructor><specifier>public</specifier>  <name>PayloadSetter</name><parameter_list>(<parameter><decl><type><name>TokenStream</name></type> <name>input</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>input</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>data</name> <init>= <expr><operator>new</operator> <name><name>byte</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>Payload</name></type> <name>p</name> <init>= <expr><operator>new</operator> <call><name>Payload</name><argument_list>(<argument><expr><name>data</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <function><type><specifier>public</specifier> <name>Token</name></type> <name>next</name><parameter_list>(<parameter><decl><type><name>Token</name></type> <name>target</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><name>target</name> <operator>=</operator> <call><name><name>input</name><operator>.</operator><name>next</name></name><argument_list>(<argument><expr><name>target</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>target</name><operator>==</operator><literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>target</name><operator>.</operator><name>setPayload</name></name><argument_list>(<argument><expr><name>p</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>  <comment type="line">// reuse the payload / byte[]</comment>
+    <expr_stmt><expr><name><name>data</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+    <return>return <expr><name>target</name></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

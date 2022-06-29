@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/d87ffa4bf8.java"><expr_stmt><expr><name>From</name> <name>d87ffa4bf82c30e9a6f0bbb6b8c0087a5c07f9d6</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Noble</name> <name><name>Paul</name> <argument_list type="generic">&lt;<argument><name>noble</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Nov</name> <literal type="number">2016</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">27</literal><operator>:</operator><literal type="number">16</literal> <operator>+</operator><literal type="number">0530</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">9784</literal><operator>:</operator> <name>Refactor</name> <name>CloudSolrClient</name> <name>to</name> <name>eliminate</name> <name>direct</name>
+ <name>dependency</name> <name>on</name> <name>ZK</name> <name>SOLR</name><operator>-</operator><literal type="number">9512</literal><operator>:</operator> <name>CloudSolrClient</name><literal type="char">'s cluster state cache can break
+ direct updates to leaders
+
+--
+ solr/CHANGES.txt                              |   6 +-
+ solr/solrj/ivy.xml                            |   4 +
+ .../impl/ZkClientClusterStateProvider.java    | 177 +++++++++++++++
+ .../solr/common/cloud/ClusterState.java       |   7 +
+ .../solr/common/cloud/ZkStateReader.java      |  10 +-
+ .../solrj/impl/CloudSolrClientCacheTest.java  | 206 ++++++++++++++++++
+ 6 files changed, 406 insertions(+), 4 deletions(-)
+ create mode 100644 solr/solrj/src/java/org/apache/solr/client/solrj/impl/ZkClientClusterStateProvider.java
+ create mode 100644 solr/solrj/src/test/org/apache/solr/client/solrj/impl/CloudSolrClientCacheTest.java
+
+diff --git a/solr/CHANGES.txt b/solr/CHANGES.txt
+index 4d9e6a0c547..fe674906e99 100644
+-- a/solr/CHANGES.txt
+++ b/solr/CHANGES.txt
+@@ -196,7 +196,9 @@ Bug Fixes
+ * SOLR-9729: JDBCStream improvements (Kevin Risden)
+ 
+ * SOLR-9626: new Admin UI now also highlights matched terms in the Analysis screen. (Alexandre Rafalovitch)
+  
+
+* SOLR-9512: CloudSolrClient'</literal><name>s</name> <name>cluster</name> <name>state</name> <name>cache</name> <name>can</name></expr></expr_stmt> <break>break <name>direct</name> <name>updates</name> <name>to</name> <name>leaders</name> (<name>noble</name></break>)
+
+ <expr_stmt><expr><name>Other</name> <name>Changes</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+@@ <operator>-</operator><literal type="number">222</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">224</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>Other</name> <name>Changes</name>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">8785</literal><operator>:</operator> <name>Use</name> <name>Dropwizard</name> <name>Metrics</name> <name>library</name></expr></expr_stmt> <for>for core metrics. The copied over code in
+   org.apache.solr.util.stats has been removed. <control>(<init><decl><type><name>Jeff</name></type> <name>Wartes</name></decl>, <decl><type ref="prev"/><name>Kelvin</name> <name>Wong</name></decl>, <decl><type ref="prev"/><name>Christine</name> <name>Poerschke</name></decl>, <decl><type ref="prev"/><name>shalin</name></decl></init>)</control><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">9784</literal><operator>:</operator> <name>Refactor</name> <name>CloudSolrClient</name> <name>to</name> <name>eliminate</name> <name>direct</name> <name>dependency</name> <name>on</name> <call><name>ZK</name> <argument_list>(<argument><expr><name>noble</name></expr></argument>)</argument_list></call>
+
+ <operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>  <literal type="number">6.3.0</literal> <operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator><operator>==</operator>
+ 
+ <name>Consult</name> <name>the</name> <name><name>LUCENE_CHANGES</name><operator>.</operator><name>txt</name></name> <name>file</name></expr></expr_stmt></block_content></block></for> <for>for additional<operator>,</operator> <decl_stmt><decl><type><name>low</name></type> <name>level</name></decl>, <decl><type ref="prev"/><name>changes</name> <name>in</name> <name>this</name> <name><name>release</name><operator>.</operator>
+<name>diff</name></name> --<name>git</name> <name>a</name>/<name>solr</name>/<name>solrj</name>/<name><name>ivy</name><operator>.</operator><name>xml</name></name> <name>b</name>/<name>solr</name>/<name>solrj</name>/<name><name>ivy</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <name>c9995f326c7</name>..<name>ae7d02beb6b</name> 100644
+-- <name>a</name>/<name>solr</name>/<name>solrj</name>/<name><name>ivy</name><operator>.</operator><name>xml</name></name>
+++ <name>b</name>/<name>solr</name>/<name>solrj</name>/<name><name>ivy</name><operator>.</operator><name>xml</name></name>
+@@ -40</decl>,6 +40,10 @@
+     <decl><type ref="prev"/><name><argument_list type="generic">&lt;<argument><name>dependency</name> <name>org</name><operator>=</operator></argument></argument_list></name>"org.slf4j" <name>name</name><init>=<expr><literal type="string">"jcl-over-slf4j"</literal> <name>rev</name><operator>=</operator><literal type="string">"${/org.slf4j/jcl-over-slf4j}"</literal> <name>conf</name><operator>=</operator><literal type="string">"compile"</literal><operator>/</operator><operator>&gt;</operator>
+ 
+     <operator>&lt;</operator><name>dependency</name> <name>org</name><operator>=</operator><literal type="string">"org.slf4j"</literal> <name>name</name><operator>=</operator><literal type="string">"slf4j-log4j12"</literal> <name>rev</name><operator>=</operator><literal type="string">"${/org.slf4j/slf4j-log4j12}"</literal> <name>conf</name><operator>=</operator><literal type="string">"test"</literal><operator>/</operator><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name> <name>org</name><operator>=</operator><literal type="string">"org.easymock"</literal> <name>name</name><operator>=</operator><literal type="string">"easymock"</literal> <name>rev</name><operator>=</operator><literal type="string">"${/org.easymock/easymock}"</literal> <name>conf</name><operator>=</operator><literal type="string">"test"</literal><operator>/</operator><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name> <name>org</name><operator>=</operator><literal type="string">"cglib"</literal> <name>name</name><operator>=</operator><literal type="string">"cglib-nodep"</literal> <name>rev</name><operator>=</operator><literal type="string">"${/cglib/cglib-nodep}"</literal> <name>conf</name><operator>=</operator><literal type="string">"test"</literal><operator>/</operator><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name> <name>org</name><operator>=</operator><literal type="string">"org.objenesis"</literal> <name>name</name><operator>=</operator><literal type="string">"objenesis"</literal> <name>rev</name><operator>=</operator><literal type="string">"${/org.objenesis/objenesis}"</literal> <name>conf</name><operator>=</operator><literal type="string">"test"</literal><operator>/</operator><operator>&gt;</operator>
+
+ 
+     <operator>&lt;</operator><name>exclude</name> <name>org</name><operator>=</operator><literal type="string">"*"</literal> <name>ext</name><operator>=</operator><literal type="string">"*"</literal> <name>matcher</name><operator>=</operator><literal type="string">"regexp"</literal> <name>type</name><operator>=</operator><literal type="string">"${ivy.exclude.types}"</literal><operator>/</operator><operator>&gt;</operator>
+   <operator>&lt;</operator><operator>/</operator><name>dependencies</name><operator>&gt;</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>ZkClientClusterStateProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>ZkClientClusterStateProvider</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..5541186f8dd</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>ZkClientClusterStateProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr></init></decl>,0 +1,177 @@
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+package <decl><type ref="prev"/><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>client</name><operator>.</operator><name>solrj</name><operator>.</operator><name>impl</name></name></decl>;</decl_stmt></for>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>invoke</name><operator>.</operator><name>MethodHandles</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>file</name><operator>.</operator><name>Path</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>Aliases</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>ClusterState</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>ZkStateReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>ZooKeeperException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>KeeperException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+
+
+<class>class <name>ZkClientClusterStateProvider</name> <super_list><implements>implements <super><name><name>CloudSolrClient</name><operator>.</operator><name>ClusterStateProvider</name></name></super></implements></super_list> <block>{
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>Logger</name></type> <name>log</name> <init>= <expr><call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><call><name><name>MethodHandles</name><operator>.</operator><name>lookup</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>lookupClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+
+  <decl_stmt><decl><type><name>ZkStateReader</name></type> <name>zkStateReader</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>String</name></type> <name>zkHost</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>zkConnectTimeout</name> <init>= <expr><literal type="number">10000</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>zkClientTimeout</name> <init>= <expr><literal type="number">10000</literal></expr></init></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>ZkClientClusterStateProvider</name><parameter_list>(<parameter><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>zkHosts</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>chroot</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>zkHost</name> <operator>=</operator> <call><name>buildZkHostString</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>,<argument><expr><name>chroot</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <constructor><specifier>public</specifier> <name>ZkClientClusterStateProvider</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>zkHost</name></decl></parameter>)</parameter_list><block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <name>zkHost</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>getState</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getClusterState</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCollectionRef</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getClusterState</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getLiveNodes</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>String</name></type> <name>getAlias</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Aliases</name></type> <name>aliases</name> <init>= <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getAliases</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><call><name><name>aliases</name><operator>.</operator><name>getCollectionAlias</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>getClusterProperties</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getClusterProperties</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>String</name></type> <name>getCollectionName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>Aliases</name></type> <name>aliases</name> <init>= <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getAliases</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>aliases</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>collectionAliases</name> <init>= <expr><call><name><name>aliases</name><operator>.</operator><name>getCollectionAliasMap</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>collectionAliases</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>collectionAliases</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>name</name> <operator>=</operator> <call><name><name>collectionAliases</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>name</name></expr>;</return>
+  </block_content>}</block></function>
+  <comment type="block" format="javadoc">/**
+   * Download a named config from Zookeeper to a location on the filesystem
+   * @param configName    the name of the config
+   * @param downloadPath  the path to write config files to
+   * @throws IOException  if an I/O exception occurs
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>downloadConfig</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>configName</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>downloadPath</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>getConfigManager</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>downloadConfigDir</name><argument_list>(<argument><expr><name>configName</name></expr></argument>, <argument><expr><name>downloadPath</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>uploadConfig</name><parameter_list>(<parameter><decl><type><name>Path</name></type> <name>configPath</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>configName</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>getConfigManager</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>uploadConfigDir</name><argument_list>(<argument><expr><name>configPath</name></expr></argument>, <argument><expr><name>configName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>connect</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>ZkStateReader</name></type> <name>zk</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><name>zk</name> <operator>=</operator> <operator>new</operator> <call><name>ZkStateReader</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>, <argument><expr><name>zkClientTimeout</name></expr></argument>, <argument><expr><name>zkConnectTimeout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>createClusterStateWatchersAndUpdate</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>zkStateReader</name> <operator>=</operator> <name>zk</name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Cluster at {} ready"</literal></expr></argument>, <argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>Thread</name><operator>.</operator><name>currentThread</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>interrupt</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <throw>throw <expr><operator>new</operator> <call><name>ZooKeeperException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name>KeeperException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <throw>throw <expr><operator>new</operator> <call><name>ZooKeeperException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>zk</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+            <comment type="line">// do not wrap because clients may be relying on the underlying exception being thrown</comment>
+            <throw>throw <expr><name>e</name></expr>;</throw>
+          </block_content>}</block></catch></try>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></synchronized>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+          <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+        <expr_stmt><expr><name>zkStateReader</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block></synchronized>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+
+
+  <function><type><specifier>static</specifier> <name>String</name></type> <name>buildZkHostString</name><parameter_list>(<parameter><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>zkHosts</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>chroot</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>zkHosts</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>zkHosts</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Cannot create CloudSearchClient without valid ZooKeeper host; none specified!"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+
+    <decl_stmt><decl><type><name>StringBuilder</name></type> <name>zkBuilder</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>lastIndexValue</name> <init>= <expr><call><name><name>zkHosts</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>zkHost</name> <range>: <expr><name>zkHosts</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>zkBuilder</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>i</name> <operator>&lt;</operator> <name>lastIndexValue</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>zkBuilder</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">","</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <if_stmt><if>if <condition>(<expr><name>chroot</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>chroot</name><operator>.</operator><name>startsWith</name></name><argument_list>(<argument><expr><literal type="string">"/"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>zkBuilder</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>chroot</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(
+            <argument><expr><literal type="string">"The chroot must start with a forward slash."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <comment type="block">/* Log the constructed connection string and then initialize. */</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>zkHostString</name> <init>= <expr><call><name><name>zkBuilder</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Final constructed zkHost string: "</literal> <operator>+</operator> <name>zkHostString</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><name>zkHostString</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>zkHost</name></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ClusterState</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ClusterState</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3ab5a1f8c1a</literal><operator>..</operator><literal type="number">302ee62e434</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ClusterState</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ClusterState</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">24</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>LinkedHashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name><operator>.</operator><name>Entry</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicInteger</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrException</name><operator>.</operator><name>ErrorCode</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">442</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">443</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterState</name> implements <name><name>JSONWriter</name><operator>.</operator><name>Writable</name></name> <block>{
+   }</block>
+ 
+   <specifier>public</specifier> <specifier>static</specifier> <name>class</name> <name>CollectionRef</name> <block>{
+    <expr><specifier>protected</specifier> <name>final</name> <name>AtomicInteger</name> <name>gets</name> <operator>=</operator> <operator>new</operator> <call><name>AtomicInteger</name><argument_list>()</argument_list></call></expr>;
+     <expr><specifier>private</specifier> <name>final</name> <name>DocCollection</name> <name>coll</name></expr>;
+ 
+    <expr><specifier>public</specifier> <name>int</name> <call><name>getCount</name><argument_list>()</argument_list></call><block>{
+      <return>return <expr><call><name><name>gets</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;</return></block></expr>
+    }</block>
+
+     <specifier>public</specifier> <call><name>CollectionRef</name><argument_list>(<argument><expr><name>DocCollection</name> <name>coll</name></expr></argument>)</argument_list></call> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>coll</name></name> <operator>=</operator> <name>coll</name></expr>;
+     }</block>
+ 
+     <specifier>public</specifier> <name>DocCollection</name> <call><name>get</name><argument_list>()</argument_list></call><block>{
+      <expr><call><name><name>gets</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;
+       <return>return <expr><name>coll</name></expr>;</return>
+     }</block></expr></expr_stmt>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ZkStateReader</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ZkStateReader</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>a858f340f6b</name><operator>..</operator><name>fea59780f8c</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ZkStateReader</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ZkStateReader</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">633</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">633</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZkStateReader</name> implements <name>Closeable</name> <block>{
+ 
+     @<expr><name>Override</name>
+     <specifier>public</specifier> <name>DocCollection</name> <call><name>get</name><argument_list>()</argument_list></call> <block>{
+      <expr><call><name><name>gets</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;
+       <comment type="line">// TODO: consider limited caching</comment>
+       <return>return <expr><call><name>getCollectionLive</name><argument_list>(<argument><expr><name><name>ZkStateReader</name><operator>.</operator><name>this</name></name></expr></argument>, <argument><expr><name>collName</name></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+     }</block>
+@@ <operator>-</operator><literal type="number">915</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">916</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZkStateReader</name> implements <name>Closeable</name> <block>{
+     }</block></expr></expr_stmt>
+     <return>return <expr><literal type="null">null</literal></expr>;</return>
+   }
+  
+
+   <comment type="block" format="javadoc">/**
+    * Returns the baseURL corresponding to a given node's nodeName --
+   * NOTE: does not (currently) imply that the nodeName (or resulting 
+   * NOTE: does not (currently) imply that the nodeName (or resulting
+    * baseURL) exists in the cluster.
+    * @lucene.experimental
+    */</comment>
+   public <function><type><name>String</name></type> <name>getBaseUrlForNodeName</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>nodeName</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name>getBaseUrlForNodeName</name><argument_list>(<argument><expr><name>nodeName</name></expr></argument>, <argument><expr><call><name>getClusterProperty</name><argument_list>(<argument><expr><name>URL_SCHEME</name></expr></argument>, <argument><expr><literal type="string">"http"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>String</name></type> <name>getBaseUrlForNodeName</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>nodeName</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>urlScheme</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>_offset</name> <init>= <expr><call><name><name>nodeName</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><literal type="string">"_"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>_offset</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"nodeName does not contain expected '_' seperator: "</literal> <operator>+</operator> <name>nodeName</name></expr></argument>)</argument_list></call></expr>;</throw>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">930</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">935</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZkStateReader</name> implements <name>Closeable</name> <block>{
+     <expr><name>final</name> <name>String</name> <name>hostAndPort</name> <operator>=</operator> <call><name><name>nodeName</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><name>_offset</name></expr></argument>)</argument_list></call></expr>;</block></expr></expr_stmt>
+     <try>try <block>{<block_content>
+       <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>path</name> <init>= <expr><call><name><name>URLDecoder</name><operator>.</operator><name>decode</name></name><argument_list>(<argument><expr><call><name><name>nodeName</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">1</literal><operator>+</operator><name>_offset</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>urlScheme</name> <init>= <expr><call><name>getClusterProperty</name><argument_list>(<argument><expr><name>URL_SCHEME</name></expr></argument>, <argument><expr><literal type="string">"http"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <return>return <expr><name>urlScheme</name> <operator>+</operator> <literal type="string">"://"</literal> <operator>+</operator> <name>hostAndPort</name> <operator>+</operator> <operator>(</operator><ternary><condition><expr><call><name><name>path</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr> ?</condition><then> <expr><literal type="string">""</literal></expr> </then><else>: <expr><operator>(</operator><literal type="string">"/"</literal> <operator>+</operator> <name>path</name><operator>)</operator></expr></else></ternary><operator>)</operator></expr>;</return>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>UnsupportedEncodingException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <throw>throw <expr><operator>new</operator> <call><name>IllegalStateException</name><argument_list>(<argument><expr><literal type="string">"JVM Does not seem to support UTF-8"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CloudSolrClientCacheTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CloudSolrClientCacheTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..70f8dbdc6bc</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>client</name><operator>/</operator><name>solrj</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>CloudSolrClientCacheTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">206</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>client</name><operator>.</operator><name>solrj</name><operator>.</operator><name>impl</name></name>;</package>
+
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>ConnectException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>SocketException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicInteger</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>function</name><operator>.</operator><name>Function</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>ImmutableSet</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>http</name><operator>.</operator><name>NoHttpResponseException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>client</name><operator>.</operator><name>solrj</name><operator>.</operator><name>request</name><operator>.</operator><name>UpdateRequest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>ClusterState</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>DocCollection</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>cloud</name><operator>.</operator><name>ZkStateReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>NamedList</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name></name>;</import>
+
+<import>import static <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>charset</name><operator>.</operator><name>StandardCharsets</name><operator>.</operator><name>UTF_8</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>CloudSolrClientCacheTest</name> <super_list><extends>extends <super><name>SolrTestCaseJ4</name></super></extends></super_list> <block>{
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>testCaching</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>collName</name> <init>= <expr><literal type="string">"gettingstarted"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>livenodes</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></argument>&gt;</argument_list></name></type> <name>refs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>DocCollection</name></argument>&gt;</argument_list></name></type> <name>colls</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <class>class <name>Ref</name> <super_list><extends>extends <super><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></super></extends></super_list> <block>{
+      <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>c</name></decl>;</decl_stmt>
+
+      <constructor><specifier>public</specifier> <name>Ref</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>c</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>c</name></name> <operator>=</operator> <name>c</name></expr>;</expr_stmt>
+      </block_content>}</block></constructor>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>boolean</name></type> <name>isLazilyLoaded</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>DocCollection</name></type> <name>get</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>gets</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><call><name><name>colls</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</return>
+      </block_content>}</block></function>
+    }</block></class>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Function</name></argument>&gt;</argument_list></name></type> <name>responses</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>NamedList</name></type> <name>okResponse</name> <init>= <expr><operator>new</operator> <call><name>NamedList</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>okResponse</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"responseHeader"</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>NamedList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>Collections</name><operator>.</operator><name>singletonMap</name></name><argument_list>(<argument><expr><literal type="string">"status"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>LBHttpSolrClient</name></type> <name>mockLbclient</name> <init>= <expr><call><name>getMockLbHttpSolrClient</name><argument_list>(<argument><expr><name>responses</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>AtomicInteger</name></type> <name>lbhttpRequestCount</name> <init>= <expr><operator>new</operator> <call><name>AtomicInteger</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <try>try <init>(<decl><type><name>CloudSolrClient</name></type> <name>cloudClient</name> <init>= <expr><operator>new</operator> <call><name><name>CloudSolrClient</name><operator>.</operator><name>Builder</name></name><argument_list>()</argument_list></call>
+        <operator>.</operator><call><name>withLBHttpSolrClient</name><argument_list>(<argument><expr><name>mockLbclient</name></expr></argument>)</argument_list></call>
+        <operator>.</operator><call><name>withClusterStateProvider</name><argument_list>(<argument><expr><call><name>getStateProvider</name><argument_list>(<argument><expr><name>livenodes</name></expr></argument>, <argument><expr><name>refs</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call>
+
+        <operator>.</operator><call><name>build</name><argument_list>()</argument_list></call></expr></init></decl>)</init> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>livenodes</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>ImmutableSet</name><operator>.</operator><name>of</name></name><argument_list>(<argument><expr><literal type="string">"192.168.1.108:7574_solr"</literal></expr></argument>, <argument><expr><literal type="string">"192.168.1.108:8983_solr"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>ClusterState</name></type> <name>cs</name> <init>= <expr><call><name><name>ClusterState</name><operator>.</operator><name>load</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>coll1State</name><operator>.</operator><name>getBytes</name></name><argument_list>(<argument><expr><name>UTF_8</name></expr></argument>)</argument_list></call></expr></argument>,
+          <argument><expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/collections/gettingstarted/state.json"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>refs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>collName</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>Ref</name><argument_list>(<argument><expr><name>collName</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>colls</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>collName</name></expr></argument>, <argument><expr><call><name><name>cs</name><operator>.</operator><name>getCollectionOrNull</name></name><argument_list>(<argument><expr><name>collName</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>responses</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"request"</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>o</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>i</name> <init>= <expr><call><name><name>lbhttpRequestCount</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>i</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><operator>new</operator> <call><name>ConnectException</name><argument_list>(<argument><expr><literal type="string">"TEST"</literal></expr></argument>)</argument_list></call></expr>;</return></block_content></block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>i</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><operator>new</operator> <call><name>SocketException</name><argument_list>(<argument><expr><literal type="string">"TEST"</literal></expr></argument>)</argument_list></call></expr>;</return></block_content></block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>i</name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><operator>new</operator> <call><name>NoHttpResponseException</name><argument_list>(<argument><expr><literal type="string">"TEST"</literal></expr></argument>)</argument_list></call></expr>;</return></block_content></block></if></if_stmt>
+        <return>return <expr><name>okResponse</name></expr>;</return>
+      </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>UpdateRequest</name></type> <name>update</name> <init>= <expr><operator>new</operator> <call><name>UpdateRequest</name><argument_list>()</argument_list></call>
+          <operator>.</operator><call><name>add</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"123"</literal></expr></argument>, <argument><expr><literal type="string">"desc"</literal></expr></argument>, <argument><expr><literal type="string">"Something 0"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <expr_stmt><expr><call><name><name>cloudClient</name><operator>.</operator><name>request</name></name><argument_list>(<argument><expr><name>update</name></expr></argument>, <argument><expr><name>collName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name><name>refs</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>collName</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getCount</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></try>
+
+  </block_content>}</block></function>
+
+
+  <function><type><specifier>private</specifier> <name>LBHttpSolrClient</name></type> <name>getMockLbHttpSolrClient</name><parameter_list>(<parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Function</name></argument>&gt;</argument_list></name></type> <name>responses</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>LBHttpSolrClient</name></type> <name>mockLbclient</name> <init>= <expr><call><name><name>EasyMock</name><operator>.</operator><name>createMock</name></name><argument_list>(<argument><expr><name><name>LBHttpSolrClient</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>reset</name></name><argument_list>(<argument><expr><name>mockLbclient</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>mockLbclient</name><operator>.</operator><name>request</name></name><argument_list>(<argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyObject</name></name><argument_list>(<argument><expr><name><name>LBHttpSolrClient</name><operator>.</operator><name>Req</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>andAnswer</name><argument_list>(<argument><expr><lambda><parameter_list>()</parameter_list> -&gt; <block>{<block_content>
+      <decl_stmt><decl><type><name><name>LBHttpSolrClient</name><operator>.</operator><name>Req</name></name></type> <name>req</name> <init>= <expr><operator>(</operator><name><name>LBHttpSolrClient</name><operator>.</operator><name>Req</name></name><operator>)</operator> <call><name><name>EasyMock</name><operator>.</operator><name>getCurrentArguments</name></name><argument_list>()</argument_list></call><index>[<expr><literal type="number">0</literal></expr>]</index></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Function</name></type> <name>f</name> <init>= <expr><call><name><name>responses</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"request"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>f</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+      <decl_stmt><decl><type><name>Object</name></type> <name>res</name> <init>= <expr><call><name><name>f</name><operator>.</operator><name>apply</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>res</name> <operator>instanceof</operator> <name>Exception</name></expr>)</condition><block type="pseudo"><block_content> <throw>throw <expr><operator>(</operator><name>Throwable</name><operator>)</operator> <name>res</name></expr>;</throw></block_content></block></if></if_stmt>
+      <decl_stmt><decl><type><name><name>LBHttpSolrClient</name><operator>.</operator><name>Rsp</name></name></type> <name>rsp</name> <init>= <expr><operator>new</operator> <call><name><name>LBHttpSolrClient</name><operator>.</operator><name>Rsp</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>rsp</name><operator>.</operator><name>rsp</name></name> <operator>=</operator> <operator>(</operator><name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name><operator>)</operator> <name>res</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>rsp</name><operator>.</operator><name>server</name></name> <operator>=</operator> <call><name><name>req</name><operator>.</operator><name>servers</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><name>rsp</name></expr>;</return>
+    </block_content>}</block></lambda></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>mockLbclient</name><operator>.</operator><name>getHttpClient</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>expectLastCall</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>andAnswer</name><argument_list>(<argument><expr><lambda><parameter_list>()</parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="null">null</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call><operator>.</operator><call><name>anyTimes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>replay</name></name><argument_list>(<argument><expr><name>mockLbclient</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><name>mockLbclient</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name><name>CloudSolrClient</name><operator>.</operator><name>ClusterStateProvider</name></name></type> <name>getStateProvider</name><parameter_list>(<parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>livenodes</name></decl></parameter>,
+                                                                <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></argument>&gt;</argument_list></name></type> <name>colls</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>new</operator> <class><super><name><name>CloudSolrClient</name><operator>.</operator><name>ClusterStateProvider</name></name></super><argument_list>()</argument_list> <block>{
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>getState</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name><name>colls</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>livenodes</name></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>getClusterProperties</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name><name>Collections</name><operator>.</operator><name>EMPTY_MAP</name></name></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>String</name></type> <name>getAlias</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><name>collection</name></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>String</name></type> <name>getCollectionName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><name>name</name></expr>;</return>
+      </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>void</name></type> <name>connect</name><parameter_list>()</parameter_list> <block>{<block_content> </block_content>}</block></function>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>void</name></type> <name>close</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+
+      </block_content>}</block></function>
+    }</block></class></expr>;</return>
+
+  </block_content>}</block></function>
+
+
+  <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>coll1State</name> <init>= <expr><literal type="string">"{'gettingstarted':{\n"</literal> <operator>+</operator>
+      <literal type="string">"    'replicationFactor':'2',\n"</literal> <operator>+</operator>
+      <literal type="string">"    'router':{'name':'compositeId'},\n"</literal> <operator>+</operator>
+      <literal type="string">"    'maxShardsPerNode':'2',\n"</literal> <operator>+</operator>
+      <literal type="string">"    'autoAddReplicas':'false',\n"</literal> <operator>+</operator>
+      <literal type="string">"    'shards':{\n"</literal> <operator>+</operator>
+      <literal type="string">"      'shard1':{\n"</literal> <operator>+</operator>
+      <literal type="string">"        'range':'80000000-ffffffff',\n"</literal> <operator>+</operator>
+      <literal type="string">"        'state':'active',\n"</literal> <operator>+</operator>
+      <literal type="string">"        'replicas':{\n"</literal> <operator>+</operator>
+      <literal type="string">"          'core_node2':{\n"</literal> <operator>+</operator>
+      <literal type="string">"            'core':'gettingstarted_shard1_replica1',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'base_url':'http://192.168.1.108:8983/solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'node_name':'192.168.1.108:8983_solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'state':'active',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'leader':'true'},\n"</literal> <operator>+</operator>
+      <literal type="string">"          'core_node4':{\n"</literal> <operator>+</operator>
+      <literal type="string">"            'core':'gettingstarted_shard1_replica2',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'base_url':'http://192.168.1.108:7574/solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'node_name':'192.168.1.108:7574_solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'state':'active'}}},\n"</literal> <operator>+</operator>
+      <literal type="string">"      'shard2':{\n"</literal> <operator>+</operator>
+      <literal type="string">"        'range':'0-7fffffff',\n"</literal> <operator>+</operator>
+      <literal type="string">"        'state':'active',\n"</literal> <operator>+</operator>
+      <literal type="string">"        'replicas':{\n"</literal> <operator>+</operator>
+      <literal type="string">"          'core_node1':{\n"</literal> <operator>+</operator>
+      <literal type="string">"            'core':'gettingstarted_shard2_replica1',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'base_url':'http://192.168.1.108:8983/solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'node_name':'192.168.1.108:8983_solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'state':'active',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'leader':'true'},\n"</literal> <operator>+</operator>
+      <literal type="string">"          'core_node3':{\n"</literal> <operator>+</operator>
+      <literal type="string">"            'core':'gettingstarted_shard2_replica2',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'base_url':'http://192.168.1.108:7574/solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'node_name':'192.168.1.108:7574_solr',\n"</literal> <operator>+</operator>
+      <literal type="string">"            'state':'active'}}}}}}"</literal></expr></init></decl>;</decl_stmt>
+
+
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></catch></try></block_content></block></if></if_stmt></block_content></block></function>
+
+</unit>

@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/d330d406.java"><expr_stmt><expr><name>From</name> <name>d330d40665a3b42744db20dfc5d9a80ad5f9b439</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Purshotam</name> <name>Shah</name> <operator>&lt;</operator><name>purushah</name>@<name>yahoo</name><operator>-</operator><name><name>inc</name><operator>.</operator><name>com</name></name><operator>&gt;</operator>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">27</literal> <name>Sep</name> <literal type="number">2016</literal> <literal type="number">12</literal><operator>:</operator><literal type="number">21</literal><operator>:</operator><literal type="number">26</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">2501</literal> <name>ZK</name> <name>reentrant</name> <name>lock</name> <name>doesn</name><literal type="char">'t work for few cases
+
+--
+ .../oozie/command/wf/ActionStartXCommand.java |  10 ++
+ .../org/apache/oozie/lock/MemoryLocks.java    |  82 +++++--------
+ .../oozie/service/MemoryLocksService.java     |   9 +-
+ .../apache/oozie/service/ZKLocksService.java  |  85 +++++--------
+ .../apache/oozie/lock/TestMemoryLocks.java    |  60 +++++++--
+ .../oozie/service/TestZKLocksService.java     | 115 +++++++++++++-----
+ release-log.txt                               |   1 +
+ 7 files changed, 218 insertions(+), 144 deletions(-)
+
+diff --git a/core/src/main/java/org/apache/oozie/command/wf/ActionStartXCommand.java b/core/src/main/java/org/apache/oozie/command/wf/ActionStartXCommand.java
+index 41f4430f6..edfac4844 100644
+-- a/core/src/main/java/org/apache/oozie/command/wf/ActionStartXCommand.java
+++ b/core/src/main/java/org/apache/oozie/command/wf/ActionStartXCommand.java
+@@ -21,6 +21,7 @@ package org.apache.oozie.command.wf;
+ import java.util.ArrayList;
+ import java.util.Date;
+ import java.util.List;
+
+ import javax.servlet.jsp.el.ELException;
+ 
+ import org.apache.hadoop.conf.Configuration;
+@@ -41,6 +42,7 @@ import org.apache.oozie.client.SLAEvent.Status;
+ import org.apache.oozie.client.rest.JsonBean;
+ import org.apache.oozie.command.CommandException;
+ import org.apache.oozie.command.PreconditionException;
+import org.apache.oozie.command.XCommand;
+ import org.apache.oozie.executor.jpa.BatchQueryExecutor.UpdateEntry;
+ import org.apache.oozie.executor.jpa.BatchQueryExecutor;
+ import org.apache.oozie.executor.jpa.JPAExecutorException;
+@@ -399,4 +401,12 @@ public class ActionStartXCommand extends ActionXCommand&lt;org.apache.oozie.command
+         queue(new ActionStartXCommand(wfAction.getId(), wfAction.getType()), retryDelayMillis);
+     }
+ 
+    protected void queue(XCommand&lt;?&gt; command, long msDelay) {
+        // ActionStartXCommand is synchronously called from SignalXCommand passing wfJob so that it doesn'</literal><name>t</name> <name>have</name> <name>to</name></expr></expr_stmt>
+        <comment type="line">//reload wfJob again. We need set wfJob to null, so that it get reloaded when the requeued command executes.</comment>
+        <if_stmt><if>if <condition>(<expr><name>command</name> <operator>instanceof</operator> <name>ActionStartXCommand</name></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><operator>(</operator><operator>(</operator><name>ActionStartXCommand</name><operator>)</operator><name>command</name><operator>)</operator><operator>.</operator><name>wfJob</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>queue</name></name><argument_list>(<argument><expr><name>command</name></expr></argument>, <argument><expr><name>msDelay</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }
+ }
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>lock</name><operator>/</operator><name><name>MemoryLocks</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>lock</name><operator>/</operator><name><name>MemoryLocks</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7d65ac0e2</literal><operator>..</operator><literal type="number">1ef1e413f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>lock</name><operator>/</operator><name><name>MemoryLocks</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>lock</name><operator>/</operator><name><name>MemoryLocks</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">33</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@</expr></expr_stmt>
+ 
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>lock</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ConcurrentMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>ReentrantReadWriteLock</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>Lock</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>MemoryLocksService</name><operator>.</operator><name>Type</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>MapMaker</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * In memory resource locking that provides READ/WRITE lock capabilities.
+  */</comment>
+ <class><specifier>public</specifier> class <name>MemoryLocks</name> <block>{
+    <decl_stmt><decl><type><specifier>final</specifier> <specifier>private</specifier> <name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ReentrantReadWriteLock</name></argument>&gt;</argument_list></name></type> <name>locks</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ReentrantReadWriteLock</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+    <enum><specifier>private</specifier> <specifier>static</specifier> enum <name>Type</name> <block>{
+        <decl><name>READ</name></decl>, <decl><name>WRITE</name></decl>
+    }</block></enum>
+    <decl_stmt><decl><type><specifier>final</specifier> <specifier>private</specifier> <name><name>ConcurrentMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ReentrantReadWriteLock</name></argument>&gt;</argument_list></name></type> <name>locks</name> <init>= <expr><operator>new</operator> <call><name>MapMaker</name><argument_list>()</argument_list></call><operator>.</operator><call><name>weakValues</name><argument_list>()</argument_list></call><operator>.</operator><call><name>makeMap</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <comment type="block" format="javadoc">/**
+      * Implementation of {@link LockToken} for in memory locks.
+      */</comment>
+     <class>class <name>MemoryLockToken</name> <super_list><implements>implements <super><name>LockToken</name></super></implements></super_list> <block>{
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>ReentrantReadWriteLock</name></type> <name>rwLock</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>Lock</name></name></type> <name>lock</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>resource</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>ReentrantReadWriteLock</name></type> <name>lockEntry</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Type</name></type> <name>type</name></decl>;</decl_stmt>
+
+        <constructor><specifier>public</specifier> <name>MemoryLockToken</name><parameter_list>(<parameter><decl><type><name>ReentrantReadWriteLock</name></type> <name>lockEntry</name></decl></parameter>, <parameter><decl><type><name>Type</name></type> <name>type</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lockEntry</name></name> <operator>=</operator> <name>lockEntry</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>type</name></name> <operator>=</operator> <name>type</name></expr>;</expr_stmt>
+ 
+        <constructor><specifier>private</specifier> <name>MemoryLockToken</name><parameter_list>(<parameter><decl><type><name>ReentrantReadWriteLock</name></type> <name>rwLock</name></decl></parameter>, <parameter><decl><type><name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>locks</name><operator>.</operator><name>Lock</name></name></type> <name>lock</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>rwLock</name></name> <operator>=</operator> <name>rwLock</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lock</name></name> <operator>=</operator> <name>lock</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>resource</name></name> <operator>=</operator> <name>resource</name></expr>;</expr_stmt>
+         </block_content>}</block></constructor>
+ 
+         <comment type="block" format="javadoc">/**
+@@ -52,18 +51,15 @@ public class MemoryLocks {
+          */</comment>
+         <function><annotation>@<name>Override</name></annotation>
+         <type><specifier>public</specifier> <name>void</name></type> <name>release</name><parameter_list>()</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>lock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isLockHeld</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <synchronized>synchronized <init>(<expr><name>locks</name></expr>)</init> <block>{<block_content>
+                    <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isLockHeld</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>locks</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    </block_content>}</block></if></if_stmt>
+                </block_content>}</block></synchronized>
+            <switch>switch <condition>(<expr><name>type</name></expr>)</condition> <block>{<block_content>
+                <case>case <expr><name>WRITE</name></expr>:</case>
+                    <expr_stmt><expr><call><name><name>lockEntry</name><operator>.</operator><name>writeLock</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>unlock</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                <case>case <expr><name>READ</name></expr>:</case>
+                    <expr_stmt><expr><call><name><name>lockEntry</name><operator>.</operator><name>readLock</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>unlock</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+             </block_content>}</block></switch>
+         </block_content>}</block></if></if_stmt>
+        <function><type><specifier>private</specifier> <name>boolean</name></type> <name>isLockHeld</name><parameter_list>()</parameter_list><block>{<block_content>
+            <return>return <expr><call><name><name>rwLock</name><operator>.</operator><name>hasQueuedThreads</name></name><argument_list>()</argument_list></call> <operator>||</operator> <call><name><name>rwLock</name><operator>.</operator><name>isWriteLocked</name></name><argument_list>()</argument_list></call> <operator>||</operator> <call><name><name>rwLock</name><operator>.</operator><name>getReadLockCount</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr>;</return>
+        </block_content>}</block></function>
+     </block_content>}</block></function>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -76,41 +72,23 @@ public class MemoryLocks {
+     }
+ 
+     /**
+     * Obtain a READ lock for a source.
+     * Obtain a lock for a source.
+      *
+      * @param resource resource name.
+     * @param type lock type.
+      * @param wait time out in milliseconds to wait for the lock, -1 means no timeout and 0 no wait.
+      * @return the lock token for the resource, or &lt;code&gt;null&lt;/code&gt; if the lock could not be obtained.
+      * @throws InterruptedException thrown if the thread was interrupted while waiting.
+      */</comment>
+    <function><type><specifier>public</specifier> <name>MemoryLockToken</name></type> <name>getReadLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><call><name>getLock</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>READ</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Obtain a WRITE lock for a source.
+     *
+     * @param resource resource name.
+     * @param wait time out in milliseconds to wait for the lock, -1 means no timeout and 0 no wait.
+     * @return the lock token for the resource, or &lt;code&gt;null&lt;/code&gt; if the lock could not be obtained.
+     * @throws InterruptedException thrown if the thread was interrupted while waiting.
+     */</comment>
+    <function><type><specifier>public</specifier> <name>MemoryLockToken</name></type> <name>getWriteLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><call><name>getLock</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>WRITE</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>MemoryLockToken</name></type> <name>getLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>Type</name></type> <name>type</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>ReentrantReadWriteLock</name></type> <name>lockEntry</name></decl>;</decl_stmt>
+        <synchronized>synchronized <init>(<expr><name>locks</name></expr>)</init> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>locks</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <call><name><name>locks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if>
+            <else>else <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <operator>new</operator> <call><name>ReentrantReadWriteLock</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>locks</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>lockEntry</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <function><type><specifier>public</specifier> <name>MemoryLockToken</name></type> <name>getLock</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>Type</name></type> <name>type</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>ReentrantReadWriteLock</name></type> <name>lockEntry</name> <init>= <expr><call><name><name>locks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>lockEntry</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>ReentrantReadWriteLock</name></type> <name>newLock</name> <init>= <expr><operator>new</operator> <call><name>ReentrantReadWriteLock</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <call><name><name>locks</name><operator>.</operator><name>putIfAbsent</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>newLock</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>lockEntry</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <name>newLock</name></expr>;</expr_stmt>
+             </block_content>}</block></if></if_stmt>
+         </block_content>}</block></if></if_stmt>
+
+         <decl_stmt><decl><type><name>Lock</name></type> <name>lock</name> <init>= <expr><ternary><condition><expr><operator>(</operator><call><name><name>type</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>Type</name><operator>.</operator><name>READ</name></name></expr></argument>)</argument_list></call><operator>)</operator></expr> ?</condition><then> <expr><call><name><name>lockEntry</name><operator>.</operator><name>readLock</name></name><argument_list>()</argument_list></call></expr> </then><else>: <expr><call><name><name>lockEntry</name><operator>.</operator><name>writeLock</name></name><argument_list>()</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+ 
+         <if_stmt><if>if <condition>(<expr><name>wait</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">133</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">111</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryLocks</name> <block>{
+                 <expr><call><name><name>locks</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>lockEntry</name></expr></argument>)</argument_list></call></expr>;
+             }</block></expr></expr_stmt>
+         </block_content>}</block></if></if_stmt>
+        <return>return <expr><operator>new</operator> <call><name>MemoryLockToken</name><argument_list>(<argument><expr><name>lockEntry</name></expr></argument>, <argument><expr><name>lock</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</return>
+        <return>return <expr><operator>new</operator> <call><name>MemoryLockToken</name><argument_list>(<argument><expr><name>lockEntry</name></expr></argument>, <argument><expr><name>type</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name><name>ConcurrentMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ReentrantReadWriteLock</name></argument>&gt;</argument_list></name></type> <name>getLockMap</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><name>locks</name></expr>;</return>
+     </block_content>}</block></function>
+ </block_content>}</block></else></if_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>MemoryLocksService</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>MemoryLocksService</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d7c6a89fd</name><operator>..</operator><literal type="number">2ab2abc34</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>MemoryLocksService</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>MemoryLocksService</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt> <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator> <name>Service</name> <name>that</name> <name>provides</name> <name>in</name><operator>-</operator><name>memory</name> <name><name>locks</name><operator>.</operator>  <name>Assumes</name></name> <name>no</name> <name>other</name> <name>Oozie</name> <name>servers</name> <name>are</name> <name>using</name> <name>the</name> <name><name>database</name><operator>.</operator></name>
+  *<operator>/</operator>
+ <specifier>public</specifier> <name>class</name> <name>MemoryLocksService</name> implements <name>Service</name></expr><operator>,</operator> <expr><name>Instrumentable</name> <block>{
+
+    <expr><specifier>public</specifier> <specifier>static</specifier> enum <name>Type</name> <block>{
+        <expr><name>READ</name></expr>, <expr><name>WRITE</name></expr>
+    }</block>
+
+     <specifier>protected</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>INSTRUMENTATION_GROUP</name> <operator>=</operator> <literal type="string">"locks"</literal></expr>;
+     <expr><specifier>private</specifier> <name>MemoryLocks</name> <name>locks</name></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">83</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">88</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MemoryLocksService</name> implements <name>Service</name></expr>, <expr><name>Instrumentable</name> <block>{
+      <expr><operator>*</operator> @<throws>throws <argument><expr><name>InterruptedException</name> <name>thrown</name></expr></argument></throws></expr> <if_stmt><if>if the thread was interrupted while waiting.
+      */
+     public LockToken getReadLock<condition>(<expr><name>String</name> <name>resource</name></expr><operator>,</operator> <expr><name>long</name> <name>wait</name></expr>)</condition><block type="pseudo"><block_content> <throws>throws <argument><expr><name>InterruptedException</name> <block>{</block></expr></argument></throws>
+        <return>return <expr><call><name><name>locks</name><operator>.</operator><name>getReadLock</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return></block_content></block></if></if_stmt></block></expr>
+        <return>return <expr><call><name><name>locks</name><operator>.</operator><name>getLock</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>READ</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+     }</block></expr></expr_stmt>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -95,7 +100,7 @@ public class MemoryLocksService implements Service, Instrumentable {
+      * @throws InterruptedException thrown if the thread was interrupted while waiting.
+      */</comment>
+     <function><type><specifier>public</specifier> <name>LockToken</name></type> <name>getWriteLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <return>return <expr><call><name><name>locks</name><operator>.</operator><name>getWriteLock</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+        <return>return <expr><call><name><name>locks</name><operator>.</operator><name>getLock</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>WRITE</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+ 
+     <annotation>@<name>VisibleForTesting</name></annotation>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>ZKLocksService</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>ZKLocksService</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">952b90d5d</literal><operator>..</operator><literal type="number">8acbad9bb</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>ZKLocksService</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>ZKLocksService</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">17</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ConcurrentMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>TimeUnit</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>curator</name><operator>.</operator><name>framework</name><operator>.</operator><name>recipes</name><operator>.</operator><name>locks</name><operator>.</operator><name>InterProcessMutex</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>curator</name><operator>.</operator><name>framework</name><operator>.</operator><name>state</name><operator>.</operator><name>ConnectionState</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>curator</name><operator>.</operator><name>utils</name><operator>.</operator><name>ThreadUtils</name></name>;</import>
+ 
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>annotations</name><operator>.</operator><name>VisibleForTesting</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>MapMaker</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Service that provides distributed locks via ZooKeeper.  Requires that a ZooKeeper ensemble is available.  The locks will be
+@@ -51,7 +52,8 @@ public class ZKLocksService extends MemoryLocksService implements Service, Instr
+     private static XLog LOG = XLog.getLog(ZKLocksService.class);
+     public static final String LOCKS_NODE = "/locks";
+ 
+    final private HashMap&lt;String, InterProcessReadWriteLock&gt; zkLocks = new HashMap&lt;String, InterProcessReadWriteLock&gt;();
+    private ConcurrentMap&lt;String, InterProcessReadWriteLock&gt; zkLocks = new MapMaker().weakValues().makeMap();
+
+ 
+     private static final String REAPING_LEADER_PATH = ZKUtils.ZK_BASE_SERVICES_PATH + "/locksChildReaperLeaderPath";
+     public static final String REAPING_THRESHOLD = CONF_PREFIX + "ZKLocksService.locks.reaper.threshold";
+@@ -123,18 +125,7 @@ public class ZKLocksService extends MemoryLocksService implements Service, Instr
+      */</comment>
+     <function><annotation>@<name>Override</name></annotation>
+     <type><specifier>public</specifier> <name>LockToken</name></type> <name>getReadLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>InterProcessReadWriteLock</name></type> <name>lockEntry</name></decl>;</decl_stmt>
+        <synchronized>synchronized <init>(<expr><name>zkLocks</name></expr>)</init> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>zkLocks</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <call><name><name>zkLocks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if>
+            <else>else <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <operator>new</operator> <call><name>InterProcessReadWriteLock</name><argument_list>(<argument><expr><call><name><name>zk</name><operator>.</operator><name>getClient</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>LOCKS_NODE</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>zkLocks</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>lockEntry</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></synchronized>
+        <decl_stmt><decl><type><name>InterProcessMutex</name></type> <name>readLock</name> <init>= <expr><call><name><name>lockEntry</name><operator>.</operator><name>readLock</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <return>return <expr><call><name>acquireLock</name><argument_list>(<argument><expr><name>wait</name></expr></argument>, <argument><expr><name>readLock</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</return>
+        <return>return <expr><call><name>acquireLock</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>READ</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -147,29 +138,27 @@ public class ZKLocksService extends MemoryLocksService implements Service, Instr
+      */</comment>
+     <function><annotation>@<name>Override</name></annotation>
+     <type><specifier>public</specifier> <name>LockToken</name></type> <name>getWriteLock</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>InterProcessReadWriteLock</name></type> <name>lockEntry</name></decl>;</decl_stmt>
+        <synchronized>synchronized <init>(<expr><name>zkLocks</name></expr>)</init> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>zkLocks</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <call><name><name>zkLocks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if>
+            <else>else <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <operator>new</operator> <call><name>InterProcessReadWriteLock</name><argument_list>(<argument><expr><call><name><name>zk</name><operator>.</operator><name>getClient</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>LOCKS_NODE</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>zkLocks</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>lockEntry</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></synchronized>
+        <decl_stmt><decl><type><name>InterProcessMutex</name></type> <name>writeLock</name> <init>= <expr><call><name><name>lockEntry</name><operator>.</operator><name>writeLock</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <return>return <expr><call><name>acquireLock</name><argument_list>(<argument><expr><name>wait</name></expr></argument>, <argument><expr><name>writeLock</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</return>
+        <return>return <expr><call><name>acquireLock</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name><name>Type</name><operator>.</operator><name>WRITE</name></name></expr></argument>, <argument><expr><name>wait</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+ 
+    <function><type><specifier>private</specifier> <name>LockToken</name></type> <name>acquireLock</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>, <parameter><decl><type><name>InterProcessMutex</name></type> <name>lock</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <function><type><specifier>private</specifier> <name>LockToken</name></type> <name>acquireLock</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>resource</name></decl></parameter>, <parameter><decl><type><name>Type</name></type> <name>type</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>InterProcessReadWriteLock</name></type> <name>lockEntry</name> <init>= <expr><call><name><name>zkLocks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>lockEntry</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>InterProcessReadWriteLock</name></type> <name>newLock</name> <init>= <expr><operator>new</operator> <call><name>InterProcessReadWriteLock</name><argument_list>(<argument><expr><call><name><name>zk</name><operator>.</operator><name>getClient</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>LOCKS_NODE</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>resource</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <call><name><name>zkLocks</name><operator>.</operator><name>putIfAbsent</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>newLock</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>lockEntry</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>lockEntry</name> <operator>=</operator> <name>newLock</name></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></if></if_stmt>
+        <decl_stmt><decl><type><name>InterProcessMutex</name></type> <name>lock</name> <init>= <expr><ternary><condition><expr><operator>(</operator><call><name><name>type</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>Type</name><operator>.</operator><name>READ</name></name></expr></argument>)</argument_list></call><operator>)</operator></expr> ?</condition><then> <expr><call><name><name>lockEntry</name><operator>.</operator><name>readLock</name></name><argument_list>()</argument_list></call></expr> </then><else>: <expr><call><name><name>lockEntry</name><operator>.</operator><name>writeLock</name></name><argument_list>()</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>ZKLockToken</name></type> <name>token</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+             <if_stmt><if>if <condition>(<expr><name>wait</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+                 <expr_stmt><expr><call><name><name>lock</name><operator>.</operator><name>acquire</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>token</name> <operator>=</operator> <operator>new</operator> <call><name>ZKLockToken</name><argument_list>(<argument><expr><name>lock</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>token</name> <operator>=</operator> <operator>new</operator> <call><name>ZKLockToken</name><argument_list>(<argument><expr><name>lockEntry</name></expr></argument>, <argument><expr><name>type</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></if>
+             <if type="elseif">else if <condition>(<expr><call><name><name>lock</name><operator>.</operator><name>acquire</name></name><argument_list>(<argument><expr><name>wait</name></expr></argument>, <argument><expr><name><name>TimeUnit</name><operator>.</operator><name>MILLISECONDS</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>token</name> <operator>=</operator> <operator>new</operator> <call><name>ZKLockToken</name><argument_list>(<argument><expr><name>lock</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>token</name> <operator>=</operator> <operator>new</operator> <call><name>ZKLockToken</name><argument_list>(<argument><expr><name>lockEntry</name></expr></argument>, <argument><expr><name>type</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></if></if_stmt>
+         </block_content>}</block>
+         <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">183</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">172</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>ZKLocksService</name> extends <name>MemoryLocksService</name> implements <name>Service</name></expr><operator>,</operator> <expr><name>Instr</name>
+      <operator>*</operator> <name>Implementation</name> <name>of</name> <block>{@<expr><name>link</name> <name>LockToken</name></expr>}</block></expr></expr_stmt> <for>for zookeeper locks.
+      */
+     class ZKLockToken implements LockToken <block>{<block_content>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>InterProcessMutex</name></type> <name>lock</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>resource</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>InterProcessReadWriteLock</name></type> <name>lockEntry</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Type</name></type> <name>type</name></decl>;</decl_stmt>
+ 
+        <constructor><specifier>private</specifier> <name>ZKLockToken</name><parameter_list>(<parameter><decl><type><name>InterProcessMutex</name></type> <name>lock</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>resource</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lock</name></name> <operator>=</operator> <name>lock</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>resource</name></name> <operator>=</operator> <name>resource</name></expr>;</expr_stmt>
+        <constructor><specifier>private</specifier> <name>ZKLockToken</name><parameter_list>(<parameter><decl><type><name>InterProcessReadWriteLock</name></type> <name>lockEntry</name></decl></parameter>, <parameter><decl><type><name>Type</name></type> <name>type</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lockEntry</name></name> <operator>=</operator> <name>lockEntry</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>this</name><operator>.</operator><name>type</name></name> <operator>=</operator> <name>type</name></expr>;</expr_stmt>
+         </block_content>}</block></constructor></block_content></block></constructor></block_content></block></for></block_content></block></catch></try></block_content></block></function></block_content></block></function></block_content></block></synchronized></block_content></block></function></block_content></block></constructor></block></class></block></class>
+ 
+         <comment type="block" format="javadoc">/**
+@@ -197,35 +186,23 @@ public class ZKLocksService extends MemoryLocksService implements Service, Instr
+         @Override
+         public void release() {
+             try {
+                lock.release();
+                if (zkLocks.get(resource) == null) {
+                    return;
+                }
+                if (!isLockHeld()) {
+                    synchronized (zkLocks) {
+                        if (zkLocks.get(resource) != null) {
+                            if (!isLockHeld()) {
+                                zkLocks.remove(resource);
+                            }
+                        }
+                    }
+                switch (type) {
+                    case WRITE:
+                        lockEntry.writeLock().release();
+                        break;
+                    case READ:
+                        lockEntry.readLock().release();
+                        break;
+                 }
+             }
+             catch (Exception ex) {
+                 LOG.warn("Could not release lock: " + ex.getMessage(), ex);
+             }
+
+         }
+
+        private boolean isLockHeld() {
+            return zkLocks.get(resource).readLock().isAcquiredInThisProcess()
+                    || zkLocks.get(resource).writeLock().isAcquiredInThisProcess();
+        }
+
+     }
+ 
+     @VisibleForTesting
+    public HashMap&lt;String, InterProcessReadWriteLock&gt; getLocks(){
+    public ConcurrentMap&lt;String, InterProcessReadWriteLock&gt; getLocks(){
+         return zkLocks;
+     }
+ 
+diff --git a/core/src/test/java/org/apache/oozie/lock/TestMemoryLocks.java b/core/src/test/java/org/apache/oozie/lock/TestMemoryLocks.java
+index f0a87e541..8c7b58eec 100644
+-- a/core/src/test/java/org/apache/oozie/lock/TestMemoryLocks.java
+++ b/core/src/test/java/org/apache/oozie/lock/TestMemoryLocks.java
+@@ -23,6 +23,7 @@ import java.util.concurrent.CountDownLatch;
+ import java.util.concurrent.TimeUnit;
+ 
+ import org.apache.oozie.service.MemoryLocksService;
+import org.apache.oozie.service.MemoryLocksService.Type;
+ import org.apache.oozie.service.ServiceException;
+ import org.apache.oozie.service.Services;
+ import org.apache.oozie.test.XTestCase;
+@@ -31,6 +32,7 @@ import org.apache.oozie.util.XLog;
+ public class TestMemoryLocks extends XTestCase {
+     private static final int LATCH_TIMEOUT = 10;
+     private XLog log = XLog.getLog(getClass());
+    public static final int DEFAULT_LOCK_TIMEOUT = 5 * 1000;
+ 
+     private MemoryLocks locks;
+ 
+@@ -118,7 +120,7 @@ public class TestMemoryLocks extends XTestCase {
+         }
+ 
+         protected MemoryLocks.MemoryLockToken getLock() throws InterruptedException {
+            return locks.getReadLock(name, timeout);
+            return locks.getLock(name, Type.READ, timeout);
+         }
+     }
+ 
+@@ -129,7 +131,7 @@ public class TestMemoryLocks extends XTestCase {
+         }
+ 
+         protected MemoryLocks.MemoryLockToken getLock() throws InterruptedException {
+            return locks.getWriteLock(name, timeout);
+            return locks.getLock(name, Type.WRITE, timeout);
+         }
+     }
+ 
+@@ -323,7 +325,7 @@ public class TestMemoryLocks extends XTestCase {
+         }
+ 
+         protected MemoryLocks.MemoryLockToken getLock() throws InterruptedException {
+            return locks.getWriteLock(name, timeout);
+            return locks.getLock(name, Type.WRITE, timeout);
+         }
+     }
+ 
+@@ -372,16 +374,16 @@ public class TestMemoryLocks extends XTestCase {
+         MemoryLocksService lockService = new MemoryLocksService();
+         try {
+             lockService.init(Services.get());
+            LockToken lock = lockService.getWriteLock(path, 5000);
+            lock = (LockToken) lockService.getWriteLock(path, 5000);
+            lock = (LockToken) lockService.getWriteLock(path, 5000);
+            LockToken lock = lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+            lock = (LockToken) lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+            lock = (LockToken) lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+             assertEquals(lockService.getMemoryLocks().size(), 1);
+             lock.release();
+             assertEquals(lockService.getMemoryLocks().size(), 1);
+             lock.release();
+             assertEquals(lockService.getMemoryLocks().size(), 1);
+             lock.release();
+            assertEquals(lockService.getMemoryLocks().size(), 0);
+            checkLockRelease(path, lockService);
+         }
+         catch (Exception e) {
+             fail("Reentrant property, it should have acquired lock");
+@@ -391,4 +393,48 @@ public class TestMemoryLocks extends XTestCase {
+         }
+     }
+ 
+    public void testLocksAreGarbageCollected() throws ServiceException, InterruptedException {
+        String path = new String("a");
+        String path1 = new String("a");
+        MemoryLocksService lockService = new MemoryLocksService();
+        lockService.init(Services.get());
+        LockToken lock = lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+        int oldHash = lockService.getMemoryLocks().getLockMap().get(path).hashCode();
+        lock.release();
+        lock = lockService.getWriteLock(path1, DEFAULT_LOCK_TIMEOUT);
+        int newHash = lockService.getMemoryLocks().getLockMap().get(path1).hashCode();
+        assertTrue(oldHash == newHash);
+        lock.release();
+        lock = null;
+        System.gc();
+        path = "a";
+        lock = lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+        newHash = lockService.getMemoryLocks().getLockMap().get(path).hashCode();
+        assertFalse(oldHash == newHash);
+
+    }
+
+    public void testLocksAreReused() throws ServiceException, InterruptedException {
+        String path = "a";
+        MemoryLocksService lockService = new MemoryLocksService();
+        lockService.init(Services.get());
+        LockToken lock = lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+        int oldHash = System.identityHashCode(lockService.getMemoryLocks().getLockMap().get(path));
+        System.gc();
+        lock.release();
+        lock = lockService.getWriteLock(path, DEFAULT_LOCK_TIMEOUT);
+        assertEquals(lockService.getMemoryLocks().size(), 1);
+        int newHash = System.identityHashCode(lockService.getMemoryLocks().getLockMap().get(path));
+        assertTrue(oldHash == newHash);
+    }
+
+    private void checkLockRelease(String path, MemoryLocksService lockService) {
+        if (lockService.getMemoryLocks().getLockMap().get(path) == null) {
+            // good lock is removed from memory after gc.
+        }
+        else {
+            assertFalse(lockService.getMemoryLocks().getLockMap().get(path).isWriteLocked());
+        }
+    }
+
+ }
+diff --git a/core/src/test/java/org/apache/oozie/service/TestZKLocksService.java b/core/src/test/java/org/apache/oozie/service/TestZKLocksService.java
+index d1acadfff..d04f04e80 100644
+-- a/core/src/test/java/org/apache/oozie/service/TestZKLocksService.java
+++ b/core/src/test/java/org/apache/oozie/service/TestZKLocksService.java
+@@ -21,6 +21,7 @@ package org.apache.oozie.service;
+ import java.util.UUID;
+ 
+ import org.apache.oozie.lock.LockToken;
+import org.apache.oozie.lock.TestMemoryLocks;
+ import org.apache.oozie.service.ZKLocksService.ZKLockToken;
+ import org.apache.oozie.test.ZKXTestCase;
+ import org.apache.oozie.util.XLog;
+@@ -132,7 +133,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testWaitWriteLock(zkls, zkls);
+            checkWaitWriteLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -146,7 +147,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testWaitWriteLock(zkls1, zkls2);
+            checkWaitWriteLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -154,7 +155,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testWaitWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkWaitWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new WriteLocker("a", 1, -1, sb, zkls1);
+         Locker l2 = new WriteLocker("a", 2, -1, sb, zkls2);
+@@ -174,7 +175,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testNoWaitWriteLock(zkls, zkls);
+            checkNoWaitWriteLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -188,7 +189,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testNoWaitWriteLock(zkls1, zkls2);
+            checkNoWaitWriteLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -196,7 +197,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testNoWaitWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkNoWaitWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new WriteLocker("a", 1, 0, sb, zkls1);
+         Locker l2 = new WriteLocker("a", 2, 0, sb, zkls2);
+@@ -216,7 +217,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testTimeoutWaitingWriteLock(zkls, zkls);
+            checkTimeoutWaitingWriteLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -230,7 +231,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testTimeoutWaitingWriteLock(zkls1, zkls2);
+            checkTimeoutWaitingWriteLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -238,7 +239,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testTimeoutWaitingWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkTimeoutWaitingWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new WriteLocker("a", 1, 0, sb, zkls1);
+         Locker l2 = new WriteLocker("a", 2, (long) (WAITFOR_RATIO * 2000), sb, zkls2);
+@@ -258,7 +259,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testTimeoutTimingOutWriteLock(zkls, zkls);
+            checkTimeoutTimingOutWriteLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -272,7 +273,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testTimeoutTimingOutWriteLock(zkls1, zkls2);
+            checkTimeoutTimingOutWriteLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -280,7 +281,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testTimeoutTimingOutWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkTimeoutTimingOutWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new WriteLocker("a", 1, 0, sb, zkls1);
+         Locker l2 = new WriteLocker("a", 2, 50, sb, zkls2);
+@@ -300,7 +301,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testReadLock(zkls, zkls);
+            checkReadLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -314,7 +315,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testReadLock(zkls1, zkls2);
+            checkReadLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -322,7 +323,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testReadLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkReadLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new ReadLocker("a", 1, -1, sb, zkls1);
+         Locker l2 = new ReadLocker("a", 2, -1, sb, zkls2);
+@@ -342,7 +343,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testReadWriteLock(zkls, zkls);
+            checkReadWriteLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -356,7 +357,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testReadWriteLock(zkls1, zkls2);
+            checkReadWriteLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -364,7 +365,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testReadWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkReadWriteLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new ReadLocker("a", 1, -1, sb, zkls1);
+         Locker l2 = new WriteLocker("a", 2, -1, sb, zkls2);
+@@ -384,7 +385,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            _testWriteReadLock(zkls, zkls);
+            checkWriteReadLock(zkls, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -398,7 +399,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         try {
+             zkls1.init(Services.get());
+             zkls2.init(Services.get());
+            _testWriteReadLock(zkls1, zkls2);
+            checkWriteReadLock(zkls1, zkls2);
+         }
+         finally {
+             zkls1.destroy();
+@@ -406,7 +407,7 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void _testWriteReadLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+    public void checkWriteReadLock(ZKLocksService zkls1, ZKLocksService zkls2) throws Exception {
+         StringBuffer sb = new StringBuffer("");
+         Locker l1 = new WriteLocker("a", 1, -1, sb, zkls1);
+         Locker l2 = new ReadLocker("a", 2, -1, sb, zkls2);
+@@ -427,10 +428,10 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            ZKLockToken lock = (ZKLockToken) zkls.getWriteLock(path, 5000);
+            ZKLockToken lock = (ZKLockToken) zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+             assertTrue(zkls.getLocks().containsKey(path));
+             lock.release();
+            assertFalse(zkls.getLocks().containsKey(path));
+            checkLockRelease(path, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -442,16 +443,16 @@ public class TestZKLocksService extends ZKXTestCase {
+         ZKLocksService zkls = new ZKLocksService();
+         try {
+             zkls.init(Services.get());
+            ZKLockToken lock = (ZKLockToken) zkls.getWriteLock(path, 5000);
+            lock = (ZKLockToken) zkls.getWriteLock(path, 5000);
+            lock = (ZKLockToken) zkls.getWriteLock(path, 5000);
+            ZKLockToken lock = (ZKLockToken) zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            lock = (ZKLockToken) zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            lock = (ZKLockToken) zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+             assertTrue(zkls.getLocks().containsKey(path));
+             lock.release();
+             assertTrue(zkls.getLocks().containsKey(path));
+             lock.release();
+             assertTrue(zkls.getLocks().containsKey(path));
+             lock.release();
+            assertFalse(zkls.getLocks().containsKey(path));
+            checkLockRelease(path, zkls);
+         }
+         catch (Exception e) {
+             fail("Reentrant property, it should have acquired lock");
+@@ -470,10 +471,10 @@ public class TestZKLocksService extends ZKXTestCase {
+             ThreadLock t2 = new ThreadLock(zkls, path);
+             t1.start();
+             t1.join();
+            assertFalse(zkls.getLocks().containsKey(path));
+            checkLockRelease(path, zkls);
+             t2.start();
+             t2.join();
+            assertFalse(zkls.getLocks().containsKey(path));
+            checkLockRelease(path, zkls);
+         }
+         finally {
+             zkls.destroy();
+@@ -507,6 +508,58 @@ public class TestZKLocksService extends ZKXTestCase {
+         }
+     }
+ 
+    public void testLocksAreGarbageCollected() throws ServiceException, InterruptedException {
+        String path = new String("a");
+        String path1 = new String("a");
+        ZKLocksService lockService = new ZKLocksService();
+        try {
+            lockService.init(Services.get());
+            LockToken lock = lockService.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            lock.release();
+            assertEquals(lockService.getLocks().size(), 1);
+            int oldHash = lockService.getLocks().get(path).hashCode();
+            lock = lockService.getWriteLock(path1, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            int newHash = lockService.getLocks().get(path1).hashCode();
+            assertTrue(oldHash == newHash);
+            lock = null;
+            System.gc();
+            lock = lockService.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            newHash = lockService.getLocks().get(path).hashCode();
+            assertFalse(oldHash == newHash);
+        }
+        finally {
+            lockService.destroy();
+        }
+    }
+
+    public void testLocksAreReused() throws ServiceException, InterruptedException {
+        String path = "a";
+        ZKLocksService lockService = new ZKLocksService();
+        try {
+            lockService.init(Services.get());
+            LockToken lock = lockService.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            int oldHash = System.identityHashCode(lockService.getLocks().get(path));
+            System.gc();
+            lock.release();
+            lock = lockService.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+            assertEquals(lockService.getLocks().size(), 1);
+            int newHash = System.identityHashCode(lockService.getLocks().get(path));
+            assertTrue(oldHash == newHash);
+        }
+        finally {
+            lockService.destroy();
+        }
+    }
+
+    private void checkLockRelease(String path, ZKLocksService zkls) {
+        if (zkls.getLocks().get(path) == null) {
+            // good, lock is removed from memory after gc.
+        }
+        else {
+            assertFalse(zkls.getLocks().get(path).writeLock().isAcquiredInThisProcess());
+        }
+    }
+
+     static class ThreadLock extends Thread {
+         ZKLocksService zkls;
+         String path;
+@@ -520,9 +573,9 @@ public class TestZKLocksService extends ZKXTestCase {
+ 
+         public void run() {
+             try {
+                lock = zkls.getWriteLock(path, 5000);
+                lock = zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+                 if (lock != null) {
+                    lock = zkls.getWriteLock(path, 5000);
+                    lock = zkls.getWriteLock(path, TestMemoryLocks.DEFAULT_LOCK_TIMEOUT);
+                     Thread.sleep(1000);
+                     lock.release();
+                     Thread.sleep(1000);
+diff --git a/release-log.txt b/release-log.txt
+index 10a183a66..b03a61a14 100644
+-- a/release-log.txt
+++ b/release-log.txt
+@@ -3,6 +3,7 @@
+ 
+ -- Oozie 4.3.0 release
+ 
+OOZIE-2501 ZK reentrant lock doesn't work for few cases (puru)
+ OOZIE-2582 Populating external child Ids for action failures (abhishekbafna via rohini)
+ OOZIE-2678 Oozie job -kill doesn't work with tez jobs (abhishekbafna via rohini)
+ OOZIE-2676 Make hadoop-2 as the default profile (gezapeti via rkanter)
+- 
+2.19.1.windows.1
+
+</comment></unit>

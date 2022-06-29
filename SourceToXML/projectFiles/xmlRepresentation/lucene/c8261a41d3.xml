@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/c8261a41d3.java"><expr_stmt><expr><name>From</name> <name>c8261a41d30e3966159e3bb9d4d23df0f8e3cf63</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shalin</name> <name>Shekhar</name> <name><name>Mangar</name> <argument_list type="generic">&lt;<argument><name>shalin</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">19</literal> <name>Jul</name> <literal type="number">2014</literal> <literal type="number">07</literal><operator>:</operator><literal type="number">10</literal><operator>:</operator><literal type="number">36</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">6259</literal><operator>:</operator> <name>Reduce</name> <name>CPU</name> <name>usage</name> <name>by</name> <name>avoiding</name> <name>repeated</name> <name>costly</name> <name>calls</name>
+ <name>to</name> <name><name>Document</name><operator>.</operator><name>getField</name></name> <name>inside</name> <name><name>DocumentBuilder</name><operator>.</operator><name>toDocument</name></name></expr></expr_stmt> <for>for use-cases with
+ large number of fields and copyFields
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1611852 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ solr/CHANGES.txt                              <operator>|</operator>  4 +
+ .../apache/solr/update/DocumentBuilder.java   <operator>|</operator> 79 +++++++++++--------
+ 2 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">49</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">34</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>a0f4bde4098</name><operator>..</operator><literal type="number">6dfb65359a1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>Optimizations</name>
+   <name>indexes</name> <name>with</name> <name>many</name> <name>fields</name> <name>of</name> <name>same</name> <name>type</name> <name>just</name> <name>use</name> <name>one</name> <name>TokenStream</name> <name>per</name> <name><name>thread</name><operator>.</operator></name>
+   (<name>Shay</name> <name>Banon</name></expr><operator>,</operator> <expr><name>Uwe</name> <name>Schindler</name></expr><operator>,</operator> <expr><name>Robert</name> <name>Muir</name></expr></expr_stmt></for>)
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">6259</literal><operator>:</operator> <name>Reduce</name> <name>CPU</name> <name>usage</name> <name>by</name> <name>avoiding</name> <name>repeated</name> <name>costly</name> <name>calls</name> <name>to</name> <name><name>Document</name><operator>.</operator><name>getField</name></name> <name>inside</name>
+  <name><name>DocumentBuilder</name><operator>.</operator><name>toDocument</name></name></expr></expr_stmt> <for>for use-cases with large number of fields and copyFields.
+  <control>(<init><expr><name>Steven</name> <name>Bower</name> <name>via</name> <name>shalin</name></expr></init>)</control><block type="pseudo"><block_content>
+
+ <expr_stmt><expr><name>Other</name> <name>Changes</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>DocumentBuilder</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>DocumentBuilder</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">9c9d7f72ddb</literal><operator>..</operator><literal type="number">6b58f6d5fda</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>DocumentBuilder</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>DocumentBuilder</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">18</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt></block_content></block></for>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>update</name></name>;</package>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Field</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">30</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">31</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>IndexSchema</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name><operator>.</operator><name>SchemaField</name></name>;</import>
+ 
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>collect</name><operator>.</operator><name>Sets</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  *
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">75</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">78</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>DocumentBuilder</name> <block>{
+   <expr><block>{ 
+     <expr><name>Document</name> <name>out</name> <operator>=</operator> <operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr>;
+     <expr><name>final</name> <name>float</name> <name>docBoost</name> <operator>=</operator> <call><name><name>doc</name><operator>.</operator><name>getDocumentBoost</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>usedFields</name> <operator>=</operator> <call><name><name>Sets</name><operator>.</operator><name>newHashSet</name></name><argument_list>()</argument_list></call></expr>;
+     
+     <comment type="line">// Load fields from SolrDocument to Document</comment>
+     <for>for<control>( <init><decl><type><name>SolrInputField</name></type> <name>field</name> <range>: <expr><name>doc</name></expr></range></decl></init> )</control> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">103</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">107</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>DocumentBuilder</name> <block>{
+       <comment type="line">// it ourselves </comment>
+       <expr><name>float</name> <name>compoundBoost</name> <operator>=</operator> <name>fieldBoost</name> <operator>*</operator> <name>docBoost</name></expr>;
+ 
+      <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>CopyField</name></argument>&gt;</argument_list></name> <name>copyFields</name> <operator>=</operator> <call><name><name>schema</name><operator>.</operator><name>getCopyFieldsList</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;
+      <if_stmt><if>if<condition>( <expr><call><name><name>copyFields</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr> )</condition><block type="pseudo"><block_content> <expr_stmt><expr><name>copyFields</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt></block_content></block></if></if_stmt>
+
+       <comment type="line">// load each field value</comment>
+       <name>boolean</name> <name>hasField</name> <operator>=</operator> <literal type="boolean">false</literal></block></expr>;</expr_stmt>
+       <try>try <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">114</literal></expr><operator>,</operator><expr><literal type="number">48</literal> <operator>+</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">52</literal> @@ <specifier>public</specifier> <name>class</name> <name>DocumentBuilder</name> <block>{
+           <if_stmt><if>if <condition>(<expr><name>sfield</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+             <expr_stmt><expr><name>used</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+             <expr_stmt><expr><call><name>addField</name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><name>sfield</name></expr></argument>, <argument><expr><name>v</name></expr></argument>, <argument><expr><ternary><condition><expr><name>applyBoost</name></expr> ?</condition><then> <expr><name>compoundBoost</name></expr> </then><else>: <expr><literal type="number">1f</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// record the field as having a value</comment>
+            <expr_stmt><expr><call><name><name>usedFields</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>sfield</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           <expr_stmt/></block_content></block></if></if_stmt>}</block>
+   
+           <comment type="line">// Check if we should copy this field value to any other fields.</comment>
+           <comment type="line">// This could happen whether it is explicit or not.</comment>
+          <name><name>List</name><argument_list type="generic">&lt;<argument><name>CopyField</name></argument>&gt;</argument_list></name> <name>copyFields</name> <operator>=</operator> <call><name><name>schema</name><operator>.</operator><name>getCopyFieldsList</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <for>for <control>(<init><decl><type><name>CopyField</name></type> <name>cf</name> <range>: <expr><name>copyFields</name></expr></range></decl></init>)</control> <block>{<block_content>
+            <decl_stmt><decl><type><name>SchemaField</name></type> <name>destinationField</name> <init>= <expr><call><name><name>cf</name><operator>.</operator><name>getDestination</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+            <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>destHasValues</name> <init>= 
+              <expr><operator>(</operator><literal type="null">null</literal> <operator>!=</operator> <call><name><name>out</name><operator>.</operator><name>getField</name></name><argument_list>(<argument><expr><call><name><name>destinationField</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>)</operator></expr></init></decl>;</decl_stmt>
+
+            <comment type="line">// check if the copy field is a multivalued or not</comment>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>destinationField</name><operator>.</operator><name>multiValued</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name>destHasValues</name></expr>)</condition> <block>{<block_content>
+              <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>,
+                      <argument><expr><literal type="string">"ERROR: "</literal><operator>+</operator><call><name>getID</name><argument_list>(<argument><expr><name>doc</name></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call><operator>+</operator><literal type="string">"multiple values encountered for non multiValued copy field "</literal> <operator>+</operator>
+                              <call><name><name>destinationField</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">": "</literal> <operator>+</operator> <name>v</name></expr></argument>)</argument_list></call></expr>;</throw>
+            <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for></block_content></block></try></block_content></block></for>}</block></expr>
+          <if_stmt><if>if<condition>( <expr><name>copyFields</name> <operator>!=</operator> <literal type="null">null</literal></expr> )</condition><block>{<block_content>
+            <for>for <control>(<init><decl><type><name>CopyField</name></type> <name>cf</name> <range>: <expr><name>copyFields</name></expr></range></decl></init>)</control> <block>{<block_content>
+              <decl_stmt><decl><type><name>SchemaField</name></type> <name>destinationField</name> <init>= <expr><call><name><name>cf</name><operator>.</operator><name>getDestination</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+   
+            <expr_stmt><expr><name>used</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            
+            <comment type="line">// Perhaps trim the length of a copy field</comment>
+            <decl_stmt><decl><type><name>Object</name></type> <name>val</name> <init>= <expr><name>v</name></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if<condition>( <expr><name>val</name> <operator>instanceof</operator> <name>String</name> <operator>&amp;&amp;</operator> <call><name><name>cf</name><operator>.</operator><name>getMaxChars</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr> )</condition> <block>{<block_content>
+              <expr_stmt><expr><name>val</name> <operator>=</operator> <call><name><name>cf</name><operator>.</operator><name>getLimitedValue</name></name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator><name>val</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <decl_stmt><decl><type><specifier>final</specifier> <name>boolean</name></type> <name>destHasValues</name> <init>= <expr><call><name><name>usedFields</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>destinationField</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  
+              <comment type="line">// check if the copy field is a multivalued or not</comment>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>destinationField</name><operator>.</operator><name>multiValued</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name>destHasValues</name></expr>)</condition> <block>{<block_content>
+                <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>,
+                        <argument><expr><literal type="string">"ERROR: "</literal><operator>+</operator><call><name>getID</name><argument_list>(<argument><expr><name>doc</name></expr></argument>, <argument><expr><name>schema</name></expr></argument>)</argument_list></call><operator>+</operator><literal type="string">"multiple values encountered for non multiValued copy field "</literal> <operator>+</operator>
+                                <call><name><name>destinationField</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">": "</literal> <operator>+</operator> <name>v</name></expr></argument>)</argument_list></call></expr>;</throw>
+              <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt>}</block>
+    
+              <name>used</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+              
+              <comment type="line">// Perhaps trim the length of a copy field</comment>
+              <decl_stmt><decl><type><name>Object</name></type> <name>val</name> <init>= <expr><name>v</name></expr></init></decl>;</decl_stmt>
+              <if_stmt><if>if<condition>( <expr><name>val</name> <operator>instanceof</operator> <name>String</name> <operator>&amp;&amp;</operator> <call><name><name>cf</name><operator>.</operator><name>getMaxChars</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr> )</condition> <block>{<block_content>
+                <expr_stmt><expr><name>val</name> <operator>=</operator> <call><name><name>cf</name><operator>.</operator><name>getLimitedValue</name></name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator><name>val</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              </block_content>}</block></if></if_stmt>
+  
+              <comment type="line">// we can't copy any boost unless the dest field is </comment>
+              <comment type="line">// indexed &amp; !omitNorms, but which boost we copy depends</comment>
+              <comment type="line">// on whether the dest field already contains values (we</comment>
+              <comment type="line">// don't want to apply the compounded docBoost more then once)</comment>
+              <decl_stmt><decl><type><specifier>final</specifier> <name>float</name></type> <name>destBoost</name> <init>= 
+                <expr><ternary><condition><expr><operator>(</operator><call><name><name>destinationField</name><operator>.</operator><name>indexed</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>destinationField</name><operator>.</operator><name>omitNorms</name></name><argument_list>()</argument_list></call><operator>)</operator></expr> ?</condition><then>
+                <expr><operator>(</operator><ternary><condition><expr><name>destHasValues</name></expr> ?</condition><then> <expr><name>fieldBoost</name></expr> </then><else>: <expr><name>compoundBoost</name></expr></else></ternary><operator>)</operator></expr> </then><else>: <expr><literal type="number">1.0F</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+              
+              <expr_stmt><expr><call><name>addField</name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><name>destinationField</name></expr></argument>, <argument><expr><name>val</name></expr></argument>, <argument><expr><name>destBoost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <comment type="line">// record the field as having a value</comment>
+              <expr_stmt><expr><call><name><name>usedFields</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>destinationField</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             }
+
+            <comment type="line">// we can't copy any boost unless the dest field is </comment>
+            <comment type="line">// indexed &amp; !omitNorms, but which boost we copy depends</comment>
+            <comment type="line">// on whether the dest field already contains values (we</comment>
+            <comment type="line">// don't want to apply the compounded docBoost more then once)</comment>
+            final <decl_stmt><decl><type><name>float</name></type> <name>destBoost</name> <init>= 
+              <expr><ternary><condition><expr><operator>(</operator><call><name><name>destinationField</name><operator>.</operator><name>indexed</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>destinationField</name><operator>.</operator><name>omitNorms</name></name><argument_list>()</argument_list></call><operator>)</operator></expr> ?</condition><then>
+              <expr><operator>(</operator><ternary><condition><expr><name>destHasValues</name></expr> ?</condition><then> <expr><name>fieldBoost</name></expr> </then><else>: <expr><name>compoundBoost</name></expr></else></ternary><operator>)</operator></expr> </then><else>: <expr><literal type="number">1.0F</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+             
+            <expr_stmt><expr><call><name>addField</name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><name>destinationField</name></expr></argument>, <argument><expr><name>val</name></expr></argument>, <argument><expr><name>destBoost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// The final boost for a given field named is the product of the </comment>
+            <comment type="line">// *all* boosts on values of that field. </comment>
+            <comment type="line">// For multi-valued fields, we only want to set the boost on the</comment>
+            <comment type="line">// first field.</comment>
+            <expr_stmt><expr><name>fieldBoost</name> <operator>=</operator> <name>compoundBoost</name> <operator>=</operator> <literal type="number">1.0f</literal></expr>;</expr_stmt>
+           }
+          
+          <comment type="line">// The final boost for a given field named is the product of the </comment>
+          <comment type="line">// *all* boosts on values of that field. </comment>
+          <comment type="line">// For multi-valued fields, we only want to set the boost on the</comment>
+          <comment type="line">// first field.</comment>
+          fieldBoost <expr_stmt><expr><operator>=</operator> <name>compoundBoost</name> <operator>=</operator> <literal type="number">1.0f</literal></expr>;</expr_stmt>
+         }
+       }
+       <catch>catch<parameter_list>( <parameter><decl><type><name>SolrException</name></type> <name>ex</name></decl></parameter> )</parameter_list> <block>{<block_content>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></catch>
+
+</unit>

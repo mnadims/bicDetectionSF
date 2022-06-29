@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/a8032b0637.java"><expr_stmt><expr><name>From</name> <name>a8032b063715f4418ccc2fd5c7d0f93ba79c66ef</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shai</name> <name><name>Erera</name> <argument_list type="generic">&lt;<argument><name>shaie</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Sep</name> <literal type="number">2012</literal> <literal type="number">05</literal><operator>:</operator><literal type="number">52</literal><operator>:</operator><literal type="number">44</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">4411</literal><operator>:</operator> <name>Depth</name> <name>requested</name> <name>in</name> <name>a</name> <name>FacetRequest</name> <name>is</name> <name>reset</name> <name>when</name>
+ <name>Sampling</name> <name>is</name> <name>in</name> <name>effect</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1389718 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                            <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>search</name><operator>/</operator><name>sampling</name><operator>/</operator><name><name>Sampler</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">19</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>sampling</name><operator>/</operator><name><name>OversampleWithDepthTest</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">137</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">162</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>search</name><operator>/</operator><name>sampling</name><operator>/</operator><name><name>OversampleWithDepthTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">771949980c5</literal><operator>..</operator><literal type="number">4b8fd90fdac</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <name>New</name> <name>Features</name>
+   <name>output</name></expr></expr_stmt> <for>for a single input.  UpToTwoPositiveIntsOutputs was moved
+   from lucene/core to lucene/misc.  <control>(<init><expr><name>Mike</name> <name>McCandless</name></expr></init>)</control><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><name>Bug</name> <name>Fixes</name>
+
+<operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">4411</literal><operator>:</operator> <name>when</name> <name>sampling</name> <name>is</name> <name>enabled</name></expr></expr_stmt></block_content></block></for> <for>for a FacetRequest<operator>,</operator> <decl_stmt><decl><type><name>its</name> <name>depth</name>
+  <name>parameter</name> <name>is</name> <name>reset</name> <name>to</name> <name>the</name></type> default <argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>even</name> if <name>set</name> <name><name>otherwise</name><operator>.</operator></name>
+  (<name>Gilad</name> <name>Barkai</name> <name>via</name> <name>Shai</name> <name>Erera</name></decl>)
+  
+ ======================= Lucene 4.0.0 =======================
+ 
+ Changes in backwards compatibility policy
+diff --git a/lucene/facet/src/java/org/apache/lucene/facet/search/sampling/Sampler.java b/lucene/facet/src/java/org/apache/lucene/facet/search/sampling/Sampler.java
+index 2618e62e82d..c3bdfdf3277 100644
+-- a/lucene/facet/src/java/org/apache/lucene/facet/search/sampling/Sampler.java
+++ b/lucene/facet/src/java/org/apache/lucene/facet/search/sampling/Sampler.java
+@@ -4<operator>,</operator>6 +4<operator>,</operator>7 @@ import java.io.IOException;</decl_stmt></for>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>CategoryListIterator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>FacetArrays</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>ScoredDocIDs</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>aggregator</name><operator>.</operator><name>Aggregator</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">203</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">204</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>Sampler</name> <block>{
+     <expr><specifier>public</specifier> <call><name>OverSampledFacetRequest</name><argument_list>(<argument><expr><name>FacetRequest</name> <name>orig</name></expr></argument>, <argument><expr><name>int</name> <name>num</name></expr></argument>)</argument_list></call> <block>{
+       <expr><call><name>super</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getCategoryPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>num</name></expr></argument>)</argument_list></call></expr>;
+       <expr><name><name>this</name><operator>.</operator><name>orig</name></name> <operator>=</operator> <name>orig</name></expr>;
+      <expr><call><name>setDepth</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getDepth</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>setNumLabel</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getNumLabel</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>setResultMode</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getResultMode</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>setSortBy</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getSortBy</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>setSortOrder</name><argument_list>(<argument><expr><call><name><name>orig</name><operator>.</operator><name>getSortOrder</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    }</block>
+    
+    @<name>Override</name>
+    <specifier>public</specifier> <name>CategoryListIterator</name> <call><name>createCategoryListIterator</name><argument_list>(<argument><expr><name>IndexReader</name> <name>reader</name></expr></argument>,
+        <argument><expr><name>TaxonomyReader</name> <name>taxo</name></expr></argument>, <argument><expr><name>FacetSearchParams</name> <name>sParams</name></expr></argument>, <argument><expr><name>int</name> <name>partition</name></expr></argument>)</argument_list></call>
+        <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+      <return>return <expr><call><name><name>orig</name><operator>.</operator><name>createCategoryListIterator</name></name><argument_list>(<argument><expr><name>reader</name></expr></argument>, <argument><expr><name>taxo</name></expr></argument>, <argument><expr><name>sParams</name></expr></argument>, <argument><expr><name>partition</name></expr></argument>)</argument_list></call></expr>;</return>
+     }</block></expr></expr_stmt>
+ 
+    
+     <decl_stmt><decl><annotation>@<name>Override</name></annotation>
+     <type><specifier>public</specifier> <name>Aggregator</name></type> <name>createAggregator</name><argument_list>(<argument><expr><name>boolean</name> <name>useComplements</name></expr></argument>,
+         <argument><expr><name>FacetArrays</name> <name>arrays</name></expr></argument>, <argument><expr><name>IndexReader</name> <name>indexReader</name></expr></argument>,
+<argument>@@ <expr><operator>-</operator><literal type="number">222</literal></expr></argument>,<argument><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">236</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> class <name>Sampler</name> <block>{
+     <expr><specifier>public</specifier> <name>boolean</name> <call><name>requireDocumentScore</name><argument_list>()</argument_list></call> <block>{
+       <return>return <expr><call><name><name>orig</name><operator>.</operator><name>requireDocumentScore</name></name><argument_list>()</argument_list></call></expr>;</return>
+     }</block>
+    
+    @<name>Override</name>
+    <specifier>public</specifier> <name>boolean</name> <call><name>supportsComplements</name><argument_list>()</argument_list></call> <block>{
+      <return>return <expr><call><name><name>orig</name><operator>.</operator><name>supportsComplements</name></name><argument_list>()</argument_list></call></expr>;</return>
+    }</block>
+   }
+ }
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>search</name><operator>/</operator><name>sampling</name><operator>/</operator><name><name>OversampleWithDepthTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>search</name><operator>/</operator><name>sampling</name><operator>/</operator><name><name>OversampleWithDepthTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..63cc2c10e3d</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>facet</name><operator>/</operator><name>search</name><operator>/</operator><name>sampling</name><operator>/</operator><name><name>OversampleWithDepthTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr>,<expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr>,<expr><literal type="number">137</literal> @@</expr>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>sampling</name></name>;</package></block></expr></argument>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import></argument_list></decl></decl_stmt>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>core</name><operator>.</operator><name>KeywordAnalyzer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>document</name><operator>.</operator><name>Document</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>index</name><operator>.</operator><name>CategoryDocumentBuilder</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>FacetsAccumulator</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>FacetsCollector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>params</name><operator>.</operator><name>CountFacetRequest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>params</name><operator>.</operator><name>FacetRequest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>params</name><operator>.</operator><name>FacetRequest</name><operator>.</operator><name>ResultMode</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>params</name><operator>.</operator><name>FacetSearchParams</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>results</name><operator>.</operator><name>FacetResult</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>search</name><operator>.</operator><name>results</name><operator>.</operator><name>FacetResultNode</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>taxonomy</name><operator>.</operator><name>CategoryPath</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>taxonomy</name><operator>.</operator><name>TaxonomyReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>taxonomy</name><operator>.</operator><name>TaxonomyWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>taxonomy</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryTaxonomyReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>facet</name><operator>.</operator><name>taxonomy</name><operator>.</operator><name>directory</name><operator>.</operator><name>DirectoryTaxonomyWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>CorruptIndexException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>DirectoryReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexReader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexWriter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name><operator>.</operator><name>IndexWriterConfig</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>IndexSearcher</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>search</name><operator>.</operator><name>MatchAllDocsQuery</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>Directory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>store</name><operator>.</operator><name>LockObtainFailedException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>IOUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>LuceneTestCase</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<class><specifier>public</specifier> class <name>OversampleWithDepthTest</name> <super_list><extends>extends <super><name>LuceneTestCase</name></super></extends></super_list> <block>{
+  
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testCountWithdepthUsingSamping</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument>, <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>indexDir</name> <init>= <expr><call><name>newDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Directory</name></type> <name>taxoDir</name> <init>= <expr><call><name>newDirectory</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <comment type="line">// index 100 docs, each with one category: ["root", docnum/10, docnum]</comment>
+    <comment type="line">// e.g. root/8/87</comment>
+    <expr_stmt><expr><call><name>index100Docs</name><argument_list>(<argument><expr><name>indexDir</name></expr></argument>, <argument><expr><name>taxoDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>DirectoryReader</name></type> <name>r</name> <init>= <expr><call><name><name>DirectoryReader</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>indexDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>TaxonomyReader</name></type> <name>tr</name> <init>= <expr><operator>new</operator> <call><name>DirectoryTaxonomyReader</name><argument_list>(<argument><expr><name>taxoDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>FacetSearchParams</name></type> <name>fsp</name> <init>= <expr><operator>new</operator> <call><name>FacetSearchParams</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>CountFacetRequest</name></type> <name>facetRequest</name> <init>= <expr><operator>new</operator> <call><name>CountFacetRequest</name><argument_list>(<argument><expr><operator>new</operator> <call><name>CategoryPath</name><argument_list>(<argument><expr><literal type="string">"root"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <comment type="line">// Setting the depth to '2', should potentially get all categories</comment>
+    <expr_stmt><expr><call><name><name>facetRequest</name><operator>.</operator><name>setDepth</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>facetRequest</name><operator>.</operator><name>setResultMode</name></name><argument_list>(<argument><expr><name><name>ResultMode</name><operator>.</operator><name>PER_NODE_IN_TREE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>fsp</name><operator>.</operator><name>addFacetRequest</name></name><argument_list>(<argument><expr><name>facetRequest</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// Craft sampling params to enforce sampling</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>SamplingParams</name></type> <name>params</name> <init>= <expr><operator>new</operator> <call><name>SamplingParams</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>params</name><operator>.</operator><name>setMinSampleSize</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>params</name><operator>.</operator><name>setMaxSampleSize</name></name><argument_list>(<argument><expr><literal type="number">50</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>params</name><operator>.</operator><name>setOversampleFactor</name></name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>params</name><operator>.</operator><name>setSampingThreshold</name></name><argument_list>(<argument><expr><literal type="number">60</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>params</name><operator>.</operator><name>setSampleRatio</name></name><argument_list>(<argument><expr><literal type="number">0.1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>FacetResult</name></type> <name>res</name> <init>= <expr><call><name>searchWithFacets</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>tr</name></expr></argument>, <argument><expr><name>fsp</name></expr></argument>, <argument><expr><name>params</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>FacetRequest</name></type> <name>req</name> <init>= <expr><call><name><name>res</name><operator>.</operator><name>getFacetRequest</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>facetRequest</name></expr></argument>, <argument><expr><name>req</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>FacetResultNode</name></type> <name>rootNode</name> <init>= <expr><call><name><name>res</name><operator>.</operator><name>getFacetResultNode</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <comment type="line">// Each node below root should also have sub-results as the requested depth was '2'</comment>
+    <for>for <control>(<init><decl><type><name>FacetResultNode</name></type> <name>node</name> <range>: <expr><call><name><name>rootNode</name><operator>.</operator><name>getSubResults</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"node "</literal> <operator>+</operator> <call><name><name>node</name><operator>.</operator><name>getLabel</name></name><argument_list>()</argument_list></call>
+          <operator>+</operator> <literal type="string">" should have had children as the requested depth was '2'"</literal></expr></argument>,
+          <argument><expr><call><name><name>node</name><operator>.</operator><name>getNumSubResults</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    
+    <expr_stmt><expr><call><name><name>IOUtils</name><operator>.</operator><name>close</name></name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>tr</name></expr></argument>, <argument><expr><name>indexDir</name></expr></argument>, <argument><expr><name>taxoDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>index100Docs</name><parameter_list>(<parameter><decl><type><name>Directory</name></type> <name>indexDir</name></decl></parameter>, <parameter><decl><type><name>Directory</name></type> <name>taxoDir</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>CorruptIndexException</name></expr></argument>, <argument><expr><name>LockObtainFailedException</name></expr></argument>, <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>IndexWriterConfig</name></type> <name>iwc</name> <init>= <expr><call><name>newIndexWriterConfig</name><argument_list>(<argument><expr><name>TEST_VERSION_CURRENT</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>KeywordAnalyzer</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>IndexWriter</name></type> <name>w</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>indexDir</name></expr></argument>, <argument><expr><name>iwc</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>TaxonomyWriter</name></type> <name>tw</name> <init>= <expr><operator>new</operator> <call><name>DirectoryTaxonomyWriter</name><argument_list>(<argument><expr><name>taxoDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>CategoryDocumentBuilder</name></type> <name>cdb</name> <init>= <expr><operator>new</operator> <call><name>CategoryDocumentBuilder</name><argument_list>(<argument><expr><name>tw</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>CategoryPath</name></argument>&gt;</argument_list></name></type> <name>categoryPaths</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>CategoryPath</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">100</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>categoryPaths</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>categoryPaths</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>CategoryPath</name><argument_list>(<argument><expr><literal type="string">"root"</literal></expr></argument>,<argument><expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>i</name> <operator>/</operator> <literal type="number">10</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>Integer</name><operator>.</operator><name>toString</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>cdb</name><operator>.</operator><name>setCategoryPaths</name></name><argument_list>(<argument><expr><name>categoryPaths</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><call><name><name>cdb</name><operator>.</operator><name>build</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <expr_stmt><expr><call><name><name>IOUtils</name><operator>.</operator><name>close</name></name><argument_list>(<argument><expr><name>tw</name></expr></argument>, <argument><expr><name>w</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/** search reader &lt;code&gt;r&lt;/code&gt;*/</comment>
+  <function><type><specifier>private</specifier> <name>FacetResult</name></type> <name>searchWithFacets</name><parameter_list>(<parameter><decl><type><name>IndexReader</name></type> <name>r</name></decl></parameter>,
+      <parameter><decl><type><name>TaxonomyReader</name></type> <name>tr</name></decl></parameter>, <parameter><decl><type><name>FacetSearchParams</name></type> <name>fsp</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>SamplingParams</name></type> <name>params</name></decl></parameter>)</parameter_list>
+          <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// a FacetsCollector with a sampling accumulator</comment>
+    <decl_stmt><decl><type><name>FacetsCollector</name></type> <name>fcWithSampling</name> <init>= <expr><operator>new</operator> <class><super><name>FacetsCollector</name></super><argument_list>(<argument><expr><name>fsp</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>tr</name></expr></argument>)</argument_list> <block>{
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>protected</specifier> <name>FacetsAccumulator</name></type> <name>initFacetsAccumulator</name><parameter_list>(<parameter><decl><type><name>FacetSearchParams</name></type> <name>facetSearchParams</name></decl></parameter>, <parameter><decl><type><name>IndexReader</name></type> <name>indexReader</name></decl></parameter>,
+          <parameter><decl><type><name>TaxonomyReader</name></type> <name>taxonomyReader</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>Sampler</name></type> <name>sampler</name> <init>= <expr><operator>new</operator> <call><name>RandomSampler</name><argument_list>(<argument><expr><name>params</name></expr></argument>, <argument><expr><call><name>random</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <return>return <expr><operator>new</operator> <call><name>SamplingAccumulator</name><argument_list>(<argument><expr><name>sampler</name></expr></argument>, <argument><expr><name>facetSearchParams</name></expr></argument>, <argument><expr><name>indexReader</name></expr></argument>, <argument><expr><name>taxonomyReader</name></expr></argument>)</argument_list></call></expr>;</return>
+      </block_content>}</block></function>
+    }</block></class></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>IndexSearcher</name></type> <name>s</name> <init>= <expr><operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><name>r</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>search</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>MatchAllDocsQuery</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>fcWithSampling</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// there's only one expected result, return just it.</comment>
+    <return>return <expr><call><name><name>fcWithSampling</name><operator>.</operator><name>getFacetResults</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+}</block></class>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/01d3af40b.java"><expr_stmt><expr><name>From</name> <literal type="number">01d3af40b475708b252186c5a659a2128e887442</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Christopher</name> <name><name>Tubbs</name> <argument_list type="generic">&lt;<argument><name>ctubbsii</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <name>May</name> <literal type="number">2014</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">33</literal><operator>:</operator><literal type="number">24</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">1691</literal> <name>Support</name> <name>Thrift</name> <literal type="number">0.9.1</literal>
+
+  <name>Enforce</name> <name>version</name> <literal type="number">0.9.1</literal> <name>until</name> <name>THRIFT</name><operator>-</operator><literal type="number">2173</literal> <name>is</name> <name>implemented</name></expr><operator>,</operator> <expr><name>and</name> <name>provide</name> <name>a</name> <name>custom</name>
+  <name>server</name> <name>so</name> <name>we</name> <name>can</name> <name>access</name> <name>the</name> <name>underlying</name> <name>transport</name> <name>to</name> <name>get</name> <name>the</name> <name>client</name> <name><name>address</name><operator>.</operator></name>
+--
+ <name><name>pom</name><operator>.</operator><name>xml</name></name>                                       <operator>|</operator>  <literal type="number">40</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">268</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">41</literal> <operator>+</operator><operator>--</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">299</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">50</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name> <name>b</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <literal type="number">9c9e61d3e</literal><operator>..</operator><literal type="number">14ba19faf</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+@@ <operator>-</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@
+     <operator>&lt;</operator><name>sealJars</name><operator>&gt;</operator><literal type="boolean">false</literal><operator>&lt;</operator><operator>/</operator><name>sealJars</name><operator>&gt;</operator>
+     <operator>&lt;</operator><operator>!</operator><operator>--</operator> <name>overwritten</name> <name>in</name> <name>profiles</name> <name>hadoop</name><operator>-</operator><literal type="number">1</literal> <name>or</name> <name>hadoop</name><operator>-</operator><literal type="number">2</literal> <operator>--</operator><operator>&gt;</operator>
+     <operator>&lt;</operator><name><name>slf4j</name><operator>.</operator><name>version</name></name><operator>&gt;</operator><literal type="number">1.7.5</literal><operator>&lt;</operator><operator>/</operator><name><name>slf4j</name><operator>.</operator><name>version</name></name><operator>&gt;</operator>
+    <operator>&lt;</operator><operator>!</operator><operator>--</operator> <name>Thrift</name> <name>version</name> <operator>--</operator><operator>&gt;</operator>
+    <operator>&lt;</operator><name><name>thrift</name><operator>.</operator><name>version</name></name><operator>&gt;</operator><literal type="number">0.9.1</literal><operator>&lt;</operator><operator>/</operator><name><name>thrift</name><operator>.</operator><name>version</name></name><operator>&gt;</operator>
+     <operator>&lt;</operator><operator>!</operator><operator>--</operator> <name>ZooKeeper</name> <literal type="number">3.4.x</literal> <name>works</name> <name>also</name></expr><operator>,</operator> <expr><name>but</name> <name>we</name><literal type="char">'re not using new features yet; this ensures 3.3.x compatibility. --&gt;
+     &lt;zookeeper.version&gt;3.3.6&lt;/zookeeper.version&gt;
+   &lt;/properties&gt;
+@@ -380,7 +382,7 @@
+       &lt;dependency&gt;
+         &lt;groupId&gt;org.apache.thrift&lt;/groupId&gt;
+         &lt;artifactId&gt;libthrift&lt;/artifactId&gt;
+        &lt;version&gt;0.9.0&lt;/version&gt;
+        &lt;version&gt;${thrift.version}&lt;/version&gt;
+         &lt;exclusions&gt;
+           &lt;exclusion&gt;
+             &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+@@ -788,6 +790,29 @@
+             &lt;/lifecycleMappingMetadata&gt;
+           &lt;/configuration&gt;
+         &lt;/plugin&gt;
+        &lt;plugin&gt;
+          &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+          &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt;
+          &lt;configuration&gt;
+            &lt;rules&gt;
+              &lt;requireMavenVersion&gt;
+                &lt;version&gt;[${maven.min-version},)&lt;/version&gt;
+              &lt;/requireMavenVersion&gt;
+              &lt;requireProperty&gt;
+                &lt;property&gt;hadoop.profile&lt;/property&gt;
+                &lt;regex&gt;(1|2)&lt;/regex&gt;
+                &lt;regexMessage&gt;You should specify the Hadoop profile by major Hadoop generation, i.e. 1 or 2, not by a version number.
+  Use hadoop.version to use a particular Hadoop version within that generation. See README for more details.&lt;/regexMessage&gt;
+              &lt;/requireProperty&gt;
+              &lt;requireProperty&gt;
+                &lt;property&gt;thrift.version&lt;/property&gt;
+                &lt;regex&gt;0[.]9[.]1&lt;/regex&gt;
+                &lt;regexMessage&gt;Thrift version must be 0.9.1; Any alteration requires a review of ACCUMULO-1691
+                  (See server/base/src/main/java/org/apache/accumulo/server/util/CustomNonBlockingServer.java)&lt;/regexMessage&gt;
+              &lt;/requireProperty&gt;
+            &lt;/rules&gt;
+          &lt;/configuration&gt;
+        &lt;/plugin&gt;
+       &lt;/plugins&gt;
+     &lt;/pluginManagement&gt;
+     &lt;plugins&gt;
+@@ -814,19 +839,6 @@
+             &lt;goals&gt;
+               &lt;goal&gt;enforce&lt;/goal&gt;
+             &lt;/goals&gt;
+            &lt;configuration&gt;
+              &lt;rules&gt;
+                &lt;requireMavenVersion&gt;
+                  &lt;version&gt;[${maven.min-version},)&lt;/version&gt;
+                &lt;/requireMavenVersion&gt;
+                &lt;requireProperty&gt;
+                  &lt;property&gt;hadoop.profile&lt;/property&gt;
+                  &lt;regex&gt;(1|2)&lt;/regex&gt;
+                  &lt;regexMessage&gt;You should specify the Hadoop profile by major Hadoop generation, i.e. 1 or 2, not by a version number.
+    Use hadoop.version to use a particular Hadoop version within that generation. See README for more details.&lt;/regexMessage&gt;
+                &lt;/requireProperty&gt;
+              &lt;/rules&gt;
+            &lt;/configuration&gt;
+           &lt;/execution&gt;
+         &lt;/executions&gt;
+       &lt;/plugin&gt;
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/util/CustomNonBlockingServer.java b/server/base/src/main/java/org/apache/accumulo/server/util/CustomNonBlockingServer.java
+new file mode 100644
+index 000000000..0f01068e1
+-- /dev/null
+++ b/server/base/src/main/java/org/apache/accumulo/server/util/CustomNonBlockingServer.java
+@@ -0,0 +1,268 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.accumulo.server.util;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.nio.channels.SelectionKey;
+import java.util.Iterator;
+
+import org.apache.log4j.Logger;
+import org.apache.thrift.server.THsHaServer;
+import org.apache.thrift.server.TNonblockingServer;
+import org.apache.thrift.transport.TNonblockingServerTransport;
+import org.apache.thrift.transport.TNonblockingSocket;
+import org.apache.thrift.transport.TNonblockingTransport;
+import org.apache.thrift.transport.TTransportException;
+
+/**
+ * This class implements a custom non-blocking thrift server, incorporating the {@link THsHaServer} features, and overriding the underlying
+ * {@link TNonblockingServer} methods, especially {@link org.apache.thrift.server.TNonblockingServer.SelectAcceptThread}, in order to override the
+ * {@link org.apache.thrift.server.AbstractNonblockingServer.FrameBuffer} and {@link org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer} with
+ * one that reveals the client address from its transport.
+ * 
+ * &lt;p&gt;
+ * The justification for this is explained in https://issues.apache.org/jira/browse/ACCUMULO-1691, and is needed due to the repeated regressions:
+ * &lt;ul&gt;
+ * &lt;li&gt;https://issues.apache.org/jira/browse/THRIFT-958&lt;/li&gt;
+ * &lt;li&gt;https://issues.apache.org/jira/browse/THRIFT-1464&lt;/li&gt;
+ * &lt;li&gt;https://issues.apache.org/jira/browse/THRIFT-2173&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;
+ * This class contains a copy of {@link org.apache.thrift.server.TNonblockingServer.SelectAcceptThread} from Thrift 0.9.1, with the slight modification of
+ * instantiating a custom FrameBuffer, rather than the {@link org.apache.thrift.server.AbstractNonblockingServer.FrameBuffer} and
+ * {@link org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer}. Because of this, any change in the implementation upstream will require a review
+ * of this implementation here, to ensure any new bugfixes/features in the upstream Thrift class are also applied here, at least until
+ * https://issues.apache.org/jira/browse/THRIFT-2173 is implemented. In the meantime, the maven-enforcer-plugin ensures that Thrift remains at version 0.9.1,
+ * which has been reviewed and tested.
+ */
+public class CustomNonBlockingServer extends THsHaServer {
+
+  private static final Logger LOGGER = Logger.getLogger(CustomNonBlockingServer.class);
+  private SelectAcceptThread selectAcceptThread_;
+  private volatile boolean stopped_ = false;
+
+  public CustomNonBlockingServer(Args args) {
+    super(args);
+  }
+
+  @Override
+  protected Runnable getRunnable(final FrameBuffer frameBuffer) {
+    return new Runnable() {
+      @Override
+      public void run() {
+        if (frameBuffer instanceof CustomNonblockingFrameBuffer) {
+          TNonblockingTransport trans = ((CustomNonblockingFrameBuffer) frameBuffer).getTransport();
+          if (trans instanceof TNonblockingSocket) {
+            TNonblockingSocket tsock = (TNonblockingSocket) trans;
+            Socket sock = tsock.getSocketChannel().socket();
+            TServerUtils.clientAddress.set(sock.getInetAddress().getHostAddress() + ":" + sock.getPort());
+          }
+        }
+        frameBuffer.invoke();
+      }
+    };
+  }
+
+  @Override
+  protected boolean startThreads() {
+    // start the selector
+    try {
+      selectAcceptThread_ = new SelectAcceptThread((TNonblockingServerTransport) serverTransport_);
+      selectAcceptThread_.start();
+      return true;
+    } catch (IOException e) {
+      LOGGER.error("Failed to start selector thread!", e);
+      return false;
+    }
+  }
+
+  @Override
+  public void stop() {
+    stopped_ = true;
+    if (selectAcceptThread_ != null) {
+      selectAcceptThread_.wakeupSelector();
+    }
+  }
+
+  @Override
+  public boolean isStopped() {
+    return selectAcceptThread_.isStopped();
+  }
+
+  @Override
+  protected void joinSelector() {
+    // wait until the selector thread exits
+    try {
+      selectAcceptThread_.join();
+    } catch (InterruptedException e) {
+      // for now, just silently ignore. technically this means we'</literal><name>ll</name> <name>have</name> <name>less</name> <name>of</name></expr></expr_stmt>
+      <comment type="line">// a graceful shutdown as a result.</comment>
+    }
+  }
+
+  <interface><specifier>private</specifier> interface <name>CustomNonblockingFrameBuffer</name> <block>{
+    <function_decl><type><name>TNonblockingTransport</name></type> <name>getTransport</name><parameter_list>()</parameter_list>;</function_decl>
+  }</block></interface>
+
+  <class><specifier>private</specifier> class <name>CustomAsyncFrameBuffer</name> <super_list><extends>extends <super><name>AsyncFrameBuffer</name></super></extends> <implements>implements <super><name>CustomNonblockingFrameBuffer</name></super></implements></super_list> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <name>TNonblockingTransport</name></type> <name>trans</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>CustomAsyncFrameBuffer</name><parameter_list>(<parameter><decl><type><name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>trans</name></expr></argument>, <argument><expr><name>selectionKey</name></expr></argument>, <argument><expr><name>selectThread</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>trans</name></name> <operator>=</operator> <name>trans</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>TNonblockingTransport</name></type> <name>getTransport</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>trans</name></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <class><specifier>private</specifier> class <name>CustomFrameBuffer</name> <super_list><extends>extends <super><name>FrameBuffer</name></super></extends> <implements>implements <super><name>CustomNonblockingFrameBuffer</name></super></implements></super_list> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <name>TNonblockingTransport</name></type> <name>trans</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>CustomFrameBuffer</name><parameter_list>(<parameter><decl><type><name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>trans</name></expr></argument>, <argument><expr><name>selectionKey</name></expr></argument>, <argument><expr><name>selectThread</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>trans</name></name> <operator>=</operator> <name>trans</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>TNonblockingTransport</name></type> <name>getTransport</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>trans</name></expr>;</return>
+    </block_content>}</block></function>
+  }</block></class>
+
+  <comment type="line">// @formatter:off</comment>
+  <class><specifier>private</specifier> class <name>SelectAcceptThread</name> <super_list><extends>extends <super><name>AbstractSelectThread</name></super></extends></super_list> <block>{
+
+    <comment type="line">// The server transport on which new client transports will be accepted</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>TNonblockingServerTransport</name></type> <name>serverTransport</name></decl>;</decl_stmt>
+
+    <comment type="block" format="javadoc">/**
+     * Set up the thread that will handle the non-blocking accepts, reads, and
+     * writes.
+     */</comment>
+    <constructor><specifier>public</specifier> <name>SelectAcceptThread</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>TNonblockingServerTransport</name></type> <name>serverTransport</name></decl></parameter>)</parameter_list>
+    <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>serverTransport</name></name> <operator>=</operator> <name>serverTransport</name></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>serverTransport</name><operator>.</operator><name>registerSelector</name></name><argument_list>(<argument><expr><name>selector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isStopped</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <return>return <expr><name>stopped_</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * The work loop. Handles both selecting (all IO operations) and managing
+     * the selection preferences of all existing connections.
+     */</comment>
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>eventHandler_</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>eventHandler_</name><operator>.</operator><name>preServe</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+        <while>while <condition>(<expr><operator>!</operator><name>stopped_</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name>select</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name>processInterestChanges</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></while>
+        <for>for <control>(<init><decl><type><name>SelectionKey</name></type> <name>selectionKey</name> <range>: <expr><call><name><name>selector</name><operator>.</operator><name>keys</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <expr_stmt><expr><call><name>cleanupSelectionKey</name><argument_list>(<argument><expr><name>selectionKey</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Throwable</name></type> <name>t</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"run() exiting due to uncaught error"</literal></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></catch> <finally>finally <block>{<block_content>
+        <expr_stmt><expr><name>stopped_</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      </block_content>}</block></finally></try>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Select and process IO events appropriately:
+     * If there are connections to be accepted, accept them.
+     * If there are existing connections with data waiting to be read, read it,
+     * buffering until a whole frame has been read.
+     * If there are any pending responses, buffer them until their target client
+     * is available, and then send the data.
+     */</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>select</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <comment type="line">// wait for io events.</comment>
+        <expr_stmt><expr><call><name><name>selector</name><operator>.</operator><name>select</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// process the io events we received</comment>
+        <decl_stmt><decl><type><name><name>Iterator</name><argument_list type="generic">&lt;<argument><name>SelectionKey</name></argument>&gt;</argument_list></name></type> <name>selectedKeys</name> <init>= <expr><call><name><name>selector</name><operator>.</operator><name>selectedKeys</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <while>while <condition>(<expr><operator>!</operator><name>stopped_</name> <operator>&amp;&amp;</operator> <call><name><name>selectedKeys</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>SelectionKey</name></type> <name>key</name> <init>= <expr><call><name><name>selectedKeys</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>selectedKeys</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+          <comment type="line">// skip if not valid</comment>
+          <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>key</name><operator>.</operator><name>isValid</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>cleanupSelectionKey</name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <continue>continue;</continue>
+          </block_content>}</block></if></if_stmt>
+
+          <comment type="line">// if the key is marked Accept, then it has to be the server</comment>
+          <comment type="line">// transport.</comment>
+          <if_stmt><if>if <condition>(<expr><call><name><name>key</name><operator>.</operator><name>isAcceptable</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>handleAccept</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>key</name><operator>.</operator><name>isReadable</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <comment type="line">// deal with reads</comment>
+            <expr_stmt><expr><call><name>handleRead</name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><call><name><name>key</name><operator>.</operator><name>isWritable</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <comment type="line">// deal with writes</comment>
+            <expr_stmt><expr><call><name>handleWrite</name><argument_list>(<argument><expr><name>key</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if> <else>else <block>{<block_content>
+            <expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Unexpected state in select! "</literal> <operator>+</operator> <call><name><name>key</name><operator>.</operator><name>interestOps</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></else></if_stmt>
+        </block_content>}</block></while>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Got an IOException while selecting!"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Accept a new connection.
+     */</comment>
+    <function><annotation>@<name>SuppressWarnings</name><argument_list>(<argument><expr><literal type="string">"unused"</literal></expr></argument>)</argument_list></annotation>
+    <type><specifier>private</specifier> <name>void</name></type> <name>handleAccept</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><name>SelectionKey</name></type> <name>clientKey</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>TNonblockingTransport</name></type> <name>client</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <comment type="line">// accept the connection</comment>
+        <expr_stmt><expr><name>client</name> <operator>=</operator> <operator>(</operator><name>TNonblockingTransport</name><operator>)</operator><call><name><name>serverTransport</name><operator>.</operator><name>accept</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>clientKey</name> <operator>=</operator> <call><name><name>client</name><operator>.</operator><name>registerSelector</name></name><argument_list>(<argument><expr><name>selector</name></expr></argument>, <argument><expr><name><name>SelectionKey</name><operator>.</operator><name>OP_READ</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// add this key to the map</comment>
+          <decl_stmt><decl><type><name>FrameBuffer</name></type> <name>frameBuffer</name> <init>= <expr><ternary><condition><expr><call><name><name>processorFactory_</name><operator>.</operator><name>isAsyncProcessor</name></name><argument_list>()</argument_list></call></expr> ?</condition><then>
+                  <expr><operator>new</operator> <call><name>CustomAsyncFrameBuffer</name><argument_list>(<argument><expr><name>client</name></expr></argument>, <argument><expr><name>clientKey</name></expr></argument>,<argument><expr><name><name>SelectAcceptThread</name><operator>.</operator><name>this</name></name></expr></argument>)</argument_list></call></expr> </then><else>:
+                  <expr><operator>new</operator> <call><name>CustomFrameBuffer</name><argument_list>(<argument><expr><name>client</name></expr></argument>, <argument><expr><name>clientKey</name></expr></argument>,<argument><expr><name><name>SelectAcceptThread</name><operator>.</operator><name>this</name></name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+
+          <expr_stmt><expr><call><name><name>clientKey</name><operator>.</operator><name>attach</name></name><argument_list>(<argument><expr><name>frameBuffer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>TTransportException</name></type> <name>tte</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// something went wrong accepting.</comment>
+        <expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Exception trying to accept!"</literal></expr></argument>, <argument><expr><name>tte</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>tte</name><operator>.</operator><name>printStackTrace</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>clientKey</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name>cleanupSelectionKey</name><argument_list>(<argument><expr><name>clientKey</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>client</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>client</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+  }</block></class> <comment type="line">// SelectAcceptThread</comment>
+  <comment type="line">// @formatter:on</comment>
+}
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">36487d6b8</literal><operator>..</operator><name>b2d69af4d</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TServerUtils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>BindException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetAddress</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetSocketAddress</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>ServerSocket</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>Socket</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>UnknownHostException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>channels</name><operator>.</operator><name>ServerSocketChannel</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Random</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">46</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>TProcessorFactory</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>protocol</name><operator>.</operator><name>TProtocol</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>TServer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>TThreadPoolServer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TNonblockingSocket</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TServerTransport</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TSocket</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TTransport</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">198</literal></expr><operator>,</operator><expr><literal type="number">40</literal> <operator>+</operator><literal type="number">196</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>TServerUtils</name> <block>{
+     }</block></expr></expr_stmt>
+   }
+ 
+  public <class><specifier>static</specifier> class <name>THsHaServer</name> <super_list><extends>extends <super><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>THsHaServer</name></name></super></extends></super_list> <block>{
+    <constructor><specifier>public</specifier> <name>THsHaServer</name><parameter_list>(<parameter><decl><type><name>Args</name></type> <name>args</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>protected</specifier> <name>Runnable</name></type> <name>getRunnable</name><parameter_list>(<parameter><decl><type><name>FrameBuffer</name></type> <name>frameBuffer</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <return>return <expr><operator>new</operator> <call><name>Invocation</name><argument_list>(<argument><expr><name>frameBuffer</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <class><specifier>private</specifier> class <name>Invocation</name> <super_list><implements>implements <super><name>Runnable</name></super></implements></super_list> <block>{
+
+      <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>FrameBuffer</name></type> <name>frameBuffer</name></decl>;</decl_stmt>
+
+      <constructor><specifier>public</specifier> <name>Invocation</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>FrameBuffer</name></type> <name>frameBuffer</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>frameBuffer</name></name> <operator>=</operator> <name>frameBuffer</name></expr>;</expr_stmt>
+      </block_content>}</block></constructor>
+
+      <function><annotation>@<name>Override</name></annotation>
+      <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>frameBuffer</name><operator>.</operator><name>trans_</name></name> <operator>instanceof</operator> <name>TNonblockingSocket</name></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>TNonblockingSocket</name></type> <name>tsock</name> <init>= <expr><operator>(</operator><name>TNonblockingSocket</name><operator>)</operator> <name><name>frameBuffer</name><operator>.</operator><name>trans_</name></name></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>Socket</name></type> <name>sock</name> <init>= <expr><call><name><name>tsock</name><operator>.</operator><name>getSocketChannel</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>socket</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>clientAddress</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><call><name><name>sock</name><operator>.</operator><name>getInetAddress</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getHostAddress</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">":"</literal> <operator>+</operator> <call><name><name>sock</name><operator>.</operator><name>getPort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>frameBuffer</name><operator>.</operator><name>invoke</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></function>
+    }</block></class>
+  }</block></class>
+
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name></type> <name>createHsHaServer</name><argument_list>(<argument><expr><name>HostAndPort</name> <name>address</name></expr></argument>, <argument><expr><name>TProcessor</name> <name>processor</name></expr></argument>, <argument><expr><name>final</name> <name>String</name> <name>serverName</name></expr></argument>, <argument><expr><name>String</name> <name>threadName</name></expr></argument>, <argument><expr><name>final</name> <name>int</name> <name>numThreads</name></expr></argument>,
+  <argument><expr><specifier>public</specifier> <specifier>static</specifier> <name>ServerAddress</name> <call><name>createNonBlockingServer</name><argument_list>(<argument><expr><name>HostAndPort</name> <name>address</name></expr></argument>, <argument><expr><name>TProcessor</name> <name>processor</name></expr></argument>, <argument><expr><name>final</name> <name>String</name> <name>serverName</name></expr></argument>, <argument><expr><name>String</name> <name>threadName</name></expr></argument>,
+      <argument><expr><name>final</name> <name>int</name> <name>numThreads</name></expr></argument>,
+       <argument><expr><name>long</name> <name>timeBetweenThreadChecks</name></expr></argument>, <argument><expr><name>long</name> <name>maxMessageSize</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>TTransportException</name> <block>{
+     <expr><name>TNonblockingServerSocket</name> <name>transport</name> <operator>=</operator> <operator>new</operator> <call><name>TNonblockingServerSocket</name><argument_list>(<argument><expr><operator>new</operator> <call><name>InetSocketAddress</name><argument_list>(<argument><expr><call><name><name>address</name><operator>.</operator><name>getHostText</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>address</name><operator>.</operator><name>getPort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr></argument>;
+    <argument><expr><name><name>THsHaServer</name><operator>.</operator><name>Args</name></name> <name>options</name> <operator>=</operator> <operator>new</operator> <call><name><name>THsHaServer</name><operator>.</operator><name>Args</name></name><argument_list>(<argument><expr><name>transport</name></expr></argument>)</argument_list></call></expr></argument>;
+    <argument><expr><name><name>CustomNonBlockingServer</name><operator>.</operator><name>Args</name></name> <name>options</name> <operator>=</operator> <operator>new</operator> <call><name><name>CustomNonBlockingServer</name><operator>.</operator><name>Args</name></name><argument_list>(<argument><expr><name>transport</name></expr></argument>)</argument_list></call></expr></argument>;
+     <argument><expr><call><name><name>options</name><operator>.</operator><name>protocolFactory</name></name><argument_list>(<argument><expr><call><name><name>ThriftUtil</name><operator>.</operator><name>protocolFactory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+     <argument><expr><call><name><name>options</name><operator>.</operator><name>transportFactory</name></name><argument_list>(<argument><expr><call><name><name>ThriftUtil</name><operator>.</operator><name>transportFactory</name></name><argument_list>(<argument><expr><name>maxMessageSize</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+     <argument><expr><name><name>options</name><operator>.</operator><name>maxReadBufferBytes</name></name> <operator>=</operator> <name>maxMessageSize</name></expr></argument>;
+<argument>@@ <expr><operator>-</operator><literal type="number">269</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">238</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>TServerUtils</name> <block>{
+     <if_stmt><if>if <condition>(<expr><call><name><name>address</name><operator>.</operator><name>getPort</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><name>address</name> <operator>=</operator> <call><name><name>HostAndPort</name><operator>.</operator><name>fromParts</name></name><argument_list>(<argument><expr><call><name><name>address</name><operator>.</operator><name>getHostText</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>transport</name><operator>.</operator><name>getPort</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/>}</block_content>
+    return new ServerAddress(new THsHaServer(options</block></if></if_stmt>)<operator>,</operator> <name>address</name></block></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <return>return <expr><operator>new</operator> <call><name>ServerAddress</name><argument_list>(<argument><expr><operator>new</operator> <call><name>CustomNonBlockingServer</name><argument_list>(<argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>;</return>
+   }
+ 
+   public <decl_stmt><decl><type><specifier>static</specifier> <name>ServerAddress</name></type> <name>createThreadPoolServer</name><argument_list>(<argument><expr><name>HostAndPort</name> <name>address</name></expr></argument>, <argument><expr><name>TProcessor</name> <name>processor</name></expr></argument>, <argument><expr><name>String</name> <name>serverName</name></expr></argument>, <argument><expr><name>String</name> <name>threadName</name></expr></argument>, <argument><expr><name>int</name> <name>numThreads</name></expr></argument>)</argument_list>
+@@ -324</decl>,7 +293,7 @@ public <decl><type ref="prev"/><name>class</name> <name>TServerUtils</name> <block>{<block_content>
+     <if_stmt><if>if <condition>(<expr><name>sslParams</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createSslThreadPoolServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>sslSocketTimeout</name></expr></argument>, <argument><expr><name>sslParams</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createHsHaServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>serverAddress</name> <operator>=</operator> <call><name>createNonBlockingServer</name><argument_list>(<argument><expr><name>address</name></expr></argument>, <argument><expr><name>processor</name></expr></argument>, <argument><expr><name>serverName</name></expr></argument>, <argument><expr><name>threadName</name></expr></argument>, <argument><expr><name>numThreads</name></expr></argument>, <argument><expr><name>timeBetweenThreadChecks</name></expr></argument>, <argument><expr><name>maxMessageSize</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></else></if_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>TServer</name></type> <name>finalServer</name> <init>= <expr><name><name>serverAddress</name><operator>.</operator><name>server</name></name></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>Runnable</name></type> <name>serveTask</name> <init>= <expr><operator>new</operator> <class><super><name>Runnable</name></super><argument_list>()</argument_list> <block>{
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block></class></expr></init></decl></decl_stmt></block_content></block></decl></decl_stmt>
+
+</unit>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/40b3f06f9d.java"><expr_stmt><expr><name>From</name> <literal type="number">40b3f06f9d13b19ce0ceb16b9c10e1772c5acdd7</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Mark</name> <name>Robert</name> <name><name>Miller</name> <argument_list type="generic">&lt;<argument><name>markrmiller</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">3</literal> <name>Aug</name> <literal type="number">2011</literal> <literal type="number">16</literal><operator>:</operator><literal type="number">18</literal><operator>:</operator><literal type="number">17</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">2331</literal></expr><operator>,</operator><expr><name>SOLR</name><operator>-</operator><literal type="number">2691</literal><operator>:</operator> <name>Refactor</name> <name>CoreContainer</name><literal type="char">'s SolrXML
+ serialization code and improve testing
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1153564 13f79535-47bb-0310-9956-ffa450edef68
+--
+ solr/CHANGES.txt                              |   3 +
+ .../org/apache/solr/core/CoreContainer.java   |   2 +-
+ .../apache/solr/core/TestCoreContainer.java   | 166 ++++++++++++++++++
+ 3 files changed, 170 insertions(+), 1 deletion(-)
+ create mode 100644 solr/core/src/test/org/apache/solr/core/TestCoreContainer.java
+
+diff --git a/solr/CHANGES.txt b/solr/CHANGES.txt
+index b13965d24a9..b12c0eb423a 100644
+-- a/solr/CHANGES.txt
+++ b/solr/CHANGES.txt
+@@ -281,6 +281,9 @@ Other Changes
+ * SOLR-2663: FieldTypePluginLoader has been refactored out of IndexSchema 
+   and made public. (hossman)
+ 
+* SOLR-2331,SOLR-2691: Refactor CoreContainer'</literal><name>s</name> <name>SolrXML</name> <name>serialization</name> <name>code</name> <name>and</name> <name>improve</name> <call><name>testing</name>
+  <argument_list>(<argument><expr><name>Yury</name> <name>Kats</name></expr></argument>, <argument><expr><name>hossman</name></expr></argument>, <argument><expr><name>Mark</name> <name>Miller</name></expr></argument>)</argument_list></call>
+
+ <name>Documentation</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>CoreContainer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>CoreContainer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fd63fbfa72f</name><operator>..</operator><name>c383b0b8801</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>CoreContainer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>CoreContainer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">903</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">903</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>CoreContainer</name>
+     <name><name>List</name><argument_list type="generic">&lt;<argument><name>SolrCoreXMLDef</name></argument>&gt;</argument_list></name> <name>solrCoreXMLDefs</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>SolrCoreXMLDef</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     
+     <synchronized>synchronized <init>(<expr><name>cores</name></expr>)</init> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coreAttribs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <for>for <control>(<init><decl><type><name>SolrCore</name></type> <name>solrCore</name> <range>: <expr><call><name><name>cores</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>coreAttribs</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>CoreDescriptor</name></type> <name>dcore</name> <init>= <expr><call><name><name>solrCore</name><operator>.</operator><name>getCoreDescriptor</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         
+         <expr_stmt><expr><call><name><name>coreAttribs</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"name"</literal></expr></argument>, <argument><expr><ternary><condition><expr><call><name><name>dcore</name><operator>.</operator><name>name</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr> ?</condition><then> <expr><name>defaultCoreName</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestCoreContainer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestCoreContainer</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..45717ded9d4</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name><name>TestCoreContainer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr></then></ternary></expr></argument>,<argument><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">166</literal> @@</expr></argument>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>core</name></name>;</package></argument_list></call></expr></expr_stmt>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>xml</name><operator>.</operator><name>xpath</name><operator>.</operator><name>XPathExpressionException</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>io</name><operator>.</operator><name>FileUtils</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>BeforeClass</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>xml</name><operator>.</operator><name>sax</name><operator>.</operator><name>SAXException</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>TestCoreContainer</name> <super_list><extends>extends <super><name>SolrTestCaseJ4</name></super></extends></super_list> <block>{
+  
+  <function><annotation>@<name>BeforeClass</name></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>beforeClass</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>initCore</name><argument_list>(<argument><expr><literal type="string">"solrconfig.xml"</literal></expr></argument>, <argument><expr><literal type="string">"schema.xml"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+  
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testPersist</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>workDir</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>TEMP_DIR</name></expr></argument>, <argument><expr><call><name><name>this</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call>
+        <operator>+</operator> <literal type="string">"_persist"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>workDir</name><operator>.</operator><name>exists</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>FileUtils</name><operator>.</operator><name>deleteDirectory</name></name><argument_list>(<argument><expr><name>workDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"Failed to mkdirs workDir"</literal></expr></argument>, <argument><expr><call><name><name>workDir</name><operator>.</operator><name>mkdirs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>CoreContainer</name></type> <name>cores</name> <init>= <expr><call><name><name>h</name><operator>.</operator><name>getCoreContainer</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>setPersistent</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// is this needed since we make explicit calls?</comment>
+    
+    <decl_stmt><decl><type><name>String</name></type> <name>instDir</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <block>{<block_content>
+      <decl_stmt><decl><type><name>SolrCore</name></type> <name>template</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <try>try <block>{<block_content>
+        <expr_stmt><expr><name>template</name> <operator>=</operator> <call><name><name>cores</name><operator>.</operator><name>getCore</name></name><argument_list>(<argument><expr><literal type="string">"collection1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>instDir</name> <operator>=</operator> <call><name><name>template</name><operator>.</operator><name>getCoreDescriptor</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getInstanceDir</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block> <finally>finally <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>template</name></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>template</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      </block_content>}</block></finally></try>
+    </block_content>}</block>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>instDirFile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>instDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"instDir doesn't exist: "</literal> <operator>+</operator> <name>instDir</name></expr></argument>, <argument><expr><call><name><name>instDirFile</name><operator>.</operator><name>exists</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// sanity check the basic persistence of the default init</comment>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>oneXml</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"1.solr.xml"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><name>oneXml</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><call><name>assertXmlFile</name><argument_list>(<argument><expr><name>oneXml</name></expr></argument>, <argument><expr><literal type="string">"/solr[@persistent='true']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"/solr/cores[@defaultCoreName='collection1']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"/solr/cores/core[@name='collection1' and @instanceDir='"</literal> <operator>+</operator> <name>instDir</name>
+            <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><literal type="string">"1=count(/solr/cores/core)"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// create some new cores and sanity check the persistence</comment>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>dataXfile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"dataX"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>dataX</name> <init>= <expr><call><name><name>dataXfile</name><operator>.</operator><name>getAbsolutePath</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"dataXfile mkdirs failed: "</literal> <operator>+</operator> <name>dataX</name></expr></argument>, <argument><expr><call><name><name>dataXfile</name><operator>.</operator><name>mkdirs</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>instYfile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"instY"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>FileUtils</name><operator>.</operator><name>copyDirectory</name></name><argument_list>(<argument><expr><name>instDirFile</name></expr></argument>, <argument><expr><name>instYfile</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// :HACK: dataDir leaves off trailing "/", but instanceDir uses it</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>instY</name> <init>= <expr><call><name><name>instYfile</name><operator>.</operator><name>getAbsolutePath</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"/"</literal></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>CoreDescriptor</name></type> <name>xd</name> <init>= <expr><operator>new</operator> <call><name>CoreDescriptor</name><argument_list>(<argument><expr><name>cores</name></expr></argument>, <argument><expr><literal type="string">"X"</literal></expr></argument>, <argument><expr><name>instDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>xd</name><operator>.</operator><name>setDataDir</name></name><argument_list>(<argument><expr><name>dataX</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><specifier>final</specifier> <name>CoreDescriptor</name></type> <name>yd</name> <init>= <expr><operator>new</operator> <call><name>CoreDescriptor</name><argument_list>(<argument><expr><name>cores</name></expr></argument>, <argument><expr><literal type="string">"Y"</literal></expr></argument>, <argument><expr><name>instY</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <decl_stmt><decl><type><name>SolrCore</name></type> <name>x</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>SolrCore</name></type> <name>y</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>x</name> <operator>=</operator> <call><name><name>cores</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>xd</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>y</name> <operator>=</operator> <call><name><name>cores</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>yd</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"cores not added?"</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><call><name><name>cores</name><operator>.</operator><name>getCoreNames</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>twoXml</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"2.solr.xml"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><name>twoXml</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <expr_stmt><expr><call><name>assertXmlFile</name><argument_list>(<argument><expr><name>twoXml</name></expr></argument>, <argument><expr><literal type="string">"/solr[@persistent='true']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"/solr/cores[@defaultCoreName='collection1']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"/solr/cores/core[@name='collection1' and @instanceDir='"</literal> <operator>+</operator> <name>instDir</name>
+              <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><literal type="string">"/solr/cores/core[@name='X' and @instanceDir='"</literal> <operator>+</operator> <name>instDir</name>
+              <operator>+</operator> <literal type="string">"' and @dataDir='"</literal> <operator>+</operator> <name>dataX</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"/solr/cores/core[@name='Y' and @instanceDir='"</literal> <operator>+</operator> <name>instY</name> <operator>+</operator> <literal type="string">"']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"3=count(/solr/cores/core)"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <comment type="line">// delete a core, check persistence again</comment>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><literal type="string">"removing X returned null"</literal></expr></argument>, <argument><expr><call><name><name>cores</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><literal type="string">"X"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>threeXml</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"3.solr.xml"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><name>threeXml</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <expr_stmt><expr><call><name>assertXmlFile</name><argument_list>(<argument><expr><name>threeXml</name></expr></argument>, <argument><expr><literal type="string">"/solr[@persistent='true']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"/solr/cores[@defaultCoreName='collection1']"</literal></expr></argument>,
+          <argument><expr><literal type="string">"/solr/cores/core[@name='collection1' and @instanceDir='"</literal> <operator>+</operator> <name>instDir</name>
+              <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><literal type="string">"/solr/cores/core[@name='Y' and @instanceDir='"</literal> <operator>+</operator> <name>instY</name>
+              <operator>+</operator> <literal type="string">"']"</literal></expr></argument>, <argument><expr><literal type="string">"2=count(/solr/cores/core)"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <comment type="line">// sanity check that persisting w/o changes has no changes</comment>
+      
+      <decl_stmt><decl><type><specifier>final</specifier> <name>File</name></type> <name>fourXml</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>workDir</name></expr></argument>, <argument><expr><literal type="string">"4.solr.xml"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>cores</name><operator>.</operator><name>persistFile</name></name><argument_list>(<argument><expr><name>fourXml</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+      <expr_stmt><expr><call><name>assertTrue</name><argument_list>(<argument><expr><literal type="string">"3 and 4 should be identical files"</literal></expr></argument>,
+          <argument><expr><call><name><name>FileUtils</name><operator>.</operator><name>contentEquals</name></name><argument_list>(<argument><expr><name>threeXml</name></expr></argument>, <argument><expr><name>fourXml</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>x</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <try>try <block>{<block_content>
+          <expr_stmt><expr><call><name><name>x</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>y</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <try>try <block>{<block_content>
+          <expr_stmt><expr><call><name><name>y</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+  
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>assertXmlFile</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>File</name></type> <name>file</name></decl></parameter>, <parameter><decl><type><name>String</name><modifier>...</modifier></type> <name>xpath</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>SAXException</name></expr></argument></throws> <block>{<block_content>
+    
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>xml</name> <init>= <expr><call><name><name>FileUtils</name><operator>.</operator><name>readFileToString</name></name><argument_list>(<argument><expr><name>file</name></expr></argument>, <argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>String</name></type> <name>results</name> <init>= <expr><call><name><name>h</name><operator>.</operator><name>validateXPath</name></name><argument_list>(<argument><expr><name>xml</name></expr></argument>, <argument><expr><name>xpath</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>!=</operator> <name>results</name></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>msg</name> <init>= <expr><literal type="string">"File XPath failure: file="</literal> <operator>+</operator> <call><name><name>file</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" xpath="</literal>
+            <operator>+</operator> <name>results</name> <operator>+</operator> <literal type="string">"\n\nxml was: "</literal> <operator>+</operator> <name>xml</name></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>fail</name><argument_list>(<argument><expr><name>msg</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>XPathExpressionException</name></type> <name>e2</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"XPath is invalid"</literal></expr></argument>, <argument><expr><name>e2</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+  
+}</block></class>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></for></block_content></block></synchronized>
+
+</unit>

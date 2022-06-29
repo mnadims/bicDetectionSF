@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="code-4.java"><if_stmt><if>if<condition>(<expr><name>x</name><operator>!=</operator><literal type="number">2</literal> <operator>&amp;&amp;</operator> <name>a</name><operator>!=</operator><literal type="number">5</literal> <operator>||</operator> <name>b</name><operator>==</operator><literal type="number">6</literal></expr>)</condition><block>{<block_content>
+	<if_stmt><if>if<condition>(<expr><name>c</name><operator>&lt;</operator><literal type="number">10</literal></expr>)</condition><block type="pseudo"><block_content>
+		<expr_stmt><expr><name>c</name><operator>=</operator><literal type="number">10</literal></expr></expr_stmt></block_content></block></if></if_stmt>
+</block_content>}</block></if>
+<if type="elseif">else if<condition>(<expr><name>b</name><operator>&lt;</operator><literal type="number">6</literal></expr>)</condition><block>{<block_content>
+	<if_stmt><if>if<condition>(<expr><name>a</name><operator>&gt;</operator><literal type="number">5</literal></expr>)</condition><block type="pseudo"><block_content>
+		<expr_stmt><expr><name>a</name><operator>=</operator><literal type="number">5</literal></expr>;</expr_stmt></block_content></block></if>
+	<else>else<block type="pseudo"><block_content>
+		<expr_stmt><expr><name>b</name><operator>=</operator><literal type="number">6</literal></expr>;</expr_stmt></block_content></block></else></if_stmt>
+</block_content>}</block></if>
+<else>else<block type="pseudo"><block_content> <expr_stmt><expr><name>b</name><operator>=</operator><literal type="number">10</literal></expr></expr_stmt></block_content></block></else></if_stmt></unit>

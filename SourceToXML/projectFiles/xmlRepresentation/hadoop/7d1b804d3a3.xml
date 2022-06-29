@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/7d1b804d3a3.java"><expr_stmt><expr><name>From</name> <literal type="number">7d1b804d3a31c644b1af9fc4f7917f1f25f793d9</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name>Joseph</name> <name><name>Evans</name> <argument_list type="generic">&lt;<argument><name>bobby</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">1</literal> <name>May</name> <literal type="number">2012</literal> <literal type="number">21</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">52</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">8172.</literal> <name>Configuration</name> <name>no</name> <name>longer</name> <name>sets</name> <name>all</name> <name>keys</name> <name>in</name> <name>a</name>
+ <name>deprecated</name> <name>key</name> <name><name>list</name><operator>.</operator></name> (<name>Anupam</name> <name>Seth</name> <name>via</name> <name>bobby</name></expr></expr_stmt>)
+
+<expr_stmt><expr><name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@1332821 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                 <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">141</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestConfigurationDeprecation</name><operator>.</operator><name>java</name></name>    <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>TestDeprecatedKeys</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">50</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">164</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">34</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">8b5d1f90d4a</literal><operator>..</operator><literal type="number">189ddd3cc4f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">447</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">447</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>Release</name> <literal type="number">2.0.0</literal> <operator>-</operator> <name>UNRELEASED</name>
+     <name>HADOOP</name><operator>-</operator><literal type="number">8317.</literal> <name>Update</name> <name>maven</name><operator>-</operator><name>assembly</name><operator>-</operator><name>plugin</name> <name>to</name> <literal type="number">2.3</literal> <operator>-</operator> <name>fix</name> <name>build</name> <name>on</name> <call><name>FreeBSD</name>
+     <argument_list>(<argument><expr><name>Radim</name> <name>Kolar</name> <name>via</name> <name>bobby</name></expr></argument>)</argument_list></call>
+ 
+    <name>HADOOP</name><operator>-</operator><literal type="number">8172.</literal> <name>Configuration</name> <name>no</name> <name>longer</name> <name>sets</name> <name>all</name> <name>keys</name> <name>in</name> <name>a</name> <name>deprecated</name> <name>key</name> 
+    <name><name>list</name><operator>.</operator></name> (<name>Anupam</name> <name>Seth</name> <name>via</name> <name>bobby</name></expr></expr_stmt>)
+
+ <expr_stmt><expr><name>Release</name> <literal type="number">0.23.3</literal> <operator>-</operator> <name>UNRELEASED</name>
+ 
+   <name>INCOMPATIBLE</name> <name>CHANGES</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">99af904a1c2</literal><operator>..</operator><literal type="number">044e5cb08a3</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>-</operator><name>project</name><operator>/</operator><name>hadoop</name><operator>-</operator><name>common</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">33</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>InetSocketAddress</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URL</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Enumeration</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">269</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">270</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>private</specifier> <name>final</name> <name>String</name> <call><name>getWarningMessage</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>)</argument_list></call> <block>{
+    <expr><operator>*</operator> <name>This</name> <name>is</name> <name>to</name> <name>be</name> <name>used</name> <name>only</name> <name>by</name> <name>the</name> <name>developers</name> <name>in</name> <name>order</name> <name>to</name> <name>add</name> <name>deprecation</name> <name>of</name>
+    <operator>*</operator> <name>keys</name></expr>, <expr><name>and</name> <name>attempts</name> <name>to</name> <name>call</name> <name>this</name> <name>method</name> <name>after</name> <name>loading</name> <name>resources</name> <name>once</name></expr>,
+    <expr><operator>*</operator> <name>would</name> <name>lead</name> <name><name>to</name> <argument_list type="generic">&lt;<argument><name>tt</name></argument>&gt;</argument_list></name><name><name>UnsupportedOperationException</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>tt</name></argument>&gt;</argument_list></name>
+   <operator>*</operator> 
+   <operator>*</operator> <name>If</name> <name>a</name> <name>key</name> <name>is</name> <name>deprecated</name> <name>in</name> <name>favor</name> <name>of</name> <name>multiple</name> <name>keys</name></expr>, <expr><name>they</name> <name>are</name> <name>all</name> <name>treated</name> <name>as</name> 
+   <operator>*</operator> <name>aliases</name> <name>of</name> <name>each</name> <name>other</name></expr>, <expr><name>and</name> <name>setting</name> <name>any</name> <name>one</name> <name>of</name> <name>them</name> <name>resets</name> <name>all</name> <name>the</name> <name>others</name> 
+   <operator>*</operator> <name>to</name> <name>the</name> <operator>new</operator> <name><name>value</name><operator>.</operator></name>
+   * 
+    <operator>*</operator> @<name>param</name> <name>key</name>
+    <operator>*</operator> @<name>param</name> <name>newKeys</name>
+    <operator>*</operator> @<name>param</name> <name>customMessage</name>
+   <operator>*</operator> @<name>deprecated</name> <name>use</name> <block>{@<expr><name>link</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name>String</name> <name>newKey</name></expr></argument>,
+      <argument><expr><name>String</name> <name>customMessage</name></expr></argument>)</argument_list></call></expr>}</block> <name>instead</name>
+    <operator>*</operator><operator>/</operator>
+  @<name>Deprecated</name>
+   <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name><name>String</name><index>[]</index></name> <name>newKeys</name></expr></argument>,
+       <argument><expr><name>String</name> <name>customMessage</name></expr></argument>)</argument_list></call> <block>{
+     <if_stmt><if>if <condition>(<expr><name>key</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>key</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal> <operator>||</operator>
+@@ <operator>-</operator><literal type="number">288</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">297</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@ <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name><name>String</name><index>[]</index></name> <name>newKeys</name></expr></argument>,
+       }</argument_list></call></expr></condition></if></if_stmt>
+     }</block></expr>
+   }</block>
+  
+  <comment type="block" format="javadoc">/**
+   * Adds the deprecated key to the deprecation map.
+   * It does not override any existing entries in the deprecation map.
+   * This is to be used only by the developers in order to add deprecation of
+   * keys, and attempts to call this method after loading resources once,
+   * would lead to &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;
+   * 
+   * @param key
+   * @param newKey
+   * @param customMessage
+   */</comment>
+  <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name>String</name> <name>newKey</name></expr></argument>,
+	      <argument><expr><name>String</name> <name>customMessage</name></expr></argument>)</argument_list></call> <block>{
+	  <expr><call><name>addDeprecation</name><argument_list>(<argument><expr><name>key</name></expr></argument>, <argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{<expr><name>newKey</name></expr>}</block></expr></argument>, <argument><expr><name>customMessage</name></expr></argument>)</argument_list></call></expr>;
+  }</block>
+ 
+   <comment type="block" format="javadoc">/**
+    * Adds the deprecated key to the deprecation map when no custom message
+@@ -297,13 +322,34 @@ public synchronized static void addDeprecation(String key, String[] newKeys,
+    * keys, and attempts to call this method after loading resources once,
+    * would lead to &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;
+    * 
+   * If a key is deprecated in favor of multiple keys, they are all treated as 
+   * aliases of each other, and setting any one of them resets all the others 
+   * to the new value.
+   * 
+    * @param key Key that is to be deprecated
+    * @param newKeys list of keys that take up the values of deprecated key
+   * @deprecated use {@link addDeprecation(String key, String newKey)} instead
+    */</comment>
+  @<name>Deprecated</name>
+   <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name><name>String</name><index>[]</index></name> <name>newKeys</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>addDeprecation</name><argument_list>(<argument><expr><name>key</name></expr></argument>, <argument><expr><name>newKeys</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+   }</block>
+   
+  <comment type="block" format="javadoc">/**
+   * Adds the deprecated key to the deprecation map when no custom message
+   * is provided.
+   * It does not override any existing entries in the deprecation map.
+   * This is to be used only by the developers in order to add deprecation of
+   * keys, and attempts to call this method after loading resources once,
+   * would lead to &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;
+   * 
+   * @param key Key that is to be deprecated
+   * @param newKey key that takes up the value of deprecated key
+   */</comment>
+  <specifier>public</specifier> <specifier>synchronized</specifier> <specifier>static</specifier> <name>void</name> <call><name>addDeprecation</name><argument_list>(<argument><expr><name>String</name> <name>key</name></expr></argument>, <argument><expr><name>String</name> <name>newKey</name></expr></argument>)</argument_list></call> <block>{
+	<expr><call><name>addDeprecation</name><argument_list>(<argument><expr><name>key</name></expr></argument>, <argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name> <block>{<expr><name>newKey</name></expr>}</block></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+  }</block>
+  
+   <comment type="block" format="javadoc">/**
+    * checks whether the given &lt;code&gt;key&lt;/code&gt; is deprecated.
+    * 
+@@ -322,16 +368,26 @@ public static boolean isDeprecated(String key) {
+    * @param name property name.
+    * @return alternate name.
+    */</comment>
+  <specifier>private</specifier> <name>String</name> <call><name>getAlternateName</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>String</name> <name>altName</name></expr>;
+  <expr><specifier>private</specifier> <name><name>String</name><index>[]</index></name> <call><name>getAlternateNames</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>String</name> <name>oldName</name></expr>, <expr><name><name>altNames</name><index>[]</index></name> <operator>=</operator> <literal type="null">null</literal></expr>;
+     <expr><name>DeprecatedKeyInfo</name> <name>keyInfo</name> <operator>=</operator> <call><name><name>deprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;
+    <if_stmt><if>if <condition>(<expr><name>keyInfo</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>altName</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name><name>keyInfo</name><operator>.</operator><name>newKeys</name><operator>.</operator><name>length</name></name> <operator>&gt;</operator> <literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><name><name>keyInfo</name><operator>.</operator><name>newKeys</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+    <if_stmt><else>else <block>{<block_content>
+      <expr_stmt><expr><name>altName</name> <operator>=</operator> <call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>keyInfo</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>altNames</name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="null">null</literal> <operator>)</operator></expr> ?</condition><then> 
+        <expr><operator>new</operator> <name><name>String</name> <index>[]</index></name> <block>{<expr><call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>}</block></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;</expr_stmt>
+      <if_stmt><if>if<condition>(<expr><name>altNames</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name><name>altNames</name><operator>.</operator><name>length</name></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+    	<comment type="line">//To help look for other new configs for this deprecated config</comment>
+    	<expr_stmt><expr><name>keyInfo</name> <operator>=</operator> <call><name><name>deprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>altNames</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></else></if_stmt>}</block></expr></expr_stmt>      
+    } 
+    if<expr_stmt><expr><operator>(</operator><name>keyInfo</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name><name>keyInfo</name><operator>.</operator><name>newKeys</name><operator>.</operator><name>length</name></name> <operator>&gt;</operator> <literal type="number">0</literal><operator>)</operator> <block>{
+      <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>list</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>; 
+      <if_stmt><if>if<condition>(<expr><name>altNames</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+    	  <expr_stmt><expr><call><name><name>list</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name>altNames</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt>}</block>
+      <call><name><name>list</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><name><name>keyInfo</name><operator>.</operator><name>newKeys</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>altNames</name> <operator>=</operator> <call><name><name>list</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><call><name><name>list</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     }
+    return <expr_stmt><expr><name>altName</name></expr>;</expr_stmt>
+    <return>return <expr><name>altNames</name></expr>;</return>
+   }
+ 
+   <comment type="block" format="javadoc">/**
+@@ -346,24 +402,29 @@ private String getAlternateName(String name) {
+    * @return the first property in the list of properties mapping
+    *         the &lt;code&gt;name&lt;/code&gt; or the &lt;code&gt;name&lt;/code&gt; itself.
+    */</comment>
+  private <function><type><name>String</name></type> <name>handleDeprecation</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name>isDeprecated</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+  <function><type><specifier>private</specifier> <name><name>String</name><index>[]</index></name></type> <name>handleDeprecation</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument> &gt;</argument_list></name></type> <name>names</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<if_stmt><if>if <condition>(<expr><call><name>isDeprecated</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>DeprecatedKeyInfo</name></type> <name>keyInfo</name> <init>= <expr><call><name><name>deprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name>warnOnceIfDeprecated</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <for>for <control>(<init><decl><type><name>String</name></type> <name>newKey</name> <range>: <expr><name><name>keyInfo</name><operator>.</operator><name>newKeys</name></name></expr></range></decl></init>)</control> <block>{<block_content>
+         <if_stmt><if>if<condition>(<expr><name>newKey</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>name</name> <operator>=</operator> <name>newKey</name></expr>;</expr_stmt>
+          <break>break;</break>
+          <expr_stmt><expr><call><name><name>names</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>newKey</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+       </block_content>}</block></for>
+     </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>deprecatedKey</name> <init>= <expr><call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>deprecatedKey</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>containsKey</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator>
+        <call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>containsKey</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if<condition>(<expr><call><name><name>names</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+    	<expr_stmt><expr><call><name><name>names</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+    <return>return <expr><name>name</name></expr>;</return>
+    <for>for<control>(<init><decl><type><name>String</name></type> <name>n</name> <range>: <expr><name>names</name></expr></range></decl></init>)</control> <block>{<block_content>
+	  <decl_stmt><decl><type><name>String</name></type> <name>deprecatedKey</name> <init>= <expr><call><name><name>reverseDeprecatedKeyMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	  <if_stmt><if>if <condition>(<expr><name>deprecatedKey</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>containsKey</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator>
+	      <call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>containsKey</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+	    <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setProperty</name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	    <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>setProperty</name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>deprecatedKey</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	  </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><call><name><name>names</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><call><name><name>names</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+  
+   <function><type><specifier>private</specifier> <name>void</name></type> <name>handleDeprecation</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">595</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">656</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>private</specifier> <name>String</name> <call><name>substituteVars</name><argument_list>(<argument><expr><name>String</name> <name>expr</name></expr></argument>)</argument_list></call> <block>{
+    <expr><operator>*</operator>         <name>or</name> <literal type="null">null</literal></expr> <if_stmt><if>if no such property exists.
+    */
+   public String get<condition>(<expr><name>String</name> <name>name</name></expr>)</condition> <block>{<block_content>
+    <expr_stmt><expr><name>name</name> <operator>=</operator> <call><name>handleDeprecation</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><call><name>substituteVars</name><argument_list>(<argument><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>names</name> <init>= <expr><call><name>handleDeprecation</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>result</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>String</name></type> <name>n</name> <range>: <expr><name>names</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>result</name> <operator>=</operator> <call><name>substituteVars</name><argument_list>(<argument><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>result</name></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+   
+   <comment type="block" format="javadoc">/**
+@@ -633,8 +698,12 @@ public String getTrimmed(String name) {
+    *         its replacing property and null if no such property exists.
+    */</comment>
+   <specifier>public</specifier> <name>String</name> <call><name>getRaw</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>name</name> <operator>=</operator> <call><name>handleDeprecation</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</block></block></expr></expr_stmt>
+    <return>return <expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</return>
+    <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>names</name> <init>= <expr><call><name>handleDeprecation</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>result</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>String</name></type> <name>n</name> <range>: <expr><name>names</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><name>result</name> <operator>=</operator> <call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getProperty</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>result</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/** 
+@@ -652,10 +721,12 @@ public void set(String name, String value) {
+     getOverlay().setProperty(name, value);
+     getProps().setProperty(name, value);
+     updatingResource.put(name, UNKNOWN_RESOURCE);
+    String altName = getAlternateName(name);
+    if (altName != null) {
+      getOverlay().setProperty(altName, value);
+      getProps().setProperty(altName, value);
+    String[] altNames = getAlternateNames(name);
+    if (altNames != null &amp;&amp; altNames.length &gt; 0) {
+      for(String altName : altNames) {
+    	getOverlay().setProperty(altName, value);
+        getProps().setProperty(altName, value);
+      }
+     }
+     warnOnceIfDeprecated(name);
+   }
+@@ -671,12 +742,14 @@ private void warnOnceIfDeprecated(String name) {
+    * Unset a previously set property.
+    */</comment>
+   <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>void</name></type> <name>unset</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>String</name></type> <name>altName</name> <init>= <expr><call><name>getAlternateName</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>altNames</name> <init>= <expr><call><name>getAlternateNames</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>altName</name> <operator>!=</operator><literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>altNames</name> <operator>!=</operator><literal type="null">null</literal> <operator>&amp;&amp;</operator> <name><name>altNames</name><operator>.</operator><name>length</name></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <for>for<control>(<init><decl><type><name>String</name></type> <name>altName</name> <range>: <expr><name>altNames</name></expr></range></decl></init>)</control> <block>{<block_content>
+    	<expr_stmt><expr><call><name>getOverlay</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    	<expr_stmt><expr><call><name>getProps</name><argument_list>()</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>(<argument><expr><name>altName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+     </block_content>}</block></if></if_stmt>
+   </block_content>}</block></if></if_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">711</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">784</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>private</specifier> <specifier>synchronized</specifier> <name>Properties</name> <call><name>getOverlay</name><argument_list>()</argument_list></call> <block>{
+    <expr><operator>*</operator>         <name>doesn</name><literal type="char">'</literal></expr></block></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></if></if_stmt></block_content></block></function>t exist.                    
+    */
+   public String get(String name, String defaultValue) {
+    name = handleDeprecation(name);
+    return substituteVars(getProps().getProperty(name, defaultValue));
+    String[] names = handleDeprecation(name);
+    String result = null;
+    for(String n : names) {
+      result = substituteVars(getProps().getProperty(n, defaultValue));
+    }
+    return result;
+   }
+     
+   /** 
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+index e5a7748d5cf..df346dd657b 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestConfigurationDeprecation.java
+@@ -164,7 +164,7 @@ public void testDeprecation() throws IOException {
+     conf.set("Y", "y");
+     conf.set("Z", "z");
+     // get old key
+    assertEquals("y", conf.get("X"));
+    assertEquals("z", conf.get("X"));
+   }
+ 
+   /**
+@@ -305,7 +305,7 @@ public void testIteratorWithDeprecatedKeys() {
+     assertTrue("deprecated Key not found", dKFound);
+     assertTrue("new Key not found", nKFound);
+   }
+
+  
+   @Test
+   public void testUnsetWithDeprecatedKeys() {
+     Configuration conf = new Configuration();
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestDeprecatedKeys.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestDeprecatedKeys.java
+index 584b3372b89..b8f820c024d 100644
+-- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestDeprecatedKeys.java
+++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/conf/TestDeprecatedKeys.java
+@@ -18,10 +18,15 @@
+ 
+ package org.apache.hadoop.conf;
+ 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+ import java.io.ByteArrayOutputStream;
+import java.util.Map;
+ 
+ import org.apache.hadoop.conf.Configuration;
+ import org.apache.hadoop.fs.CommonConfigurationKeys;
+import org.junit.Test;
+ 
+ import junit.framework.TestCase;
+ 
+@@ -53,4 +58,49 @@ public void testReadWriteWithDeprecatedKeys() throws Exception {
+     assertTrue(fileContents.contains("old.config.yet.to.be.deprecated"));
+     assertTrue(fileContents.contains("new.conf.to.replace.deprecated.conf"));
+   }
+  
+  @Test
+  public void testIteratorWithDeprecatedKeysMappedToMultipleNewKeys() {
+    Configuration conf = new Configuration();
+    Configuration.addDeprecation("dK", new String[]{"nK1", "nK2"});
+    conf.set("k", "v");
+    conf.set("dK", "V");
+    assertEquals("V", conf.get("dK"));
+    assertEquals("V", conf.get("nK1"));
+    assertEquals("V", conf.get("nK2"));
+    conf.set("nK1", "VV");
+    assertEquals("VV", conf.get("dK"));
+    assertEquals("VV", conf.get("nK1"));
+    assertEquals("VV", conf.get("nK2"));
+    conf.set("nK2", "VVV");
+    assertEquals("VVV", conf.get("dK"));
+    assertEquals("VVV", conf.get("nK2"));
+    assertEquals("VVV", conf.get("nK1"));
+    boolean kFound = false;
+    boolean dKFound = false;
+    boolean nK1Found = false;
+    boolean nK2Found = false;
+    for (Map.Entry&lt;String, String&gt; entry : conf) {
+      if (entry.getKey().equals("k")) {
+        assertEquals("v", entry.getValue());
+        kFound = true;
+      }
+      if (entry.getKey().equals("dK")) {
+        assertEquals("VVV", entry.getValue());
+        dKFound = true;
+      }
+      if (entry.getKey().equals("nK1")) {
+        assertEquals("VVV", entry.getValue());
+        nK1Found = true;
+      }
+      if (entry.getKey().equals("nK2")) {
+        assertEquals("VVV", entry.getValue());
+        nK2Found = true;
+      }
+    }
+    assertTrue("regular Key not found", kFound);
+    assertTrue("deprecated Key not found", dKFound);
+    assertTrue("new Key 1 not found", nK1Found);
+    assertTrue("new Key 2 not found", nK2Found);
+  }
+ }
+- 
+2.19.1.windows.1
+
+</unit>

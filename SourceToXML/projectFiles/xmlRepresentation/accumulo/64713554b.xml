@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/64713554b.java"><expr_stmt><expr><name>From</name> <literal type="number">64713554b7c114088dcb7fd432e25bcd421cc04a</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Josh</name> <name><name>Elser</name> <argument_list type="generic">&lt;<argument><name>elserj</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">8</literal> <name>Jan</name> <literal type="number">2016</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">49</literal><operator>:</operator><literal type="number">44</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">4095</literal> <name>Hacks</name> <name>on</name> <name>CustomNonBlockingServer</name> <name>to</name> <name>restore</name>
+ <name>client</name> <name>address</name> <name><name>functionality</name><operator>.</operator>
+
+<name>Closes</name></name> <name>apache</name><operator>/</operator><name>accumulo</name><operator>#</operator><literal type="number">63</literal>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">63</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">58</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">5</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f4737be29</name><operator>..</operator><name>ae65c1e36</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>rpc</name><operator>/</operator><name><name>CustomNonBlockingServer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">30</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">83</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>lang</name><operator>.</operator><name>reflect</name><operator>.</operator><name>Field</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>Socket</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>nio</name><operator>.</operator><name>channels</name><operator>.</operator><name>SelectionKey</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>rpc</name><operator>.</operator><name>TServerUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>THsHaServer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>server</name><operator>.</operator><name>TNonblockingServer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TNonblockingServerTransport</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TNonblockingSocket</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>thrift</name><operator>.</operator><name>transport</name><operator>.</operator><name>TNonblockingTransport</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * This class implements a custom non-blocking thrift server that stores the client address in thread-local storage for the invocation.
+ *
+  */</comment>
+ <class><specifier>public</specifier> class <name>CustomNonBlockingServer</name> <super_list><extends>extends <super><name>THsHaServer</name></super></extends></super_list> <block>{
+ 
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Field</name></type> <name>selectAcceptThreadField</name></decl>;</decl_stmt>
+
+   <constructor><specifier>public</specifier> <name>CustomNonBlockingServer</name><parameter_list>(<parameter><decl><type><name>Args</name></type> <name>args</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><name>selectAcceptThreadField</name> <operator>=</operator> <call><name><name>TNonblockingServer</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getDeclaredField</name></name></name><argument_list>(<argument><expr><literal type="string">"selectAcceptThread_"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>selectAcceptThreadField</name><operator>.</operator><name>setAccessible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"Failed to access required field in Thrift code."</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></constructor>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name>boolean</name></type> <name>startThreads</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <comment type="line">// Yet another dirty/gross hack to get access to the client's address.</comment>
+
+    <comment type="line">// start the selector</comment>
+    <try>try <block>{<block_content>
+      <comment type="line">// Hack in our SelectAcceptThread impl</comment>
+      <decl_stmt><decl><type><name>SelectAcceptThread</name></type> <name>selectAcceptThread_</name> <init>= <expr><operator>new</operator> <call><name>CustomSelectAcceptThread</name><argument_list>(<argument><expr><operator>(</operator><name>TNonblockingServerTransport</name><operator>)</operator> <name>serverTransport_</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <comment type="line">// Set the private field before continuing.</comment>
+      <expr_stmt><expr><call><name><name>selectAcceptThreadField</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>, <argument><expr><name>selectAcceptThread_</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><call><name><name>selectAcceptThread_</name><operator>.</operator><name>start</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Failed to start selector thread!"</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+    </block_content>}</block></catch> <catch>catch <parameter_list>(<parameter><decl><type><name>IllegalAccessException</name></type> | <type><name>IllegalArgumentException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>RuntimeException</name><argument_list>(<argument><expr><literal type="string">"Exception setting customer select thread in Thrift"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></catch></try>
+   </block_content>}</block></function>
+ 
+  <function><type><specifier>protected</specifier> <name>FrameBuffer</name></type> <name>createFrameBuffer</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>new</operator> <call><name>CustomAsyncFrameBuffer</name><argument_list>(<argument><expr><name>trans</name></expr></argument>, <argument><expr><name>selectionKey</name></expr></argument>, <argument><expr><name>selectThread</name></expr></argument>)</argument_list></call></expr>;</return>
+  <comment type="block" format="javadoc">/**
+   * Custom wrapper around {@link org.apache.thrift.server.TNonblockingServer.SelectAcceptThread} to create our {@link CustomFrameBuffer}.
+   */</comment>
+  <class><specifier>private</specifier> class <name>CustomSelectAcceptThread</name> <super_list><extends>extends <super><name>SelectAcceptThread</name></super></extends></super_list> <block>{
+
+    <constructor><specifier>public</specifier> <name>CustomSelectAcceptThread</name><parameter_list>(<parameter><decl><type><name>TNonblockingServerTransport</name></type> <name>serverTransport</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>serverTransport</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><annotation>@<name>Override</name></annotation>
+    <type><specifier>protected</specifier> <name>FrameBuffer</name></type> <name>createFrameBuffer</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>processorFactory_</name><operator>.</operator><name>isAsyncProcessor</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>IllegalStateException</name><argument_list>(<argument><expr><literal type="string">"This implementation does not support AsyncProcessors"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+      </block_content>}</block></if></if_stmt>
+
+      <return>return <expr><operator>new</operator> <call><name>CustomFrameBuffer</name><argument_list>(<argument><expr><name>trans</name></expr></argument>, <argument><expr><name>selectionKey</name></expr></argument>, <argument><expr><name>selectThread</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+   }</block></class>
+ 
+  <class><specifier>private</specifier> class <name>CustomAsyncFrameBuffer</name> <super_list><extends>extends <super><name>AsyncFrameBuffer</name></super></extends></super_list> <block>{
+  <comment type="block" format="javadoc">/**
+   * Custom wrapper around {@link org.apache.thrift.server.AbstractNonblockingServer.FrameBuffer} to extract the client's network location before accepting the
+   * request.
+   */</comment>
+  <class><specifier>private</specifier> class <name>CustomFrameBuffer</name> <super_list><extends>extends <super><name>FrameBuffer</name></super></extends></super_list> <block>{
+ 
+    <constructor><specifier>public</specifier> <name>CustomAsyncFrameBuffer</name><parameter_list>(<parameter><decl><type><name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <constructor><specifier>public</specifier> <name>CustomFrameBuffer</name><parameter_list>(<parameter><decl><type><name>TNonblockingTransport</name></type> <name>trans</name></decl></parameter>, <parameter><decl><type><name>SelectionKey</name></type> <name>selectionKey</name></decl></parameter>, <parameter><decl><type><name>AbstractSelectThread</name></type> <name>selectThread</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>trans</name></expr></argument>, <argument><expr><name>selectionKey</name></expr></argument>, <argument><expr><name>selectThread</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></constructor>
+ 
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></constructor></block></class></block></class></block_content></block></function></block></class>
+
+</unit>

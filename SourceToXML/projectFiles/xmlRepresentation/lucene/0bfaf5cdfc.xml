@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/0bfaf5cdfc.java"><expr_stmt><expr><name>From</name> <literal type="number">0bfaf5cdfcbfb5784f39f38d0c9f40658ddd36f5</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Michael</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Jul</name> <literal type="number">2014</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">16</literal><operator>:</operator><literal type="number">56</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">5610</literal><operator>:</operator> <name>optimization</name><operator>:</operator> <name>just</name> <name>use</name> <name>already</name> <name>allocated</name><operator>/</operator><name>copied</name>
+ <name>PendingTerm</name> <name>to</name></expr></expr_stmt> <for>for min/maxTerm
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1613268 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../OrdsBlockTreeTermsWriter.java             <operator>|</operator> 25 ++++++++++++-------
+ .../blocktree/BlockTreeTermsWriter.java       <operator>|</operator> 24 +++++++++++-------
+ .../VersionBlockTreeTermsWriter.java          <operator>|</operator> 25 ++++++++++++-------
+ 3 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">47</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">27</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktreeords</name><operator>/</operator><name><name>OrdsBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktreeords</name><operator>/</operator><name><name>OrdsBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">4975155a651</literal><operator>..</operator><name>afa6ea2229a</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktreeords</name><operator>/</operator><name><name>OrdsBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktreeords</name><operator>/</operator><name><name>OrdsBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">239</literal></expr><operator>,</operator><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">239</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>OrdsBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+       <expr><name>TermsEnum</name> <name>termsEnum</name> <operator>=</operator> <call><name><name>terms</name><operator>.</operator><name>iterator</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+ 
+       <expr><name>TermsWriter</name> <name>termsWriter</name> <operator>=</operator> <operator>new</operator> <call><name>TermsWriter</name><argument_list>(<argument><expr><call><name><name>fieldInfos</name><operator>.</operator><name>fieldInfo</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+      <expr><name>BytesRef</name> <name>minTerm</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+      <expr><name>BytesRef</name> <name>maxTerm</name> <operator>=</operator> <operator>new</operator> <call><name>BytesRef</name><argument_list>()</argument_list></call></expr>;
+       <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name>BytesRef</name></type> <name>term</name> <init>= <expr><call><name><name>termsEnum</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>term</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <break>break;</break>
+         <expr_stmt/></block_content></block></if></if_stmt></block_content></block></while>}</block></expr></expr_stmt></for>
+        <if_stmt><if>if <condition>(<expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>minTerm</name> <operator>=</operator> <call><name><name>BytesRef</name><operator>.</operator><name>deepCopyOf</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>maxTerm</name><operator>.</operator><name>copyBytes</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>, <argument><expr><name>termsEnum</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       }
+ 
+      termsWriter<expr_stmt><expr><operator>.</operator><call><name>finish</name><argument_list>(<argument><expr><name>minTerm</name></expr></argument>, <argument><expr><ternary><condition><expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><name>maxTerm</name></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>finish</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     }
+   }
+   
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">464</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">458</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>OrdsBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+ 
+     <comment type="line">// Pending stack of terms and blocks.  As terms arrive (in sorted order)</comment>
+     <comment type="line">// we append to this stack, and once the top of the stack has enough</comment>
+    <comment type="line">// terms starting with a common prefix, write write a new block with</comment>
+    <comment type="line">// terms starting with a common prefix, we write a new block with</comment>
+     <comment type="line">// those terms and replace those terms in the stack with a new block:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingEntry</name></argument>&gt;</argument_list></name> <name>pending</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+     <comment type="line">// Reused in writeBlocks:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingBlock</name></argument>&gt;</argument_list></name> <name>newBlocks</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>firstPendingTerm</name></expr>;
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>lastPendingTerm</name></expr>;
+
+     <comment type="block" format="javadoc">/** Writes the top count entries in pending, using prevTerm to compute the prefix. */</comment>
+     <expr><name>void</name> <call><name>writeBlocks</name><argument_list>(<argument><expr><name>int</name> <name>prefixLength</name></expr></argument>, <argument><expr><name>int</name> <name>count</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument>
+ 
+@<argument>@ <expr><operator>-</operator><literal type="number">812</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">809</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>OrdsBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>PendingTerm</name></type> <name>term</name> <init>= <expr><operator>new</operator> <call><name>PendingTerm</name><argument_list>(<argument><expr><call><name><name>BytesRef</name><operator>.</operator><name>deepCopyOf</name></name><argument_list>(<argument><expr><name>text</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>state</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>numTerms</name><operator>++</operator></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>firstPendingTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>firstPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></expr>}</block>
+        <name>lastPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+       }
+     }
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">853</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">854</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>OrdsBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+     }</block>
+ 
+     <comment type="line">// Finishes all terms in this field</comment>
+    <specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>(<argument><expr><name>BytesRef</name> <name>minTerm</name></expr></argument>, <argument><expr><name>BytesRef</name> <name>maxTerm</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+       <if_stmt><if>if <condition>(<expr><name>numTerms</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+         <comment type="line">// if (DEBUG) System.out.println("BTTW.finish pending.size()=" + pending.size());</comment>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">881</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">882</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>OrdsBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+         <comment type="line">//   w.close();</comment>
+         <comment type="line">// }</comment>
+ 
+        <assert>assert <expr><name>firstPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <name>BytesRef</name> <name>minTerm</name> <operator>=</operator> <operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>firstPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+
+        <assert>assert <expr><name>lastPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <decl_stmt><decl><type><name>BytesRef</name></type> <name>maxTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>lastPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+         <expr_stmt><expr><call><name><name>fields</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FieldMetaData</name><argument_list>(<argument><expr><name>fieldInfo</name></expr></argument>,
+                                      <argument><expr><operator>(</operator><operator>(</operator><name>PendingBlock</name><operator>)</operator> <call><name><name>pending</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>)</operator><operator>.</operator><call><name><name>index</name><operator>.</operator><name>getEmptyOutput</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                      <argument><expr><name>numTerms</name></expr></argument>,
+<argument><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktree</name><operator>/</operator><name><name>BlockTreeTermsWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktree</name><operator>/</operator><name><name>BlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b645bf7d5fe</name><operator>..</operator><literal type="number">259f2eb0f2a</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktree</name><operator>/</operator><name><name>BlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>blocktree</name><operator>/</operator><name><name>BlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">373</literal></expr></argument>,<argument><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">373</literal></expr></argument>,<argument><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>final</name> class <name>BlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+       <expr><name>TermsEnum</name> <name>termsEnum</name> <operator>=</operator> <call><name><name>terms</name><operator>.</operator><name>iterator</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+ 
+       <name>TermsWriter</name> <name>termsWriter</name> <operator>=</operator> <operator>new</operator> <call><name>TermsWriter</name><argument_list>(<argument><expr><call><name><name>fieldInfos</name><operator>.</operator><name>fieldInfo</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></block></expr></argument>;</argument_list></call></expr></argument></argument_list></call></expr></expr_stmt>
+      <decl_stmt><decl><type><name>BytesRef</name></type> <name>minTerm</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>BytesRef</name></type> <name>maxTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name>BytesRef</name></type> <name>term</name> <init>= <expr><call><name><name>termsEnum</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>term</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <break>break;</break>
+         </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>minTerm</name> <operator>=</operator> <call><name><name>BytesRef</name><operator>.</operator><name>deepCopyOf</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>maxTerm</name><operator>.</operator><name>copyBytes</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>, <argument><expr><name>termsEnum</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></while>
+ 
+      <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>finish</name></name><argument_list>(<argument><expr><name>minTerm</name></expr></argument>, <argument><expr><ternary><condition><expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><name>maxTerm</name></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>finish</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+   }
+   
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">566</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">560</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+ 
+     <comment type="line">// Pending stack of terms and blocks.  As terms arrive (in sorted order)</comment>
+     <comment type="line">// we append to this stack, and once the top of the stack has enough</comment>
+    <comment type="line">// terms starting with a common prefix, write write a new block with</comment>
+    <comment type="line">// terms starting with a common prefix, we write a new block with</comment>
+     <comment type="line">// those terms and replace those terms in the stack with a new block:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingEntry</name></argument>&gt;</argument_list></name> <name>pending</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+     <comment type="line">// Reused in writeBlocks:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingBlock</name></argument>&gt;</argument_list></name> <name>newBlocks</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>firstPendingTerm</name></expr>;
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>lastPendingTerm</name></expr>;
+
+     <comment type="block" format="javadoc">/** Writes the top count entries in pending, using prevTerm to compute the prefix. */</comment>
+     <expr><name>void</name> <call><name>writeBlocks</name><argument_list>(<argument><expr><name>int</name> <name>prefixLength</name></expr></argument>, <argument><expr><name>int</name> <name>count</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument>
+ 
+@<argument>@ <expr><operator>-</operator><literal type="number">903</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">900</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BlockTreeTermsWriter</name> extends <name>FieldsConsumer</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>PendingTerm</name></type> <name>term</name> <init>= <expr><operator>new</operator> <call><name>PendingTerm</name><argument_list>(<argument><expr><name>text</name></expr></argument>, <argument><expr><name>state</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>numTerms</name><operator>++</operator></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>firstPendingTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>firstPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></expr>}</block>
+        <name>lastPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+       }
+     }
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">944</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">945</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+     }</block>
+ 
+     <comment type="line">// Finishes all terms in this field</comment>
+    <specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>(<argument><expr><name>BytesRef</name> <name>minTerm</name></expr></argument>, <argument><expr><name>BytesRef</name> <name>maxTerm</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+       <if_stmt><if>if <condition>(<expr><name>numTerms</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+         <comment type="line">// if (DEBUG) System.out.println("BTTW: finish prefixStarts=" + Arrays.toString(prefixStarts));</comment>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">973</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">974</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>BlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+           <expr><call><name><name>w</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;
+         }</block></expr></expr_stmt>
+         <expr_stmt><expr><operator>*</operator><operator>/</operator></expr></expr_stmt>
+        <assert>assert <expr><name>firstPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <decl_stmt><decl><type><name>BytesRef</name></type> <name>minTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>firstPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <assert>assert <expr><name>lastPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <decl_stmt><decl><type><name>BytesRef</name></type> <name>maxTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>lastPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+         <expr_stmt><expr><call><name><name>fields</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FieldMetaData</name><argument_list>(<argument><expr><name>fieldInfo</name></expr></argument>,
+                                      <argument><expr><operator>(</operator><operator>(</operator><name>PendingBlock</name><operator>)</operator> <call><name><name>pending</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>)</operator><operator>.</operator><call><name><name>index</name><operator>.</operator><name>getEmptyOutput</name></name><argument_list>()</argument_list></call></expr></argument>,
+<argument><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>sandbox</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>idversion</name><operator>/</operator><name><name>VersionBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>sandbox</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>idversion</name><operator>/</operator><name><name>VersionBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b11af85931f</name><operator>..</operator><literal type="number">3bc4ad5bd18</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>sandbox</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>idversion</name><operator>/</operator><name><name>VersionBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>sandbox</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>codecs</name><operator>/</operator><name>idversion</name><operator>/</operator><name><name>VersionBlockTreeTermsWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">247</literal></expr></argument>,<argument><expr><literal type="number">21</literal> <operator>+</operator><literal type="number">247</literal></expr></argument>,<argument><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>final</name> class <name>VersionBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+       <expr><name>TermsEnum</name> <name>termsEnum</name> <operator>=</operator> <call><name><name>terms</name><operator>.</operator><name>iterator</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+ 
+       <name>TermsWriter</name> <name>termsWriter</name> <operator>=</operator> <operator>new</operator> <call><name>TermsWriter</name><argument_list>(<argument><expr><call><name><name>fieldInfos</name><operator>.</operator><name>fieldInfo</name></name><argument_list>(<argument><expr><name>field</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></block></expr></argument>;</argument_list></call></expr></argument></argument_list></call></expr></expr_stmt>
+      <decl_stmt><decl><type><name>BytesRef</name></type> <name>minTerm</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>BytesRef</name></type> <name>maxTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name>BytesRef</name></type> <name>term</name> <init>= <expr><call><name><name>termsEnum</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>term</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <break>break;</break>
+         </block_content>}</block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>minTerm</name> <operator>=</operator> <call><name><name>BytesRef</name><operator>.</operator><name>deepCopyOf</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><call><name><name>maxTerm</name><operator>.</operator><name>copyBytes</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>, <argument><expr><name>termsEnum</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></while>
+ 
+      <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>finish</name></name><argument_list>(<argument><expr><name>minTerm</name></expr></argument>, <argument><expr><ternary><condition><expr><name>minTerm</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><name>maxTerm</name></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>termsWriter</name><operator>.</operator><name>finish</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+   }
+   
+@<annotation>@</annotation> -<expr_stmt><expr><literal type="number">442</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">436</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>VersionBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+ 
+     <comment type="line">// Pending stack of terms and blocks.  As terms arrive (in sorted order)</comment>
+     <comment type="line">// we append to this stack, and once the top of the stack has enough</comment>
+    <comment type="line">// terms starting with a common prefix, write write a new block with</comment>
+    <comment type="line">// terms starting with a common prefix, we write a new block with</comment>
+     <comment type="line">// those terms and replace those terms in the stack with a new block:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingEntry</name></argument>&gt;</argument_list></name> <name>pending</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+     <comment type="line">// Reused in writeBlocks:</comment>
+     <expr><specifier>private</specifier> <name>final</name> <name><name>List</name><argument_list type="generic">&lt;<argument><name>PendingBlock</name></argument>&gt;</argument_list></name> <name>newBlocks</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>firstPendingTerm</name></expr>;
+    <expr><specifier>private</specifier> <name>PendingTerm</name> <name>lastPendingTerm</name></expr>;
+
+     <comment type="block" format="javadoc">/** Writes the top count entries in pending, using prevTerm to compute the prefix. */</comment>
+     <expr><name>void</name> <call><name>writeBlocks</name><argument_list>(<argument><expr><name>int</name> <name>prefixLength</name></expr></argument>, <argument><expr><name>int</name> <name>count</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument>
+ 
+@<argument>@ <expr><operator>-</operator><literal type="number">756</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">753</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>VersionBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>PendingTerm</name></type> <name>term</name> <init>= <expr><operator>new</operator> <call><name>PendingTerm</name><argument_list>(<argument><expr><call><name><name>BytesRef</name><operator>.</operator><name>deepCopyOf</name></name><argument_list>(<argument><expr><name>text</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>state</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>numTerms</name><operator>++</operator></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><name>firstPendingTerm</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>firstPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></expr>}</block>
+        <name>lastPendingTerm</name> <operator>=</operator> <name>term</name></expr>;</expr_stmt>
+       }
+     }
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">797</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">798</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>VersionBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+     }</block>
+ 
+     <comment type="line">// Finishes all terms in this field</comment>
+    <specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>(<argument><expr><name>BytesRef</name> <name>minTerm</name></expr></argument>, <argument><expr><name>BytesRef</name> <name>maxTerm</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><specifier>public</specifier> <name>void</name> <call><name>finish</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+       <if_stmt><if>if <condition>(<expr><name>numTerms</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+ 
+         <comment type="line">// TODO: if pending.size() is already 1 with a non-zero prefix length</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">824</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">825</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>final</name> <name>class</name> <name>VersionBlockTreeTermsWriter</name> extends <name>FieldsConsumer</name> <block>{
+         <comment type="line">//   w.close();</comment>
+         <comment type="line">// }</comment>
+ 
+        <assert>assert <expr><name>firstPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <name>BytesRef</name> <name>minTerm</name> <operator>=</operator> <operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>firstPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+
+        <assert>assert <expr><name>lastPendingTerm</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</assert>
+        <decl_stmt><decl><type><name>BytesRef</name></type> <name>maxTerm</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>lastPendingTerm</name><operator>.</operator><name>termBytes</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+         <expr_stmt><expr><call><name><name>fields</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>FieldMetaData</name><argument_list>(<argument><expr><name>fieldInfo</name></expr></argument>,
+                                      <argument><expr><operator>(</operator><operator>(</operator><name>PendingBlock</name><operator>)</operator> <call><name><name>pending</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call><operator>)</operator><operator>.</operator><call><name><name>index</name><operator>.</operator><name>getEmptyOutput</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                      <argument><expr><name>numTerms</name></expr></argument>,
+<argument><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></argument></argument_list></call></expr></argument></argument_list></call></expr></expr_stmt></block_content></block></if></if_stmt>
+
+</unit>

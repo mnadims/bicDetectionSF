@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/d2f82cd92.java"><expr_stmt><expr><name>From</name> <name>d2f82cd9258060cd89865ff4f7d5eed9187ede03</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Josh</name> <name><name>Elser</name> <argument_list type="generic">&lt;<argument><name>elserj</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">24</literal> <name>Oct</name> <literal type="number">2014</literal> <literal type="number">21</literal><operator>:</operator><literal type="number">39</literal><operator>:</operator><literal type="number">03</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">3258</literal> <name>Make</name> <name>the</name> <name><name>dfs</name><operator>.</operator><name>datanode</name><operator>.</operator><name>synconclose</name></name> <name>check</name> <name>only</name>
+ <name>fire</name> <name>once</name> <name>and</name> <name>ensure</name> <name>logging</name> <name>is</name> <name>properly</name> <name>set</name> <name><name>up</name><operator>.</operator>
+
+<name>Fixed</name></name> <name>up</name> <name>some</name> <name>initialization</name> <name>code</name> <name>so</name> <name>that</name> <name>logging</name> <name>is</name> <name>actually</name> <name>one</name> <name>of</name> <name>the</name> <name>first</name> <name>things</name>
+<name>that</name> <name>happens</name> <name>so</name> <name>log</name> <name>messages</name> <name>aren</name><literal type="char">'t thrown into the .out files (as was
+normally the case).
+--
+ .../org/apache/accumulo/server/Accumulo.java  | 67 ++++++++++++-------
+ .../accumulo/server/fs/VolumeManagerImpl.java | 11 ++-
+ .../server/watcher/Log4jConfiguration.java    | 49 ++++++++++++++
+ .../server/watcher/MonitorLog4jWatcher.java   | 25 ++-----
+ .../accumulo/gc/SimpleGarbageCollector.java   |  8 ++-
+ .../org/apache/accumulo/master/Master.java    | 10 +--
+ .../org/apache/accumulo/monitor/Monitor.java  | 21 +++---
+ .../apache/accumulo/tracer/TraceServer.java   |  8 ++-
+ .../apache/accumulo/tserver/TabletServer.java |  8 ++-
+ 9 files changed, 140 insertions(+), 67 deletions(-)
+ create mode 100644 server/base/src/main/java/org/apache/accumulo/server/watcher/Log4jConfiguration.java
+
+diff --git a/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java b/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+index 6ba05cc67..0dc76b222 100644
+-- a/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+++ b/server/base/src/main/java/org/apache/accumulo/server/Accumulo.java
+@@ -27,6 +27,8 @@ import java.util.TreeMap;
+ 
+ import org.apache.accumulo.core.Constants;
+ import org.apache.accumulo.core.client.AccumuloException;
+import org.apache.accumulo.core.client.Instance;
+import org.apache.accumulo.core.conf.AccumuloConfiguration;
+ import org.apache.accumulo.core.conf.Property;
+ import org.apache.accumulo.core.trace.DistributedTrace;
+ import org.apache.accumulo.core.util.AddressUtil;
+@@ -34,13 +36,14 @@ import org.apache.accumulo.core.util.UtilWaitThread;
+ import org.apache.accumulo.core.util.Version;
+ import org.apache.accumulo.core.volume.Volume;
+ import org.apache.accumulo.core.zookeeper.ZooUtil;
+import org.apache.accumulo.fate.ReadOnlyTStore;
+ import org.apache.accumulo.fate.ReadOnlyStore;
+import org.apache.accumulo.fate.ReadOnlyTStore;
+ import org.apache.accumulo.fate.ZooStore;
+ import org.apache.accumulo.server.client.HdfsZooInstance;
+ import org.apache.accumulo.server.conf.ServerConfiguration;
+ import org.apache.accumulo.server.fs.VolumeManager;
+ import org.apache.accumulo.server.util.time.SimpleTimer;
+import org.apache.accumulo.server.watcher.Log4jConfiguration;
+ import org.apache.accumulo.server.watcher.MonitorLog4jWatcher;
+ import org.apache.accumulo.server.zookeeper.ZooReaderWriter;
+ import org.apache.hadoop.fs.FileStatus;
+@@ -52,9 +55,9 @@ import org.apache.log4j.xml.DOMConfigurator;
+ import org.apache.zookeeper.KeeperException;
+ 
+ public class Accumulo {
+  
+
+   private static final Logger log = Logger.getLogger(Accumulo.class);
+  
+
+   public static synchronized void updateAccumuloVersion(VolumeManager fs, int oldVersion) {
+     for (Volume volume : fs.getVolumes()) {
+       try {
+@@ -73,7 +76,7 @@ public class Accumulo {
+       }
+     }
+   }
+  
+
+   public static synchronized int getAccumuloPersistentVersion(FileSystem fs, Path path) {
+     int dataVersion;
+     try {
+@@ -88,7 +91,7 @@ public class Accumulo {
+       throw new RuntimeException("Unable to read accumulo version: an error occurred.", e);
+     }
+   }
+  
+
+   public static synchronized int getAccumuloPersistentVersion(VolumeManager fs) {
+     // It doesn'</literal><name>t</name> <name>matter</name> <name>which</name> <name>Volume</name> <name>is</name> <name>used</name> <name>as</name> <name>they</name> <name>should</name> <name>all</name> <name>have</name> <name>the</name> <name>data</name> <name>version</name> <name>stored</name>
+     <name>Volume</name> <name>v</name> <operator>=</operator> <call><name><name>fs</name><operator>.</operator><name>getVolumes</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>next</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">109</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">112</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Accumulo</name> <block>{
+       <expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"creating remote sink for trace spans"</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;
+     }</block></expr></expr_stmt>
+   }
+  
+
+   <comment type="block" format="javadoc">/**
+    * Finds the best log4j configuration file. A generic file is used only if an
+    * application-specific file is not available. An XML file is preferred over
+@@ -139,23 +142,19 @@ public class Accumulo {
+     return defaultConfigFile;
+   }
+ 
+  public static void init(VolumeManager fs, ServerConfiguration config, String application) throws UnknownHostException {
+    
+  public static void setupLogging(String application) throws UnknownHostException {
+     System.setProperty("org.apache.accumulo.core.application", application);
+    
+
+     if (System.getenv("ACCUMULO_LOG_DIR") != null)
+       System.setProperty("org.apache.accumulo.core.dir.log", System.getenv("ACCUMULO_LOG_DIR"));
+     else
+       System.setProperty("org.apache.accumulo.core.dir.log", System.getenv("ACCUMULO_HOME") + "/logs/");
+    
+
+     String localhost = InetAddress.getLocalHost().getHostName();
+     System.setProperty("org.apache.accumulo.core.ip.localhost.hostname", localhost);
+    
+    int logPort = config.getConfiguration().getPort(Property.MONITOR_LOG4J_PORT);
+    System.setProperty("org.apache.accumulo.core.host.log.port", Integer.toString(logPort));
+    
+
+     // Use a specific log config, if it exists
+    String logConfig = locateLogConfig(System.getenv("ACCUMULO_CONF_DIR"), application);
+    String logConfigFile = locateLogConfig(System.getenv("ACCUMULO_CONF_DIR"), application);
+     // Turn off messages about not being able to reach the remote logger... we protect against that.
+     LogLog.setQuietMode(true);
+ 
+@@ -164,31 +163,47 @@ public class Accumulo {
+ 
+     DOMConfigurator.configureAndWatch(auditConfig, 5000);
+ 
+    // Configure logging using information advertised in zookeeper by the monitor
+    MonitorLog4jWatcher logConfigWatcher = new MonitorLog4jWatcher(config.getInstance().getInstanceID(), logConfig);
+    // Set up local file-based logging right away
+    Log4jConfiguration logConf = new Log4jConfiguration(logConfigFile);
+    logConf.resetLogger();
+  }
+
+  public static void init(VolumeManager fs, ServerConfiguration serverConfig, String application) throws IOException {
+    final AccumuloConfiguration conf = serverConfig.getConfiguration();
+    final Instance instance = serverConfig.getInstance();
+
+    // Use a specific log config, if it exists
+    final String logConfigFile = locateLogConfig(System.getenv("ACCUMULO_CONF_DIR"), application);
+
+    // Set up polling log4j updates and log-forwarding using information advertised in zookeeper by the monitor
+    MonitorLog4jWatcher logConfigWatcher = new MonitorLog4jWatcher(instance.getInstanceID(), logConfigFile);
+     logConfigWatcher.setDelay(5000L);
+     logConfigWatcher.start();
+ 
+    // Makes sure the log-forwarding to the monitor is configured
+    int logPort = conf.getPort(Property.MONITOR_LOG4J_PORT);
+    System.setProperty("org.apache.accumulo.core.host.log.port", Integer.toString(logPort));
+
+     log.info(application + " starting");
+    log.info("Instance " + config.getInstance().getInstanceID());
+    log.info("Instance " + serverConfig.getInstance().getInstanceID());
+     int dataVersion = Accumulo.getAccumuloPersistentVersion(fs);
+     log.info("Data Version " + dataVersion);
+     Accumulo.waitForZookeeperAndHdfs(fs);
+    
+
+     Version codeVersion = new Version(Constants.VERSION);
+     if (!(canUpgradeFromDataVersion(dataVersion))) {
+       throw new RuntimeException("This version of accumulo (" + codeVersion + ") is not compatible with files stored using data version " + dataVersion);
+     }
+    
+
+     TreeMap&lt;String,String&gt; sortedProps = new TreeMap&lt;String,String&gt;();
+    for (Entry&lt;String,String&gt; entry : config.getConfiguration())
+    for (Entry&lt;String,String&gt; entry : conf)
+       sortedProps.put(entry.getKey(), entry.getValue());
+    
+
+     for (Entry&lt;String,String&gt; entry : sortedProps.entrySet()) {
+       String key = entry.getKey();
+       log.info(key + " = " + (Property.isSensitive(key) ? "&lt;hidden&gt;" : entry.getValue()));
+     }
+    
+
+     monitorSwappiness();
+   }
+ 
+@@ -206,9 +221,9 @@ public class Accumulo {
+   public static boolean persistentVersionNeedsUpgrade(final int accumuloPersistentVersion) {
+     return accumuloPersistentVersion == ServerConstants.TWO_DATA_VERSIONS_AGO || accumuloPersistentVersion == ServerConstants.PREV_DATA_VERSION;
+   }
+  
+
+   /**
+   * 
+   *
+    */</comment>
+   public <function><type><specifier>static</specifier> <name>void</name></type> <name>monitorSwappiness</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><call><name><name>SimpleTimer</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>schedule</name><argument_list>(<argument><expr><operator>new</operator> <class><super><name>Runnable</name></super><argument_list>()</argument_list> <block>{
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">238</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">253</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>Accumulo</name> <block>{
+       }</block></expr></expr_stmt>
+     }</block></class></expr></argument>, <argument><expr><literal type="number">1000</literal></expr></argument>, <argument><expr><literal type="number">10</literal> <operator>*</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+  
+
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>waitForZookeeperAndHdfs</name><parameter_list>(<parameter><decl><type><name>VolumeManager</name></type> <name>fs</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Attempting to talk to zookeeper"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>VolumeManagerImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>VolumeManagerImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">54d7e2a3f</literal><operator>..</operator><literal type="number">38a836923</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>VolumeManagerImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>fs</name><operator>/</operator><name><name>VolumeManagerImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>EnumSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name><operator>.</operator><name>Entry</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">67</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>VolumeManagerImpl</name> implements <name>VolumeManager</name> <block>{
+ 
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>Logger</name> <name>log</name> <operator>=</operator> <call><name><name>Logger</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>VolumeManagerImpl</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+  <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>WARNED_ABOUT_SYNCONCLOSE</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+
+   <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Volume</name></argument>&gt;</argument_list></name> <name>volumesByName</name></expr>;
+   <expr><name><name>Multimap</name><argument_list type="generic">&lt;<argument><name>URI</name></argument>,<argument><name>Volume</name></argument>&gt;</argument_list></name> <name>volumesByFileSystemUri</name></expr>;
+   <expr><name>Volume</name> <name>defaultVolume</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">262</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">265</literal></expr>,<expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>class</name> <name>VolumeManagerImpl</name> implements <name>VolumeManager</name> <block>{
+ 
+           <comment type="line">// Everything else</comment>
+           <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>fs</name><operator>.</operator><name>getConf</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getBoolean</name><argument_list>(<argument><expr><literal type="string">"dfs.datanode.synconclose"</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"dfs.datanode.synconclose set to false in hdfs-site.xml: data loss is possible on system reset or power loss"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// Only warn once per process per volume URI</comment>
+            <synchronized>synchronized <init>(<expr><name>WARNED_ABOUT_SYNCONCLOSE</name></expr>)</init> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>WARNED_ABOUT_SYNCONCLOSE</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>WARNED_ABOUT_SYNCONCLOSE</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"dfs.datanode.synconclose set to false in hdfs-site.xml: data loss is possible on hard system reset or power loss"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+              <expr_stmt/></block_content></block></if></if_stmt></block_content></block></synchronized></block_content></block></if></if_stmt>}</block></expr>
+            }</block></expr></expr_stmt>
+           </block_content>}</block></while>
+         </block_content>}</block></function> <catch>catch <parameter_list>(<parameter><decl><type><name>ClassNotFoundException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+           <comment type="line">// hadoop 1.0.X or hadoop 1.1.0</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>Log4jConfiguration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>Log4jConfiguration</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">000000000..7dea7a323</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>Log4jConfiguration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">49</literal> @@</expr></expr_stmt>
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>watcher</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>LogManager</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>PropertyConfigurator</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>xml</name><operator>.</operator><name>DOMConfigurator</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * Encapsulate calls to PropertyConfigurator or DOMConfigurator to set up logging
+ */</comment>
+<class><specifier>public</specifier> class <name>Log4jConfiguration</name> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>usingProperties</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>filename</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>Log4jConfiguration</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>filename</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>usingProperties</name> <operator>=</operator> <operator>(</operator><name>filename</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>filename</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">".properties"</literal></expr></argument>)</argument_list></call><operator>)</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>filename</name></name> <operator>=</operator> <name>filename</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isUsingProperties</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>usingProperties</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>resetLogger</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <comment type="line">// Force a reset on the logger's configuration</comment>
+    <expr_stmt><expr><call><name><name>LogManager</name><operator>.</operator><name>resetConfiguration</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>usingProperties</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><operator>new</operator> <call><name>PropertyConfigurator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>doConfigure</name><argument_list>(<argument><expr><name>filename</name></expr></argument>, <argument><expr><call><name><name>LogManager</name><operator>.</operator><name>getLoggerRepository</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><operator>new</operator> <call><name>DOMConfigurator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>doConfigure</name><argument_list>(<argument><expr><name>filename</name></expr></argument>, <argument><expr><call><name><name>LogManager</name><operator>.</operator><name>getLoggerRepository</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>MonitorLog4jWatcher</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>MonitorLog4jWatcher</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>bc5e99feb</name><operator>..</operator><literal type="number">292129d45</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>MonitorLog4jWatcher</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>base</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>server</name><operator>/</operator><name>watcher</name><operator>/</operator><name><name>MonitorLog4jWatcher</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>server</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>ZooReaderWriter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Appender</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>LogManager</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>PropertyConfigurator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>helpers</name><operator>.</operator><name>FileWatchdog</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>xml</name><operator>.</operator><name>DOMConfigurator</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>KeeperException</name><operator>.</operator><name>NoNodeException</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>WatchedEvent</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>Watcher</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">20</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>MonitorLog4jWatcher</name> extends <name>FileWatchdog</name> implements <name>Watcher</name> <block>{
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>PORT_PROPERTY_NAME</name> <operator>=</operator> <literal type="string">"org.apache.accumulo.core.host.log.port"</literal></expr>;
+ 
+   <expr><specifier>private</specifier> <name>final</name> <name>Object</name> <name>lock</name></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>boolean</name> <name>usingProperties</name></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>Log4jConfiguration</name> <name>logConfig</name></expr>;
+   <expr><specifier>private</specifier> <name>boolean</name> <name>loggingDisabled</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+   <expr><specifier>protected</specifier> <name>String</name> <name>path</name></expr>;
+ 
+   <expr><specifier>public</specifier> <call><name>MonitorLog4jWatcher</name><argument_list>(<argument><expr><name>String</name> <name>instance</name></expr></argument>, <argument><expr><name>String</name> <name>filename</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>super</name><argument_list>(<argument><expr><name>filename</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>usingProperties</name> <operator>=</operator> <operator>(</operator><name>filename</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>filename</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">".properties"</literal></expr></argument>)</argument_list></call><operator>)</operator></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>path</name></name> <operator>=</operator> <call><name><name>ZooUtil</name><operator>.</operator><name>getRoot</name></name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call> <operator>+</operator> <name><name>Constants</name><operator>.</operator><name>ZMONITOR_LOG4J_ADDR</name></name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>lock</name></name> <operator>=</operator> <operator>new</operator> <call><name>Object</name><argument_list>()</argument_list></call></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>logConfig</name></name> <operator>=</operator> <operator>new</operator> <call><name>Log4jConfiguration</name><argument_list>(<argument><expr><name>filename</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doOnChange</name><argument_list>()</argument_list></call></expr>;
+   }</block>
+ 
+   <name>boolean</name> <call><name>isUsingProperties</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>usingProperties</name></expr>;</return></block></expr>
+    <return>return <expr><call><name><name>logConfig</name><operator>.</operator><name>isUsingProperties</name></name><argument_list>()</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+
+   <function><type><name>String</name></type> <name>getPath</name><parameter_list>()</parameter_list> <block>{<block_content>
+     <return>return <expr><name>path</name></expr>;</return>
+   </block_content>}</block></function>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">74</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">74</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>MonitorLog4jWatcher</name> extends <name>FileWatchdog</name> implements <name>Watcher</name> <block>{
+   }</block>
+ 
+   @<name>Override</name>
+  <specifier>protected</specifier> <name>void</name> <call><name>doOnChange</name><argument_list>()</argument_list></call> <block>{
+  <expr><specifier>public</specifier> <name>void</name> <call><name>doOnChange</name><argument_list>()</argument_list></call> <block>{
+     <comment type="line">// this method gets called in the parent class' constructor</comment>
+     <comment type="line">// I'm not sure of a better way to get around this. The final modifier helps though.</comment>
+     <if_stmt><if>if <condition>(<expr><literal type="null">null</literal> <operator>==</operator> <name>lock</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>resetLogger</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <return>return;</return>
+     <expr_stmt/></block_content></block></if></if_stmt>}</block>
+ 
+@@ <operator>-</operator><literal type="number">87</literal></expr>,<expr><literal type="number">17</literal> <operator>+</operator><literal type="number">86</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>MonitorLog4jWatcher</name> extends <name>FileWatchdog</name> implements <name>Watcher</name> <block>{
+       <comment type="line">// Either way will result in log-forwarding being restarted</comment>
+       <expr><name>loggingDisabled</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+       <expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Enabled log-forwarding"</literal></expr></argument>)</argument_list></call></expr>;
+      <expr><call><name>resetLogger</name><argument_list>()</argument_list></call></expr>;
+    }</block></expr>
+  }</block>
+
+  <specifier>private</specifier> <name>void</name> <call><name>resetLogger</name><argument_list>()</argument_list></call> <block>{
+    <comment type="line">// Force a reset on the logger's configuration</comment>
+    <expr><call><name><name>LogManager</name><operator>.</operator><name>resetConfiguration</name></name><argument_list>()</argument_list></call></expr>;
+    <if_stmt><if>if <condition>(<expr><name>usingProperties</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><operator>new</operator> <call><name>PropertyConfigurator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>doConfigure</name><argument_list>(<argument><expr><name>filename</name></expr></argument>, <argument><expr><call><name><name>LogManager</name><operator>.</operator><name>getLoggerRepository</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+      <expr_stmt><expr><operator>new</operator> <call><name>DOMConfigurator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>doConfigure</name><argument_list>(<argument><expr><name>filename</name></expr></argument>, <argument><expr><call><name><name>LogManager</name><operator>.</operator><name>getLoggerRepository</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>logConfig</name><operator>.</operator><name>resetLogger</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></else></if_stmt>
+   </block_content>}</block></catch>
+ 
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d04303b5f</name><operator>..</operator><literal type="number">9b4af58f4</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>gc</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>gc</name><operator>/</operator><name><name>SimpleGarbageCollector</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">137</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">137</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@ <specifier>public</specifier> <name>class</name> <name>SimpleGarbageCollector</name> implements <name>Iface</name> <block>{
+ 
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>main</name><argument_list>(<argument><expr><name><name>String</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>UnknownHostException</name></expr></argument>, <argument><expr><name>IOException</name> <block>{
+     <expr><call><name><name>SecurityUtil</name><operator>.</operator><name>serverLogin</name></name><argument_list>(<argument><expr><call><name><name>ServerConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><name>final</name> <name>String</name> <name>app</name> <operator>=</operator> <literal type="string">"gc"</literal></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>setupLogging</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Instance</name> <name>instance</name> <operator>=</operator> <call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>ServerConfiguration</name> <name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>ServerConfiguration</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>final</name> <name>VolumeManager</name> <name>fs</name> <operator>=</operator> <call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="string">"gc"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Opts</name> <name>opts</name> <operator>=</operator> <operator>new</operator> <call><name>Opts</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><literal type="string">"gc"</literal></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>SimpleGarbageCollector</name> <name>gc</name> <operator>=</operator> <operator>new</operator> <call><name>SimpleGarbageCollector</name><argument_list>(<argument><expr><name>opts</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>AccumuloConfiguration</name> <name>config</name> <operator>=</operator> <call><name><name>conf</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr>;
+ 
+     <expr><call><name><name>gc</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>instance</name></expr></argument>, <argument><expr><call><name><name>SystemCredentials</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>config</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"gc"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>gc</name><operator>.</operator><name>run</name></name><argument_list>()</argument_list></call></expr>;
+   }</block>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f894afc02</name><operator>..</operator><literal type="number">52f116fbf</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>master</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>master</name><operator>/</operator><name><name>Master</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">1139</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">1139</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>Master</name> implements <name><name>LiveTServerSet</name><operator>.</operator><name>Listener</name></name></expr><operator>,</operator> <expr><name>TableObserver</name></expr><operator>,</operator> <expr><name>CurrentSt</name></expr></expr_stmt>
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><call><name><name>SecurityUtil</name><operator>.</operator><name>serverLogin</name></name><argument_list>(<argument><expr><call><name><name>ServerConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+      <decl_stmt><decl><type><name>VolumeManager</name></type> <name>fs</name> <init>= <expr><call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>ServerOpts</name></type> <name>opts</name> <init>= <expr><operator>new</operator> <call><name>ServerOpts</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><literal type="string">"master"</literal></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>app</name> <init>= <expr><literal type="string">"master"</literal></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>String</name></type> <name>hostname</name> <init>= <expr><call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>setupLogging</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Instance</name></type> <name>instance</name> <init>= <expr><call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>ServerConfiguration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>ServerConfiguration</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="string">"master"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>VolumeManager</name></type> <name>fs</name> <init>= <expr><call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>Master</name></type> <name>master</name> <init>= <expr><operator>new</operator> <call><name>Master</name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>fs</name></expr></argument>, <argument><expr><name>hostname</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><literal type="string">"master"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>master</name><operator>.</operator><name>run</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Unexpected exception, exiting"</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">948aed1c1</literal><operator>..</operator><name>c4ab6e6d0</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>monitor</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>monitor</name><operator>/</operator><name><name>Monitor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name><operator>.</operator><name>Entry</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TreeMap</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>ScanServlet</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>net</name><operator>.</operator><name>HostAndPort</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>Constants</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Connector</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Instance</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">64</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>LogServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>MasterServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>OperationServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>ProblemServlet</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>ScanServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>ShellServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>TServersServlet</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>monitor</name><operator>.</operator><name>servlets</name><operator>.</operator><name>TablesServlet</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">90</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">89</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>trace</name><operator>.</operator><name>instrument</name><operator>.</operator><name>Tracer</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>zookeeper</name><operator>.</operator><name>KeeperException</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>net</name><operator>.</operator><name>HostAndPort</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  * Serve master statistics with an embedded web server.
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">396</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">397</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@ <specifier>public</specifier> <name>class</name> <name>Monitor</name> <block>{
+ 
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>main</name><argument_list>(<argument><expr><name><name>String</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><call><name><name>SecurityUtil</name><operator>.</operator><name>serverLogin</name></name><argument_list>(<argument><expr><call><name><name>ServerConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    
+    <expr><name>VolumeManager</name> <name>fs</name> <operator>=</operator> <call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;
+
+     <expr><name>ServerOpts</name> <name>opts</name> <operator>=</operator> <operator>new</operator> <call><name>ServerOpts</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><literal type="string">"monitor"</literal></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>final</name> <name>String</name> <name>app</name> <operator>=</operator> <literal type="string">"monitor"</literal></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>String</name> <name>hostname</name> <operator>=</operator> <call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>setupLogging</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>VolumeManager</name> <name>fs</name> <operator>=</operator> <call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>instance</name> <operator>=</operator> <call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>config</name> <operator>=</operator> <operator>new</operator> <call><name>ServerConfiguration</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>config</name></expr></argument>, <argument><expr><literal type="string">"monitor"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>config</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Monitor</name> <name>monitor</name> <operator>=</operator> <operator>new</operator> <call><name>Monitor</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><literal type="string">"monitor"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>monitor</name><operator>.</operator><name>run</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+@@ <operator>-</operator><literal type="number">488</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">491</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Monitor</name> <block>{
+ 
+       }</block></expr></expr_stmt>
+     </block_content>}</block></catch></try>)<operator>,</operator> <expr_stmt><expr><literal type="string">"Data fetcher"</literal></expr></expr_stmt>)<expr_stmt><expr><operator>.</operator><call><name>start</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    
+
+     <expr_stmt><expr><operator>new</operator> <call><name>Daemon</name><argument_list>(<argument><expr><operator>new</operator> <call><name>LoggingRunnable</name><argument_list>(<argument><expr><name>log</name></expr></argument>, <argument><expr><operator>new</operator> <class><super><name>Runnable</name></super><argument_list>()</argument_list> <block>{
+       <function><annotation>@<name>Override</name></annotation>
+       <type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">503</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">506</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>Monitor</name> <block>{
+       }</block></expr></expr_stmt>
+     </block_content>}</block></function><expr_stmt><expr/></expr_stmt></block></class></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="string">"Scan scanner"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>start</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+   }
+  
+
+   public <class><specifier>static</specifier> class <name>ScanStats</name> <block>{
+     <decl_stmt><decl><type><specifier>public</specifier> <specifier>final</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>ActiveScan</name></argument>&gt;</argument_list></name></type> <name>scans</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>public</specifier> <specifier>final</specifier> <name>long</name></type> <name>fetched</name></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>TraceServer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>TraceServer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">7eb950426</literal><operator>..</operator><name>e3ae0c865</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>TraceServer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tracer</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tracer</name><operator>/</operator><name><name>TraceServer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>TraceServer</name> implements <name>Watcher</name> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>main</name><argument_list>(<argument><expr><name><name>String</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><call><name><name>SecurityUtil</name><operator>.</operator><name>serverLogin</name></name><argument_list>(<argument><expr><call><name><name>ServerConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <expr><name>ServerOpts</name> <name>opts</name> <operator>=</operator> <operator>new</operator> <call><name>ServerOpts</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><literal type="string">"tracer"</literal></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>final</name> <name>String</name> <name>app</name> <operator>=</operator> <literal type="string">"tracer"</literal></expr>;
+    <expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>setupLogging</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>Instance</name> <name>instance</name> <operator>=</operator> <call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>ServerConfiguration</name> <name>conf</name> <operator>=</operator> <operator>new</operator> <call><name>ServerConfiguration</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>VolumeManager</name> <name>fs</name> <operator>=</operator> <call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="string">"tracer"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name>String</name> <name>hostname</name> <operator>=</operator> <call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name>TraceServer</name> <name>server</name> <operator>=</operator> <operator>new</operator> <call><name>TraceServer</name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>hostname</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><literal type="string">"tserver"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>server</name><operator>.</operator><name>run</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"tracer stopping"</literal></expr></argument>)</argument_list></call></expr>;
+   }</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name><name>TabletServer</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name><name>TabletServer</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">3e89ca805</literal><operator>..</operator><literal type="number">23baf43f9</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name><name>TabletServer</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name><name>TabletServer</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">3661</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">3661</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>TabletServer</name> extends <name>AbstractMetricsImpl</name> implements <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accu</name></name>
+   <specifier>public</specifier> <specifier>static</specifier> <name>void</name> <call><name>main</name><argument_list>(<argument><expr><name><name>String</name><index>[]</index></name> <name>args</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><call><name><name>SecurityUtil</name><operator>.</operator><name>serverLogin</name></name><argument_list>(<argument><expr><call><name><name>ServerConfiguration</name><operator>.</operator><name>getSiteConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>VolumeManager</name></type> <name>fs</name> <init>= <expr><call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>ServerOpts</name></type> <name>opts</name> <init>= <expr><operator>new</operator> <call><name>ServerOpts</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>opts</name><operator>.</operator><name>parseArgs</name></name><argument_list>(<argument><expr><literal type="string">"tserver"</literal></expr></argument>, <argument><expr><name>args</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>String</name></type> <name>hostname</name> <init>= <expr><call><name><name>opts</name><operator>.</operator><name>getAddress</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>Instance</name></type> <name>instance</name> <init>= <expr><call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>app</name> <init>= <expr><literal type="string">"tserver"</literal></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>setupLogging</name></name><argument_list>(<argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>Instance</name></type> <name>instance</name> <init>= <expr><call><name><name>HdfsZooInstance</name><operator>.</operator><name>getInstance</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>ServerConfiguration</name></type> <name>conf</name> <init>= <expr><operator>new</operator> <call><name>ServerConfiguration</name><argument_list>(<argument><expr><name>instance</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>VolumeManager</name></type> <name>fs</name> <init>= <expr><call><name><name>VolumeManagerImpl</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>fs</name></expr></argument>, <argument><expr><name>conf</name></expr></argument>, <argument><expr><literal type="string">"tserver"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <decl_stmt><decl><type><name>TabletServer</name></type> <name>server</name> <init>= <expr><operator>new</operator> <call><name>TabletServer</name><argument_list>(<argument><expr><name>conf</name></expr></argument>, <argument><expr><name>fs</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>server</name><operator>.</operator><name>config</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><literal type="string">"tserver"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>Accumulo</name><operator>.</operator><name>enableTracing</name></name><argument_list>(<argument><expr><name>hostname</name></expr></argument>, <argument><expr><name>app</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>server</name><operator>.</operator><name>run</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Uncaught exception in TabletServer.main, exiting"</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></catch></try></block></class>
+
+</unit>

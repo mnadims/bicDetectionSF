@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/390fbf21d2.java"><expr_stmt><expr><name>From</name> <literal type="number">390fbf21d2c5fdee1a94247d51722673883328ce</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Michael</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">11</literal> <name>Jun</name> <literal type="number">2010</literal> <literal type="number">09</literal><operator>:</operator><literal type="number">45</literal><operator>:</operator><literal type="number">04</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">2496</literal><operator>:</operator> <name>don</name><literal type="char">'t throw NPE on trying to CREATE over a
+ corrupt index
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@953628 13f79535-47bb-0310-9956-ffa450edef68
+--
+ lucene/CHANGES.txt                            |  4 +++
+ .../apache/lucene/index/IndexFileDeleter.java | 15 ++++------
+ .../apache/lucene/index/TestIndexWriter.java  | 29 ++++++++++++++++++-
+ 3 files changed, 38 insertions(+), 10 deletions(-)
+
+diff --git a/lucene/CHANGES.txt b/lucene/CHANGES.txt
+index f22de792ae0..cf623a3abae 100644
+-- a/lucene/CHANGES.txt
+++ b/lucene/CHANGES.txt
+@@ -481,6 +481,10 @@ Bug fixes
+   files when a mergedSegmentWarmer is set on IndexWriter.  (Mike
+   McCandless)
+ 
+* LUCENE-2496: Don'</literal><name>t</name> <throw>throw <argument_list>NPE if <argument><expr><name>IndexWriter</name> <name>is</name> <name>opened</name> <name>with</name> <name>CREATE</name> <name>on</name>
+  <name>a</name> <call><name>prior</name> <argument_list>(<argument><expr><name>corrupt</name></expr></argument>)</argument_list></call> <name>index</name> <name>missing</name> <name>its</name> <name>segments_N</name> <name><name>file</name><operator>.</operator></name>  (<name>Mike</name>
+  <name>McCandless</name></expr></argument>)</argument_list></throw>
+
+ <name>New</name> <name>features</name>
+ 
+ <operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">2128</literal><operator>:</operator> <name>Parallelized</name> <name>fetching</name> <name>document</name> <name>frequencies</name> <name>during</name> <name>weight</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexFileDeleter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexFileDeleter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">70785711477..5b5c9d2f800</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexFileDeleter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>IndexFileDeleter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">134</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>docWriter</name></name> <operator>=</operator> <name>docWriter</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>infoStream</name></name> <operator>=</operator> <name>infoStream</name></expr>;
+ 
+    <expr><name>final</name> <name>String</name> <name>currentSegmentsFile</name> <operator>=</operator> <call><name><name>segmentInfos</name><operator>.</operator><name>getCurrentSegmentFileName</name></name><argument_list>()</argument_list></call></expr>;
+
+     <if_stmt><if>if <condition>(<expr><name>infoStream</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><call><name>message</name><argument_list>(<argument><expr><literal type="string">"init: current segments file is \""</literal> <operator>+</operator> <call><name><name>segmentInfos</name><operator>.</operator><name>getCurrentSegmentFileName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"\"; deletionPolicy="</literal> <operator>+</operator> <name>policy</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      <call><name>message</name><argument_list>(<argument><expr><literal type="string">"init: current segments file is \""</literal> <operator>+</operator> <name>currentSegmentsFile</name> <operator>+</operator> <literal type="string">"\"; deletionPolicy="</literal> <operator>+</operator> <name>policy</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+ 
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>policy</name></name> <operator>=</operator> <name>policy</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>directory</name></name> <operator>=</operator> <name>directory</name></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">146</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">148</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+     <expr><name>indexFilenameFilter</name> <operator>=</operator> <operator>new</operator> <call><name>IndexFileNameFilter</name><argument_list>(<argument><expr><name>codecs</name></expr></argument>)</argument_list></call></expr>;
+     
+     <expr><name>CommitPoint</name> <name>currentCommitPoint</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+    <expr><name>boolean</name> <name>seenIndexFiles</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+     <expr><name><name>String</name><index>[]</index></name> <name>files</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+     <try>try <block>{<block_content>
+       <expr_stmt><expr><name>files</name> <operator>=</operator> <call><name><name>directory</name><operator>.</operator><name>listAll</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">158</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">159</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+     <for>for <control>(<init><decl><type><name>String</name></type> <name>fileName</name> <range>: <expr><name>files</name></expr></range></decl></init>)</control> <block>{<block_content>
+ 
+       <if_stmt><if>if <condition>(<expr><operator>(</operator><call><name><name>indexFilenameFilter</name><operator>.</operator><name>accept</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>fileName</name></expr></argument>)</argument_list></call><operator>)</operator> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>fileName</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">"write.lock"</literal></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>fileName</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><name><name>IndexFileNames</name><operator>.</operator><name>SEGMENTS_GEN</name></name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>seenIndexFiles</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+         
+         <comment type="line">// Add this file to refCounts with initial count 0:</comment>
+         <expr_stmt><expr><call><name>getRefCount</name><argument_list>(<argument><expr><name>fileName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">201</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">201</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+       }</block></expr></expr_stmt></block_content></block></if></if_stmt></block_content></block></for>
+     }</block></expr></expr_stmt>
+ 
+    <comment type="line">// If we haven't seen any Lucene files, then currentCommitPoint is expected</comment>
+    <comment type="line">// to be null, because it means it's a fresh Directory. Therefore it cannot</comment>
+    <comment type="line">// be any NFS cache issues - so just ignore.</comment>
+    <if_stmt><if>if <condition>(<expr><name>currentCommitPoint</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>seenIndexFiles</name></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>currentCommitPoint</name> <operator>==</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <name>currentSegmentsFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <comment type="line">// We did not in fact see the segments_N file</comment>
+       <comment type="line">// corresponding to the segmentInfos that was passed</comment>
+       <comment type="line">// in.  Yet, it must exist, because our caller holds</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">214</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">211</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+       <comment type="line">// try now to explicitly open this commit point:</comment>
+       <expr><name>SegmentInfos</name> <name>sis</name> <operator>=</operator> <operator>new</operator> <call><name>SegmentInfos</name><argument_list>()</argument_list></call></expr>;</block></expr></expr_stmt>
+       <try>try <block>{<block_content>
+        <expr_stmt><expr><call><name><name>sis</name><operator>.</operator><name>read</name></name><argument_list>(<argument><expr><name>directory</name></expr></argument>, <argument><expr><call><name><name>segmentInfos</name><operator>.</operator><name>getCurrentSegmentFileName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>codecs</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>sis</name><operator>.</operator><name>read</name></name><argument_list>(<argument><expr><name>directory</name></expr></argument>, <argument><expr><name>currentSegmentsFile</name></expr></argument>, <argument><expr><name>codecs</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt/></block_content></block></try></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></try>}</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>CorruptIndexException</name><argument_list>(<argument><expr><literal type="string">"failed to locate current segments_N file"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+       </block_content>}</block></catch>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">244</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">241</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>final</name> <name>class</name> <name>IndexFileDeleter</name> <block>{
+ 
+     <comment type="line">// Finally, give policy a chance to remove things on</comment>
+     <comment type="line">// startup:</comment>
+    <if_stmt><if>if <condition>(<expr><name>seenIndexFiles</name></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>currentSegmentsFile</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>policy</name><operator>.</operator><name>onInit</name></name><argument_list>(<argument><expr><name>commits</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>TestIndexWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>TestIndexWriter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c319cc7a26e</name><operator>..</operator><name>a3d12032b1f</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>TestIndexWriter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>TestIndexWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">4954</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">4954</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestIndexWriter</name> extends <name>LuceneTestCase</name> <block>{
+     <expr><call><name><name>writer</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"expected a no-op close after IW.rollback()"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>dir</name><operator>.</operator><name>listAll</name></name><argument_list>()</argument_list></call><operator>.</operator><name>length</name></expr></argument>)</argument_list></call></expr>;
+   }</block>
+  
+
+  <specifier>public</specifier> <name>void</name> <call><name>testNoSegmentFile</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><name>File</name> <name>tempDir</name> <operator>=</operator> <call><name><name>_TestUtil</name><operator>.</operator><name>getTempDir</name></name><argument_list>(<argument><expr><literal type="string">"noSegmentFile"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>Directory</name></type> <name>dir</name> <init>= <expr><call><name><name>FSDirectory</name><operator>.</operator><name>open</name></name><argument_list>(<argument><expr><name>tempDir</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>dir</name><operator>.</operator><name>setLockFactory</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>NoLockFactory</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>IndexWriter</name></type> <name>w</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>dir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>(
+                                                                 <argument><expr><name>TEST_VERSION_CURRENT</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+                                      <operator>.</operator><call><name>setMaxBufferedDocs</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <decl_stmt><decl><type><name>Document</name></type> <name>doc</name> <init>= <expr><operator>new</operator> <call><name>Document</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>doc</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Field</name><argument_list>(<argument><expr><literal type="string">"c"</literal></expr></argument>, <argument><expr><literal type="string">"val"</literal></expr></argument>, <argument><expr><name><name>Store</name><operator>.</operator><name>YES</name></name></expr></argument>, <argument><expr><name><name>Index</name><operator>.</operator><name>ANALYZED</name></name></expr></argument>, <argument><expr><name><name>TermVector</name><operator>.</operator><name>WITH_POSITIONS_OFFSETS</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>w</name><operator>.</operator><name>addDocument</name></name><argument_list>(<argument><expr><name>doc</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>files</name> <init>= <expr><call><name><name>dir</name><operator>.</operator><name>listAll</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><name>files</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>out</name><operator>.</operator><name>println</name></name><argument_list>(<argument><expr><literal type="string">"file="</literal> <operator>+</operator> <name>file</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+      <decl_stmt><decl><type><name>IndexWriter</name></type> <name>w2</name> <init>= <expr><operator>new</operator> <call><name>IndexWriter</name><argument_list>(<argument><expr><name>dir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>IndexWriterConfig</name><argument_list>(
+                                                                  <argument><expr><name>TEST_VERSION_CURRENT</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>MockAnalyzer</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+                                       <operator>.</operator><call><name>setMaxBufferedDocs</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>setOpenMode</name><argument_list>(<argument><expr><name><name>OpenMode</name><operator>.</operator><name>CREATE</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <expr_stmt><expr><call><name><name>w2</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>dir</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>_TestUtil</name><operator>.</operator><name>rmDir</name></name><argument_list>(<argument><expr><name>tempDir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  }
+ }
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

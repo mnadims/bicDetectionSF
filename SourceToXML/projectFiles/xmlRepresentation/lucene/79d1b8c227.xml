@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/79d1b8c227.java"><expr_stmt><expr><name>From</name> <literal type="number">79d1b8c22768b6c902a4e880698733277796820c</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Erick</name> <name><name>Erickson</name> <argument_list type="generic">&lt;<argument><name>erick</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Sat</name></expr><operator>,</operator> <expr><literal type="number">11</literal> <name>Jun</name> <literal type="number">2016</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">25</literal><operator>:</operator><literal type="number">07</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">9187</literal><operator>:</operator> <name>Support</name> <name>dates</name> <name>and</name> <name>booleans</name> <name>in</name> <operator>/</operator><name>export</name> <name>handler</name></expr><operator>,</operator>
+ <expr><name>support</name> <name>boolean</name> <name>DocValues</name> <name>fields</name>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>BooleanFieldTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">78</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <literal type="number">1</literal> <name>file</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">78</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>BooleanFieldTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>BooleanFieldTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>BooleanFieldTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..8f13204d4b8</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>schema</name><operator>/</operator><name><name>BooleanFieldTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">78</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>schema</name></name>;</package>
+
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>SolrTestCaseJ4</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>BeforeClass</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>BooleanFieldTest</name> <super_list><extends>extends <super><name>SolrTestCaseJ4</name></super></extends></super_list> <block>{
+  <function><annotation>@<name>BeforeClass</name></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>beforeClass</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>initCore</name><argument_list>(<argument><expr><literal type="string">"solrconfig-basic.xml"</literal></expr></argument>, <argument><expr><literal type="string">"schema15.xml"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="line">// Note, docValues-based boolean tests are tested elsewhere refering to more appropriate schemas</comment>
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testBoolField</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <comment type="line">// found an odd case when adding booleans to docValues and noticed that we didn't have any boolean</comment>
+    <comment type="line">// specific tests. Only caught the odd case by accident so let's have a place for explicit tests</comment>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">// missing</comment>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"1"</literal></expr></argument>, <argument><expr><literal type="string">"bind"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>, <argument><expr><literal type="string">"bsto"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>, <argument><expr><literal type="string">"bindsto"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><literal type="string">"bind"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>, <argument><expr><literal type="string">"bsto"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>, <argument><expr><literal type="string">"bindsto"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"3"</literal></expr></argument>, <argument><expr><literal type="string">"bind"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"4"</literal></expr></argument>, <argument><expr><literal type="string">"bsto"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><literal type="string">"bindsto"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>adoc</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"6"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertU</name><argument_list>(<argument><expr><call><name>commit</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"id asc"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"id,bind,bsto,bindsto,bindstom"</literal></expr></argument>)</argument_list></call></expr></argument>
+        ,<argument><expr><literal type="string">"count(//result/doc[1]/bool[@name='bind'])=0"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"count(//result/doc[1]/bool[@name='bsto'])=0"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"count(//result/doc[1]/bool[@name='bindsto'])=0"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"count(//result/doc[2]/bool[@name='bind'])=0"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"count(//result/doc[3]/bool[@name='bind'])=0"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[2]/bool[@name='bsto'][.='true']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[2]/bool[@name='bindsto'][.='true']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[3]/bool[@name='bsto'][.='false']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[3]/bool[@name='bindsto'][.='false']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[2]/arr[@name='bindstom']/bool[1][.='true']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[2]/arr[@name='bindstom']/bool[2][.='false']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[3]/arr[@name='bindstom']/bool[1][.='false']"</literal></expr></argument>
+        ,<argument><expr><literal type="string">"//result/doc[3]/arr[@name='bindstom']/bool[2][.='true']"</literal></expr></argument>
+
+    )</argument_list></call></expr>;</expr_stmt>
+    
+    <comment type="line">// Make sure faceting is behaving.</comment>
+    <expr_stmt><expr><call><name>assertQ</name><argument_list>(<argument><expr><call><name>req</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"facet"</literal></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>, 
+        <argument><expr><literal type="string">"facet.field"</literal></expr></argument>, <argument><expr><literal type="string">"bind"</literal></expr></argument>, 
+        <argument><expr><literal type="string">"facet.field"</literal></expr></argument>, <argument><expr><literal type="string">"bsto"</literal></expr></argument>,
+        <argument><expr><literal type="string">"facet.field"</literal></expr></argument>, <argument><expr><literal type="string">"bindsto"</literal></expr></argument>,
+        <argument><expr><literal type="string">"facet.field"</literal></expr></argument>, <argument><expr><literal type="string">"bindstom"</literal></expr></argument>)</argument_list></call></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bind']/int[@name='false'][.='2']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bind']/int[@name='true'][.='1']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bsto'][not(node())]"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bsto'][not(node())]"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bindsto']/int[@name='false'][.='1']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bindsto']/int[@name='true'][.='2']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bindstom']/int[@name='false'][.='2']"</literal></expr></argument>,
+        <argument><expr><literal type="string">"//lst[@name='bindstom']/int[@name='true'][.='3']"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+}</block></class>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

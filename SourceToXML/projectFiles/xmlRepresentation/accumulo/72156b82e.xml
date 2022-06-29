@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/72156b82e.java"><expr_stmt><expr><name>From</name> <literal type="number">72156b82ecc05aa6dc072ab8d5dce5f328b140c8</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <literal type="string">"Eric C. Newton"</literal> <operator>&lt;</operator><name><name>eric</name><operator>.</operator><name>newton</name></name>@<name><name>gmail</name><operator>.</operator><name>com</name></name><operator>&gt;</operator>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">29</literal> <name>Sep</name> <literal type="number">2014</literal> <literal type="number">09</literal><operator>:</operator><literal type="number">36</literal><operator>:</operator><literal type="number">11</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">2480</literal> <name>make</name> <name>the</name> <name>tserver</name> <name>give</name> <name>up</name> <name>and</name> <name>die</name></expr></expr_stmt> <if_stmt><if>if openning
+ the WAL experiences 5 errors in 10 seconds
+
+--
+ .../impl/MiniAccumuloClusterImpl.java         <operator>|</operator>  4 +
+ .../accumulo/tserver/log/DfsLogger.java       <operator>|</operator> 15 ++--
+ .../tserver/log/TabletServerLogger.java       <operator>|</operator> 17 +++++
+ .../accumulo/test/TabletServerGivesUpIT.java  <operator>|</operator> 73 +++++++++++++++++++
+ 4 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">101</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">8</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>test</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>test</name><operator>/</operator><name><name>TabletServerGivesUpIT</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>MiniAccumuloClusterImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>MiniAccumuloClusterImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c9031eb72</name><operator>..</operator><literal type="number">1fb590101</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>MiniAccumuloClusterImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>minicluster</name><operator>/</operator><name>impl</name><operator>/</operator><name><name>MiniAccumuloClusterImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">778</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">778</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>MiniAccumuloClusterImpl</name> implements <name>AccumuloCluster</name> <block>{
+     }</block></expr></expr_stmt></if></if_stmt>
+     <return>return <expr><name>stats</name></expr>;</return>
+   }
+
+  public <function><type><name>MiniDFSCluster</name></type> <name>getMiniDfs</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name><name>this</name><operator>.</operator><name>miniDFS</name></name></expr>;</return>
+  </block_content>}</block></function>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">6260ec7a4</literal><operator>..</operator><literal type="number">8de2b2587</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>server</name><operator>/</operator><name>tserver</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>tserver</name><operator>/</operator><name>log</name><operator>/</operator><name><name>DfsLogger</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>log</name></name>;</package>
+ 
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>COMPACTION_FINISH</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>COMPACTION_START</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>DEFINE_TABLET</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>MANY_MUTATIONS</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>OPEN</name></name>;</import>
+
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>DataInputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>DataOutputStream</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">35</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>CountDownLatch</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>LinkedBlockingQueue</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicLong</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Joiner</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Durability</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>AccumuloConfiguration</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>Property</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">60</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>FSDataOutputStream</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>fs</name><operator>.</operator><name>Path</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>log4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ 
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>common</name><operator>.</operator><name>base</name><operator>.</operator><name>Joiner</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>COMPACTION_FINISH</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>COMPACTION_START</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>DEFINE_TABLET</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>MANY_MUTATIONS</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>tserver</name><operator>.</operator><name>logger</name><operator>.</operator><name>LogEvents</name><operator>.</operator><name>OPEN</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Wrap a connection to a logger.
+@@ -130,7 +129,7 @@ public class DfsLogger {
+   private static final LogFileValue EMPTY = new LogFileValue();
+ 
+   private boolean closed = false;
+
+  
+   private class LogSyncingTask implements Runnable {
+ 
+     @Override
+diff --git a/server/tserver/src/main/java/org/apache/accumulo/tserver/log/TabletServerLogger.java b/server/tserver/src/main/java/org/apache/accumulo/tserver/log/TabletServerLogger.java
+index 243b4051f..86ae596c0 100644
+-- a/server/tserver/src/main/java/org/apache/accumulo/tserver/log/TabletServerLogger.java
+++ b/server/tserver/src/main/java/org/apache/accumulo/tserver/log/TabletServerLogger.java
+@@ -26,11 +26,16 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.Map.Entry;
+ import java.util.Set;
+import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.concurrent.atomic.AtomicLong;
+ import java.util.concurrent.locks.ReadWriteLock;
+ import java.util.concurrent.locks.ReentrantReadWriteLock;
+ 
+import org.apache.accumulo.server.util.Halt;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+ import org.apache.accumulo.core.client.Durability;
+ import org.apache.accumulo.core.data.KeyExtent;
+ import org.apache.accumulo.core.data.Mutation;
+@@ -86,6 +91,14 @@ public class TabletServerLogger {
+ 
+   private final AtomicLong syncCounter;
+   private final AtomicLong flushCounter;
+  
+  private final static int HALT_AFTER_ERROR_COUNT = 5;
+  private final Cache&lt;Long, Object&gt; walErrors;
+  {
+    // Die if we get 5 WAL creation errors in 10 seconds
+    walErrors = CacheBuilder.newBuilder().maximumSize(HALT_AFTER_ERROR_COUNT).expireAfterWrite(10, TimeUnit.SECONDS).build();
+  }
+
+ 
+   static private abstract class TestCallWithWriteLock {
+     abstract boolean test();
+@@ -194,6 +207,10 @@ public class TabletServerLogger {
+       logSetId.incrementAndGet();
+       return;
+     } catch (Exception t) {
+      walErrors.put(System.currentTimeMillis(), "");
+      if (walErrors.size() &gt;= HALT_AFTER_ERROR_COUNT) {
+        Halt.halt("Experienced too many errors creating WALs, giving up");
+      }
+       throw new RuntimeException(t);
+     }
+   }
+diff --git a/test/src/main/java/org/apache/accumulo/test/TabletServerGivesUpIT.java b/test/src/main/java/org/apache/accumulo/test/TabletServerGivesUpIT.java
+new file mode 100644
+index 000000000..e2e5ac983
+-- /dev/null
+++ b/test/src/main/java/org/apache/accumulo/test/TabletServerGivesUpIT.java
+@@ -0,0 +1,73 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>test</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>TreeSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>atomic</name><operator>.</operator><name>AtomicReference</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>client</name><operator>.</operator><name>Connector</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>conf</name><operator>.</operator><name>Property</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>core</name><operator>.</operator><name>util</name><operator>.</operator><name>UtilWaitThread</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>minicluster</name><operator>.</operator><name>impl</name><operator>.</operator><name>MiniAccumuloConfigImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>accumulo</name><operator>.</operator><name>test</name><operator>.</operator><name>functional</name><operator>.</operator><name>ConfigurableMacIT</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>conf</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>hadoop</name><operator>.</operator><name>io</name><operator>.</operator><name>Text</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertEquals</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertTrue</name></name>;</import>
+
+<comment type="line">// ACCUMULO-2480</comment>
+<class><specifier>public</specifier> class <name>TabletServerGivesUpIT</name> <super_list><extends>extends <super><name>ConfigurableMacIT</name></super></extends></super_list> <block>{
+  
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>configure</name><parameter_list>(<parameter><decl><type><name>MiniAccumuloConfigImpl</name></type> <name>cfg</name></decl></parameter>, <parameter><decl><type><name>Configuration</name></type> <name>hadoopCoreSite</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>cfg</name><operator>.</operator><name>useMiniDFS</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cfg</name><operator>.</operator><name>setNumTservers</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cfg</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><name><name>Property</name><operator>.</operator><name>INSTANCE_ZK_TIMEOUT</name></name></expr></argument>, <argument><expr><literal type="string">"5s"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>timeout</name> <operator>=</operator> <literal type="number">30</literal> <operator>*</operator> <literal type="number">1000</literal></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>test</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>Connector</name></type> <name>conn</name> <init>= <expr><call><name><name>this</name><operator>.</operator><name>getConnector</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">// Yes, there's a tabletserver</comment>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>conn</name><operator>.</operator><name>instanceOperations</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTabletServers</name><argument_list>()</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>String</name></type> <name>tableName</name> <init>= <expr><call><name>getUniqueNames</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call><index>[<expr><literal type="number">0</literal></expr>]</index></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>conn</name><operator>.</operator><name>tableOperations</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>create</name><argument_list>(<argument><expr><name>tableName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// Kill dfs</comment>
+    <expr_stmt><expr><call><name><name>cluster</name><operator>.</operator><name>getMiniDfs</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>shutdown</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// ask the tserver to do something</comment>
+    <decl_stmt><decl><type><specifier>final</specifier> <name><name>AtomicReference</name><argument_list type="generic">&lt;<argument><name>Exception</name></argument>&gt;</argument_list></name></type> <name>ex</name> <init>= <expr><operator>new</operator> <call><name><name>AtomicReference</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>Thread</name></type> <name>splitter</name> <init>= <expr><operator>new</operator> <class><super><name>Thread</name></super><argument_list>()</argument_list> <block>{
+      <function><type><specifier>public</specifier> <name>void</name></type> <name>run</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <try>try <block>{<block_content>
+          <decl_stmt><decl><type><name><name>TreeSet</name><argument_list type="generic">&lt;<argument><name>Text</name></argument>&gt;</argument_list></name></type> <name>splits</name> <init>= <expr><operator>new</operator> <call><name><name>TreeSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>splits</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Text</name><argument_list>(<argument><expr><literal type="string">"X"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>conn</name><operator>.</operator><name>tableOperations</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>addSplits</name><argument_list>(<argument><expr><name>tableName</name></expr></argument>, <argument><expr><name>splits</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>ex</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></function>
+    }</block></class></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>splitter</name><operator>.</operator><name>start</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// wait for the tserver to give up on writing to the WAL</comment>
+    <while>while <condition>(<expr><call><name><name>conn</name><operator>.</operator><name>instanceOperations</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTabletServers</name><argument_list>()</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>UtilWaitThread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><literal type="number">1000</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></while>
+  </block_content>}</block></function>
+  
+}</block></class>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr>
+
+</unit>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/3cf40619ca.java"><expr_stmt><expr><name>From</name> <literal type="number">3cf40619ca031d8beee5cf65dbcabbff910785cb</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shalin</name> <name>Shekhar</name> <name><name>Mangar</name> <argument_list type="generic">&lt;<argument><name>shalin</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">27</literal> <name>Feb</name> <literal type="number">2015</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">50</literal><operator>:</operator><literal type="number">07</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">7128</literal><operator>:</operator> <name>Make</name> <name>sure</name> <name>fields</name> <name>aren</name><literal type="char">'t duplicated in shard
+ requests
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1662729 13f79535-47bb-0310-9956-ffa450edef68
+--
+ solr/CHANGES.txt                              |  2 +-
+ .../handler/component/QueryComponent.java     | 40 +++++++++++--------
+ ...ributedQueryComponentOptimizationTest.java | 36 +++++++++++++----
+ 3 files changed, 53 insertions(+), 25 deletions(-)
+
+diff --git a/solr/CHANGES.txt b/solr/CHANGES.txt
+index 52dc0321c8f..4ca5f013903 100644
+-- a/solr/CHANGES.txt
+++ b/solr/CHANGES.txt
+@@ -583,7 +583,7 @@ Bug Fixes
+ * SOLR-6631: DistributedQueue spinning on calling zookeeper getChildren()
+   (Jessica Cheng Mallet, Mark Miller, Timothy Potter)
+ 
+* SOLR-6579:SnapPuller Replication blocks clean shutdown of tomcat
+* SOLR-6579: SnapPuller Replication blocks clean shutdown of tomcat
+   (Philip Black-Knight via Noble Paul)
+ 
+ * SOLR-6721: ZkController.ensureReplicaInLeaderInitiatedRecovery puts replica
+diff --git a/solr/core/src/java/org/apache/solr/handler/component/QueryComponent.java b/solr/core/src/java/org/apache/solr/handler/component/QueryComponent.java
+index b2f9a84e3d5..8dbfa81867d 100644
+-- a/solr/core/src/java/org/apache/solr/handler/component/QueryComponent.java
+++ b/solr/core/src/java/org/apache/solr/handler/component/QueryComponent.java
+@@ -882,34 +882,40 @@ public class QueryComponent extends SearchComponent
+ 
+     sreq.params.set(ResponseBuilder.FIELD_SORT_VALUES,"true");
+ 
+    // TODO: should this really sendGlobalDfs if just includeScore?
+     boolean shardQueryIncludeScore = (rb.getFieldFlags() &amp; SolrIndexSearcher.GET_SCORES) != 0 || rb.getSortSpec().includesScore();
+    if (shardQueryIncludeScore) {
+      sreq.params.set(CommonParams.FL, rb.req.getSchema().getUniqueKeyField().getName() + ",score");
+      StatsCache statsCache = rb.req.getCore().getStatsCache();
+      statsCache.sendGlobalStats(rb, sreq);
+    } else  {
+      // reset so that only unique key is requested in shard requests
+      sreq.params.set(CommonParams.FL, rb.req.getSchema().getUniqueKeyField().getName());
+    }
+
+    if (distribSinglePass) {
+    StringBuilder additionalFL = new StringBuilder();
+    boolean additionalAdded = false;
+    if (distribSinglePass)  {
+       String[] fls = rb.req.getParams().getParams(CommonParams.FL);
+       if (fls != null &amp;&amp; fls.length &gt; 0 &amp;&amp; (fls.length != 1 || !fls[0].isEmpty())) {
+         // If the outer request contains actual FL'</literal><name>s</name> <name>use</name> <name>them</name><operator>...</operator>
+         <call><name><name>sreq</name><operator>.</operator><name>params</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name><name>CommonParams</name><operator>.</operator><name>FL</name></name></expr></argument>, <argument><expr><name>fls</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>fields</name><operator>.</operator><name>wantsField</name></name><argument_list>(<argument><expr><name>keyFieldName</name></expr></argument>)</argument_list></call></expr>)</condition>  <block>{<block_content>
+          <expr_stmt><expr><name>additionalAdded</name> <operator>=</operator> <call><name>addFL</name><argument_list>(<argument><expr><name>additionalFL</name></expr></argument>, <argument><expr><name>keyFieldName</name></expr></argument>, <argument><expr><name>additionalAdded</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+       } else <block>{<block_content>
+         <comment type="line">// ... else we need to explicitly ask for all fields, because we are going to add</comment>
+         <comment type="line">// additional fields below</comment>
+         <expr_stmt><expr><call><name><name>sreq</name><operator>.</operator><name>params</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name><name>CommonParams</name><operator>.</operator><name>FL</name></name></expr></argument>, <argument><expr><literal type="string">"*"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>fields</name><operator>.</operator><name>wantsScore</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name>shardQueryIncludeScore</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>additionalAdded</name> <operator>=</operator> <call><name>addFL</name><argument_list>(<argument><expr><name>additionalFL</name></expr></argument>, <argument><expr><literal type="string">"score"</literal></expr></argument>, <argument><expr><name>additionalAdded</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    } else <block>{<block_content>
+      <comment type="line">// reset so that only unique key is requested in shard requests</comment>
+      <expr_stmt><expr><call><name><name>sreq</name><operator>.</operator><name>params</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name><name>CommonParams</name><operator>.</operator><name>FL</name></name></expr></argument>, <argument><expr><call><name><name>rb</name><operator>.</operator><name>req</name><operator>.</operator><name>getSchema</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getUniqueKeyField</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>shardQueryIncludeScore</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>additionalAdded</name> <operator>=</operator> <call><name>addFL</name><argument_list>(<argument><expr><name>additionalFL</name></expr></argument>, <argument><expr><literal type="string">"score"</literal></expr></argument>, <argument><expr><name>additionalAdded</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+     </block_content>}</block>
+    <decl_stmt><decl><type><name>StringBuilder</name></type> <name>additionalFL</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>additionalAdded</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><name>distribSinglePass</name> <operator>||</operator> <operator>!</operator><call><name><name>fields</name><operator>.</operator><name>wantsField</name></name><argument_list>(<argument><expr><name>keyFieldName</name></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+      <expr_stmt><expr><name>additionalAdded</name> <operator>=</operator> <call><name>addFL</name><argument_list>(<argument><expr><name>additionalFL</name></expr></argument>, <argument><expr><name>keyFieldName</name></expr></argument>, <argument><expr><name>additionalAdded</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>(</operator><operator>!</operator><name>distribSinglePass</name> <operator>||</operator> <operator>!</operator><call><name><name>fields</name><operator>.</operator><name>wantsScore</name></name><argument_list>()</argument_list></call><operator>)</operator> <operator>&amp;&amp;</operator> <name>shardQueryIncludeScore</name></expr>)</condition><block type="pseudo"><block_content> 
+      <expr_stmt><expr><name>additionalAdded</name> <operator>=</operator> <call><name>addFL</name><argument_list>(<argument><expr><name>additionalFL</name></expr></argument>, <argument><expr><literal type="string">"score"</literal></expr></argument>, <argument><expr><name>additionalAdded</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+
+    <comment type="line">// TODO: should this really sendGlobalDfs if just includeScore?</comment>
+
+    <if_stmt><if>if <condition>(<expr><name>shardQueryIncludeScore</name></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>StatsCache</name></type> <name>statsCache</name> <init>= <expr><call><name><name>rb</name><operator>.</operator><name>req</name><operator>.</operator><name>getCore</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getStatsCache</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>statsCache</name><operator>.</operator><name>sendGlobalStats</name></name><argument_list>(<argument><expr><name>rb</name></expr></argument>, <argument><expr><name>sreq</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+     <if_stmt><if>if <condition>(<expr><name>additionalAdded</name></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>sreq</name><operator>.</operator><name>params</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name><name>CommonParams</name><operator>.</operator><name>FL</name></name></expr></argument>, <argument><expr><call><name><name>additionalFL</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+ 
+     <expr_stmt><expr><call><name><name>rb</name><operator>.</operator><name>addRequest</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>, <argument><expr><name>sreq</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>component</name><operator>/</operator><name><name>DistributedQueryComponentOptimizationTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>component</name><operator>/</operator><name><name>DistributedQueryComponentOptimizationTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d13b82ba2f9</name><operator>..</operator><literal type="number">6887ef8b551</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>component</name><operator>/</operator><name><name>DistributedQueryComponentOptimizationTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>handler</name><operator>/</operator><name>component</name><operator>/</operator><name><name>DistributedQueryComponentOptimizationTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueryComponentOptimizationTest</name> extends <name>AbstractFullDistr</name>
+ 
+     <comment type="line">// fix for a bug where not all fields are returned if using multiple fl parameters, see SOLR-6796</comment>
+     <call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"id"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"dynamic"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>, <argument><expr><name><name>ShardParams</name><operator>.</operator><name>DISTRIB_SINGLE_PASS</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// missing fl with sort</comment>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>, <argument><expr><name><name>ShardParams</name><operator>.</operator><name>DISTRIB_SINGLE_PASS</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// fl=*</comment>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>, <argument><expr><name><name>ShardParams</name><operator>.</operator><name>DISTRIB_SINGLE_PASS</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// fl=*,score</comment>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>, <argument><expr><name><name>ShardParams</name><operator>.</operator><name>DISTRIB_SINGLE_PASS</name></name></expr></argument>, <argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>queryWithAsserts</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"fl"</literal></expr></argument>, <argument><expr><literal type="string">"*,score"</literal></expr></argument>, <argument><expr><literal type="string">"sort"</literal></expr></argument>, <argument><expr><literal type="string">"payload desc"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   }
+ 
+   <comment type="block" format="javadoc">/**
+@@ -196,7 +208,7 @@ public class DistributedQueryComponentOptimizationTest extends AbstractFullDistr
+     // score is optional, requested only if sorted by score
+     if (fls.contains("score") || sortFields.contains("score")) idScoreFields.add("score");
+ 
+    if (idScoreFields.containsAll(fls)) {
+    if (idScoreFields.containsAll(fls) &amp;&amp; !fls.isEmpty()) {
+       // if id and/or score are the only fields being requested then we implicitly turn on distribSinglePass=true
+       distribSinglePass = true;
+     }
+@@ -259,13 +271,23 @@ public class DistributedQueryComponentOptimizationTest extends AbstractFullDistr
+       fail("Expected non-zero number of '" + paramName + "' parameters in request");
+     }
+     Set&lt;String&gt; requestedFields = new HashSet&lt;&gt;();
+    for (String p : params) {
+      requestedFields.addAll(StrUtils.splitSmart(p, ','));
+    if (params != null) {
+      for (String p : params) {
+        List&lt;String&gt; list = StrUtils.splitSmart(p, ',');
+        for (String s : list) {
+          // make sure field names aren't duplicated in the parameters
+          assertTrue("Field name " + s + " was requested multiple times: params = " + requestAndParams.params,
+              requestedFields.add(s));
+        }
+      }
+     }
+    assertEquals("Number of requested fields do not match with expectations", expectedCount, requestedFields.size());
+    for (String field : values) {
+      if (!requestedFields.contains(field)) {
+        fail("Field " + field + " not found in param: " + paramName + " request had " + paramName + "=" + requestedFields);
+    // if a wildcard ALL field is requested then we don't need to match exact number of params
+    if (!requestedFields.contains("*"))  {
+      assertEquals("Number of requested fields do not match with expectations", expectedCount, requestedFields.size());
+      for (String field : values) {
+        if (!requestedFields.contains(field)) {
+          fail("Field " + field + " not found in param: " + paramName + " request had " + paramName + "=" + requestedFields);
+        }
+       }
+     }
+   }
+- 
+2.19.1.windows.1
+
+</comment></unit>

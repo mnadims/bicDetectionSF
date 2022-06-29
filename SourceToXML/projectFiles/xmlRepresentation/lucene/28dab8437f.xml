@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/28dab8437f.java"><expr_stmt><expr><name>From</name> <literal type="number">28dab8437f4b2a7b8a47e7bad1cac9dd8f0ef18c</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Steven</name> <name><name>Rowe</name> <argument_list type="generic">&lt;<argument><name>sarowe</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">7</literal> <name>Jul</name> <literal type="number">2011</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">56</literal><operator>:</operator><literal type="number">20</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">2331</literal><operator>:</operator> <name>fix</name> <name>Windows</name> <name>file</name> <name>deletion</name> <name>failure</name> <name>due</name> <name>to</name> <name>a</name> <name>lock</name>
+ <name>held</name> <name>by</name> <name>an</name> <name>unclosed</name> <name>anonymous</name> <name>input</name> <name>stream</name> <name>created</name></expr></expr_stmt> <for>for the purpose of debug
+ printing<empty_stmt>;</empty_stmt></for> <expr><name>also</name></expr><operator>,</operator> <expr><name>wrap</name> <name>the</name> <name>debug</name> <name>printing</name> <name>in</name> <name>an</name> <literal type="char">'if (VERBOSE) { }'</literal> <name>block</name> <name>so</name>
+ <name>that</name> <name>it</name> <name>doesn</name><literal type="char">'</literal></expr>t get ordinarily get invoked.
+
+git-svn-id: https://svn.apache.org/repos/asf/lucene/dev/trunk@1144088 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../client/solrj/embedded/TestSolrProperties.java     | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/solr/src/test/org/apache/solr/client/solrj/embedded/TestSolrProperties.java b/solr/src/test/org/apache/solr/client/solrj/embedded/TestSolrProperties.java
+index 975aa200f84..bf3c1687162 100644
+-- a/solr/src/test/org/apache/solr/client/solrj/embedded/TestSolrProperties.java
+++ b/solr/src/test/org/apache/solr/client/solrj/embedded/TestSolrProperties.java
+@@ -202,8 +202,15 @@ public class TestSolrProperties extends LuceneTestCase {
+     assertTrue("should have more recent time: " + after + "," + before, after &gt; before);
+ 
+     mcr = CoreAdminRequest.persist("solr-persist.xml", coreadmin);
+    
+    System.out.println(IOUtils.toString(new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"))));
+
+    if (VERBOSE) {
+      FileInputStream fis = new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"));
+      try {
+        System.out.println(IOUtils.toString(fis));
+      } finally {
+        fis.close();
+      }
+    }
+     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+     FileInputStream fis = new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"));
+     try {
+- 
+2.19.1.windows.1
+
+</unit>

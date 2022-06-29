@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/606069f50.java"><expr_stmt><expr><name>From</name> <literal type="number">606069f50f4f41f741e9dd94ccec9c2f1d03722b</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Alexandru</name> <name><name>Parvulescu</name> <argument_list type="generic">&lt;<argument><name>alexparvulescu</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">13</literal> <name>Oct</name> <literal type="number">2011</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">19</literal><operator>:</operator><literal type="number">38</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">3098</literal> <name>Add</name> <name>hit</name> <name>miss</name> <name>statistics</name> <name>and</name> <name>logging</name> <name>to</name> <name>caches</name>  <operator>-</operator>
+ <name>patch</name> <name>by</name> <name>Bart</name> <name>van</name> <name>der</name> <name>Schans</name></expr><operator>,</operator> <expr><name>continued</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@1182835 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>AbstractCache</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">8</literal> <operator>++</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>CacheManager</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">5</literal> <operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">35</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">41</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">7</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>AbstractCache</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>AbstractCache</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f3433ad60</name><operator>..</operator><name>a9725627f</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>AbstractCache</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>AbstractCache</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">114</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">114</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractCache</name> implements <name>Cache</name> <block>{
+      <expr><operator>*</operator> <name>interval</name> <name>has</name> <name>passed</name> <name>since</name> <name>the</name> <name>previous</name> <name>listener</name> <name><name>call</name><operator>.</operator></name>
+      *<operator>/</operator>
+     <specifier>protected</specifier> <name>void</name> <call><name>recordCacheAccess</name><argument_list>()</argument_list></call> <block>{
+        <expr><call><name><name>totalAccessCount</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;
+         <expr><name>long</name> <name>count</name> <operator>=</operator> <call><name><name>accessCount</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;
+         <if_stmt><if>if <condition>(<expr><name>count</name> <operator>%</operator> <name>ACCESS_INTERVAL</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+             <decl_stmt><decl><type><name>CacheAccessListener</name></type> <name>listener</name> <init>= <expr><call><name><name>accessListener</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">121</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">122</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractCache</name> implements <name>Cache</name> <block>{
+                 <expr><call><name><name>listener</name><operator>.</operator><name>cacheAccessed</name></name><argument_list>(<argument><expr><name>count</name></expr></argument>)</argument_list></call></expr>;</block></expr></expr_stmt></block_content></block></if></if_stmt>
+             }</block></expr>
+         }</block>
+        <call><name><name>totalAccessCount</name><operator>.</operator><name>incrementAndGet</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     }
+ 
+     protected <function><type><name>void</name></type> <name>recordCacheMiss</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">186</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">186</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractCache</name> implements <name>Cache</name> <block>{
+         <expr><name>long</name> <name>u</name> <operator>=</operator> <call><name>getMemoryUsed</name><argument_list>()</argument_list></call> <operator>/</operator> <literal type="number">1024</literal></expr>;
+         <expr><name>long</name> <name>m</name> <operator>=</operator> <call><name>getMaxMemorySize</name><argument_list>()</argument_list></call> <operator>/</operator> <literal type="number">1024</literal></expr>;
+         <expr><name>StringBuilder</name> <name>c</name> <operator>=</operator> <operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">"Cache name="</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">"cachename="</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name><name>this</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", elements="</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name>getElementCount</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", used memory="</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", usedmemorykb="</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>u</name></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", max memory="</literal></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", maxmemorykb="</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><name>m</name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", access="</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>c</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name>getTotalAccessCount</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>CacheManager</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>CacheManager</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f6e7dfb43</name><operator>..</operator><literal type="number">247d3b5ad</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>CacheManager</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>cache</name><operator>/</operator><name><name>CacheManager</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">156</literal></expr>,<expr><literal type="number">17</literal> <operator>+</operator><literal type="number">156</literal></expr>,<expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>CacheManager</name> implements <name>CacheAccessListener</name> <block>{
+      <expr><operator>*</operator> <name>Log</name> <name>info</name> <name>about</name> <name>the</name> <name><name>caches</name><operator>.</operator></name>
+      *<operator>/</operator>
+     <specifier>private</specifier> <name>void</name> <call><name>logCacheStats</name><argument_list>()</argument_list></call> <block>{
+        <if_stmt><if>if <condition>(<expr><call><name><name>log</name><operator>.</operator><name>isDebugEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>log</name><operator>.</operator><name>isInfoEnabled</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+             <decl_stmt><decl><type><name>long</name></type> <name>now</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+             <if_stmt><if>if <condition>(<expr><name>now</name> <operator>&lt;</operator> <name>nextLogStats</name></expr>)</condition> <block>{<block_content>
+                 <return>return;</return>
+             <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr>
+             <for>for <control>(<init><decl><type><name>Cache</name></type> <name>cache</name> <range>: <expr><call><name><name>caches</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><call><name><name>cache</name><operator>.</operator><name>getCacheInfoAsString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><call><name><name>cache</name><operator>.</operator><name>getCacheInfoAsString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+             <expr_stmt/></block_content></block></for>}</block>
+             <name>nextLogStats</name> <operator>=</operator> <name>now</name> <operator>+</operator> <name>minLogStatsInterval</name></expr>;
+         }</block></expr></expr_stmt>
+     </block_content>}</block></function>
+
+     <comment type="block" format="javadoc">/**
+      * Re-calculate the maximum memory for each cache, and set the new limits.
+      */</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>persistence</name><operator>/</operator><name>bundle</name><operator>/</operator><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>persistence</name><operator>/</operator><name>bundle</name><operator>/</operator><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">16ebe7583</literal><operator>..</operator><literal type="number">613734706</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>persistence</name><operator>/</operator><name>bundle</name><operator>/</operator><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name>persistence</name><operator>/</operator><name>bundle</name><operator>/</operator><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">28</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt> <import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>PropertyType</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>cache</name><operator>.</operator><name>Cache</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>cache</name><operator>.</operator><name>CacheAccessListener</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>cache</name><operator>.</operator><name>ConcurrentCache</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileSystemResource</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>fs</name><operator>.</operator><name>FileSystem</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">82</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">84</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>Name</name></name>;</import>
+  <expr_stmt><expr><operator>*</operator> <operator>&lt;</operator><operator>/</operator><name>ul</name><operator>&gt;</operator>
+  <operator>*</operator><operator>/</operator>
+ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractBundlePersistenceManager</name> implements
+    <name>PersistenceManager</name></expr><operator>,</operator> <expr><name>CachingPersistenceManager</name></expr><operator>,</operator> <expr><name>IterablePersistenceManager</name> <block>{
+    <expr><name>PersistenceManager</name></expr>, <expr><name>CachingPersistenceManager</name></expr>, <expr><name>IterablePersistenceManager</name></expr>, <expr><name>CacheAccessListener</name> <block>{
+ 
+     <comment type="block" format="javadoc">/** the default logger */</comment>
+     <expr><specifier>private</specifier> <specifier>static</specifier> <name>Logger</name> <name>log</name> <operator>=</operator> <call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>AbstractBundlePersistenceManager</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">112</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">114</literal></expr>,<expr><literal type="number">18</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractBundlePersistenceManager</name> implements
+     <comment type="block" format="javadoc">/** the cache of loaded bundles */</comment>
+     <specifier>private</specifier> <name><name>ConcurrentCache</name><argument_list type="generic">&lt;<argument><name>NodeId</name></argument>, <argument><name>NodePropBundle</name></argument>&gt;</argument_list></name> <name>bundles</name></expr>;
+ 
+    <comment type="block" format="javadoc">/** The default minimum stats logging interval (in ms). */</comment>
+    <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>int</name> <name>DEFAULT_LOG_STATS_INTERVAL</name> <operator>=</operator> <literal type="number">60</literal> <operator>*</operator> <literal type="number">1000</literal></expr>;
+
+    <comment type="block" format="javadoc">/** The minimum interval time between stats are logged */</comment>
+    <expr><specifier>private</specifier> <name>long</name> <name>minLogStatsInterval</name> <operator>=</operator> <call><name><name>Long</name><operator>.</operator><name>getLong</name></name><argument_list>(
+            <argument><expr><literal type="string">"org.apache.jackrabbit.cacheLogStatsInterval"</literal></expr></argument>,
+            <argument><expr><name>DEFAULT_LOG_STATS_INTERVAL</name></expr></argument>)</argument_list></call></expr>;
+
+    <comment type="block" format="javadoc">/** The last time the cache stats were logged. */</comment>
+    <expr><specifier>private</specifier> <specifier>volatile</specifier> <name>long</name> <name>nextLogStats</name> <operator>=</operator>
+            <call><name><name>System</name><operator>.</operator><name>currentTimeMillis</name></name><argument_list>()</argument_list></call> <operator>+</operator> <name>DEFAULT_LOG_STATS_INTERVAL</name></expr>;
+
+     <comment type="block" format="javadoc">/** the persistence manager context */</comment>
+     <expr><specifier>protected</specifier> <name>PMContext</name> <name>context</name></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">379</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">393</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name>AbstractBundlePersistenceManager</name> implements
+         <comment type="line">// init bundle cache</comment>
+         <name>bundles</name> <operator>=</operator> <operator>new</operator> <call><name><name>ConcurrentCache</name><argument_list type="generic">&lt;<argument><name>NodeId</name></argument>, <argument><name>NodePropBundle</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getHomeDir</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"BundleCache"</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name><name>bundles</name><operator>.</operator><name>setMaxMemorySize</name></name><argument_list>(<argument><expr><name>bundleCacheSize</name></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>bundles</name><operator>.</operator><name>setAccessListener</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;
+     }</block></expr></block></expr></expr_stmt>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -709,4 +724,22 @@ public abstract class AbstractBundlePersistenceManager implements
+         bundles.remove(id);
+     }
+ 
+    public void cacheAccessed(long accessCount) {
+        logCacheStats();
+    }
+
+    private void logCacheStats() {
+        if (log.isInfoEnabled()) {
+            long now = System.currentTimeMillis();
+            if (now &lt; nextLogStats) {
+                return;
+            }
+            log.info(bundles.getCacheInfoAsString());
+            nextLogStats = now + minLogStatsInterval;
+        }
+    }
+
+    public void disposeCache(Cache cache) {
+        // NOOP
+    }
+ }
+- 
+2.19.1.windows.1
+
+</comment></unit>

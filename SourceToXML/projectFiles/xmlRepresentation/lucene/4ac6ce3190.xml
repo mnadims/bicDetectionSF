@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/4ac6ce3190.java"><expr_stmt><expr><name>From</name> <literal type="number">4ac6ce3190d350e651c048fdb8223a9619b33ecf</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shalin</name> <name>Shekhar</name> <name><name>Mangar</name> <argument_list type="generic">&lt;<argument><name>shalin</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">30</literal> <name>Jul</name> <literal type="number">2008</literal> <literal type="number">08</literal><operator>:</operator><literal type="number">11</literal><operator>:</operator><literal type="number">56</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">663</literal> <operator>--</operator> <name>Allow</name> <name>multiple</name> <name>files</name></expr></expr_stmt> <for>for stopwords<operator>,</operator> <expr_stmt><expr><name>keepwords</name></expr><operator>,</operator>
+ <expr><name>protwords</name> <name>and</name> <name>synonyms</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/solr/trunk@680935 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>  <literal type="number">2</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>analysis</name><operator>/</operator><name><name>EnglishPorterFilterFactory</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">24</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>KeepWordFilterFactory</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">27</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>StopFilterFactory</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">23</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>SynonymFilterFactory</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">12</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>util</name><operator>/</operator><name><name>StrUtils</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">20</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">5</literal> <operator>++</operator><operator>++</operator>
+ <literal type="number">7</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">96</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">17</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>ed8f695356d</name><operator>..</operator><literal type="number">5547561f9b2</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">329</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">329</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>New</name> <name>Features</name>
+ 
+ <literal type="number">64.</literal> <name>SOLR</name><operator>-</operator><literal type="number">666</literal><operator>:</operator> <name>Expose</name> <name>warmup</name> <name>time</name> <name>in</name> <name>statistics</name></expr></expr_stmt></for> <for>for SolrIndexSearcher and LRUCache <control>(<init><expr><name>shalin</name></expr></init>)</control><block type="pseudo"><block_content>
+ 
+<expr_stmt><expr><literal type="number">65.</literal> <name>SOLR</name><operator>-</operator><literal type="number">663</literal><operator>:</operator> <name>Allow</name> <name>multiple</name> <name>files</name></expr></expr_stmt></block_content></block></for> <for>for stopwords<operator>,</operator> <expr_stmt><expr><name>keepwords</name></expr><operator>,</operator> <expr><name>protwords</name> <name>and</name> <call><name>synonyms</name> <argument_list>(<argument><expr><name>shalin</name></expr></argument>)</argument_list></call>
+
+     
+ <name>Changes</name> <name>in</name> <name>runtime</name> <name>behavior</name>
+  <literal type="number">1.</literal> <name>SOLR</name><operator>-</operator><literal type="number">559</literal><operator>:</operator> <name>use</name> <name>Lucene</name> <name>updateDocument</name></expr><operator>,</operator> <expr><name>deleteDocuments</name> <name><name>methods</name><operator>.</operator>  <name>This</name></name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>EnglishPorterFilterFactory</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>EnglishPorterFilterFactory</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c61b56c289a</name><operator>..</operator><name>ee9e9c98a4b</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>EnglishPorterFilterFactory</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>analysis</name><operator>/</operator><name><name>EnglishPorterFilterFactory</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">22</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@</expr></expr_stmt></for> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>Token</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenFilter</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>analysis</name><operator>.</operator><name>TokenStream</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>ResourceLoader</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>util</name><operator>.</operator><name>StrUtils</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>util</name><operator>.</operator><name>plugin</name><operator>.</operator><name>ResourceLoaderAware</name></name>;</import>
+ 
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -34,12 +36,24 @@ public class EnglishPorterFilterFactory extends BaseTokenFilterFactory implement
+   public static final String PROTECTED_TOKENS = "protected";
+ 
+   public void inform(ResourceLoader loader) {
+    String wordFile = args.get(PROTECTED_TOKENS);
+    if (wordFile != null) {
+    String wordFiles = args.get(PROTECTED_TOKENS);
+    if (wordFiles != null) {
+       try {
+        List&lt;String&gt; wlist = loader.getLines(wordFile);
+        //This cast is safe in Lucene
+        protectedWords = new CharArraySet(wlist, false);//No need to go through StopFilter as before, since it just uses a List internally
+        File protectedWordFiles = new File(wordFiles);
+        if (protectedWordFiles.exists()) {
+          List&lt;String&gt; wlist = loader.getLines(wordFiles);
+          //This cast is safe in Lucene
+          protectedWords = new CharArraySet(wlist, false);//No need to go through StopFilter as before, since it just uses a List internally
+        } else  {
+          List&lt;String&gt; files = StrUtils.splitFileNames(wordFiles);
+          for (String file : files) {
+            List&lt;String&gt; wlist = loader.getLines(file.trim());
+            if (protectedWords == null)
+              protectedWords = new CharArraySet(wlist, false);
+            else
+              protectedWords.addAll(wlist);
+          }
+        }
+       } catch (IOException e) {
+         throw new RuntimeException(e);
+       }
+diff --git a/src/java/org/apache/solr/analysis/KeepWordFilterFactory.java b/src/java/org/apache/solr/analysis/KeepWordFilterFactory.java
+index 4ff9dd14064..101df6394ef 100644
+-- a/src/java/org/apache/solr/analysis/KeepWordFilterFactory.java
+++ b/src/java/org/apache/solr/analysis/KeepWordFilterFactory.java
+@@ -18,14 +18,16 @@
+ package org.apache.solr.analysis;
+ 
+ import org.apache.solr.common.ResourceLoader;
+import org.apache.solr.core.SolrConfig;
+import org.apache.solr.common.util.StrUtils;
+ import org.apache.solr.util.plugin.ResourceLoaderAware;
+ import org.apache.lucene.analysis.StopFilter;
+ import org.apache.lucene.analysis.TokenStream;
+ 
+import java.util.Map;
+import java.util.HashSet;
+ import java.util.List;
+ import java.util.Set;
+import java.io.File;
+import java.io.File;
+ import java.io.IOException;
+ 
+ /**
+@@ -39,14 +41,25 @@ public class KeepWordFilterFactory extends BaseTokenFilterFactory implements Res
+ 
+   @SuppressWarnings("unchecked")
+   public void inform(ResourceLoader loader) {
+    String wordFile = args.get("words");
+    String wordFiles = args.get("words");
+     ignoreCase = getBoolean("ignoreCase",false);
+ 
+    if (wordFile != null) {
+    if (wordFiles != null) {
+      if (words == null)
+        words = new HashSet&lt;String&gt;();
+       try {
+        List&lt;String&gt; wlist = loader.getLines(wordFile);
+        words = StopFilter.makeStopSet(
+            (String[])wlist.toArray(new String[0]), ignoreCase);
+        java.io.File keepWordsFile = new File(wordFiles);
+        if (keepWordsFile.exists()) {
+          List&lt;String&gt; wlist = loader.getLines(wordFiles);
+          words = StopFilter.makeStopSet(
+              (String[])wlist.toArray(new String[0]), ignoreCase);
+        } else  {
+          List&lt;String&gt; files = StrUtils.splitFileNames(wordFiles);
+          for (String file : files) {
+            List&lt;String&gt; wlist = loader.getLines(file.trim());
+            words.addAll(StopFilter.makeStopSet((String[])wlist.toArray(new String[0]), ignoreCase));
+          }
+        }
+       } 
+       catch (IOException e) {
+         throw new RuntimeException(e);
+diff --git a/src/java/org/apache/solr/analysis/StopFilterFactory.java b/src/java/org/apache/solr/analysis/StopFilterFactory.java
+index 3178306b6b8..0126952a7bc 100644
+-- a/src/java/org/apache/solr/analysis/StopFilterFactory.java
+++ b/src/java/org/apache/solr/analysis/StopFilterFactory.java
+@@ -18,13 +18,17 @@
+ package org.apache.solr.analysis;
+ 
+ import org.apache.solr.common.ResourceLoader;
+import org.apache.solr.common.util.StrUtils;
+ import org.apache.solr.util.plugin.ResourceLoaderAware;
+ import org.apache.lucene.analysis.StopFilter;
+ import org.apache.lucene.analysis.StopAnalyzer;
+ import org.apache.lucene.analysis.TokenStream;
+ 
+import java.util.HashSet;
+ import java.util.List;
+import java.io.File;
+ import java.util.Set;
+import java.io.File;
+ import java.io.IOException;
+ 
+ /**
+@@ -33,14 +37,25 @@ import java.io.IOException;
+ public class StopFilterFactory extends BaseTokenFilterFactory implements ResourceLoaderAware {
+ 
+   public void inform(ResourceLoader loader) {
+    String stopWordFile = args.get("words");
+    String stopWordFiles = args.get("words");
+     ignoreCase = getBoolean("ignoreCase",false);
+     enablePositionIncrements = getBoolean("enablePositionIncrements",false);
+ 
+    if (stopWordFile != null) {
+    if (stopWordFiles != null) {
+      if (stopWords == null)
+        stopWords = new HashSet&lt;String&gt;();
+       try {
+        List&lt;String&gt; wlist = loader.getLines(stopWordFile);
+        stopWords = StopFilter.makeStopSet((String[])wlist.toArray(new String[0]), ignoreCase);
+        java.io.File keepWordsFile = new File(stopWordFiles);
+        if (keepWordsFile.exists()) {
+          List&lt;String&gt; wlist = loader.getLines(stopWordFiles);
+          stopWords = StopFilter.makeStopSet((String[])wlist.toArray(new String[0]), ignoreCase);
+        } else  {
+          List&lt;String&gt; files = StrUtils.splitFileNames(stopWordFiles);
+          for (String file : files) {
+            List&lt;String&gt; wlist = loader.getLines(file.trim());
+            stopWords.addAll(StopFilter.makeStopSet((String[])wlist.toArray(new String[0]), ignoreCase));
+          }
+        }
+       } catch (IOException e) {
+         throw new RuntimeException(e);
+       }
+diff --git a/src/java/org/apache/solr/analysis/SynonymFilterFactory.java b/src/java/org/apache/solr/analysis/SynonymFilterFactory.java
+index 16dfd125a19..fca4d5a6537 100644
+-- a/src/java/org/apache/solr/analysis/SynonymFilterFactory.java
+++ b/src/java/org/apache/solr/analysis/SynonymFilterFactory.java
+@@ -24,9 +24,11 @@ import org.apache.solr.common.util.StrUtils;
+ import org.apache.solr.core.SolrCore;
+ import org.apache.solr.util.plugin.ResourceLoaderAware;
+ 
+import java.io.File;
+ import java.io.IOException;
+ import java.io.Reader;
+ import java.io.StringReader;
+import java.io.File;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Map;
+@@ -51,7 +53,15 @@ public class SynonymFilterFactory extends BaseTokenFilterFactory implements Reso
+     if (synonyms != null) {
+       List&lt;String&gt; wlist=null;
+       try {
+        wlist = loader.getLines(synonyms);
+        File synonymFile = new java.io.File(synonyms);
+        if (synonymFile.exists()) {
+          wlist = loader.getLines(synonyms);
+        } else  {
+          List&lt;String&gt; files = StrUtils.splitFileNames(synonyms);
+          for (String file : files) {
+            wlist = loader.getLines(file.trim());
+          }
+        }
+       } catch (IOException e) {
+         throw new RuntimeException(e);
+       }
+diff --git a/src/java/org/apache/solr/common/util/StrUtils.java b/src/java/org/apache/solr/common/util/StrUtils.java
+index a132780ddf6..28bbff1a926 100644
+-- a/src/java/org/apache/solr/common/util/StrUtils.java
+++ b/src/java/org/apache/solr/common/util/StrUtils.java
+@@ -19,6 +19,7 @@ package org.apache.solr.common.util;
+ 
+ import java.util.List;
+ import java.util.ArrayList;
+import java.util.Collections;
+ import java.io.IOException;
+ 
+ /**
+@@ -118,6 +119,25 @@ public class StrUtils {
+     return lst;
+   }
+ 
+  /**
+   * Splits file names separated by comma character.
+   * File names can contain comma characters escaped by backslash '\'
+   *
+   * @param fileNames the string containing file names
+   * @return a list of file names with the escaping backslashed removed
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>splitFileNames</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>fileNames</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>fileNames</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+      <return>return <expr><name><name>Collections</name><operator>.</operator></name>&lt;<name>String</name><operator>&gt;</operator><call><name>emptyList</name><argument_list>()</argument_list></call></expr>;</return></block_content></block></if></if_stmt>
+
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>result</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>file</name> <range>: <expr><call><name><name>fileNames</name><operator>.</operator><name>split</name></name><argument_list>(<argument><expr><literal type="string">"(?&lt;!\\\\),"</literal></expr></argument>)</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>file</name><operator>.</operator><name>replaceAll</name></name><argument_list>(<argument><expr><literal type="string">"\\\\(?=,)"</literal></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <return>return <expr><name>result</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/** Creates a backslash escaped string, joining all the items. */</comment>
+   <function><type><specifier>public</specifier> <specifier>static</specifier> <name>String</name></type> <name>join</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>items</name></decl></parameter>, <parameter><decl><type><name>char</name></type> <name>separator</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <decl_stmt><decl><type><name>StringBuilder</name></type> <name>sb</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>(<argument><expr><call><name><name>items</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <literal type="number">3</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>d48094aeeaa</name><operator>..</operator><name>b0f7710548a</name> <literal type="number">100755</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>util</name><operator>/</operator><name><name>TestUtils</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">62</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestUtils</name> extends <name>TestCase</name> <block>{
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">" foo "</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">" bar "</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    
+    <expr><name>arr</name> <operator>=</operator> <call><name><name>StrUtils</name><operator>.</operator><name>splitFileNames</name></name><argument_list>(<argument><expr><literal type="string">"/h/s,/h/\\,s,"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"/h/s"</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"/h/,s"</literal></expr></argument>,<argument><expr><call><name><name>arr</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+   <specifier>public</specifier> <name>void</name> <call><name>testNamedLists</name><argument_list>()</argument_list></call>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function>
+
+</unit>

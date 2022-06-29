@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/fa52907742.java"><expr_stmt><expr><name>From</name> <name>fa52907742dc65d3145a4db11ca00fac5a5a3fca</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Michael</name> <name><name>McCandless</name> <argument_list type="generic">&lt;<argument><name>mikemccand</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">8</literal> <name>Nov</name> <literal type="number">2012</literal> <literal type="number">18</literal><operator>:</operator><literal type="number">52</literal><operator>:</operator><literal type="number">07</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">4547</literal><operator>:</operator> <name>fix</name> <name>hang</name></expr>;</expr_stmt> <expr_stmt><expr><name>remove</name> <name>sops</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/lucene/dev/branches/lucene4547@1407214 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>BytesDVWriter</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">115</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DocFieldProcessor</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">116</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>BytesDVWriter</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>BytesDVWriter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>BytesDVWriter</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..962bb92c254</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>BytesDVWriter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">115</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>index</name></name>;</package>
+
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>codecs</name><operator>.</operator><name>BinaryDocValuesConsumer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>BytesRef</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>Counter</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>lucene</name><operator>.</operator><name>util</name><operator>.</operator><name>RamUsageEstimator</name></name>;</import>
+
+
+<comment type="block" format="javadoc">/** Buffers up pending byte[] per doc, then flushes when
+ *  segment flushes. */</comment>
+<comment type="line">// nocommit name?</comment>
+<comment type="line">// nocommit make this a consumer in the chain?</comment>
+<class>class <name>BytesDVWriter</name> <block>{
+
+  <comment type="line">// nocommit more ram efficient?</comment>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>byte</name><index>[]</index></name></argument>&gt;</argument_list></name></type> <name>pending</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name><name>byte</name><index>[]</index></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Counter</name></type> <name>iwBytesUsed</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>bytesUsed</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>FieldInfo</name></type> <name>fieldInfo</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>BytesRef</name></type> <name>EMPTY</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>(<argument><expr><name><name>BytesRef</name><operator>.</operator><name>EMPTY_BYTES</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <comment type="line">// -2 means not set yet; -1 means length isn't fixed;</comment>
+  <comment type="line">// -otherwise it's the fixed length seen so far:</comment>
+  <decl_stmt><decl><type><name>int</name></type> <name>fixedLength</name> <init>= <expr><operator>-</operator><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>maxLength</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>BytesDVWriter</name><parameter_list>(<parameter><decl><type><name>FieldInfo</name></type> <name>fieldInfo</name></decl></parameter>, <parameter><decl><type><name>Counter</name></type> <name>iwBytesUsed</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>fieldInfo</name></name> <operator>=</operator> <name>fieldInfo</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>iwBytesUsed</name></name> <operator>=</operator> <name>iwBytesUsed</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>addValue</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>docID</name></decl></parameter>, <parameter><decl><type><name>BytesRef</name></type> <name>value</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>oldBytesUsed</name> <init>= <expr><name>bytesUsed</name></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>value</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <comment type="line">// nocommit improve message</comment>
+      <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"null binaryValue not allowed (field="</literal> <operator>+</operator> <name><name>fieldInfo</name><operator>.</operator><name>name</name></name> <operator>+</operator> <literal type="string">")"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name>mergeLength</name><argument_list>(<argument><expr><name><name>value</name><operator>.</operator><name>length</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// Fill in any holes:</comment>
+    <while>while<condition>(<expr><call><name><name>pending</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <name>docID</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name><name>BytesRef</name><operator>.</operator><name>EMPTY_BYTES</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>bytesUsed</name> <operator>+=</operator> <name><name>RamUsageEstimator</name><operator>.</operator><name>NUM_BYTES_OBJECT_REF</name></name></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>mergeLength</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></while>
+    <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>bytes</name> <init>= <expr><operator>new</operator> <name><name>byte</name><index>[<expr><name><name>value</name><operator>.</operator><name>length</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>System</name><operator>.</operator><name>arraycopy</name></name><argument_list>(<argument><expr><name><name>value</name><operator>.</operator><name>bytes</name></name></expr></argument>, <argument><expr><name><name>value</name><operator>.</operator><name>offset</name></name></expr></argument>, <argument><expr><name>bytes</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name><name>value</name><operator>.</operator><name>length</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>bytes</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// estimate 25% overhead for ArrayList:</comment>
+    <expr_stmt><expr><name>bytesUsed</name> <operator>+=</operator> <operator>(</operator><name>int</name><operator>)</operator> <operator>(</operator><name><name>bytes</name><operator>.</operator><name>length</name></name> <operator>+</operator> <name><name>RamUsageEstimator</name><operator>.</operator><name>NUM_BYTES_ARRAY_HEADER</name></name> <operator>+</operator> <operator>(</operator><name><name>RamUsageEstimator</name><operator>.</operator><name>NUM_BYTES_OBJECT_REF</name></name> <operator>*</operator> <literal type="number">1.25</literal><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>iwBytesUsed</name><operator>.</operator><name>addAndGet</name></name><argument_list>(<argument><expr><name>bytesUsed</name> <operator>-</operator> <name>oldBytesUsed</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//System.out.println("ADD: " + value);</comment>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>mergeLength</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>length</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>fixedLength</name> <operator>==</operator> <operator>-</operator><literal type="number">2</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>fixedLength</name> <operator>=</operator> <name>length</name></expr>;</expr_stmt>
+    </block_content>}</block></if> <if type="elseif">else if <condition>(<expr><name>fixedLength</name> <operator>!=</operator> <name>length</name></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>fixedLength</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><name>maxLength</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>max</name></name><argument_list>(<argument><expr><name>maxLength</name></expr></argument>, <argument><expr><name>length</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>flush</name><parameter_list>(<parameter><decl><type><name>FieldInfo</name></type> <name>fieldInfo</name></decl></parameter>, <parameter><decl><type><name>SegmentWriteState</name></type> <name>state</name></decl></parameter>, <parameter><decl><type><name>BinaryDocValuesConsumer</name></type> <name>consumer</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>bufferedDocCount</name> <init>= <expr><call><name><name>pending</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>BytesRef</name></type> <name>value</name> <init>= <expr><operator>new</operator> <call><name>BytesRef</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>docID</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>docID</name><operator>&lt;</operator><name>bufferedDocCount</name></expr>;</condition><incr><expr><name>docID</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>value</name><operator>.</operator><name>bytes</name></name> <operator>=</operator> <call><name><name>pending</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>docID</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>value</name><operator>.</operator><name>length</name></name> <operator>=</operator> <name><name>value</name><operator>.</operator><name>bytes</name><operator>.</operator><name>length</name></name></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>consumer</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>int</name></type> <name>maxDoc</name> <init>= <expr><call><name><name>state</name><operator>.</operator><name>segmentInfo</name><operator>.</operator><name>getDocCount</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>docID</name><init>=<expr><name>bufferedDocCount</name></expr></init></decl>;</init><condition><expr><name>docID</name><operator>&lt;</operator><name>maxDoc</name></expr>;</condition><incr><expr><name>docID</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>consumer</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>EMPTY</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <expr_stmt><expr><call><name>reset</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//System.out.println("FLUSH");</comment>
+  </block_content>}</block></function>
+
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>abort</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>reset</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>reset</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>pending</name><operator>.</operator><name>trimToSize</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>iwBytesUsed</name><operator>.</operator><name>addAndGet</name></name><argument_list>(<argument><expr><operator>-</operator><name>bytesUsed</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>bytesUsed</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>fixedLength</name> <operator>=</operator> <operator>-</operator><literal type="number">2</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>maxLength</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><operator>\</operator> <name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DocFieldProcessor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DocFieldProcessor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">0c707836c9a</literal><operator>..</operator><name>fd1cf25be7c</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DocFieldProcessor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>index</name><operator>/</operator><name><name>DocFieldProcessor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">98</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">98</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>final</name> <name>class</name> <name>DocFieldProcessor</name> extends <name>DocConsumer</name> <block>{
+             <comment type="line">// Codec.simpleDocValuesFormat abstract, change</comment>
+             <comment type="line">// this to assert dvConsumer != null!</comment>
+             <if_stmt><if>if <condition>(<expr><name>fmt</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><name>field</name> <operator>=</operator> <name><name>field</name><operator>.</operator><name>next</name></name></expr>;</expr_stmt>
+               <continue>continue;</continue>
+             </block_content></block></if></if_stmt></block>}</expr>
+ 
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr_stmt>
+
+</unit>

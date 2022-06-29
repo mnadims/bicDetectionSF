@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/5650939a8d.java"><expr_stmt><expr><name>From</name> <literal type="number">5650939a8d41b7bad584947a2c9dcedf3774b8de</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Noble</name> <name><name>Paul</name> <argument_list type="generic">&lt;<argument><name>noble</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">25</literal> <name>Nov</name> <literal type="number">2016</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">51</literal><operator>:</operator><literal type="number">38</literal> <operator>+</operator><literal type="number">0530</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">9784</literal><operator>:</operator> <name>Refactor</name> <name>CloudSolrClient</name> <name>to</name> <name>eliminate</name> <name>direct</name>
+ <name>dependency</name> <name>on</name> <name>ZK</name> <name>SOLR</name><operator>-</operator><literal type="number">9512</literal><operator>:</operator> <name>CloudSolrClient</name><literal type="char">'s cluster state cache can break
+ direct updates to leaders
+
+--
+ .../client/solrj/impl/CloudSolrClient.java    | 313 +++++++++++-------
+ 1 file changed, 191 insertions(+), 122 deletions(-)
+
+diff --git a/solr/solrj/src/java/org/apache/solr/client/solrj/impl/CloudSolrClient.java b/solr/solrj/src/java/org/apache/solr/client/solrj/impl/CloudSolrClient.java
+index 9bc45294b3c..241e2a145f1 100644
+-- a/solr/solrj/src/java/org/apache/solr/client/solrj/impl/CloudSolrClient.java
+++ b/solr/solrj/src/java/org/apache/solr/client/solrj/impl/CloudSolrClient.java
+@@ -16,6 +16,7 @@
+  */
+ package org.apache.solr.client.solrj.impl;
+ 
+import java.io.Closeable;
+ import java.io.IOException;
+ import java.lang.invoke.MethodHandles;
+ import java.net.ConnectException;
+@@ -37,6 +38,7 @@ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Future;
+ import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicLong;
+ import java.util.concurrent.locks.Lock;
+ import java.util.concurrent.locks.ReentrantLock;
+ 
+@@ -56,7 +58,6 @@ import org.apache.solr.common.SolrException;
+ import org.apache.solr.common.SolrException.ErrorCode;
+ import org.apache.solr.common.SolrInputDocument;
+ import org.apache.solr.common.ToleratedUpdateError;
+import org.apache.solr.common.cloud.Aliases;
+ import org.apache.solr.common.cloud.ClusterState;
+ import org.apache.solr.common.cloud.CollectionStatePredicate;
+ import org.apache.solr.common.cloud.CollectionStateWatcher;
+@@ -68,7 +69,6 @@ import org.apache.solr.common.cloud.Slice;
+ import org.apache.solr.common.cloud.ZkCoreNodeProps;
+ import org.apache.solr.common.cloud.ZkNodeProps;
+ import org.apache.solr.common.cloud.ZkStateReader;
+import org.apache.solr.common.cloud.ZooKeeperException;
+ import org.apache.solr.common.params.ModifiableSolrParams;
+ import org.apache.solr.common.params.ShardParams;
+ import org.apache.solr.common.params.SolrParams;
+@@ -79,7 +79,6 @@ import org.apache.solr.common.util.NamedList;
+ import org.apache.solr.common.util.SimpleOrderedMap;
+ import org.apache.solr.common.util.SolrjNamedThreadFactory;
+ import org.apache.solr.common.util.StrUtils;
+import org.apache.zookeeper.KeeperException;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ import org.slf4j.MDC;
+@@ -101,10 +100,7 @@ public class CloudSolrClient extends SolrClient {
+ 
+   private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+ 
+  private volatile ZkStateReader zkStateReader;
+  private String zkHost; // the zk server connect string
+  private int zkConnectTimeout = 10000;
+  private int zkClientTimeout = 10000;
+  private final ClusterStateProvider stateProvider;
+   private volatile String defaultCollection;
+   private final LBHttpSolrClient lbClient;
+   private final boolean shutdownLBHttpSolrServer;
+@@ -122,6 +118,7 @@ public class CloudSolrClient extends SolrClient {
+           "CloudSolrClient ThreadPool"));
+   private String idField = "id";
+   public static final String STATE_VERSION = "_stateVer_";
+  private long retryExpiryTime = TimeUnit.NANOSECONDS.convert(3, TimeUnit.SECONDS);//3 seconds or 3 million nanos
+   private final Set&lt;String&gt; NON_ROUTABLE_PARAMS;
+   {
+     NON_ROUTABLE_PARAMS = new HashSet&lt;&gt;();
+@@ -139,12 +136,15 @@ public class CloudSolrClient extends SolrClient {
+     // NON_ROUTABLE_PARAMS.add(UpdateParams.ROLLBACK);
+ 
+   }
+  private volatile long timeToLive = 60* 1000L;
+   private volatile List&lt;Object&gt; locks = objectList(3);
+ 
+ 
+  protected final Map&lt;String, ExpiringCachedDocCollection&gt; collectionStateCache = new ConcurrentHashMap&lt;String, ExpiringCachedDocCollection&gt;(){
+  static class StateCache extends ConcurrentHashMap&lt;String, ExpiringCachedDocCollection&gt; {
+    final AtomicLong puts = new AtomicLong();
+    final AtomicLong hits = new AtomicLong();
+     final Lock evictLock = new ReentrantLock(true);
+    private volatile long timeToLive = 60 * 1000L;
+
+     @Override
+     public ExpiringCachedDocCollection get(Object key) {
+       ExpiringCachedDocCollection val = super.get(key);
+@@ -158,9 +158,16 @@ public class CloudSolrClient extends SolrClient {
+         super.remove(key);
+         return null;
+       }
+      hits.incrementAndGet();
+       return val;
+     }
+ 
+    @Override
+    public ExpiringCachedDocCollection put(String key, ExpiringCachedDocCollection value) {
+      puts.incrementAndGet();
+      return super.put(key, value);
+    }
+
+     void evictStale() {
+       if(!evictLock.tryLock()) return;
+       try {
+@@ -174,11 +181,30 @@ public class CloudSolrClient extends SolrClient {
+       }
+     }
+ 
+  };
+  }
+
+  /**
+   * This is the time to wait to refetch the state
+   * after getting the same state version from ZK
+   * &lt;p&gt;
+   * secs
+   */
+  public void setRetryExpiryTime(int secs) {
+    this.retryExpiryTime = TimeUnit.NANOSECONDS.convert(secs, TimeUnit.SECONDS);
+  }
+
+  public void setSoTimeout(int timeout) {
+    lbClient.setSoTimeout(timeout);
+  }
+ 
+  protected final StateCache collectionStateCache = new StateCache();
+   class ExpiringCachedDocCollection {
+     final DocCollection cached;
+    long cachedAt;
+    final long cachedAt;
+    //This is the time at which the collection is retried and got the same old version
+    long retriedAt = -1;
+    //flag that suggests that this is potentially to be rechecked
+    boolean maybeStale = false;
+ 
+     ExpiringCachedDocCollection(DocCollection cached) {
+       this.cached = cached;
+@@ -189,6 +215,21 @@ public class CloudSolrClient extends SolrClient {
+       return (System.nanoTime() - cachedAt)
+           &gt; TimeUnit.NANOSECONDS.convert(timeToLiveMs, TimeUnit.MILLISECONDS);
+     }
+
+    boolean shoulRetry() {
+      if (maybeStale) {// we are not sure if it is stale so check with retry time
+        if ((retriedAt == -1 ||
+            (System.nanoTime() - retriedAt) &gt; retryExpiryTime)) {
+          return true;// we retried a while back. and we could not get anything new.
+          //it'</literal><name>s</name> <name>likely</name> <name>that</name> <name>it</name> <name>is</name> <name>not</name> <name>going</name> <name>to</name> <name>be</name> <name>available</name> <name>now</name> <name><name>also</name><operator>.</operator></name>
+        }</expr></expr_stmt>
+      }
+      return <expr_stmt><expr><literal type="boolean">false</literal></expr>;</expr_stmt>
+    }
+
+    void <expr_stmt><expr><call><name>setRetriedAt</name><argument_list>()</argument_list></call> <block>{
+      <expr><name>retriedAt</name> <operator>=</operator> <call><name><name>System</name><operator>.</operator><name>nanoTime</name></name><argument_list>()</argument_list></call></expr>;
+    }</block></expr></expr_stmt>
+   }
+ 
+   <comment type="block" format="javadoc">/**
+@@ -215,7 +256,7 @@ public class CloudSolrClient extends SolrClient {
+    */</comment>
+   @<function><type><name>Deprecated</name>
+   <specifier>public</specifier></type> <name>CloudSolrClient</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>zkHost</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <name>zkHost</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>stateProvider</name></name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>clientIsInternal</name></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>myClient</name></name> <operator>=</operator> <call><name><name>HttpClientUtil</name><operator>.</operator><name>createClient</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>lbClient</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>LBHttpSolrClient</name><operator>.</operator><name>Builder</name></name><argument_list>()</argument_list></call>
+@@ <operator>-</operator><literal type="number">255</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">296</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator> @<name>deprecated</name> <name>use</name> <block>{@<expr><name>link</name> <name>Builder</name></expr>}</block> <name><name>instead</name><operator>.</operator></name>
+    *<operator>/</operator>
+   @<name>Deprecated</name>
+  <specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name>String</name> <name>zkHost</name></expr></argument>, <argument><expr><name>HttpClient</name> <name>httpClient</name></expr></argument>)</argument_list></call>  <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <name>zkHost</name></expr>;
+  <expr><specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name>String</name> <name>zkHost</name></expr></argument>, <argument><expr><name>HttpClient</name> <name>httpClient</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>stateProvider</name></name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>clientIsInternal</name></name> <operator>=</operator> <name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>myClient</name></name> <operator>=</operator> <ternary><condition><expr><name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><call><name><name>HttpClientUtil</name><operator>.</operator><name>createClient</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr> </then><else>: <expr><name>httpClient</name></expr></else></ternary></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>lbClient</name></name> <operator>=</operator> <call><name>createLBHttpSolrClient</name><argument_list>(<argument><expr><name>myClient</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">314</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">355</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   @<name>Deprecated</name>
+   <specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>zkHosts</name></expr></argument>, <argument><expr><name>String</name> <name>chroot</name></expr></argument>, <argument><expr><name>HttpClient</name> <name>httpClient</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <call><name>buildZkHostString</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>chroot</name></expr></argument>)</argument_list></call></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>stateProvider</name></name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>chroot</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>clientIsInternal</name></name> <operator>=</operator> <name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>myClient</name></name> <operator>=</operator> <ternary><condition><expr><name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><call><name><name>HttpClientUtil</name><operator>.</operator><name>createClient</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr> </then><else>: <expr><name>httpClient</name></expr></else></ternary></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>lbClient</name></name> <operator>=</operator> <call><name>createLBHttpSolrClient</name><argument_list>(<argument><expr><name>myClient</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">350</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">391</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   @<name>Deprecated</name>
+   <specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>zkHosts</name></expr></argument>, <argument><expr><name>String</name> <name>chroot</name></expr></argument>, <argument><expr><name>HttpClient</name> <name>httpClient</name></expr></argument>, <argument><expr><name>LBHttpSolrClient</name> <name>lbSolrClient</name></expr></argument>, <argument><expr><name>boolean</name> <name>updatesToLeaders</name></expr></argument>)</argument_list></call> <block>{
+    <expr><call><name>this</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>chroot</name></expr></argument>, <argument><expr><name>httpClient</name></expr></argument>, <argument><expr><name>lbSolrClient</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>updatesToLeaders</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>this</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>chroot</name></expr></argument>, <argument><expr><name>httpClient</name></expr></argument>, <argument><expr><name>lbSolrClient</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>updatesToLeaders</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -385,8 +426,15 @@ public class CloudSolrClient extends SolrClient {
+                           LBHttpSolrClient lbSolrClient,
+                           LBHttpSolrClient.Builder lbHttpSolrClientBuilder,
+                           boolean updatesToLeaders,
+                          boolean directUpdatesToLeadersOnly) {
+    this.zkHost = buildZkHostString(zkHosts, chroot);
+                          boolean directUpdatesToLeadersOnly,
+                          ClusterStateProvider stateProvider
+
+  ) {
+    if (stateProvider == null) {
+      this.stateProvider = new ZkClientClusterStateProvider(zkHosts, chroot);
+    } else {
+      this.stateProvider = stateProvider;
+    }
+     this.clientIsInternal = httpClient == null;
+     this.shutdownLBHttpSolrServer = lbSolrClient == null;
+     if(lbHttpSolrClientBuilder != null) lbSolrClient = lbHttpSolrClientBuilder.build();
+@@ -424,7 +472,7 @@ public class CloudSolrClient extends SolrClient {
+    */</comment>
+   @<name>Deprecated</name>
+   <specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name>String</name> <name>zkHost</name></expr></argument>, <argument><expr><name>boolean</name> <name>updatesToLeaders</name></expr></argument>, <argument><expr><name>HttpClient</name> <name>httpClient</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <name>zkHost</name></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>stateProvider</name></name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>clientIsInternal</name></name> <operator>=</operator> <name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>myClient</name></name> <operator>=</operator> <ternary><condition><expr><name>httpClient</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><call><name><name>HttpClientUtil</name><operator>.</operator><name>createClient</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr> </then><else>: <expr><name>httpClient</name></expr></else></ternary></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>lbClient</name></name> <operator>=</operator> <operator>new</operator> <call><name><name>LBHttpSolrClient</name><operator>.</operator><name>Builder</name></name><argument_list>()</argument_list></call>
+@@ <operator>-</operator><literal type="number">443</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">491</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>setCollectionCacheTTl</name><argument_list>(<argument><expr><name>int</name> <name>seconds</name></expr></argument>)</argument_list></call><block>{
+     <assert>assert <expr><name>seconds</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>;</assert>
+    <name>timeToLive</name> <operator>=</operator> <name>seconds</name><operator>*</operator><literal type="number">1000L</literal></block></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>collectionStateCache</name><operator>.</operator><name>timeToLive</name></name> <operator>=</operator> <name>seconds</name> <operator>*</operator> <literal type="number">1000L</literal></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -471,8 +519,8 @@ public class CloudSolrClient extends SolrClient {
+    */</comment>
+   @<name>Deprecated</name>
+   <specifier>public</specifier> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name>String</name> <name>zkHost</name></expr></argument>, <argument><expr><name>LBHttpSolrClient</name> <name>lbClient</name></expr></argument>, <argument><expr><name>boolean</name> <name>updatesToLeaders</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkHost</name></name> <operator>=</operator> <name>zkHost</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>lbClient</name></name> <operator>=</operator> <name>lbClient</name></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>stateProvider</name></name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>updatesToLeaders</name></name> <operator>=</operator> <name>updatesToLeaders</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>directUpdatesToLeadersOnly</name></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+     <expr><name>shutdownLBHttpSolrServer</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+@@ <expr><operator>-</operator><literal type="number">508</literal></expr>,<expr><literal type="number">11</literal> <operator>+</operator><literal type="number">556</literal></expr>,<expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator> @</expr><return>return <expr><name>the</name> <name>zkHost</name> <name>value</name> <name>used</name> <name>to</name> <name>connect</name> <name>to</name> <name><name>zookeeper</name><operator>.</operator></name>
+    *<operator>/</operator>
+   <specifier>public</specifier> <name>String</name> <call><name>getZkHost</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>zkHost</name></expr>;</return></block></expr></return>
+    <return>return <expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><name>zkHost</name></expr>;</return></block></expr>
+   }</block>
+ 
+   <specifier>public</specifier> <name>ZkStateReader</name> <call><name>getZkStateReader</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>zkStateReader</name></expr>;</return></block></expr>
+    <if_stmt><if>if <condition>(<expr><name>stateProvider</name> <operator>instanceof</operator> <name>ZkClientClusterStateProvider</name></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>ZkClientClusterStateProvider</name></type> <name>provider</name> <init>= <expr><operator>(</operator><name>ZkClientClusterStateProvider</name><operator>)</operator> <name>stateProvider</name></expr></init></decl>;</decl_stmt>
+      <return>return <expr><name><name>provider</name><operator>.</operator><name>zkStateReader</name></name></expr>;</return>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block>
+    <throw>throw <argument_list>new <argument><expr><call><name>IllegalStateException</name><argument_list>(<argument><expr><literal type="string">"This has no Zk stateReader"</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -541,12 +593,12 @@ public class CloudSolrClient extends SolrClient {
+ 
+   /** Set the connect timeout to the zookeeper ensemble in ms */</comment>
+   <specifier>public</specifier> <name>void</name> <call><name>setZkConnectTimeout</name><argument_list>(<argument><expr><name>int</name> <name>zkConnectTimeout</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkConnectTimeout</name></name> <operator>=</operator> <name>zkConnectTimeout</name></expr>;
+    <expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><name>zkConnectTimeout</name> <operator>=</operator> <name>zkConnectTimeout</name></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/** Set the timeout to the zookeeper ensemble in ms */</comment>
+   <specifier>public</specifier> <name>void</name> <call><name>setZkClientTimeout</name><argument_list>(<argument><expr><name>int</name> <name>zkClientTimeout</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name><name>this</name><operator>.</operator><name>zkClientTimeout</name></name> <operator>=</operator> <name>zkClientTimeout</name></expr>;
+    <expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><name>zkClientTimeout</name> <operator>=</operator> <name>zkClientTimeout</name></expr>;
+   }</block>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -555,29 +607,7 @@ public class CloudSolrClient extends SolrClient {
+    *
+    */</comment>
+   <specifier>public</specifier> <name>void</name> <call><name>connect</name><argument_list>()</argument_list></call> <block>{
+    <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <synchronized>synchronized <init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name>ZkStateReader</name></type> <name>zk</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+          <try>try <block>{<block_content>
+            <expr_stmt><expr><name>zk</name> <operator>=</operator> <operator>new</operator> <call><name>ZkStateReader</name><argument_list>(<argument><expr><name>zkHost</name></expr></argument>, <argument><expr><name>zkClientTimeout</name></expr></argument>, <argument><expr><name>zkConnectTimeout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>createClusterStateWatchersAndUpdate</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>zkStateReader</name> <operator>=</operator> <name>zk</name></expr>;</expr_stmt>
+          <expr_stmt/></block_content></block></try></block_content></block></if></if_stmt></block_content></block></synchronized></block_content></block></if></if_stmt>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>InterruptedException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>Thread</name><operator>.</operator><name>currentThread</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>interrupt</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <throw>throw <expr><operator>new</operator> <call><name>ZooKeeperException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          <expr_stmt/></block_content></block></catch>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>KeeperException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <throw>throw <expr><operator>new</operator> <call><name>ZooKeeperException</name><argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>SERVER_ERROR</name></name></expr></argument>, <argument><expr><literal type="string">""</literal></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+          <expr_stmt/></block_content></block></catch>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>zk</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>zk</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+            <comment type="line">// do not wrap because clients may be relying on the underlying exception being thrown</comment>
+            <throw>throw <expr><name>e</name></expr>;</throw>
+          <expr_stmt/></block_content></block></catch>}</block></expr>
+        }</block></expr>
+      }</block></expr></expr_stmt>
+    </block_content>}</block></function>
+    <expr_stmt><expr><call><name><name>stateProvider</name><operator>.</operator><name>connect</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+   }
+ 
+   <comment type="block" format="javadoc">/**
+@@ -588,12 +618,12 @@ public class CloudSolrClient extends SolrClient {
+    * @throws InterruptedException if the wait is interrupted
+    */</comment>
+   public <function><type><name>void</name></type> <name>connect</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>duration</name></decl></parameter>, <parameter><decl><type><name>TimeUnit</name></type> <name>timeUnit</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TimeoutException</name></expr></argument>, <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Waiting for {} {} for cluster at {} to be ready"</literal></expr></argument>, <argument><expr><name>duration</name></expr></argument>, <argument><expr><name>timeUnit</name></expr></argument>, <argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Waiting for {} {} for cluster at {} to be ready"</literal></expr></argument>, <argument><expr><name>duration</name></expr></argument>, <argument><expr><name>timeUnit</name></expr></argument>, <argument><expr><name>stateProvider</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <decl_stmt><decl><type><name>long</name></type> <name>timeout</name> <init>= <expr><call><name><name>System</name><operator>.</operator><name>nanoTime</name></name><argument_list>()</argument_list></call> <operator>+</operator> <call><name><name>timeUnit</name><operator>.</operator><name>toNanos</name></name><argument_list>(<argument><expr><name>duration</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <while>while <condition>(<expr><call><name><name>System</name><operator>.</operator><name>nanoTime</name></name><argument_list>()</argument_list></call> <operator>&lt;</operator> <name>timeout</name></expr>)</condition> <block>{<block_content>
+       <try>try <block>{<block_content>
+         <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Cluster at {} ready"</literal></expr></argument>, <argument><expr><name>zkHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Cluster at {} ready"</literal></expr></argument>, <argument><expr><name>stateProvider</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <return>return;</return>
+       </block_content>}</block>
+       <catch>catch <parameter_list>(<parameter><decl><type><name>RuntimeException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">620</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">650</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+    <expr><operator>*</operator> @<throws>throws <argument><expr><name>IOException</name></expr></argument></throws></expr> <if_stmt><if>if an IO error occurs
+    */
+   public void uploadConfig<condition>(<expr><name>Path</name> <name>configPath</name></expr><operator>,</operator> <expr><name>String</name> <name>configName</name></expr>)</condition><block type="pseudo"><block_content> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><call><name>connect</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws><empty_stmt>;</empty_stmt></block_content></block></if></if_stmt>
+    <call><name><name>zkStateReader</name><operator>.</operator><name>getConfigManager</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>uploadConfigDir</name><argument_list>(<argument><expr><name>configPath</name></expr></argument>, <argument><expr><name>configName</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stateProvider</name><operator>.</operator><name>connect</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><call><name>uploadConfig</name><argument_list>(<argument><expr><name>configPath</name></expr></argument>, <argument><expr><name>configName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></catch></try>
+
+  <function><type><specifier>private</specifier> <name>ZkClientClusterStateProvider</name></type> <name>assertZKStateProvider</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>stateProvider</name> <operator>instanceof</operator> <name>ZkClientClusterStateProvider</name></expr>)</condition> <block>{<block_content>
+      <return>return <expr><operator>(</operator><name>ZkClientClusterStateProvider</name><operator>)</operator> <name>stateProvider</name></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"This client does not use ZK"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -631,8 +669,7 @@ public class CloudSolrClient extends SolrClient {
+    * @throws IOException  if an I/O exception occurs
+    */</comment>
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>downloadConfig</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>configName</name></decl></parameter>, <parameter><decl><type><name>Path</name></type> <name>downloadPath</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>getConfigManager</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>downloadConfigDir</name><argument_list>(<argument><expr><name>configName</name></expr></argument>, <argument><expr><name>downloadPath</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><call><name>downloadConfig</name><argument_list>(<argument><expr><name>configName</name></expr></argument>, <argument><expr><name>downloadPath</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -650,8 +687,8 @@ public class CloudSolrClient extends SolrClient {
+    */</comment>
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>waitForState</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>wait</name></decl></parameter>, <parameter><decl><type><name>TimeUnit</name></type> <name>unit</name></decl></parameter>, <parameter><decl><type><name>CollectionStatePredicate</name></type> <name>predicate</name></decl></parameter>)</parameter_list>
+       <throws>throws <argument><expr><name>InterruptedException</name></expr></argument>, <argument><expr><name>TimeoutException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>waitForState</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><name>wait</name></expr></argument>, <argument><expr><name>unit</name></expr></argument>, <argument><expr><name>predicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stateProvider</name><operator>.</operator><name>connect</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><call><name><name>zkStateReader</name><operator>.</operator><name>waitForState</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><name>wait</name></expr></argument>, <argument><expr><name>unit</name></expr></argument>, <argument><expr><name>predicate</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+@@ -665,11 +702,11 @@ public class CloudSolrClient extends SolrClient {
+    * @param watcher    a watcher that will be called when the state changes
+    */</comment>
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>registerCollectionStateWatcher</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>, <parameter><decl><type><name>CollectionStateWatcher</name></type> <name>watcher</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>connect</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>registerCollectionStateWatcher</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><name>watcher</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>stateProvider</name><operator>.</operator><name>connect</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assertZKStateProvider</name><argument_list>()</argument_list></call><operator>.</operator><call><name><name>zkStateReader</name><operator>.</operator><name>registerCollectionStateWatcher</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><name>watcher</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+ 
+  <function><type><specifier>private</specifier> <name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>directUpdate</name><parameter_list>(<parameter><decl><type><name>AbstractUpdateRequest</name></type> <name>request</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>, <parameter><decl><type><name>ClusterState</name></type> <name>clusterState</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>SolrServerException</name></expr></argument></throws> <block>{<block_content>
+  <function><type><specifier>private</specifier> <name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>directUpdate</name><parameter_list>(<parameter><decl><type><name>AbstractUpdateRequest</name></type> <name>request</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>SolrServerException</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>UpdateRequest</name></type> <name>updateRequest</name> <init>= <expr><operator>(</operator><name>UpdateRequest</name><operator>)</operator> <name>request</name></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>ModifiableSolrParams</name></type> <name>params</name> <init>= <expr><operator>(</operator><name>ModifiableSolrParams</name><operator>)</operator> <call><name><name>request</name><operator>.</operator><name>getParams</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name>ModifiableSolrParams</name></type> <name>routableParams</name> <init>= <expr><operator>new</operator> <call><name>ModifiableSolrParams</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">689</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">726</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+ 
+ 
+     <comment type="line">//Check to see if the collection is an alias.</comment>
+    <expr><name>Aliases</name> <name>aliases</name> <operator>=</operator> <call><name><name>zkStateReader</name><operator>.</operator><name>getAliases</name></name><argument_list>()</argument_list></call></expr>;
+    <if_stmt><if>if<condition>(<expr><name>aliases</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>collectionAliases</name> <init>= <expr><call><name><name>aliases</name><operator>.</operator><name>getCollectionAliasMap</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if<condition>(<expr><name>collectionAliases</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>collectionAliases</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>collection</name> <operator>=</operator> <call><name><name>collectionAliases</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+    </block_content>}</block></function>
+    <expr_stmt><expr><name>collection</name> <operator>=</operator> <call><name><name>stateProvider</name><operator>.</operator><name>getCollectionName</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><name>clusterState</name></expr></argument>, <argument><expr><name>collection</name></expr></argument>,<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><name>DocRouter</name></type> <name>router</name> <init>= <expr><call><name><name>col</name><operator>.</operator><name>getRouter</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1018</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">1049</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+     <expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>DocCollection</name></argument>&gt;</argument_list></name> <name>requestedCollections</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+     <expr><name>boolean</name> <name>isAdmin</name> <operator>=</operator> <call><name><name>ADMIN_PATHS</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     <if_stmt><if>if <condition>(<expr><name>collection</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator>  <operator>!</operator><name>isAdmin</name></expr>)</condition> <block>{<block_content> <comment type="line">// don't do _stateVer_ checking for admin requests</comment>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>requestedCollectionNames</name> <init>= <expr><call><name>getCollectionNames</name><argument_list>(<argument><expr><call><name>getZkStateReader</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getClusterState</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>requestedCollectionNames</name> <init>= <expr><call><name>getCollectionNames</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <decl_stmt><decl><type><name>StringBuilder</name></type> <name>stateVerParamBuilder</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+       <for>for <control>(<init><decl><type><name>String</name></type> <name>requestedCollection</name> <range>: <expr><name>requestedCollectionNames</name></expr></range></decl></init>)</control> <block>{<block_content>
+         <comment type="line">// track the version of state we're using on the client side using the _stateVer_ param</comment>
+        <decl_stmt><decl><type><name>DocCollection</name></type> <name>coll</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><call><name>getZkStateReader</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getClusterState</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>requestedCollection</name></expr></argument>,<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>DocCollection</name></type> <name>coll</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><name>requestedCollection</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name>int</name></type> <name>collVer</name> <init>= <expr><call><name><name>coll</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><call><name><name>coll</name><operator>.</operator><name>getStateFormat</name></name><argument_list>()</argument_list></call><operator>&gt;</operator><literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+           <if_stmt><if>if<condition>(<expr><name>requestedCollections</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><name>requestedCollections</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>requestedCollectionNames</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1064</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1095</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+         <expr><name>Map</name> <name>invalidStates</name> <operator>=</operator> <operator>(</operator><name>Map</name><operator>)</operator> <name>o</name></expr>;</block></expr></expr_stmt>
+         <for>for <control>(<init><decl><type><name>Object</name></type> <name>invalidEntries</name> <range>: <expr><call><name><name>invalidStates</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+           <decl_stmt><decl><type><name><name>Map</name><operator>.</operator><name>Entry</name></name></type> <name>e</name> <init>= <expr><operator>(</operator><name><name>Map</name><operator>.</operator><name>Entry</name></name><operator>)</operator> <name>invalidEntries</name></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name>getDocCollection</name><argument_list>(<argument><expr><call><name>getZkStateReader</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getClusterState</name><argument_list>()</argument_list></call></expr></argument>,<argument><expr><operator>(</operator><name>String</name><operator>)</operator><call><name><name>e</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>(</operator><name>Integer</name><operator>)</operator><call><name><name>e</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name>getDocCollection</name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>e</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>(</operator><name>Integer</name><operator>)</operator> <call><name><name>e</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/></block_content></block></for></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+ 
+       </block_content>}</block></function>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1097</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1128</literal></expr><operator>,</operator><expr><literal type="number">26</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+               <expr><name>rootCause</name> <operator>instanceof</operator> <name>NoHttpResponseException</name> <operator>||</operator>
+               <name>rootCause</name> <operator>instanceof</operator> <name>SocketException</name></expr>)</block></expr>;</expr_stmt>
+ 
+      <if_stmt><if>if <condition>(<expr><name>wasCommError</name></expr>)</condition> <block>{<block_content>
+        <comment type="line">// it was a communication error. it is likely that</comment>
+        <comment type="line">// the node to which the request to be sent is down . So , expire the state</comment>
+        <comment type="line">// so that the next attempt would fetch the fresh state</comment>
+        <comment type="line">// just re-read state for all of them, if it has not been retired</comment>
+        <comment type="line">// in retryExpiryTime time</comment>
+        <for>for <control>(<init><decl><type><name>DocCollection</name></type> <name>ext</name> <range>: <expr><name>requestedCollections</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name>ExpiringCachedDocCollection</name></type> <name>cacheEntry</name> <init>= <expr><call><name><name>collectionStateCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>ext</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>cacheEntry</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <continue>continue;</continue></block_content></block></if></if_stmt>
+          <expr_stmt><expr><name><name>cacheEntry</name><operator>.</operator><name>maybeStale</name></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></for>
+        <if_stmt><if>if <condition>(<expr><name>retryCount</name> <operator>&lt;</operator> <name>MAX_STALE_RETRIES</name></expr>)</condition> <block>{<block_content><comment type="line">//if it is a communication error , we must try again</comment>
+          <comment type="line">//may be, we have a stale version of the collection state</comment>
+          <comment type="line">// and we could not get any information from the server</comment>
+          <comment type="line">//it is probably not worth trying again and again because</comment>
+          <comment type="line">// the state would not have been updated</comment>
+          <return>return <expr><call><name>requestWithRetryOnStaleState</name><argument_list>(<argument><expr><name>request</name></expr></argument>, <argument><expr><name>retryCount</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</return>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></if></if_stmt>
+
+       <decl_stmt><decl><type><name>boolean</name></type> <name>stateWasStale</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+       <if_stmt><if>if <condition>(<expr><name>retryCount</name> <operator>&lt;</operator> <name>MAX_STALE_RETRIES</name>  <operator>&amp;&amp;</operator>
+           <name>requestedCollections</name> <operator>!=</operator> <literal type="null">null</literal>    <operator>&amp;&amp;</operator>
+@@ <operator>-</operator><literal type="number">1121</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1172</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name></expr></condition> <block>{<block_content>
+           <expr_stmt><expr><operator>!</operator><call><name><name>requestedCollections</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+           <name>wasCommError</name></expr></expr_stmt>)</block_content> <block>{<block_content>
+         <for>for <control>(<init><decl><type><name>DocCollection</name></type> <name>ext</name> <range>: <expr><name>requestedCollections</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name>DocCollection</name></type> <name>latestStateFromZk</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><call><name><name>zkStateReader</name><operator>.</operator><name>getClusterState</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>ext</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>,<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>DocCollection</name></type> <name>latestStateFromZk</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><call><name><name>ext</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+           <if_stmt><if>if <condition>(<expr><call><name><name>latestStateFromZk</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <call><name><name>ext</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+             <comment type="line">// looks like we couldn't reach the server because the state was stale == retry</comment>
+             <expr_stmt><expr><name>stateWasStale</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1158</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">1209</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+   <expr><specifier>protected</specifier> <name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name> <call><name>sendRequest</name><argument_list>(<argument><expr><name>SolrRequest</name> <name>request</name></expr></argument>, <argument><expr><name>String</name> <name>collection</name></expr></argument>)</argument_list></call>
+       <throws>throws <argument><expr><name>SolrServerException</name></expr></argument>, <argument><expr><name>IOException</name> <block>{
+     <expr><call><name>connect</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+    
+    <name>ClusterState</name> <name>clusterState</name> <operator>=</operator> <call><name><name>zkStateReader</name><operator>.</operator><name>getClusterState</name></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+    
+
+     <decl_stmt><decl><type><name>boolean</name></type> <name>sendToLeaders</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>replicas</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+     
+     <if_stmt><if>if <condition>(<expr><name>request</name> <operator>instanceof</operator> <name>IsUpdateRequest</name></expr>)</condition> <block>{<block_content>
+       <if_stmt><if>if <condition>(<expr><name>request</name> <operator>instanceof</operator> <name>UpdateRequest</name></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>response</name> <init>= <expr><call><name>directUpdate</name><argument_list>(<argument><expr><operator>(</operator><name>AbstractUpdateRequest</name><operator>)</operator> <name>request</name></expr></argument>, <argument><expr><name>collection</name></expr></argument>, <argument><expr><name>clusterState</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>NamedList</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>response</name> <init>= <expr><call><name>directUpdate</name><argument_list>(<argument><expr><operator>(</operator><name>AbstractUpdateRequest</name><operator>)</operator> <name>request</name></expr></argument>, <argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>response</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <return>return <expr><name>response</name></expr>;</return>
+         </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1181</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">1230</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+     }</block>
+     <name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>theUrlList</name> <operator>=</operator> <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <if_stmt><if>if <condition>(<expr><call><name><name>ADMIN_PATHS</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name> <init>= <expr><call><name><name>clusterState</name><operator>.</operator><name>getLiveNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name> <init>= <expr><call><name><name>stateProvider</name><operator>.</operator><name>liveNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <for>for <control>(<init><decl><type><name>String</name></type> <name>liveNode</name> <range>: <expr><name>liveNodes</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>theUrlList</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>zkStateReader</name><operator>.</operator><name>getBaseUrlForNodeName</name></name><argument_list>(<argument><expr><name>liveNode</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>theUrlList</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>ZkStateReader</name><operator>.</operator><name>getBaseUrlForNodeName</name></name><argument_list>(<argument><expr><name>liveNode</name></expr></argument>,
+            <argument><expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>stateProvider</name><operator>.</operator><name>getClusterProperties</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getOrDefault</name><argument_list>(<argument><expr><name><name>ZkStateReader</name><operator>.</operator><name>URL_SCHEME</name></name></expr></argument>,<argument><expr><literal type="string">"http"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></for>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+       
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1191</literal></expr><operator>,</operator><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">1241</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+         <throw>throw <argument_list>new <argument><expr><call><name>SolrServerException</name><argument_list>(
+             <argument><expr><literal type="string">"No collection param specified on request and no default collection has been set."</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+       }</block></expr></expr_stmt>
+      
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>collectionNames</name> <init>= <expr><call><name>getCollectionNames</name><argument_list>(<argument><expr><name>clusterState</name></expr></argument>, <argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>collectionNames</name> <init>= <expr><call><name>getCollectionNames</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <if_stmt><if>if <condition>(<expr><call><name><name>collectionNames</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+         <throw>throw <expr><operator>new</operator> <call><name>SolrException</name><argument_list>(<argument><expr><name><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>,
+             <argument><expr><literal type="string">"Could not find collection: "</literal> <operator>+</operator> <name>collection</name></expr></argument>)</argument_list></call></expr>;</throw>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1209</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">1259</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+       <comment type="line">// add it to the Map of slices.</comment>
+       <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>Slice</name></argument>&gt;</argument_list></name> <name>slices</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</block></expr></expr_stmt>
+       <for>for <control>(<init><decl><type><name>String</name></type> <name>collectionName</name> <range>: <expr><name>collectionNames</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><name>clusterState</name></expr></argument>, <argument><expr><name>collectionName</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><call><name>getDocCollection</name><argument_list>(<argument><expr><name>collectionName</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>Slice</name></argument>&gt;</argument_list></name></type> <name>routeSlices</name> <init>= <expr><call><name><name>col</name><operator>.</operator><name>getRouter</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSearchSlices</name><argument_list>(<argument><expr><name>shardKeys</name></expr></argument>, <argument><expr><name>reqParams</name></expr></argument> , <argument><expr><name>col</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>ClientUtils</name><operator>.</operator><name>addSlices</name></name><argument_list>(<argument><expr><name>slices</name></expr></argument>, <argument><expr><name>collectionName</name></expr></argument>, <argument><expr><name>routeSlices</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></for>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name> <init>= <expr><call><name><name>clusterState</name><operator>.</operator><name>getLiveNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name> <init>= <expr><call><name><name>stateProvider</name><operator>.</operator><name>liveNodes</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+       <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>leaderUrlList</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>urlList</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1289</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">1339</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+     <return>return <expr><call><name><name>rsp</name><operator>.</operator><name>getResponse</name></name><argument_list>()</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <function><type><specifier>private</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getCollectionNames</name><parameter_list>(<parameter><decl><type><name>ClusterState</name></type> <name>clusterState</name></decl></parameter>,
+                                         <parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+  <function><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getCollectionNames</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <comment type="line">// Extract each comma separated collection name and store in a List.</comment>
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>rawCollectionsList</name> <init>= <expr><call><name><name>StrUtils</name><operator>.</operator><name>splitSmart</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><literal type="string">","</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>collectionNames</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">// validate collections</comment>
+     <for>for <control>(<init><decl><type><name>String</name></type> <name>collectionName</name> <range>: <expr><name>rawCollectionsList</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>clusterState</name><operator>.</operator><name>hasCollection</name></name><argument_list>(<argument><expr><name>collectionName</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>Aliases</name></type> <name>aliases</name> <init>= <expr><call><name><name>zkStateReader</name><operator>.</operator><name>getAliases</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>alias</name> <init>= <expr><call><name><name>aliases</name><operator>.</operator><name>getCollectionAlias</name></name><argument_list>(<argument><expr><name>collectionName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>stateProvider</name><operator>.</operator><name>getState</name></name><argument_list>(<argument><expr><name>collectionName</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>alias</name> <init>= <expr><call><name><name>stateProvider</name><operator>.</operator><name>getAlias</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>alias</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>aliasList</name> <init>= <expr><call><name><name>StrUtils</name><operator>.</operator><name>splitSmart</name></name><argument_list>(<argument><expr><name>alias</name></expr></argument>, <argument><expr><literal type="string">","</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+           <expr_stmt><expr><call><name><name>collectionNames</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>aliasList</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1315</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">1363</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+ 
+   @<expr><name>Override</name>
+   <specifier>public</specifier> <name>void</name> <call><name>close</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument></throws></expr>
+    <if_stmt><if>if <condition>(<expr><name>zkStateReader</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <synchronized>synchronized<init>(<expr><name>this</name></expr>)</init> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>zkStateReader</name><operator>!=</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content>
+          <expr_stmt><expr><call><name><name>zkStateReader</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+        <expr_stmt><expr><name>zkStateReader</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+      </block_content>}</block></synchronized>
+    </block_content>}</block></if></if_stmt>
+    <call><name><name>stateProvider</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></block></expr>;</expr_stmt>
+     
+     <if_stmt><if>if <condition>(<expr><name>shutdownLBHttpSolrServer</name></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>lbClient</name><operator>.</operator><name>close</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1367</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">1409</literal></expr><operator>,</operator><expr><literal type="number">17</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+   }</block>
+ 
+ 
+  <specifier>protected</specifier> <name>DocCollection</name> <call><name>getDocCollection</name><argument_list>(<argument><expr><name>ClusterState</name> <name>clusterState</name></expr></argument>, <argument><expr><name>String</name> <name>collection</name></expr></argument>, <argument><expr><name>Integer</name> <name>expectedVersion</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>SolrException</name> <block>{
+  <expr><specifier>protected</specifier> <name>DocCollection</name> <call><name>getDocCollection</name><argument_list>(<argument><expr><name>String</name> <name>collection</name></expr></argument>, <argument><expr><name>Integer</name> <name>expectedVersion</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws> <throws>throws <argument><expr><name>SolrException</name> <block>{</block></expr></argument></throws></expr></expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>expectedVersion</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><name>expectedVersion</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt></block_content></block></if></if_stmt>
+     <if_stmt><if>if <condition>(<expr><name>collection</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+    <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><call><name>getFromCache</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ExpiringCachedDocCollection</name></type> <name>cacheEntry</name> <init>= <expr><call><name><name>collectionStateCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>DocCollection</name></type> <name>col</name> <init>= <expr><ternary><condition><expr><name>cacheEntry</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><name><name>cacheEntry</name><operator>.</operator><name>cached</name></name></expr></else></ternary></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>col</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>expectedVersion</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>col</name></expr>;</return></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><call><name><name>expectedVersion</name><operator>.</operator><name>intValue</name></name><argument_list>()</argument_list></call> <operator>==</operator> <call><name><name>col</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>col</name></expr>;</return></block_content></block></if></if_stmt>
+      <if_stmt><if>if <condition>(<expr><name>expectedVersion</name> <operator>&lt;=</operator> <call><name><name>col</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call>
+          <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>cacheEntry</name><operator>.</operator><name>shoulRetry</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>col</name></expr>;</return></block_content></block></if></if_stmt>
+     </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>ref</name> <init>= <expr><call><name><name>clusterState</name><operator>.</operator><name>getCollectionRef</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>ref</name> <init>= <expr><call><name>getCollectionRef</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>ref</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <comment type="line">//no such collection exists</comment>
+       <return>return <expr><literal type="null">null</literal></expr>;</return>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1386</literal></expr><operator>,</operator><expr><literal type="number">30</literal> <operator>+</operator><literal type="number">1430</literal></expr><operator>,</operator><expr><literal type="number">34</literal> @@ <specifier>public</specifier> <name>class</name> <name>CloudSolrClient</name> extends <name>SolrClient</name> <block>{
+     }</block>
+     <name>List</name> <name>locks</name> <operator>=</operator> <name><name>this</name><operator>.</operator><name>locks</name></name></expr>;</expr_stmt>
+     <decl_stmt><decl><type><specifier>final</specifier> <name>Object</name></type> <name>lock</name> <init>= <expr><call><name><name>locks</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>Math</name><operator>.</operator><name>abs</name></name><argument_list>(<argument><expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>collection</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>%</operator> <call><name><name>locks</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>DocCollection</name></type> <name>fetchedCol</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+     <synchronized>synchronized <init>(<expr><name>lock</name></expr>)</init> <block>{<block_content>
+      <comment type="line">//we have waited for sometime just check once again</comment>
+      <expr_stmt><expr><name>col</name> <operator>=</operator> <call><name>getFromCache</name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <comment type="block">/*we have waited for sometime just check once again*/</comment>
+      <expr_stmt><expr><name>cacheEntry</name> <operator>=</operator> <call><name><name>collectionStateCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>col</name> <operator>=</operator> <ternary><condition><expr><name>cacheEntry</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><name><name>cacheEntry</name><operator>.</operator><name>cached</name></name></expr></else></ternary></expr>;</expr_stmt>
+       <if_stmt><if>if <condition>(<expr><name>col</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name>expectedVersion</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>col</name></expr>;</return></block_content></block></if></if_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>expectedVersion</name><operator>.</operator><name>intValue</name></name><argument_list>()</argument_list></call> <operator>==</operator> <call><name><name>col</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <return>return <expr><name>col</name></expr>;</return>
+        </block_content>}</block></if> <else>else <block>{<block_content>
+          <expr_stmt><expr><call><name><name>collectionStateCache</name><operator>.</operator><name>remove</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+        <if_stmt><if>if <condition>(<expr><name>expectedVersion</name> <operator>&lt;=</operator> <call><name><name>col</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call>
+            <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>cacheEntry</name><operator>.</operator><name>shoulRetry</name></name><argument_list>()</argument_list></call></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><name>col</name></expr>;</return></block_content></block></if></if_stmt>
+      </block_content>}</block></if></if_stmt>
+      <comment type="line">// We are going to fetch a new version</comment>
+      <comment type="line">// we MUST try to get a new version</comment>
+      <expr_stmt><expr><name>fetchedCol</name> <operator>=</operator> <call><name><name>ref</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt><comment type="line">//this is a call to ZK</comment>
+      <if_stmt><if>if <condition>(<expr><name>fetchedCol</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt><comment type="line">// this collection no more exists</comment>
+      <if_stmt><if>if <condition>(<expr><name>col</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>fetchedCol</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call> <operator>==</operator> <call><name><name>col</name><operator>.</operator><name>getZNodeVersion</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>cacheEntry</name><operator>.</operator><name>setRetriedAt</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt><comment type="line">//we retried and found that it is the same version</comment>
+        <expr_stmt><expr><name><name>cacheEntry</name><operator>.</operator><name>maybeStale</name></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><call><name><name>fetchedCol</name><operator>.</operator><name>getStateFormat</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content>
+          <expr_stmt><expr><call><name><name>collectionStateCache</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>ExpiringCachedDocCollection</name><argument_list>(<argument><expr><name>fetchedCol</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+       </block_content>}</block></else></if_stmt>
+      <expr_stmt><expr><name>col</name> <operator>=</operator> <call><name><name>ref</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt><comment type="line">//this is a call to ZK</comment>
+      <return>return <expr><name>fetchedCol</name></expr>;</return>
+     </block_content>}</block></synchronized>
+    <if_stmt><if>if <condition>(<expr><name>col</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>col</name><operator>.</operator><name>getStateFormat</name></name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition><block type="pseudo"><block_content> <expr_stmt><expr><call><name><name>collectionStateCache</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>, <argument><expr><operator>new</operator> <call><name>ExpiringCachedDocCollection</name><argument_list>(<argument><expr><name>col</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if></if_stmt>
+    <return>return <expr><name>col</name></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+  <function><type><specifier>private</specifier> <name>DocCollection</name></type> <name>getFromCache</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>c</name></decl></parameter>)</parameter_list><block>{<block_content>
+    <decl_stmt><decl><type><name>ExpiringCachedDocCollection</name></type> <name>cachedState</name> <init>= <expr><call><name><name>collectionStateCache</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><ternary><condition><expr><name>cachedState</name> <operator>!=</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><name><name>cachedState</name><operator>.</operator><name>cached</name></name></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr>;</return>
+  <function><type><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>getCollectionRef</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>stateProvider</name><operator>.</operator><name>getState</name></name><argument_list>(<argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+ 
+
+   <comment type="block" format="javadoc">/**
+    * Useful for determining the minimum achieved replication factor across
+    * all shards involved in processing an update request, typically useful
+@@ -1445,9 +1493,9 @@ public class CloudSolrClient extends SolrClient {
+     Map&lt;String,Integer&gt; results = new HashMap&lt;String,Integer&gt;();
+     if (resp instanceof CloudSolrClient.RouteResponse) {
+       NamedList routes = ((CloudSolrClient.RouteResponse)resp).getRouteResponses();
+      ClusterState clusterState = zkStateReader.getClusterState();     
+      DocCollection coll = getDocCollection(collection, null);
+       Map&lt;String,String&gt; leaders = new HashMap&lt;String,String&gt;();
+      for (Slice slice : clusterState.getActiveSlices(collection)) {
+      for (Slice slice : coll.getActiveSlices()) {
+         Replica leader = slice.getLeader();
+         if (leader != null) {
+           ZkCoreNodeProps zkProps = new ZkCoreNodeProps(leader);
+@@ -1484,10 +1532,6 @@ public class CloudSolrClient extends SolrClient {
+     this.lbClient.setConnectionTimeout(timeout); 
+   }
+ 
+  public void setSoTimeout(int timeout) {
+    this.lbClient.setSoTimeout(timeout);
+  }
+
+   private static boolean hasInfoToFindLeaders(UpdateRequest updateRequest, String idField) {
+     final Map&lt;SolrInputDocument,Map&lt;String,Object&gt;&gt; documents = updateRequest.getDocumentsMap();
+     final Map&lt;String,Map&lt;String,Object&gt;&gt; deleteById = updateRequest.getDeleteByIdMap();
+@@ -1564,7 +1608,9 @@ public class CloudSolrClient extends SolrClient {
+     private LBHttpSolrClient.Builder lbClientBuilder;
+     private boolean shardLeadersOnly;
+     private boolean directUpdatesToLeadersOnly;
+    
+    private ClusterStateProvider stateProvider;
+
+
+     public Builder() {
+       this.zkHosts = new ArrayList();
+       this.shardLeadersOnly = true;
+@@ -1666,12 +1712,35 @@ public class CloudSolrClient extends SolrClient {
+       return this;
+     }
+ 
+    public Builder withClusterStateProvider(ClusterStateProvider stateProvider) {
+      this.stateProvider = stateProvider;
+      return this;
+    }
+
+     /**
+      * Create a {@link CloudSolrClient} based on the provided configuration.
+      */</comment>
+     <function><type><specifier>public</specifier> <name>CloudSolrClient</name></type> <name>build</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>stateProvider</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>stateProvider</name> <operator>=</operator> <operator>new</operator> <call><name>ZkClientClusterStateProvider</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>zkChroot</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+       <return>return <expr><operator>new</operator> <call><name>CloudSolrClient</name><argument_list>(<argument><expr><name>zkHosts</name></expr></argument>, <argument><expr><name>zkChroot</name></expr></argument>, <argument><expr><name>httpClient</name></expr></argument>, <argument><expr><name>loadBalancedSolrClient</name></expr></argument>, <argument><expr><name>lbClientBuilder</name></expr></argument>,
+          <argument><expr><name>shardLeadersOnly</name></expr></argument>, <argument><expr><name>directUpdatesToLeadersOnly</name></expr></argument>)</argument_list></call></expr>;</return>
+          <expr_stmt><expr><name>shardLeadersOnly</name></expr><operator>,</operator> <expr><name>directUpdatesToLeadersOnly</name></expr><operator>,</operator> <expr><name>stateProvider</name></expr></expr_stmt>)</block_content></block>;</function>
+     </block_content>}</block></function>
+   </block_content>}</block></if></if_stmt>
+
+  <interface>interface <name>ClusterStateProvider</name> <super_list><extends>extends <super><name>Closeable</name></super></extends></super_list> <block>{
+
+    <decl_stmt><decl><type><name><name>ClusterState</name><operator>.</operator><name>CollectionRef</name></name></type> <name>getState</name><argument_list>(<argument><expr><name>String</name> <name>collection</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+    <function_decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>liveNodes</name><parameter_list>()</parameter_list>;</function_decl>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>getAlias</name><argument_list>(<argument><expr><name>String</name> <name>collection</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>getCollectionName</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+    <function_decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>getClusterProperties</name><parameter_list>()</parameter_list>;</function_decl>
+
+    <function_decl><type><name>void</name></type> <name>connect</name><parameter_list>()</parameter_list>;</function_decl>
+  }</block></interface>
+ </block_content>}</block></if></if_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></function></block_content></block></function></block_content></block></if></if_stmt></block_content></block></else></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></block></if></if_stmt></block_content></block></while></block_content></block></function>
+
+</unit>

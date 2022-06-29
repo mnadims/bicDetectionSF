@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/56fd858d.java"><expr_stmt><expr><name>From</name> <literal type="number">56fd858deb3d8047370649fad9df11c0b3e7ad53</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name><name>Kanter</name> <argument_list type="generic">&lt;<argument><name>rkanter</name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">17</literal> <name>Sep</name> <literal type="number">2014</literal> <literal type="number">17</literal><operator>:</operator><literal type="number">16</literal><operator>:</operator><literal type="number">33</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">1917</literal> <name>Authentication</name> <name>secret</name> <name>should</name> <name>be</name> <name>random</name> <name>by</name> default
+ <name>and</name> <name>needs</name> <name>to</name> <name>coordinate</name> <name>with</name> <call><name>HA</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>conf</name><operator>/</operator><name>oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name>             <operator>|</operator> <literal type="number">11</literal> <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>servlet</name><operator>/</operator><name><name>AuthFilter</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">28</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>oozie</name><operator>-</operator>default<operator>.</operator><name>xml</name>     <operator>|</operator> <literal type="number">11</literal> <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <name>docs</name><operator>/</operator><name>src</name><operator>/</operator><name>site</name><operator>/</operator><name>twiki</name><operator>/</operator><name><name>AG_Install</name><operator>.</operator><name>twiki</name></name>          <operator>|</operator> <literal type="number">11</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator>
+ <name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>                               <operator>|</operator>  <literal type="number">1</literal> <operator>+</operator>
+ <literal type="number">5</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">38</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">24</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>conf</name><operator>/</operator><name>oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>conf</name><operator>/</operator><name>oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <literal type="number">703d321eb</literal><operator>..</operator><name>c028ca225</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>conf</name><operator>/</operator><name>oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>conf</name><operator>/</operator><name>oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name>
+@@ <operator>-</operator><literal type="number">280</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">280</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+         <operator>&lt;</operator><operator>/</operator><name>description</name><operator>&gt;</operator>
+     <operator>&lt;</operator><operator>/</operator><name>property</name><operator>&gt;</operator>
+ 
+    <operator>&lt;</operator><name>property</name><operator>&gt;</operator>
+        <operator>&lt;</operator><name>name</name><operator>&gt;</operator><name><name>oozie</name><operator>.</operator><name>authentication</name><operator>.</operator><name>signature</name><operator>.</operator><name><name>secret</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>name</name></argument>&gt;</argument_list></name></name>
+        <operator>&lt;</operator><name>value</name><operator>&gt;</operator><name><name>oozie</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>value</name></argument>&gt;</argument_list></name>
+        <operator>&lt;</operator><name>description</name><operator>&gt;</operator>
+            <name>The</name> <name>signature</name> <name>secret</name></expr></expr_stmt> <for>for signing the authentication tokens.
+            If not set a random secret is generated at startup time.
+            In order to authentiation to work correctly across multiple hosts
+            the secret must be the same across al the hosts.
+        &lt;/description&gt;
+    &lt;/property&gt;
+
+     &lt;property&gt;
+       &lt;name&gt;oozie.authentication.cookie.domain&lt;/name&gt;
+       &lt;value&gt;&lt;/value&gt;
+diff --git a/core/src/main/java/org/apache/oozie/servlet/AuthFilter.java b/core/src/main/java/org/apache/oozie/servlet/AuthFilter.java
+index 85e507216..054f48402 100644
+-- a/core/src/main/java/org/apache/oozie/servlet/AuthFilter.java
+++ b/core/src/main/java/org/apache/oozie/servlet/AuthFilter.java
+@@ -32<operator>,</operator><expr_stmt><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">32</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@</expr></expr_stmt></for> <import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpServletRequest</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>service</name><operator>.</operator><name>JobsConcurrencyService</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>oozie</name><operator>.</operator><name>util</name><operator>.</operator><name>ZKUtils</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * Authentication filter that extends Hadoop-auth AuthenticationFilter to override
+@@ -41,6 +43,7 @@ public class AuthFilter extends AuthenticationFilter {
+     private static final String OOZIE_PREFIX = "oozie.authentication.";
+ 
+     private HttpServlet optionsServlet;
+    private ZKUtils zkUtils = null;
+ 
+     /**
+      * Initialize the filter.
+@@ -50,6 +53,15 @@ public class AuthFilter extends AuthenticationFilter {
+      */</comment>
+     <function><annotation>@<name>Override</name></annotation>
+     <type><specifier>public</specifier> <name>void</name></type> <name>init</name><parameter_list>(<parameter><decl><type><name>FilterConfig</name></type> <name>filterConfig</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>ServletException</name></expr></argument></throws> <block>{<block_content>
+        <comment type="line">// If using HA, we'd like to use our Curator client with ZKSignerSecretProvider, so we have to pass it</comment>
+        <if_stmt><if>if <condition>(<expr><call><name><name>Services</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><name><name>JobsConcurrencyService</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>isHighlyAvailableMode</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <expr_stmt><expr><name>zkUtils</name> <operator>=</operator> <call><name><name>ZKUtils</name><operator>.</operator><name>register</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <throw>throw <expr><operator>new</operator> <call><name>ServletException</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+            </block_content>}</block></catch></try>
+            <expr_stmt><expr><call><name><name>filterConfig</name><operator>.</operator><name>getServletContext</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setAttribute</name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider.zookeeper.curator.client"</literal></expr></argument>, <argument><expr><call><name><name>zkUtils</name><operator>.</operator><name>getClient</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+         <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>init</name></name><argument_list>(<argument><expr><name>filterConfig</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>optionsServlet</name> <operator>=</operator> <operator>new</operator> <class><super><name>HttpServlet</name></super><argument_list>()</argument_list> <block>{}</block></class></expr>;</expr_stmt>
+         <expr_stmt><expr><call><name><name>optionsServlet</name><operator>.</operator><name>init</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">61</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">73</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>AuthFilter</name> extends <name>AuthenticationFilter</name> <block>{
+     @<expr><name>Override</name>
+     <specifier>public</specifier> <name>void</name> <call><name>destroy</name><argument_list>()</argument_list></call> <block>{
+         <expr><call><name><name>optionsServlet</name><operator>.</operator><name>destroy</name></name><argument_list>()</argument_list></call></expr>;
+        <if_stmt><if>if <condition>(<expr><name>zkUtils</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>zkUtils</name><operator>.</operator><name>unregister</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block>
+         <call><name><name>super</name><operator>.</operator><name>destroy</name></name><argument_list>()</argument_list></call></expr>;
+     }</block>
+ 
+@@ <operator>-</operator><literal type="number">94</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">109</literal></expr><operator>,</operator><expr><literal type="number">19</literal> @@ <specifier>public</specifier> <name>class</name> <name>AuthFilter</name> extends <name>AuthenticationFilter</name> <block>{
+             }</block></expr></expr_stmt>
+         </block_content>}</block></function>
+ 
+        <comment type="line">// If using HA, we need to set some extra configs for the ZKSignerSecretProvider.  No need to bother the user with these</comment>
+        <comment type="line">// details, so we'll set them for the user (unless the user really wants to set them)</comment>
+        <if_stmt><if>if <condition>(<expr><call><name><name>Services</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><name><name>JobsConcurrencyService</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>isHighlyAvailableMode</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>props</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider"</literal></expr></argument>, <argument><expr><literal type="string">"zookeeper"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>props</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider.zookeeper.path"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider.zookeeper.path"</literal></expr></argument>,
+                        <argument><expr><name><name>ZKUtils</name><operator>.</operator><name>ZK_BASE_SERVICES_PATH</name></name> <operator>+</operator> <literal type="string">"/signersecrets"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"signer.secret.provider.zookeeper.disconnect.on.shutdown"</literal></expr></argument>, <argument><expr><literal type="string">"false"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+         <return>return <expr><name>props</name></expr>;</return>
+     }
+ 
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>oozie</name><operator>-</operator>default<operator>.</operator><name>xml</name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>oozie</name><operator>-</operator>default<operator>.</operator><name>xml</name>
+<name>index</name> <literal type="number">6a91dc645</literal><operator>..</operator><literal type="number">874b9780f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>oozie</name><operator>-</operator>default<operator>.</operator><name>xml</name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name>oozie</name><operator>-</operator>default<operator>.</operator><name>xml</name>
+@@ <operator>-</operator><literal type="number">1823</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">1823</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+         <operator>&lt;</operator><operator>/</operator><name>description</name><operator>&gt;</operator>
+     <operator>&lt;</operator><operator>/</operator><name>property</name><operator>&gt;</operator>
+ 
+    <operator>&lt;</operator><name>property</name><operator>&gt;</operator>
+        <operator>&lt;</operator><name>name</name><operator>&gt;</operator><name><name>oozie</name><operator>.</operator><name>authentication</name><operator>.</operator><name>signature</name><operator>.</operator><name><name>secret</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>name</name></argument>&gt;</argument_list></name></name>
+        <operator>&lt;</operator><name>value</name><operator>&gt;</operator><name><name>oozie</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>value</name></argument>&gt;</argument_list></name>
+        <operator>&lt;</operator><name>description</name><operator>&gt;</operator>
+            <name>The</name> <name>signature</name> <name>secret</name></expr></expr_stmt> <for>for signing the authentication tokens.
+            If not set a random secret is generated at startup time.
+            In order to authentiation to work correctly across multiple hosts
+            the secret must be the same across al the hosts.
+        &lt;/description&gt;
+    &lt;/property&gt;
+
+     &lt;property&gt;
+       &lt;name&gt;oozie.authentication.cookie.domain&lt;/name&gt;
+       &lt;value&gt;&lt;/value&gt;
+diff --git a/docs/src/site/twiki/AG_Install.twiki b/docs/src/site/twiki/AG_Install.twiki
+index 06659f82e..c92d53055 100644
+-- a/docs/src/site/twiki/AG_Install.twiki
+++ b/docs/src/site/twiki/AG_Install.twiki
+@@ -281<operator>,</operator><expr_stmt><expr><literal type="number">8</literal> <operator>+</operator><literal type="number">281</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <name>simple</name> <operator>|</operator> <name>kerberos</name> <operator>|</operator> <operator>#</operator><name>AUTHENTICATION_HANDLER_CLASSNAME</name><operator>#</operator><operator>.</operator>
+ <name>The</name> <operator>=</operator><name><name>token</name><operator>.</operator><name>validity</name></name><operator>=</operator> <name>indicates</name> <name>how</name> <call><name>long</name> <argument_list>(<argument><expr><name>in</name> <name>seconds</name></expr></argument>)</argument_list></call> <name>an</name> <name>authentication</name> <name>token</name> <name>is</name> <name>valid</name> <name>before</name> <name>it</name> <name>has</name>
+ <name>to</name> <name>be</name> <name><name>renewed</name><operator>.</operator>
+ 
+<name>The</name></name> <operator>=</operator><name><name>signature</name><operator>.</operator><name>secret</name></name><operator>=</operator> <name>is</name> <name>the</name> <name>signature</name> <name>secret</name></expr></expr_stmt></for> <for>for signing the authentication tokens. If not set a random
+secret is generated at startup time.
+The =signature.secret= is the signature secret for signing the authentication tokens. It is recommended to not set this<operator>,</operator> <expr_stmt><expr><name>in</name> <name>which</name></expr></expr_stmt></for>
+<case>case <expr><name>Oozie</name> <name>will</name> <name>randomly</name> <name>generate</name> <name>one</name> <name>on</name> <name><name>startup</name><operator>.</operator>
+ 
+ <name>The</name></name> <operator>=</operator><name><name>oozie</name><operator>.</operator><name>authentication</name><operator>.</operator><name>cookie</name><operator>.</operator><name>domain</name></name><operator>=</operator> <name>The</name> <name>domain</name> <name>to</name> <name>use</name></expr> <for>for the HTTP cookie that stores the
+ authentication token. In order to authentiation to work correctly across all Hadoop nodes web-consoles
+@@ -881<operator>,</operator><expr_stmt><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">881</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <name>For</name> <name>earlier</name> <name>versions</name> <name>of</name> <name>Hadoop</name></expr></expr_stmt></for>:</case>
+ 
+ <expr_stmt><expr><literal type="number">2b</literal><operator>.</operator> <name>Set</name> <operator>=</operator><name><name>oozie</name><operator>.</operator><name>authentication</name><operator>.</operator><name>kerberos</name><operator>.</operator><name>principal</name></name><operator>=</operator> <name>to</name> <operator>=</operator><name>HTTP</name><operator>/</operator><name>load</name><operator>-</operator><name>balancer</name><operator>-</operator><name>host</name>@<name>realm</name><operator>=</operator><operator>.</operator>
+ 
+<literal type="number">3.</literal> <name>With</name> <name>Hadoop</name> <literal type="number">2.6.0</literal> <name>and</name> <name>later</name></expr><operator>,</operator> <expr><name>a</name> <name>rolling</name> <name>random</name> <name>secret</name> <name>that</name> <name>is</name> <specifier>synchronized</specifier> <name>across</name> <name>all</name> <name>Oozie</name> <name>servers</name> <name>will</name> <name>be</name> <name>used</name></expr></expr_stmt> <for>for signing the
+Oozie auth tokens.  This is done automatically when HA is enabled<empty_stmt>;</empty_stmt></for> <decl><type><name>no</name> <name>additional</name> <name>configuration</name> <name>is</name> <name><name>needed</name><operator>.</operator>
+
+<name>For</name></name> <name>earlier</name> <name>versions</name> <name>of</name></type> <name>Hadoop</name></decl>, <decl><type ref="prev"/><name>each</name> <name>server</name> <name>will</name> <name>have</name> <name>a</name> <name>different</name> <name>random</name> <name><name>secret</name><operator>.</operator>  <name>This</name></name> <name>will</name> <name>still</name> <name>work</name> <name>but</name> <name>will</name> <name>likely</name> <name>result</name> <name>in</name>
+<name>additional</name> <name>calls</name> <name>to</name> <name>the</name> <name>KDC</name> <name>to</name> <name>authenticate</name> <name>users</name> <name>to</name> <name>the</name> <name>Oozie</name> <name>server</name> <argument_list>(<argument><expr><name>because</name> <name>the</name> <name>auth</name> <name>tokens</name> <name>will</name> <name>not</name> <name>be</name> <name>accepted</name> <name>by</name> <name>other</name>
+<name>servers</name></expr></argument>, <argument><expr><name>which</name> <name>will</name> <name>cause</name> <name>a</name> <name>fallback</name> <name>to</name> <name>Kerberos</name></expr></argument>)</argument_list>.
+
+ 
+ ---++++ <name>JobId</name> <name>sequence</name>
+ <name>Oozie</name> <name>in</name> <name>HA</name> <name>mode</name></decl>, <decl><type ref="prev"/><name>uses</name> <name>ZK</name> <name>to</name> <name>generate</name> <name>job</name> <name>id</name> <name><name>sequence</name><operator>.</operator> <name>Job</name></name> <name>Ids</name> <name>are</name> <name>of</name> <name>following</name> <name><name>format</name><operator>.</operator>
+<name>diff</name></name> --<name>git</name> <name>a</name>/<name>release</name>-<name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name>/<name>release</name>-<name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> 5067a5eea..054bd4732 100644
+-- <name>a</name>/<name>release</name>-<name><name>log</name><operator>.</operator><name>txt</name></name>
+++ <name>b</name>/<name>release</name>-<name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ -1</decl>,5 +1,6 @@
+ -- <decl><type ref="prev"/><name>Oozie</name> 4.2.0 <name>release</name> <argument_list>(<argument><expr><name>trunk</name> <operator>-</operator> <name>unreleased</name></expr></argument>)</argument_list>
+ 
+<name>OOZIE</name>-1917 <name>Authentication</name> <name>secret</name> <name>should</name> <name>be</name> <name>random</name> <name>by</name> default <name>and</name> <name>needs</name> <name>to</name> <name>coordinate</name> <name>with</name> <name>HA</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list>
+ <name>OOZIE</name>-1853 <name>Improve</name> <name>the</name> <name>Credentials</name> <name>documentation</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list>
+ <name>OOZIE</name>-1954 <name>Add</name> <name>a</name> <name>way</name> for <name>the</name> <name>MapReduce</name> <name>action</name> <name>to</name> <name>be</name> <name>configured</name> <name>by</name> <name>Java</name> <name>code</name> <argument_list>(<argument><expr><name>rkanter</name></expr></argument>)</argument_list>
+ <name>OOZIE</name>-2003 <name>Checkstyle</name> <name>issues</name> <argument_list>(<argument><expr><name>rkanter</name> <name>via</name> <name>shwethags</name></expr></argument>)</argument_list>
+- 
+2.19.1.windows.1</decl>
+
+</unit>

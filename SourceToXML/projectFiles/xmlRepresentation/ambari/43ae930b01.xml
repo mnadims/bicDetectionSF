@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/43ae930b01.java"><expr_stmt><expr><name>From</name> <literal type="number">43ae930b0188f22913dcc67ec5c8ea168ff4deae</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name><name>jspeidel</name> <argument_list type="generic">&lt;<argument><name>jspeidel</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">28</literal> <name>Apr</name> <literal type="number">2015</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">43</literal><operator>:</operator><literal type="number">59</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">10811.</literal> <name>Fix</name> <name>issues</name> <name>with</name> <name>config</name> <name>topology</name> <name>update</name> <name>in</name>
+ <name>certain</name> <name>topologies</name> <name>which</name> <name>include</name> <name>HA</name> <name>and</name> <name>implicit</name> <name>MYSQL_SERVER</name> <name>component</name>
+ <name>inclusion</name>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>BlueprintConfigurationProcessor</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">96</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">7</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>TopologyManager</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">25</literal> <operator>++</operator><operator>+</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>BlueprintConfigurationProcessorTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">48</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <literal type="number">4</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">142</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">34</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintConfigurationProcessor</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintConfigurationProcessor</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">95e9807176</literal><operator>..</operator><literal type="number">7938cc10bc</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintConfigurationProcessor</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>BlueprintConfigurationProcessor</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">636</literal></expr><operator>,</operator><expr><literal type="number">12</literal> <operator>+</operator><literal type="number">636</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>BlueprintConfigurationProcessor</name> <block>{
+      <expr><operator>*</operator>
+      <operator>*</operator> @</expr><return>return <expr><operator>new</operator> <name>property</name> <name>value</name>
+      <operator>*</operator><operator>/</operator>
+    <specifier>public</specifier> <name>String</name> <call><name>updateForClusterCreate</name><argument_list>(<argument><expr><name>String</name> <name>propertyName</name></expr></argument>,
+    <argument><expr><name>String</name> <call><name>updateForClusterCreate</name><argument_list>(<argument><expr><name>String</name> <name>propertyName</name></expr></argument>,
+                                          <argument><expr><name>String</name> <name>origValue</name></expr></argument>,
+                                          <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>properties</name></expr></argument>,
+                                          <argument><expr><name>ClusterTopology</name> <name>topology</name></expr></argument>)</argument_list></call></expr></argument>;
+ 
+    <argument><expr><specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <call><name>getRequiredHostGroups</name><argument_list>(<argument><expr><name>String</name> <name>origValue</name></expr></argument>,
+    <argument><expr><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <call><name>getRequiredHostGroups</name><argument_list>(<argument><expr><name>String</name> <name>origValue</name></expr></argument>,
+                                                     <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>properties</name></expr></argument>,
+                                                     <argument><expr><name>ClusterTopology</name> <name>topology</name></expr></argument>)</argument_list></call></expr></argument>;
+   }</argument_list></call>
+@@ <operator>-</operator><literal type="number">792</literal></expr></argument>,<argument><expr><literal type="number">32</literal> <operator>+</operator><literal type="number">792</literal></expr></argument>,<argument><expr><literal type="number">79</literal> @@ <specifier>public</specifier> class <name>BlueprintConfigurationProcessor</name> <block>{
+         <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><name>hostGroupName</name></expr></argument>)</argument_list></call></expr>;</return>
+       }</block></expr></argument> <if_stmt><else>else <block>{<block_content>
+         <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>matchingGroups</name> <init>= <expr><call><name><name>topology</name><operator>.</operator><name>getHostGroupsForComponent</name></name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>matchingGroups</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>matchingGroupCount</name> <init>= <expr><call><name><name>matchingGroups</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>matchingGroupCount</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+           <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><call><name><name>matchingGroups</name><operator>.</operator><name>iterator</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>next</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+         <expr_stmt/>}</block_content> else <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>topology</name><operator>.</operator><name>isNameNodeHAEnabled</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <call><name>isComponentNameNode</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><call><name><name>matchingGroups</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">2</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+            <comment type="line">// if this is the defaultFS property, it should reflect the nameservice name,</comment>
+            <comment type="line">// rather than a hostname (used in non-HA scenarios)</comment>
+            <if_stmt><if>if <condition>(<expr><call><name><name>properties</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><literal type="string">"core-site"</literal></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>properties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"core-site"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"fs.defaultFS"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>origValue</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+              <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+          <decl_stmt><decl><type><name>Cardinality</name></type> <name>cardinality</name> <init>= <expr><call><name><name>topology</name><operator>.</operator><name>getBlueprint</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getStack</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getCardinality</name><argument_list>(<argument><expr><name>component</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <comment type="line">// if no matching host groups are found for a component whose configuration</comment>
+          <comment type="line">// is handled by this updater, return an empty set</comment>
+          <if_stmt><if>if <condition>(<expr><name>matchingGroupCount</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name><name>cardinality</name><operator>.</operator><name>isValidCount</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+          <expr_stmt/>}</block_content> else <block>{<block_content>
+            <comment type="line">//todo: shouldn't have all of these hard coded HA rules here</comment>
+            <if_stmt><if>if <condition>(<expr><call><name><name>topology</name><operator>.</operator><name>isNameNodeHAEnabled</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <call><name>isComponentNameNode</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name>matchingGroupCount</name> <operator>==</operator> <literal type="number">2</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+              <comment type="line">// if this is the defaultFS property, it should reflect the nameservice name,</comment>
+              <comment type="line">// rather than a hostname (used in non-HA scenarios)</comment>
+              <if_stmt><if>if <condition>(<expr><call><name><name>properties</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><literal type="string">"core-site"</literal></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>properties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"core-site"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"fs.defaultFS"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>origValue</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              <expr_stmt/>}</block_content>
+
+              if (properties.containsKey("hbase-site"</block></if></if_stmt>)</block_content> &amp;&amp; properties.get("hbase-site"</block></if></if_stmt>)</block_content>.get("hbase.rootdir"</block></block></if></if_stmt>)</block_content>.equals(origValue</block></if></if_stmt>)</block_content></block></if></if_stmt>)</block_content> <block>{<block_content>
+                <comment type="line">// hbase-site's reference to the namenode is handled differently in HA mode, since the</comment>
+                <comment type="line">// reference must point to the logical nameservice, rather than an individual namenode</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              <expr_stmt/>}</block_content>
+
+              if (properties.containsKey("accumulo-site"</block></block></block></if></if_stmt>)</block_content> &amp;&amp; properties.get("accumulo-site"</block></if></if_stmt>)</block_content>.get("instance.volumes"</block></else></if_stmt>)</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>origValue</name></expr></argument>)</argument_list></call></expr></return>) <block>{
+                <comment type="line">// accumulo-site's reference to the namenode is handled differently in HA mode, since the</comment>
+                <comment type="line">// reference must point to the logical nameservice, rather than an individual namenode</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              }</block></block></expr></expr_stmt>
+
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>origValue</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"localhost"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// if this NameNode HA property is a FDQN, then simply return it</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              </block_content>}</block></if></if_stmt>
+             }
+ 
+            if <expr_stmt><expr><operator>(</operator><call><name><name>properties</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><literal type="string">"hbase-site"</literal></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name><name>properties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"hbase-site"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"hbase.rootdir"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>origValue</name></expr></argument>)</argument_list></call><operator>)</operator> <block>{
+              <comment type="line">// hbase-site's reference to the namenode is handled differently in HA mode, since the</comment>
+              <comment type="line">// reference must point to the logical nameservice, rather than an individual namenode</comment>
+            <if_stmt><if>if <condition>(<expr><call><name><name>topology</name><operator>.</operator><name>isNameNodeHAEnabled</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <call><name>isComponentSecondaryNameNode</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name>matchingGroupCount</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+              <comment type="line">// if HDFS HA is enabled, then no replacement is necessary for properties that refer to the SECONDARY_NAMENODE</comment>
+              <comment type="line">// eventually this type of information should be encoded in the stacks</comment>
+               <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+             <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+          }
+ 
+          if <expr_stmt><expr><operator>(</operator><call><name><name>topology</name><operator>.</operator><name>isNameNodeHAEnabled</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <call><name>isComponentSecondaryNameNode</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><call><name><name>matchingGroups</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>)</operator> <block>{
+            <comment type="line">// if HDFS HA is enabled, then no replacement is necessary for properties that refer to the SECONDARY_NAMENODE</comment>
+            <comment type="line">// eventually this type of information should be encoded in the stacks</comment>
+            <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+          }</block></expr></expr_stmt>
+            <if_stmt><if>if <condition>(<expr><call><name>isYarnResourceManagerHAEnabled</name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <call><name>isComponentResourceManager</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name>matchingGroupCount</name> <operator>==</operator> <literal type="number">2</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>origValue</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"localhost"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// if this Yarn property is a FQDN, then simply return it</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+ 
+          <comment type="line">//todo:</comment>
+          <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Unable to determine required host groups for component. "</literal> <operator>+</operator>
+              <literal type="string">"Component '"</literal> <operator>+</operator> <name>component</name> <operator>+</operator> <literal type="string">"' is not mapped to any host group or is mapped to multiple groups."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+            <if_stmt><if>if <condition>(<expr><operator>(</operator><call><name>isOozieServerHAEnabled</name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call><operator>)</operator> <operator>&amp;&amp;</operator> <call><name>isComponentOozieServer</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name>matchingGroupCount</name> <operator>&gt;</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>origValue</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"localhost"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// if this Oozie property is a FQDN, then simply return it</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><operator>(</operator><call><name>isHiveServerHAEnabled</name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call><operator>)</operator> <operator>&amp;&amp;</operator> <call><name>isComponentHiveServer</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name>matchingGroupCount</name> <operator>&gt;</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>origValue</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"localhost"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// if this Hive property is a FQDN, then simply return it</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><operator>(</operator><call><name>isComponentHiveMetaStoreServer</name><argument_list>()</argument_list></call><operator>)</operator> <operator>&amp;&amp;</operator> <name>matchingGroupCount</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition> <block>{<block_content>
+              <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>origValue</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><literal type="string">"localhost"</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// if this Hive MetaStore property is a FQDN, then simply return it</comment>
+                <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+            <comment type="line">//todo: property name</comment>
+            <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(<argument><expr><literal type="string">"Unable to update configuration property with topology information. "</literal> <operator>+</operator>
+                <literal type="string">"Component '"</literal> <operator>+</operator> <name>component</name> <operator>+</operator> <literal type="string">"' is not mapped to any host group or is mapped to multiple groups."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+          }
+         }
+       }
+     }
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">999</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1046</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>BlueprintConfigurationProcessor</name> <block>{
+       }</block></expr></expr_stmt>
+     }
+ 
+    @<function><type><name>Override</name>
+    <specifier>public</specifier> <name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getRequiredHostGroups</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>origValue</name></decl></parameter>, <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>properties</name></decl></parameter>, <parameter><decl><type><name>ClusterTopology</name></type> <name>topology</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name>isDatabaseManaged</name><argument_list>(<argument><expr><name>properties</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><call><name><name>super</name><operator>.</operator><name>getRequiredHostGroups</name></name><argument_list>(<argument><expr><name>origValue</name></expr></argument>, <argument><expr><name>properties</name></expr></argument>, <argument><expr><name>topology</name></expr></argument>)</argument_list></call></expr>;</return>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+    </block_content>}</block></function>
+
+     <comment type="block" format="javadoc">/**
+      * Determine if database is managed, meaning that it is a component in the cluster topology.
+      *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/ClusterConfigurationRequest.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/ClusterConfigurationRequest.java
+index 1bffbf27b8..07ea50b6a9 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/ClusterConfigurationRequest.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/ClusterConfigurationRequest.java
+@@ -68,7 +68,12 @@ public class ClusterConfigurationRequest {
+ 
+   public void process() throws AmbariException, ConfigurationTopologyException {
+     // this will update the topo cluster config and all host group configs in the cluster topology
+    configurationProcessor.doUpdateForClusterCreate();
+    try {
+      configurationProcessor.doUpdateForClusterCreate();
+    } catch (ConfigurationTopologyException e) {
+      //log and continue to set configs on cluster to make progress
+      LOG.error("An exception occurred while doing configuration topology update: " + e, e);
+    }
+     setConfigurationsOnCluster(clusterTopology, "TOPOLOGY_RESOLVED");
+   }
+ 
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/topology/TopologyManager.java b/ambari-server/src/main/java/org/apache/ambari/server/topology/TopologyManager.java
+index 3e1b565a83..fb4baece17 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/topology/TopologyManager.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/topology/TopologyManager.java
+@@ -39,6 +39,8 @@ import org.apache.ambari.server.orm.entities.StageEntity;
+ import org.apache.ambari.server.state.Cluster;
+ import org.apache.ambari.server.state.SecurityType;
+ import org.apache.ambari.server.state.host.HostImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
+@@ -81,6 +83,8 @@ public class TopologyManager {
+   private final static AtomicLong nextTaskId = new AtomicLong(10000);
+   private final Object serviceResourceLock = new Object();
+ 
+  protected final static Logger LOG = LoggerFactory.getLogger(TopologyManager.class);
+
+ 
+   public TopologyManager() {
+     pendingTasks.put(TopologyTask.Type.CONFIGURE, new HashSet&lt;TopologyTask&gt;());
+@@ -174,7 +178,7 @@ public class TopologyManager {
+ 
+     if (! matchedToRequest) {
+       synchronized (availableHosts) {
+        System.out.printf("TopologyManager: Queueing available host %s\n", hostName);
+        LOG.info("TopologyManager: Queueing available host {}", hostName);
+         availableHosts.add(host);
+       }
+     }
+@@ -500,7 +504,7 @@ public class TopologyManager {
+ 
+     @Override
+     public void run() {
+      System.out.println("TopologyManager.ConfigureClusterTask: Entering");
+      LOG.info("TopologyManager.ConfigureClusterTask: Entering");
+ 
+       boolean completed = false;
+       boolean interrupted = false;
+@@ -520,25 +524,25 @@ public class TopologyManager {
+ 
+       if (! interrupted) {
+         try {
+          System.out.println("TopologyManager.ConfigureClusterTask: Setting Configuration on cluster");
+          LOG.info("TopologyManager.ConfigureClusterTask: Setting Configuration on cluster");
+           // sets updated configuration on topology and cluster
+           configRequest.process();
+         } catch (Exception e) {
+           //todo: how to handle this?  If this fails, we shouldn't start any hosts.
+          System.out.println("TopologyManager.ConfigureClusterTask: " +
+              "An exception occurred while attempting to process cluster configs and set on cluster");
+          LOG.error("TopologyManager.ConfigureClusterTask: " +
+              "An exception occurred while attempting to process cluster configs and set on cluster: " + e);
+           e.printStackTrace();
+         }
+ 
+         synchronized (configurationFlagLock) {
+          System.out.println("TopologyManager.ConfigureClusterTask: Setting configure complete flag to true");
+          LOG.info("TopologyManager.ConfigureClusterTask: Setting configure complete flag to true");
+           configureComplete = true;
+         }
+ 
+         // execute all queued install/start tasks
+         executor.submit(new ExecuteQueuedHostTasks());
+       }
+      System.out.println("TopologyManager.ConfigureClusterTask: Exiting");
+      LOG.info("TopologyManager.ConfigureClusterTask: Exiting");
+     }
+ 
+     // get set of required host groups from config processor and confirm that all requests
+@@ -549,9 +553,10 @@ public class TopologyManager {
+       try {
+         requiredHostGroups = configRequest.getRequiredHostGroups();
+       } catch (RuntimeException e) {
+        //todo
+        System.out.println("Caught an error from Config Processor: " + e);
+        throw e;
+        //todo: for now if an exception occurs, log error and return true which will result in topology update
+        LOG.error("An exception occurred while attempting to determine required host groups for config update " + e);
+        e.printStackTrace();
+        requiredHostGroups = Collections.emptyList();
+       }
+ 
+       synchronized (outstandingRequests) {
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+index 34b239b40e..789847386f 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/internal/BlueprintConfigurationProcessorTest.java
+@@ -48,6 +48,7 @@ import org.apache.ambari.server.topology.HostGroup;
+ import org.apache.ambari.server.topology.HostGroupImpl;
+ import org.apache.ambari.server.topology.HostGroupInfo;
+ import org.apache.ambari.server.topology.InvalidTopologyException;
+import org.apache.commons.collections.map.HashedMap;
+ import org.junit.After;
+ import org.junit.Before;
+ import org.junit.Test;
+@@ -139,6 +140,8 @@ public class BlueprintConfigurationProcessorTest {
+         expect(stack.getServiceForComponent(component)).andReturn(service).anyTimes();
+       }
+     }
+
+    expect(stack.getCardinality("MYSQL_SERVER")).andReturn(new Cardinality("0-1")).anyTimes();
+   }
+ 
+   @After
+@@ -2182,7 +2185,7 @@ public class BlueprintConfigurationProcessorTest {
+ 
+     // verify that the properties with hostname information was correctly preserved
+     assertEquals("Yarn Log Server URL was incorrectly updated",
+        "http://" + expectedHostName +":19888/jobhistory/logs", yarnSiteProperties.get("yarn.log.server.url"));
+        "http://" + expectedHostName + ":19888/jobhistory/logs", yarnSiteProperties.get("yarn.log.server.url"));
+     assertEquals("Yarn ResourceManager hostname was incorrectly exported",
+         expectedHostName, yarnSiteProperties.get("yarn.resourcemanager.hostname"));
+     assertEquals("Yarn ResourceManager tracker address was incorrectly updated",
+@@ -2910,7 +2913,7 @@ public class BlueprintConfigurationProcessorTest {
+       expectedHostName + ":" + expectedPortNum, falconStartupProperties.get("*.broker.url"));
+ 
+     assertEquals("Falcon Kerberos Principal property not properly exported",
+      "falcon/" + expectedHostName + "@EXAMPLE.COM", falconStartupProperties.get("*.falcon.service.authentication.kerberos.principal"));
+        "falcon/" + expectedHostName + "@EXAMPLE.COM", falconStartupProperties.get("*.falcon.service.authentication.kerberos.principal"));
+ 
+     assertEquals("Falcon Kerberos HTTP Principal property not properly exported",
+       "HTTP/" + expectedHostName + "@EXAMPLE.COM", falconStartupProperties.get("*.falcon.http.authentication.kerberos.principal"));
+@@ -3123,7 +3126,7 @@ public class BlueprintConfigurationProcessorTest {
+       "localhost", stormSiteProperties.get("supervisor.childopts"));
+ 
+     assertEquals("nimbus startup settings not properly handled by cluster create",
+      "localhost", stormSiteProperties.get("nimbus.childopts"));
+        "localhost", stormSiteProperties.get("nimbus.childopts"));
+ 
+     assertEquals("Kafka ganglia host property not properly handled by cluster create",
+       "localhost", kafkaBrokerProperties.get("kafka.ganglia.metrics.host"));
+@@ -3526,6 +3529,45 @@ public class BlueprintConfigurationProcessorTest {
+       hdfsSiteProperties.get("dfs.namenode.shared.edits.dir"));
+   }
+ 
+  @Test
+  public void testGetRequiredHostGroups___validComponentCountofZero() throws Exception {
+    Map&lt;String, Map&lt;String, String&gt;&gt; properties = new HashMap&lt;String, Map&lt;String, String&gt;&gt;();
+    Map&lt;String, String&gt; hiveSite = new HashMap&lt;String, String&gt;();
+    properties.put("hive-site", hiveSite);
+    Map&lt;String, String&gt; hiveEnv = new HashMap&lt;String, String&gt;();
+    properties.put("hive-env", hiveEnv);
+
+    hiveSite.put("javax.jdo.option.ConnectionURL", "localhost:1111");
+    // not the exact string but we are only looking for "New"
+    hiveEnv.put("hive_database", "New Database");
+
+
+    Configuration clusterConfig = new Configuration(properties,
+        Collections.&lt;String, Map&lt;String, Map&lt;String, String&gt;&gt;&gt;emptyMap());
+
+    Collection&lt;String&gt; hgComponents1 = new HashSet&lt;String&gt;();
+    hgComponents1.add("HIVE_SERVER");
+    hgComponents1.add("NAMENODE");
+    TestHostGroup group1 = new TestHostGroup("group1", hgComponents1, Collections.singleton("host1"));
+
+    Collection&lt;String&gt; hgComponents2 = new HashSet&lt;String&gt;();
+    hgComponents2.add("DATANODE");
+    TestHostGroup group2 = new TestHostGroup("group2", hgComponents2, Collections.singleton("host2"));
+
+    Collection&lt;TestHostGroup&gt; hostGroups = new ArrayList&lt;TestHostGroup&gt;();
+    hostGroups.add(group1);
+    hostGroups.add(group2);
+
+    ClusterTopology topology = createClusterTopology("c1", bp, clusterConfig, hostGroups);
+    BlueprintConfigurationProcessor updater = new BlueprintConfigurationProcessor(topology);
+
+    // call top-level export method
+    Collection&lt;String&gt; requiredGroups = updater.getRequiredHostGroups();
+    System.out.println("Required Groups: " + requiredGroups);
+
+
+  }
+
+   private static String createExportedAddress(String expectedPortNum, String expectedHostGroupName) {
+     return createExportedHostName(expectedHostGroupName, expectedPortNum);
+   }
+- 
+2.19.1.windows.1
+
+</comment></unit>

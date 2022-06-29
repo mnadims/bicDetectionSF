@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/c3d738c6ae.java"><expr_stmt><expr><name>From</name> <name>c3d738c6aed3bad135ae4aecfdab94c9fb5d7f42</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name><name>Levas</name> <argument_list type="generic">&lt;<argument><name>rlevas</name><annotation>@<name><name>hortonworks</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">14</literal> <name>Jul</name> <literal type="number">2016</literal> <literal type="number">20</literal><operator>:</operator><literal type="number">40</literal><operator>:</operator><literal type="number">11</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">17629.</literal> <name>AUTH_TO_LOCAL</name> <name>rules</name> <name>are</name> <name>not</name> <name>updated</name> <name>when</name> <name>adding</name>
+ <name>services</name> <name>to</name> <name>a</name> <name>Blueprint</name><operator>-</operator><name>installed</name> <call><name>cluster</name> <argument_list>(<argument><expr><name>rlevas</name></expr></argument>)</argument_list></call>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">33</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelper</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">42</literal> <operator>++</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperImpl</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">287</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><name><name>PrepareKerberosIdentitiesServerAction</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">19</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">27</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperTest</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">85</literal> <operator>++</operator><operator>++</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name><name>ClusterConfigurationRequestTest</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">2</literal> <operator>+</operator><operator>-</operator>
+ <literal type="number">7</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">304</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">191</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">872ec2d6e7</literal><operator>..</operator><name>d57b38f444</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">2467</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">2467</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>AmbariManagementControllerImpl</name> implements <name>AmbariManagementControlle</name>
+       <call><name><name>stage</name><operator>.</operator><name>setAutoSkipFailureSupported</name></name><argument_list>(<argument><expr><name>skipFailure</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>stage</name><operator>.</operator><name>setSkippable</name></name><argument_list>(<argument><expr><name>skipFailure</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+      <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>componentsToConfigureForKerberos</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>componentsToEnableKerberos</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>hostsToForceKerberosOperations</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2529</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">2530</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>AmbariManagementControllerImpl</name> implements <name>AmbariManagementControlle</name></expr></expr_stmt>
+                     <comment type="line">// check if host component already exists, if it exists no need to reset kerberos configs</comment>
+                     <comment type="line">// check if it's blueprint install. If it is, then do not call kerberos.configureService</comment>
+                     <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>hostComponentAlreadyExists</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>scHost</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><operator>(</operator><literal type="string">"INITIAL_INSTALL"</literal><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><call><name><name>requestProperties</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"phase"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>)</operator></expr>)</condition> <block>{<block_content>
+                      <try>try <block>{<block_content>
+                        <expr_stmt><expr><call><name><name>kerberosHelper</name><operator>.</operator><name>configureService</name></name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>scHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>KerberosInvalidConfigurationException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                        <throw>throw <expr><operator>new</operator> <call><name>AmbariException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+                      </block_content>}</block></catch></try>
+                      <expr_stmt><expr><call><name><name>componentsToConfigureForKerberos</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>scHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                     </block_content>}</block></if></if_stmt>
+ 
+                     <expr_stmt><expr><call><name><name>componentsToEnableKerberos</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>scHost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2744</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">2741</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@ <specifier>public</specifier> <name>class</name> <name>AmbariManagementControllerImpl</name> implements <name>AmbariManagementControlle</name>
+       <call><name><name>rg</name><operator>.</operator><name>build</name></name><argument_list>(<argument><expr><name>stage</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       <expr_stmt><expr><call><name><name>requestStages</name><operator>.</operator><name>addStages</name></name><argument_list>(<argument><expr><call><name><name>rg</name><operator>.</operator><name>getStages</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+      <if_stmt><if>if<condition>(<expr><operator>!</operator><call><name><name>componentsToConfigureForKerberos</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <comment type="line">// Build service/component filter to declare what services and compoents are being added</comment>
+        <comment type="line">// so kerberosHelper.configureServices know which to work on.  Null indicates no filter</comment>
+        <comment type="line">// and all services and components will be (re)configured, however null will not be</comment>
+        <comment type="line">// passed in from here.</comment>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>serviceFilter</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>scHost</name> <range>: <expr><name>componentsToConfigureForKerberos</name></expr></range></decl></init>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name>String</name></type> <name>serviceName</name> <init>= <expr><call><name><name>scHost</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>componentFilter</name> <init>= <expr><call><name><name>serviceFilter</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>serviceName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <if_stmt><if>if <condition>(<expr><name>componentFilter</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>componentFilter</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>serviceFilter</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>serviceName</name></expr></argument>, <argument><expr><name>componentFilter</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+
+          <expr_stmt><expr><call><name><name>componentFilter</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>scHost</name><operator>.</operator><name>getServiceComponentName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></for>
+
+        <try>try <block>{<block_content>
+          <expr_stmt><expr><call><name><name>kerberosHelper</name><operator>.</operator><name>configureServices</name></name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>serviceFilter</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>KerberosInvalidConfigurationException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <throw>throw <expr><operator>new</operator> <call><name>AmbariException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></catch></try>
+      </block_content>}</block></if></if_stmt>
+
+       <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>componentsToEnableKerberos</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+         <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>serviceFilter</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>hostFilter</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelper</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelper</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8170f1736a</literal><operator>..</operator><name>c4d21fcf34</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelper</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelper</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">222</literal></expr><operator>,</operator><expr><literal type="number">27</literal> <operator>+</operator><literal type="number">222</literal></expr><operator>,</operator><expr><literal type="number">39</literal> @@ <specifier>public</specifier> interface <name>KerberosHelper</name> <block>{
+       <throws>throws <argument><expr><name>AmbariException</name></expr></argument>, <argument><expr><name>KerberosOperationException</name></expr></argument></throws>;
+ 
+   <comment type="block" format="javadoc">/**
+   * Updates the relevant configurations for the given Service.
+   * Updates the relevant configurations for the components specified in the service filter.
+    * &lt;p/&gt;
+   * If the relevant service and its components have Kerberos descriptors, configuration values from
+   * If &lt;code&gt;null&lt;/code&gt; is passed in as the service filter, all installed services and components
+   * will be affected.  If an empty map is passed in, no services or components will be affected.
+   * &lt;p/&gt;
+   * If the relevant services and components have Kerberos descriptors, configuration values from
+    * the descriptors are used to update the relevant configuration sets.
+    *
+   * @param cluster              the relevant Cluster
+   * @param serviceComponentHost the ServiceComponentHost
+   * @param cluster       the relevant Cluster
+   * @param serviceFilter a Map of service names to component names indicating the
+   *                      relevant set of services and components - if null, no
+   *                      filter is relevant; if empty, the filter indicates no
+   *                      relevant services or components
+    * @throws AmbariException
+    */</comment>
+  <name>void</name> <call><name>configureService</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>ServiceComponentHost</name> <name>serviceComponentHost</name></expr></argument>)</argument_list></call>
+  <name>void</name> <call><name>configureServices</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>serviceFilter</name></expr></argument>)</argument_list></call>
+       <throws>throws <argument><expr><name>AmbariException</name></expr></argument>, <argument><expr><name>KerberosInvalidConfigurationException</name></expr></argument></throws></block></expr>;</expr_stmt>
+ 
+   <comment type="block" format="javadoc">/**
+    * Returns the updates configurations that are expected when the given set of services are configured
+    * for Kerberos.
+    *
+   * @param cluster                  the cluster
+   * @param existingConfigurations   the cluster's existing configurations
+   * @param services                 the set of services to process
+   * @param kerberosEnabled          true if kerberos is (to be) enabled; otherwise false
+   * @param applyStackAdvisorUpdates true to invoke the stack advisor to validate property updates; false to skip
+   * @param cluster                    the cluster
+   * @param existingConfigurations     the cluster's existing configurations
+   * @param installedServices          the map of services and relevant components to process
+   * @param serviceFilter              a Map of service names to component names indicating the
+   *                                   relevant set of services and components - if null, no
+   *                                   filter is relevant; if empty, the filter indicates no
+   *                                   relevant services or components
+   * @param previouslyExistingServices a set of previously existing service names - null or a subset of installedServices
+   * @param kerberosEnabled            true if kerberos is (to be) enabled; otherwise false
+   * @param applyStackAdvisorUpdates   true to invoke the stack advisor to validate property updates;
+   *                                   false to skip
+    * @return a map of configuration updates
+    * @throws AmbariException
+    * @throws KerberosInvalidConfigurationException if an issue occurs trying to get the
+@@ -250,8 +262,9 @@ public interface KerberosHelper {
+    */</comment>
+   <function_decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>getServiceConfigurationUpdates</name><parameter_list>(<parameter><decl><type><name>Cluster</name></type> <name>cluster</name></decl></parameter>,
+                                                                   <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>existingConfigurations</name></decl></parameter>,
+                                                                  <parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>services</name></decl></parameter>,
+                                                                  <parameter><decl><type><name>boolean</name></type> <name>serviceAlreadyExists</name></decl></parameter>,
+                                                                  <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>installedServices</name></decl></parameter>,
+                                                                  <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>serviceFilter</name></decl></parameter>,
+                                                                  <parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>previouslyExistingServices</name></decl></parameter>,
+                                                                   <parameter><decl><type><name>boolean</name></type> <name>kerberosEnabled</name></decl></parameter>,
+                                                                   <parameter><decl><type><name>boolean</name></type> <name>applyStackAdvisorUpdates</name></decl></parameter>)</parameter_list>
+       <throws>throws <argument><expr><name>KerberosInvalidConfigurationException</name></expr></argument>, <argument><expr><name>AmbariException</name></expr></argument></throws>;</function_decl>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">348</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">361</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> interface <name>KerberosHelper</name> <block>{
+    <expr><operator>*</operator> <name>the</name> <name>cluster</name> <name>and</name> <name>their</name> <name>relevant</name> <name>Kerberos</name> <name>descriptors</name> <name>to</name> <name>determine</name> <name>the</name> <name>rules</name> <name>to</name> <name>be</name> <name><name>created</name><operator>.</operator></name>
+    *
+    <operator>*</operator> @<name>param</name> <name>kerberosDescriptor</name>     <name>the</name> <name>current</name> <name>Kerberos</name> <name>descriptor</name>
+   <operator>*</operator> @<name>param</name> <name>cluster</name>                <name>the</name> <name>cluster</name>
+    <operator>*</operator> @<name>param</name> <name>realm</name>                  <name>the</name> default <name>realm</name>
+   <operator>*</operator> @<name>param</name> <name>installedServices</name>      <name>the</name> <name>map</name> <name>of</name> <name>services</name> <name>and</name> <name>relevant</name> <name>components</name> <name>to</name> <name>process</name>
+    <operator>*</operator> @<name>param</name> <name>existingConfigurations</name> <name>a</name> <name>map</name> <name>of</name> <name>the</name> <name>current</name> <name>configurations</name>
+    <operator>*</operator> @<name>param</name> <name>kerberosConfigurations</name> <name>a</name> <name>map</name> <name>of</name> <name>the</name> <name>configurations</name> <name>to</name> <name>update</name></expr>, <expr><name>this</name> <name>where</name> <name>the</name> <name>generated</name>
+    <operator>*</operator>                               <name>auth</name><operator>-</operator><name>to</name><operator>-</operator><name>local</name> <name>values</name> <name>will</name> <name>be</name> <name>stored</name>
+    <operator>*</operator> @<throws>throws <argument><expr><name>AmbariException</name>
+    <operator>*</operator><operator>/</operator>
+  <name>void</name> <call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>String</name> <name>realm</name></expr></argument>,
+  <argument><expr><name>void</name> <call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>String</name> <name>realm</name></expr></argument>,
+                           <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>installedServices</name></expr></argument>,
+                            <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>existingConfigurations</name></expr></argument>,
+                            <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>kerberosConfigurations</name></expr></argument>)</argument_list></call></expr></argument></argument_list></call></expr></argument></throws>
+       <throws>throws <argument><expr><name>AmbariException</name></expr></argument></throws></expr>;
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cc4824074a</name><operator>..</operator><literal type="number">70dc4c3c3d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>KerberosHelperImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">25</literal><operator>,</operator><literal type="number">6</literal> <operator>+</operator><literal type="number">25</literal><operator>,</operator><literal type="number">7</literal> @@</block></expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Date</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>EnumSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Iterator</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">129</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">130</literal></expr><operator>,</operator><expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+ 
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>Logger</name> <name>LOG</name> <operator>=</operator> <call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>KerberosHelperImpl</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+  <comment type="block" format="javadoc">/**
+   * The set of states a component may be in, indicating that is have been previously installed on
+   * the cluster.
+   *
+   * These values are important when trying to determine the state of the cluster when adding new components
+   */</comment>
+  <specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>State</name></argument>&gt;</argument_list></name> <name>PREVIOUSLY_INSTALLED_STATES</name> <operator>=</operator> <call><name><name>EnumSet</name><operator>.</operator><name>of</name></name><argument_list>(<argument><expr><name><name>State</name><operator>.</operator><name>INSTALLED</name></name></expr></argument>, <argument><expr><name><name>State</name><operator>.</operator><name>STARTED</name></name></expr></argument>, <argument><expr><name><name>State</name><operator>.</operator><name>DISABLED</name></name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+
+   <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+   <type><specifier>private</specifier> <name>AmbariCustomCommandExecutionHelper</name></type> <name>customCommandExecutionHelper</name></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">284</literal></expr><operator>,</operator><expr><literal type="number">44</literal> <operator>+</operator><literal type="number">293</literal></expr><operator>,</operator><expr><literal type="number">59</literal> @@ <specifier>public</specifier> <name>class</name> <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+   }</block>
+ 
+   @<name>Override</name>
+  <specifier>public</specifier> <name>void</name> <call><name>configureService</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>ServiceComponentHost</name> <name>serviceComponentHost</name></expr></argument>)</argument_list></call>
+  <specifier>public</specifier> <name>void</name> <call><name>configureServices</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>serviceFilter</name></expr></argument>)</argument_list></call>
+       <throws>throws <argument><expr><name>AmbariException</name></expr></argument>, <argument><expr><name>KerberosInvalidConfigurationException</name> <block>{
+    <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>existingConfigurations</name> <operator>=</operator> <call><name>calculateExistingConfigurations</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>installedServices</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>previouslyExistingServices</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <comment type="line">// Calculate the map of installed services to installed components</comment>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Service</name></argument>&gt;</argument_list></name></type> <name>clusterServices</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if<condition>(<expr><name>clusterServices</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>Service</name></type> <name>clusterService</name> <range>: <expr><call><name><name>clusterServices</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>installedComponents</name> <init>= <expr><call><name><name>installedServices</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>clusterService</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>installedComponents</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>installedComponents</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>installedServices</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>clusterService</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>installedComponents</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name>String</name></type> <name>serviceName</name> <init>= <expr><call><name><name>serviceComponentHost</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>hostName</name> <init>= <expr><call><name><name>serviceComponentHost</name><operator>.</operator><name>getHostName</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>existingConfigurations</name> <init>= <expr><call><name>calculateExistingConfigurations</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>hostName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ServiceComponent</name></argument>&gt;</argument_list></name></type> <name>clusterServiceComponents</name> <init>= <expr><call><name><name>clusterService</name><operator>.</operator><name>getServiceComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>clusterServiceComponents</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <for>for <control>(<init><decl><type><name>ServiceComponent</name></type> <name>clusterServiceComponent</name> <range>: <expr><call><name><name>clusterServiceComponents</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>installedComponents</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>clusterServiceComponent</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+            <comment type="line">// Determine if this component was PREVIOUSLY installed, which implies that its containing service was PREVIOUSLY installed</comment>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>previouslyExistingServices</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>clusterService</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+              <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>clusterServiceComponentHosts</name> <init>= <expr><call><name><name>clusterServiceComponent</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+              <if_stmt><if>if <condition>(<expr><name>clusterServiceComponentHosts</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <for>for <control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>clusterServiceComponentHost</name> <range>: <expr><call><name><name>clusterServiceComponentHosts</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                  <if_stmt><if>if <condition>(<expr><call><name><name>PREVIOUSLY_INSTALLED_STATES</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>clusterServiceComponentHost</name><operator>.</operator><name>getState</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>previouslyExistingServices</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>clusterService</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                  </block_content>}</block></if></if_stmt>
+                </block_content>}</block></for>
+              </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if></if_stmt>
+          </block_content>}</block></for>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></if></if_stmt>
+ 
+     <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>updates</name> <init>= <expr><call><name>getServiceConfigurationUpdates</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>,
+        <argument><expr><name>existingConfigurations</name></expr></argument>, <argument><expr><call><name><name>Collections</name><operator>.</operator><name>singleton</name></name><argument_list>(<argument><expr><name>serviceName</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>serviceAlreadyExists</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>serviceComponentHost</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>existingConfigurations</name></expr><operator>,</operator> <expr><name>installedServices</name></expr><operator>,</operator> <expr><name>serviceFilter</name></expr><operator>,</operator> <expr><name>previouslyExistingServices</name></expr><operator>,</operator> <expr><literal type="boolean">true</literal></expr><operator>,</operator> <expr><literal type="boolean">true</literal></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></if></if_stmt>
+ 
+     <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>updates</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>configHelper</name><operator>.</operator><name>updateConfigType</name></name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>ambariManagementController</name></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>,
+          <argument><expr><call><name><name>ambariManagementController</name><operator>.</operator><name>getAuthName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><literal type="string">"Enabling Kerberos for %s"</literal></expr></argument>, <argument><expr><name>serviceName</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>ambariManagementController</name><operator>.</operator><name>getAuthName</name></name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><literal type="string">"Enabling Kerberos for added components"</literal></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></for>
+     }
+   }
+ 
+  <function><type><specifier>private</specifier> <name>boolean</name></type> <name>serviceAlreadyExists</name><parameter_list>(<parameter><decl><type><name>Cluster</name></type> <name>cluster</name></decl></parameter>, <parameter><decl><type><name>ServiceComponentHost</name></type> <name>sch</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AmbariException</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>Service</name></type> <name>service</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><call><name><name>sch</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>service</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ServiceComponent</name></argument>&gt;</argument_list></name></type> <name>serviceComponentMap</name> <init>= <expr><call><name><name>service</name><operator>.</operator><name>getServiceComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>ServiceComponent</name></type> <name>serviceComponent</name> <range>: <expr><call><name><name>serviceComponentMap</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name></type> <name>serviceComponentHostMap</name> <init>= <expr><call><name><name>serviceComponent</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <for>for <control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>serviceComponentHost</name> <range>: <expr><call><name><name>serviceComponentHostMap</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>serviceComponentHost</name><operator>.</operator><name>getState</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>State</name><operator>.</operator><name>INSTALLED</name></name> <operator>||</operator> <call><name><name>serviceComponentHost</name><operator>.</operator><name>getState</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>State</name><operator>.</operator><name>STARTED</name></name></expr>)</condition> <block>{<block_content>
+            <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></for>
+    </block_content>}</block></if></if_stmt>
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>getServiceConfigurationUpdates</name><parameter_list>(<parameter><decl><type><name>Cluster</name></type> <name>cluster</name></decl></parameter>,
+                                                                          <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>existingConfigurations</name></decl></parameter>,
+                                                                         <parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>services</name></decl></parameter>,
+                                                                         <parameter><decl><type><name>boolean</name></type> <name>serviceAlreadyExists</name></decl></parameter>,
+                                                                         <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>installedServices</name></decl></parameter>,
+                                                                         <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>serviceFilter</name></decl></parameter>,
+                                                                         <parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>previouslyExistingServices</name></decl></parameter>,
+                                                                          <parameter><decl><type><name>boolean</name></type> <name>kerberosEnabled</name></decl></parameter>,
+                                                                          <parameter><decl><type><name>boolean</name></type> <name>applyStackAdvisorUpdates</name></decl></parameter>)</parameter_list>
+       <throws>throws <argument><expr><name>KerberosInvalidConfigurationException</name></expr></argument>, <argument><expr><name>AmbariException</name></expr></argument></throws> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">339</literal></expr><operator>,</operator><expr><literal type="number">64</literal> <operator>+</operator><literal type="number">363</literal></expr><operator>,</operator><expr><literal type="number">45</literal> @@ <specifier>public</specifier> <name>class</name> <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+     <comment type="line">// Create the context to use for filtering Kerberos Identities based on the state of the cluster</comment>
+     <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name> <name>filterContext</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"configurations"</literal></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"services"</literal></expr></argument>, <argument><expr><name>services</name></expr></argument>)</argument_list></call></expr>;
+
+    <for>for <control>(<init><decl><type><name>String</name></type> <name>serviceName</name> <range>: <expr><name>services</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <comment type="line">// Set properties...</comment>
+      <decl_stmt><decl><type><name>KerberosServiceDescriptor</name></type> <name>serviceDescriptor</name> <init>= <expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><name>serviceName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <if_stmt><if>if <condition>(<expr><name>serviceDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>KerberosComponentDescriptor</name></argument>&gt;</argument_list></name></type> <name>componentDescriptors</name> <init>= <expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <for>for <control>(<init><decl><type><name>KerberosComponentDescriptor</name></type> <name>componentDescriptor</name> <range>: <expr><call><name><name>componentDescriptors</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>componentDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>identityConfigurations</name></decl>;</decl_stmt>
+
+            <expr_stmt><expr><name>identityConfigurations</name> <operator>=</operator> <call><name>getIdentityConfigurations</name><argument_list>(<argument><expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>identityConfigurations</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>identityConfigurations</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <decl_stmt><decl><type><name>String</name></type> <name>configType</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>properties</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+                <expr_stmt><expr><call><name>mergeConfigurations</name><argument_list>(<argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>configType</name></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                <if_stmt><if>if <condition>(<expr><operator>(</operator><name>properties</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>properties</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                  <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>propertyNames</name> <init>= <expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                  <if_stmt><if>if <condition>(<expr><name>propertyNames</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><name>propertyNames</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>, <argument><expr><name>propertyNames</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></for>}</block>
+                  <call><name><name>propertyNames</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>properties</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></function>
+              }
+            }
+    <expr_stmt><expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"services"</literal></expr></argument>, <argument><expr><call><name><name>installedServices</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+            <expr_stmt><expr><name>identityConfigurations</name> <operator>=</operator> <call><name>getIdentityConfigurations</name><argument_list>(<argument><expr><call><name><name>componentDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>identityConfigurations</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>identityConfigurations</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <decl_stmt><decl><type><name>String</name></type> <name>configType</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>properties</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>installedServiceEntry</name> <range>: <expr><call><name><name>installedServices</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>String</name></type> <name>installedService</name> <init>= <expr><call><name><name>installedServiceEntry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+                <expr_stmt><expr><call><name>mergeConfigurations</name><argument_list>(<argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>configType</name></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><operator>(</operator><name>serviceFilter</name> <operator>==</operator> <literal type="null">null</literal><operator>)</operator> <operator>||</operator> <operator>(</operator><call><name><name>serviceFilter</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>installedService</name></expr></argument>)</argument_list></call><operator>)</operator></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>componentFilter</name> <init>= <expr><ternary><condition><expr><operator>(</operator><name>serviceFilter</name> <operator>==</operator> <literal type="null">null</literal><operator>)</operator></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><call><name><name>serviceFilter</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>installedService</name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>installedComponents</name> <init>= <expr><call><name><name>installedServiceEntry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+                <if_stmt><if>if <condition>(<expr><operator>(</operator><name>properties</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>properties</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                  <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>propertyNames</name> <init>= <expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                  <if_stmt><if>if <condition>(<expr><name>propertyNames</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><name>propertyNames</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>, <argument><expr><name>propertyNames</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  </block_content>}</block></if></if_stmt>
+                  <expr_stmt><expr><call><name><name>propertyNames</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>properties</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// Set properties...</comment>
+        <decl_stmt><decl><type><name>KerberosServiceDescriptor</name></type> <name>serviceDescriptor</name> <init>= <expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><name>installedService</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <if_stmt><if>if <condition>(<expr><name>serviceDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><name>installedComponents</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>boolean</name></type> <name>servicePreviouslyExisted</name> <init>= <expr><operator>(</operator><name>previouslyExistingServices</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <call><name><name>previouslyExistingServices</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>installedService</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+            <for>for <control>(<init><decl><type><name>String</name></type> <name>installedComponent</name> <range>: <expr><name>installedComponents</name></expr></range></decl></init>)</control> <block>{<block_content>
+
+              <if_stmt><if>if <condition>(<expr><operator>(</operator><name>componentFilter</name> <operator>==</operator> <literal type="null">null</literal><operator>)</operator> <operator>||</operator> <call><name><name>componentFilter</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>installedComponent</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name>KerberosComponentDescriptor</name></type> <name>componentDescriptor</name> <init>= <expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getComponent</name></name><argument_list>(<argument><expr><name>installedComponent</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><name>componentDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                  <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>identityConfigurations</name></decl>;</decl_stmt>
+
+                  <expr_stmt><expr><name>identityConfigurations</name> <operator>=</operator> <call><name>getIdentityConfigurations</name><argument_list>(<argument><expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  <expr_stmt><expr><call><name>processIdentityConfigurations</name><argument_list>(<argument><expr><name>identityConfigurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>propertiesToIgnore</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                  <expr_stmt><expr><name>identityConfigurations</name> <operator>=</operator> <call><name>getIdentityConfigurations</name><argument_list>(<argument><expr><call><name><name>componentDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  <expr_stmt><expr><call><name>processIdentityConfigurations</name><argument_list>(<argument><expr><name>identityConfigurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>propertiesToIgnore</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                  <expr_stmt><expr><call><name>mergeConfigurations</name><argument_list>(<argument><expr><name>kerberosConfigurations</name></expr></argument>,
+                      <argument><expr><call><name><name>componentDescriptor</name><operator>.</operator><name>getConfigurations</name></name><argument_list>(<argument><expr><operator>!</operator><name>servicePreviouslyExisted</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 </block_content>}</block></if></if_stmt>
+               </block_content>}</block></if></if_stmt>
+             </block_content>}</block></for>
+
+            <expr_stmt><expr><call><name>mergeConfigurations</name><argument_list>(<argument><expr><name>kerberosConfigurations</name></expr></argument>,
+                <argument><expr><call><name><name>componentDescriptor</name><operator>.</operator><name>getConfigurations</name></name><argument_list>(<argument><expr><operator>!</operator><name>serviceAlreadyExists</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+           </block_content>}</block></if></if_stmt>
+         </block_content>}</block></if></if_stmt>
+       </block_content>}</block></if></if_stmt>
+     </block_content>}</block></if></if_stmt>
+ 
+
+     <if_stmt><if>if <condition>(<expr><call><name><name>kerberosDetails</name><operator>.</operator><name>createAmbariPrincipal</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>KerberosIdentityDescriptor</name></type> <name>ambariServerIdentityDescriptor</name> <init>= <expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getIdentity</name></name><argument_list>(<argument><expr><name><name>KerberosHelper</name><operator>.</operator><name>AMBARI_IDENTITY_NAME</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>map</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">419</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">424</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+       }</block></expr></expr_stmt>
+     </block_content>}</block></if></if_stmt>
+ 
+    <expr_stmt><expr><call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><call><name><name>kerberosDetails</name><operator>.</operator><name>getDefaultRealm</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>kerberosDescriptor</name></expr></argument>, <argument><expr><call><name><name>kerberosDetails</name><operator>.</operator><name>getDefaultRealm</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>installedServices</name></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <return>return <expr><ternary><condition><expr><operator>(</operator><name>applyStackAdvisorUpdates</name><operator>)</operator></expr>
+        ?</condition><then> <expr><call><name>applyStackAdvisorUpdates</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><call><name><name>cluster</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>keySet</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>propertiesToIgnore</name></expr></argument>,
+        <argument><expr><operator>?</operator> <call><name>applyStackAdvisorUpdates</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><call><name><name>installedServices</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>, <argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>propertiesToIgnore</name></expr></argument>,
+         <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>kerberosEnabled</name></expr></argument>)</argument_list></call></expr></argument></argument_list></call></expr>
+         </then><else>: <expr><name>kerberosConfigurations</name></expr></else></ternary></expr>;</return>
+   </block_content>}</block></for>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">800</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">805</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+   }</block>
+ 
+   @<name>Override</name>
+  <specifier>public</specifier> <name>void</name> <call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>String</name> <name>realm</name></expr></argument>,
+  <argument><expr><specifier>public</specifier> <name>void</name> <call><name>setAuthToLocalRules</name><argument_list>(<argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>String</name> <name>realm</name></expr></argument>,
+                                  <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>installedServices</name></expr></argument>,
+                                   <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>existingConfigurations</name></expr></argument>,
+                                   <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>kerberosConfigurations</name></expr></argument>)</argument_list></call>
+       <throws>throws <argument><expr><name>AmbariException</name> <block>{</block></expr></argument>
+@<argument>@ <expr><operator>-</operator><literal type="number">826</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">832</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name></expr></argument></throws> <block>{<block_content>
+       <comment type="line">// Create the context to use for filtering Kerberos Identities based on the state of the cluster</comment>
+       <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>filterContext</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"configurations"</literal></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"services"</literal></expr></argument>, <argument><expr><call><name><name>cluster</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>keySet</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>filterContext</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"services"</literal></expr></argument>, <argument><expr><call><name><name>installedServices</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+       <comment type="line">// Determine which properties need to be set</comment>
+       <decl_stmt><decl><type><name>AuthToLocalBuilder</name></type> <name>authToLocalBuilder</name> <init>= <expr><operator>new</operator> <call><name>AuthToLocalBuilder</name><argument_list>(<argument><expr><name>realm</name></expr></argument>, <argument><expr><name>additionalRealms</name></expr></argument>, <argument><expr><name>caseInsensitiveUser</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">837</literal></expr><operator>,</operator><expr><literal type="number">70</literal> <operator>+</operator><literal type="number">843</literal></expr><operator>,</operator><expr><literal type="number">34</literal> @@ <specifier>public</specifier> class <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+         <expr><call><name><name>authToLocalPropertiesToSet</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>authToLocalProperties</name></expr></argument>)</argument_list></call></expr>;
+       }</block></expr></expr_stmt>
+ 
+      <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>KerberosServiceDescriptor</name></argument>&gt;</argument_list></name></type> <name>services</name> <init>= <expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>services</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Service</name></argument>&gt;</argument_list></name></type> <name>installedServices</name> <init>= <expr><call><name><name>cluster</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>installedService</name><range>: <expr><call><name><name>installedServices</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>serviceName</name> <init>= <expr><call><name><name>installedService</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+        <for>for <control>(<init><decl><type><name>KerberosServiceDescriptor</name></type> <name>service</name> <range>: <expr><call><name><name>services</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+          <if_stmt><if>if <condition>(<expr><call><name><name>installedServices</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>Service</name></type> <name>svc</name> <init>= <expr><call><name><name>installedServices</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name>addIdentities</name><argument_list>(<argument><expr><name>authToLocalBuilder</name></expr></argument>, <argument><expr><call><name><name>service</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>KerberosServiceDescriptor</name></type> <name>serviceDescriptor</name> <init>= <expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getService</name></name><argument_list>(<argument><expr><name>serviceName</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if<condition>(<expr><name>serviceDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Adding identities for service {} to auth to local mapping"</literal></expr></argument>, <argument><expr><name>installedService</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+            <expr_stmt><expr><name>authToLocalProperties</name> <operator>=</operator> <call><name><name>service</name><operator>.</operator><name>getAuthToLocalProperties</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>authToLocalProperties</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <expr_stmt><expr><call><name><name>authToLocalPropertiesToSet</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>authToLocalProperties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+          <comment type="line">// Process the service-level Kerberos descriptor</comment>
+          <expr_stmt><expr><call><name>addIdentities</name><argument_list>(<argument><expr><name>authToLocalBuilder</name></expr></argument>, <argument><expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+            <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>KerberosComponentDescriptor</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><call><name><name>service</name><operator>.</operator><name>getComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>components</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+              <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>ServiceComponent</name></argument>&gt;</argument_list></name></type> <name>serviceComponents</name> <init>= <expr><call><name><name>svc</name><operator>.</operator><name>getServiceComponents</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+              <for>for <control>(<init><decl><type><name>KerberosComponentDescriptor</name></type> <name>component</name> <range>: <expr><call><name><name>components</name><operator>.</operator><name>values</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <comment type="line">// When the cluster is provisioned by a Blueprint service components with</comment>
+                <comment type="line">// cardinality 0+ might be left out from the Blueprint thus we have to check</comment>
+                <comment type="line">// if they exist</comment>
+                <decl_stmt><decl><type><name>ServiceComponent</name></type> <name>svcComp</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>serviceComponents</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                  <continue>continue;</continue>
+                </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><name>authToLocalProperties</name> <operator>=</operator> <call><name><name>serviceDescriptor</name><operator>.</operator><name>getAuthToLocalProperties</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <if_stmt><if>if <condition>(<expr><name>authToLocalProperties</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>authToLocalPropertiesToSet</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>authToLocalProperties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+ 
+                <expr_stmt><expr><name>svcComp</name> <operator>=</operator> <call><name><name>serviceComponents</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <comment type="line">// Process the relevant component-level Kerberos descriptors</comment>
+          <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>installedComponents</name> <init>= <expr><call><name><name>installedService</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if<condition>(<expr><name>installedComponents</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <for>for <control>(<init><decl><type><name>String</name></type> <name>installedComponent</name> <range>: <expr><name>installedComponents</name></expr></range></decl></init>)</control> <block>{<block_content>
+              <decl_stmt><decl><type><name>KerberosComponentDescriptor</name></type> <name>componentDescriptor</name> <init>= <expr><call><name><name>serviceDescriptor</name><operator>.</operator><name>getComponent</name></name><argument_list>(<argument><expr><name>installedComponent</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+                <decl_stmt><decl><type><name>boolean</name></type> <name>addSvcCompIdentities</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+              <if_stmt><if>if <condition>(<expr><name>componentDescriptor</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Adding identities for component {} to auth to local mapping"</literal></expr></argument>, <argument><expr><name>installedComponent</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name>addIdentities</name><argument_list>(<argument><expr><name>authToLocalBuilder</name></expr></argument>, <argument><expr><call><name><name>componentDescriptor</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+                <if_stmt><if>if <condition>(<expr><call><name><name>cluster</name><operator>.</operator><name>isBluePrintDeployed</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                  <if_stmt><if>if <condition>(<expr><call><name><name>svcComp</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>State</name><operator>.</operator><name>INSTALLED</name></name> <operator>||</operator> <call><name><name>svcComp</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>State</name><operator>.</operator><name>STARTED</name></name></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><name>addSvcCompIdentities</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+                  </block_content>}</block></if></if_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+
+                  <comment type="line">// Since when the cluster is deployed through the UI ALL service components of the selected services are created</comment>
+                  <comment type="line">// with desired state INSTALLED regardless whether the service components were associated with hosts or not thus</comment>
+                  <comment type="line">// we can not determine if the component is installed or not.</comment>
+                  <comment type="line">// We rather look at service compoent hosts</comment>
+                  <for>for <control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>svcCompHost</name> <range>: <expr><call><name><name>svcComp</name><operator>.</operator><name>getServiceComponentHosts</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>values</name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                    <if_stmt><if>if <condition>(<expr><call><name><name>svcCompHost</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>State</name><operator>.</operator><name>UNKNOWN</name></name>
+                        <operator>&amp;&amp;</operator> <call><name><name>svcCompHost</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>State</name><operator>.</operator><name>UNINSTALLING</name></name>
+                        <operator>&amp;&amp;</operator> <call><name><name>svcCompHost</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>State</name><operator>.</operator><name>UNINSTALLED</name></name>
+                        <operator>&amp;&amp;</operator> <call><name><name>svcCompHost</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>State</name><operator>.</operator><name>INSTALL_FAILED</name></name>
+                        <operator>&amp;&amp;</operator> <call><name><name>svcCompHost</name><operator>.</operator><name>getDesiredState</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>State</name><operator>.</operator><name>WIPING_OUT</name></name></expr>)</condition> <block>{<block_content>
+
+                      <comment type="line">// If there is at least a host that contains the component add the identities</comment>
+                      <expr_stmt><expr><name>addSvcCompIdentities</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+                      <break>break;</break>
+                    </block_content>}</block></if></if_stmt>
+                  </block_content>}</block></for>
+                </block_content>}</block></else></if_stmt>
+
+                <if_stmt><if>if <condition>(<expr><name>addSvcCompIdentities</name></expr>)</condition> <block>{<block_content>
+                  <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Adding identity for "</literal> <operator>+</operator> <call><name><name>component</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">" to auth to local mapping"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                  <expr_stmt><expr><call><name>addIdentities</name><argument_list>(<argument><expr><name>authToLocalBuilder</name></expr></argument>, <argument><expr><call><name><name>component</name><operator>.</operator><name>getIdentities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>filterContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                  <expr_stmt><expr><name>authToLocalProperties</name> <operator>=</operator> <call><name><name>component</name><operator>.</operator><name>getAuthToLocalProperties</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                  <if_stmt><if>if <condition>(<expr><name>authToLocalProperties</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>authToLocalPropertiesToSet</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>authToLocalProperties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+                  </block_content>}</block></if></if_stmt>
+                <expr_stmt><expr><name>authToLocalProperties</name> <operator>=</operator> <call><name><name>componentDescriptor</name><operator>.</operator><name>getAuthToLocalProperties</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><name>authToLocalProperties</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                  <expr_stmt><expr><call><name><name>authToLocalPropertiesToSet</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>authToLocalProperties</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 </block_content>}</block></if></if_stmt>
+               </block_content>}</block></if></if_stmt>
+             </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2554</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">2524</literal></expr><operator>,</operator><expr><literal type="number">55</literal> @@ <specifier>public</specifier> class <name>KerberosHelperImpl</name> implements <name>KerberosHelper</name> <block>{
+     <return>return <expr><name>identitiesToRemove</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Processes the configuration values related to a particular Kerberos descriptor identity definition
+   * by:
+   * &lt;ol&gt;
+   * &lt;li&gt;
+   * merging the declared properties and their values from &lt;code&gt;identityConfigurations&lt;/code&gt; with the set of
+   * Kerberos-related configuration updates in &lt;code&gt;kerberosConfigurations&lt;/code&gt;, using the existing cluster
+   * configurations in &lt;code&gt;configurations&lt;/code&gt;
+   * &lt;/li&gt;
+   * &lt;li&gt;
+   * ensuring that these properties are not overwritten by recommendations by the stack advisor later
+   * in the workflow by adding them to the &lt;code&gt;propertiesToIgnore&lt;/code&gt; map
+   * &lt;/li&gt;
+   * &lt;/ol&gt;
+   *
+   * @param identityConfigurations a map of config-types to property name/value pairs to process
+   * @param kerberosConfigurations a map of config-types to property name/value pairs to be applied
+   *                               as configuration updates
+   * @param configurations         a map of config-types to property name/value pairs representing
+   *                               the existing configurations for the cluster
+   * @param propertiesToIgnore     a map of config-types to property names to be ignored while
+   *                               processing stack advisor recommendations
+   * @throws AmbariException
+   */</comment>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>processIdentityConfigurations</name><parameter_list>(<parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>identityConfigurations</name></decl></parameter>,
+                                             <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>kerberosConfigurations</name></decl></parameter>,
+                                             <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>configurations</name></decl></parameter>,
+                                             <parameter><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>propertiesToIgnore</name></decl></parameter>)</parameter_list>
+      <throws>throws <argument><expr><name>AmbariException</name></expr></argument></throws> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><name>identityConfigurations</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></name></type> <name>identitiyEntry</name> <range>: <expr><call><name><name>identityConfigurations</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>configType</name> <init>= <expr><call><name><name>identitiyEntry</name><operator>.</operator><name>getKey</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></type> <name>properties</name> <init>= <expr><call><name><name>identitiyEntry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <expr_stmt><expr><call><name>mergeConfigurations</name><argument_list>(<argument><expr><name>kerberosConfigurations</name></expr></argument>, <argument><expr><name>configType</name></expr></argument>, <argument><expr><call><name><name>identitiyEntry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>configurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <if_stmt><if>if <condition>(<expr><operator>(</operator><name>properties</name> <operator>!=</operator> <literal type="null">null</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>properties</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>propertyNames</name> <init>= <expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>propertyNames</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>propertyNames</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>propertiesToIgnore</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>configType</name></expr></argument>, <argument><expr><name>propertyNames</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+          <expr_stmt><expr><call><name><name>propertyNames</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>properties</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></if></if_stmt>
+
+  </block_content>}</block></function>
+
+   <comment type="block">/* ********************************************************************************************
+    * Helper classes and enums
+    * ******************************************************************************************** *\
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/serveraction/kerberos/PrepareKerberosIdentitiesServerAction.java b/ambari-server/src/main/java/org/apache/ambari/server/serveraction/kerberos/PrepareKerberosIdentitiesServerAction.java
+index f70c546b23..036888159f 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/serveraction/kerberos/PrepareKerberosIdentitiesServerAction.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/serveraction/kerberos/PrepareKerberosIdentitiesServerAction.java
+@@ -33,6 +33,7 @@ import java.io.File;
+ import java.io.IOException;
+ import java.util.Collection;
+ import java.util.HashMap;
+import java.util.HashSet;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+@@ -158,7 +159,7 @@ public class PrepareKerberosIdentitiesServerAction extends AbstractPrepareKerber
+   }
+ 
+   /**
+   * Conditionally calls {@link KerberosHelper#setAuthToLocalRules(KerberosDescriptor, Cluster, String, Map, Map)}
+   * Conditionally calls {@link KerberosHelper#setAuthToLocalRules(KerberosDescriptor, String, Map, Map, Map)}
+    * if there are ServiceComponentHosts to process
+    *
+    * @param cluster                cluster instance
+@@ -167,7 +168,7 @@ public class PrepareKerberosIdentitiesServerAction extends AbstractPrepareKerber
+    * @param kerberosConfigurations the Kerberos-specific configuration map
+    * @param defaultRealm           the default realm
+    * @throws AmbariException
+   * @see KerberosHelper#setAuthToLocalRules(KerberosDescriptor, Cluster, String, Map, Map)
+   * @see KerberosHelper#setAuthToLocalRules(KerberosDescriptor, String, Map, Map, Map)
+    */</comment>
+   <decl_stmt><decl><type><specifier>protected</specifier> <name>void</name></type> <name>processAuthToLocalRules</name><argument_list>(<argument><expr><name>Cluster</name> <name>cluster</name></expr></argument>, <argument><expr><name>KerberosDescriptor</name> <name>kerberosDescriptor</name></expr></argument>,
+                                          <argument><expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>ServiceComponentHost</name></argument>&gt;</argument_list></name> <name>schToProcess</name></expr></argument>,
+<argument>@@ <expr><operator>-</operator><literal type="number">176</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">177</literal></expr></argument>,<argument><expr><literal type="number">19</literal> @@ <specifier>public</specifier> class <name>PrepareKerberosIdentitiesServerAction</name> extends <name>AbstractPrepareKerber</name>
+       <throws>throws <argument><expr><name>AmbariException</name> <block>{</block></expr></argument></throws></expr></argument></argument_list></decl></decl_stmt>
+     <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>schToProcess</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><call><name><name>actionLog</name><operator>.</operator><name>writeStdOut</name></name><argument_list>(<argument><expr><literal type="string">"Creating auth-to-local rules"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>kerberosHelper</name><operator>.</operator><name>setAuthToLocalRules</name></name><argument_list>(<argument><expr><name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>defaultRealm</name></expr></argument>,
+
+      <argument><expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>services</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>;</argument_list></call></expr></expr_stmt>
+      <for>for<control>(<init><decl><type><name>ServiceComponentHost</name></type> <name>sch</name><range>: <expr><name>schToProcess</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><call><name><name>services</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><call><name><name>sch</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if<condition>(<expr><name>components</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>components</name> <operator>=</operator> <operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><call><name><name>services</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>sch</name><operator>.</operator><name>getServiceName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>components</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+        <expr_stmt><expr><call><name><name>components</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>sch</name><operator>.</operator><name>getServiceComponentName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+
+      <expr_stmt><expr><call><name><name>kerberosHelper</name><operator>.</operator><name>setAuthToLocalRules</name></name><argument_list>(<argument><expr><name>kerberosDescriptor</name></expr></argument>, <argument><expr><name>defaultRealm</name></expr></argument>, <argument><expr><name>services</name></expr></argument>,
+           <argument><expr><call><name><name>kerberosHelper</name><operator>.</operator><name>calculateConfigurations</name></name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>kerberosDescriptor</name><operator>.</operator><name>getProperties</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>,
+           <argument><expr><name>kerberosConfigurations</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">88f0e3caea</literal><operator>..</operator><literal type="number">6ae08d1146</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>topology</name><operator>/</operator><name><name>ClusterConfigurationRequest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">182</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">182</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>ClusterConfigurationRequest</name> <block>{
+       <comment type="line">// apply Kerberos specific configurations</comment>
+       <expr><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name> <name>updatedConfigs</name> <operator>=</operator> <call><name><name>AmbariContext</name><operator>.</operator><name>getController</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getKerberosHelper</name><argument_list>()</argument_list></call>
+         <operator>.</operator><call><name>getServiceConfigurationUpdates</name><argument_list>(<argument><expr><name>cluster</name></expr></argument>, <argument><expr><name>existingConfigurations</name></expr></argument>,
+        <argument><expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>blueprint</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;
+            <call><name>createServiceComponentMap</name><argument_list>(<argument><expr><name>blueprint</name></expr></argument>)</argument_list></call><operator>,</operator> <literal type="null">null</literal><operator>,</operator> <literal type="null">null</literal><operator>,</operator> <literal type="boolean">true</literal><operator>,</operator> <literal type="boolean">false</literal></block></expr></expr_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></for></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></for></block_content></block></for></block_content></block></if></if_stmt></block_content></block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+       <comment type="line">// ******************************************************************************************</comment>
+       <comment type="line">// Since Kerberos is being enabled, make sure the cluster-env/security_enabled property is</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">219</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">219</literal></expr><operator>,</operator><expr><literal type="number">29</literal> @@ <specifier>public</specifier> <name>class</name> <name>ClusterConfigurationRequest</name> <block>{
+     <return>return <expr><name>updatedConfigTypes</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Create a map of services and the relevant components that are specified in the Blueprint
+   *
+   * @param blueprint the blueprint
+   * @return a map of service names to component names
+   */</comment>
+  <function><type><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>createServiceComponentMap</name><parameter_list>(<parameter><decl><type><name>Blueprint</name></type> <name>blueprint</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>serviceComponents</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>services</name> <init>= <expr><call><name><name>blueprint</name><operator>.</operator><name>getServices</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <if_stmt><if>if<condition>(<expr><name>services</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>String</name></type> <name>service</name> <range>: <expr><name>services</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>components</name> <init>= <expr><call><name><name>blueprint</name><operator>.</operator><name>getComponents</name></name><argument_list>(<argument><expr><name>service</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>serviceComponents</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>service</name></expr></argument>,
+            <argument><expr><ternary><condition><expr><operator>(</operator><name>components</name> <operator>==</operator> <literal type="null">null</literal><operator>)</operator></expr>
+                ?</condition><then> <expr><name><name>Collections</name><operator>.</operator></name>&lt;<name>String</name><operator>&gt;</operator><call><name>emptySet</name><argument_list>()</argument_list></call></expr>
+                </then><else>: <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>blueprint</name><operator>.</operator><name>getComponents</name></name><argument_list>(<argument><expr><name>service</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></if></if_stmt>
+
+    <return>return <expr><name>serviceComponents</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Returns true if the property exists in clusterConfigProperties and has a custom user defined value. Property has
+    * custom value in case we there's no stack default value for it or it's not equal to stack default value.
+@@ -280,7 +303,7 @@ public class ClusterConfigurationRequest {
+       // apply Kerberos specific configurations
+       Map&lt;String, Map&lt;String, String&gt;&gt; updatedConfigs = AmbariContext.getController().getKerberosHelper()
+         .getServiceConfigurationUpdates(cluster, existingConfigurations,
+          new HashSet&lt;String&gt;(blueprint.getServices()), false, true, false);
+          createServiceComponentMap(blueprint), null, null, true, false);
+ 
+       // retrieve hostgroup for component names extracted from variables like "{clusterHostInfo.(component_name)
+       // _host}"
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/controller/KerberosHelperTest.java b/ambari-server/src/test/java/org/apache/ambari/server/controller/KerberosHelperTest.java
+index 66ed68da99..6387fe8328 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/controller/KerberosHelperTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/controller/KerberosHelperTest.java
+@@ -104,6 +104,7 @@ import java.util.Arrays;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.Date;
+import java.util.EnumSet;
+ import java.util.HashMap;
+ import java.util.HashSet;
+ import java.util.List;
+@@ -1858,14 +1859,21 @@ public class KerberosHelperTest extends EasyMockSupport {
+     expect(identityDescriptor3.getPrincipalDescriptor()).andReturn(principalDescriptor3).times(1);
+     expect(identityDescriptor3.shouldInclude(anyObject(Map.class))).andReturn(true).anyTimes();
+ 
+    final KerberosComponentDescriptor componentDescriptor1 = createMockComponentDescriptor(
+        "COMPONENT1",
+        new ArrayList&lt;KerberosIdentityDescriptor&gt;() {
+          {
+            add(identityDescriptor3);
+          }
+        },
+        null);
+
+     final KerberosServiceDescriptor serviceDescriptor1 = createMock(KerberosServiceDescriptor.class);
+    expect(serviceDescriptor1.getName()).andReturn("SERVICE1").times(2);
+     expect(serviceDescriptor1.getIdentities(eq(true), anyObject(Map.class))).andReturn(Arrays.asList(
+         identityDescriptor1,
+        identityDescriptor2,
+        identityDescriptor3
+        identityDescriptor2
+     )).times(1);
+    expect(serviceDescriptor1.getComponents()).andReturn(null).times(1);
+    expect(serviceDescriptor1.getComponent("COMPONENT1")).andReturn(componentDescriptor1).times(1);
+     expect(serviceDescriptor1.getAuthToLocalProperties()).andReturn(new HashSet&lt;String&gt;(Arrays.asList(
+         "default",
+         "explicit_multiple_lines|new_lines",
+@@ -1881,12 +1889,9 @@ public class KerberosHelperTest extends EasyMockSupport {
+     expect(kerberosDescriptor.getProperty("additional_realms")).andReturn(null).times(1);
+     expect(kerberosDescriptor.getIdentities(eq(true), anyObject(Map.class))).andReturn(null).times(1);
+     expect(kerberosDescriptor.getAuthToLocalProperties()).andReturn(null).times(1);
+    expect(kerberosDescriptor.getServices()).andReturn(Collections.singletonMap("SERVICE1", serviceDescriptor1)).times(1);
+    expect(kerberosDescriptor.getService("SERVICE1")).andReturn(serviceDescriptor1).times(1);
+ 
+    final Service service1 = createNiceMock(Service.class);
+
+    final Cluster cluster = createNiceMock(Cluster.class);
+    expect(cluster.getServices()).andReturn(Collections.singletonMap("SERVICE1", service1)).anyTimes();
+    Map&lt;String, Set&lt;String&gt;&gt; installedServices = Collections.singletonMap("SERVICE1", Collections.singleton("COMPONENT1"));
+ 
+     Map&lt;String, Map&lt;String, String&gt;&gt; kerberosConfigurations = new HashMap&lt;String, Map&lt;String, String&gt;&gt;();
+ 
+@@ -1897,7 +1902,7 @@ public class KerberosHelperTest extends EasyMockSupport {
+     Map existingConfigs = new HashMap&lt;String, Map&lt;String, String&gt;&gt;();
+     existingConfigs.put("kerberos-env", new HashMap&lt;String, String&gt;());
+ 
+    kerberosHelper.setAuthToLocalRules(kerberosDescriptor, cluster, "EXAMPLE.COM", existingConfigs, kerberosConfigurations);
+    kerberosHelper.setAuthToLocalRules(kerberosDescriptor, "EXAMPLE.COM", installedServices, existingConfigs, kerberosConfigurations);
+ 
+     verifyAll();
+ 
+@@ -2113,6 +2118,8 @@ public class KerberosHelperTest extends EasyMockSupport {
+           }
+         }
+     );
+    expect(serviceDescriptor1.getComponent("COMPONENT1A")).andReturn(componentDescriptor1a).times(4);
+    expect(serviceDescriptor1.getComponent("COMPONENT1B")).andReturn(componentDescriptor1b).times(4);
+ 
+     final KerberosServiceDescriptor serviceDescriptor2 = createMockServiceDescriptor(
+         "SERVICE2",
+@@ -2123,6 +2130,8 @@ public class KerberosHelperTest extends EasyMockSupport {
+           }
+         },
+         Collections.&lt;KerberosIdentityDescriptor&gt;emptyList());
+    expect(serviceDescriptor2.getComponent("COMPONENT2A")).andReturn(componentDescriptor2a).times(2);
+    expect(serviceDescriptor2.getComponent("COMPONENT2B")).andReturn(componentDescriptor2b).times(2);
+ 
+     final KerberosServiceDescriptor serviceDescriptor3 = createMockServiceDescriptor(
+         "SERVICE3",
+@@ -2132,19 +2141,13 @@ public class KerberosHelperTest extends EasyMockSupport {
+           }
+         },
+         Collections.&lt;KerberosIdentityDescriptor&gt;emptyList());
+    expect(serviceDescriptor3.getComponent("COMPONENT3A")).andReturn(componentDescriptor3a).times(4);
+ 
+     final Map&lt;String, String&gt; kerberosDescriptorProperties = new HashMap&lt;String, String&gt;();
+     kerberosDescriptorProperties.put("realm", "${kerberos-env/realm}");
+ 
+     final KerberosDescriptor kerberosDescriptor = createMock(KerberosDescriptor.class);
+     expect(kerberosDescriptor.getProperties()).andReturn(kerberosDescriptorProperties).atLeastOnce();
+    expect(kerberosDescriptor.getServices()).andReturn(new HashMap&lt;String, KerberosServiceDescriptor&gt;() {
+      {
+        put("SERVICE1", serviceDescriptor1);
+        put("SERVICE2", serviceDescriptor2);
+        put("SERVICE3", serviceDescriptor3);
+      }
+    }).atLeastOnce();
+     expect(kerberosDescriptor.getService("SERVICE1")).andReturn(serviceDescriptor1).atLeastOnce();
+     expect(kerberosDescriptor.getService("SERVICE2")).andReturn(serviceDescriptor2).atLeastOnce();
+     expect(kerberosDescriptor.getService("SERVICE3")).andReturn(serviceDescriptor3).atLeastOnce();
+@@ -2192,14 +2195,14 @@ public class KerberosHelperTest extends EasyMockSupport {
+             put("COMPONENT1A", createMockComponent("COMPONENT1A", true,
+                 new HashMap&lt;String, ServiceComponentHost&gt;() {
+                   {
+                    put("hostA", createMockServiceComponentHost());
+                    put("hostA", createMockServiceComponentHost(State.INSTALLED));
+                   }
+                 }));
+             put("COMPONENT1B", createMockComponent("COMPONENT1B", false,
+                 new HashMap&lt;String, ServiceComponentHost&gt;() {
+                   {
+                    put("hostB", createMockServiceComponentHost());
+                    put("hostC", createMockServiceComponentHost());
+                    put("hostB", createMockServiceComponentHost(State.INSTALLED));
+                    put("hostC", createMockServiceComponentHost(State.INSTALLED));
+                   }
+                 }));
+           }
+@@ -2210,14 +2213,14 @@ public class KerberosHelperTest extends EasyMockSupport {
+             put("COMPONENT2A", createMockComponent("COMPONENT2A", true,
+                 new HashMap&lt;String, ServiceComponentHost&gt;() {
+                   {
+                    put("hostA", createMockServiceComponentHost());
+                    put("hostA", createMockServiceComponentHost(State.INSTALLED));
+                   }
+                 }));
+             put("COMPONENT2B", createMockComponent("COMPONENT2B", false,
+                 new HashMap&lt;String, ServiceComponentHost&gt;() {
+                   {
+                    put("hostB", createMockServiceComponentHost());
+                    put("hostC", createMockServiceComponentHost());
+                    put("hostB", createMockServiceComponentHost(State.INSTALLED));
+                    put("hostC", createMockServiceComponentHost(State.INSTALLED));
+                   }
+                 }));
+           }
+@@ -2228,7 +2231,7 @@ public class KerberosHelperTest extends EasyMockSupport {
+             put("COMPONENT3A", createMockComponent("COMPONENT3A", true,
+                 new HashMap&lt;String, ServiceComponentHost&gt;() {
+                   {
+                    put("hostA", createMockServiceComponentHost());
+                    put("hostA", createMockServiceComponentHost(State.INSTALLED));
+                   }
+                 }));
+           }
+@@ -2248,8 +2251,7 @@ public class KerberosHelperTest extends EasyMockSupport {
+ 
+     final Cluster cluster = createMockCluster(hosts, SecurityType.KERBEROS, krb5ConfConfig, kerberosEnvConfig);
+     expect(cluster.getServices()).andReturn(services).anyTimes();
+    expect(cluster.getServiceComponentHostMap(null, services.keySet())).andReturn(serviceComponentHostMap).anyTimes();
+    expect(cluster.isBluePrintDeployed()).andReturn(false).atLeastOnce();
+    expect(cluster.getServiceComponentHostMap(anyObject(Set.class), anyObject(Set.class))).andReturn(serviceComponentHostMap).anyTimes();
+ 
+     final Map&lt;String, Map&lt;String, String&gt;&gt; existingConfigurations = new HashMap&lt;String, Map&lt;String, String&gt;&gt;() {
+       {
+@@ -2285,11 +2287,24 @@ public class KerberosHelperTest extends EasyMockSupport {
+     // Needed by infrastructure
+     injector.getInstance(AmbariMetaInfo.class).init();
+ 
+    HashMap&lt;String,Set&lt;String&gt;&gt; installedServices1 = new HashMap&lt;String, Set&lt;String&gt;&gt;();
+    installedServices1.put("SERVICE1", new HashSet&lt;String&gt;(Arrays.asList("COMPONENT1A", "COMPONENT1B")));
+    installedServices1.put("SERVICE2", new HashSet&lt;String&gt;(Arrays.asList("COMPONENT2A", "COMPONENT2B")));
+    installedServices1.put("SERVICE3", Collections.singleton("COMPONENT3A"));
+
+     Map&lt;String, Map&lt;String, String&gt;&gt; updates1 = kerberosHelper.getServiceConfigurationUpdates(
+        cluster, existingConfigurations, new HashSet&lt;String&gt;(Arrays.asList("SERVICE1", "SERVICE2", "SERVICE3")), false, true, true);
+        cluster, existingConfigurations, installedServices1, null, null, true, true);
+
+    HashMap&lt;String,Set&lt;String&gt;&gt; installedServices2 = new HashMap&lt;String, Set&lt;String&gt;&gt;();
+    installedServices2.put("SERVICE1", new HashSet&lt;String&gt;(Arrays.asList("COMPONENT1A", "COMPONENT1B")));
+    installedServices2.put("SERVICE3", Collections.singleton("COMPONENT3A"));
+
+    Map&lt;String, Collection&lt;String&gt;&gt; serviceFilter2 = new HashMap&lt;String, Collection&lt;String&gt;&gt;();
+    serviceFilter2.put("SERVICE1", new HashSet&lt;String&gt;(Arrays.asList("COMPONENT1A", "COMPONENT1B")));
+    serviceFilter2.put("SERVICE3", Collections.singleton("COMPONENT3A"));
+ 
+     Map&lt;String, Map&lt;String, String&gt;&gt; updates2 = kerberosHelper.getServiceConfigurationUpdates(
+        cluster, existingConfigurations, new HashSet&lt;String&gt;(Arrays.asList("SERVICE1", "SERVICE3")), false, true, true);
+        cluster, existingConfigurations, installedServices2, serviceFilter2, null, true, true);
+ 
+     verifyAll();
+ 
+@@ -2342,6 +2357,12 @@ public class KerberosHelperTest extends EasyMockSupport {
+ 
+     expectedUpdates.remove("service2-site");
+     expectedUpdates.get("core-site").put("newPropertyRecommendation", "newPropertyRecommendation");
+    expectedUpdates.get("core-site").put("auth.to.local", "RULE:[1:$1@$0](.*@FOOBAR.COM)s/@.*/</comment><expr_stmt><expr><operator>/</operator><operator>\</operator><name>n</name><literal type="string">" +
+        "</literal><name>RULE</name><operator>:</operator><index>[<expr><literal type="number">2</literal><operator>:</operator><name>$1</name></expr></index>@<name>$0</name>]<operator>(</operator><name>component1a</name>@<name><name>FOOBAR</name><operator>.</operator><name>COM</name></name><operator>)</operator><name>s</name><operator>/</operator><operator>.</operator><operator>*</operator><operator>/</operator><name>service1user</name><operator>/</operator><operator>\</operator><name>n</name><literal type="string">" +
+        "</literal><name>RULE</name><operator>:</operator><index>[<expr><literal type="number">2</literal><operator>:</operator><name>$1</name></expr></index>@<name>$0</name>]<operator>(</operator><name>component1b</name>@<name><name>FOOBAR</name><operator>.</operator><name>COM</name></name><operator>)</operator><name>s</name><operator>/</operator><operator>.</operator><operator>*</operator><operator>/</operator><name>service1user</name><operator>/</operator><operator>\</operator><name>n</name><literal type="string">" +
+        "</literal><name>RULE</name><operator>:</operator><index>[<expr><literal type="number">2</literal><operator>:</operator><name>$1</name></expr></index>@<name>$0</name>]<operator>(</operator><name>component3a</name>@<name><name>FOOBAR</name><operator>.</operator><name>COM</name></name><operator>)</operator><name>s</name><operator>/</operator><operator>.</operator><operator>*</operator><operator>/</operator><name>service3user</name><operator>/</operator><operator>\</operator><name>n</name><literal type="string">" +
+        "</literal><name>RULE</name><operator>:</operator><index>[<expr><literal type="number">2</literal><operator>:</operator><name>$1</name></expr></index>@<name>$0</name>]<operator>(</operator><name>service1</name>@<name><name>FOOBAR</name><operator>.</operator><name>COM</name></name><operator>)</operator><name>s</name><operator>/</operator><operator>.</operator><operator>*</operator><operator>/</operator><name>service1user</name><operator>/</operator><operator>\</operator><name>n</name><literal type="string">" +
+        "</literal><name>DEFAULT</name><literal type="string">");
+     expectedUpdates.get("</literal><name>service1</name><operator>-</operator><name>site</name><literal type="string">").put("</literal><name><name>component1b</name><operator>.</operator><name>property</name></name><literal type="string">", "</literal><name>replaced</name> <name>value</name><literal type="string">");
+     expectedUpdates.put("</literal><operator>new</operator><operator>-</operator><name>type</name><literal type="string">", new HashMap&lt;String, String&gt;() {
+       {
+@@ -2417,10 +2438,10 @@ public class KerberosHelperTest extends EasyMockSupport {
+     Host host3 = createMockHost("</literal><name>host2</name><literal type="string">");
+ 
+     Map&lt;String, ServiceComponentHost&gt; service1Component1HostMap = new HashMap&lt;String, ServiceComponentHost&gt;();
+    service1Component1HostMap.put("</literal><name>host1</name><literal type="string">", createMockServiceComponentHost());
+    service1Component1HostMap.put("</literal><name>host1</name><literal type="string">", createMockServiceComponentHost(State.INSTALLED));
+ 
+     Map&lt;String, ServiceComponentHost&gt; service2Component1HostMap = new HashMap&lt;String, ServiceComponentHost&gt;();
+    service2Component1HostMap.put("</literal><name>host2</name><literal type="string">", createMockServiceComponentHost());
+    service2Component1HostMap.put("</literal><name>host2</name><literal type="string">", createMockServiceComponentHost(State.INSTALLED));
+ 
+     Map&lt;String, ServiceComponent&gt; service1ComponentMap = new HashMap&lt;String, ServiceComponent&gt;();
+     service1ComponentMap.put("</literal><name>COMPONENT11</name><literal type="string">", createMockComponent("</literal><name>COMPONENT11</name><literal type="string">"</literal></expr></expr_stmt></block_content></block></for></block_content></block></if></if_stmt>, true, service1Component1HostMap));
+@@ -3724,9 +3745,9 @@ public class KerberosHelperTest extends EasyMockSupport {
+     return descriptor;
+   }
+ 
+  private ServiceComponentHost createMockServiceComponentHost() {
+  private ServiceComponentHost createMockServiceComponentHost(State state) {
+     ServiceComponentHost serviceComponentHost = createMock(ServiceComponentHost.class);
+    expect(serviceComponentHost.getDesiredState()).andReturn(State.INSTALLED).anyTimes();
+    expect(serviceComponentHost.getDesiredState()).andReturn(state).anyTimes();
+     return serviceComponentHost;
+   }
+ 
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterConfigurationRequestTest.java b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterConfigurationRequestTest.java
+index 58919b93ea..3176e425fb 100644
+-- a/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterConfigurationRequestTest.java
+++ b/ambari-server/src/test/java/org/apache/ambari/server/topology/ClusterConfigurationRequestTest.java
+@@ -230,7 +230,7 @@ public class ClusterConfigurationRequestTest {
+     expect(kerberosHelper.ensureHeadlessIdentities(anyObject(Cluster.class), anyObject(Map.class), anyObject
+       (Set.class))).andReturn(true).once();
+     expect(kerberosHelper.getServiceConfigurationUpdates(anyObject(Cluster.class), anyObject(Map.class), anyObject
+      (Set.class), anyBoolean(), anyBoolean(), eq(false))).andReturn(kerberosConfig).once();
+      (Map.class), anyObject(Map.class), anyObject(Set.class), anyBoolean(), eq(false))).andReturn(kerberosConfig).once();
+ 
+     Capture&lt;? extends String&gt; captureClusterName = newCapture(CaptureType.ALL);
+     Capture&lt;? extends Set&lt;String&gt;&gt; captureUpdatedConfigTypes = newCapture(CaptureType.ALL);
+- 
+2.19.1.windows.1
+
+</unit>

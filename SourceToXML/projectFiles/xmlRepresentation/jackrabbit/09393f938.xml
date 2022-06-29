@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/09393f938.java"><expr_stmt><expr><name>From</name> <literal type="number">09393f93862923e4c8a2f8c7d1236e1a5d3373b5</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Julian</name> <name><name>Reschke</name> <argument_list type="generic">&lt;<argument><name>reschke</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">31</literal> <name>Aug</name> <literal type="number">2016</literal> <literal type="number">13</literal><operator>:</operator><literal type="number">15</literal><operator>:</operator><literal type="number">24</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">4009</literal><operator>:</operator> <name>CSRF</name> <name>in</name> <name>Jackrabbit</name><operator>-</operator><name>Webdav</name>
+
+<name>CSRFUtil</name><operator>:</operator> <name>properly</name> <name>parse</name> <name>content</name> <call><name>types</name> <argument_list>(<argument><expr><name>handle</name> <name>params</name></expr></argument>, <argument><expr><name>normalize</name></expr></argument>, <argument><expr><name>handle</name></expr></argument> <case>case <expr><name>differences</name> <name>also</name> <name>multiple</name> <name>field</name> <name>instances</name></expr></case>)</argument_list></call></expr><operator>,</operator> <expr><name>handle</name> <name>missing</name> <name>content</name> <name>type</name> <name>header</name> <name>field</name></expr><operator>,</operator> <expr><name>handle</name> <name>partial</name><operator>-</operator><name>URI</name> <name>in</name> <name>referer</name></expr><operator>,</operator> <expr><name>DEBUG</name> <name>logging</name>
+
+<name>WebDAV</name> <name>servlet</name><operator>:</operator> <name>disable</name> <name>bogus</name> <name>POST</name> <name>support</name>
+
+<name>Davex</name><operator>:</operator> <name>include</name> <name>Referer</name> <name>header</name> <name>field</name> <name>in</name> <name>POST</name> <name>requests</name> <name>used</name></expr></expr_stmt> <for>for davex remoting
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@1758600 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../jackrabbit/spi2davex/PostMethod.java      <operator>|</operator>  1 +
+ .../apache/jackrabbit/webdav/DavResource.java <operator>|</operator>  2 +-
+ .../webdav/server/AbstractWebdavServlet.java  <operator>|</operator>  3 +-
+ .../jackrabbit/webdav/util/CSRFUtil.java      <operator>|</operator> 72 ++++++++++++++-----
+ .../jackrabbit/webdav/util/CSRFUtilTest.java  <operator>|</operator> 64 +++++++++++------
+ 5 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">101</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">41</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>spi2dav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>spi2davex</name><operator>/</operator><name><name>PostMethod</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>spi2dav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>spi2davex</name><operator>/</operator><name><name>PostMethod</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5355a72e9</literal><operator>..</operator><name>f6e243ca2</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>spi2dav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>spi2davex</name><operator>/</operator><name><name>PostMethod</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>spi2dav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>spi2davex</name><operator>/</operator><name><name>PostMethod</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <name>class</name> <name>PostMethod</name> extends <name>DavMethodBase</name> <block>{
+ 
+     <expr><specifier>public</specifier> <call><name>PostMethod</name><argument_list>(<argument><expr><name>String</name> <name>uri</name></expr></argument>)</argument_list></call> <block>{
+         <expr><call><name>super</name><argument_list>(<argument><expr><name>uri</name></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name><name>super</name><operator>.</operator><name>setRequestHeader</name></name><argument_list>(<argument><expr><literal type="string">"Referer"</literal></expr></argument>, <argument><expr><name>uri</name></expr></argument>)</argument_list></call></expr>;
+         <expr><name>HttpMethodParams</name> <name>params</name> <operator>=</operator> <call><name>getParams</name><argument_list>()</argument_list></call></expr>;
+         <expr><call><name><name>params</name><operator>.</operator><name>setContentCharset</name></name><argument_list>(<argument><expr><literal type="string">"UTF-8"</literal></expr></argument>)</argument_list></call></expr>;
+     }</block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name><name>DavResource</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name><name>DavResource</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>c99b5cd21</name><operator>..</operator><literal type="number">6e70a4206</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name><name>DavResource</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name><name>DavResource</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">40</literal></expr>,<expr><literal type="number">7</literal> <operator>+</operator><literal type="number">40</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> interface <name>DavResource</name> <block>{
+     <comment type="block" format="javadoc">/**
+      * String constant representing the WebDAV 1 and 2 method set.
+      */</comment>
+    <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>METHODS</name> <operator>=</operator> <literal type="string">"OPTIONS, GET, HEAD, POST, TRACE, PROPFIND, PROPPATCH, MKCOL, COPY, PUT, DELETE, MOVE, LOCK, UNLOCK"</literal></expr>;
+    <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>METHODS</name> <operator>=</operator> <literal type="string">"OPTIONS, GET, HEAD, TRACE, PROPFIND, PROPPATCH, MKCOL, COPY, PUT, DELETE, MOVE, LOCK, UNLOCK"</literal></expr>;
+ 
+     <comment type="block" format="javadoc">/**
+      * Returns a comma separated list of all compliance classes the given
+diff --git a/jackrabbit-webdav/src/main/java/org/apache/jackrabbit/webdav/server/AbstractWebdavServlet.java b/jackrabbit-webdav/src/main/java/org/apache/jackrabbit/webdav/server/AbstractWebdavServlet.java
+index 5f402b3d0..c4c2ad63d 100644
+-- a/jackrabbit-webdav/src/main/java/org/apache/jackrabbit/webdav/server/AbstractWebdavServlet.java
+++ b/jackrabbit-webdav/src/main/java/org/apache/jackrabbit/webdav/server/AbstractWebdavServlet.java
+@@ -596,7 +596,7 @@ abstract public class AbstractWebdavServlet extends HttpServlet implements DavCo
+      */</comment>
+     <expr><specifier>protected</specifier> <name>void</name> <call><name>doPost</name><argument_list>(<argument><expr><name>WebdavRequest</name> <name>request</name></expr></argument>, <argument><expr><name>WebdavResponse</name> <name>response</name></expr></argument>,
+                           <argument><expr><name>DavResource</name> <name>resource</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name></expr></argument>, <argument><expr><name>DavException</name> <block>{
+        <expr><call><name>doPut</name><argument_list>(<argument><expr><name>request</name></expr></argument>, <argument><expr><name>response</name></expr></argument>, <argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+        <expr><call><name><name>response</name><operator>.</operator><name>sendError</name></name><argument_list>(<argument><expr><name><name>HttpServletResponse</name><operator>.</operator><name>SC_METHOD_NOT_ALLOWED</name></name></expr></argument>)</argument_list></call></expr>;
+     }</block>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -1384,7 +1384,6 @@ abstract public class AbstractWebdavServlet extends HttpServlet implements DavCo
+      * @param out
+      * @return
+      * @see #doPut(WebdavRequest, WebdavResponse, DavResource)
+     * @see #doPost(WebdavRequest, WebdavResponse, DavResource)
+      * @see #doMkCol(WebdavRequest, WebdavResponse, DavResource)
+      */</comment>
+     <specifier>protected</specifier> <name>OutputContext</name> <call><name>getOutputContext</name><argument_list>(<argument><expr><name>DavServletResponse</name> <name>response</name></expr></argument>, <argument><expr><name>OutputStream</name> <name>out</name></expr></argument>)</argument_list></call> <block>{
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtil</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtil</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>bc1de76ff</name><operator>..</operator><name>b22b7ca11</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtil</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtil</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr>,<expr><literal type="number">18</literal> <operator>+</operator><literal type="number">16</literal></expr>,<expr><literal type="number">20</literal> @@
+  <operator>*</operator><operator>/</operator></expr>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>webdav</name><operator>.</operator><name>util</name></name>;</package></block></expr>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>webdav</name><operator>.</operator><name>DavMethods</name></name>;</import></block></expr></expr_stmt></for>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpServletRequest</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>MalformedURLException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URL</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URI</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>URISyntaxException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Enumeration</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+ 
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpServletRequest</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  * &lt;code&gt;CSRFUtil&lt;/code&gt;...
+  */</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>CSRFUtil</name> <block>{
+     <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>DISABLED</name> <operator>=</operator> <literal type="string">"disabled"</literal></expr>;
+ 
+     <comment type="block" format="javadoc">/**
+     * Request content types for CSRF checking, see JCR-3909
+     * Request content types for CSRF checking, see JCR-3909, JCR-4002, and JCR-4009
+      */</comment>
+     <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>CONTENT_TYPES</name> <operator>=</operator> <call><name><name>Collections</name><operator>.</operator><name>unmodifiableSet</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(
+             <argument><expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(
+<argument>@@ <expr><operator>-</operator><literal type="number">92</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">94</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>CSRFUtil</name> <block>{
+         <if_stmt><if>if <condition>(<expr><name>config</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>config</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+             <expr_stmt><expr><name>disabled</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+             <expr_stmt><expr><name>allowedReferrerHosts</name> <operator>=</operator> <call><name><name>Collections</name><operator>.</operator><name>emptySet</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"CSRF protection disabled"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/>}</block_content> else <block>{<block_content>
+             <if_stmt><if>if <condition>(<expr><call><name><name>DISABLED</name><operator>.</operator><name>equalsIgnoreCase</name></name><argument_list>(<argument><expr><call><name><name>config</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                 <expr_stmt><expr><name>disabled</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">104</literal></expr><operator>,</operator><expr><literal type="number">25</literal> <operator>+</operator><literal type="number">107</literal></expr><operator>,</operator><expr><literal type="number">62</literal> @@ <specifier>public</specifier> class <name>CSRFUtil</name> <block>{
+                     <expr><call><name><name>allowedReferrerHosts</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>trim</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                 }</block>
+             }
+            <call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"CSRF protection enabled, allowed referrers: "</literal> <operator>+</operator> <name>allowedReferrerHosts</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt/>}</block_content>
+     }
+ 
+    public boolean isValidRequest(HttpServletRequest request</block></if></if_stmt>)</block_content> <throws>throws <argument><expr><name>MalformedURLException</name> <block>{
+        <expr><name>int</name> <name>methodCode</name> <operator>=</operator> <call><name><name>DavMethods</name><operator>.</operator><name>getMethodCode</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getMethod</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></block></block><empty_stmt>;</empty_stmt></if></if_stmt></block></expr></argument>
+        <if_stmt><if>if <condition>(<expr><name>disabled</name> <operator>||</operator> <name><name>DavMethods</name><operator>.</operator><name>DAV_POST</name></name> <operator>!=</operator> <name>methodCode</name> <operator>||</operator> <operator>!</operator><call><name><name>CONTENT_TYPES</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getContentType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isValidRequest</name><parameter_list>(<parameter><decl><type><name>HttpServletRequest</name></type> <name>request</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+        <if_stmt><if>if <condition>(<expr><name>disabled</name></expr>)</condition> <block>{<block_content>
+            <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+        <expr_stmt/>}</block_content> else if (!"POST".equals(request.getMethod(</block></if></if_stmt>)</block_content></block></function>)</block_content></block></if></if_stmt>)</argument_list></call> <block>{
+            <comment type="line">// protection only needed for POST</comment>
+             <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+         }</block></expr></argument> <if_stmt><else>else <block>{<block_content>
+            <decl_stmt><decl><type><name><name>Enumeration</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>cts</name> <init>= <expr><operator>(</operator><name><name>Enumeration</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><operator>)</operator> <call><name><name>request</name><operator>.</operator><name>getHeaders</name></name><argument_list>(<argument><expr><literal type="string">"Content-Type"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>String</name></type> <name>ct</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>cts</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>cts</name><operator>.</operator><name>hasMoreElements</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name>String</name></type> <name>t</name> <init>= <expr><call><name><name>cts</name><operator>.</operator><name>nextElement</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <comment type="line">// prune parameters</comment>
+                <decl_stmt><decl><type><name>int</name></type> <name>semicolon</name> <init>= <expr><call><name><name>t</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><literal type="char">';'</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><name>semicolon</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><name>t</name> <operator>=</operator> <call><name><name>t</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>semicolon</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt/>}</block_content>
+                ct = t.trim(</block></if></if_stmt>)</block_content>.toLowerCase(Locale.ENGLISH</block></if></if_stmt>)</block_content></block><empty_stmt>;</empty_stmt></else></if_stmt></argument_list></call></expr></argument></argument_list></call></expr>
+            }</block></expr></expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>cts</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>cts</name><operator>.</operator><name>hasMoreElements</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// reject if there are more header field instances</comment>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"request blocked because there were multiple content-type header fields"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+            <if_stmt><if>if <condition>(<expr><name>ct</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>CONTENT_TYPES</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>ct</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// type present and not in blacklist</comment>
+                <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+ 
+             <decl_stmt><decl><type><name>String</name></type> <name>refHeader</name> <init>= <expr><call><name><name>request</name><operator>.</operator><name>getHeader</name></name><argument_list>(<argument><expr><literal type="string">"Referer"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// empty referrer headers are not allowed for POST + relevant content types (see JCR-3909)</comment>
+            <comment type="line">// empty referrer headers are not allowed for POST + relevant</comment>
+            <comment type="line">// content types (see JCR-3909)</comment>
+             <if_stmt><if>if <condition>(<expr><name>refHeader</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"POST with content type"</literal> <operator>+</operator> <name>ct</name> <operator>+</operator> <literal type="string">" blocked due to missing referer header field"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                 <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+             </block_content>}</block></if></if_stmt>
+ 
+            <decl_stmt><decl><type><name>String</name></type> <name>host</name> <init>= <expr><operator>new</operator> <call><name>URL</name><argument_list>(<argument><expr><name>refHeader</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHost</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// test referrer-host equals server or</comment>
+            <comment type="line">// if it is contained in the set of explicitly allowed host names</comment>
+            <return>return <expr><call><name><name>host</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getServerName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>||</operator> <call><name><name>allowedReferrerHosts</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr>;</return>
+            <try>try <block>{<block_content>
+                <decl_stmt><decl><type><name>String</name></type> <name>host</name> <init>= <expr><operator>new</operator> <call><name>URI</name><argument_list>(<argument><expr><name>refHeader</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHost</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <comment type="line">// test referrer-host equals server or</comment>
+                <comment type="line">// if it is contained in the set of explicitly allowed host</comment>
+                <comment type="line">// names</comment>
+                <decl_stmt><decl><type><name>boolean</name></type> <name>ok</name> <init>= <expr><name>host</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <call><name><name>host</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><call><name><name>request</name><operator>.</operator><name>getServerName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>||</operator> <call><name><name>allowedReferrerHosts</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>host</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><name>ok</name></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"POST with content type"</literal> <operator>+</operator> <name>ct</name> <operator>+</operator> <literal type="string">" blocked due to referer header field being: "</literal> <operator>+</operator> <name>refHeader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+                <return>return <expr><name>ok</name></expr>;</return>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>URISyntaxException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <comment type="line">// referrer malformed -&gt; block access</comment>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"POST with content type"</literal> <operator>+</operator> <name>ct</name> <operator>+</operator> <literal type="string">" blocked due to malformed referer header field: "</literal> <operator>+</operator> <name>refHeader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+            </block_content>}</block></catch></try>
+         }
+     }
+ }
+\ <expr_stmt><expr><name>No</name> <name>newline</name> <name>at</name> <name>end</name> <name>of</name> <name>file</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtilTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtilTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">08f1450db</literal><operator>..</operator><literal type="number">8c1804529</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtilTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>webdav</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>webdav</name><operator>/</operator><name>util</name><operator>/</operator><name><name>CSRFUtilTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">16</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@
+  <operator>*</operator><operator>/</operator></expr></expr_stmt>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>webdav</name><operator>.</operator><name>util</name></name>;</package>
+ 
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>RequestDispatcher</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>ServletInputStream</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>Cookie</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpServletRequest</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpSession</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>BufferedReader</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>UnsupportedEncodingException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>net</name><operator>.</operator><name>MalformedURLException</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>security</name><operator>.</operator><name>Principal</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>ArrayList</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">37</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Locale</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+ <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Vector</name></name>;</import>
+
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>RequestDispatcher</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>ServletInputStream</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>Cookie</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpServletRequest</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>servlet</name><operator>.</operator><name>http</name><operator>.</operator><name>HttpSession</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>TestCase</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+  * &lt;code&gt;CSRFUtilTest&lt;/code&gt;...
+@@ -55,16 +56,20 @@ public class CSRFUtilTest extends TestCase {
+         validURLs.add("http://localhost:4503/jackrabbit/server");
+         validURLs.add("https://localhost:4503/jackrabbit/server");
+         validURLs.add("https://localhost/jackrabbit/server");
+        validURLs.add("//localhost/jackrabbit/server");
+        validURLs.add("/jackrabbit/server");
+ 
+         invalidURLs.add("http://invalidHost/test");
+         invalidURLs.add("http://host1:8080/test");
+         invalidURLs.add("http://user:pw@host2/test");
+     }
+ 
+    private static void testValid(CSRFUtil util, Collection&lt;String&gt; validURLs, String method, Set&lt;String&gt; contentTypes) throws MalformedURLException {
+    static String[] noContentType = new String[0];
+
+    private static void testValid(CSRFUtil util, Collection&lt;String&gt; validURLs, String method, Set&lt;String&gt; contentTypes) {
+         if (null == contentTypes) {
+             for (String url : validURLs) {
+                assertTrue(url, util.isValidRequest(createRequest(url, method, null)));
+                assertTrue(url, util.isValidRequest(createRequest(url, method, noContentType)));
+             }
+         } else {
+             for (String contentType : contentTypes) {
+@@ -75,10 +80,10 @@ public class CSRFUtilTest extends TestCase {
+         }
+     }
+ 
+    private static void testInvalid(CSRFUtil util, Collection&lt;String&gt; invalidURLs, String method, Set&lt;String&gt; contentTypes) throws MalformedURLException {
+    private static void testInvalid(CSRFUtil util, Collection&lt;String&gt; invalidURLs, String method, Set&lt;String&gt; contentTypes) {
+         if (null == contentTypes) {
+             for (String url : validURLs) {
+                assertFalse(url, util.isValidRequest(createRequest(url, method, null)));
+                assertFalse(url, util.isValidRequest(createRequest(url, method, noContentType)));
+             }
+         } else {
+             for (String contentType : contentTypes) {
+@@ -89,8 +94,12 @@ public class CSRFUtilTest extends TestCase {
+         }
+     }
+ 
+    private static HttpServletRequest createRequest(String url, String method, String[] contentTypes) {
+        return new DummyRequest(url, SERVER_NAME, method, contentTypes);
+    }
+
+     private static HttpServletRequest createRequest(String url, String method, String contentType) {
+        return new DummyRequest(url, SERVER_NAME, method, contentType);
+        return new DummyRequest(url, SERVER_NAME, method, new String[] { contentType });
+     }
+ 
+     public void testNullConfig() throws Exception {
+@@ -109,6 +118,10 @@ public class CSRFUtilTest extends TestCase {
+         CSRFUtil util = new CSRFUtil("");
+         testValid(util, validURLs, POST, CSRFUtil.CONTENT_TYPES);
+         assertFalse("no referrer", util.isValidRequest(createRequest(null, POST, "text/plain")));
+        assertFalse("no referrer", util.isValidRequest(createRequest(null, POST, noContentType)));
+        assertFalse("no referrer", util.isValidRequest(createRequest(null, POST, "TEXT/PLAIN; foo=bar")));
+        assertTrue("no referrer", util.isValidRequest(createRequest(null, POST, "application/json")));
+        assertFalse("no referrer", util.isValidRequest(createRequest(null, POST, new String[] { "application/json", "foo/bar" })));
+     }
+ 
+     public void testDisabledConfig() throws Exception {
+@@ -155,13 +168,13 @@ public class CSRFUtilTest extends TestCase {
+         private final String referer;
+         private final String serverName;
+         private final String method;
+        private final String contentType;
+        private final String[] contentTypes;
+ 
+        private DummyRequest(String referer, String serverName, String method, String contentType) {
+        private DummyRequest(String referer, String serverName, String method, String[] contentTypes) {
+             this.referer = referer;
+             this.serverName = serverName;
+             this.method = method;
+            this.contentType = contentType;
+            this.contentTypes = contentTypes;
+         }
+ 
+         //---------------------------------------------&lt; HttpServletRequest &gt;---
+@@ -178,6 +191,19 @@ public class CSRFUtilTest extends TestCase {
+             return serverName;
+         }
+ 
+        public String getContentType() {
+            return contentTypes.length == 0 ? null : contentTypes[0];
+        }
+
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        public Enumeration getHeaders(String name) {
+            if (name != null &amp;&amp; contentTypes.length &gt; 0 &amp;&amp; name.toLowerCase(Locale.ENGLISH).equals("content-type")) {
+                return new Vector(Arrays.asList(contentTypes)).elements();
+            } else {
+                return null;
+            }
+        }
+
+         //---------------------------------------------------------&lt; unused &gt;---
+         public String getAuthType() {
+             return null;
+@@ -188,9 +214,6 @@ public class CSRFUtilTest extends TestCase {
+         public long getDateHeader(String name) {
+             return 0;
+         }
+        public Enumeration getHeaders(String name) {
+            return null;
+        }
+         public Enumeration getHeaderNames() {
+             return null;
+         }
+@@ -266,9 +289,6 @@ public class CSRFUtilTest extends TestCase {
+         public int getContentLength() {
+             return 0;
+         }
+        public String getContentType() {
+            return contentType;
+        }
+         public ServletInputStream getInputStream() throws IOException {
+             return null;
+         }
+- 
+2.19.1.windows.1
+
+</comment></unit>

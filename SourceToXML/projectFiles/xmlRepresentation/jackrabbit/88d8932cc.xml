@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/88d8932cc.java"><expr_stmt><expr><name>From</name> <literal type="number">88d8932cc4a74f5bbc2512d36d6b556081f0876e</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Angela</name> <name><name>Schreiber</name> <argument_list type="generic">&lt;<argument><name>angela</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <name>Dec</name> <literal type="number">2013</literal> <literal type="number">10</literal><operator>:</operator><literal type="number">45</literal><operator>:</operator><literal type="number">41</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">3702</literal> <operator>:</operator> <name>NPE</name></expr></expr_stmt> <if_stmt><if>if user w/o read permission on admin user node
+ removes any node
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@1546953 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../core/BatchedItemOperations.java           <operator>|</operator>   5 -
+ .../apache/jackrabbit/core/ItemValidator.java <operator>|</operator>   5 -
+ .../core/security/user/UserManagerImpl.java   <operator>|</operator>  15 --
+ .../core/security/user/AdministratorTest.java <operator>|</operator> 213 ++++++++++++------
+ 4 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">149</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">89</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>BatchedItemOperations</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>BatchedItemOperations</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">2df3ea284</literal><operator>..</operator><name>ff32888e9</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>BatchedItemOperations</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>BatchedItemOperations</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">43</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt></if></if_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>NodeTypeRegistry</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>retention</name><operator>.</operator><name>RetentionRegistry</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>AccessManager</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name><operator>.</operator><name>Permission</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>UserManagerImpl</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>session</name><operator>.</operator><name>SessionContext</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>state</name><operator>.</operator><name>ChildNodeEntry</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>state</name><operator>.</operator><name>ItemState</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">934</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">933</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>BatchedItemOperations</name> extends <name>ItemValidator</name> <block>{
+                 <throw>throw <argument_list>new <argument><expr><call><name>RepositoryException</name><argument_list>(<argument><expr><literal type="string">"Unable to perform removal. Node is affected by a retention."</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+             }</block></expr></expr_stmt>
+         }
+
+        if <expr_stmt><expr><operator>(</operator><call><name><name>UserManagerImpl</name><operator>.</operator><name>includesAdmin</name></name><argument_list>(<argument><expr><call><name><name>context</name><operator>.</operator><name>getSessionImpl</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getItemManager</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getNode</name><argument_list>(<argument><expr><name>targetPath</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>)</operator> <block>{
+            <throw>throw <argument_list>new <argument><expr><call><name>RepositoryException</name><argument_list>(<argument><expr><literal type="string">"Attempt to remove/move the admin user."</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+        }</block></expr></expr_stmt>
+     }
+ 
+     <comment type="block" format="javadoc">/**
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/ItemValidator.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/ItemValidator.java
+index 33d11d42a..eb08c5681 100644
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/ItemValidator.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/ItemValidator.java
+@@ -33,7 +33,6 @@ import org.apache.jackrabbit.core.nodetype.EffectiveNodeType;
+ import org.apache.jackrabbit.core.nodetype.NodeTypeConflictException;
+ import org.apache.jackrabbit.core.nodetype.NodeTypeRegistry;
+ import org.apache.jackrabbit.core.security.authorization.Permission;
+import org.apache.jackrabbit.core.security.user.UserManagerImpl;
+ import org.apache.jackrabbit.core.session.SessionContext;
+ import org.apache.jackrabbit.core.session.SessionOperation;
+ import org.apache.jackrabbit.core.state.NodeState;
+@@ -303,10 +302,6 @@ public class ItemValidator {
+                 throw new RepositoryException("Unable to perform operation. Node is affected by a retention.");
+             }
+         }
+
+        if (isRemoval &amp;&amp; item.isNode() &amp;&amp; UserManagerImpl.includesAdmin((NodeImpl) item)) {
+            throw new RepositoryException("Attempt to remove/move the admin user.");
+        }
+     }
+ 
+     public synchronized boolean canModify(
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/security/user/UserManagerImpl.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/security/user/UserManagerImpl.java
+index 02a5a10c8..dcdc91d5b 100644
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/security/user/UserManagerImpl.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/security/user/UserManagerImpl.java
+@@ -16,7 +16,6 @@
+  */</comment>
+ package <expr_stmt><expr><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name></name></expr>;</expr_stmt>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>JackrabbitRepository</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>principal</name><operator>.</operator><name>ItemBasedPrincipal</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>Authorizable</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>AuthorizableExistsException</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1154</literal></expr><operator>,</operator><expr><literal type="number">20</literal> <operator>+</operator><literal type="number">1153</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@ <specifier>public</specifier> <name>class</name> <name>UserManagerImpl</name> extends <name>ProtectedItemModifier</name></expr></expr_stmt>
+         }
+     }
+ 
+    <comment type="line">//--------------------------------------------------------------------------</comment>
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>includesAdmin</name><parameter_list>(<parameter><decl><type><name>NodeImpl</name></type> <name>node</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>RepositoryException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>SessionImpl</name></type> <name>s</name> <init>= <expr><operator>(</operator><name>SessionImpl</name><operator>)</operator> <call><name><name>node</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><call><name><name>s</name><operator>.</operator><name>getRepository</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getDescriptorValue</name><argument_list>(<argument><expr><name><name>JackrabbitRepository</name><operator>.</operator><name>OPTION_USER_MANAGEMENT_SUPPORTED</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getBoolean</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <decl_stmt><decl><type><name>UserManager</name></type> <name>uMgr</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>getUserManager</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>uMgr</name> <operator>instanceof</operator> <name>UserManagerImpl</name></expr>)</condition> <block>{<block_content>
+                <decl_stmt><decl><type><name>UserManagerImpl</name></type> <name>uMgrImpl</name> <init>= <expr><operator>(</operator><name>UserManagerImpl</name><operator>)</operator> <name>uMgr</name></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>AuthorizableImpl</name></type> <name>admin</name> <init>= <expr><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <call><name><name>uMgrImpl</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name><name>uMgrImpl</name><operator>.</operator><name>adminId</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <return>return <expr><call><name><name>Text</name><operator>.</operator><name>isDescendantOrEqual</name></name><argument_list>(<argument><expr><call><name><name>node</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>admin</name><operator>.</operator><name>getNode</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPath</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+    </block_content>}</block></function>
+
+     <comment type="line">//------------------------------------------------------&lt; inner classes &gt;---</comment>
+     <comment type="block" format="javadoc">/**
+      * Inner class
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/security/user/AdministratorTest.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/security/user/AdministratorTest.java
+index c7946f2db..b26ac5173 100644
+-- a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/security/user/AdministratorTest.java
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/security/user/AdministratorTest.java
+@@ -16,13 +16,20 @@
+  */</comment>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name></name>;</package>
+ 
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Properties</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>Node</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>RepositoryException</name></name>;</import>
+ <import>import <name><name>javax</name><operator>.</operator><name>jcr</name><operator>.</operator><name>Session</name></name>;</import>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>AbstractUserTest</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>Authorizable</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>User</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>api</name><operator>.</operator><name>security</name><operator>.</operator><name>user</name><operator>.</operator><name>UserManager</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>NodeImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>SessionImpl</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>id</name><operator>.</operator><name>NodeId</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>core</name><operator>.</operator><name>security</name><operator>.</operator><name>principal</name><operator>.</operator><name>AdminPrincipal</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>conversion</name><operator>.</operator><name>NameResolver</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>test</name><operator>.</operator><name>NotExecutableException</name></name>;</import>
+ 
+ <comment type="block" format="javadoc">/**
+@@ -65,6 +72,13 @@ public class AdministratorTest extends AbstractUserTest {
+         }
+     }
+ 
+    /**
+     * Test if the administrator is recreated upon login if the corresponding
+     * node gets removed.
+     *
+     * @throws RepositoryException
+     * @throws NotExecutableException
+     */</comment>
+     <function><type><specifier>public</specifier> <name>void</name></type> <name>testRemoveAdminNode</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>Authorizable</name></type> <name>admin</name> <init>= <expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">72</literal></expr><operator>,</operator><expr><literal type="number">98</literal> <operator>+</operator><literal type="number">86</literal></expr><operator>,</operator><expr><literal type="number">141</literal> @@ <specifier>public</specifier> <name>class</name> <name>AdministratorTest</name> extends <name>AbstractUserTest</name> <block>{
+             <throw>throw <argument_list>new <argument><expr><call><name>NotExecutableException</name><argument_list>()</argument_list></call></expr></argument></argument_list></throw>;
+         }</block>
+ 
+        <name>Session</name> <name>s</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        <comment type="line">// access the node corresponding to the admin user and remove it</comment>
+        <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>adminNode</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+        <comment type="line">// system workspace different from the superusers workspace.</comment>
+        <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// after removing the node the admin user doesn't exist any more</comment>
+        <expr_stmt><expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// login must succeed as system user mgr recreates the admin user</comment>
+        <decl_stmt><decl><type><name>Session</name></type> <name>s2</name> <init>= <expr><call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>s</name> <operator>=</operator> <call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>adminNode</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+            <comment type="line">// system workspace different from the superusers workspace.</comment>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// success</comment>
+            <expr_stmt><expr><name>admin</name> <operator>=</operator> <call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>admin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name>getUserManager</name><argument_list>(<argument><expr><name>s2</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getAuthorizable</name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></catch> <finally>finally <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>s</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>refresh</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><call><name><name>s2</name><operator>.</operator><name>logout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></finally></try>
+     </block_content>}</block></function>
+ 
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testSessionRemoveItem</name><parameter_list>()</parameter_list>  <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="block" format="javadoc">/**
+     * Test for collisions that would prevent from recreate the admin user.
+     * - an intermediate rep:AuthorizableFolder node with the same name
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testAdminNodeCollidingWithAuthorizableFolder</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>Authorizable</name></type> <name>admin</name> <init>= <expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+         <if_stmt><if>if <condition>(<expr><name>admin</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><operator>(</operator><name>admin</name> <operator>instanceof</operator> <name>AuthorizableImpl</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+             <throw>throw <expr><operator>new</operator> <call><name>NotExecutableException</name><argument_list>()</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+ 
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <comment type="line">// access the node corresponding to the admin user and remove it</comment>
+        <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>adminPath</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>adminNodeName</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Node</name></type> <name>parentNode</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getParent</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>adminNode</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+        <comment type="line">// system workspace different from the superusers workspace.</comment>
+        <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s2</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>collidingPath</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>parent</name> <init>= <expr><operator>(</operator><name>NodeImpl</name><operator>)</operator> <operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getParent</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>s</name> <operator>=</operator> <call><name><name>parent</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>removeItem</name></name><argument_list>(<argument><expr><call><name><name>parent</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// now create a colliding node:</comment>
+            <decl_stmt><decl><type><name>Node</name></type> <name>n</name> <init>= <expr><call><name><name>parentNode</name><operator>.</operator><name>addNode</name></name><argument_list>(<argument><expr><name>adminNodeName</name></expr></argument>, <argument><expr><literal type="string">"rep:AuthorizableFolder"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>collidingPath</name> <operator>=</operator> <call><name><name>n</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// success</comment>
+
+            <comment type="line">// force recreation of admin user.</comment>
+            <expr_stmt><expr><name>s2</name> <operator>=</operator> <call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+            <expr_stmt><expr><name>admin</name> <operator>=</operator> <call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>admin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>adminNodeName</name></expr></argument>, <argument><expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>adminPath</name><operator>.</operator><name>equals</name></name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPath</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+         </block_content>}</block></catch> <finally>finally <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>s</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>refresh</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>s2</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s2</name><operator>.</operator><name>logout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <comment type="line">// remove the extra folder and the admin user (created underneath) again.</comment>
+            <if_stmt><if>if <condition>(<expr><name>collidingPath</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>getNode</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></if></if_stmt>
+         </block_content>}</block></if></if_stmt>
+     </block_content>}</block></finally></try>
+ 
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testSessionMoveAdminNode</name><parameter_list>()</parameter_list>  <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="block" format="javadoc">/**
+     * Test for collisions that would prevent from recreate the admin user.
+     * - a colliding node somewhere else with the same jcr:uuid.
+     *
+     * Test if creation of the administrator user forces the removal of some
+     * other node in the repository that by change happens to have the same
+     * jcr:uuid and thus inhibits the creation of the admininstrator user.
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testAdminNodeCollidingWithRandomNode</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>Authorizable</name></type> <name>admin</name> <init>= <expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+         <if_stmt><if>if <condition>(<expr><name>admin</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><operator>(</operator><name>admin</name> <operator>instanceof</operator> <name>AuthorizableImpl</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+             <throw>throw <expr><operator>new</operator> <call><name>NotExecutableException</name><argument_list>()</argument_list></call></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+ 
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <comment type="line">// access the node corresponding to the admin user and remove it</comment>
+        <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>NodeId</name></type> <name>nid</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getNodeId</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>adminNode</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+        <comment type="line">// system workspace different from the superusers workspace.</comment>
+        <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s2</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>collidingPath</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>s</name> <operator>=</operator> <call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>move</name></name><argument_list>(<argument><expr><call><name><name>adminNode</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/somewhereelse"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+            <comment type="line">// system workspace different from the superusers workspace.</comment>
+            <comment type="line">// create a colliding node outside of the user tree</comment>
+            <decl_stmt><decl><type><name>NameResolver</name></type> <name>nr</name> <init>= <expr><operator>(</operator><name>SessionImpl</name><operator>)</operator> <name>s</name></expr></init></decl>;</decl_stmt>
+            <comment type="line">// NOTE: testRootNode will not be present if users are stored in a distinct wsp.</comment>
+            <comment type="line">//       therefore use root node as start...</comment>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>tr</name> <init>= <expr><operator>(</operator><name>NodeImpl</name><operator>)</operator> <call><name><name>s</name><operator>.</operator><name>getRootNode</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>Node</name></type> <name>n</name> <init>= <expr><call><name><name>tr</name><operator>.</operator><name>addNode</name></name><argument_list>(<argument><expr><call><name><name>nr</name><operator>.</operator><name>getQName</name></name><argument_list>(<argument><expr><literal type="string">"tmpNode"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>nr</name><operator>.</operator><name>getQName</name></name><argument_list>(<argument><expr><name>testNodeType</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>nid</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>collidingPath</name> <operator>=</operator> <call><name><name>n</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// success</comment>
+        </block_content>}</block></catch>  <finally>finally <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>s</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>refresh</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></finally></try>
+    </block_content>}</block></function>
+ 
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testSessionMoveParentNode</name><parameter_list>()</parameter_list>  <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>Authorizable</name></type> <name>admin</name> <init>= <expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// force recreation of admin user.</comment>
+            <expr_stmt><expr><name>s2</name> <operator>=</operator> <call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+        <if_stmt><if>if <condition>(<expr><name>admin</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><operator>(</operator><name>admin</name> <operator>instanceof</operator> <name>AuthorizableImpl</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>NotExecutableException</name><argument_list>()</argument_list></call></expr>;</throw>
+        </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><name>admin</name> <operator>=</operator> <call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>admin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// the colliding node must have been removed.</comment>
+            <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>s2</name><operator>.</operator><name>nodeExists</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>parent</name> <init>= <expr><operator>(</operator><name>NodeImpl</name><operator>)</operator> <operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getParent</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>s</name> <operator>=</operator> <call><name><name>parent</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>move</name></name><argument_list>(<argument><expr><call><name><name>parent</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/somewhereelse"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+            <comment type="line">// system workspace different from the superusers workspace.</comment>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// success</comment>
+         </block_content>}</block></catch> <finally>finally <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>s</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>refresh</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>s2</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s2</name><operator>.</operator><name>logout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <if_stmt><if>if <condition>(<expr><name>collidingPath</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>s</name><operator>.</operator><name>nodeExists</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>getNode</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+             </block_content>}</block></if></if_stmt>
+         </block_content>}</block></if></if_stmt>
+     </block_content>}</block></finally></try>
+ 
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testWorkspaceMoveAdminNode</name><parameter_list>()</parameter_list>  <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="block" format="javadoc">/**
+     * Reconfiguration of the user-root-path will result in node collision
+     * upon initialization of the built-in repository users. Test if the
+     * UserManagerImpl in this case removes the colliding admin-user node.
+     */</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>testChangeUserRootPath</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>RepositoryException</name></expr></argument>, <argument><expr><name>NotExecutableException</name></expr></argument></throws> <block>{<block_content>
+         <decl_stmt><decl><type><name>Authorizable</name></type> <name>admin</name> <init>= <expr><call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+         <if_stmt><if>if <condition>(<expr><name>admin</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><operator>(</operator><name>admin</name> <operator>instanceof</operator> <name>AuthorizableImpl</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">171</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">228</literal></expr><operator>,</operator><expr><literal type="number">41</literal> @@ <specifier>public</specifier> <name>class</name> <name>AdministratorTest</name> extends <name>AbstractUserTest</name> <block>{
+         }</block>
+ 
+         <comment type="line">// access the node corresponding to the admin user and remove it</comment>
+        <name>NodeImpl</name> <name>adminNode</name> <operator>=</operator> <operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>adminNode</name><operator>.</operator><name>remove</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <comment type="line">// use session obtained from the node as usermgr may point to a dedicated</comment>
+        <comment type="line">// system workspace different from the superusers workspace.</comment>
+        <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>Session</name></type> <name>s2</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>String</name></type> <name>collidingPath</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>NodeImpl</name></type> <name>adminNode</name> <init>= <expr><operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>admin</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>Session</name></type> <name>s</name> <init>= <expr><call><name><name>adminNode</name><operator>.</operator><name>getSession</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>getWorkspace</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>move</name><argument_list>(<argument><expr><call><name><name>adminNode</name><operator>.</operator><name>getPath</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"/somewhereelse"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>fail</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <comment type="line">// success</comment>
+            <comment type="line">// create a colliding user node outside of the user tree</comment>
+            <decl_stmt><decl><type><name>Properties</name></type> <name>props</name> <init>= <expr><operator>new</operator> <call><name>Properties</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>props</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><literal type="string">"usersPath"</literal></expr></argument>, <argument><expr><literal type="string">"/testPath"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>UserManager</name></type> <name>um</name> <init>= <expr><operator>new</operator> <call><name>UserManagerImpl</name><argument_list>(<argument><expr><operator>(</operator><name>SessionImpl</name><operator>)</operator> <name>s</name></expr></argument>, <argument><expr><name>adminId</name></expr></argument>, <argument><expr><name>props</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>User</name></type> <name>collidingUser</name> <init>= <expr><call><name><name>um</name><operator>.</operator><name>createUser</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>, <argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>collidingPath</name> <operator>=</operator> <operator>(</operator><operator>(</operator><name>AuthorizableImpl</name><operator>)</operator> <name>collidingUser</name><operator>)</operator><operator>.</operator><call><name>getNode</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPath</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+            <comment type="line">// force recreation of admin user.</comment>
+            <expr_stmt><expr><name>s2</name> <operator>=</operator> <call><name>getHelper</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getSuperuserSession</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+            <expr_stmt><expr><name>admin</name> <operator>=</operator> <call><name><name>userMgr</name><operator>.</operator><name>getAuthorizable</name></name><argument_list>(<argument><expr><name>adminId</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>admin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// the colliding node must have been removed.</comment>
+            <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>s2</name><operator>.</operator><name>nodeExists</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        </block_content>}</block></catch> <finally>finally <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>s2</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s2</name><operator>.</operator><name>logout</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <if_stmt><if>if <condition>(<expr><name>collidingPath</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <call><name><name>s</name><operator>.</operator><name>nodeExists</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>getNode</name></name><argument_list>(<argument><expr><name>collidingPath</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>remove</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>save</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+         </block_content>}</block></finally></try>
+     </block_content>}</block></if></if_stmt>
+ </block_content>}</block></function>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function></block_content></block></function>
+
+</unit>

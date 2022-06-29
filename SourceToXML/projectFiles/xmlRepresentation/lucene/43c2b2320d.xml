@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/43c2b2320d.java"><expr_stmt><expr><name>From</name> <literal type="number">43c2b2320dcf344c42086ceb782e0fc53c439952</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Scott</name> <name><name>Blum</name> <argument_list type="generic">&lt;<argument><name>dragonsinth</name><annotation>@<name><name>gmail</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">17</literal> <name>Apr</name> <literal type="number">2017</literal> <literal type="number">18</literal><operator>:</operator><literal type="number">27</literal><operator>:</operator><literal type="number">12</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">10420</literal><operator>:</operator> <name>fix</name> <name>watcher</name> <name>leak</name> <name>in</name> <name>DistributedQueue</name>
+
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueue</name><operator>.</operator><name>java</name></name>   <operator>|</operator> <literal type="number">56</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueueTest</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">50</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">84</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">22</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueue</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueue</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e7ac5e5fd16</name><operator>..</operator><literal type="number">6c28cc69c3f</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueue</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueue</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">86</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">86</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueue</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>private</specifier> <name>final</name> <name>Condition</name> <name>changed</name> <operator>=</operator> <call><name><name>updateLock</name><operator>.</operator><name>newCondition</name></name><argument_list>()</argument_list></call></expr>;
+ 
+  <comment type="block" format="javadoc">/**
+   * If non-null, the last watcher to listen for child changes.  If null, the in-memory contents are dirty.
+   */</comment>
+  <expr><specifier>private</specifier> <name>ChildWatcher</name> <name>lastWatcher</name> <operator>=</operator> <literal type="null">null</literal></expr>;
+  <expr><specifier>private</specifier> <name>boolean</name> <name>isDirty</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;
+
+  <expr><specifier>private</specifier> <name>int</name> <name>watcherCount</name> <operator>=</operator> <literal type="number">0</literal></expr>;
+ 
+   <expr><specifier>public</specifier> <call><name>DistributedQueue</name><argument_list>(<argument><expr><name>SolrZkClient</name> <name>zookeeper</name></expr></argument>, <argument><expr><name>String</name> <name>dir</name></expr></argument>)</argument_list></call> <block>{
+     <expr><call><name>this</name><argument_list>(<argument><expr><name>zookeeper</name></expr></argument>, <argument><expr><name>dir</name></expr></argument>, <argument><expr><operator>new</operator> <call><name><name>Overseer</name><operator>.</operator><name>Stats</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">238</literal></expr>,<expr><literal type="number">10</literal> <operator>+</operator><literal type="number">237</literal></expr>,<expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueue</name> <block>{
+     <try>try <block>{<block_content>
+       <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{<block_content>
+         <try>try <block>{<block_content>
+          <comment type="line">// We don't need to explicitly set isDirty here; if there is a watcher, it will</comment>
+          <comment type="line">// see the update and set the bit itself; if there is no watcher we can defer</comment>
+          <comment type="line">// the update anyway.</comment>
+          <comment type="line">// Explicitly set isDirty here so that synchronous same-thread calls behave as expected.</comment>
+          <comment type="line">// This will get set again when the watcher actually fires, but that's ok.</comment>
+           <expr_stmt><expr><call><name><name>zookeeper</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>dir</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>PREFIX</name></expr></argument>, <argument><expr><name>data</name></expr></argument>, <argument><expr><name><name>CreateMode</name><operator>.</operator><name>PERSISTENT_SEQUENTIAL</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>isDirty</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+           <return>return;</return>
+         <expr_stmt/></block_content></block></try></block_content></block></while></block_content></block></try>}</block></expr> <catch>catch <parameter_list>(<parameter><decl><type><name><name>KeeperException</name><operator>.</operator><name>NoNodeException</name></name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+           <try>try <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">269</literal></expr><operator>,</operator><expr><literal type="number">15</literal> <operator>+</operator><literal type="number">268</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueue</name> <block>{
+   <expr><specifier>private</specifier> <name>String</name> <call><name>firstChild</name><argument_list>(<argument><expr><name>boolean</name> <name>remove</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>KeeperException</name></expr></argument>, <argument><expr><name>InterruptedException</name> <block>{
+     <expr><call><name><name>updateLock</name><operator>.</operator><name>lockInterruptibly</name></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+     <try>try <block>{<block_content>
+      <comment type="line">// If we're not in a dirty state, and we have in-memory children, return from in-memory.</comment>
+      <if_stmt><if>if <condition>(<expr><name>lastWatcher</name> <operator>!=</operator> <literal type="null">null</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name><name>knownChildren</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><ternary><condition><expr><name>remove</name></expr> ?</condition><then> <expr><call><name><name>knownChildren</name><operator>.</operator><name>pollFirst</name></name><argument_list>()</argument_list></call></expr> </then><else>: <expr><call><name><name>knownChildren</name><operator>.</operator><name>first</name></name><argument_list>()</argument_list></call></expr></else></ternary></expr>;</return>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><name>isDirty</name></expr>)</condition> <block>{<block_content>
+        <comment type="line">// If we're not in a dirty state...</comment>
+        <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>knownChildren</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+          <comment type="line">// and we have in-memory children, return from in-memory.</comment>
+          <return>return <expr><ternary><condition><expr><name>remove</name></expr> ?</condition><then> <expr><call><name><name>knownChildren</name><operator>.</operator><name>pollFirst</name></name><argument_list>()</argument_list></call></expr> </then><else>: <expr><call><name><name>knownChildren</name><operator>.</operator><name>first</name></name><argument_list>()</argument_list></call></expr></else></ternary></expr>;</return>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></try>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+          <comment type="line">// otherwise there's nothing to return</comment>
+          <return>return <expr><literal type="null">null</literal></expr>;</return>
+        <expr_stmt/></block_content></block></else></if_stmt></block_content></block></try></block_content></block></catch>}</block></expr>
+       }</block>
+ 
+      <comment type="line">// Try to fetch an updated list of children from ZK.</comment>
+      <name>ChildWatcher</name> <name>newWatcher</name> <operator>=</operator> <operator>new</operator> <call><name>ChildWatcher</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <comment type="line">// Dirty, try to fetch an updated list of children from ZK.</comment>
+      <comment type="line">// Only set a new watcher if there isn't already a watcher.</comment>
+      <decl_stmt><decl><type><name>ChildWatcher</name></type> <name>newWatcher</name> <init>= <expr><ternary><condition><expr><operator>(</operator><name>watcherCount</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr> ?</condition><then> <expr><operator>new</operator> <call><name>ChildWatcher</name><argument_list>()</argument_list></call></expr> </then><else>: <expr><literal type="null">null</literal></expr></else></ternary></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><name>knownChildren</name> <operator>=</operator> <call><name>fetchZkChildren</name><argument_list>(<argument><expr><name>newWatcher</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>lastWatcher</name> <operator>=</operator> <name>newWatcher</name></expr>;</expr_stmt> <comment type="line">// only set after fetchZkChildren returns successfully</comment>
+      <if_stmt><if>if <condition>(<expr><name>newWatcher</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>watcherCount</name><operator>++</operator></expr>;</expr_stmt> <comment type="line">// watcher was successfully set</comment>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><name>isDirty</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+       <if_stmt><if>if <condition>(<expr><call><name><name>knownChildren</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+         <return>return <expr><literal type="null">null</literal></expr>;</return>
+       </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">422</literal></expr><operator>,</operator><expr><literal type="number">16</literal> <operator>+</operator><literal type="number">431</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueue</name> <block>{
+     }</block></expr></expr_stmt>
+   }
+ 
+  @<function><type><name>VisibleForTesting</name> <name>boolean</name></type> <name>hasWatcher</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+  <function><annotation>@<name>VisibleForTesting</name></annotation> <type><name>int</name></type> <name>watcherCount</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+     <expr_stmt><expr><call><name><name>updateLock</name><operator>.</operator><name>lockInterruptibly</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     <try>try <block>{<block_content>
+      <return>return <expr><name>lastWatcher</name> <operator>!=</operator> <literal type="null">null</literal></expr>;</return>
+      <return>return <expr><name>watcherCount</name></expr>;</return>
+     </block_content>}</block> <finally>finally <block>{<block_content>
+       <expr_stmt><expr><call><name><name>updateLock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></finally></try>
+   </block_content>}</block></function>
+ 
+  <class><specifier>private</specifier> class <name>ChildWatcher</name> <super_list><implements>implements <super><name>Watcher</name></super></implements></super_list> <block>{
+  <function><annotation>@<name>VisibleForTesting</name></annotation> <type><name>boolean</name></type> <name>isDirty</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>InterruptedException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>updateLock</name><operator>.</operator><name>lockInterruptibly</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <return>return <expr><name>isDirty</name></expr>;</return>
+    </block_content>}</block> <finally>finally <block>{<block_content>
+      <expr_stmt><expr><call><name><name>updateLock</name><operator>.</operator><name>unlock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></finally></try>
+  </block_content>}</block></function>
+
+  <class><annotation>@<name>VisibleForTesting</name></annotation> class <name>ChildWatcher</name> <super_list><implements>implements <super><name>Watcher</name></super></implements></super_list> <block>{
+ 
+     <function><annotation>@<name>Override</name></annotation>
+     <type><specifier>public</specifier> <name>void</name></type> <name>process</name><parameter_list>(<parameter><decl><type><name>WatchedEvent</name></type> <name>event</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">441</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">459</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueue</name> <block>{
+       }</block>
+       <call><name><name>updateLock</name><operator>.</operator><name>lock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <try>try <block>{<block_content>
+        <comment type="line">// this watcher is automatically cleared when fired</comment>
+        <if_stmt><if>if <condition>(<expr><name>lastWatcher</name> <operator>==</operator> <name>this</name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>lastWatcher</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name>isDirty</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>watcherCount</name><operator>--</operator></expr>;</expr_stmt>
+         <comment type="line">// optimistically signal any waiters that the queue may not be empty now, so they can wake up and retry</comment>
+         <expr_stmt><expr><call><name><name>changed</name><operator>.</operator><name>signalAll</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block> <finally>finally <block>{<block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueueTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueueTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b6754c71bf6</name><operator>..</operator><name>d2d6a16f335</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueueTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>DistributedQueueTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">113</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueueTest</name> extends <name>SolrTestCaseJ4</name> <block>{
+ 
+     <comment type="line">// After draining the queue, a watcher should be set.</comment>
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>hasWatcher</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>forceSessionExpire</name><argument_list>()</argument_list></call></expr>;
+ 
+     <comment type="line">// Session expiry should have fired the watcher.</comment>
+     <expr><call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>hasWatcher</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// Rerun the earlier test make sure updates are still seen, post reconnection.</comment>
+     <expr><name>future</name> <operator>=</operator> <call><name><name>executor</name><operator>.</operator><name>submit</name></name><argument_list>(<argument><expr><lambda><parameter_list>()</parameter_list> -&gt;<block type="pseudo"><block_content> <expr><operator>new</operator> <call><name>String</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>UTF8</name></expr></argument>)</argument_list></call></expr></block_content></block></lambda></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">137</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">139</literal></expr>,<expr><literal type="number">50</literal> @@ <specifier>public</specifier> <name>class</name> <name>DistributedQueueTest</name> extends <name>SolrTestCaseJ4</name> <block>{
+     <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+  @<name>Test</name>
+  <specifier>public</specifier> <name>void</name> <call><name>testLeakChildWatcher</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>String</name> <name>dqZNode</name> <operator>=</operator> <literal type="string">"/distqueue/test"</literal></expr></block></expr></argument></throws></expr>;
+    <expr><name>DistributedQueue</name> <name>dq</name> <operator>=</operator> <call><name>makeDistributedQueue</name><argument_list>(<argument><expr><name>dqZNode</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peekElements</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>s1</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="boolean">true</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertTrue</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peekElements</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>s1</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="boolean">true</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+
+    <expr><call><name><name>dq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><literal type="string">"hello world"</literal><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><name>UTF8</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>; <comment type="line">// synchronously available</comment>
+    <comment type="line">// dirty and watcher state indeterminate here, race with watcher</comment>
+    <expr><call><name><name>Thread</name><operator>.</operator><name>sleep</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>; <comment type="line">// watcher should have fired now</comment>
+    <expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peekElements</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>s</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="boolean">true</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call><operator>.</operator><call><name>isEmpty</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>dq</name><operator>.</operator><name>watcherCount</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>assertFalse</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>isDirty</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+  }</block>
+
+  @<name>Test</name>
+  <specifier>public</specifier> <name>void</name> <call><name>testLocallyOffer</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>String</name> <name>dqZNode</name> <operator>=</operator> <literal type="string">"/distqueue/test"</literal></expr></block></expr></argument></throws></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>DistributedQueue</name></type> <name>dq</name> <init>= <expr><call><name>makeDistributedQueue</name><argument_list>(<argument><expr><name>dqZNode</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>dq</name><operator>.</operator><name>peekElements</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>s</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="boolean">true</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">100</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>byte</name><index>[]</index></name></type> <name>data</name> <init>= <expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getBytes</name><argument_list>(<argument><expr><name>UTF8</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name><name>dq</name><operator>.</operator><name>offer</name></name><argument_list>(<argument><expr><name>data</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>assertNotNull</name><argument_list>(<argument><expr><call><name><name>dq</name><operator>.</operator><name>peek</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>dq</name><operator>.</operator><name>poll</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>dq</name><operator>.</operator><name>peekElements</name></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>s</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><literal type="boolean">true</literal></expr></block_content></block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+  </block_content>}</block></finally></try>
+
+
+   <function><annotation>@<name>Test</name></annotation>
+   <type><specifier>public</specifier> <name>void</name></type> <name>testPeekElements</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>String</name></type> <name>dqZNode</name> <init>= <expr><literal type="string">"/distqueue/test"</literal></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></function></block_content></block></function></block></class></block></class></block_content></block></function>
+
+</unit>

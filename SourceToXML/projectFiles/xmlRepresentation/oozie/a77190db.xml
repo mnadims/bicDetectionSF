@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/a77190db.java"><expr_stmt><expr><name>From</name> <name>a77190dbaa033ed37a882d847da99d5ba4c1571f</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Alejandro</name> <name><name>Abdelnur</name> <argument_list type="generic">&lt;<argument><name>tucu</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Nov</name> <literal type="number">2011</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">50</literal><operator>:</operator><literal type="number">46</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">480</literal> <name>In</name> <name>Oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name></expr><operator>,</operator></expr_stmt> <if_stmt><if>if we specify oozie.services.ext
+ property is not overriding the services.
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/incubator/oozie/trunk@1202454 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../main/java/org/apache/oozie/ErrorCode.java <operator>|</operator>  7 +-
+ .../org/apache/oozie/service/Services.java    <operator>|</operator> 78 +++++++++++++++----
+ .../apache/oozie/service/TestServices.java    <operator>|</operator> 16 +++-
+ release-log.txt                               <operator>|</operator>  1 +
+ 4 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">83</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">19</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name><name>ErrorCode</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name><name>ErrorCode</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b9497c660</name><operator>..</operator><literal type="number">9da371a29</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name><name>ErrorCode</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name><name>ErrorCode</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">6</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">6</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@
+  <operator>*</operator> <name>to</name> <name>you</name> <name>under</name> <name>the</name> <name>Apache</name> <name>License</name></expr><operator>,</operator> <expr><name>Version</name> <literal type="number">2.0</literal> <operator>(</operator><name>the</name>
+  <operator>*</operator> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt></if></if_stmt> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name>
+  <operator>*</operator> <name>with</name> <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator>      <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator> <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+  <operator>*</operator> <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+  <expr><operator>*</operator> <name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+@@ <operator>-</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">39</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <specifier>public</specifier> enum <name>ErrorCode</name> <block>{
+     <expr><call><name>E0026</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Missing required configuration property [{0}]"</literal></expr></argument>)</argument_list></call></expr>,
+ 
+     <expr><call><name>E0100</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Could not initialize service [{0}], {1}"</literal></expr></argument>)</argument_list></call></expr>,
+    <expr><call><name>E0101</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Service [{0}] does not implement declared interface [{1}]"</literal></expr></argument>)</argument_list></call></expr>,
+    <expr><call><name>E0102</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Could not instanciate service class [{0}], {1}"</literal></expr></argument>)</argument_list></call></expr>,
+    <expr><call><name>E0103</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Could not load service classes, {0}"</literal></expr></argument>)</argument_list></call></expr>,
+     <expr><call><name>E0110</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"Could not parse or validate EL definition [{0}], {1}"</literal></expr></argument>)</argument_list></call></expr>,
+     <expr><call><name>E0111</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"class#method not found [{0}#{1}]"</literal></expr></argument>)</argument_list></call></expr>,
+     <expr><call><name>E0112</name><argument_list>(<argument><expr><name><name>XLog</name><operator>.</operator><name>OPS</name></name></expr></argument>, <argument><expr><literal type="string">"class#method does not have PUBLIC or STATIC modifier [{0}#{1}]"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>Services</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>Services</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>de62b5a4a</name><operator>..</operator><literal type="number">7c627a54d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>Services</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>Services</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">6</literal></expr>,<expr><literal type="number">9</literal> <operator>+</operator><literal type="number">6</literal></expr>,<expr><literal type="number">9</literal> @@
+  <operator>*</operator> <name>to</name> <name>you</name> <name>under</name> <name>the</name> <name>Apache</name> <name>License</name></expr>, <expr><name>Version</name> <literal type="number">2.0</literal> <operator>(</operator><name>the</name>
+  <operator>*</operator> <literal type="string">"License"</literal><operator>)</operator></expr>; <expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name>
+  <operator>*</operator> <name>with</name> <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator>      <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator> <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr>, <expr><name>software</name>
+  <operator>*</operator> <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr>,
+  <expr><operator>*</operator> <name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr>, <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+@@ <operator>-</operator><literal type="number">199</literal></expr>,<expr><literal type="number">19</literal> <operator>+</operator><literal type="number">199</literal></expr>,<expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Services</name> <block>{
+         <expr><call><name><name>log</name><operator>.</operator><name>trace</name></name><argument_list>(<argument><expr><literal type="string">"Initializing"</literal></expr></argument>)</argument_list></call></expr>;
+         <expr><name>SERVICES</name> <operator>=</operator> <name>this</name></expr>;
+         <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Service</name></extends></argument>&gt;</argument_list></name><index>[]</index></name></type> <name>serviceClasses</name> <init>= <expr><operator>(</operator><name><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Service</name></extends></argument>&gt;</argument_list></name><index>[]</index></name><operator>)</operator> <call><name><name>conf</name><operator>.</operator><name>getClasses</name></name><argument_list>(
+                    <argument><expr><name>CONF_SERVICE_CLASSES</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><name>serviceClasses</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <for>for <control>(<init><decl><type><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Service</name></extends></argument>&gt;</argument_list></name></type> <name>serviceClass</name> <range>: <expr><name>serviceClasses</name></expr></range></decl></init>)</control> <block>{<block_content>
+                    <expr_stmt><expr><call><name>setService</name><argument_list>(<argument><expr><name>serviceClass</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt/></block_content></block></for></block_content></block></if></if_stmt></block_content></block></try>}</block></expr>
+            }</block>
+            <name>serviceClasses</name> <operator>=</operator> <operator>(</operator><name><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Service</name></extends></argument>&gt;</argument_list></name><index>[]</index></name><operator>)</operator> <call><name><name>conf</name><operator>.</operator><name>getClasses</name></name><argument_list>(<argument><expr><name>CONF_SERVICE_EXT_CLASSES</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><name>serviceClasses</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                <for>for <control>(<init><decl><type><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name> <extends>extends <name>Service</name></extends></argument>&gt;</argument_list></name></type> <name>serviceClass</name> <range>: <expr><name>serviceClasses</name></expr></range></decl></init>)</control> <block>{<block_content>
+                    <expr_stmt><expr><call><name>setService</name><argument_list>(<argument><expr><name>serviceClass</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></for>
+            </block_content>}</block></if></if_stmt>
+            <expr_stmt><expr><call><name>loadServices</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+         }
+         catch <expr_stmt><expr><operator>(</operator><name>RuntimeException</name> <name>ex</name><operator>)</operator> <block>{
+             <expr><call><name><name>XLog</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>fatal</name><argument_list>(<argument><expr><call><name><name>ex</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">234</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">222</literal></expr>,<expr><literal type="number">66</literal> @@ <specifier>public</specifier> <name>class</name> <name>Services</name> <block>{
+         <expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"Oozie System ID [{0}] started!"</literal></expr></argument>, <argument><expr><call><name>getSystemId</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+     }</block>
+ 
+    <comment type="block" format="javadoc">/**
+     * Loads the specified services.
+     *
+     * @param classes services classes to load.
+     * @param list    list of loaded service in order of appearance in the
+     *                configuration.
+     * @throws ServiceException thrown if a service class could not be loaded.
+     */</comment>
+    <specifier>private</specifier> <name>void</name> <call><name>loadServices</name><argument_list>(<argument><expr><name><name>Class</name><index>[]</index></name> <name>classes</name></expr></argument>, <argument><expr><name><name>List</name><argument_list type="generic">&lt;<argument><name>Service</name></argument>&gt;</argument_list></name> <name>list</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>ServiceException</name> <block>{
+        <expr><name>XLog</name> <name>log</name> <operator>=</operator> <operator>new</operator> <call><name>XLog</name><argument_list>(<argument><expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+        <for>for <control>(<init><decl><type><name>Class</name></type> <name>klass</name> <range>: <expr><name>classes</name></expr></range></decl></init>)</control> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <decl_stmt><decl><type><name>Service</name></type> <name>service</name> <init>= <expr><operator>(</operator><name>Service</name><operator>)</operator> <call><name><name>klass</name><operator>.</operator><name>newInstance</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Loading service [{}] implementation [{}]"</literal></expr></argument>, <argument><expr><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call></expr></argument>,
+                        <argument><expr><call><name><name>service</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>isInstance</name><argument_list>(<argument><expr><name>service</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <throw>throw <expr><operator>new</operator> <call><name>ServiceException</name><argument_list>(<argument><expr><name><name>ErrorCode</name><operator>.</operator><name>E0101</name></name></expr></argument>, <argument><expr><name>klass</name></expr></argument>, <argument><expr><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</throw>
+                <expr_stmt/></block_content></block></if></if_stmt></block_content></block></try></block_content></block></for>}</block>
+                <call><name><name>list</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>service</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            } catch <expr_stmt><expr><operator>(</operator><name>ServiceException</name> <name>ex</name><operator>)</operator> <block>{
+                <throw>throw <argument_list>ex</argument_list></throw>;
+            }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <throw>throw <expr><operator>new</operator> <call><name>ServiceException</name><argument_list>(<argument><expr><name><name>ErrorCode</name><operator>.</operator><name>E0102</name></name></expr></argument>, <argument><expr><name>klass</name></expr></argument>, <argument><expr><call><name><name>ex</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</throw>
+            </block_content>}</block></catch>
+        }
+    }
+
+    <comment type="block" format="javadoc">/**
+     * Loads services defined in &lt;code&gt;services&lt;/code&gt; and
+     * &lt;code&gt;services.ext&lt;/code&gt; and de-dups them.
+     *
+     * @return List of final services to initialize.
+     * @throws ServiceException throw if the services could not be loaded.
+     */</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>loadServices</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>ServiceException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>XLog</name></type> <name>log</name> <init>= <expr><operator>new</operator> <call><name>XLog</name><argument_list>(<argument><expr><call><name><name>LogFactory</name><operator>.</operator><name>getLog</name></name><argument_list>(<argument><expr><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>Class</name></argument>, <argument><name>Service</name></argument>&gt;</argument_list></name></type> <name>map</name> <init>= <expr><operator>new</operator> <call><name><name>LinkedHashMap</name><argument_list type="generic">&lt;<argument><name>Class</name></argument>, <argument><name>Service</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name><name>Class</name><index>[]</index></name></type> <name>classes</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>getClasses</name></name><argument_list>(<argument><expr><name>CONF_SERVICE_CLASSES</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name><name>Class</name><index>[]</index></name></type> <name>classesExt</name> <init>= <expr><call><name><name>conf</name><operator>.</operator><name>getClasses</name></name><argument_list>(<argument><expr><name>CONF_SERVICE_EXT_CLASSES</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Service</name></argument>&gt;</argument_list></name></type> <name>list</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Service</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name>loadServices</name><argument_list>(<argument><expr><name>classes</name></expr></argument>, <argument><expr><name>list</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>loadServices</name><argument_list>(<argument><expr><name>classesExt</name></expr></argument>, <argument><expr><name>list</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+            <comment type="line">//removing duplicate services, strategy: last one wins</comment>
+            <for>for <control>(<init><decl><type><name>Service</name></type> <name>service</name> <range>: <expr><name>list</name></expr></range></decl></init>)</control> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>map</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>debug</name></name><argument_list>(<argument><expr><literal type="string">"Replacing service [{}] implementation [{}]"</literal></expr></argument>, <argument><expr><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call></expr></argument>,
+                            <argument><expr><call><name><name>service</name><operator>.</operator><name>getClass</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+                <expr_stmt><expr><call><name><name>map</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name><name>service</name><operator>.</operator><name>getInterface</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>service</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></for>
+            <for>for <control>(<init><decl><type><name><name>Map</name><operator>.</operator><name><name>Entry</name><argument_list type="generic">&lt;<argument><name>Class</name></argument>, <argument><name>Service</name></argument>&gt;</argument_list></name></name></type> <name>entry</name> <range>: <expr><call><name><name>map</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+                <expr_stmt><expr><call><name>setService</name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></for>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RuntimeException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>ServiceException</name><argument_list>(<argument><expr><name><name>ErrorCode</name><operator>.</operator><name>E0103</name></name></expr></argument>, <argument><expr><call><name><name>ex</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+
+     <comment type="block" format="javadoc">/**
+      * Destroy all services.
+      */</comment>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>TestServices</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>TestServices</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>fbd283157</name><operator>..</operator><literal type="number">497f8b317</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>TestServices</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>oozie</name><operator>/</operator><name>service</name><operator>/</operator><name><name>TestServices</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">6</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">6</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@
+  <operator>*</operator> <name>to</name> <name>you</name> <name>under</name> <name>the</name> <name>Apache</name> <name>License</name></expr><operator>,</operator> <expr><name>Version</name> <literal type="number">2.0</literal> <operator>(</operator><name>the</name>
+  <operator>*</operator> <literal type="string">"License"</literal><operator>)</operator></expr>;</expr_stmt> <expr_stmt><expr><name>you</name> <name>may</name> <name>not</name> <name>use</name> <name>this</name> <name>file</name> <name>except</name> <name>in</name> <name>compliance</name>
+  <operator>*</operator> <name>with</name> <name>the</name> <name><name>License</name><operator>.</operator>  <name>You</name></name> <name>may</name> <name>obtain</name> <name>a</name> <name>copy</name> <name>of</name> <name>the</name> <name>License</name> <name>at</name>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator>      <name>http</name><operator>:</operator><comment type="line">//www.apache.org/licenses/LICENSE-2.0</comment>
+ <operator>*</operator> 
+ <operator>*</operator>
+  <operator>*</operator> <name>Unless</name> <name>required</name> <name>by</name> <name>applicable</name> <name>law</name> <name>or</name> <name>agreed</name> <name>to</name> <name>in</name> <name>writing</name></expr><operator>,</operator> <expr><name>software</name>
+  <operator>*</operator> <name>distributed</name> <name>under</name> <name>the</name> <name>License</name> <name>is</name> <name>distributed</name> <name>on</name> <name>an</name> <literal type="string">"AS IS"</literal> <name>BASIS</name></expr><operator>,</operator>
+  <expr><operator>*</operator> <name>WITHOUT</name> <name>WARRANTIES</name> <name>OR</name> <name>CONDITIONS</name> <name>OF</name> <name>ANY</name> <name>KIND</name></expr><operator>,</operator> <expr><name>either</name> <name>express</name> <name>or</name> <name><name>implied</name><operator>.</operator></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestServices</name> extends <name>XTestCase</name> <block>{
+     }</block>
+ 
+     <specifier>public</specifier> <specifier>static</specifier> <name>class</name> <name>S1</name> implements <name>Service</name> <block>{
+        <expr><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name> <name>INITED_S1</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+ 
+         @<expr><name>Override</name>
+         <specifier>public</specifier> <name>void</name> <call><name>init</name><argument_list>(<argument><expr><name>Services</name> <name>services</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>ServiceException</name> <block>{
+            <expr><name>INITED_S1</name> <operator>=</operator> <literal type="boolean">true</literal></expr></block></expr></argument></throws></expr>;
+         }</block>
+ 
+         @<name>Override</name>
+@@ <operator>-</operator><literal type="number">73</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">75</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestServices</name> extends <name>XTestCase</name> <block>{
+     }</block>
+ 
+     <specifier>public</specifier> <specifier>static</specifier> <name>class</name> <name>S1Ext</name> extends <name>S1</name> <block>{
+        <expr><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name> <name>INITED_S1EXT</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+
+        @<expr><name>Override</name>
+        <specifier>public</specifier> <name>void</name> <call><name>init</name><argument_list>(<argument><expr><name>Services</name> <name>services</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>ServiceException</name> <block>{
+            <expr><name>INITED_S1EXT</name> <operator>=</operator> <literal type="boolean">true</literal></expr></block></expr></argument></throws></expr>;
+        }</block></expr></expr_stmt>
+     }
+ 
+     private <decl_stmt><decl><type><specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>SERVICES</name> <init>= <expr><call><name><name>S1</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">","</literal> <operator>+</operator> <call><name><name>S2</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">88</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">96</literal></expr><operator>,</operator><expr><literal type="number">15</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestServices</name> extends <name>XTestCase</name> <block>{
+     <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>SERVICES_EXT</name> <operator>=</operator> <call><name><name>S1Ext</name><operator>.</operator><name><name>class</name><operator>.</operator><name>getName</name></name></name><argument_list>()</argument_list></call></expr>;
+ 
+     <expr><specifier>public</specifier> <name>void</name> <call><name>testServicesExtLoading</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+        <expr><name><name>S1</name><operator>.</operator><name>INITED_S1</name></name> <operator>=</operator> <literal type="boolean">false</literal></expr></block></expr></argument></throws></expr>;
+        <expr><name><name>S1Ext</name><operator>.</operator><name>INITED_S1EXT</name></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;
+         <expr><call><name>setSystemProperty</name><argument_list>(<argument><expr><name><name>Services</name><operator>.</operator><name>CONF_SERVICE_CLASSES</name></name></expr></argument>, <argument><expr><name>SERVICES</name></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name>setSystemProperty</name><argument_list>(<argument><expr><name><name>Services</name><operator>.</operator><name>CONF_SERVICE_EXT_CLASSES</name></name></expr></argument>, <argument><expr><name>SERVICES_EXT</name></expr></argument>)</argument_list></call></expr>;
+         <expr><name>Services</name> <name>services</name> <operator>=</operator> <operator>new</operator> <call><name>Services</name><argument_list>()</argument_list></call></expr>;
+         <expr><call><name><name>services</name><operator>.</operator><name>init</name></name><argument_list>()</argument_list></call></expr>;
+         <expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>S1Ext</name><operator>.</operator><name>class</name></name></expr></argument>,  <argument><expr><call><name><name>services</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>S1</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         <expr><call><name>assertEquals</name><argument_list>(<argument><expr><name><name>S2</name><operator>.</operator><name>class</name></name></expr></argument>,  <argument><expr><call><name><name>services</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name><name>S2</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getClass</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>assertFalse</name><argument_list>(<argument><expr><name><name>S1</name><operator>.</operator><name>INITED_S1</name></name></expr></argument>)</argument_list></call></expr>;
+        <expr><call><name>assertTrue</name><argument_list>(<argument><expr><name><name>S1Ext</name><operator>.</operator><name>INITED_S1EXT</name></name></expr></argument>)</argument_list></call></expr>;
+     }</block></expr></expr_stmt>
+ }
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">1c838ee17</literal><operator>..</operator><literal type="number">7124dd066</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>release</name><operator>-</operator><name><name>log</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@
+ <operator>--</operator> <name>Oozie</name> <literal type="number">3.2.0</literal> <name>release</name>
+ 
+<name>OOZIE</name><operator>-</operator><literal type="number">480</literal> <name>In</name> <name>Oozie</name><operator>-</operator><name><name>site</name><operator>.</operator><name>xml</name></name></expr><operator>,</operator></expr_stmt> <if_stmt><if>if we specify oozie.services.ext property is not overriding the services.
+ OOZIE-602 Update the Hadoop version to be an Apache Hadoop version.
+ OOZIE-557 Simplify/normalize testing configuration when using different databases.
+ OOZIE-590 Log Retrieval from multiple .gz archive files
+- 
+2.19.1.windows.1</if></if_stmt>
+
+</unit>

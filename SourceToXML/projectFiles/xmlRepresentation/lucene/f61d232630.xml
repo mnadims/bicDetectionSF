@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/f61d232630.java"><expr_stmt><expr><name>From</name> <name>f61d23263064ebb7217bce51116106e580624feb</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Shalin</name> <name>Shekhar</name> <name><name>Mangar</name> <argument_list type="generic">&lt;<argument><name>shalin</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Nov</name> <literal type="number">2013</literal> <literal type="number">14</literal><operator>:</operator><literal type="number">01</literal><operator>:</operator><literal type="number">41</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>SOLR</name><operator>-</operator><literal type="number">5320</literal><operator>:</operator> <name>Added</name> <name>support</name></expr></expr_stmt> <for>for tri-level compositeId routing
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1542272 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ solr/CHANGES.txt                              <operator>|</operator>   3 +
+ .../apache/solr/update/SolrIndexSplitter.java <operator>|</operator>   2 +-
+ .../apache/solr/cloud/ShardRoutingTest.java   <operator>|</operator>  45 ++--
+ .../cloud/TriLevelCompositeIdRoutingTest.java <operator>|</operator> 167 +++++++++++++
+ .../solr/common/cloud/CompositeIdRouter.java  <operator>|</operator> 229 +++++++++++-------
+ 5 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">335</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">111</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>TriLevelCompositeIdRoutingTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">92188b0e279</literal><operator>..</operator><literal type="number">9a4df220116</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">78</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">78</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@ <name>New</name> <name>Features</name>
+ <operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5441</literal><operator>:</operator> <name>Expose</name> <name>number</name> <name>of</name> <name>transaction</name> <name>log</name> <name>files</name> <name>and</name> <name>their</name> <name>size</name> <name>via</name> <name><name>JMX</name><operator>.</operator></name>
+   (<name>RafaÅ</name> <name>KuÄ</name> <name>via</name> <name>shalin</name></expr></expr_stmt></for>)
+ 
+<expr_stmt><expr><operator>*</operator> <name>SOLR</name><operator>-</operator><literal type="number">5320</literal><operator>:</operator> <name>Added</name> <name>support</name></expr></expr_stmt> <for>for tri-level compositeId routing.
+  <control>(<init><expr><name>Anshum</name> <name>Gupta</name> <name>via</name> <name>shalin</name></expr></init>)</control><block type="pseudo"><block_content>
+
+ <expr_stmt><expr><name>Bug</name> <name>Fixes</name>
+ <operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>SolrIndexSplitter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>SolrIndexSplitter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">168906501f3</literal><operator>..</operator><literal type="number">094103b77c5</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>SolrIndexSplitter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>update</name><operator>/</operator><name><name>SolrIndexSplitter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">215</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">215</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>SolrIndexSplitter</name> <block>{
+   }</block>
+ 
+   <specifier>public</specifier> <specifier>static</specifier> <name>String</name> <call><name>getRouteKey</name><argument_list>(<argument><expr><name>String</name> <name>idString</name></expr></argument>)</argument_list></call> <block>{
+    <expr><name>int</name> <name>idx</name> <operator>=</operator> <call><name><name>idString</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name><name>CompositeIdRouter</name><operator>.</operator><name>separator</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><name>int</name> <name>idx</name> <operator>=</operator> <call><name><name>idString</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name><name>CompositeIdRouter</name><operator>.</operator><name>SEPARATOR</name></name></expr></argument>)</argument_list></call></expr>;
+     <if_stmt><if>if <condition>(<expr><name>idx</name> <operator>&lt;=</operator> <literal type="number">0</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><literal type="null">null</literal></expr>;</return></block_content></block></if></if_stmt>
+     <name>String</name> <name>part1</name> <operator>=</operator> <call><name><name>idString</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>idx</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt></block_content></block></for>
+     <decl_stmt><decl><type><name>int</name></type> <name>commaIdx</name> <init>= <expr><call><name><name>part1</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name><name>CompositeIdRouter</name><operator>.</operator><name>bitsSeparator</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ShardRoutingTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ShardRoutingTest</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ff0819f5e99</name><operator>..</operator><literal type="number">679b1dd9c78</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ShardRoutingTest</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>ShardRoutingTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">102</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">102</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+      <expr><name>hash</name> <name>of</name> <name>x</name> <name>is</name> <literal type="number">3e9a9b1b</literal> <name>high</name> <name>bits</name><operator>=</operator><literal type="number">0</literal> <name>shard</name><operator>=</operator><name>shard3</name>
+      <name>hash</name> <name>of</name> <name>y</name> <name>is</name> <literal type="number">477d9216</literal> <name>high</name> <name>bits</name><operator>=</operator><literal type="number">1</literal> <name>shard</name><operator>=</operator><name>shard4</name>
+      <name>hash</name> <name>of</name> <name>z</name> <name>is</name> <name>c1f69a17</name> <name>high</name> <name>bits</name><operator>=</operator><literal type="number">3</literal> <name>shard</name><operator>=</operator><name>shard2</name>
+
+     <name>hash</name> <name>of</name> <name>f1</name> <name>is</name> <literal type="number">313bf6b1</literal>
+     <name>hash</name> <name>of</name> <name>f2</name> <name>is</name> <name>ff143f8</name>
+
+      <operator>*</operator><operator>*</operator><operator>*</operator><operator>/</operator></expr>
+   }</block>
+ 
+@@ <operator>-</operator><literal type="number">143</literal></expr><operator>,</operator><expr><literal type="number">28</literal> <operator>+</operator><literal type="number">147</literal></expr><operator>,</operator><expr><literal type="number">31</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"e!doc4"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"f1!f2!doc5"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"b!doc1"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"e!doc4"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"f1!f2!doc5"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doRTG</name><argument_list>(<argument><expr><literal type="string">"d!doc3,e!doc4"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><literal type="string">"shard1,shard2,shard3,shard4"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b!,c!,d!,e!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><literal type="string">"shard1,shard2,shard3,shard4"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b!,c!,d!,e!,f1!f2!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"c!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"d!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"d!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"e!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"f1!f2!doc5,d!doc3"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"f1/8!"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// try using shards parameter</comment>
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><name>bucket1</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><name>bucket2</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><name>bucket3</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><name>bucket3</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>,<argument><expr><name>bucket4</name></expr></argument>)</argument_list></call></expr>;
+ 
+ 
+@@ <expr><operator>-</operator><literal type="number">174</literal></expr>,<expr><literal type="number">26</literal> <operator>+</operator><literal type="number">181</literal></expr>,<expr><literal type="number">27</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b,c"</literal></expr></argument>)</argument_list></call></expr>;     <comment type="line">// query shards that would contain *documents* "b" and "c" (i.e. not prefixes).  The upper bits are the same, so the shards should be the same.</comment>
+ 
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b/1!"</literal></expr></argument>)</argument_list></call></expr>;   <comment type="line">// top bit of hash(b)==1, so shard1 and shard2</comment>
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"d/1!"</literal></expr></argument>)</argument_list></call></expr>;   <comment type="line">// top bit of hash(b)==0, so shard3 and shard4</comment>
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"d!doc3,e!doc4,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"d/1!"</literal></expr></argument>)</argument_list></call></expr>;   <comment type="line">// top bit of hash(b)==0, so shard3 and shard4</comment>
+ 
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b!,c!"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"foo/0!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,f1!f2!doc5,c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"foo/0!"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// test targeting deleteByQuery at only certain shards</comment>
+     <expr><call><name>doDBQ</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"b!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"c!doc2,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"c!doc2,d!doc3,e!doc4,f1!f2!doc5"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"b!doc1"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+    <expr><call><name>doDBQ</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"c!"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doDBQ</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"f1!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"f1!f2!doc5"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>doDBQ</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"c!"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,f1!f2!doc5,d!doc3,e!doc4"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"c!doc2"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>doDBQ</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><name>shardKeys</name></expr></argument>,<argument><expr><literal type="string">"d!,e!"</literal></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">201</literal></expr>,<expr><literal type="number">15</literal> <operator>+</operator><literal type="number">209</literal></expr>,<expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+     <expr><call><name>doQuery</name><argument_list>(<argument><expr><literal type="string">"b!doc1,c!doc2"</literal></expr></argument>, <argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"d!doc3"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"e!doc4"</literal></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name>doAddDoc</name><argument_list>(<argument><expr><literal type="string">"f1!f2!doc5"</literal></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;
+   }</block>
+ 
+ 
+
+
+
+
+   <specifier>public</specifier> <name>void</name> <call><name>doTestNumRequests</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"### STARTING doTestNumRequests"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+ 
+@@ <expr><operator>-</operator><literal type="number">263</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">268</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name> <block>{
+     <expr><call><name><name>leader2</name><operator>.</operator><name>client</name><operator>.</operator><name>solrClient</name><operator>.</operator><name>query</name></name><argument_list>( <argument><expr><call><name>params</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shard.keys"</literal></expr></argument>,<argument><expr><literal type="string">"b!,d!"</literal></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;
+     <expr><name>nEnd</name> <operator>=</operator> <call><name>getNumRequests</name><argument_list>()</argument_list></call></expr>;
+     <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><name>nEnd</name> <operator>-</operator> <name>nStart</name></expr></argument>)</argument_list></call></expr>;   <comment type="line">// original + 2 phase distrib search * 2 shards.</comment>
+
+    <expr><name>nStart</name> <operator>=</operator> <call><name>getNumRequests</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>leader2</name><operator>.</operator><name>client</name><operator>.</operator><name>solrClient</name><operator>.</operator><name>query</name></name><argument_list>( <argument><expr><call><name>params</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>,<argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shard.keys"</literal></expr></argument>,<argument><expr><literal type="string">"b!,f1!f2!"</literal></expr></argument>)</argument_list></call></expr></argument> )</argument_list></call></expr>;
+    <expr><name>nEnd</name> <operator>=</operator> <call><name>getNumRequests</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="number">5</literal></expr></argument>, <argument><expr><name>nEnd</name> <operator>-</operator> <name>nStart</name></expr></argument>)</argument_list></call></expr>;
+   }</block>
+ 
+   <specifier>public</specifier> <name>void</name> <call><name>doAtomicUpdate</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{</block></expr></argument>
+@<argument>@ <expr><operator>-</operator><literal type="number">279</literal></expr></argument>,<argument><expr><literal type="number">9</literal> <operator>+</operator><literal type="number">289</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>ShardRoutingTest</name> extends <name>AbstractFullDistribZkTestBase</name></expr></argument></throws> <block>{<block_content>
+       <decl_stmt><decl><type><name>Object</name></type> <name>val</name> <init>= <expr><operator>(</operator><operator>(</operator><name>Map</name><operator>)</operator><call><name><name>rsp</name><operator>.</operator><name>getResponse</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"doc"</literal></expr></argument>)</argument_list></call><operator>)</operator><operator>.</operator><call><name>get</name><argument_list>(<argument><expr><literal type="string">"foo_i"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><operator>(</operator><name>Integer</name><operator>)</operator><name>expectedVal</name></expr></argument>, <argument><expr><name>val</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></expr>}</block></expr>
+
+   }</block>
+ 
+    <name>long</name> <call><name>getNumRequests</name><argument_list>()</argument_list></call> <block>{
+  <expr><name>long</name> <call><name>getNumRequests</name><argument_list>()</argument_list></call> <block>{
+     <expr><name>long</name> <name>n</name> <operator>=</operator> <call><name><name>controlJetty</name><operator>.</operator><name>getDebugFilter</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTotalRequests</name><argument_list>()</argument_list></call></expr>;
+     <for>for <control>(<init><decl><type><name>JettySolrRunner</name></type> <name>jetty</name> <range>: <expr><name>jettys</name></expr></range></decl></init>)</control> <block>{<block_content>
+       <expr_stmt><expr><name>n</name> <operator>+=</operator> <call><name><name>jetty</name><operator>.</operator><name>getDebugFilter</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getTotalRequests</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>TriLevelCompositeIdRoutingTest</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>TriLevelCompositeIdRoutingTest</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">00000000000..7d5aa129222</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>TriLevelCompositeIdRoutingTest</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">167</literal> @@</expr></expr_stmt>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>cloud</name></name>;</package>
+
+<comment type="block">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>client</name><operator>.</operator><name>solrj</name><operator>.</operator><name>response</name><operator>.</operator><name>QueryResponse</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>solr</name><operator>.</operator><name>common</name><operator>.</operator><name>SolrDocument</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>BeforeClass</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Random</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+
+
+<class><specifier>public</specifier> class <name>TriLevelCompositeIdRoutingTest</name> <super_list><extends>extends <super><name>ShardRoutingTest</name></super></extends></super_list> <block>{
+
+  <decl_stmt><decl><type><name>int</name></type> <name>NUM_APPS</name> <init>= <expr><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>NUM_USERS</name> <init>= <expr><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>NUM_DOCS</name> <init>= <expr><literal type="number">100</literal></expr></init></decl>;</decl_stmt>
+
+
+  <function><annotation>@<name>BeforeClass</name></annotation>
+  <type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>beforeTriLevelCompositeIdRoutingTest</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// TODO: we use an fs based dir because something</comment>
+    <comment type="line">// like a ram dir will not recover correctly right now</comment>
+    <comment type="line">// because tran log will still exist on restart and ram</comment>
+    <comment type="line">// dir will not persist - perhaps translog can empty on</comment>
+    <comment type="line">// start if using an EphemeralDirectoryFactory </comment>
+    <expr_stmt><expr><call><name>useFactory</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt/></block_content></block></function></block></class></block_content></block></for>}</block>
+
+  <specifier>public</specifier> <call><name>TriLevelCompositeIdRoutingTest</name><argument_list>()</argument_list></call> <block>{
+    <expr><name>schemaString</name> <operator>=</operator> <literal type="string">"schema15.xml"</literal></expr>;      <comment type="line">// we need a string id</comment>
+    <expr><name><name>super</name><operator>.</operator><name>sliceCount</name></name> <operator>=</operator> <literal type="number">12</literal></expr>;             <comment type="line">// a lot of slices for more ranges and buckets</comment>
+    <expr><name><name>super</name><operator>.</operator><name>shardCount</name></name> <operator>=</operator> <literal type="number">24</literal></expr>;
+    <expr><name><name>super</name><operator>.</operator><name>fixShardCount</name></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;
+
+  }</block>
+
+  @<name>Override</name>
+  <specifier>public</specifier> <name>void</name> <call><name>doTest</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><name>boolean</name> <name>testFinished</name> <operator>=</operator> <literal type="boolean">false</literal></expr></block></expr></argument></throws></expr>;
+    <try>try <block>{<block_content>
+      <expr_stmt><expr><call><name><name>handle</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>handle</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"QTime"</literal></expr></argument>, <argument><expr><name>SKIPVAL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>handle</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><literal type="string">"timestamp"</literal></expr></argument>, <argument><expr><name>SKIPVAL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <comment type="line">// todo: do I have to do this here?</comment>
+      <expr_stmt><expr><call><name>waitForRecoveriesToFinish</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><call><name>doTriLevelHashingTest</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name>doTriLevelHashingTestWithBitMask</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+      <expr_stmt><expr><name>testFinished</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></try>}</block></expr></expr_stmt> <finally>finally <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><operator>!</operator><name>testFinished</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>printLayoutOnTearDown</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></finally>
+  }
+
+
+  private <function><type><name>void</name></type> <name>doTriLevelHashingTest</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"### STARTING doTriLevelHashingTest"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// for now,  we know how ranges will be distributed to shards.</comment>
+    <comment type="line">// may have to look it up in clusterstate if that assumption changes.</comment>
+
+    <decl_stmt><decl><type><name>Random</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>Random</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name> <operator>&lt;</operator> <name>NUM_DOCS</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>appId</name> <init>= <expr><call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><name>NUM_APPS</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>userId</name> <init>= <expr><call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><name>NUM_USERS</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+      <decl_stmt><decl><type><name>String</name></type> <name>id</name> <init>= <expr><literal type="string">"app"</literal> <operator>+</operator> <name>appId</name> <operator>+</operator> <literal type="string">"!"</literal> <operator>+</operator> <literal type="string">"user"</literal> <operator>+</operator> <name>userId</name> <operator>+</operator> <literal type="string">"!"</literal> <operator>+</operator> <literal type="string">"doc"</literal> <operator>+</operator> <call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>doAddDoc</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>idMap</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Integer</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>sliceCount</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>ids</name> <init>= <expr><call><name>doQueryGetUniqueIdKeys</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>, <argument><expr><literal type="string">"shard"</literal> <operator>+</operator> <name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>String</name></type> <name>id</name><range>:<expr><name>ids</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><literal type="string">"Found the same route key ["</literal> <operator>+</operator> <name>id</name> <operator>+</operator> <literal type="string">"] in 2 shards."</literal></expr></argument>, <argument><expr><call><name><name>idMap</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>idMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name>getKey</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></for>
+
+  </block_content>}</block></function>
+
+
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>doTriLevelHashingTestWithBitMask</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>log</name><operator>.</operator><name>info</name></name><argument_list>(<argument><expr><literal type="string">"### STARTING doTriLevelHashingTestWithBitMask"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// for now,  we know how ranges will be distributed to shards.</comment>
+    <comment type="line">// may have to look it up in clusterstate if that assumption changes.</comment>
+    <expr_stmt><expr><call><name>del</name><argument_list>(<argument><expr><literal type="string">"*:*"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>Random</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>Random</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name> <operator>&lt;</operator> <name>NUM_DOCS</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>appId</name> <init>= <expr><call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><name>NUM_APPS</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>userId</name> <init>= <expr><call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><name>NUM_USERS</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>bitMask</name> <init>= <expr><call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+      <decl_stmt><decl><type><name>String</name></type> <name>id</name> <init>= <expr><literal type="string">"app"</literal> <operator>+</operator> <name>appId</name> <operator>+</operator> <literal type="string">"/"</literal> <operator>+</operator> <name>bitMask</name> <operator>+</operator> <literal type="string">"!"</literal> <operator>+</operator> <literal type="string">"user"</literal> <operator>+</operator> <name>userId</name> <operator>+</operator> <literal type="string">"!"</literal> <operator>+</operator> <literal type="string">"doc"</literal> <operator>+</operator> <call><name><name>r</name><operator>.</operator><name>nextInt</name></name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>doAddDoc</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    </block_content>}</block></for>
+
+    <expr_stmt><expr><call><name>commit</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>idMap</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Integer</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>sliceCount</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+
+      <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>ids</name> <init>= <expr><call><name>doQueryGetUniqueIdKeys</name><argument_list>(<argument><expr><literal type="string">"q"</literal></expr></argument>, <argument><expr><literal type="string">"*:*"</literal></expr></argument>, <argument><expr><literal type="string">"shards"</literal></expr></argument>, <argument><expr><literal type="string">"shard"</literal> <operator>+</operator> <name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>String</name></type> <name>id</name><range>:<expr><name>ids</name></expr></range></decl></init>)</control> <block>{<block_content>
+        <expr_stmt><expr><call><name>assertFalse</name><argument_list>(<argument><expr><literal type="string">"Found the same route key ["</literal> <operator>+</operator> <name>id</name> <operator>+</operator> <literal type="string">"] in 2 shards."</literal></expr></argument>, <argument><expr><call><name><name>idMap</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>idMap</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><call><name>getKey</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></for>
+
+  </block_content>}</block></function>
+
+  <function><type><name>void</name></type> <name>doAddDoc</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>id</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>index</name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>,<argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// todo - target diff servers and use cloud clients as well as non-cloud clients</comment>
+  </block_content>}</block></function>
+
+  <function><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>doQueryGetUniqueIdKeys</name><parameter_list>(<parameter><decl><type><name>String</name><modifier>...</modifier></type> <name>queryParams</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>QueryResponse</name></type> <name>rsp</name> <init>= <expr><call><name><name>cloudClient</name><operator>.</operator><name>query</name></name><argument_list>(<argument><expr><call><name>params</name><argument_list>(<argument><expr><name>queryParams</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>obtainedIdKeys</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>obtainedIdKeys2</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>SolrDocument</name></type> <name>doc</name> <range>: <expr><call><name><name>rsp</name><operator>.</operator><name>getResults</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>obtainedIdKeys</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name>getKey</name><argument_list>(<argument><expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>doc</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"id"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><name>obtainedIdKeys</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><type><specifier>private</specifier> <name>String</name></type> <name>getKey</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>id</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>id</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>id</name><operator>.</operator><name>lastIndexOf</name></name><argument_list>(<argument><expr><literal type="char">'!'</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>tearDown</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>tearDown</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+}
+diff <expr_stmt><expr><operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>CompositeIdRouter</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>CompositeIdRouter</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">06892f47a4d</literal><operator>..</operator><literal type="number">53411791b39</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>CompositeIdRouter</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>solrj</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>common</name><operator>/</operator><name>cloud</name><operator>/</operator><name><name>CompositeIdRouter</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">35</literal> <operator>+</operator><literal type="number">29</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@</expr></expr_stmt> <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+ 
+ <comment type="line">//</comment>
+ <comment type="line">// user!uniqueid</comment>
+<comment type="line">// app!user!uniqueid</comment>
+ <comment type="line">// user/4!uniqueid</comment>
+<comment type="line">// app/2!user/4!uniqueid</comment>
+ <comment type="line">//</comment>
+ <class><specifier>public</specifier> class <name>CompositeIdRouter</name> <super_list><extends>extends <super><name>HashBasedRouter</name></super></extends></super_list> <block>{
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>NAME</name> <init>= <expr><literal type="string">"compositeId"</literal></expr></init></decl>;</decl_stmt>
+ 
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>separator</name> <init>= <expr><literal type="char">'!'</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>SEPARATOR</name> <init>= <expr><literal type="string">"!"</literal></expr></init></decl>;</decl_stmt>
+ 
+   <comment type="line">// separator used to optionally specify number of bits to allocate toward first part.</comment>
+   <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>bitsSeparator</name> <init>= <expr><literal type="char">'/'</literal></expr></init></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>bits</name> <init>= <expr><literal type="number">16</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>mask1</name> <init>= <expr><literal type="number">0xffff0000</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <name>int</name></type> <name>mask2</name> <init>= <expr><literal type="number">0x0000ffff</literal></expr></init></decl>;</decl_stmt>
+
+  <function><type><specifier>protected</specifier> <name>void</name></type> <name>setBits</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>firstBits</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>bits</name></name> <operator>=</operator> <name>firstBits</name></expr>;</expr_stmt>
+    <comment type="line">// java can't shift 32 bits</comment>
+    <expr_stmt><expr><name>mask1</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+    <expr_stmt><expr><name>mask2</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&gt;&gt;&gt;</operator> <name>firstBits</name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><type><specifier>protected</specifier> <name>int</name></type> <name>getBits</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>firstPart</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>commaIdx</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>v</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><name>commaIdx</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>idx</name><operator>&lt;</operator><call><name><name>firstPart</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>idx</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name>char</name></type> <name>ch</name> <init>= <expr><call><name><name>firstPart</name><operator>.</operator><name>charAt</name></name><argument_list>(<argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>ch</name> <operator>&lt;</operator> <literal type="char">'0'</literal> <operator>||</operator> <name>ch</name> <operator>&gt;</operator> <literal type="char">'9'</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block_content></block></if></if_stmt>
+      <expr_stmt><expr><name>v</name> <operator>=</operator> <name>v</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <operator>(</operator><name>ch</name> <operator>-</operator> <literal type="char">'0'</literal><operator>)</operator></expr>;</expr_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><ternary><condition><expr><name>v</name> <operator>&gt;</operator> <literal type="number">32</literal></expr> ?</condition><then> <expr><operator>-</operator><literal type="number">1</literal></expr> </then><else>: <expr><name>v</name></expr></else></ternary></expr>;</return>
+  </block_content>}</block></function>
+ 
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>int</name></type> <name>sliceHash</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>id</name></decl></parameter>, <parameter><decl><type><name>SolrInputDocument</name></type> <name>doc</name></decl></parameter>, <parameter><decl><type><name>SolrParams</name></type> <name>params</name></decl></parameter>, <parameter><decl><type><name>DocCollection</name></type> <name>collection</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">68</literal></expr><operator>,</operator><expr><literal type="number">55</literal> <operator>+</operator><literal type="number">51</literal></expr><operator>,</operator><expr><literal type="number">26</literal> @@ <specifier>public</specifier> <name>class</name> <name>CompositeIdRouter</name> extends <name>HashBasedRouter</name> <block>{
+         <throw>throw <argument_list>new <argument><expr><call><name>SolrException</name> <argument_list>(<argument><expr><name><name>SolrException</name><operator>.</operator><name>ErrorCode</name><operator>.</operator><name>BAD_REQUEST</name></name></expr></argument>, <argument><expr><literal type="string">"No value for :"</literal><operator>+</operator><name>shardFieldName</name> <operator>+</operator> <literal type="string">". Unable to identify shard"</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+       <expr><name>id</name> <operator>=</operator> <call><name><name>o</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>;
+     }</block>
+    <name>int</name> <name>idx</name> <operator>=</operator> <call><name><name>id</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>separator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><name>idx</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name><name>id</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>SEPARATOR</name></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <return>return <expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>id</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>part1</name> <init>= <expr><call><name><name>id</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>commaIdx</name> <init>= <expr><call><name><name>part1</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>bitsSeparator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m1</name> <init>= <expr><name>mask1</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m2</name> <init>= <expr><name>mask2</name></expr></init></decl>;</decl_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>commaIdx</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>firstBits</name> <init>= <expr><call><name>getBits</name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>firstBits</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>m1</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>m2</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&gt;&gt;&gt;</operator> <name>firstBits</name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>part1</name> <operator>=</operator> <call><name><name>part1</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name>String</name></type> <name>part2</name> <init>= <expr><call><name><name>id</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><name>idx</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>hash1</name> <init>= <expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>part1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>hash2</name> <init>= <expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>part2</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>part2</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><operator>(</operator><name>hash1</name> <operator>&amp;</operator> <name>m1</name><operator>)</operator> <operator>|</operator> <operator>(</operator><name>hash2</name> <operator>&amp;</operator> <name>m2</name><operator>)</operator></expr>;</return>
+    <return>return <expr><operator>new</operator> <call><name>KeyParser</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getHash</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+
+  <comment type="block" format="javadoc">/**
+   * Get Range for a given CompositeId based route key
+   * @param routeKey
+   * @return
+   */</comment>
+   <function><type><specifier>public</specifier> <name>Range</name></type> <name>keyHashRange</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>routeKey</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><call><name><name>routeKey</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>separator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>idx</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name><name>routeKey</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>SEPARATOR</name></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>int</name></type> <name>hash</name> <init>= <expr><call><name>sliceHash</name><argument_list>(<argument><expr><name>routeKey</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <return>return <expr><operator>new</operator> <call><name>Range</name><argument_list>(<argument><expr><name>hash</name></expr></argument>, <argument><expr><name>hash</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>String</name></type> <name>part1</name> <init>= <expr><call><name><name>routeKey</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>commaIdx</name> <init>= <expr><call><name><name>part1</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>bitsSeparator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m1</name> <init>= <expr><name>mask1</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m2</name> <init>= <expr><name>mask2</name></expr></init></decl>;</decl_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>commaIdx</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>firstBits</name> <init>= <expr><call><name>getBits</name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>firstBits</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>m1</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>m2</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&gt;&gt;&gt;</operator> <name>firstBits</name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>part1</name> <operator>=</operator> <call><name><name>part1</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name>int</name></type> <name>hash</name> <init>= <expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>part1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>min</name> <init>= <expr><name>hash</name> <operator>&amp;</operator> <name>m1</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>max</name> <init>= <expr><name>min</name> <operator>|</operator> <name>m2</name></expr></init></decl>;</decl_stmt>
+    <return>return <expr><operator>new</operator> <call><name>Range</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><name>max</name></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><operator>new</operator> <call><name>KeyParser</name><argument_list>(<argument><expr><name>routeKey</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getRange</name><argument_list>()</argument_list></call></expr>;</return>
+   </block_content>}</block></if></if_stmt>
+ 
+   <annotation>@<name>Override</name></annotation>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">128</literal></expr><operator>,</operator><expr><literal type="number">41</literal> <operator>+</operator><literal type="number">82</literal></expr><operator>,</operator><expr><literal type="number">12</literal> @@ <specifier>public</specifier> <name>class</name> <name>CompositeIdRouter</name> extends <name>HashBasedRouter</name> <block>{
+     }</block>
+     <name>String</name> <name>id</name> <operator>=</operator> <name>shardKey</name></expr>;</expr_stmt>
+ 
+    <decl_stmt><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><call><name><name>shardKey</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>separator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>idx</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><call><name><name>shardKey</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>SEPARATOR</name></expr></argument>)</argument_list></call> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+       <comment type="line">// shardKey is a simple id, so don't do a range</comment>
+       <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>singletonList</name></name><argument_list>(<argument><expr><call><name>hashToSlice</name><argument_list>(<argument><expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>id</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>id</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>collection</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+ 
+    <decl_stmt><decl><type><name>int</name></type> <name>m1</name> <init>= <expr><name>mask1</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>m2</name> <init>= <expr><name>mask2</name></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>part1</name> <init>= <expr><call><name><name>id</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>bitsSepIdx</name> <init>= <expr><call><name><name>part1</name><operator>.</operator><name>indexOf</name></name><argument_list>(<argument><expr><name>bitsSeparator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>bitsSepIdx</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>firstBits</name> <init>= <expr><call><name>getBits</name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><name>bitsSepIdx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>firstBits</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>m1</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>m2</name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&gt;&gt;&gt;</operator> <name>firstBits</name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+        <expr_stmt><expr><name>part1</name> <operator>=</operator> <call><name><name>part1</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>bitsSepIdx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <comment type="line">//  If the upper bits are 0xF0000000, the range we want to cover is</comment>
+    <comment type="line">//  0xF0000000 0xFfffffff</comment>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>hash1</name> <init>= <expr><call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name>part1</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><call><name><name>part1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>upperBits</name> <init>= <expr><name>hash1</name> <operator>&amp;</operator> <name>m1</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>lowerBound</name> <init>= <expr><name>upperBits</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>upperBound</name> <init>= <expr><name>upperBits</name> <operator>|</operator> <name>m2</name></expr></init></decl>;</decl_stmt>
+
+    <if_stmt><if>if <condition>(<expr><name>m1</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <comment type="line">// no bits used from first part of key.. the code above will produce 0x000000000-&gt;0xffffffff which only works on unsigned space, but we're using signed space.</comment>
+      <expr_stmt><expr><name>lowerBound</name> <operator>=</operator> <name><name>Integer</name><operator>.</operator><name>MIN_VALUE</name></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>upperBound</name> <operator>=</operator> <name><name>Integer</name><operator>.</operator><name>MAX_VALUE</name></name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <decl_stmt><decl><type><name>Range</name></type> <name>completeRange</name> <init>= <expr><operator>new</operator> <call><name>Range</name><argument_list>(<argument><expr><name>lowerBound</name></expr></argument>, <argument><expr><name>upperBound</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Range</name></type> <name>completeRange</name> <init>= <expr><operator>new</operator> <call><name>KeyParser</name><argument_list>(<argument><expr><name>id</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>getRange</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+     <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Slice</name></argument>&gt;</argument_list></name></type> <name>targetSlices</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>Slice</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <for>for <control>(<init><decl><type><name>Slice</name></type> <name>slice</name> <range>: <expr><call><name><name>collection</name><operator>.</operator><name>getActiveSlices</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">219</literal></expr><operator>,</operator><expr><literal type="number">17</literal> <operator>+</operator><literal type="number">144</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>CompositeIdRouter</name> extends <name>HashBasedRouter</name> <block>{
+     <comment type="line">// Round to avoid splitting hash domains across ranges if such rounding is not significant.</comment>
+     <comment type="line">// With default bits==16, one would need to create more than 4000 shards before this</comment>
+     <comment type="line">// becomes false by default.</comment>
+    <expr><name>int</name> <name>mask</name> <operator>=</operator> <literal type="number">0x0000ffff</literal></expr>;
+     <name>boolean</name> <name>round</name> <operator>=</operator> <name>rangeStep</name> <operator>&gt;=</operator> <operator>(</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name>bits</name><operator>)</operator><operator>*</operator><literal type="number">16</literal></block></expr>;</expr_stmt>
+ 
+     <while>while <condition>(<expr><name>end</name> <operator>&lt;</operator> <name>max</name></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><name>targetEnd</name> <operator>=</operator> <name>targetStart</name> <operator>+</operator> <name>rangeStep</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name>end</name> <operator>=</operator> <name>targetEnd</name></expr>;</expr_stmt>
+ 
+      <if_stmt><if>if <condition>(<expr><name>round</name> <operator>&amp;&amp;</operator> <operator>(</operator><operator>(</operator><name>end</name> <operator>&amp;</operator> <name>mask2</name><operator>)</operator> <operator>!=</operator> <name>mask2</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name>round</name> <operator>&amp;&amp;</operator> <operator>(</operator><operator>(</operator><name>end</name> <operator>&amp;</operator> <name>mask</name><operator>)</operator> <operator>!=</operator> <name>mask</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+         <comment type="line">// round up or down?</comment>
+         <decl_stmt><decl><type><name>int</name></type> <name>increment</name> <init>= <expr><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>bits</name></expr></init></decl>;</decl_stmt>  <comment type="line">// 0x00010000</comment>
+        <decl_stmt><decl><type><name>long</name></type> <name>roundDown</name> <init>= <expr><operator>(</operator><name>end</name> <operator>|</operator> <name>mask2</name><operator>)</operator> <operator>-</operator> <name>increment</name></expr></init></decl> ;</decl_stmt>
+        <decl_stmt><decl><type><name>long</name></type> <name>roundUp</name> <init>= <expr><operator>(</operator><name>end</name> <operator>|</operator> <name>mask2</name><operator>)</operator> <operator>+</operator> <name>increment</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>long</name></type> <name>roundDown</name> <init>= <expr><operator>(</operator><name>end</name> <operator>|</operator> <name>mask</name><operator>)</operator> <operator>-</operator> <name>increment</name></expr></init></decl> ;</decl_stmt>
+        <decl_stmt><decl><type><name>long</name></type> <name>roundUp</name> <init>= <expr><operator>(</operator><name>end</name> <operator>|</operator> <name>mask</name><operator>)</operator> <operator>+</operator> <name>increment</name></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>end</name> <operator>-</operator> <name>roundDown</name> <operator>&lt;</operator> <name>roundUp</name> <operator>-</operator> <name>end</name> <operator>&amp;&amp;</operator> <name>roundDown</name> <operator>&gt;</operator> <name>start</name></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><name>end</name> <operator>=</operator> <name>roundDown</name></expr>;</expr_stmt>
+         </block_content>}</block></if> <else>else <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">249</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">175</literal></expr><operator>,</operator><expr><literal type="number">121</literal> @@ <specifier>public</specifier> <name>class</name> <name>CompositeIdRouter</name> extends <name>HashBasedRouter</name> <block>{
+     <return>return <expr><name>ranges</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Helper class to calculate parts, masks etc for an id.
+   */</comment>
+  <class><specifier>static</specifier> class <name>KeyParser</name> <block>{
+    <decl_stmt><decl><type><name>String</name></type> <name>key</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>numBits</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>hashes</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>masks</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>boolean</name></type> <name>triLevel</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>pieces</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>KeyParser</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>key</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>parts</name> <init>= <expr><call><name><name>key</name><operator>.</operator><name>split</name></name><argument_list>(<argument><expr><name>SEPARATOR</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>key</name></name> <operator>=</operator> <name>key</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>pieces</name> <operator>=</operator> <name><name>parts</name><operator>.</operator><name>length</name></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>hashes</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><name>pieces</name></expr>]</index></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>numBits</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+      <if_stmt><if>if<condition>(<expr><call><name><name>key</name><operator>.</operator><name>endsWith</name></name><argument_list>(<argument><expr><literal type="string">"!"</literal></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>pieces</name><operator>++</operator></expr>;</expr_stmt></block_content></block></if></if_stmt>
+      <if_stmt><if>if<condition>(<expr><name>pieces</name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name><name>numBits</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">8</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>numBits</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">8</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>triLevel</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <expr_stmt><expr><name><name>numBits</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">16</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>triLevel</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+
+      </block_content>}</block></else></if_stmt>
+
+      <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name><name>parts</name><operator>.</operator><name>length</name></name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>commaIdx</name> <init>= <expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>indexOf</name><argument_list>(<argument><expr><name>bitsSeparator</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <if_stmt><if>if<condition>(<expr><name>commaIdx</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name><name>numBits</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name>getNumBits</name><argument_list>(<argument><expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>substring</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>commaIdx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+        <expr_stmt><expr><name><name>hashes</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name><name>Hash</name><operator>.</operator><name>murmurhash3_x86_32</name></name><argument_list>(<argument><expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name><name>parts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>length</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></for>
+      <expr_stmt><expr><name>masks</name> <operator>=</operator> <call><name>getMasks</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><name>Range</name></type> <name>getRange</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>lowerBound</name></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>upperBound</name></decl>;</decl_stmt>
+
+      <if_stmt><if>if<condition>(<expr><name>triLevel</name></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>lowerBound</name> <operator>=</operator> <name><name>hashes</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&amp;</operator> <name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>|</operator> <name><name>hashes</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>&amp;</operator> <name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>upperBound</name> <operator>=</operator> <name>lowerBound</name> <operator>|</operator> <name><name>masks</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+      </block_content>}</block></if> <else>else <block>{<block_content>
+        <expr_stmt><expr><name>lowerBound</name> <operator>=</operator> <name><name>hashes</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&amp;</operator> <name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>upperBound</name> <operator>=</operator> <name>lowerBound</name> <operator>|</operator> <name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+      </block_content>}</block></else></if_stmt>
+      <comment type="line">//  If the upper bits are 0xF0000000, the range we want to cover is</comment>
+      <comment type="line">//  0xF0000000 0xFfffffff</comment>
+
+      <if_stmt><if>if <condition>(<expr><operator>(</operator><name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <operator>!</operator><name>triLevel</name><operator>)</operator> <operator>||</operator> <operator>(</operator><name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>triLevel</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+        <comment type="line">// no bits used from first part of key.. the code above will produce 0x000000000-&gt;0xffffffff</comment>
+        <comment type="line">// which only works on unsigned space, but we're using signed space.</comment>
+        <expr_stmt><expr><name>lowerBound</name> <operator>=</operator> <name><name>Integer</name><operator>.</operator><name>MIN_VALUE</name></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>upperBound</name> <operator>=</operator> <name><name>Integer</name><operator>.</operator><name>MAX_VALUE</name></name></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <decl_stmt><decl><type><name>Range</name></type> <name>r</name> <init>= <expr><operator>new</operator> <call><name>Range</name><argument_list>(<argument><expr><name>lowerBound</name></expr></argument>, <argument><expr><name>upperBound</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <return>return <expr><name>r</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="block" format="javadoc">/**
+     * Get bit masks for routing based on routing level
+     * @return
+     */</comment>
+    <function><type><specifier>private</specifier> <name><name>int</name><index>[]</index></name></type> <name>getMasks</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>masks</name></decl>;</decl_stmt>
+      <if_stmt><if>if<condition>(<expr><name>triLevel</name></expr>)</condition><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>masks</name> <operator>=</operator> <call><name>getBitMasks</name><argument_list>(<argument><expr><name><name>numBits</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>numBits</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></if>
+      <else>else<block type="pseudo"><block_content>
+        <expr_stmt><expr><name>masks</name> <operator>=</operator> <call><name>getBitMasks</name><argument_list>(<argument><expr><name><name>numBits</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block_content></block></else></if_stmt>
+
+      <return>return <expr><name>masks</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name><name>int</name><index>[]</index></name></type> <name>getBitMasks</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>firstBits</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>secondBits</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// java can't shift 32 bits</comment>
+      <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>masks</name> <init>= <expr><operator>new</operator> <name><name>int</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>firstBits</name> <operator>+</operator> <name>secondBits</name><operator>)</operator><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal> <operator>-</operator> <name>firstBits</name> <operator>-</operator> <name>secondBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>^</operator> <name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">2</literal></expr>]</index></name> <operator>=</operator> <ternary><condition><expr><operator>(</operator><name>firstBits</name> <operator>+</operator> <name>secondBits</name><operator>)</operator> <operator>==</operator> <literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>~</operator><operator>(</operator><name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>|</operator> <name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+      <return>return <expr><name>masks</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>int</name></type> <name>getNumBits</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>firstPart</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>commaIdx</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>v</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><name>commaIdx</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>idx</name><operator>&lt;</operator><call><name><name>firstPart</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>idx</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><name>char</name></type> <name>ch</name> <init>= <expr><call><name><name>firstPart</name><operator>.</operator><name>charAt</name></name><argument_list>(<argument><expr><name>idx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>ch</name> <operator>&lt;</operator> <literal type="char">'0'</literal> <operator>||</operator> <name>ch</name> <operator>&gt;</operator> <literal type="char">'9'</literal></expr>)</condition><block type="pseudo"><block_content> <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block_content></block></if></if_stmt>
+        <expr_stmt><expr><name>v</name> <operator>=</operator> <name>v</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <operator>(</operator><name>ch</name> <operator>-</operator> <literal type="char">'0'</literal><operator>)</operator></expr>;</expr_stmt>
+      </block_content>}</block></for>
+      <return>return <expr><ternary><condition><expr><name>v</name> <operator>&gt;</operator> <literal type="number">32</literal></expr> ?</condition><then> <expr><operator>-</operator><literal type="number">1</literal></expr> </then><else>: <expr><name>v</name></expr></else></ternary></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name><name>int</name><index>[]</index></name></type> <name>getBitMasks</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>firstBits</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <comment type="line">// java can't shift 32 bits</comment>
+      <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>masks</name></decl>;</decl_stmt>
+      <expr_stmt><expr><name>masks</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <operator>(</operator><literal type="number">32</literal><operator>-</operator><name>firstBits</name><operator>)</operator><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>masks</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <ternary><condition><expr><name>firstBits</name><operator>==</operator><literal type="number">32</literal></expr> ?</condition><then> <expr><literal type="number">0</literal></expr> </then><else>: <expr><operator>(</operator><operator>-</operator><literal type="number">1</literal> <operator>&gt;&gt;&gt;</operator> <name>firstBits</name><operator>)</operator></expr></else></ternary></expr>;</expr_stmt>
+      <return>return <expr><name>masks</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><name>int</name></type> <name>getHash</name><parameter_list>()</parameter_list> <block>{<block_content>
+      <decl_stmt><decl><type><name>int</name></type> <name>result</name> <init>= <expr><name><name>hashes</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&amp;</operator> <name><name>masks</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+
+      <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>pieces</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><block_content>
+        <expr_stmt><expr><name>result</name> <operator>=</operator> <name>result</name> <operator>|</operator> <operator>(</operator><name><name>hashes</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&amp;</operator> <name><name>masks</name><index>[<expr><name>i</name></expr>]</index></name><operator>)</operator></expr>;</expr_stmt></block_content></block></for>
+      <return>return <expr><name>result</name></expr>;</return>
+    </block_content>}</block></function>
+
+  }</block></class>
+ </block_content>}</block></else></if_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></if></if_stmt></block_content></block></if></if_stmt></block_content></block></while></block_content></block></for></block_content></block></if></if_stmt></block_content></block></function></block_content></block></function></block></class>
+
+</unit>

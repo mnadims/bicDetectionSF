@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/accumulo/c9c0d45b5.java"><expr_stmt><expr><name>From</name> <name>c9c0d45b52a244b90dda31ba210c590b9af2f9f4</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Adam</name> <name><name>Fuchs</name> <argument_list type="generic">&lt;<argument><name>afuchs</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Thu</name></expr><operator>,</operator> <expr><literal type="number">16</literal> <name>May</name> <literal type="number">2013</literal> <literal type="number">15</literal><operator>:</operator><literal type="number">49</literal><operator>:</operator><literal type="number">33</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>ACCUMULO</name><operator>-</operator><literal type="number">1421</literal> <name>added</name> <name>reflection</name> <name>to</name> <name>improve</name> <name>runtime</name>
+ <name>compatibility</name> <name>between</name> <name>hadoop</name> <literal type="number">1</literal> <name>and</name> <literal type="number">2</literal> <name>JobContext</name> <name>objects</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/accumulo/branches/1.5@1483417 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloFileOutputFormat</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">4</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloOutputFormat</name><operator>.</operator><name>java</name></name>       <operator>|</operator> <literal type="number">20</literal> <operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>client</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>InputFormatBase</name><operator>.</operator><name>java</name></name>     <operator>|</operator> <literal type="number">47</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>-</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">42</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">29</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloFileOutputFormat</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloFileOutputFormat</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">5e92b74c7</literal><operator>..</operator><name>cfcefda8c</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloFileOutputFormat</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>accumulo</name><operator>/</operator><name>core</name><operator>/</operator><name>client</name><operator>/</operator><name>mapreduce</name><operator>/</operator><name><name>AccumuloFileOutputFormat</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>AccumuloFileOutputFormat</name> extends <name><name>FileOutputFormat</name><argument_list type="generic">&lt;<argument><name>Key</name></argument>,<argument><name>Value</name></argument>&gt;</argument_list></name> <block>{
+    <expr><operator>*</operator> @<name>since</name> <literal type="number">1.5.0</literal>
+    <operator>*</operator><operator>/</operator>
+   <specifier>protected</specifier> <specifier>static</specifier> <name>AccumuloConfiguration</name> <call><name>getAccumuloConfiguration</name><argument_list>(<argument><expr><name>JobContext</name> <name>context</name></expr></argument>)</argument_list></call> <block>{
+    <return>return <expr><call><name><name>FileOutputConfigurator</name><operator>.</operator><name>getAccumuloConfiguration</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return></block></expr>
+    <return>return <expr><call><name><name>FileOutputConfigurator</name><operator>.</operator><name>getAccumuloConfiguration</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+   
+   <comment type="block" format="javadoc">/**
+@@ -141,7 +141,7 @@ public class AccumuloFileOutputFormat extends FileOutputFormat&lt;Key,Value&gt; {
+   @Override
+   public RecordWriter&lt;Key,Value&gt; getRecordWriter(TaskAttemptContext context) throws IOException {
+     // get the path of the temporary output file
+    final Configuration conf = context.getConfiguration();
+    final Configuration conf = InputFormatBase.getConfiguration(context);
+     final AccumuloConfiguration acuConf = getAccumuloConfiguration(context);
+     
+     final String extension = acuConf.get(Property.TABLE_FILE_TYPE);
+diff --git a/core/src/main/java/org/apache/accumulo/core/client/mapreduce/AccumuloOutputFormat.java b/core/src/main/java/org/apache/accumulo/core/client/mapreduce/AccumuloOutputFormat.java
+index 9b768e36f..9c022190c 100644
+-- a/core/src/main/java/org/apache/accumulo/core/client/mapreduce/AccumuloOutputFormat.java
+++ b/core/src/main/java/org/apache/accumulo/core/client/mapreduce/AccumuloOutputFormat.java
+@@ -104,7 +104,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Boolean</name></type> <name>isConnectorInfoSet</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>isConnectorInfoSet</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>isConnectorInfoSet</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -117,7 +117,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getPrincipal</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getPrincipal</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getPrincipal</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -130,7 +130,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getTokenClass</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getTokenClass</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getTokenClass</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -144,7 +144,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name><name>byte</name><index>[]</index></name></type> <name>getToken</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getToken</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getToken</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -186,7 +186,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setMockInstance(Job, String)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Instance</name></type> <name>getInstance</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -212,7 +212,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setLogLevel(Job, Level)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Level</name></type> <name>getLogLevel</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getLogLevel</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getLogLevel</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -239,7 +239,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setDefaultTableName(Job, String)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getDefaultTableName</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getDefaultTableName</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getDefaultTableName</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -266,7 +266,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setBatchWriterOptions(Job, BatchWriterConfig)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>BatchWriterConfig</name></type> <name>getBatchWriterOptions</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getBatchWriterOptions</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getBatchWriterOptions</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -295,7 +295,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setCreateTables(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Boolean</name></type> <name>canCreateTables</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>canCreateTables</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>canCreateTables</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -324,7 +324,7 @@ public class AccumuloOutputFormat extends OutputFormat&lt;Text,Mutation&gt; {
+    * @see #setSimulationMode(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Boolean</name></type> <name>getSimulationMode</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getSimulationMode</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>OutputConfigurator</name><operator>.</operator><name>getSimulationMode</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>InputFormatBase</name><operator>.</operator><name>getConfiguration</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+diff --git a/core/src/main/java/org/apache/accumulo/core/client/mapreduce/InputFormatBase.java b/core/src/main/java/org/apache/accumulo/core/client/mapreduce/InputFormatBase.java
+index 6243d3ccf..1833bea31 100644
+-- a/core/src/main/java/org/apache/accumulo/core/client/mapreduce/InputFormatBase.java
+++ b/core/src/main/java/org/apache/accumulo/core/client/mapreduce/InputFormatBase.java
+@@ -20,6 +20,7 @@ import java.io.DataInput;
+ import java.io.DataOutput;
+ import java.io.IOException;
+ import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+ import java.math.BigInteger;
+ import java.net.InetAddress;
+ import java.net.URLDecoder;
+@@ -126,7 +127,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Boolean</name></type> <name>isConnectorInfoSet</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isConnectorInfoSet</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isConnectorInfoSet</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -139,7 +140,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getPrincipal</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getPrincipal</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getPrincipal</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -152,7 +153,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getTokenClass</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getTokenClass</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getTokenClass</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -166,7 +167,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setConnectorInfo(Job, String, AuthenticationToken)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name><name>byte</name><index>[]</index></name></type> <name>getToken</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getToken</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getToken</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -208,7 +209,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setMockInstance(Job, String)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Instance</name></type> <name>getInstance</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -234,7 +235,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setLogLevel(Job, Level)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Level</name></type> <name>getLogLevel</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getLogLevel</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getLogLevel</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -260,7 +261,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setInputTableName(Job, String)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>String</name></type> <name>getInputTableName</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getInputTableName</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getInputTableName</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -286,7 +287,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setScanAuthorizations(Job, Authorizations)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>Authorizations</name></type> <name>getScanAuthorizations</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getScanAuthorizations</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getScanAuthorizations</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -314,7 +315,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setRanges(Job, Collection)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>Range</name></argument>&gt;</argument_list></name></type> <name>getRanges</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getRanges</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getRanges</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -341,7 +342,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #fetchColumns(Job, Collection)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name><name>Pair</name><argument_list type="generic">&lt;<argument><name>Text</name></argument>,<argument><name>Text</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>getFetchedColumns</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getFetchedColumns</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getFetchedColumns</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -367,7 +368,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #addIterator(Job, IteratorSetting)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>IteratorSetting</name></argument>&gt;</argument_list></name></type> <name>getIterators</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getIterators</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getIterators</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -398,7 +399,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setAutoAdjustRanges(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>getAutoAdjustRanges</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getAutoAdjustRanges</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getAutoAdjustRanges</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -427,7 +428,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setScanIsolation(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>isIsolated</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isIsolated</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isIsolated</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -457,7 +458,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setLocalIterators(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>usesLocalIterators</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>usesLocalIterators</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>usesLocalIterators</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -505,7 +506,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @see #setOfflineTableScan(Job, boolean)
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>isOfflineScan</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isOfflineScan</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>isOfflineScan</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/**
+@@ -519,7 +520,7 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+    * @since 1.5.0
+    */</comment>
+   <function><type><specifier>protected</specifier> <specifier>static</specifier> <name>TabletLocator</name></type> <name>getTabletLocator</name><parameter_list>(<parameter><decl><type><name>JobContext</name></type> <name>context</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>TableNotFoundException</name></expr></argument></throws> <block>{<block_content>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getTabletLocator</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    <return>return <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>getTabletLocator</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+   </block_content>}</block></function>
+   
+   <comment type="line">// InputFormat doesn't have the equivalent of OutputFormat's checkOutputSpecs(JobContext job)</comment>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">533</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">534</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <specifier>abstract</specifier> <name>class</name> <name><name>InputFormatBase</name><argument_list type="generic">&lt;<argument><name>K</name></argument>,<argument><name>V</name></argument>&gt;</argument_list></name> extends <name><name>InputFormat</name><argument_list type="generic">&lt;<argument><name>K</name></argument>,<argument><name>V</name></argument>&gt;</argument_list></name> <block>{
+    <expr><operator>*</operator> @<name>since</name> <literal type="number">1.5.0</literal>
+    <operator>*</operator><operator>/</operator>
+   <specifier>protected</specifier> <specifier>static</specifier> <name>void</name> <call><name>validateOptions</name><argument_list>(<argument><expr><name>JobContext</name> <name>context</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>validateOptions</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name><name>context</name><operator>.</operator><name>getConfiguration</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><call><name><name>InputConfigurator</name><operator>.</operator><name>validateOptions</name></name><argument_list>(<argument><expr><name>CLASS</name></expr></argument>, <argument><expr><call><name>getConfiguration</name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+   }</block></expr></expr_stmt>
+   
+   <comment type="block" format="javadoc">/**
+@@ -1341,5 +1342,17 @@ public abstract class InputFormatBase&lt;K,V&gt; extends InputFormat&lt;K,V&gt; {
+     }
+     
+   }
+
+  // use reflection to pull the Configuration out of the JobContext for Hadoop 1 and Hadoop 2 compatibility
+  public static Configuration getConfiguration(JobContext context) {
+    try {
+      Class c = InputFormatBase.class.getClassLoader().loadClass("org.apache.hadoop.mapreduce.JobContext");
+      Method m = c.getMethod("getConfiguration");
+      Object o = m.invoke(context, new Object[0]);
+      return (Configuration)o;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+   
+ }
+- 
+2.19.1.windows.1
+
+</comment></unit>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/oozie/57152acd.java"><expr_stmt><expr><name>From</name> <literal type="number">57152acd5c9aa081d9c8357009f8741ee026e352</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Robert</name> <name><name>Kanter</name> <argument_list type="generic">&lt;<argument><name>rkanter</name><annotation>@<name><name>cloudera</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">30</literal> <name>Aug</name> <literal type="number">2016</literal> <literal type="number">11</literal><operator>:</operator><literal type="number">05</literal><operator>:</operator><literal type="number">23</literal> <operator>-</operator><literal type="number">0700</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>OOZIE</name><operator>-</operator><literal type="number">2649</literal> <name>Can</name><literal type="char">'t override sub-workflow configuration property
+ if defined in parent workflow XML (asasvari via rkanter)
+
+--
+ .../oozie/SubWorkflowActionExecutor.java      |  3 +-
+ .../workflow/lite/LiteWorkflowAppParser.java  |  9 +-
+ .../oozie/TestSubWorkflowActionExecutor.java  | 83 ++++++++++++++-----
+ release-log.txt                               |  1 +
+ 4 files changed, 74 insertions(+), 22 deletions(-)
+
+diff --git a/core/src/main/java/org/apache/oozie/action/oozie/SubWorkflowActionExecutor.java b/core/src/main/java/org/apache/oozie/action/oozie/SubWorkflowActionExecutor.java
+index 1ea70970b..b6d2b1228 100644
+-- a/core/src/main/java/org/apache/oozie/action/oozie/SubWorkflowActionExecutor.java
+++ b/core/src/main/java/org/apache/oozie/action/oozie/SubWorkflowActionExecutor.java
+@@ -182,8 +182,6 @@ public class SubWorkflowActionExecutor extends ActionExecutor {
+ 
+                 XConfiguration subWorkflowConf = new XConfiguration();
+ 
+                injectInline(eConf.getChild("configuration", ns), subWorkflowConf);
+
+                 Configuration parentConf = new XConfiguration(new StringReader(context.getWorkflow().getConf()));
+ 
+                 if (eConf.getChild(("propagate-configuration"), ns) != null) {
+@@ -212,6 +210,7 @@ public class SubWorkflowActionExecutor extends ActionExecutor {
+                     subWorkflowConf.set(OozieClient.GROUP_NAME, group);
+                 }
+ 
+                injectInline(eConf.getChild("configuration", ns), subWorkflowConf);
+                 injectCallback(context, subWorkflowConf);
+                 injectRecovery(extId, subWorkflowConf);
+                 injectParent(context.getWorkflow().getId(), subWorkflowConf);
+diff --git a/core/src/main/java/org/apache/oozie/workflow/lite/LiteWorkflowAppParser.java b/core/src/main/java/org/apache/oozie/workflow/lite/LiteWorkflowAppParser.java
+index bbd81a944..0541634bb 100644
+-- a/core/src/main/java/org/apache/oozie/workflow/lite/LiteWorkflowAppParser.java
+++ b/core/src/main/java/org/apache/oozie/workflow/lite/LiteWorkflowAppParser.java
+@@ -104,6 +104,8 @@ public class LiteWorkflowAppParser {
+     private static final String DECISION_CASE_E = "case";
+     private static final String DECISION_DEFAULT_E = "default";
+ 
+    private static final String SUBWORKFLOW_E = "sub-workflow";
+
+     private static final String KILL_MESSAGE_E = "message";
+     public static final String VALIDATE_FORK_JOIN = "oozie.validate.ForkJoin";
+     public static final String WF_VALIDATE_FORK_JOIN = "oozie.wf.validate.ForkJoin";
+@@ -481,7 +483,12 @@ public class LiteWorkflowAppParser {
+                             jobConf.set(OOZIE_GLOBAL, getGlobalString(gData));
+                         }
+                         eActionConf = elem;
+                        handleDefaultsAndGlobal(gData, configDefault, elem);
+                        if (SUBWORKFLOW_E.equals(elem.getName())) {
+                            handleDefaultsAndGlobal(gData, null, elem);
+                        }
+                        else {
+                            handleDefaultsAndGlobal(gData, configDefault, elem);
+                        }
+                     }
+                 }
+ 
+diff --git a/core/src/test/java/org/apache/oozie/action/oozie/TestSubWorkflowActionExecutor.java b/core/src/test/java/org/apache/oozie/action/oozie/TestSubWorkflowActionExecutor.java
+index bdbbfd935..e074d482f 100644
+-- a/core/src/test/java/org/apache/oozie/action/oozie/TestSubWorkflowActionExecutor.java
+++ b/core/src/test/java/org/apache/oozie/action/oozie/TestSubWorkflowActionExecutor.java
+@@ -194,6 +194,7 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+         String defaultConf = workflow.getConf();
+         XConfiguration newConf = new XConfiguration(new StringReader(defaultConf));
+         newConf.set("abc", "xyz");
+        newConf.set("job_prop", "job_prop_val");
+         workflow.setConf(newConf.toXmlString());
+ 
+         final WorkflowActionBean action = (WorkflowActionBean) workflow.getActions().get(0);
+@@ -205,6 +206,10 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+                 "          &lt;name&gt;a&lt;/name&gt;" +
+                 "          &lt;value&gt;A&lt;/value&gt;" +
+                 "        &lt;/property&gt;" +
+                "        &lt;property&gt;" +
+                "          &lt;name&gt;job_prop&lt;/name&gt;" +
+                "          &lt;value&gt;sub_prop_val&lt;/value&gt;" +
+                "        &lt;/property&gt;" +
+                 "      &lt;/configuration&gt;" +
+                 "&lt;/sub-workflow&gt;");
+ 
+@@ -232,6 +237,8 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+         WorkflowJob wf = oozieClient.getJobInfo(action.getExternalId());
+         Configuration childConf = getWorkflowConfig(wf);
+         assertEquals("xyz", childConf.get("abc"));
+        assertEquals("A", childConf.get("a"));
+        assertEquals("sub_prop_val", childConf.get("job_prop"));
+     }
+ 
+     public void testGetGroupFromParent() throws Exception {
+@@ -363,6 +370,7 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+         WorkflowJob wf = oozieClient.getJobInfo(action.getExternalId());
+         Configuration childConf = getWorkflowConfig(wf);
+         assertNull(childConf.get("abc"));
+        assertEquals("A", childConf.get("a"));
+     }
+ 
+     public void testSubworkflowLib() throws Exception {
+@@ -684,7 +692,7 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+             Path subWorkflowAppPath = createSubWorkflowXml();
+ 
+             createConfigDefaultXml();
+
+            createSubWorkflowConfigDefaultXml();
+             String workflowUri = createTestWorkflowXml(subWorkflowAppPath);
+ 
+             LocalOozie.start();
+@@ -722,7 +730,10 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+             assertEquals("foo3", actionConf.get("foo3"));
+             // Checking the action conf configuration.
+             assertEquals("actionconf", subWorkflowConf.get("foo3"));
+
+            assertEquals("subactionconf", actionConf.get("foo4"));
+            // config defaults are present
+            assertEquals("default", subWorkflowConf.get("parentConfigDefault"));
+            assertEquals("default", actionConf.get("subwfConfigDefault"));
+         } finally {
+             LocalOozie.stop();
+         }
+@@ -745,6 +756,10 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+                 "            &lt;name&gt;foo3&lt;/name&gt;" +
+                 "            &lt;value&gt;foo3&lt;/value&gt;" +
+                 "        &lt;/property&gt;" +
+                "        &lt;property&gt;" +
+                "            &lt;name&gt;foo4&lt;/name&gt;" +
+                "            &lt;value&gt;actionconf&lt;/value&gt;" +
+                "        &lt;/property&gt;" +
+                 "    &lt;/configuration&gt;" +
+                 "&lt;/global&gt;" +
+                 "&lt;start to=\"subwf\"/&gt;" +
+@@ -773,27 +788,51 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+     }
+ 
+     private Path createSubWorkflowXml() throws IOException {
+        Path subWorkflowAppPath = getFsTestCaseDir();
+        FileSystem fs = getFileSystem();
+        Path subWorkflowPath = new Path(subWorkflowAppPath, "workflow.xml");
+        Writer writer = new OutputStreamWriter(fs.create(subWorkflowPath));
+        writer.write(getWorkflow());
+        writer.close();
+        return subWorkflowAppPath;
+        return createSubWorkflowFile(getWorkflow(), "workflow.xml");
+     }
+ 
+     private void createConfigDefaultXml() throws IOException {
+        String config_defaultUri=getTestCaseFileUri("config-default.xml");
+        String config_default="&lt;configuration&gt;\n" +
+                "&lt;property&gt;\n" +
+                "&lt;name&gt;foo&lt;/name&gt;\n" +
+                "&lt;value&gt;default&lt;/value&gt;\n" +
+                "&lt;/property&gt;\n" +
+        String config_defaultUri = getTestCaseFileUri("config-default.xml");
+        String config_default =
+                "&lt;configuration&gt;" +
+                "    &lt;property&gt;" +
+                "      &lt;name&gt;foo&lt;/name&gt;" +
+                "      &lt;value&gt;default&lt;/value&gt;" +
+                "    &lt;/property&gt;" +
+                "    &lt;property&gt;" +
+                "      &lt;name&gt;parentConfigDefault&lt;/name&gt;" +
+                "      &lt;value&gt;default&lt;/value&gt;" +
+                "    &lt;/property&gt;" +
+                 "&lt;/configuration&gt;";
+ 
+         writeToFile(config_default, config_defaultUri);
+     }
+ 
+    private void createSubWorkflowConfigDefaultXml() throws IOException {
+        String config_default = "&lt;configuration&gt;" +
+                        "    &lt;property&gt;" +
+                        "      &lt;name&gt;subwfConfigDefault&lt;/name&gt;" +
+                        "      &lt;value&gt;default&lt;/value&gt;" +
+                        "    &lt;/property&gt;" +
+                        "    &lt;property&gt;" +
+                        "      &lt;name&gt;foo4&lt;/name&gt;" +
+                        "      &lt;value&gt;default&lt;/value&gt;" +
+                        "    &lt;/property&gt;" +
+                        "&lt;/configuration&gt;";
+        createSubWorkflowFile(config_default, "config-default.xml");
+    }
+
+    private Path createSubWorkflowFile(String content, String fileName) throws IOException
+    {
+        Path subWorkflowAppPath = getFsTestCaseDir();
+        FileSystem fs = getFileSystem();
+        Path subWorkflowPath = new Path(subWorkflowAppPath, fileName);
+        Writer writer = new OutputStreamWriter(fs.create(subWorkflowPath));
+        writer.write(content);
+        writer.close();
+        return subWorkflowAppPath;
+    }
+
+     public String getWorkflow() {
+         return  "&lt;workflow-app xmlns='</literal><name>uri</name><operator>:</operator><name>oozie</name><operator>:</operator><name>workflow</name><operator>:</operator><literal type="number">0.4</literal><literal type="char">' name='</literal><name>app</name><literal type="char">'&gt;" +
+                 "&lt;global&gt;" +
+@@ -811,10 +850,16 @@ public class TestSubWorkflowActionExecutor extends ActionExecutorTestCase {
+                 "&lt;start to='</literal><name>java</name><literal type="char">' /&gt;" +
+                 "&lt;action name='</literal><name>java</name><literal type="char">'&gt;" +
+                 "&lt;java&gt;" +
+                "&lt;job-tracker&gt;" + getJobTrackerUri() + "&lt;/job-tracker&gt;" +
+                "&lt;name-node&gt;" + getNameNodeUri() + "&lt;/name-node&gt;" +
+                "&lt;main-class&gt;" + LauncherMainTester.class.getName() + "&lt;/main-class&gt;" +
+                "&lt;arg&gt;exit0&lt;/arg&gt;" +
+                "    &lt;job-tracker&gt;" + getJobTrackerUri() + "&lt;/job-tracker&gt;" +
+                "    &lt;name-node&gt;" + getNameNodeUri() + "&lt;/name-node&gt;" +
+                "        &lt;configuration&gt;" +
+                "            &lt;property&gt;" +
+                "                &lt;name&gt;foo4&lt;/name&gt;" +
+                "                &lt;value&gt;subactionconf&lt;/value&gt;" +
+                "            &lt;/property&gt;" +
+                "        &lt;/configuration&gt;" +
+                "    &lt;main-class&gt;" + LauncherMainTester.class.getName() + "&lt;/main-class&gt;" +
+                "    &lt;arg&gt;exit0&lt;/arg&gt;" +
+                 "&lt;/java&gt;"
+                 + "&lt;ok to='</literal><name>end</name><literal type="char">' /&gt;"
+                 + "&lt;error to='</literal><name>fail</name><literal type="char">' /&gt;"
+diff --git a/release-log.txt b/release-log.txt
+index 58e8f9305..37f3b71cf 100644
+-- a/release-log.txt
+++ b/release-log.txt
+@@ -1,5 +1,6 @@
+ -- Oozie 4.3.0 release (trunk - unreleased)
+ 
+OOZIE-2649 Can'</literal><name>t</name> <name>override</name> <name>sub</name><operator>-</operator><name>workflow</name> <name>configuration</name> <name>property</name></expr></expr_stmt> <if_stmt><if>if defined in parent workflow XML <condition>(<expr><name>asasvari</name> <name>via</name> <name>rkanter</name></expr>)</condition><block type="pseudo"><block_content>
+ <expr_stmt><expr><name>OOZIE</name><operator>-</operator><literal type="number">2656</literal> <name>OozieShareLibCLI</name> <name>uses</name> <name>op</name> <name>system</name> <name>username</name> <name>instead</name> <name>of</name> <name>Kerberos</name> <name>to</name> <name>upload</name> <call><name>jars</name> <argument_list>(<argument><expr><name>gezapeti</name> <name>via</name> <name>rkanter</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">1173</literal> <name>Refactor</name><operator>:</operator> <name>use</name> <name>ParamChecker</name> <call><name>inXOozieClient</name> <argument_list>(<argument><expr><name>abhishekbafna</name> <name>via</name> <name>jaydeepvishwakarma</name></expr></argument>)</argument_list></call>
+ <name>OOZIE</name><operator>-</operator><literal type="number">2657</literal> <name>Clean</name> <name>up</name> <name>redundant</name> <name>access</name> <name>modifiers</name> <name>from</name> <name>oozie</name> <call><name>interfaces</name> <argument_list>(<argument><expr><name>abhishekbafna</name> <name>via</name> <name>jaydeepvishwakarma</name></expr></argument>)</argument_list></call>
+<operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></if></if_stmt>
+
+</unit>

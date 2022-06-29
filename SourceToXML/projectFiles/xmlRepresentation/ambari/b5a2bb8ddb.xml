@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/ambari/b5a2bb8ddb.java"><expr_stmt><expr><name>From</name> <name>b5a2bb8ddbc7badcdd459b443077d429c5e8235d</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Vishal</name> <name><name>Ghugare</name> <argument_list type="generic">&lt;<argument><name>ghugare</name><annotation>@<name><name>us</name><operator>.</operator><name>ibm</name><operator>.</operator><name>com</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Tue</name></expr><operator>,</operator> <expr><literal type="number">15</literal> <name>Nov</name> <literal type="number">2016</literal> <literal type="number">09</literal><operator>:</operator><literal type="number">19</literal><operator>:</operator><literal type="number">06</literal> <operator>-</operator><literal type="number">0500</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>AMBARI</name><operator>-</operator><literal type="number">12263.</literal>  <name>Support</name> <name>PAM</name> <name>as</name> <name>authentication</name> <name>mechanism</name></expr></expr_stmt> <for>for
+ accessing Ambari UI/REST <control>(<init><expr><name>Vishal</name> <name>Ghugare</name> <name>via</name> <name>rlevas</name></expr></init>)</control><block type="pseudo"><block_content>
+
+<expr_stmt><expr><operator>--</operator>
+ <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>                         <operator>|</operator>  <literal type="number">10</literal> <operator>+</operator>
+ <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>sbin</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name>              <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>   <operator>|</operator>  <literal type="number">23</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariManagementControllerImpl</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">7</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>AmbariServer</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name><name>GroupResponse</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">14</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>internal</name><operator>/</operator><name><name>GroupResourceProvider</name><operator>.</operator><name>java</name></name>       <operator>|</operator>   <literal type="number">4</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name><name>UserPrivilegeResourceProvider</name><operator>.</operator><name>java</name></name>        <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>GroupDAO</name><operator>.</operator><name>java</name></name>       <operator>|</operator>  <literal type="number">19</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>ResourceDAO</name><operator>.</operator><name>java</name></name>    <operator>|</operator>  <literal type="number">21</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>entities</name><operator>/</operator><name><name>GroupEntity</name><operator>.</operator><name>java</name></name>      <operator>|</operator>  <literal type="number">18</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name><name>ClientSecurityType</name><operator>.</operator><name>java</name></name>   <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariPamAuthenticationProvider</name><operator>.</operator><name>java</name></name>      <operator>|</operator> <literal type="number">252</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Group</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">6</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>GroupType</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">25</literal> <operator>++</operator>
+ <operator>...</operator><operator>/</operator><name><name>PamAuthenticationException</name><operator>.</operator><name>java</name></name>           <operator>|</operator>  <literal type="number">36</literal> <operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>UserType</name><operator>.</operator><name>java</name></name>      <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Users</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">54</literal> <operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">11</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>python</name><operator>/</operator><name>ambari</name><operator>-</operator><name><name>server</name><operator>.</operator><name>py</name></name>          <operator>|</operator>   <literal type="number">7</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>main</name><operator>/</operator><name>python</name><operator>/</operator><name>ambari_server</name><operator>/</operator><name><name>setupActions</name><operator>.</operator><name>py</name></name> <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>python</name><operator>/</operator><name>ambari_server</name><operator>/</operator><name><name>setupSecurity</name><operator>.</operator><name>py</name></name>     <operator>|</operator>  <literal type="number">53</literal> <operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>MySQL</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>     <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Oracle</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>    <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>Postgres</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>  <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLAnywhere</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name>         <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>resources</name><operator>/</operator><name>Ambari</name><operator>-</operator><name>DDL</name><operator>-</operator><name>SQLServer</name><operator>-</operator><name><name>CREATE</name><operator>.</operator><name>sql</name></name> <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>resources</name><operator>/</operator><name><name>properties</name><operator>.</operator><name>json</name></name>        <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>webapp</name><operator>/</operator><name>WEB</name><operator>-</operator><name>INF</name><operator>/</operator><name>spring</name><operator>-</operator><name><name>security</name><operator>.</operator><name>xml</name></name>        <operator>|</operator>   <literal type="number">1</literal> <operator>+</operator>
+ <operator>...</operator><operator>/</operator><name><name>AmbariPamAuthenticationProviderTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">97</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>+</operator>
+ <operator>...</operator><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>TestUsers</name><operator>.</operator><name>java</name></name>     <operator>|</operator>  <literal type="number">10</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250Test</name><operator>.</operator><name>java</name></name> <operator>|</operator>  <literal type="number">13</literal> <operator>+</operator>
+ <literal type="number">32</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">686</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">18</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>AmbariPamAuthenticationProvider</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>GroupType</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>PamAuthenticationException</name><operator>.</operator><name>java</name></name>
+ <name>create</name> <name>mode</name> <literal type="number">100644</literal> <name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>AmbariPamAuthenticationProviderTest</name><operator>.</operator><name>java</name></name>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<name>index</name> <name>e02b7a59c6</name><operator>..</operator><literal type="number">36c57de525</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name><name>pom</name><operator>.</operator><name>xml</name></name>
+@@ <operator>-</operator><literal type="number">1469</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">1469</literal></expr><operator>,</operator><expr><literal type="number">16</literal> @@
+       <operator>&lt;</operator><name>version</name><operator>&gt;</operator><literal type="number">1.0.0.0</literal><operator>-</operator><name><name>SNAPSHOT</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>version</name></argument>&gt;</argument_list></name>
+       <operator>&lt;</operator><name>scope</name><operator>&gt;</operator><name><name>test</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>scope</name></argument>&gt;</argument_list></name>
+     <operator>&lt;</operator><operator>/</operator><name>dependency</name><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name><operator>&gt;</operator>
+      <operator>&lt;</operator><name>groupId</name><operator>&gt;</operator><name><name>org</name><operator>.</operator><name><name>kohsuke</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>groupId</name></argument>&gt;</argument_list></name></name>
+      <operator>&lt;</operator><name>artifactId</name><operator>&gt;</operator><name><name>libpam4j</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>artifactId</name></argument>&gt;</argument_list></name>
+      <operator>&lt;</operator><name>version</name><operator>&gt;</operator><literal type="number">1.8</literal><operator>&lt;</operator><operator>/</operator><name>version</name><operator>&gt;</operator>
+    <operator>&lt;</operator><operator>/</operator><name>dependency</name><operator>&gt;</operator>
+    <operator>&lt;</operator><name>dependency</name><operator>&gt;</operator>
+      <operator>&lt;</operator><name>groupId</name><operator>&gt;</operator><name><name>net</name><operator>.</operator><name>java</name><operator>.</operator><name>dev</name><operator>.</operator><name><name>jna</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>groupId</name></argument>&gt;</argument_list></name></name>
+      <operator>&lt;</operator><name>artifactId</name><operator>&gt;</operator><name><name>jna</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>artifactId</name></argument>&gt;</argument_list></name>
+      <operator>&lt;</operator><name>version</name><operator>&gt;</operator><literal type="number">4.1.0</literal><operator>&lt;</operator><operator>/</operator><name>version</name><operator>&gt;</operator>
+    <operator>&lt;</operator><operator>/</operator><name>dependency</name><operator>&gt;</operator>
+   <operator>&lt;</operator><operator>/</operator><name>dependencies</name><operator>&gt;</operator>
+ 
+   <operator>&lt;</operator><name>pluginRepositories</name><operator>&gt;</operator>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>sbin</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>sbin</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name>
+<name>index</name> <name>bdbdd0f4f4</name><operator>..</operator><name>f08db13d62</name> <literal type="number">100755</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>sbin</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>sbin</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name>
+@@ <operator>-</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">132</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@</expr></expr_stmt></block_content></block></for> <case>case <expr><literal type="string">"${1:-}"</literal> <name>in</name>
+         <name>echo</name> <operator>-</operator><name>e</name> <literal type="string">"Updating jce policy"</literal>
+         <name>$PYTHON</name> <literal type="string">"$AMBARI_PYTHON_EXECUTABLE"</literal> <name>$</name>@</expr>
+         <empty_stmt>;</empty_stmt><empty_stmt>;</empty_stmt>
+  <expr_stmt><expr><name>setup</name><operator>-</operator><name>pam</name></expr></expr_stmt></case>)
+        <expr_stmt><expr><name>echo</name> <operator>-</operator><name>e</name> <literal type="string">"Setting up PAM properties..."</literal>
+        <name>$PYTHON</name> <literal type="string">"$AMBARI_PYTHON_EXECUTABLE"</literal> <name>$</name>@</expr>
+        ;</expr_stmt><empty_stmt>;</empty_stmt>
+   <expr_stmt><expr><name>setup</name><operator>-</operator><name>ldap</name></expr></expr_stmt>)
+         <expr_stmt><expr><name>echo</name> <operator>-</operator><name>e</name> <literal type="string">"Setting up LDAP properties..."</literal>
+         <name>$PYTHON</name> <literal type="string">"$AMBARI_PYTHON_EXECUTABLE"</literal> <name>$</name>@
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">0b8e195292</literal><operator>..</operator><name>b8b8f54c6a</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>configuration</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">724</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">724</literal></expr><operator>,</operator><expr><literal type="number">21</literal> @@ <specifier>public</specifier> <name>class</name> <name>Configuration</name> <block>{
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name><name>ConfigurationProperty</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>JCE_NAME</name> <operator>=</operator> <operator>new</operator> <call><name><name>ConfigurationProperty</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+       <argument><expr><literal type="string">"jce.name"</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+ 
+  <comment type="block" format="javadoc">/**
+   * The auto group creation by Ambari.
+   */</comment>
+  @<expr><call><name>Markdown</name><argument_list>(
+      <argument><expr><name>description</name> <operator>=</operator> <literal type="string">"The auto group creation by Ambari"</literal></expr></argument>)</argument_list></call>
+  <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name><name>ConfigurationProperty</name><argument_list type="generic">&lt;<argument><name>Boolean</name></argument>&gt;</argument_list></name> <name>AUTO_GROUP_CREATION</name> <operator>=</operator> <operator>new</operator> <call><name><name>ConfigurationProperty</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+      <argument><expr><literal type="string">"auto.group.creation"</literal></expr></argument>, <argument><expr><name><name>Boolean</name><operator>.</operator><name>FALSE</name></name></expr></argument>)</argument_list></call></expr>;
+
+  <comment type="block" format="javadoc">/**
+   * The PAM configuration file.
+   */</comment>
+  @<expr><call><name>Markdown</name><argument_list>(<argument><expr><name>description</name> <operator>=</operator> <literal type="string">"The PAM configuration file."</literal></expr></argument>)</argument_list></call>
+  <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name><name>ConfigurationProperty</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>PAM_CONFIGURATION_FILE</name> <operator>=</operator> <operator>new</operator> <call><name><name>ConfigurationProperty</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(
+      <argument><expr><literal type="string">"pam.configuration"</literal></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;
+
+   <comment type="block" format="javadoc">/**
+    * The type of authentication mechanism used by Ambari.
+    *
+@@ -5747,4 +5762,12 @@ public class Configuration {
+     String acceptors = getProperty(SRVR_API_ACCEPTOR_THREAD_COUNT);
+     return StringUtils.isEmpty(acceptors) ? null : Integer.parseInt(acceptors);
+   }
+ 
+  public String getPamConfigurationFile() {
+    return getProperty(PAM_CONFIGURATION_FILE);
+  }
+
+  public String getAutoGroupCreation() {
+    return getProperty(AUTO_GROUP_CREATION);
+  }
+ }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index b04fdd77c0..8e2fe741aa 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -129,6 +129,7 @@ import org.apache.ambari.server.scheduler.ExecutionScheduleManager;
+ import org.apache.ambari.server.security.authorization.AuthorizationException;
+ import org.apache.ambari.server.security.authorization.AuthorizationHelper;
+ import org.apache.ambari.server.security.authorization.Group;
+import org.apache.ambari.server.security.authorization.GroupType;
+ import org.apache.ambari.server.security.authorization.ResourceType;
+ import org.apache.ambari.server.security.authorization.RoleAuthorization;
+ import org.apache.ambari.server.security.authorization.User;
+@@ -973,7 +974,7 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+       if (group != null) {
+         throw new AmbariException("Group already exists.");
+       }
+      users.createGroup(request.getGroupName());
+      users.createGroup(request.getGroupName(), GroupType.LOCAL);
+     }
+   }
+ 
+@@ -3685,7 +3686,7 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+       // get them all
+       if (null == request.getGroupName()) {
+         for (Group group: users.getAllGroups()) {
+          final GroupResponse response = new GroupResponse(group.getGroupName(), group.isLdapGroup());
+          final GroupResponse response = new GroupResponse(group.getGroupName(), group.isLdapGroup(), group.getGroupType());
+           responses.add(response);
+         }
+       } else {
+@@ -3698,7 +3699,7 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+                 + request.getGroupName() + "'");
+           }
+         } else {
+          final GroupResponse response = new GroupResponse(group.getGroupName(), group.isLdapGroup());
+          final GroupResponse response = new GroupResponse(group.getGroupName(), group.isLdapGroup(), group.getGroupType());
+           responses.add(response);
+         }
+       }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
+index e54d54e166..537ebc5b6c 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
+@@ -103,6 +103,7 @@ import org.apache.ambari.server.security.authorization.AmbariLocalUserProvider;
+ import org.apache.ambari.server.security.authorization.AmbariUserAuthorizationFilter;
+ import org.apache.ambari.server.security.authorization.PermissionHelper;
+ import org.apache.ambari.server.security.authorization.Users;
+import org.apache.ambari.server.security.authorization.AmbariPamAuthenticationProvider;
+ import org.apache.ambari.server.security.authorization.internal.AmbariInternalAuthenticationProvider;
+ import org.apache.ambari.server.security.ldap.AmbariLdapDataPopulator;
+ import org.apache.ambari.server.security.unsecured.rest.CertificateDownload;
+@@ -339,6 +340,8 @@ public class AmbariServer {
+         injector.getInstance(AmbariUserAuthorizationFilter.class));
+       factory.registerSingleton("ambariInternalAuthenticationProvider",
+         injector.getInstance(AmbariInternalAuthenticationProvider.class));
+      factory.registerSingleton("ambariPamAuthenticationProvider",
+	injector.getInstance(AmbariPamAuthenticationProvider.class));
+ 
+       // Spring Security xml config depends on this Bean
+       String[] contextLocations = {SPRING_CONTEXT_LOCATION};
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/GroupResponse.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/GroupResponse.java
+index ef28f61425..0baccc7398 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/controller/GroupResponse.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/GroupResponse.java
+@@ -17,16 +17,26 @@
+  */</comment>
+ <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>controller</name></name>;</package></block></expr></expr_stmt>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name><operator>.</operator><name>GroupType</name></name>;</import>
+
+ <comment type="block" format="javadoc">/**
+  * Represents a user group maintenance response.
+  */</comment>
+ <class><specifier>public</specifier> class <name>GroupResponse</name> <block>{
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>String</name></type> <name>groupName</name></decl>;</decl_stmt>
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>boolean</name></type> <name>ldapGroup</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>GroupType</name></type> <name>groupType</name></decl>;</decl_stmt>
+
+  <constructor><specifier>public</specifier> <name>GroupResponse</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>ldapGroup</name></decl></parameter>, <parameter><decl><type><name>GroupType</name></type> <name>groupType</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>groupName</name></name> <operator>=</operator> <name>groupName</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>ldapGroup</name></name> <operator>=</operator> <name>ldapGroup</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>groupType</name></name> <operator>=</operator> <name>groupType</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+ 
+   <constructor><specifier>public</specifier> <name>GroupResponse</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>ldapGroup</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>groupName</name></name> <operator>=</operator> <name>groupName</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>this</name><operator>.</operator><name>ldapGroup</name></name> <operator>=</operator> <name>ldapGroup</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>groupType</name></name> <operator>=</operator> <name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr>;</expr_stmt>
+   </block_content>}</block></constructor>
+ 
+   <function><type><specifier>public</specifier> <name>String</name></type> <name>getGroupName</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">37</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>GroupResponse</name> <block>{
+     <return>return <expr><name>ldapGroup</name></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <function><type><specifier>public</specifier> <name>GroupType</name></type> <name>getGroupType</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>groupType</name></expr>;</return>
+  </block_content>}</block></function>
+
+   <function><annotation>@<name>Override</name></annotation>
+   <type><specifier>public</specifier> <name>boolean</name></type> <name>equals</name><parameter_list>(<parameter><decl><type><name>Object</name></type> <name>o</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <if_stmt><if>if <condition>(<expr><name>this</name> <operator>==</operator> <name>o</name></expr>)</condition><block type="pseudo"><block_content>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>GroupResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>GroupResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>e1aa5acf53</name><operator>..</operator><name>e07dece700</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>GroupResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>GroupResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>GroupResourceProvider</name> extends <name>AbstractControllerResourceProvider</name> <block>{
+   <comment type="line">// Groups</comment>
+   <expr><specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>GROUP_GROUPNAME_PROPERTY_ID</name>  <operator>=</operator> <call><name><name>PropertyHelper</name><operator>.</operator><name>getPropertyId</name></name><argument_list>(<argument><expr><literal type="string">"Groups"</literal></expr></argument>, <argument><expr><literal type="string">"group_name"</literal></expr></argument>)</argument_list></call></expr>;
+   <specifier>public</specifier> <specifier>static</specifier> <name>final</name> <name>String</name> <name>GROUP_LDAP_GROUP_PROPERTY_ID</name> <operator>=</operator> <call><name><name>PropertyHelper</name><operator>.</operator><name>getPropertyId</name></name><argument_list>(<argument><expr><literal type="string">"Groups"</literal></expr></argument>, <argument><expr><literal type="string">"ldap_group"</literal></expr></argument>)</argument_list></call></block></expr>;</expr_stmt></block_content></block></if></if_stmt>
+  <decl_stmt><decl><type><specifier>public</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>GROUP_GROUPTYPE_PROPERTY_ID</name>  <init>= <expr><call><name><name>PropertyHelper</name><operator>.</operator><name>getPropertyId</name></name><argument_list>(<argument><expr><literal type="string">"Groups"</literal></expr></argument>, <argument><expr><literal type="string">"group_type"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+ 
+   <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>pkPropertyIds</name> <init>=
+       <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name><block>{
+@@ <expr><operator>-</operator><literal type="number">132</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">133</literal></expr>,<expr><literal type="number">9</literal> @@ <specifier>public</specifier> class <name>GroupResourceProvider</name> extends <name>AbstractControllerResourceProvider</name> <block>{
+       <expr><call><name>setResourceProperty</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>GROUP_LDAP_GROUP_PROPERTY_ID</name></expr></argument>,
+           <argument><expr><call><name><name>groupResponse</name><operator>.</operator><name>isLdapGroup</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>requestedIds</name></expr></argument>)</argument_list></call></expr>;
+ 
+      <expr><call><name>setResourceProperty</name><argument_list>(<argument><expr><name>resource</name></expr></argument>, <argument><expr><name>GROUP_GROUPTYPE_PROPERTY_ID</name></expr></argument>,
+          <argument><expr><call><name><name>groupResponse</name><operator>.</operator><name>getGroupType</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>requestedIds</name></expr></argument>)</argument_list></call></expr>;
+
+       <expr><call><name><name>resources</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>resource</name></expr></argument>)</argument_list></call></expr>;
+     }</block>
+ 
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>UserPrivilegeResourceProvider</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>UserPrivilegeResourceProvider</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>ba32a5f162</name><operator>..</operator><literal type="number">0575c1d94d</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>UserPrivilegeResourceProvider</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>controller</name><operator>/</operator><name>internal</name><operator>/</operator><name><name>UserPrivilegeResourceProvider</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">288</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">288</literal></expr>,<expr><literal type="number">9</literal> @@ <specifier>public</specifier> class <name>UserPrivilegeResourceProvider</name> extends <name>ReadOnlyResourceProvider</name> <block>{
+           <expr><name>userEntity</name> <operator>=</operator> <call><name><name>usersCache</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getUnchecked</name><argument_list>(<argument><expr><name>userName</name></expr></argument>)</argument_list></call></expr>;
+         }</block></expr>
+ 
+        <if_stmt><if>if <condition>(<expr><name>userEntity</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>userEntity</name> <operator>=</operator> <call><name><name>userDAO</name><operator>.</operator><name>findUserByNameAndType</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt/>}</block_content>
+         if (userEntity == null</block></if></if_stmt>) <block>{
+           <throw>throw <argument_list>new <argument><expr><call><name>SystemException</name><argument_list>(<argument><expr><literal type="string">"User "</literal> <operator>+</operator> <name>userName</name> <operator>+</operator> <literal type="string">" was not found"</literal></expr></argument>)</argument_list></call></expr></argument></argument_list></throw>;
+         }</block></block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>GroupDAO</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>GroupDAO</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">255c5e6da8</literal><operator>..</operator><literal type="number">8b5902c102</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>GroupDAO</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>orm</name><operator>/</operator><name>dao</name><operator>/</operator><name><name>GroupDAO</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">29</literal></expr></argument>,<argument><expr><literal type="number">13</literal> <operator>+</operator><literal type="number">29</literal></expr></argument>,<argument><expr><literal type="number">14</literal> @@</expr></argument> <import>import <name><name>javax</name><operator>.</operator><name>persistence</name><operator>.</operator><name>TypedQuery</name></name>;</import></argument_list></call></expr></argument></argument_list></call></expr></init></decl></decl_stmt>
+ 
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>RequiresSession</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>GroupEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PrincipalEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name><operator>.</operator><name>GroupType</name></name>;</import>
+
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Provider</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Singleton</name></name>;</import>
+ <import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>persist</name><operator>.</operator><name>Transactional</name></name>;</import>
+ 
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PrincipalEntity</name></name>;</import>
+
+ <class><annotation>@<name>Singleton</name></annotation>
+ <specifier>public</specifier> class <name>GroupDAO</name> <block>{
+   <annotation>@<name>Inject</name></annotation>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">66</literal></expr><operator>,</operator><expr><literal type="number">20</literal> @@ <specifier>public</specifier> <name>class</name> <name>GroupDAO</name> <block>{
+     }</block></expr></expr_stmt>
+   }</block></class>
+ 
+  <function><annotation>@<name>RequiresSession</name></annotation>
+  <type><specifier>public</specifier> <name>GroupEntity</name></type> <name>findGroupByNameAndType</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>, <parameter><decl><type><name>GroupType</name></type> <name>groupType</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <comment type="line">// do case insensitive compare</comment>
+    <decl_stmt><decl><type><name><name>TypedQuery</name><argument_list type="generic">&lt;<argument><name>GroupEntity</name></argument>&gt;</argument_list></name></type> <name>query</name> <init>= <expr><call><name><name>entityManagerProvider</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createQuery</name><argument_list>(
+        <argument><expr><literal type="string">"SELECT group_entity FROM GroupEntity group_entity WHERE group_entity.groupType=:type AND lower(group_entity.groupName)=lower(:name)"</literal></expr></argument>, <argument><expr><name><name>GroupEntity</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"type"</literal></expr></argument>, <argument><expr><name>groupType</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"name"</literal></expr></argument>, <argument><expr><name>groupName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <return>return <expr><call><name><name>query</name><operator>.</operator><name>getSingleResult</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>NoResultException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Find the group entities for the given list of principals
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/ResourceDAO.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/ResourceDAO.java
+index e4ed9c6fd1..e57f265f24 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/ResourceDAO.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/ResourceDAO.java
+@@ -26,6 +26,7 @@ import org.apache.ambari.server.orm.RequiresSession;
+ import org.apache.ambari.server.orm.entities.ResourceEntity;
+ 
+ import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+ import javax.persistence.TypedQuery;
+ import java.util.List;
+ 
+@@ -54,6 +55,26 @@ public class ResourceDAO {
+     return entityManagerProvider.get().find(ResourceEntity.class, id);
+   }
+ 
+  /**
+   * Find a resource with the given resource type id.
+   *
+   * @param id  type id
+   *
+   * @return  a matching resource or null
+   */</comment>
+  <function><annotation>@<name>RequiresSession</name></annotation>
+  <type><specifier>public</specifier> <name>ResourceEntity</name></type> <name>findByResourceTypeId</name><parameter_list>(<parameter><decl><type><name>Integer</name></type> <name>id</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>TypedQuery</name><argument_list type="generic">&lt;<argument><name>ResourceEntity</name></argument>&gt;</argument_list></name></type> <name>query</name> <init>= <expr><call><name><name>entityManagerProvider</name><operator>.</operator><name>get</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createQuery</name><argument_list>(
+        <argument><expr><literal type="string">"SELECT resource FROM ResourceEntity resource WHERE resource.resourceType.id =:resourceTypeId"</literal></expr></argument>,
+        <argument><expr><name><name>ResourceEntity</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>query</name><operator>.</operator><name>setParameter</name></name><argument_list>(<argument><expr><literal type="string">"resourceTypeId"</literal></expr></argument>, <argument><expr><name>id</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <try>try <block>{<block_content>
+      <return>return <expr><call><name><name>query</name><operator>.</operator><name>getSingleResult</name></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>NoResultException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Find all resources.
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/GroupEntity.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/GroupEntity.java
+index 00e233e63b..58b2e5d5ac 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/GroupEntity.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/GroupEntity.java
+@@ -19,9 +19,12 @@ package org.apache.ambari.server.orm.entities;
+ 
+ import java.util.Set;
+ 
+import javax.persistence.Basic;
+ import javax.persistence.CascadeType;
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+ import javax.persistence.GeneratedValue;
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+@@ -35,6 +38,8 @@ import javax.persistence.Table;
+ import javax.persistence.TableGenerator;
+ import javax.persistence.UniqueConstraint;
+ 
+import org.apache.ambari.server.security.authorization.GroupType;
+
+ @Entity
+ @Table(name = "groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"group_name", "ldap_group"})})
+ @TableGenerator(name = "group_id_generator",
+@@ -59,6 +64,11 @@ public class GroupEntity {
+   @Column(name = "ldap_group")
+   private Integer ldapGroup = 0;
+ 
+  @Column(name = "group_type")
+  @Enumerated(EnumType.STRING)
+  @Basic
+  private GroupType groupType = GroupType.LOCAL;
+
+   @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+   private Set&lt;MemberEntity&gt; memberEntities;
+ 
+@@ -99,6 +109,14 @@ public class GroupEntity {
+     }
+   }
+ 
+  public GroupType getGroupType() {
+    return groupType;
+  }
+
+  public void setgroupType(GroupType groupType) {
+    this.groupType = groupType;
+  }
+
+   public Set&lt;MemberEntity&gt; getMemberEntities() {
+     return memberEntities;
+   }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/security/ClientSecurityType.java b/ambari-server/src/main/java/org/apache/ambari/server/security/ClientSecurityType.java
+index 26d4da7f3e..fa853a6633 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/security/ClientSecurityType.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/security/ClientSecurityType.java
+@@ -19,7 +19,8 @@ package org.apache.ambari.server.security;
+ 
+ public enum ClientSecurityType {
+   LOCAL("local"),
+  LDAP("ldap");
+  LDAP("ldap"),
+  PAM("pam");
+ 
+   private String value;
+   ClientSecurityType(String value) {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProvider.java
+new file mode 100644
+index 0000000000..ab66271e9c
+-- /dev/null
+++ b/ambari-server/src/main/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProvider.java
+@@ -0,0 +1,252 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>security</name><operator>.</operator><name>Principal</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collection</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Set</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>AmbariException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>configuration</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>GroupDAO</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>UserDAO</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>GroupEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>MemberEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>UserEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>ClientSecurityType</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>jvnet</name><operator>.</operator><name>libpam</name><operator>.</operator><name>PAM</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>jvnet</name><operator>.</operator><name>libpam</name><operator>.</operator><name>PAMException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>jvnet</name><operator>.</operator><name>libpam</name><operator>.</operator><name>UnixUser</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>Logger</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>slf4j</name><operator>.</operator><name>LoggerFactory</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>AuthenticationProvider</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>AuthenticationServiceException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>UsernamePasswordAuthenticationToken</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>Authentication</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>AuthenticationException</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>context</name><operator>.</operator><name>SecurityContextHolder</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * Provides PAM user authentication &amp; authorization logic for Ambari Server
+ */</comment>
+
+<class><specifier>public</specifier> class <name>AmbariPamAuthenticationProvider</name> <super_list><implements>implements <super><name>AuthenticationProvider</name></super></implements></super_list> <block>{
+
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><specifier>private</specifier> <name>Users</name></type> <name>users</name></decl>;</decl_stmt>
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><specifier>protected</specifier> <name>UserDAO</name></type> <name>userDAO</name></decl>;</decl_stmt>
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><specifier>protected</specifier> <name>GroupDAO</name></type> <name>groupDAO</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>Logger</name></type> <name>LOG</name> <init>= <expr><call><name><name>LoggerFactory</name><operator>.</operator><name>getLogger</name></name><argument_list>(<argument><expr><name><name>AmbariPamAuthenticationProvider</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Configuration</name></type> <name>configuration</name></decl>;</decl_stmt>
+
+  <constructor><annotation>@<name>Inject</name></annotation>
+  <specifier>public</specifier> <name>AmbariPamAuthenticationProvider</name><parameter_list>(<parameter><decl><type><name>Configuration</name></type> <name>configuration</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>configuration</name></name> <operator>=</operator> <name>configuration</name></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <comment type="block" format="javadoc">/**
+   * Performs PAM Initialization
+   *
+   * @param authentication
+   * @return authentication
+   */</comment>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>Authentication</name></type> <name>authenticate</name><parameter_list>(<parameter><decl><type><name>Authentication</name></type> <name>authentication</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AuthenticationException</name></expr></argument></throws> <block>{<block_content>
+      <if_stmt><if>if<condition>(<expr><call><name>isPamEnabled</name><argument_list>()</argument_list></call></expr>)</condition><block>{<block_content>
+        <decl_stmt><decl><type><name>PAM</name></type> <name>pam</name></decl>;</decl_stmt>
+        <try>try<block>{<block_content>
+          <comment type="line">//Set PAM configuration file (found under /etc/pam.d)</comment>
+          <decl_stmt><decl><type><name>String</name></type> <name>pamConfig</name> <init>= <expr><call><name><name>configuration</name><operator>.</operator><name>getPamConfigurationFile</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><name>pam</name> <operator>=</operator> <operator>new</operator> <call><name>PAM</name><argument_list>(<argument><expr><name>pamConfig</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        </block_content>}</block> <catch>catch<parameter_list>(<parameter><decl><type><name>PAMException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Unable to Initialize PAM."</literal> <operator>+</operator> <call><name><name>ex</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <throw>throw <expr><operator>new</operator> <call><name>AuthenticationServiceException</name><argument_list>(<argument><expr><literal type="string">"Unable to Initialize PAM - "</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</throw>
+        </block_content>}</block></catch></try>
+
+        <return>return <expr><call><name>authenticateViaPam</name><argument_list>(<argument><expr><name>pam</name></expr></argument>, <argument><expr><name>authentication</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+       <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Performs PAM Authentication
+   *
+   * @param pam
+   * @param authentication
+   * @return authentication
+   */</comment>
+
+  <function><type><specifier>protected</specifier> <name>Authentication</name></type> <name>authenticateViaPam</name><parameter_list>(<parameter><decl><type><name>PAM</name></type> <name>pam</name></decl></parameter>, <parameter><decl><type><name>Authentication</name></type> <name>authentication</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>AuthenticationException</name></expr></argument></throws><block>{<block_content>
+    <if_stmt><if>if<condition>(<expr><call><name>isPamEnabled</name><argument_list>()</argument_list></call></expr>)</condition><block>{<block_content>
+      <try>try <block>{<block_content>
+          <decl_stmt><decl><type><name>String</name></type> <name>userName</name> <init>= <expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>authentication</name><operator>.</operator><name>getPrincipal</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <decl_stmt><decl><type><name>String</name></type> <name>passwd</name> <init>= <expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>authentication</name><operator>.</operator><name>getCredentials</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <comment type="line">// authenticate using PAM</comment>
+          <decl_stmt><decl><type><name>UnixUser</name></type> <name>unixUser</name> <init>= <expr><call><name><name>pam</name><operator>.</operator><name>authenticate</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>,<argument><expr><name>passwd</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <comment type="line">//Get all the groups that user belongs to</comment>
+          <comment type="line">//Change all group names to lower case.</comment>
+          <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>groups</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <for>for<control>(<init><decl><type><name>String</name></type> <name>group</name><range>: <expr><call><name><name>unixUser</name><operator>.</operator><name>getGroups</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control><block>{<block_content>
+            <expr_stmt><expr><call><name><name>groups</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>toLowerCase</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></for>
+
+          <expr_stmt><expr><call><name>ambariPamAuthorization</name><argument_list>(<argument><expr><name>userName</name></expr></argument>,<argument><expr><name>groups</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+          <decl_stmt><decl><type><name><name>Collection</name><argument_list type="generic">&lt;<argument><name>AmbariGrantedAuthority</name></argument>&gt;</argument_list></name></type> <name>userAuthorities</name> <init>=
+              <expr><call><name><name>users</name><operator>.</operator><name>getUserAuthorities</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <decl_stmt><decl><type><specifier>final</specifier> <name>User</name></type> <name>user</name> <init>= <expr><call><name><name>users</name><operator>.</operator><name>getUser</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <decl_stmt><decl><type><name>Principal</name></type> <name>principal</name> <init>= <expr><operator>new</operator> <class><super><name>Principal</name></super><argument_list>()</argument_list> <block>{
+            <function><annotation>@<name>Override</name></annotation>
+            <type><specifier>public</specifier> <name>String</name></type> <name>getName</name><parameter_list>()</parameter_list> <block>{<block_content>
+              <return>return <expr><call><name><name>user</name><operator>.</operator><name>getUserName</name></name><argument_list>()</argument_list></call></expr>;</return>
+            </block_content>}</block></function>
+          }</block></class></expr></init></decl>;</decl_stmt>
+
+          <decl_stmt><decl><type><name>UsernamePasswordAuthenticationToken</name></type> <name>token</name> <init>= <expr><operator>new</operator> <call><name>UsernamePasswordAuthenticationToken</name><argument_list>(<argument><expr><name>principal</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>userAuthorities</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <expr_stmt><expr><call><name><name>SecurityContextHolder</name><operator>.</operator><name>getContext</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setAuthentication</name><argument_list>(<argument><expr><name>token</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <return>return <expr><name>token</name></expr>;</return>
+
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>PAMException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+          <expr_stmt><expr><call><name><name>LOG</name><operator>.</operator><name>error</name></name><argument_list>(<argument><expr><literal type="string">"Unable to sign in. Invalid username/password combination - "</literal> <operator>+</operator> <call><name><name>ex</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <decl_stmt><decl><type><name>Throwable</name></type> <name>t</name> <init>= <expr><call><name><name>ex</name><operator>.</operator><name>getCause</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+          <throw>throw <expr><operator>new</operator> <call><name>PamAuthenticationException</name><argument_list>(<argument><expr><literal type="string">"Unable to sign in. Invalid username/password combination."</literal></expr></argument>,<argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</throw>
+
+        </block_content>}</block></catch> <finally>finally <block>{<block_content>
+          <expr_stmt><expr><call><name><name>pam</name><operator>.</operator><name>dispose</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></finally></try>
+
+      </block_content>}</block></if>
+      <else>else <block>{<block_content>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+      </block_content>}</block></else></if_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>boolean</name></type> <name>supports</name><parameter_list>(<parameter><decl><type><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></type> <name>authentication</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>UsernamePasswordAuthenticationToken</name><operator>.</operator><name><name>class</name><operator>.</operator><name>isAssignableFrom</name></name></name><argument_list>(<argument><expr><name>authentication</name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Check if PAM authentication is enabled in server properties
+   * @return true if enabled
+   */</comment>
+  <function><type><specifier>private</specifier> <name>boolean</name></type> <name>isPamEnabled</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>configuration</name><operator>.</operator><name>getClientSecurityType</name></name><argument_list>()</argument_list></call> <operator>==</operator> <name><name>ClientSecurityType</name><operator>.</operator><name>PAM</name></name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Check if PAM authentication is enabled in server properties
+   * @return true if enabled
+   */</comment>
+  <function><type><specifier>private</specifier> <name>boolean</name></type> <name>isAutoGroupCreationAllowed</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>configuration</name><operator>.</operator><name>getAutoGroupCreation</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><literal type="string">"true"</literal></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+
+  <comment type="block" format="javadoc">/**
+   * Performs PAM authorization by creating user &amp; group(s)
+   *
+   * @param userName user name
+   * @param userGroups Collection of groups
+   * @return
+   */</comment>
+  <function><type><specifier>private</specifier> <name>void</name></type> <name>ambariPamAuthorization</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>userName</name></decl></parameter>,<parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>userGroups</name></decl></parameter>)</parameter_list><block>{<block_content>
+    <try>try <block>{<block_content>
+      <decl_stmt><decl><type><name>User</name></type> <name>existingUser</name> <init>= <expr><call><name><name>users</name><operator>.</operator><name>getUser</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>,<argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <if_stmt><if>if <condition>(<expr><name>existingUser</name> <operator>==</operator> <literal type="null">null</literal></expr> )</condition> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>users</name><operator>.</operator><name>createUser</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+
+      <decl_stmt><decl><type><name>UserEntity</name></type> <name>userEntity</name> <init>= <expr><call><name><name>userDAO</name><operator>.</operator><name>findUserByNameAndType</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+      <if_stmt><if>if<condition>(<expr><call><name>isAutoGroupCreationAllowed</name><argument_list>()</argument_list></call></expr>)</condition><block>{<block_content>
+        <for>for<control>(<init><decl><type><name>String</name></type> <name>userGroup</name><range>: <expr><name>userGroups</name></expr></range></decl></init>)</control><block>{<block_content>
+          <if_stmt><if>if<condition>(<expr><call><name><name>users</name><operator>.</operator><name>getGroupByNameAndType</name></name><argument_list>(<argument><expr><name>userGroup</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><block>{<block_content>
+            <expr_stmt><expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>userGroup</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+
+          <decl_stmt><decl><type><specifier>final</specifier> <name>GroupEntity</name></type> <name>groupEntity</name> <init>= <expr><call><name><name>groupDAO</name><operator>.</operator><name>findGroupByNameAndType</name></name><argument_list>(<argument><expr><name>userGroup</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+          <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>isUserInGroup</name><argument_list>(<argument><expr><name>userEntity</name></expr></argument>, <argument><expr><name>groupEntity</name></expr></argument>)</argument_list></call></expr>)</condition><block>{<block_content>
+            <expr_stmt><expr><call><name><name>users</name><operator>.</operator><name>addMemberToGroup</name></name><argument_list>(<argument><expr><name>userGroup</name></expr></argument>,<argument><expr><name>userName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></for>
+
+        <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>ambariUserGroups</name> <init>= <expr><call><name>getUserGroups</name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+        <for>for<control>(<init><decl><type><name>String</name></type> <name>group</name><range>: <expr><name>ambariUserGroups</name></expr></range></decl></init>)</control><block>{<block_content>
+          <if_stmt><if>if<condition>(<expr><name>userGroups</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <operator>!</operator><call><name><name>userGroups</name><operator>.</operator><name>contains</name></name><argument_list>(<argument><expr><name>group</name></expr></argument>)</argument_list></call></expr>)</condition><block>{<block_content>
+            <expr_stmt><expr><call><name><name>users</name><operator>.</operator><name>removeMemberFromGroup</name></name><argument_list>(<argument><expr><name>group</name></expr></argument>, <argument><expr><name>userName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block></if></if_stmt>
+
+    </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>AmbariException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>e</name><operator>.</operator><name>printStackTrace</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></catch></try>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Performs a check if given user belongs to given group.
+   *
+   * @param userEntity user entity
+   * @param groupEntity group entity
+   * @return true if user presents in group
+   */</comment>
+  <function><type><specifier>private</specifier> <name>boolean</name></type> <name>isUserInGroup</name><parameter_list>(<parameter><decl><type><name>UserEntity</name></type> <name>userEntity</name></decl></parameter>, <parameter><decl><type><name>GroupEntity</name></type> <name>groupEntity</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>MemberEntity</name></type> <name>memberEntity</name><range>: <expr><call><name><name>userEntity</name><operator>.</operator><name>getMemberEntities</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><call><name><name>memberEntity</name><operator>.</operator><name>getGroup</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><name>groupEntity</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Extracts all groups a user belongs to
+   *
+   * @param userName user name
+   * @return Collection of group names
+   */</comment>
+  <function><type><specifier>private</specifier> <name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>getUserGroups</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>userName</name></decl></parameter>, <parameter><decl><type><name>UserType</name></type> <name>userType</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>UserEntity</name></type> <name>userEntity</name> <init>= <expr><call><name><name>userDAO</name><operator>.</operator><name>findUserByNameAndType</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name>userType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>groups</name> <init>= <expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>MemberEntity</name></type> <name>memberEntity</name><range>: <expr><call><name><name>userEntity</name><operator>.</operator><name>getMemberEntities</name></name><argument_list>()</argument_list></call></expr></range></decl></init>)</control> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>groups</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><call><name><name>memberEntity</name><operator>.</operator><name>getGroup</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getGroupName</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></for>
+
+    <return>return <expr><name>groups</name></expr>;</return>
+  </block_content>}</block></function>
+
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Group</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Group</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b20df8d886</name><operator>..</operator><literal type="number">715c41ccba</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Group</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Group</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">26</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">26</literal></expr><operator>,</operator><expr><literal type="number">13</literal> @@ <specifier>public</specifier> <name>class</name> <name>Group</name> <block>{
+   <expr><specifier>private</specifier> <name>final</name> <name>int</name> <name>groupId</name></expr>;
+   <expr><specifier>private</specifier> <name>final</name> <name>String</name> <name>groupName</name></expr>;
+   <expr><specifier>private</specifier> <name>final</name> <name>boolean</name> <name>ldapGroup</name></expr>;
+  <expr><specifier>private</specifier> <name>final</name> <name>GroupType</name> <name>groupType</name></expr>;
+ 
+   <expr><call><name>Group</name><argument_list>(<argument><expr><name>GroupEntity</name> <name>groupEntity</name></expr></argument>)</argument_list></call> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>groupId</name></name> <operator>=</operator> <call><name><name>groupEntity</name><operator>.</operator><name>getGroupId</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>groupName</name></name> <operator>=</operator> <call><name><name>groupEntity</name><operator>.</operator><name>getGroupName</name></name><argument_list>()</argument_list></call></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>ldapGroup</name></name> <operator>=</operator> <call><name><name>groupEntity</name><operator>.</operator><name>getLdapGroup</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><name><name>this</name><operator>.</operator><name>groupType</name></name> <operator>=</operator> <call><name><name>groupEntity</name><operator>.</operator><name>getGroupType</name></name><argument_list>()</argument_list></call></expr>;
+   }</block>
+ 
+   <specifier>public</specifier> <name>int</name> <call><name>getGroupId</name><argument_list>()</argument_list></call> <block>{
+@@ <expr><operator>-</operator><literal type="number">45</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">47</literal></expr>,<expr><literal type="number">10</literal> @@ <specifier>public</specifier> <name>class</name> <name>Group</name> <block>{
+     <return>return <expr><name>ldapGroup</name></expr>;</return></block></expr>
+   }</block>
+ 
+  <specifier>public</specifier> <name>GroupType</name> <call><name>getGroupType</name><argument_list>()</argument_list></call> <block>{
+    <return>return <expr><name>groupType</name></expr>;</return></block></expr>
+  }</block>
+
+   @<name>Override</name>
+   <specifier>public</specifier> <name>String</name> <call><name>toString</name><argument_list>()</argument_list></call> <block>{
+     <return>return <expr><literal type="string">"Group [groupId="</literal> <operator>+</operator> <name>groupId</name> <operator>+</operator> <literal type="string">", groupName="</literal> <operator>+</operator> <name>groupName</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>GroupType</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>GroupType</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">0000000000..d427f3a497</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>GroupType</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@</expr></return>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name></name>;</package>
+
+<specifier>public</specifier> enum <name>GroupType</name> <block>{
+  <expr><name>LOCAL</name></expr>,
+  <expr><name>LDAP</name></expr>,
+  <expr><name>JWT</name></expr>,
+  <expr><name>PAM</name></expr>
+}</block></block>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>PamAuthenticationException</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>PamAuthenticationException</name><operator>.</operator><name>java</name></name>
+<operator>new</operator> <name>file</name> <name>mode</name> <literal type="number">100644</literal>
+<name>index</name> <literal type="number">0000000000..6c09a67100</literal>
+<operator>--</operator> <operator>/</operator><name>dev</name><operator>/</operator><literal type="null">null</literal>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>PamAuthenticationException</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">0</literal></expr><operator>,</operator><expr><literal type="number">0</literal> <operator>+</operator><literal type="number">1</literal></expr><operator>,</operator><expr><literal type="number">36</literal> @@</expr></expr_stmt>
+<comment type="block" format="javadoc">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name></name>;</package>
+
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>AuthenticationException</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>PamAuthenticationException</name> <super_list><extends>extends <super><name>AuthenticationException</name></super></extends></super_list><block>{
+
+   <constructor><specifier>public</specifier> <name>PamAuthenticationException</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name>this</name><argument_list>(<argument><expr><literal type="string">"The user authentication failed"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></constructor>
+
+  <constructor><specifier>public</specifier> <name>PamAuthenticationException</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>msg</name></decl></parameter>, <parameter><decl><type><name>Throwable</name></type> <name>t</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>msg</name></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <constructor><specifier>public</specifier> <name>PamAuthenticationException</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>msg</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><call><name>super</name><argument_list>(<argument><expr><name>msg</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>UserType</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>UserType</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>aa9f3e0455</name><operator>..</operator><name>e60d58e196</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>UserType</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>UserType</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">5</literal> <operator>+</operator><literal type="number">20</literal></expr><operator>,</operator><expr><literal type="number">6</literal> @@</expr></expr_stmt> <package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name></name>;</package>
+ <enum><specifier>public</specifier> enum <name>UserType</name> <block>{
+   <decl><name>LOCAL</name></decl>,
+   <decl><name>LDAP</name></decl>,
+  <decl><name>JWT</name>
+  <name>JWT</name></decl>,
+  <decl><name>PAM</name></decl>
+ }</block></enum>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Users</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Users</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8ac7ebbd36</literal><operator>..</operator><literal type="number">2cd538c9a1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Users</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>Users</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">41</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>PrincipalDAO</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>PrincipalTypeDAO</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>PrivilegeDAO</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>ResourceDAO</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>ResourceTypeDAO</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>dao</name><operator>.</operator><name>UserDAO</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>GroupEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>MemberEntity</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">48</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">49</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@</expr></expr_stmt> <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PermissionEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PrincipalEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PrincipalTypeEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>PrivilegeEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>ResourceEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>ResourceTypeEntity</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>entities</name><operator>.</operator><name>UserEntity</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>ClientSecurityType</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>ldap</name><operator>.</operator><name>LdapBatchDto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>ldap</name><operator>.</operator><name>LdapUserGroupMemberDto</name></name>;</import>
+ <import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>commons</name><operator>.</operator><name>lang</name><operator>.</operator><name>StringUtils</name></name>;</import>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">88</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">92</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>Users</name> <block>{
+   @<expr><name>Inject</name>
+   <specifier>protected</specifier> <name>ResourceDAO</name> <name>resourceDAO</name></expr>;
+   @<expr><name>Inject</name>
+  <specifier>protected</specifier> <name>ResourceTypeDAO</name> <name>resourceTypeDAO</name></expr>;
+  @<expr><name>Inject</name>
+   <specifier>protected</specifier> <name>PrincipalTypeDAO</name> <name>principalTypeDAO</name></expr>;
+   @<expr><name>Inject</name>
+   <specifier>protected</specifier> <name>PasswordEncoder</name> <name>passwordEncoder</name></expr>;
+@@ <expr><operator>-</operator><literal type="number">127</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">133</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>Users</name> <block>{
+     <if_stmt><if>if <condition>(<expr><name>userEntity</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <expr_stmt><expr><name>userEntity</name> <operator>=</operator> <call><name><name>userDAO</name><operator>.</operator><name>findUserByNameAndType</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>JWT</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     <expr_stmt/></block_content></block></if></if_stmt>}</block></expr>
+
+    <if_stmt><if>if <condition>(<expr><name>userEntity</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>userEntity</name> <operator>=</operator> <call><name><name>userDAO</name><operator>.</operator><name>findUserByNameAndType</name></name><argument_list>(<argument><expr><name>userName</name></expr></argument>, <argument><expr><name><name>UserType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt>
+
+     <return>return <expr><ternary><condition><expr><operator>(</operator><literal type="null">null</literal> <operator>==</operator> <name>userEntity</name><operator>)</operator></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><operator>new</operator> <call><name>User</name><argument_list>(<argument><expr><name>userEntity</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+   </block_content>}</block></function>
+ 
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">368</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">379</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>Users</name> <block>{
+     <return>return <expr><operator>(</operator><literal type="null">null</literal> <operator>==</operator> <name>groupEntity</name><operator>)</operator> <operator>?</operator> <literal type="null">null</literal> <operator>:</operator> <operator>new</operator> <call><name>Group</name><argument_list>(<argument><expr><name>groupEntity</name></expr></argument>)</argument_list></call></expr>;</return>
+   }</block></expr></expr_stmt>
+ 
+  <comment type="block" format="javadoc">/**
+   * Gets group by given name &amp; type.
+   *
+   * @param groupName group name
+   * @param groupType group type
+   * @return group
+   */</comment>
+  <function><type><specifier>public</specifier> <name>Group</name></type> <name>getGroupByNameAndType</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>, <parameter><decl><type><name>GroupType</name></type> <name>groupType</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>GroupEntity</name></type> <name>groupEntity</name> <init>= <expr><call><name><name>groupDAO</name><operator>.</operator><name>findGroupByNameAndType</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>, <argument><expr><name>groupType</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><ternary><condition><expr><operator>(</operator><literal type="null">null</literal> <operator>==</operator> <name>groupEntity</name><operator>)</operator></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><operator>new</operator> <call><name>Group</name><argument_list>(<argument><expr><name>groupEntity</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Gets group members.
+    *
+@@ -393,10 +416,10 @@ public class Users {
+   }
+ 
+   /**
+   * Creates new local group with provided name
+   * Creates new group with provided name &amp; type
+    */</comment>
+   <function><annotation>@<name>Transactional</name></annotation>
+  <type><specifier>public</specifier> <specifier>synchronized</specifier> <name>void</name></type> <name>createGroup</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>)</parameter_list> <block>{<block_content>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>void</name></type> <name>createGroup</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>groupName</name></decl></parameter>, <parameter><decl><type><name>GroupType</name></type> <name>groupType</name></decl></parameter>)</parameter_list> <block>{<block_content>
+     <comment type="line">// create an admin principal to represent this group</comment>
+     <decl_stmt><decl><type><name>PrincipalTypeEntity</name></type> <name>principalTypeEntity</name> <init>= <expr><call><name><name>principalTypeDAO</name><operator>.</operator><name>findById</name></name><argument_list>(<argument><expr><name><name>PrincipalTypeEntity</name><operator>.</operator><name>GROUP_PRINCIPAL_TYPE</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <if_stmt><if>if <condition>(<expr><name>principalTypeEntity</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">412</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">435</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>Users</name> <block>{
+     <expr><name>final</name> <name>GroupEntity</name> <name>groupEntity</name> <operator>=</operator> <operator>new</operator> <call><name>GroupEntity</name><argument_list>()</argument_list></call></expr>;
+     <call><name><name>groupEntity</name><operator>.</operator><name>setGroupName</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+     <expr_stmt><expr><call><name><name>groupEntity</name><operator>.</operator><name>setPrincipal</name></name><argument_list>(<argument><expr><name>principalEntity</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>groupEntity</name><operator>.</operator><name>setgroupType</name></name><argument_list>(<argument><expr><name>groupType</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+ 
+     <expr_stmt><expr><call><name><name>groupDAO</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>groupEntity</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></if></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">479</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">503</literal></expr><operator>,</operator><expr><literal type="number">32</literal> @@ <specifier>public</specifier> <name>class</name> <name>Users</name> <block>{
+     }</block></expr></expr_stmt>
+   </block_content>}</block></function>
+ 
+  <comment type="block" format="javadoc">/**
+   * Grants privilege to provided group.
+   *
+   * @param groupId group id
+   * @param resourceId resource id
+   * @param resourceType resource type
+   * @param permissionName permission name
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>void</name></type> <name>grantPrivilegeToGroup</name><parameter_list>(<parameter><decl><type><name>Integer</name></type> <name>groupId</name></decl></parameter>, <parameter><decl><type><name>Long</name></type> <name>resourceId</name></decl></parameter>, <parameter><decl><type><name>ResourceType</name></type> <name>resourceType</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>permissionName</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>GroupEntity</name></type> <name>group</name> <init>= <expr><call><name><name>groupDAO</name><operator>.</operator><name>findByPK</name></name><argument_list>(<argument><expr><name>groupId</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>final</specifier> <name>PrivilegeEntity</name></type> <name>privilege</name> <init>= <expr><operator>new</operator> <call><name>PrivilegeEntity</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ResourceTypeEntity</name></type> <name>resourceTypeEntity</name> <init>= <expr><operator>new</operator> <call><name>ResourceTypeEntity</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>resourceTypeEntity</name><operator>.</operator><name>setId</name></name><argument_list>(<argument><expr><call><name><name>resourceType</name><operator>.</operator><name>getId</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>resourceTypeEntity</name><operator>.</operator><name>setName</name></name><argument_list>(<argument><expr><call><name><name>resourceType</name><operator>.</operator><name>name</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>privilege</name><operator>.</operator><name>setPermission</name></name><argument_list>(<argument><expr><call><name><name>permissionDAO</name><operator>.</operator><name>findPermissionByNameAndType</name></name><argument_list>(<argument><expr><name>permissionName</name></expr></argument>,<argument><expr><name>resourceTypeEntity</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>privilege</name><operator>.</operator><name>setPrincipal</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>getPrincipal</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>privilege</name><operator>.</operator><name>setResource</name></name><argument_list>(<argument><expr><call><name><name>resourceDAO</name><operator>.</operator><name>findById</name></name><argument_list>(<argument><expr><name>resourceId</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>group</name><operator>.</operator><name>getPrincipal</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPrivileges</name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><name>privilege</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>privilegeDAO</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>privilege</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>group</name><operator>.</operator><name>getPrincipal</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getPrivileges</name><argument_list>()</argument_list></call><operator>.</operator><call><name>add</name><argument_list>(<argument><expr><name>privilege</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>principalDAO</name><operator>.</operator><name>merge</name></name><argument_list>(<argument><expr><call><name><name>group</name><operator>.</operator><name>getPrincipal</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt> <comment type="line">//explicit merge for Derby support</comment>
+      <expr_stmt><expr><call><name><name>groupDAO</name><operator>.</operator><name>merge</name></name><argument_list>(<argument><expr><name>group</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>privilegeDAO</name><operator>.</operator><name>merge</name></name><argument_list>(<argument><expr><name>privilege</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/**
+    * Revokes AMBARI.ADMINISTRATOR privilege from provided user.
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog250.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog250.java
+index 3425dd7697..e81568cd9b 100644
+-- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog250.java
+++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog250.java
+@@ -46,6 +46,8 @@ import com.google.inject.Injector;
+ public class UpgradeCatalog250 extends AbstractUpgradeCatalog {
+ 
+   protected static final String HOST_VERSION_TABLE = "host_version";
+  protected static final String GROUPS_TABLE = "groups";
+  protected static final String GROUP_TYPE_COL = "group_type";
+   private static final String AMS_ENV = "ams-env";
+   private static final String KAFKA_BROKER = "kafka-broker";
+   private static final String KAFKA_TIMELINE_METRICS_HOST = "kafka.timeline.metrics.host";
+@@ -109,6 +111,7 @@ public class UpgradeCatalog250 extends AbstractUpgradeCatalog {
+   protected void executeDDLUpdates() throws AmbariException, SQLException {
+     updateHostVersionTable();
+     createComponentVersionTable();
+    updateGroupsTable();
+     dbAccessor.addColumn("stage",
+       new DBAccessor.DBColumnInfo("command_execution_type", String.class, 32, CommandExecutionType.STAGE.toString(),
+         false));
+@@ -140,6 +143,14 @@ public class UpgradeCatalog250 extends AbstractUpgradeCatalog {
+     dbAccessor.addUniqueConstraint(HOST_VERSION_TABLE, "UQ_host_repo", "repo_version_id", "host_id");
+   }
+ 
+  protected void updateGroupsTable() throws SQLException {
+    LOG.info("Updating the {} table", GROUPS_TABLE);
+
+    dbAccessor.addColumn(GROUPS_TABLE, new DBColumnInfo(GROUP_TYPE_COL, String.class, null, "LOCAL", false));
+    dbAccessor.executeQuery("UPDATE groups SET group_type='LDAP' WHERE ldap_group=1");
+    dbAccessor.addUniqueConstraint(GROUPS_TABLE, "UNQ_groups_0", "group_name", "group_type");
+  }
+
+   protected void updateAMSConfigs() throws AmbariException {
+     AmbariManagementController ambariManagementController = injector.getInstance(AmbariManagementController.class);
+     Clusters clusters = ambariManagementController.getClusters();
+diff --git a/ambari-server/src/main/python/ambari-server.py b/ambari-server/src/main/python/ambari-server.py
+index d6c6c10146..d43e0f2ea3 100755
+-- a/ambari-server/src/main/python/ambari-server.py
+++ b/ambari-server/src/main/python/ambari-server.py
+@@ -52,8 +52,8 @@ from ambari_server.setupActions import BACKUP_ACTION, LDAP_SETUP_ACTION, LDAP_SY
+   SETUP_ACTION, SETUP_SECURITY_ACTION,START_ACTION, STATUS_ACTION, STOP_ACTION, RESTART_ACTION, UPGRADE_ACTION, \
+   UPGRADE_STACK_ACTION, SETUP_JCE_ACTION, SET_CURRENT_ACTION, START_ACTION, STATUS_ACTION, STOP_ACTION, UPGRADE_ACTION, \
+   UPGRADE_STACK_ACTION, SETUP_JCE_ACTION, SET_CURRENT_ACTION, ENABLE_STACK_ACTION, SETUP_SSO_ACTION, \
+  DB_CLEANUP_ACTION, INSTALL_MPACK_ACTION, UPGRADE_MPACK_ACTION
+from ambari_server.setupSecurity import setup_ldap, sync_ldap, setup_master_key, setup_ambari_krb5_jaas
+  DB_CLEANUP_ACTION, INSTALL_MPACK_ACTION, UPGRADE_MPACK_ACTION, PAM_SETUP_ACTION
+from ambari_server.setupSecurity import setup_ldap, sync_ldap, setup_master_key, setup_ambari_krb5_jaas, setup_pam
+ from ambari_server.userInput import get_validated_string_input
+ 
+ from ambari_server_main import server_process_main
+@@ -651,7 +651,8 @@ def create_user_action_map(args, options):
+         SETUP_SSO_ACTION: UserActionRestart(setup_sso, options),
+         DB_CLEANUP_ACTION: UserAction(db_cleanup, options),
+         INSTALL_MPACK_ACTION: UserAction(install_mpack, options),
+        UPGRADE_MPACK_ACTION: UserAction(upgrade_mpack, options)
+        UPGRADE_MPACK_ACTION: UserAction(upgrade_mpack, options),
+        PAM_SETUP_ACTION: UserAction(setup_pam)
+       }
+   return action_map
+ 
+diff --git a/ambari-server/src/main/python/ambari_server/setupActions.py b/ambari-server/src/main/python/ambari_server/setupActions.py
+index 697bc1d0b2..c87e0b2344 100644
+-- a/ambari-server/src/main/python/ambari_server/setupActions.py
+++ b/ambari-server/src/main/python/ambari_server/setupActions.py
+@@ -46,3 +46,4 @@ ENABLE_STACK_ACTION = "enable-stack"
+ DB_CLEANUP_ACTION = "db-cleanup"
+ INSTALL_MPACK_ACTION = "install-mpack"
+ UPGRADE_MPACK_ACTION = "upgrade-mpack"
+PAM_SETUP_ACTION = "setup-pam"
+diff --git a/ambari-server/src/main/python/ambari_server/setupSecurity.py b/ambari-server/src/main/python/ambari_server/setupSecurity.py
+index ef27ced313..1508d27b38 100644
+-- a/ambari-server/src/main/python/ambari_server/setupSecurity.py
+++ b/ambari-server/src/main/python/ambari_server/setupSecurity.py
+@@ -67,8 +67,12 @@ REGEX_ANYTHING = ".*"
+ 
+ CLIENT_SECURITY_KEY = "client.security"
+ 
+AUTO_GROUP_CREATION = "auto.group.creation"
+
+ SERVER_API_LDAP_URL = 'ldap_sync_events'
+ 
+PAM_CONFIG_FILE = 'pam.configuration'
+
+ 
+ def read_master_key(isReset=False, options = None):
+   passwordPattern = ".*"
+@@ -271,12 +275,17 @@ def sync_ldap(options):
+           'root-level privileges'
+     raise FatalException(4, err)
+ 
+  properties = get_ambari_properties()
+
+  if get_value_from_properties(properties,CLIENT_SECURITY_KEY,"") == 'pam':
+    err = "PAM is configured. Can not sync LDAP."
+    raise FatalException(1, err)
+
+   server_status, pid = is_server_runing()
+   if not server_status:
+     err = 'Ambari Server is not running.'
+     raise FatalException(1, err)
+ 
+  properties = get_ambari_properties()
+   if properties == -1:
+     raise FatalException(1, "Failed to read properties file.")
+ 
+@@ -614,6 +623,11 @@ def setup_ldap(options):
+     raise FatalException(4, err)
+ 
+   properties = get_ambari_properties()
+
+  if get_value_from_properties(properties,CLIENT_SECURITY_KEY,"") == 'pam':
+    err = "PAM is configured. Can not setup LDAP."
+    raise FatalException(1, err)
+
+   isSecure = get_is_secure(properties)
+ 
+   ldap_property_list_reqd = init_ldap_properties_list_reqd(properties, options)
+@@ -812,3 +826,40 @@ def ensure_can_start_under_current_user(ambari_user):
+           "command as root, as sudo or as user \"{1}\"".format(current_user, ambari_user)
+     raise FatalException(1, err)
+   return current_user
+
+class PamPropTemplate:
+  def __init__(self, properties, i_prop_name, i_prop_val_pattern, i_prompt_regex, i_allow_empty_prompt, i_prop_name_default=None):
+    self.prop_name = i_prop_name
+    self.pam_prop_name = get_value_from_properties(properties, i_prop_name, i_prop_name_default)
+    self.pam_prop_val_prompt = i_prop_val_pattern.format(get_prompt_default(self.pam_prop_name))
+    self.prompt_regex = i_prompt_regex
+    self.allow_empty_prompt = i_allow_empty_prompt
+
+def setup_pam():
+  if not is_root():
+    err = 'Ambari-server setup-pam should be run with ' \
+          'root-level privileges'
+    raise FatalException(4, err)
+
+  properties = get_ambari_properties()
+
+  if get_value_from_properties(properties,CLIENT_SECURITY_KEY,"") == 'ldap':
+    err = "LDAP is configured. Can not setup PAM."
+    raise FatalException(1, err)
+
+  pam_property_value_map = {}
+  pam_property_value_map[CLIENT_SECURITY_KEY] = 'pam'
+
+  pamConfig = get_validated_string_input("Enter PAM configuration file: ", PAM_CONFIG_FILE, REGEX_ANYTHING,
+                                         "Invalid characters in the input!", False, False)
+
+  pam_property_value_map[PAM_CONFIG_FILE] = pamConfig
+
+  if get_YN_input("Do you want to allow automatic group creation [y/n] (y)? ", True):
+    pam_property_value_map[AUTO_GROUP_CREATION] = 'true'
+  else:
+    pam_property_value_map[AUTO_GROUP_CREATION] = 'false'
+
+  update_properties_2(properties, pam_property_value_map)
+  print 'Saving...done'
+  return 0
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+index 37a975709a..09042b50c2 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-MySQL-CREATE.sql
+@@ -295,6 +295,7 @@ CREATE TABLE groups (
+   principal_id BIGINT NOT NULL,
+   group_name VARCHAR(255) NOT NULL,
+   ldap_group INTEGER NOT NULL DEFAULT 0,
+  group_type VARCHAR(255) NOT NULL DEFAULT 'LOCAL',
+   CONSTRAINT PK_groups PRIMARY KEY (group_id),
+   CONSTRAINT FK_groups_principal_id FOREIGN KEY (principal_id) REFERENCES adminprincipal(principal_id),
+   CONSTRAINT UNQ_groups_0 UNIQUE (group_name, ldap_group));
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+index 15d6120459..e2c2dd5a89 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Oracle-CREATE.sql
+@@ -286,6 +286,7 @@ CREATE TABLE groups (
+   principal_id NUMBER(19) NOT NULL,
+   group_name VARCHAR2(255) NOT NULL,
+   ldap_group NUMBER(10) DEFAULT 0,
+  group_type VARCHAR(255) DEFAULT 'LOCAL' NOT NULL,
+   CONSTRAINT PK_groups PRIMARY KEY (group_id),
+   CONSTRAINT FK_groups_principal_id FOREIGN KEY (principal_id) REFERENCES adminprincipal(principal_id),
+   CONSTRAINT UNQ_groups_0 UNIQUE (group_name, ldap_group));
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+index 5a82a52cc7..4e9a5350a6 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-Postgres-CREATE.sql
+@@ -295,6 +295,7 @@ CREATE TABLE groups (
+   principal_id BIGINT NOT NULL,
+   group_name VARCHAR(255) NOT NULL,
+   ldap_group INTEGER NOT NULL DEFAULT 0,
+  group_type VARCHAR(255) NOT NULL DEFAULT 'LOCAL',
+   CONSTRAINT PK_groups PRIMARY KEY (group_id),
+   UNIQUE (ldap_group, group_name),
+   CONSTRAINT FK_groups_principal_id FOREIGN KEY (principal_id) REFERENCES adminprincipal(principal_id));
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+index 659e4dc18e..0ba7df6f2e 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-SQLAnywhere-CREATE.sql
+@@ -284,6 +284,7 @@ CREATE TABLE groups (
+   principal_id NUMERIC(19) NOT NULL,
+   group_name VARCHAR(255) NOT NULL,
+   ldap_group INTEGER NOT NULL DEFAULT 0,
+  group_type VARCHAR(255) NOT NULL DEFAULT 'LOCAL',
+   CONSTRAINT PK_groups PRIMARY KEY (group_id),
+   CONSTRAINT FK_groups_principal_id FOREIGN KEY (principal_id) REFERENCES adminprincipal(principal_id),
+   CONSTRAINT UNQ_groups_0 UNIQUE (group_name, ldap_group));
+diff --git a/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql b/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+index e9a258aade..d8cad6fc22 100644
+-- a/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+++ b/ambari-server/src/main/resources/Ambari-DDL-SQLServer-CREATE.sql
+@@ -299,6 +299,7 @@ CREATE TABLE groups (
+   principal_id BIGINT NOT NULL,
+   group_name VARCHAR(255) NOT NULL,
+   ldap_group INTEGER NOT NULL DEFAULT 0,
+  group_type VARCHAR(255) NOT NULL DEFAULT 'LOCAL',
+   CONSTRAINT PK_groups PRIMARY KEY CLUSTERED (group_id),
+   CONSTRAINT FK_groups_principal_id FOREIGN KEY (principal_id) REFERENCES adminprincipal(principal_id),
+   CONSTRAINT UNQ_groups_0 UNIQUE (group_name, ldap_group));
+diff --git a/ambari-server/src/main/resources/properties.json b/ambari-server/src/main/resources/properties.json
+index 6bbb32319b..b7e0988b07 100644
+-- a/ambari-server/src/main/resources/properties.json
+++ b/ambari-server/src/main/resources/properties.json
+@@ -183,6 +183,7 @@
+     "Group":[
+         "Groups/group_name",
+         "Groups/ldap_group",
+        "Groups/group_type",
+         "_"
+     ],
+     "Member":[
+diff --git a/ambari-server/src/main/resources/webapp/WEB-INF/spring-security.xml b/ambari-server/src/main/resources/webapp/WEB-INF/spring-security.xml
+index 500c0bf829..9eca92090c 100644
+-- a/ambari-server/src/main/resources/webapp/WEB-INF/spring-security.xml
+++ b/ambari-server/src/main/resources/webapp/WEB-INF/spring-security.xml
+@@ -32,6 +32,7 @@
+ 
+   &lt;authentication-manager alias="authenticationManager"&gt;
+     &lt;authentication-provider ref="ambariLocalAuthenticationProvider"/&gt;
+    &lt;authentication-provider ref="ambariPamAuthenticationProvider"/&gt;
+     &lt;authentication-provider ref="ambariLdapAuthenticationProvider"/&gt;
+     &lt;authentication-provider ref="ambariInternalAuthenticationProvider"/&gt;
+     &lt;authentication-provider ref="kerberosServiceAuthenticationProvider"/&gt;
+diff --git a/ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProviderTest.java b/ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProviderTest.java
+new file mode 100644
+index 0000000000..2a6c75488c
+-- /dev/null
+++ b/ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariPamAuthenticationProviderTest.java
+@@ -0,0 +1,97 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</comment>
+<package>package <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>authorization</name></name>;</package>
+
+<import>import static <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>Assert</name><operator>.</operator><name>assertEquals</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>createNiceMock</name></name>;</import>
+<import>import static <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name><operator>.</operator><name>expect</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Arrays</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashSet</name></name>;</import>
+
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>audit</name><operator>.</operator><name>AuditLoggerModule</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>configuration</name><operator>.</operator><name>Configuration</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>orm</name><operator>.</operator><name>GuiceJpaInitializer</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>ambari</name><operator>.</operator><name>server</name><operator>.</operator><name>security</name><operator>.</operator><name>ClientSecurityType</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>easymock</name><operator>.</operator><name>EasyMock</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>After</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Before</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>Test</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>jvnet</name><operator>.</operator><name>libpam</name><operator>.</operator><name>PAM</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>jvnet</name><operator>.</operator><name>libpam</name><operator>.</operator><name>UnixUser</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>authentication</name><operator>.</operator><name>UsernamePasswordAuthenticationToken</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>Authentication</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>springframework</name><operator>.</operator><name>security</name><operator>.</operator><name>core</name><operator>.</operator><name>AuthenticationException</name></name>;</import>
+
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Guice</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Inject</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>Injector</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>google</name><operator>.</operator><name>inject</name><operator>.</operator><name>persist</name><operator>.</operator><name>PersistService</name></name>;</import>
+
+<import>import <name><name>junit</name><operator>.</operator><name>framework</name><operator>.</operator><name>Assert</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>AmbariPamAuthenticationProviderTest</name> <block>{
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <name>Injector</name></type> <name>injector</name></decl>;</decl_stmt>
+
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><specifier>private</specifier> <name>AmbariPamAuthenticationProvider</name></type> <name>authenticationProvider</name></decl>;</decl_stmt>
+  <decl_stmt><decl><annotation>@<name>Inject</name></annotation>
+  <type><name>Configuration</name></type> <name>configuration</name></decl>;</decl_stmt>
+
+  <function><annotation>@<name>Before</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setUp</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>injector</name> <operator>=</operator> <call><name><name>Guice</name><operator>.</operator><name>createInjector</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>AuditLoggerModule</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><operator>new</operator> <call><name>AuthorizationTestModule</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>injector</name><operator>.</operator><name>injectMembers</name></name><argument_list>(<argument><expr><name>this</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>GuiceJpaInitializer</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>configuration</name><operator>.</operator><name>setClientSecurityType</name></name><argument_list>(<argument><expr><name><name>ClientSecurityType</name><operator>.</operator><name>PAM</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>configuration</name><operator>.</operator><name>setProperty</name></name><argument_list>(<argument><expr><name><name>Configuration</name><operator>.</operator><name>PAM_CONFIGURATION_FILE</name></name></expr></argument>, <argument><expr><literal type="string">"ambari-pam"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>After</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>tearDown</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>PersistService</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call><operator>.</operator><call><name>stop</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name><argument_list>(<argument><expr><name>expected</name> <operator>=</operator> <name><name>AuthenticationException</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testBadCredential</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>Authentication</name></type> <name>authentication</name> <init>= <expr><operator>new</operator> <call><name>UsernamePasswordAuthenticationToken</name><argument_list>(<argument><expr><literal type="string">"notFound"</literal></expr></argument>, <argument><expr><literal type="string">"wrong"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>authenticationProvider</name><operator>.</operator><name>authenticate</name></name><argument_list>(<argument><expr><name>authentication</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testAuthenticate</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <decl_stmt><decl><type><name>PAM</name></type> <name>pam</name> <init>= <expr><call><name>createNiceMock</name><argument_list>(<argument><expr><name><name>PAM</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>UnixUser</name></type> <name>unixUser</name> <init>= <expr><call><name>createNiceMock</name><argument_list>(<argument><expr><name><name>UnixUser</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>pam</name><operator>.</operator><name>authenticate</name></name><argument_list>(<argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyObject</name></name><argument_list>(<argument><expr><name><name>String</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name><name>EasyMock</name><operator>.</operator><name>anyObject</name></name><argument_list>(<argument><expr><name><name>String</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><name>unixUser</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>atLeastOnce</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>expect</name><argument_list>(<argument><expr><call><name><name>unixUser</name><operator>.</operator><name>getGroups</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>andReturn</name><argument_list>(<argument><expr><operator>new</operator> <call><name><name>HashSet</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><call><name><name>Arrays</name><operator>.</operator><name>asList</name></name><argument_list>(<argument><expr><literal type="string">"group"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>atLeastOnce</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>replay</name></name><argument_list>(<argument><expr><name>unixUser</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>EasyMock</name><operator>.</operator><name>replay</name></name><argument_list>(<argument><expr><name>pam</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Authentication</name></type> <name>authentication</name> <init>= <expr><operator>new</operator> <call><name>UsernamePasswordAuthenticationToken</name><argument_list>(<argument><expr><literal type="string">"allowedUser"</literal></expr></argument>, <argument><expr><literal type="string">"password"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Authentication</name></type> <name>result</name> <init>= <expr><call><name><name>authenticationProvider</name><operator>.</operator><name>authenticateViaPam</name></name><argument_list>(<argument><expr><name>pam</name></expr></argument>,<argument><expr><name>authentication</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><literal type="string">"allowedUser"</literal></expr></argument>, <argument><expr><call><name><name>result</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <function><annotation>@<name>Test</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>testDisabled</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name><name>configuration</name><operator>.</operator><name>setClientSecurityType</name></name><argument_list>(<argument><expr><name><name>ClientSecurityType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>Authentication</name></type> <name>authentication</name> <init>= <expr><operator>new</operator> <call><name>UsernamePasswordAuthenticationToken</name><argument_list>(<argument><expr><literal type="string">"allowedUser"</literal></expr></argument>, <argument><expr><literal type="string">"password"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Authentication</name></type> <name>auth</name> <init>= <expr><call><name><name>authenticationProvider</name><operator>.</operator><name>authenticate</name></name><argument_list>(<argument><expr><name>authentication</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>Assert</name><operator>.</operator><name>assertTrue</name></name><argument_list>(<argument><expr><name>auth</name> <operator>==</operator> <literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>TestUsers</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>TestUsers</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>f54ac5cae1</name><operator>..</operator><literal type="number">7d112fc1d1</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>TestUsers</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>security</name><operator>/</operator><name>authorization</name><operator>/</operator><name><name>TestUsers</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">285</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestUsers</name> <block>{
+ 
+   @<expr><name>Test</name>
+   <specifier>public</specifier> <name>void</name> <call><name>testSetGroupLdap</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><literal type="string">"group"</literal></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><literal type="string">"group"</literal></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><call><name><name>users</name><operator>.</operator><name>setGroupLdap</name></name><argument_list>(<argument><expr><literal type="string">"group"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><call><name><name>users</name><operator>.</operator><name>getGroup</name></name><argument_list>(<argument><expr><literal type="string">"group"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">302</literal></expr>,<expr><literal type="number">8</literal> <operator>+</operator><literal type="number">302</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestUsers</name> <block>{
+   <expr><specifier>public</specifier> <name>void</name> <call><name>testCreateGetRemoveGroup</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><name>final</name> <name>String</name> <name>groupName</name> <operator>=</operator> <literal type="string">"engineering1"</literal></expr></block></expr></argument></throws></expr>;
+     <expr><name>final</name> <name>String</name> <name>groupName2</name> <operator>=</operator> <literal type="string">"engineering2"</literal></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName2</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName2</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;
+ 
+     <expr><name>final</name> <name>Group</name> <name>group</name> <operator>=</operator> <call><name><name>users</name><operator>.</operator><name>getGroup</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name>assertNotNull</name><argument_list>(<argument><expr><name>group</name></expr></argument>)</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">328</literal></expr>,<expr><literal type="number">8</literal> <operator>+</operator><literal type="number">328</literal></expr>,<expr><literal type="number">8</literal> @@ <specifier>public</specifier> <name>class</name> <name>TestUsers</name> <block>{
+   <expr><specifier>public</specifier> <name>void</name> <call><name>testMembers</name><argument_list>()</argument_list></call> <throws>throws <argument><expr><name>Exception</name> <block>{
+     <expr><name>final</name> <name>String</name> <name>groupName</name> <operator>=</operator> <literal type="string">"engineering"</literal></expr></block></expr></argument></throws></expr>;
+     <expr><name>final</name> <name>String</name> <name>groupName2</name> <operator>=</operator> <literal type="string">"engineering2"</literal></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName2</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>users</name><operator>.</operator><name>createGroup</name></name><argument_list>(<argument><expr><name>groupName2</name></expr></argument>, <argument><expr><name><name>GroupType</name><operator>.</operator><name>LOCAL</name></name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>users</name><operator>.</operator><name>createUser</name></name><argument_list>(<argument><expr><literal type="string">"user1"</literal></expr></argument>, <argument><expr><literal type="string">"user1"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>users</name><operator>.</operator><name>createUser</name></name><argument_list>(<argument><expr><literal type="string">"user2"</literal></expr></argument>, <argument><expr><literal type="string">"user2"</literal></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>users</name><operator>.</operator><name>createUser</name></name><argument_list>(<argument><expr><literal type="string">"user3"</literal></expr></argument>, <argument><expr><literal type="string">"user3"</literal></expr></argument>)</argument_list></call></expr>;
+<expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250Test</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250Test</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">8ed81dfd83</literal><operator>..</operator><literal type="number">14fc20b8b6</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250Test</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>ambari</name><operator>-</operator><name>server</name><operator>/</operator><name>src</name><operator>/</operator><name>test</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>ambari</name><operator>/</operator><name>server</name><operator>/</operator><name>upgrade</name><operator>/</operator><name><name>UpgradeCatalog250Test</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">101</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">101</literal></expr>,<expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog250Test</name> <block>{
+ 
+     <comment type="line">// !!! setup capture for host_version</comment>
+     <expr><call><name><name>dbAccessor</name><operator>.</operator><name>addUniqueConstraint</name></name><argument_list>(<argument><expr><literal type="string">"host_version"</literal></expr></argument>, <argument><expr><literal type="string">"UQ_host_repo"</literal></expr></argument>, <argument><expr><literal type="string">"repo_version_id"</literal></expr></argument>, <argument><expr><literal type="string">"host_id"</literal></expr></argument>)</argument_list></call></expr>;
+
+    <expr><name><name>Capture</name><argument_list type="generic">&lt;<argument><name><name>DBAccessor</name><operator>.</operator><name>DBColumnInfo</name></name></argument>&gt;</argument_list></name> <name>groupGroupType</name> <operator>=</operator> <call><name>newCapture</name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>dbAccessor</name><operator>.</operator><name>addColumn</name></name><argument_list>(<argument><expr><call><name>eq</name><argument_list>(<argument><expr><name><name>UpgradeCatalog250</name><operator>.</operator><name>GROUPS_TABLE</name></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><call><name>capture</name><argument_list>(<argument><expr><name>groupGroupType</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>dbAccessor</name><operator>.</operator><name>addUniqueConstraint</name></name><argument_list>(<argument><expr><literal type="string">"groups"</literal></expr></argument>, <argument><expr><literal type="string">"UNQ_groups_0"</literal></expr></argument>, <argument><expr><literal type="string">"group_name"</literal></expr></argument>, <argument><expr><literal type="string">"group_type"</literal></expr></argument>)</argument_list></call></expr>;
+
+     <expr><call><name>expectLastCall</name><argument_list>()</argument_list></call><operator>.</operator><call><name>once</name><argument_list>()</argument_list></call></expr>;
+ 
+     <comment type="line">// !!! setup capture for servicecomponent_version</comment>
+@@ <expr><operator>-</operator><literal type="number">143</literal></expr>,<expr><literal type="number">6</literal> <operator>+</operator><literal type="number">148</literal></expr>,<expr><literal type="number">14</literal> @@ <specifier>public</specifier> <name>class</name> <name>UpgradeCatalog250Test</name> <block>{
+     <expr><name>UpgradeCatalog250</name> <name>upgradeCatalog250</name> <operator>=</operator> <call><name><name>injector</name><operator>.</operator><name>getInstance</name></name><argument_list>(<argument><expr><name><name>UpgradeCatalog250</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr>;
+     <expr><call><name><name>upgradeCatalog250</name><operator>.</operator><name>executeDDLUpdates</name></name><argument_list>()</argument_list></call></expr>;
+ 
+    <expr><name><name>DBAccessor</name><operator>.</operator><name>DBColumnInfo</name></name> <name>capturedGroupTypeColumn</name> <operator>=</operator> <call><name><name>groupGroupType</name><operator>.</operator><name>getValue</name></name><argument_list>()</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertNotNull</name></name><argument_list>(<argument><expr><name>capturedGroupTypeColumn</name></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>UpgradeCatalog250</name><operator>.</operator><name>GROUP_TYPE_COL</name></name></expr></argument>, <argument><expr><call><name><name>capturedGroupTypeColumn</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><name><name>String</name><operator>.</operator><name>class</name></name></expr></argument>, <argument><expr><call><name><name>capturedGroupTypeColumn</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><call><name><name>capturedGroupTypeColumn</name><operator>.</operator><name>getLength</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="string">"LOCAL"</literal></expr></argument>, <argument><expr><call><name><name>capturedGroupTypeColumn</name><operator>.</operator><name>getDefaultValue</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+    <expr><call><name><name>Assert</name><operator>.</operator><name>assertEquals</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><call><name><name>capturedGroupTypeColumn</name><operator>.</operator><name>isNullable</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+
+     <expr><call><name>verify</name><argument_list>(<argument><expr><name>dbAccessor</name></expr></argument>)</argument_list></call></expr>;
+ 
+     <comment type="line">// !!! check the captured for host_version</comment>
+<expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></block></expr></block></expr></block></expr></block></expr></block></expr></expr_stmt></block_content></block></function></block_content></block></function></block></class>
+
+</unit>

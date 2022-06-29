@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/64c739f4f.java"><expr><name>From</name> <literal type="number">64c739f4f1277064e1bad1ab1200248a1402c6a6</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Jukka</name> <name><name>Zitting</name> <argument_list type="generic">&lt;<argument><name>jukka</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">16</literal> <name>Feb</name> <literal type="number">2009</literal> <literal type="number">11</literal><operator>:</operator><literal type="number">21</literal><operator>:</operator><literal type="number">33</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">1979</literal><operator>:</operator> <name>Deadlock</name> <name>on</name> <name>concurrent</name> <name>read</name> <operator>&amp;</operator> <name>transactional</name> <name>write</name>
+ <name>operations</name>
+
+<name>Moved</name> <name>the</name> <name>virtual</name> <name>provider</name> <name>accesses</name> <name>outside</name> <name>the</name> <name>workspace</name> <name>read</name> <name><name>lock</name><operator>.</operator> <name>This</name></name> <name>avoids</name> <name>the</name> <name>deadlock</name> <name>with</name> <name>a</name> <name>transactional</name> <name><name>write</name><operator>.</operator>
+
+<name>This</name></name> <name>change</name> <name>in</name> <name>lock</name> <name>scope</name> <name>does</name> <name>not</name> <name>endanger</name> <name>consistency</name></expr><operator>,</operator> <expr><name>as</name> <name>all</name> <name>the</name> <name>modifiable</name> <name>virtual</name> <name>providers</name> <name>already</name> <name>have</name> <name>their</name> <name>own</name> <name>internal</name> <call><name>locking</name> <argument_list>(<argument><expr><name>as</name> <name>evidenced</name> <name>by</name> <name>the</name> <name>deadlock</name> <name>scenario</name><operator>!</operator></expr></argument>)</argument_list></call><operator>.</operator> <name>In</name> <name>fact</name> <name>a</name> <name>global</name> <name>virtual</name> <name>provider</name> <name>like</name> <name>the</name> <name>version</name> <name>store</name> <operator>*</operator><name>must</name><operator>*</operator> <name>have</name> <name>it</name><literal type="char">'</literal></expr>s own locking mechanism as it can be concurrently accessed from multiple workspaces.
+
+git-svn-id: https://svn.apache.org/repos/asf/jackrabbit/trunk@744895 13f79535-47bb-0310-9956-ffa450edef68
+--
+ .../core/state/SharedItemStateManager.java    | 35 +++++++++----------
+ 1 file changed, 17 insertions(+), 18 deletions(-)
+
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/state/SharedItemStateManager.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/state/SharedItemStateManager.java
+index 506fb59eb..60d70fc69 100644
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/state/SharedItemStateManager.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/state/SharedItemStateManager.java
+@@ -313,9 +313,7 @@ public class SharedItemStateManager
+      */
+     public NodeReferences getNodeReferences(NodeReferencesId id)
+             throws NoSuchItemStateException, ItemStateException {
+
+         ISMLocking.ReadLock readLock = acquireReadLock(id.getTargetId());
+
+         try {
+             // check persistence manager
+             try {
+@@ -323,18 +321,19 @@ public class SharedItemStateManager
+             } catch (NoSuchItemStateException e) {
+                 // ignore
+             }
+            // check virtual providers
+            for (int i = 0; i &lt; virtualProviders.length; i++) {
+                try {
+                    return virtualProviders[i].getNodeReferences(id);
+                } catch (NoSuchItemStateException e) {
+                    // ignore
+                }
+            }
+         } finally {
+             readLock.release();
+         }
+ 
+        // check virtual providers
+        for (int i = 0; i &lt; virtualProviders.length; i++) {
+            try {
+                return virtualProviders[i].getNodeReferences(id);
+            } catch (NoSuchItemStateException e) {
+                // ignore
+            }
+        }
+
+         // throw
+         throw new NoSuchItemStateException(id.toString());
+     }
+@@ -343,14 +342,12 @@ public class SharedItemStateManager
+      * {@inheritDoc}
+      */
+     public boolean hasNodeReferences(NodeReferencesId id) {
+
+         ISMLocking.ReadLock readLock;
+         try {
+             readLock = acquireReadLock(id.getTargetId());
+         } catch (ItemStateException e) {
+             return false;
+         }
+
+         try {
+             // check persistence manager
+             try {
+@@ -360,15 +357,17 @@ public class SharedItemStateManager
+             } catch (ItemStateException e) {
+                 // ignore
+             }
+            // check virtual providers
+            for (int i = 0; i &lt; virtualProviders.length; i++) {
+                if (virtualProviders[i].hasNodeReferences(id)) {
+                    return true;
+                }
+            }
+         } finally {
+             readLock.release();
+         }
+
+        // check virtual providers
+        for (int i = 0; i &lt; virtualProviders.length; i++) {
+            if (virtualProviders[i].hasNodeReferences(id)) {
+                return true;
+            }
+        }
+
+         return false;
+     }
+ 
+- 
+2.19.1.windows.1
+
+</unit>

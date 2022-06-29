@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/c1a70f31a6.java"><expr><name>From</name> <name>c1a70f31a605ac254c4c5d556444659aaa3201e5</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name><name>yonik</name> <argument_list type="generic">&lt;<argument><name>yonik</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">11</literal> <name>Apr</name> <literal type="number">2016</literal> <literal type="number">23</literal><operator>:</operator><literal type="number">51</literal><operator>:</operator><literal type="number">41</literal> <operator>-</operator><literal type="number">0400</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">7188</literal><operator>:</operator> <name>remove</name> <name>incorrect</name> <name>sanity</name> <name>check</name> <name>in</name>
+ <call><name><name>NRTCachingDirectory</name><operator>.</operator><name>listAll</name></name><argument_list>()</argument_list></call> <name>that</name> <throws>throws <argument><expr><name>IllegalStateException</name>
+
+<operator>--</operator>
+ <name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                           <operator>|</operator> <literal type="number">4</literal> <operator>++</operator><operator>++</operator>
+ <operator>...</operator><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>store</name><operator>/</operator><name><name>NRTCachingDirectory</name><operator>.</operator><name>java</name></name>    <operator>|</operator> <literal type="number">5</literal> <operator>+</operator><operator>--</operator><operator>--</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr></argument>, <argument><expr><literal type="number">5</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">4</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <literal type="number">6b549f2d76f</literal><operator>..</operator><name>e371f25aabb</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name></expr></argument>
+@<argument>@ <expr><operator>-</operator><literal type="number">76</literal></expr></argument>,<argument><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">76</literal></expr></argument>,<argument><expr><literal type="number">10</literal> @@ <name>Bug</name> <name>Fixes</name>
+ <operator>*</operator> <name>LUCENE</name><operator>-</operator><literal type="number">7187</literal><operator>:</operator> <name>Block</name> <name>join</name> <name>queries</name><literal type="char">'</literal></expr></argument></throws></expr> Weight#extractTerms(...) implementations
+   should delegate to the wrapped weight. (Martijn van Groningen)
+ 
+* LUCENE-7188: remove incorrect sanity check in NRTCachingDirectory.listAll()
+  that led to IllegalStateException being thrown when nothing was wrong.
+  (David Smiley, yonik)  
+
+ Other
+ 
+ * LUCENE-7174: Upgrade randomizedtesting to 2.3.4. (Uwe Schindler, Dawid Weiss)
+diff --git a/lucene/core/src/java/org/apache/lucene/store/NRTCachingDirectory.java b/lucene/core/src/java/org/apache/lucene/store/NRTCachingDirectory.java
+index 22a9571b76b..9be0b9e9c91 100644
+-- a/lucene/core/src/java/org/apache/lucene/store/NRTCachingDirectory.java
+++ b/lucene/core/src/java/org/apache/lucene/store/NRTCachingDirectory.java
+@@ -101,10 +101,7 @@ public class NRTCachingDirectory extends FilterDirectory implements Accountable
+       files.add(f);
+     }
+     for(String f : in.listAll()) {
+      if (!files.add(f)) {
+        throw new IllegalStateException("file: " + in + " appears both in delegate and in cache: " +
+                                        "cache=" + Arrays.toString(cache.listAll()) + ",delegate=" + Arrays.toString(in.listAll()));
+      }
+      files.add(f);
+     }
+     String[] result = files.toArray(new String[files.size()]);
+     Arrays.sort(result);
+- 
+2.19.1.windows.1
+
+</unit>

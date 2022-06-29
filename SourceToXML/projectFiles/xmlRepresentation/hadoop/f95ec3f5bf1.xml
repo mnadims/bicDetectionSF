@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/hadoop/f95ec3f5bf1.java"><expr_stmt><expr><name>From</name> <name>f95ec3f5bf12bee07c90943cff3b135e6a7e7a8b</name> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Christopher</name> <name><name>Douglas</name> <argument_list type="generic">&lt;<argument><name>cdouglas</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Mon</name></expr><operator>,</operator> <expr><literal type="number">7</literal> <name>Sep</name> <literal type="number">2009</literal> <literal type="number">21</literal><operator>:</operator><literal type="number">54</literal><operator>:</operator><literal type="number">45</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>HADOOP</name><operator>-</operator><literal type="number">6133.</literal> <name>Add</name> <name>a</name> <name>caching</name> <name>layer</name> <name>to</name>
+ <name>Configuration</name><operator>::</operator><name>getClassByName</name> <name>to</name> <name>alleviate</name> <name>a</name> <name>performance</name> <name>regression</name>
+ <name>introduced</name> <name>in</name> <name>a</name> <name>compatibility</name> <name><name>layer</name><operator>.</operator> <name>Contributed</name></name> <name>by</name> <name>Todd</name> <name>Lipcon</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/hadoop/common/trunk@812285 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <name><name>CHANGES</name><operator>.</operator><name>txt</name></name>                                   <operator>|</operator>  <literal type="number">7</literal> <operator>++</operator><operator>++</operator><operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <operator>|</operator> <literal type="number">25</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>++</operator><operator>-</operator>
+ <literal type="number">2</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">30</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">2</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<name>index</name> <name>b3e5b2e0757</name><operator>..</operator><name>a32e6c79056</name> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name><name>CHANGES</name><operator>.</operator><name>txt</name></name>
+@@ <operator>-</operator><literal type="number">512</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">512</literal></expr><operator>,</operator><expr><literal type="number">8</literal> @@ <call><name>Trunk</name> <argument_list>(<argument><expr><name>unreleased</name> <name>changes</name></expr></argument>)</argument_list></call>
+     <name>HADOOP</name><operator>-</operator><literal type="number">6176.</literal> <name>Add</name> <name>a</name> <name>couple</name></expr></expr_stmt> <package>package private <name>methods</name> <name>to</name> <name>AccessTokenHandler</name>
+     for <name><name>testing</name><operator>.</operator></name>  (<name>Kan</name> <name>Zhang</name> <name>via</name> <name>szetszwo</name></package>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">6182.</literal> <name>Fix</name> <name>ReleaseAudit</name> <call><name>warnings</name> <argument_list>(<argument><expr><name>Giridharan</name> <name>Kesavan</name> <name>and</name> <name>Lee</name> <name>Tucker</name> <name>via</name> <name>gkesavan</name></expr></argument>)</argument_list></call>
+    <name>HADOOP</name><operator>-</operator><literal type="number">6182.</literal> <name>Fix</name> <name>ReleaseAudit</name> <call><name>warnings</name> <argument_list>(<argument><expr><name>Giridharan</name> <name>Kesavan</name> <name>and</name> <name>Lee</name> <name>Tucker</name>
+    <name>via</name> <name>gkesavan</name></expr></argument>)</argument_list></call>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">6173.</literal> <name>Change</name> <name>src</name><operator>/</operator><specifier>native</specifier><operator>/</operator><name><name>packageNativeHadoop</name><operator>.</operator><name>sh</name></name> <name>to</name></expr></expr_stmt> <package>package <name>all</name>
+     native <name>library</name> <name><name>files</name><operator>.</operator></name>  (<name>Hong</name> <name>Tang</name> <name>via</name> <name>szetszwo</name></package>)
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">526</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">527</literal></expr><operator>,</operator><expr><literal type="number">10</literal> @@ <call><name>Trunk</name> <argument_list>(<argument><expr><name>unreleased</name> <name>changes</name></expr></argument>)</argument_list></call>
+     <name>HADOOP</name><operator>-</operator><literal type="number">6231.</literal> <name>Allow</name> <name>caching</name> <name>of</name> <name>filesystem</name> <name>instances</name> <name>to</name> <name>be</name> <name>disabled</name> <name>on</name> <name>a</name>
+     <name>per</name><operator>-</operator><name>instance</name> <name><name>basis</name><operator>.</operator></name> (<name>tomwhite</name></expr></expr_stmt>)
+ 
+    <expr_stmt><expr><name>HADOOP</name><operator>-</operator><literal type="number">6133.</literal> <name>Add</name> <name>a</name> <name>caching</name> <name>layer</name> <name>to</name> <name>Configuration</name><operator>::</operator><name>getClassByName</name> <name>to</name>
+    <name>alleviate</name> <name>a</name> <name>performance</name> <name>regression</name> <name>introduced</name> <name>in</name> <name>a</name> <name>compatibility</name> <name><name>layer</name><operator>.</operator></name>
+    (<name>Todd</name> <name>Lipcon</name> <name>via</name> <name>cdouglas</name></expr></expr_stmt>)
+
+   <expr_stmt><expr><name>OPTIMIZATIONS</name>
+ 
+     <name>HADOOP</name><operator>-</operator><literal type="number">5595.</literal> <name>NameNode</name> <name>does</name> <name>not</name> <name>need</name> <name>to</name> <name>run</name> <name>a</name> <name>replicator</name> <name>to</name> <name>choose</name> <name>a</name>
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>cfb1ba8d70a</name><operator>..</operator><literal type="number">8bf4c1c436e</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>hadoop</name><operator>/</operator><name>conf</name><operator>/</operator><name><name>Configuration</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">170</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">170</literal></expr><operator>,</operator><expr><literal type="number">9</literal> @@
+    <operator>*</operator><operator>/</operator>
+   <specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name> <name>defaultResources</name> <operator>=</operator> 
+     <operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+  <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>ClassLoader</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type>
+    <name>CACHE_CLASSES</name> <init>= <expr><operator>new</operator> <call><name><name>WeakHashMap</name><argument_list type="generic">&lt;<argument><name>ClassLoader</name></argument>, <argument><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+   
+   <comment type="block" format="javadoc">/**
+    * Flag to indicate if the storage of resource which updates a key needs 
+@@ -1029,7 +1032,27 @@ public void setStrings(String name, String... values) {
+    * @throws ClassNotFoundException if the class is not found.
+    */</comment>
+   <function><type><specifier>public</specifier> <name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></type> <name>getClassByName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>ClassNotFoundException</name></expr></argument></throws> <block>{<block_content>
+    <return>return <expr><call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>classLoader</name></expr></argument>)</argument_list></call></expr>;</return>
+    <decl_stmt><decl><type><name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name></type> <name>map</name></decl>;</decl_stmt>
+    
+    <synchronized>synchronized <init>(<expr><name>CACHE_CLASSES</name></expr>)</init> <block>{<block_content>
+      <expr_stmt><expr><name>map</name> <operator>=</operator> <call><name><name>CACHE_CLASSES</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>classLoader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>map</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>map</name> <operator>=</operator> <call><name><name>Collections</name><operator>.</operator><name>synchronizedMap</name></name><argument_list>(
+          <argument><expr><operator>new</operator> <call><name><name>WeakHashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name><name>Class</name><argument_list type="generic">&lt;<argument><name>?</name></argument>&gt;</argument_list></name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>CACHE_CLASSES</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>classLoader</name></expr></argument>, <argument><expr><name>map</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></synchronized>
+
+    <decl_stmt><decl><type><name>Class</name></type> <name>clazz</name> <init>= <expr><call><name><name>map</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>clazz</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>clazz</name> <operator>=</operator> <call><name><name>Class</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><name>classLoader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if_stmt><if>if <condition>(<expr><name>clazz</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <comment type="line">// two putters can race here, but they'll put the same class</comment>
+        <expr_stmt><expr><call><name><name>map</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>clazz</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <return>return <expr><name>clazz</name></expr>;</return>
+   </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/** 
+- 
+2.19.1.windows.1
+
+</comment></unit>

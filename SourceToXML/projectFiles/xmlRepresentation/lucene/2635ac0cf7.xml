@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/lucene/2635ac0cf7.java"><expr_stmt><expr><name>From</name> <literal type="number">2635ac0cf7a726d36ff6d7362c12970bb99b3c0c</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Simon</name> <name><name>Willnauer</name> <argument_list type="generic">&lt;<argument><name>simonw</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Wed</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <name>Feb</name> <literal type="number">2011</literal> <literal type="number">22</literal><operator>:</operator><literal type="number">34</literal><operator>:</operator><literal type="number">15</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>LUCENE</name><operator>-</operator><literal type="number">2831</literal><operator>:</operator> <name>Use</name> <name>leaf</name> <name>reader</name> <name>slices</name></expr></expr_stmt> <for>for parallel execution
+ instead of SubSearcher instances.
+
+git-svn-id: https:<comment type="line">//svn.apache.org/repos/asf/lucene/dev/trunk@1066669 13f79535-47bb-0310-9956-ffa450edef68</comment>
+--
+ .../apache/lucene/search/IndexSearcher.java   <operator>|</operator> 198 ++++++++++--------
+ .../search/function/QueryValueSource.java     <operator>|</operator>   4 +-
+ 2 files changed<operator>,</operator> <expr_stmt><expr><literal type="number">115</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">87</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+<name>index</name> <literal type="number">6e885c003ff</literal><operator>..</operator><literal type="number">23736d0726c</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>lucene</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>lucene</name><operator>/</operator><name>search</name><operator>/</operator><name><name>IndexSearcher</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">65</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+   <comment type="line">// in the next release</comment>
+   <expr><specifier>protected</specifier> <name>final</name> <name>ReaderContext</name> <name>readerContext</name></expr>;
+   <expr><specifier>protected</specifier> <name>final</name> <name><name>AtomicReaderContext</name><index>[]</index></name> <name>leafContexts</name></expr>;
+  <comment type="line">// used with executor - each slice holds a set of leafs executed within one thread</comment>
+  <expr><specifier>protected</specifier> <name>final</name> <name><name>LeafSlice</name><index>[]</index></name> <name>leafSlices</name></expr>;
+ 
+   <comment type="line">// These are only used for multi-threaded search</comment>
+   <expr><specifier>private</specifier> <name>final</name> <name>ExecutorService</name> <name>executor</name></expr>;
+  <expr><specifier>protected</specifier> <name>final</name> <name><name>IndexSearcher</name><index>[]</index></name> <name>subSearchers</name></expr>;
+ 
+   <comment type="line">// the default SimilarityProvider</comment>
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>SimilarityProvider</name> <name>defaultProvider</name> <operator>=</operator> <operator>new</operator> <call><name>DefaultSimilarity</name><argument_list>()</argument_list></call></expr>;
+@@ <expr><operator>-</operator><literal type="number">175</literal></expr>,<expr><literal type="number">47</literal> <operator>+</operator><literal type="number">176</literal></expr>,<expr><literal type="number">22</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+     <expr><name><name>this</name><operator>.</operator><name>closeReader</name></name> <operator>=</operator> <name>closeReader</name></expr>;
+     <expr><name><name>this</name><operator>.</operator><name>readerContext</name></name> <operator>=</operator> <name>context</name></expr>;
+     <expr><name>leafContexts</name> <operator>=</operator> <call><name><name>ReaderUtil</name><operator>.</operator><name>leaves</name></name><argument_list>(<argument><expr><name>context</name></expr></argument>)</argument_list></call></expr>;
+    
+    <if_stmt><if>if <condition>(<expr><name>executor</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>subSearchers</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    <expr_stmt/></block_content></block></if></if_stmt>}</block></expr> <if_stmt><else>else <block>{<block_content>
+      <expr_stmt><expr><name>subSearchers</name> <operator>=</operator> <operator>new</operator> <name><name>IndexSearcher</name><index>[<expr><name><name>this</name><operator>.</operator><name>leafContexts</name><operator>.</operator><name>length</name></name></expr>]</index></name></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>subSearchers</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <if_stmt><if>if <condition>(<expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>reader</name> <operator>==</operator> <name><name>context</name><operator>.</operator><name>reader</name></name></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name><name>subSearchers</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>this</name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt></block_content></block></for></block_content></block></else></if_stmt>}</block></expr></expr_stmt></for> <if_stmt><else>else <block>{<block_content>
+          <expr_stmt><expr><name><name>subSearchers</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><name>context</name></expr></argument>, <argument><expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+      }
+    }
+  }
+
+  <comment type="block" format="javadoc">/**
+   * Expert: Creates a searcher from a top-level {@link ReaderContext} with and
+   * executes searches on the given leave slice exclusively instead of searching
+   * over all leaves. This constructor should be used to run one or more leaves
+   * within a single thread. Hence, for scorer and filter this looks like an
+   * ordinary search in the hierarchy such that there is no difference between
+   * single and multi-threaded.
+   * 
+   * @lucene.experimental
+   * */</comment>
+  public <expr_stmt><expr><call><name>IndexSearcher</name><argument_list>(<argument><expr><name>ReaderContext</name> <name>topLevel</name></expr></argument>, <argument><expr><name>AtomicReaderContext</name><operator>...</operator> <name>leaves</name></expr></argument>)</argument_list></call> <block>{
+    <assert>assert <expr><call><name>assertLeaves</name><argument_list>(<argument><expr><name>topLevel</name></expr></argument>, <argument><expr><name>leaves</name></expr></argument>)</argument_list></call></expr>;</assert>
+    <name>readerContext</name> <operator>=</operator> <name>topLevel</name></block></expr>;</expr_stmt>
+    <expr_stmt><expr><name>reader</name> <operator>=</operator> <name><name>topLevel</name><operator>.</operator><name>reader</name></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>leafContexts</name> <operator>=</operator> <name>leaves</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>executor</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>subSearchers</name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>closeReader</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>this</name><operator>.</operator><name>leafSlices</name></name> <operator>=</operator> <ternary><condition><expr><name>executor</name> <operator>==</operator> <literal type="null">null</literal></expr> ?</condition><then> <expr><literal type="null">null</literal></expr> </then><else>: <expr><call><name>slices</name><argument_list>(<argument><expr><name>leafContexts</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</expr_stmt>
+   }
+   
+  private <function><type><name>boolean</name></type> <name>assertLeaves</name><parameter_list>(<parameter><decl><type><name>ReaderContext</name></type> <name>topLevel</name></decl></parameter>, <parameter><decl><type><name>AtomicReaderContext</name><modifier>...</modifier></type> <name>leaves</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <for>for <control>(<init><decl><type><name>AtomicReaderContext</name></type> <name>leaf</name> <range>: <expr><name>leaves</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <assert>assert <expr><call><name><name>ReaderUtil</name><operator>.</operator><name>getTopLevelContext</name></name><argument_list>(<argument><expr><name>leaf</name></expr></argument>)</argument_list></call> <operator>==</operator> <name>topLevel</name> <operator>:</operator> <literal type="string">"leaf context is not a leaf of the given top-level context"</literal></expr>;</assert>
+  <comment type="block" format="javadoc">/**
+   * Expert: Creates an array of leaf slices each holding a subset of the given leaves.
+   * Each {@link LeafSlice} is executed in a single thread. By default there
+   * will be one {@link LeafSlice} per leaf ({@link AtomicReaderContext}).
+   */</comment>
+  <function><type><specifier>protected</specifier> <name><name>LeafSlice</name><index>[]</index></name></type> <name>slices</name><parameter_list>(<parameter><decl><type><name>AtomicReaderContext</name><modifier>...</modifier></type><name>leaves</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>LeafSlice</name><index>[]</index></name></type> <name>slices</name> <init>= <expr><operator>new</operator> <name><name>LeafSlice</name><index>[<expr><name><name>leaves</name><operator>.</operator><name>length</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>slices</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <expr_stmt><expr><name><name>slices</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>new</operator> <call><name>LeafSlice</name><argument_list>(<argument><expr><name><name>leaves</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+     </block_content>}</block></for>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    <return>return <expr><name>slices</name></expr>;</return>
+   </block_content>}</block></function>
+
+   
+   <comment type="block" format="javadoc">/** Return the {@link IndexReader} this searches. */</comment>
+   <function><type><specifier>public</specifier> <name>IndexReader</name></type> <name>getIndexReader</name><parameter_list>()</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">236</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">212</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+       <return>return <expr><call><name><name>reader</name><operator>.</operator><name>docFreq</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr>;</return>
+     }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+       <decl_stmt><decl><type><specifier>final</specifier> <name><name>ExecutionHelper</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name></type> <name>runner</name> <init>= <expr><operator>new</operator> <call><name><name>ExecutionHelper</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>executor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>subSearchers</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>IndexSearcher</name></type> <name>searchable</name> <init>= <expr><name><name>subSearchers</name><index>[<expr><name>i</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leafContexts</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <decl_stmt><decl><type><specifier>final</specifier> <name>IndexReader</name></type> <name>leaf</name> <init>= <expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>reader</name></expr></init></decl>;</decl_stmt>
+         <expr_stmt><expr><call><name><name>runner</name><operator>.</operator><name>submit</name></name><argument_list>(<argument><expr><operator>new</operator> <class><super><name><name>Callable</name><argument_list type="generic">&lt;<argument><name>Integer</name></argument>&gt;</argument_list></name></super><argument_list>()</argument_list> <block>{
+             <function><type><specifier>public</specifier> <name>Integer</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+              <return>return <expr><call><name><name>Integer</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>searchable</name><operator>.</operator><name>docFreq</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+              <return>return <expr><call><name><name>Integer</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>leaf</name><operator>.</operator><name>docFreq</name></name><argument_list>(<argument><expr><name>term</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+             </block_content>}</block></function>
+           }</block></class></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></for>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">324</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">300</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+    <expr><operator>*</operator><operator>/</operator>
+   <specifier>public</specifier> <name>void</name> <call><name>search</name><argument_list>(<argument><expr><name>Query</name> <name>query</name></expr></argument>, <argument><expr><name>Filter</name> <name>filter</name></expr></argument>, <argument><expr><name>Collector</name> <name>results</name></expr></argument>)</argument_list></call>
+     <throws>throws <argument><expr><name>IOException</name> <block>{
+    <expr><call><name>search</name><argument_list>(<argument><expr><call><name>createWeight</name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>results</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;
+    <call><name>search</name><argument_list>(<argument><expr><name>leafContexts</name></expr></argument>, <argument><expr><call><name>createWeight</name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>results</name></expr></argument>)</argument_list></call></block></expr>;</expr_stmt>
+   </block_content>}</block></for>
+ 
+   <comment type="block" format="javadoc">/** Lower-level search API.
+@@ -342,7 +318,7 @@ public class IndexSearcher {
+   */</comment>
+   <function><type><specifier>public</specifier> <name>void</name></type> <name>search</name><parameter_list>(<parameter><decl><type><name>Query</name></type> <name>query</name></decl></parameter>, <parameter><decl><type><name>Collector</name></type> <name>results</name></decl></parameter>)</parameter_list>
+     <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <expr_stmt><expr><call><name>search</name><argument_list>(<argument><expr><call><name>createWeight</name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>results</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>search</name><argument_list>(<argument><expr><name>leafContexts</name></expr></argument>, <argument><expr><call><name>createWeight</name><argument_list>(<argument><expr><name>query</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="null">null</literal></expr></argument>, <argument><expr><name>results</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+   </block_content>}</block></function>
+   
+   <comment type="block" format="javadoc">/** Search implementation with arbitrary sorting.  Finds
+@@ -382,25 +358,16 @@ public class IndexSearcher {
+    * @throws BooleanQuery.TooManyClauses
+    */</comment>
+   <function><type><specifier>protected</specifier> <name>TopDocs</name></type> <name>search</name><parameter_list>(<parameter><decl><type><name>Weight</name></type> <name>weight</name></decl></parameter>, <parameter><decl><type><name>Filter</name></type> <name>filter</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>nDocs</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+
+     <if_stmt><if>if <condition>(<expr><name>executor</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <comment type="line">// single thread</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>limit</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>maxDoc</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <if_stmt><if>if <condition>(<expr><name>limit</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>limit</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+      <expr_stmt><expr><name>nDocs</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>min</name></name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>limit</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>TopScoreDocCollector</name></type> <name>collector</name> <init>= <expr><call><name><name>TopScoreDocCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><operator>!</operator><call><name><name>weight</name><operator>.</operator><name>scoresDocsOutOfOrder</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>search</name><argument_list>(<argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <return>return <expr><call><name><name>collector</name><operator>.</operator><name>topDocs</name></name><argument_list>()</argument_list></call></expr>;</return>
+      <return>return <expr><call><name>search</name><argument_list>(<argument><expr><name>leafContexts</name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if> <else>else <block>{<block_content>
+       <decl_stmt><decl><type><specifier>final</specifier> <name>HitQueue</name></type> <name>hq</name> <init>= <expr><operator>new</operator> <call><name>HitQueue</name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><specifier>final</specifier> <name>Lock</name></type> <name>lock</name> <init>= <expr><operator>new</operator> <call><name>ReentrantLock</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><specifier>final</specifier> <name><name>ExecutionHelper</name><argument_list type="generic">&lt;<argument><name>TopDocs</name></argument>&gt;</argument_list></name></type> <name>runner</name> <init>= <expr><operator>new</operator> <call><name><name>ExecutionHelper</name><argument_list type="generic">&lt;<argument><name>TopDocs</name></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>executor</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>subSearchers</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each sub</comment>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leafSlices</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each sub</comment>
+         <expr_stmt><expr><call><name><name>runner</name><operator>.</operator><name>submit</name></name><argument_list>(
+                      <argument><expr><operator>new</operator> <call><name>SearcherCallableNoSort</name><argument_list>(<argument><expr><name>lock</name></expr></argument>, <argument><expr><name><name>subSearchers</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>hq</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                      <expr_stmt><expr><operator>new</operator> <call><name>SearcherCallableNoSort</name><argument_list>(<argument><expr><name>lock</name></expr></argument>, <argument><expr><name>this</name></expr></argument>, <argument><expr><name><name>leafSlices</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>hq</name></expr></argument>)</argument_list></call></expr></expr_stmt>)</block_content></block><empty_stmt>;</empty_stmt></for>
+       </block_content>}</block></for>
+ 
+       <decl_stmt><decl><type><name>int</name></type> <name>totalHits</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">418</literal></expr><operator>,</operator><expr><literal type="number">6</literal> <operator>+</operator><literal type="number">385</literal></expr><operator>,</operator><expr><literal type="number">25</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+     }</block></expr></expr_stmt>
+   </block_content>}</block></else></if_stmt>
+ 
+  <comment type="block" format="javadoc">/** Expert: Low-level search implementation.  Finds the top &lt;code&gt;n&lt;/code&gt;
+   * hits for &lt;code&gt;query&lt;/code&gt;, using the given leaf readers applying &lt;code&gt;filter&lt;/code&gt; if non-null.
+   *
+   * &lt;p&gt;Applications should usually call {@link IndexSearcher#search(Query,int)} or
+   * {@link IndexSearcher#search(Query,Filter,int)} instead.
+   * @throws BooleanQuery.TooManyClauses
+   */</comment>
+  <function><type><specifier>protected</specifier> <name>TopDocs</name></type> <name>search</name><parameter_list>(<parameter><decl><type><name><name>AtomicReaderContext</name><index>[]</index></name></type> <name>leaves</name></decl></parameter>, <parameter><decl><type><name>Weight</name></type> <name>weight</name></decl></parameter>, <parameter><decl><type><name>Filter</name></type> <name>filter</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>nDocs</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// single thread</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>limit</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>maxDoc</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>limit</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>limit</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><name>nDocs</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>min</name></name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>limit</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>TopScoreDocCollector</name></type> <name>collector</name> <init>= <expr><call><name><name>TopScoreDocCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><operator>!</operator><call><name><name>weight</name><operator>.</operator><name>scoresDocsOutOfOrder</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>search</name><argument_list>(<argument><expr><name>leaves</name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><call><name><name>collector</name><operator>.</operator><name>topDocs</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+   <comment type="block" format="javadoc">/** Expert: Low-level search implementation with arbitrary sorting.  Finds
+    * the top &lt;code&gt;n&lt;/code&gt; hits for &lt;code&gt;query&lt;/code&gt;, applying
+    * &lt;code&gt;filter&lt;/code&gt; if non-null, and sorting the hits by the criteria in
+@@ -449,27 +435,18 @@ public class IndexSearcher {
+       throws IOException {
+ 
+     if (sort == null) throw new NullPointerException();
+
+    
+     if (executor == null) {
+      // single thread
+      int limit = reader.maxDoc();
+      if (limit == 0) {
+        limit = 1;
+      }
+      nDocs = Math.min(nDocs, limit);
+
+      TopFieldCollector collector = TopFieldCollector.create(sort, nDocs,
+                                                             fillFields, fieldSortDoTrackScores, fieldSortDoMaxScore, !weight.scoresDocsOutOfOrder());
+      search(weight, filter, collector);
+      return (TopFieldDocs) collector.topDocs();
+      // use all leaves here!
+      return search (leafContexts, weight, filter, nDocs, sort, fillFields);
+     } else {
+       // TODO: make this respect fillFields
+       final FieldDocSortedHitQueue hq = new FieldDocSortedHitQueue(nDocs);
+       final Lock lock = new ReentrantLock();
+       final ExecutionHelper&lt;TopFieldDocs&gt; runner = new ExecutionHelper&lt;TopFieldDocs&gt;(executor);
+      for (int i = 0; i &lt; subSearchers.length; i++) { // search each sub
+      for (int i = 0; i &lt; leafSlices.length; i++) { // search each leaf slice
+         runner.submit(
+                      new SearcherCallableWithSort(lock, subSearchers[i], weight, filter, nDocs, hq, sort));
+                      new SearcherCallableWithSort(lock, this, leafSlices[i], weight, filter, nDocs, hq, sort));
+       }
+       int totalHits = 0;
+       float maxScore = Float.NEGATIVE_INFINITY;
+@@ -484,6 +461,33 @@ public class IndexSearcher {
+       return new TopFieldDocs(totalHits, scoreDocs, hq.getFields(), maxScore);
+     }
+   }
+  
+  
+  /**
+   * Just like {@link #search(Weight, Filter, int, Sort)}, but you choose
+   * whether or not the fields in the returned {@link FieldDoc} instances should
+   * be set by specifying fillFields.
+   *
+   * &lt;p&gt;NOTE: this does not compute scores by default.  If you
+   * need scores, create a {@link TopFieldCollector}
+   * instance by calling {@link TopFieldCollector#create} and
+   * then pass that to {@link #search(Weight, Filter,
+   * Collector)}.&lt;/p&gt;
+   */</comment>
+  <function><type><specifier>protected</specifier> <name>TopFieldDocs</name></type> <name>search</name><parameter_list>(<parameter><decl><type><name><name>AtomicReaderContext</name><index>[]</index></name></type> <name>leaves</name></decl></parameter>, <parameter><decl><type><name>Weight</name></type> <name>weight</name></decl></parameter>, <parameter><decl><type><name>Filter</name></type> <name>filter</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>nDocs</name></decl></parameter>,
+      <parameter><decl><type><name>Sort</name></type> <name>sort</name></decl></parameter>, <parameter><decl><type><name>boolean</name></type> <name>fillFields</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+    <comment type="line">// single thread</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>limit</name> <init>= <expr><call><name><name>reader</name><operator>.</operator><name>maxDoc</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>limit</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>limit</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><name>nDocs</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>min</name></name><argument_list>(<argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>limit</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>TopFieldCollector</name></type> <name>collector</name> <init>= <expr><call><name><name>TopFieldCollector</name><operator>.</operator><name>create</name></name><argument_list>(<argument><expr><name>sort</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>,
+                                                           <argument><expr><name>fillFields</name></expr></argument>, <argument><expr><name>fieldSortDoTrackScores</name></expr></argument>, <argument><expr><name>fieldSortDoMaxScore</name></expr></argument>, <argument><expr><operator>!</operator><call><name><name>weight</name><operator>.</operator><name>scoresDocsOutOfOrder</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>search</name><argument_list>(<argument><expr><name>leaves</name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><operator>(</operator><name>TopFieldDocs</name><operator>)</operator> <call><name><name>collector</name><operator>.</operator><name>topDocs</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+ 
+   <comment type="block" format="javadoc">/**
+    * Lower-level search API.
+@@ -497,6 +501,12 @@ public class IndexSearcher {
+    * documents. The high-level search API ({@link IndexSearcher#search(Query,int)}) is
+    * usually more efficient, as it skips non-high-scoring hits.
+    * 
+   * &lt;p&gt;
+   * NOTE: this method executes the searches on all given leaves exclusively.
+   * To search across all the searchers leaves use {@link #leafContexts}.
+   * 
+   * @param leaves 
+   *          the searchers leaves to execute the searches on
+    * @param weight
+    *          to match documents
+    * @param filter
+@@ -505,7 +515,7 @@ public class IndexSearcher {
+    *          to receive hits
+    * @throws BooleanQuery.TooManyClauses
+    */</comment>
+  <decl_stmt><decl><type><specifier>protected</specifier> <name>void</name></type> <name>search</name><argument_list>(<argument><expr><name>Weight</name> <name>weight</name></expr></argument>, <argument><expr><name>Filter</name> <name>filter</name></expr></argument>, <argument><expr><name>Collector</name> <name>collector</name></expr></argument>)</argument_list>
+  protected <name>void</name> <name>search</name><argument_list>(<argument><expr><name><name>AtomicReaderContext</name><index>[]</index></name> <name>leaves</name></expr></argument>, <argument><expr><name>Weight</name> <name>weight</name></expr></argument>, <argument><expr><name>Filter</name> <name>filter</name></expr></argument>, <argument><expr><name>Collector</name> <name>collector</name></expr></argument>)</argument_list>
+       <throws>throws <argument><expr><name>IOException</name> <block>{</block></expr></argument>
+ 
+     <comment type="line">// TODO: should we make this</comment>
+@<argument>@ <expr><operator>-</operator><literal type="number">513</literal></expr></argument>,<argument><expr><literal type="number">18</literal> <operator>+</operator><literal type="number">523</literal></expr></argument>,<argument><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name></expr></argument></throws> <block>{<block_content>
+     <decl_stmt><decl><type><name>ScorerContext</name></type> <name>scorerContext</name> <init>=  <expr><call><name><name>ScorerContext</name><operator>.</operator><name>def</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>scoreDocsInOrder</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>topScorer</name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+     <comment type="line">// always use single thread:</comment>
+     <if_stmt><if>if <condition>(<expr><name>filter</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leafContexts</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each subreader</comment>
+        <expr_stmt><expr><call><name><name>collector</name><operator>.</operator><name>setNextReader</name></name><argument_list>(<argument><expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leaves</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each subreader</comment>
+        <expr_stmt><expr><call><name><name>collector</name><operator>.</operator><name>setNextReader</name></name><argument_list>(<argument><expr><name><name>leaves</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <expr_stmt><expr><name>scorerContext</name> <operator>=</operator> <call><name><name>scorerContext</name><operator>.</operator><name>scoreDocsInOrder</name></name><argument_list>(<argument><expr><operator>!</operator><call><name><name>collector</name><operator>.</operator><name>acceptsDocsOutOfOrder</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>Scorer</name></type> <name>scorer</name> <init>= <expr><call><name><name>weight</name><operator>.</operator><name>scorer</name></name><argument_list>(<argument><expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>scorerContext</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>Scorer</name></type> <name>scorer</name> <init>= <expr><call><name><name>weight</name><operator>.</operator><name>scorer</name></name><argument_list>(<argument><expr><name><name>leaves</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>scorerContext</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <if_stmt><if>if <condition>(<expr><name>scorer</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+           <expr_stmt><expr><call><name><name>scorer</name><operator>.</operator><name>score</name></name><argument_list>(<argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+       </block_content>}</block></for>
+     </block_content>}</block></for> <if_stmt><else>else <block>{<block_content>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leafContexts</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each subreader</comment>
+        <expr_stmt><expr><call><name><name>collector</name><operator>.</operator><name>setNextReader</name></name><argument_list>(<argument><expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>searchWithFilter</name><argument_list>(<argument><expr><name><name>leafContexts</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name><name>leaves</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// search each subreader</comment>
+        <expr_stmt><expr><call><name><name>collector</name><operator>.</operator><name>setNextReader</name></name><argument_list>(<argument><expr><name><name>leaves</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>searchWithFilter</name><argument_list>(<argument><expr><name><name>leaves</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>collector</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></for>
+     </block_content>}</block></for>
+   </block_content>}</block></else></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">649</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">659</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+    <expr><operator>*</operator> <name>Returns</name> <name>this</name> <name>searchers</name> <name>the</name> <name>top</name><operator>-</operator><name>level</name> <block>{@<expr><name>link</name> <name>ReaderContext</name></expr>}</block><operator>.</operator>
+    <operator>*</operator> @<name>see</name> <name>IndexReader</name><operator>#</operator><call><name>getTopReaderContext</name><argument_list>()</argument_list></call>
+    <operator>*</operator><operator>/</operator>
+  <comment type="block">/* Sugar for .getIndexReader().getTopReaderContext() */</comment>
+  <comment type="block">/* sugar for #getReader().getTopReaderContext() */</comment>
+   <specifier>public</specifier> <name>ReaderContext</name> <call><name>getTopReaderContext</name><argument_list>()</argument_list></call> <block>{
+     <return>return <expr><name>readerContext</name></expr>;</return>
+   }</block>
+@@ <operator>-</operator><literal type="number">660</literal></expr>,<expr><literal type="number">24</literal> <operator>+</operator><literal type="number">670</literal></expr>,<expr><literal type="number">26</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>class</name> <name>SearcherCallableNoSort</name> implements <name><name>Callable</name><argument_list type="generic">&lt;<argument><name>TopDocs</name></argument>&gt;</argument_list></name> <block>{
+ 
+     <expr><specifier>private</specifier> <name>final</name> <name>Lock</name> <name>lock</name></expr>;
+    <specifier>private</specifier> <name>final</name> <name>IndexSearcher</name> <name>searchable</name></block></expr>;
+    <specifier>private</specifier> <name>final</name> <name>IndexSearcher</name> <name>searcher</name></block></expr>;
+     <specifier>private</specifier> <name>final</name> <name>Weight</name> <name>weight</name></block></expr>;</expr_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Filter</name></type> <name>filter</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>int</name></type> <name>nDocs</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>HitQueue</name></type> <name>hq</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>LeafSlice</name></type> <name>slice</name></decl>;</decl_stmt>
+ 
+    <expr_stmt><expr><specifier>public</specifier> <call><name>SearcherCallableNoSort</name><argument_list>(<argument><expr><name>Lock</name> <name>lock</name></expr></argument>, <argument><expr><name>IndexSearcher</name> <name>searchable</name></expr></argument>, <argument><expr><name>Weight</name> <name>weight</name></expr></argument>,
+    <argument><expr><specifier>public</specifier> <call><name>SearcherCallableNoSort</name><argument_list>(<argument><expr><name>Lock</name> <name>lock</name></expr></argument>, <argument><expr><name>IndexSearcher</name> <name>searcher</name></expr></argument>, <argument><expr><name>LeafSlice</name> <name>slice</name></expr></argument>,  <argument><expr><name>Weight</name> <name>weight</name></expr></argument>,
+         <argument><expr><name>Filter</name> <name>filter</name></expr></argument>, <argument><expr><name>int</name> <name>nDocs</name></expr></argument>, <argument><expr><name>HitQueue</name> <name>hq</name></expr></argument>)</argument_list></call> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>lock</name></name> <operator>=</operator> <name>lock</name></expr>;
+      <name><name>this</name><operator>.</operator><name>searchable</name></name> <operator>=</operator> <name>searchable</name></block></expr></argument>;</argument_list></call></expr></expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>searcher</name></name> <operator>=</operator> <name>searcher</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>weight</name></name> <operator>=</operator> <name>weight</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>filter</name></name> <operator>=</operator> <name>filter</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>nDocs</name></name> <operator>=</operator> <name>nDocs</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>hq</name></name> <operator>=</operator> <name>hq</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>slice</name></name> <operator>=</operator> <name>slice</name></expr>;</expr_stmt>
+     </block_content>}</block></if></if_stmt>
+ 
+     <function><type><specifier>public</specifier> <name>TopDocs</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>TopDocs</name></type> <name>docs</name> <init>= <expr><call><name><name>searchable</name><operator>.</operator><name>search</name></name> <argument_list>(<argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>TopDocs</name></type> <name>docs</name> <init>= <expr><call><name><name>searcher</name><operator>.</operator><name>search</name></name> <argument_list>(<argument><expr><name><name>slice</name><operator>.</operator><name>leaves</name></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><specifier>final</specifier> <name><name>ScoreDoc</name><index>[]</index></name></type> <name>scoreDocs</name> <init>= <expr><name><name>docs</name><operator>.</operator><name>scoreDocs</name></name></expr></init></decl>;</decl_stmt>
+       <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name><name>scoreDocs</name><operator>.</operator><name>length</name></name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{<block_content> <comment type="line">// merge scoreDocs into hq</comment>
+         <decl_stmt><decl><type><specifier>final</specifier> <name>ScoreDoc</name></type> <name>scoreDoc</name> <init>= <expr><name><name>scoreDocs</name><index>[<expr><name>j</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">701</literal></expr><operator>,</operator><expr><literal type="number">26</literal> <operator>+</operator><literal type="number">713</literal></expr><operator>,</operator><expr><literal type="number">28</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+   <expr><specifier>private</specifier> <specifier>static</specifier> <name>final</name> <name>class</name> <name>SearcherCallableWithSort</name> implements <name><name>Callable</name><argument_list type="generic">&lt;<argument><name>TopFieldDocs</name></argument>&gt;</argument_list></name> <block>{
+ 
+     <expr><specifier>private</specifier> <name>final</name> <name>Lock</name> <name>lock</name></expr>;
+    <specifier>private</specifier> <name>final</name> <name>IndexSearcher</name> <name>searchable</name></block></expr>;
+    <specifier>private</specifier> <name>final</name> <name>IndexSearcher</name> <name>searcher</name></block></expr>;</expr_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Weight</name></type> <name>weight</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Filter</name></type> <name>filter</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>int</name></type> <name>nDocs</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>FieldDocSortedHitQueue</name></type> <name>hq</name></decl>;</decl_stmt>
+     <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>Sort</name></type> <name>sort</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>LeafSlice</name></type> <name>slice</name></decl>;</decl_stmt>
+ 
+    <expr_stmt><expr><specifier>public</specifier> <call><name>SearcherCallableWithSort</name><argument_list>(<argument><expr><name>Lock</name> <name>lock</name></expr></argument>, <argument><expr><name>IndexSearcher</name> <name>searchable</name></expr></argument>, <argument><expr><name>Weight</name> <name>weight</name></expr></argument>,
+    <argument><expr><specifier>public</specifier> <call><name>SearcherCallableWithSort</name><argument_list>(<argument><expr><name>Lock</name> <name>lock</name></expr></argument>, <argument><expr><name>IndexSearcher</name> <name>searcher</name></expr></argument>, <argument><expr><name>LeafSlice</name> <name>slice</name></expr></argument>, <argument><expr><name>Weight</name> <name>weight</name></expr></argument>,
+         <argument><expr><name>Filter</name> <name>filter</name></expr></argument>, <argument><expr><name>int</name> <name>nDocs</name></expr></argument>, <argument><expr><name>FieldDocSortedHitQueue</name> <name>hq</name></expr></argument>, <argument><expr><name>Sort</name> <name>sort</name></expr></argument>)</argument_list></call> <block>{
+       <expr><name><name>this</name><operator>.</operator><name>lock</name></name> <operator>=</operator> <name>lock</name></expr>;
+      <name><name>this</name><operator>.</operator><name>searchable</name></name> <operator>=</operator> <name>searchable</name></block></expr></argument>;</argument_list></call></expr></expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>searcher</name></name> <operator>=</operator> <name>searcher</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>weight</name></name> <operator>=</operator> <name>weight</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>filter</name></name> <operator>=</operator> <name>filter</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>nDocs</name></name> <operator>=</operator> <name>nDocs</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>hq</name></name> <operator>=</operator> <name>hq</name></expr>;</expr_stmt>
+       <expr_stmt><expr><name><name>this</name><operator>.</operator><name>sort</name></name> <operator>=</operator> <name>sort</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>slice</name></name> <operator>=</operator> <name>slice</name></expr>;</expr_stmt>
+     </block_content>}</block></for>
+ 
+     <function><type><specifier>public</specifier> <name>TopFieldDocs</name></type> <name>call</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>IOException</name></expr></argument></throws> <block>{<block_content>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>TopFieldDocs</name></type> <name>docs</name> <init>= <expr><call><name><name>searchable</name><operator>.</operator><name>search</name></name> <argument_list>(<argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><specifier>final</specifier> <name>TopFieldDocs</name></type> <name>docs</name> <init>= <expr><call><name><name>searcher</name><operator>.</operator><name>search</name></name> <argument_list>(<argument><expr><name><name>slice</name><operator>.</operator><name>leaves</name></name></expr></argument>, <argument><expr><name>weight</name></expr></argument>, <argument><expr><name>filter</name></expr></argument>, <argument><expr><name>nDocs</name></expr></argument>, <argument><expr><name>sort</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+       <expr_stmt><expr><call><name><name>lock</name><operator>.</operator><name>lock</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+       <try>try <block>{<block_content>
+         <expr_stmt><expr><call><name><name>hq</name><operator>.</operator><name>setFields</name></name><argument_list>(<argument><expr><name><name>docs</name><operator>.</operator><name>fields</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">791</literal></expr><operator>,</operator><expr><literal type="number">4</literal> <operator>+</operator><literal type="number">805</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>IndexSearcher</name> <block>{
+       <return>return <expr><name>this</name></expr>;</return>
+     }</block></expr></expr_stmt>
+   </block_content>}</block></try>
+
+  <comment type="block" format="javadoc">/**
+   * A class holding a subset of the {@link IndexSearcher}s leaf contexts to be
+   * executed within a single thread.
+   * 
+   * @lucene.experimental
+   */</comment>
+  <class><specifier>public</specifier> <specifier>static</specifier> class <name>LeafSlice</name> <block>{
+    <decl_stmt><decl><type><specifier>final</specifier> <name><name>AtomicReaderContext</name><index>[]</index></name></type> <name>leaves</name></decl>;</decl_stmt>
+    
+    <constructor><specifier>public</specifier> <name>LeafSlice</name><parameter_list>(<parameter><decl><type><name>AtomicReaderContext</name><modifier>...</modifier></type><name>leaves</name></decl></parameter>)</parameter_list> <block>{<block_content>
+      <expr_stmt><expr><name><name>this</name><operator>.</operator><name>leaves</name></name> <operator>=</operator> <name>leaves</name></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+  }</block></class>
+ </block_content>}</block></function>
+<expr_stmt><expr><name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>QueryValueSource</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>QueryValueSource</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b7d13efb351</name><operator>..</operator><name>ebf40a15dfb</name> <literal type="number">100755</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>QueryValueSource</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>solr</name><operator>/</operator><name>src</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>solr</name><operator>/</operator><name>search</name><operator>/</operator><name>function</name><operator>/</operator><name><name>QueryValueSource</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">100</literal></expr><operator>,</operator><expr><literal type="number">11</literal> <operator>+</operator><literal type="number">100</literal></expr><operator>,</operator><expr><literal type="number">11</literal> @@ <name>class</name> <name>QueryDocValues</name> extends <name>DocValues</name> <block>{
+     <if_stmt><if>if <condition>(<expr><name>w</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+       <decl_stmt><decl><type><name>IndexSearcher</name></type> <name>weightSearcher</name></decl>;</decl_stmt>
+       <if_stmt><if>if<condition>(<expr><name>fcontext</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name>weightSearcher</name> <operator>=</operator> <operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><call><name><name>ReaderUtil</name><operator>.</operator><name>getTopLevelContext</name></name><argument_list>(<argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>weightSearcher</name> <operator>=</operator> <operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><call><name><name>ReaderUtil</name><operator>.</operator><name>getTopLevelContext</name></name><argument_list>(<argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+       </block_content>}</block></if> <else>else <block>{<block_content>
+         <expr_stmt><expr><name>weightSearcher</name> <operator>=</operator> <operator>(</operator><name>IndexSearcher</name><operator>)</operator><call><name><name>fcontext</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><literal type="string">"searcher"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         <if_stmt><if>if <condition>(<expr><name>weightSearcher</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+          <expr_stmt><expr><name>weightSearcher</name> <operator>=</operator> <operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><call><name><name>ReaderUtil</name><operator>.</operator><name>getTopLevelContext</name></name><argument_list>(<argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          <expr_stmt><expr><name>weightSearcher</name> <operator>=</operator> <operator>new</operator> <call><name>IndexSearcher</name><argument_list>(<argument><expr><call><name><name>ReaderUtil</name><operator>.</operator><name>getTopLevelContext</name></name><argument_list>(<argument><expr><name>readerContext</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+       </block_content>}</block></else></if_stmt>
+       <expr_stmt><expr><name>w</name> <operator>=</operator> <call><name><name>q</name><operator>.</operator><name>weight</name></name><argument_list>(<argument><expr><name>weightSearcher</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<expr_stmt><expr><operator>-</operator> 
+<literal type="number">2.19.1.windows</literal><literal type="number">.1</literal></expr></expr_stmt></block_content></block></if></if_stmt></block></expr></expr_stmt></block_content></block></function></block_content></block></decl></decl_stmt></block_content></block></function></block_content></block></else></if_stmt></block_content></block></function></block_content></block></for></block_content></block></function>
+
+</unit>

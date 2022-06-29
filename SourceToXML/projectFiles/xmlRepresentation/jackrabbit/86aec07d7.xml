@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="E:/01Courses@USASK/CMPT898-HumanDrivenSoftwareEngineeringForScientificResearch/ProjectProgress/data_files/final_dataset/gen_patch_codes/filtered/jackrabbit/86aec07d7.java"><expr_stmt><expr><name>From</name> <literal type="number">86aec07d7d8581c9c05642c52a00250708a06466</literal> <name>Mon</name> <name>Sep</name> <literal type="number">17</literal> <literal type="number">00</literal><operator>:</operator><literal type="number">00</literal><operator>:</operator><literal type="number">00</literal> <literal type="number">2001</literal>
+<name>From</name><operator>:</operator> <name>Marcel</name> <name><name>Reutegger</name> <argument_list type="generic">&lt;<argument><name>mreutegg</name><annotation>@<name><name>apache</name><operator>.</operator><name>org</name></name></annotation></argument>&gt;</argument_list></name>
+<name>Date</name><operator>:</operator> <name>Fri</name></expr><operator>,</operator> <expr><literal type="number">2</literal> <name>Oct</name> <literal type="number">2009</literal> <literal type="number">06</literal><operator>:</operator><literal type="number">55</literal><operator>:</operator><literal type="number">50</literal> <operator>+</operator><literal type="number">0000</literal>
+<name>Subject</name><operator>:</operator> <index>[<expr><name>PATCH</name></expr>]</index> <name>JCR</name><operator>-</operator><literal type="number">2336</literal><operator>:</operator> <name>Automatic</name> <name>type</name> <name>conversion</name> <name>no</name> <name>longer</name> <name>works</name>
+
+<name>git</name><operator>-</operator><name>svn</name><operator>-</operator><name>id</name><operator>:</operator> <name>https</name><operator>:</operator><comment type="line">//svn.apache.org/repos/asf/jackrabbit/trunk@820908 13f79535-47bb-0310-9956-ffa450edef68</comment>
+<operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImpl</name><operator>.</operator><name>java</name></name>  <operator>|</operator> <literal type="number">596</literal> <operator>++</operator><operator>++</operator><operator>++</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator><operator>--</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>PropertyImpl</name><operator>.</operator><name>java</name></name>  <operator>|</operator>   <literal type="number">3</literal> <operator>+</operator><operator>-</operator>
+ <operator>...</operator><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImplTest</name><operator>.</operator><name>java</name></name>  <operator>|</operator>  <literal type="number">52</literal> <operator>++</operator>
+ <literal type="number">3</literal> <name>files</name> <name>changed</name></expr><operator>,</operator> <expr><literal type="number">248</literal> <call><name>insertions</name><argument_list>(<argument><expr><operator>+</operator></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><literal type="number">403</literal> <call><name>deletions</name><argument_list>(<argument><expr><operator>-</operator></expr></argument>)</argument_list></call>
+
+<name>diff</name> <operator>--</operator><name>git</name> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImpl</name><operator>.</operator><name>java</name></name> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImpl</name><operator>.</operator><name>java</name></name>
+<name>index</name> <name>b897277ea</name><operator>..</operator><literal type="number">87e291c05</literal> <literal type="number">100644</literal>
+<operator>--</operator> <name>a</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImpl</name><operator>.</operator><name>java</name></name>
+<operator>++</operator> <name>b</name><operator>/</operator><name>jackrabbit</name><operator>-</operator><name>core</name><operator>/</operator><name>src</name><operator>/</operator><name>main</name><operator>/</operator><name>java</name><operator>/</operator><name>org</name><operator>/</operator><name>apache</name><operator>/</operator><name>jackrabbit</name><operator>/</operator><name>core</name><operator>/</operator><name><name>NodeImpl</name><operator>.</operator><name>java</name></name>
+@@ <operator>-</operator><literal type="number">375</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">375</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+         <if_stmt><if>if <condition>(<expr><call><name>isNew</name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>hasProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+             <comment type="line">// this is a new node and the property does not exist yet</comment>
+             <comment type="line">// -&gt; no need to check item manager</comment>
+            <decl_stmt><decl><type><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>PropertyDefinitionImpl</name></name></type> <name>def</name> <init>= <expr><call><name>getApplicablePropertyDefinition</name><argument_list>(
+            <argument><expr><name>PropertyDefinitionImpl</name> <name>def</name> <operator>=</operator> <call><name>getApplicablePropertyDefinition</name><argument_list>(
+                     <argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><name>multiValued</name></expr></argument>, <argument><expr><name>exactTypeMatch</name></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></init></decl></decl_stmt>
+             <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>createChildProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><name>def</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+             <expr_stmt><expr><call><name><name>status</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name>CREATED</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">412</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">412</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+         }</block></expr></expr_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>ItemNotFoundException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+             <comment type="line">// does not exist yet:</comment>
+             <comment type="line">// find definition for the specified property and create property</comment>
+            <decl_stmt><decl><type><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>PropertyDefinitionImpl</name></name></type> <name>def</name> <init>= <expr><call><name>getApplicablePropertyDefinition</name><argument_list>(
+            <argument><expr><name>PropertyDefinitionImpl</name> <name>def</name> <operator>=</operator> <call><name>getApplicablePropertyDefinition</name><argument_list>(
+                     <argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><name>multiValued</name></expr></argument>, <argument><expr><name>exactTypeMatch</name></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></init></decl></decl_stmt>
+             <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>createChildProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><name>def</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+             <expr_stmt><expr><call><name><name>status</name><operator>.</operator><name>set</name></name><argument_list>(<argument><expr><name>CREATED</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">420</literal></expr><operator>,</operator><expr><literal type="number">14</literal> <operator>+</operator><literal type="number">420</literal></expr><operator>,</operator><expr><literal type="number">29</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+         }</block></expr></expr_stmt></block_content></block></catch></block_content></block></if></if_stmt>
+     }</block>
+ 
+    <comment type="block" format="javadoc">/**
+     * Creates a new property with the given name and &lt;code&gt;type&lt;/code&gt; hint and
+     * property definition. If the given property definition is not of type
+     * &lt;code&gt;UNDEFINED&lt;/code&gt;, then it takes precendence over the
+     * &lt;code&gt;type&lt;/code&gt; hint.
+     *
+     * @param name the name of the property to create.
+     * @param type the type hint.
+     * @param def  the associated property definition.
+     * @return the property instance.
+     * @throws RepositoryException if the property cannot be created.
+     */</comment>
+     <specifier>protected</specifier> <specifier>synchronized</specifier> <name>PropertyImpl</name> <call><name>createChildProperty</name><argument_list>(<argument><expr><name>Name</name> <name>name</name></expr></argument>, <argument><expr><name>int</name> <name>type</name></expr></argument>,
+                                                            <argument><expr><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>PropertyDefinitionImpl</name></name> <name>def</name></expr></argument>)</argument_list></call>
+                                                            <name>PropertyDefinitionImpl</name> <name>def</name></expr></expr_stmt>)
+             <throws>throws <argument><expr><name>RepositoryException</name> <block>{
+ 
+         <comment type="line">// create a new property state</comment>
+         <expr><name>PropertyState</name> <name>propState</name></expr></block></expr></argument></throws><empty_stmt>;</empty_stmt>
+         <try>try <block>{<block_content>
+             <decl_stmt><decl><type><name>QPropertyDefinition</name></type> <name>propDef</name> <init>= <expr><call><name><name>def</name><operator>.</operator><name>unwrap</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if_stmt><if>if <condition>(<expr><call><name><name>def</name><operator>.</operator><name>getRequiredType</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>PropertyType</name><operator>.</operator><name>UNDEFINED</name></name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>type</name> <operator>=</operator> <call><name><name>def</name><operator>.</operator><name>getRequiredType</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+             <expr_stmt><expr><name>propState</name> <operator>=</operator>
+                     <call><name><name>stateMgr</name><operator>.</operator><name>createTransientPropertyState</name></name><argument_list>(<argument><expr><call><name>getNodeId</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>name</name></expr></argument>,
+                             <argument><expr><name><name>ItemState</name><operator>.</operator><name>STATUS_NEW</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">583</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">598</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+     }</block>
+ 
+     <specifier>protected</specifier> <name>void</name> <call><name>onRedefine</name><argument_list>(<argument><expr><name>QNodeDefinition</name> <name>def</name></expr></argument>)</argument_list></call> <throws>throws <argument><expr><name>RepositoryException</name> <block>{
+        <expr><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>NodeDefinitionImpl</name></name> <name>newDef</name> <operator>=</operator>
+        <name>NodeDefinitionImpl</name> <name>newDef</name> <operator>=</operator>
+                 <call><name><name>session</name><operator>.</operator><name>getNodeTypeManager</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getNodeDefinition</name><argument_list>(<argument><expr><name>def</name></expr></argument>)</argument_list></call></expr></block></expr></argument></throws></expr>;</expr_stmt>
+         <comment type="line">// modify the state of 'this', i.e. the target node</comment>
+         <expr_stmt><expr><call><name>getOrCreateTransientItemState</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">652</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">667</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+             <expr><name>prop</name> <operator>=</operator> <operator>(</operator><name>PropertyImpl</name><operator>)</operator> <call><name><name>itemMgr</name><operator>.</operator><name>getItem</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>PropertyId</name><argument_list>(<argument><expr><call><name><name>thisState</name><operator>.</operator><name>getNodeId</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>NameConstants</name><operator>.</operator><name>JCR_MIXINTYPES</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;
+         }</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+             <comment type="line">// find definition for the jcr:mixinTypes property and create property</comment>
+            <decl_stmt><decl><type><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>PropertyDefinitionImpl</name></name></type> <name>def</name> <init>= <expr><call><name>getApplicablePropertyDefinition</name><argument_list>(
+            <argument><expr><name>PropertyDefinitionImpl</name> <name>def</name> <operator>=</operator> <call><name>getApplicablePropertyDefinition</name><argument_list>(
+                     <argument><expr><name><name>NameConstants</name><operator>.</operator><name>JCR_MIXINTYPES</name></name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>NAME</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr></argument>;</argument_list></call></expr></init></decl></decl_stmt>
+             <expr_stmt><expr><name>prop</name> <operator>=</operator> <call><name>createChildProperty</name><argument_list>(<argument><expr><name><name>NameConstants</name><operator>.</operator><name>JCR_MIXINTYPES</name></name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>NAME</name></name></expr></argument>, <argument><expr><name>def</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></else></if_stmt>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">715</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">730</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+      <expr><operator>*</operator>                                      <name>could</name> <name>be</name> <name>found</name>
+      <operator>*</operator> @<throws>throws <argument><expr><name>RepositoryException</name></expr></argument></throws></expr>          <if_stmt><if>if another error occurs
+      */
+    protected org.apache.jackrabbit.spi.commons.nodetype.NodeDefinitionImpl getApplicableChildNodeDefinition<condition>(<expr><name>Name</name> <name>nodeName</name></expr><operator>,</operator>
+    <expr><specifier>protected</specifier> <name>NodeDefinitionImpl</name> <call><name>getApplicableChildNodeDefinition</name><argument_list>(<argument><expr><name>Name</name> <name>nodeName</name></expr></argument>,
+                                                                   <argument><expr><name>Name</name> <name>nodeTypeName</name></expr></argument>)</argument_list></call>
+             <throws>throws <argument><expr><name>ConstraintViolationException</name></expr></argument>, <argument><expr><name>RepositoryException</name> <block>{
+         <expr><name>NodeTypeManagerImpl</name> <name>ntMgr</name> <operator>=</operator> <call><name><name>session</name><operator>.</operator><name>getNodeTypeManager</name></name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr></condition><empty_stmt>;</empty_stmt></if></if_stmt>
+@@ <operator>-</operator><literal type="number">737</literal><operator>,</operator><literal type="number">7</literal> <operator>+</operator><literal type="number">752</literal><operator>,</operator><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+      <expr><operator>*</operator>                                      <name>could</name> <name>be</name> <name>found</name>
+      <operator>*</operator> @<throws>throws <argument><expr><name>RepositoryException</name></expr></argument></throws></expr>          <if_stmt><if>if another error occurs
+      */
+    protected org.apache.jackrabbit.spi.commons.nodetype.PropertyDefinitionImpl getApplicablePropertyDefinition<condition>(<expr><name>Name</name> <name>propertyName</name></expr><operator>,</operator>
+    <expr><specifier>protected</specifier> <name>PropertyDefinitionImpl</name> <call><name>getApplicablePropertyDefinition</name><argument_list>(<argument><expr><name>Name</name> <name>propertyName</name></expr></argument>,
+                                                                      <argument><expr><name>int</name> <name>type</name></expr></argument>,
+                                                                      <argument><expr><name>boolean</name> <name>multiValued</name></expr></argument>,
+                                                                      <argument><expr><name>boolean</name> <name>exactTypeMatch</name></expr></argument>)</argument_list></call>
+@@ <operator>-</operator><literal type="number">1044</literal></expr><operator>,</operator><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1059</literal></expr><operator>,</operator><expr><literal type="number">7</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name></expr></condition> <block>{<block_content>
+                             <expr_stmt><expr><call><name>removeChildProperty</name><argument_list>(<argument><expr><name>propName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                             <continue>continue;</continue>
+                         <expr_stmt/></block_content></block></if></if_stmt>}</block></block>
+                        <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>PropertyDefinitionImpl</name></name> <name>pdi</name> <operator>=</operator> <call><name>getApplicablePropertyDefinition</name><argument_list>(
+                        <argument><expr><name>PropertyDefinitionImpl</name> <name>pdi</name> <operator>=</operator> <call><name>getApplicablePropertyDefinition</name><argument_list>(
+                                 <argument><expr><name>propName</name></expr></argument>, <argument><expr><call><name><name>propState</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                 <argument><expr><call><name><name>propState</name><operator>.</operator><name>isMultiValued</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></argument>;
+                         if <argument><expr><operator>(</operator><call><name><name>pdi</name><operator>.</operator><name>getRequiredType</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>PropertyType</name><operator>.</operator><name>UNDEFINED</name></name>
+@@ <operator>-</operator><literal type="number">1107</literal><operator>,</operator><literal type="number">7</literal> <operator>+</operator><literal type="number">1122</literal><operator>,</operator><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+                             <expr><call><name>removeChildNode</name><argument_list>(<argument><expr><call><name><name>entry</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>entry</name><operator>.</operator><name>getIndex</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;
+                             <continue>continue;</continue>
+                         }</block></expr></argument></argument_list></call></expr></expr_stmt>
+                        <decl_stmt><decl><type><name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>NodeDefinitionImpl</name></name></type> <name>ndi</name> <init>= <expr><call><name>getApplicableChildNodeDefinition</name><argument_list>(
+                        <argument><expr><name>NodeDefinitionImpl</name> <name>ndi</name> <operator>=</operator> <call><name>getApplicableChildNodeDefinition</name><argument_list>(
+                                 <argument><expr><call><name><name>entry</name><operator>.</operator><name>getName</name></name><argument_list>()</argument_list></call></expr></argument>,
+                                 <argument><expr><call><name><name>nodeState</name><operator>.</operator><name>getNodeTypeName</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>;
+                         <comment type="line">// redefine node</comment>
+<argument>@@ <expr><operator>-</operator><literal type="number">1459</literal></expr></argument>,<argument><expr><literal type="number">7</literal> <operator>+</operator><literal type="number">1474</literal></expr></argument>,<argument><expr><literal type="number">7</literal> @@ <specifier>public</specifier> class <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+         }</block>
+ 
+         <comment type="line">// Get the applicable child node definition for this node.</comment>
+        <name><name>org</name><operator>.</operator><name>apache</name><operator>.</operator><name>jackrabbit</name><operator>.</operator><name>spi</name><operator>.</operator><name>commons</name><operator>.</operator><name>nodetype</name><operator>.</operator><name>NodeDefinitionImpl</name></name> <name>def</name></expr></argument>;
+        <argument><expr><name>NodeDefinitionImpl</name> <name>def</name></expr></argument>;
+         try <block>{<block_content>
+             <expr_stmt><expr><name>def</name> <operator>=</operator> <call><name>getApplicableChildNodeDefinition</name><argument_list>(<argument><expr><name>nodeName</name></expr></argument>, <argument><expr><name>nodeTypeName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></argument_list></call></expr></init></decl></decl_stmt> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">1521</literal></expr><operator>,</operator><expr><literal type="number">34</literal> <operator>+</operator><literal type="number">1536</literal></expr><operator>,</operator><expr><literal type="number">18</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+     <expr><specifier>public</specifier> <name>PropertyImpl</name> <call><name>setProperty</name><argument_list>(<argument><expr><name>Name</name> <name>name</name></expr></argument>, <argument><expr><name><name>Value</name><index>[]</index></name> <name>values</name></expr></argument>)</argument_list></call>
+             <throws>throws <argument><expr><name>ValueFormatException</name></expr></argument>, <argument><expr><name>VersionException</name></expr></argument>, <argument><expr><name>LockException</name></expr></argument>,
+             <argument><expr><name>ConstraintViolationException</name></expr></argument>, <argument><expr><name>RepositoryException</name> <block>{
+
+        <comment type="line">// check state of this instance</comment>
+        <expr><call><name>sanityCheck</name><argument_list>()</argument_list></call></expr></block></expr></argument></throws></expr>;
+
+        <comment type="line">// check pre-conditions for setting property</comment>
+        <expr><call><name>checkSetProperty</name><argument_list>()</argument_list></call></expr>;
+
+        <expr><name>int</name> <name>type</name></expr>;
+        <if_stmt><if>if <condition>(<expr><name>values</name> <operator>==</operator> <literal type="null">null</literal> <operator>||</operator> <name><name>values</name><operator>.</operator><name>length</name></name> <operator>==</operator> <literal type="number">0</literal>
+                <operator>||</operator> <name><name>values</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>type</name> <operator>=</operator> <name><name>PropertyType</name><operator>.</operator><name>UNDEFINED</name></name></expr>;</expr_stmt>
+        <expr_stmt/></block_content></block></if></if_stmt>}</block></expr></expr_stmt> <if_stmt><else>else <block>{<block_content>
+            <expr_stmt><expr><name>type</name> <operator>=</operator> <name><name>values</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>.</operator><call><name>getType</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></else></if_stmt>
+
+        <decl_stmt><decl><type><name>BitSet</name></type> <name>status</name> <init>= <expr><operator>new</operator> <call><name>BitSet</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>getOrCreateProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>status</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>prop</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name>values</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>re</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>status</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>CREATED</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// setting value failed, get rid of newly created property</comment>
+                <expr_stmt><expr><call><name>removeChildProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>type</name> <init>= <expr><name><name>PropertyType</name><operator>.</operator><name>UNDEFINED</name></name></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>values</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <for>for <control>(<init><decl><type><name>Value</name></type> <name>v</name> <range>: <expr><name>values</name></expr></range></decl></init>)</control> <block>{<block_content>
+                <comment type="line">// use the type of the first value</comment>
+                <if_stmt><if>if <condition>(<expr><name>v</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><name>type</name> <operator>=</operator> <call><name><name>v</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                </block_content>}</block></if></if_stmt>
+             </block_content>}</block></for>
+            <comment type="line">// rethrow</comment>
+            <throw>throw <expr><name>re</name></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>prop</name></expr>;</return>
+
+        <return>return <expr><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>values</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></if></if_stmt>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -1569,30 +1568,7 @@ public class NodeImpl extends ItemImpl implements Node {
+     public PropertyImpl setProperty(Name name, Value[] values, int type)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, true, true, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(values, type, session.getValueFactory()));
+            } else {
+                prop.setValue(values);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        return setProperty(name, values, type, true);
+     }
+ 
+     /**
+@@ -1612,30 +1588,7 @@ public class NodeImpl extends ItemImpl implements Node {
+     public PropertyImpl setProperty(Name name, Value value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        int type = PropertyType.UNDEFINED;
+        if (value != null) {
+            type = value.getType();
+        }
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        return setProperty(name, value, false);
+     }
+ 
+     /**
+@@ -1898,7 +1851,7 @@ public class NodeImpl extends ItemImpl implements Node {
+         session.getValidator().checkModify(this, options, Permission.NONE);
+ 
+         // (4) check for name collisions
+        org.apache.jackrabbit.spi.commons.nodetype.NodeDefinitionImpl def;
+        NodeDefinitionImpl def;
+         try {
+             def = getApplicableChildNodeDefinition(name, null);
+         } catch (RepositoryException re) {
+@@ -2155,38 +2108,7 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, Value[] values)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        int type;
+        if (values == null || values.length == 0
+                || values[0] == null) {
+            type = PropertyType.UNDEFINED;
+        } else {
+            type = values[0].getType();
+        }
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, true, false, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(values, type, session.getValueFactory()));
+            } else {
+                prop.setValue(values);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        return setProperty(session.getQName(name), values);
+     }
+ 
+     /**
+@@ -2195,25 +2117,7 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, Value[] values, int type)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, true, true, status);
+        try {
+            prop.setValue(values, type);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        return setProperty(session.getQName(name), values, type);
+     }
+ 
+     /**
+@@ -2222,30 +2126,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, String[] values)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        /**
+         * if the target property is not of type STRING then a
+         * best-effort conversion is attempted
+         */</comment>
+        <comment type="line">// check state of this instance</comment>
+        <expr_stmt><expr><call><name>sanityCheck</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <comment type="line">// check pre-conditions for setting property</comment>
+        <expr_stmt><expr><call><name>checkSetProperty</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>BitSet</name></type> <name>status</name> <init>= <expr><operator>new</operator> <call><name>BitSet</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>getOrCreateProperty</name><argument_list>(
+                <argument><expr><name>name</name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>STRING</name></name></expr></argument>, <argument><expr><literal type="boolean">true</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>status</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <try>try <block>{<block_content>
+            <expr_stmt><expr><call><name><name>prop</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name>values</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>re</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>status</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>CREATED</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <comment type="line">// setting value failed, get rid of newly created property</comment>
+                <expr_stmt><expr><call><name>removeChildProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+            <comment type="line">// rethrow</comment>
+            <throw>throw <expr><name>re</name></expr>;</throw>
+        <decl_stmt><decl><type><name><name>Value</name><index>[]</index></name></type> <name>v</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>values</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>v</name> <operator>=</operator> <call><name><name>ValueHelper</name><operator>.</operator><name>convert</name></name><argument_list>(<argument><expr><name>values</name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>STRING</name></name></expr></argument>, <argument><expr><call><name><name>session</name><operator>.</operator><name>getValueFactory</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>prop</name></expr>;</return>
+        <return>return <expr><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></catch></try>
+ 
+     <comment type="block" format="javadoc">/**
+@@ -2254,30 +2139,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, String[] values, int type)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, true, true, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(values, type, session.getValueFactory()));
+            } else {
+                prop.setValue(values);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value[] v = null;
+        if (values != null) {
+            v = ValueHelper.convert(values, type, session.getValueFactory());
+         }
+        return prop;
+        return setProperty(session.getQName(name), v, type, true);
+     }
+ 
+     /**
+@@ -2286,26 +2152,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, String value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.STRING, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value v = null;
+        if (value != null) {
+            v = session.getValueFactory().createValue(value);
+         }
+        return prop;
+        return setProperty(name, v);
+     }
+ 
+     /**
+@@ -2314,30 +2165,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, String value, int type)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, false, true, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(value, type, session.getValueFactory()));
+            } else {
+                prop.setValue(value);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value v = null;
+        if (value != null) {
+            v = session.getValueFactory().createValue(value, type);
+         }
+        return prop;
+        return setProperty(session.getQName(name), v, true);
+     }
+ 
+     /**
+@@ -2346,30 +2178,10 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, Value value, int type)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, false, true, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(value, type, session.getValueFactory()));
+            } else {
+                prop.setValue(value);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        if (value != null) {
+            value = ValueHelper.convert(value, type, session.getValueFactory());
+         }
+        return prop;
+        return setProperty(session.getQName(name), value, true);
+     }
+ 
+     /**
+@@ -2378,35 +2190,7 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, Value value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        int type = PropertyType.UNDEFINED;
+        if (value != null) {
+            type = value.getType();
+        }
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(name, type, false, false, status);
+        try {
+            if (prop.getDefinition().getRequiredType() == PropertyType.UNDEFINED
+                    &amp;&amp; type != PropertyType.UNDEFINED) {
+                prop.setValue(ValueHelper.convert(value, type, session.getValueFactory()));
+            } else {
+                prop.setValue(value);
+            }
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        return setProperty(session.getQName(name), value);
+     }
+ 
+     /**
+@@ -2415,26 +2199,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, InputStream value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.BINARY, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value v = null;
+        if (value != null) {
+            v = session.getValueFactory().createValue(value);
+         }
+        return prop;
+        return setProperty(name, v);
+     }
+ 
+     /**
+@@ -2443,26 +2212,8 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, boolean value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.BOOLEAN, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        Value v = session.getValueFactory().createValue(value);
+        return setProperty(name, v);
+     }
+ 
+     /**
+@@ -2471,26 +2222,8 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, double value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.DOUBLE, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        }
+        return prop;
+        Value v = session.getValueFactory().createValue(value);
+        return setProperty(name, v);
+     }
+ 
+     /**
+@@ -2499,43 +2232,98 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, long value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+        Value v = session.getValueFactory().createValue(value);
+        return setProperty(name, v);
+    }
+ 
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.LONG, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+    /**
+     * {@inheritDoc}
+     */</comment>
+    <function><type><specifier>public</specifier> <name>Property</name></type> <name>setProperty</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>, <parameter><decl><type><name>Calendar</name></type> <name>value</name></decl></parameter>)</parameter_list>
+            <throws>throws <argument><expr><name>ValueFormatException</name></expr></argument>, <argument><expr><name>VersionException</name></expr></argument>, <argument><expr><name>LockException</name></expr></argument>,
+            <argument><expr><name>ConstraintViolationException</name></expr></argument>, <argument><expr><name>RepositoryException</name></expr></argument></throws> <block>{<block_content>
+        <decl_stmt><decl><type><name>Value</name></type> <name>v</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>value</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <expr_stmt><expr><name>v</name> <operator>=</operator> <call><name><name>session</name><operator>.</operator><name>getValueFactory</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createValue</name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IllegalArgumentException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <comment type="line">// thrown if calendar cannot be formatted as ISO8601</comment>
+                <throw>throw <expr><operator>new</operator> <call><name>ValueFormatException</name><argument_list>(<argument><expr><call><name><name>e</name><operator>.</operator><name>getMessage</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</throw>
+             </block_content>}</block></catch></try>
+            <comment type="line">// rethrow</comment>
+            <throw>throw <expr><name>re</name></expr>;</throw>
+         </block_content>}</block></if></if_stmt>
+        <return>return <expr><name>prop</name></expr>;</return>
+        <return>return <expr><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</return>
+     </block_content>}</block></function>
+ 
+     <comment type="block" format="javadoc">/**
+      * {@inheritDoc}
+      */</comment>
+    <decl_stmt><decl><type><specifier>public</specifier> <name>Property</name></type> <name>setProperty</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>, <argument><expr><name>Calendar</name> <name>value</name></expr></argument>)</argument_list>
+    public <name>Property</name> <name>setProperty</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>, <argument><expr><name>Node</name> <name>value</name></expr></argument>)</argument_list>
+             <throws>throws <argument><expr><name>ValueFormatException</name></expr></argument>, <argument><expr><name>VersionException</name></expr></argument>, <argument><expr><name>LockException</name></expr></argument>,
+             <argument><expr><name>ConstraintViolationException</name></expr></argument>, <argument><expr><name>RepositoryException</name> <block>{
+        <expr><name>Value</name> <name>v</name> <operator>=</operator> <literal type="null">null</literal></expr></block></expr></argument></throws></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>value</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <try>try <block>{<block_content>
+                <expr_stmt><expr><name>v</name> <operator>=</operator> <call><name><name>session</name><operator>.</operator><name>getValueFactory</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>createValue</name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>UnsupportedRepositoryOperationException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+                <comment type="line">// happens when node is not referenceable</comment>
+                <throw>throw <expr><operator>new</operator> <call><name>ValueFormatException</name><argument_list>(<argument><expr><literal type="string">"node is not of type mix:referenceable"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+            </block_content>}</block></catch></try>
+        </block_content>}</block></if></if_stmt>
+        <return>return <expr><call><name>setProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></catch></try>
+
+    <comment type="block" format="javadoc">/**
+     * Implementation for &lt;code&gt;setProperty()&lt;/code&gt; using a single {@link
+     * Value}. The type of the returned property is enforced based on the
+     * &lt;code&gt;enforceType&lt;/code&gt; flag. If set to &lt;code&gt;true&lt;/code&gt;, the returned
+     * property is of the passed type if it didn't exist before. If set to
+     * &lt;code&gt;false&lt;/code&gt;, then the returned property may be of some other type,
+     * but still must be based on an existing property definition for the given
+     * name and single-valued flag. The resulting type is taken from that
+     * definition and the implementation tries to convert the passed value to
+     * that type. If that fails, then a {@link ValueFormatException} is thrown.
+     *
+     * @param name        the name of the property to set.
+     * @param value       the value to set. If &lt;code&gt;null&lt;/code&gt; the property is
+     *                    removed.
+     * @param enforceType if the type of &lt;code&gt;value&lt;/code&gt; is enforced.
+     * @return the &lt;code&gt;Property&lt;/code&gt; object set, or &lt;code&gt;null&lt;/code&gt; if
+     *         this method was used to remove a property (by setting its value
+     *         to &lt;code&gt;null&lt;/code&gt;).
+     * @throws ValueFormatException         if &lt;code&gt;value&lt;/code&gt; cannot be
+     *                                      converted to the specified type or
+     *                                      if the property already exists and
+     *                                      is multi-valued.
+     * @throws VersionException             if this node is read-only due to a
+     *                                      checked-in node and this implementation
+     *                                      performs this validation immediately.
+     * @throws LockException                if a lock prevents the setting of
+     *                                      the property and this implementation
+     *                                      performs this validation immediately.
+     * @throws ConstraintViolationException if the change would violate a
+     *                                      node-type or other constraint and
+     *                                      this implementation performs this
+     *                                      validation immediately.
+     * @throws RepositoryException          if another error occurs.
+     */</comment>
+    <function><type><specifier>protected</specifier> <name>PropertyImpl</name></type> <name>setProperty</name><parameter_list>(<parameter><decl><type><name>Name</name></type> <name>name</name></decl></parameter>,
+                                       <parameter><decl><type><name>Value</name></type> <name>value</name></decl></parameter>,
+                                       <parameter><decl><type><name>boolean</name></type> <name>enforceType</name></decl></parameter>)</parameter_list> <throws>throws
+            <argument><expr><name>ValueFormatException</name></expr></argument>, <argument><expr><name>VersionException</name></expr></argument>, <argument><expr><name>LockException</name></expr></argument>,
+            <argument><expr><name>ConstraintViolationException</name></expr></argument>, <argument><expr><name>RepositoryException</name></expr></argument></throws> <block>{<block_content>
+         <comment type="line">// check state of this instance</comment>
+         <expr_stmt><expr><call><name>sanityCheck</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+         <comment type="line">// check pre-conditions for setting property</comment>
+         <expr_stmt><expr><call><name>checkSetProperty</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+ 
+        <decl_stmt><decl><type><name>int</name></type> <name>type</name> <init>= <expr><name><name>PropertyType</name><operator>.</operator><name>UNDEFINED</name></name></expr></init></decl>;</decl_stmt>
+        <if_stmt><if>if <condition>(<expr><name>value</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><name>type</name> <operator>=</operator> <call><name><name>value</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+
+         <decl_stmt><decl><type><name>BitSet</name></type> <name>status</name> <init>= <expr><operator>new</operator> <call><name>BitSet</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>getOrCreateProperty</name><argument_list>(
+                <argument><expr><name>name</name></expr></argument>, <argument><expr><name><name>PropertyType</name><operator>.</operator><name>DATE</name></name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>status</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>PropertyImpl</name></type> <name>prop</name> <init>= <expr><call><name>getOrCreateProperty</name><argument_list>(<argument><expr><name>name</name></expr></argument>, <argument><expr><name>type</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>, <argument><expr><name>enforceType</name></expr></argument>, <argument><expr><name>status</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+         <try>try <block>{<block_content>
+             <expr_stmt><expr><call><name><name>prop</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+         </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>RepositoryException</name></type> <name>re</name></decl></parameter>)</parameter_list> <block>{<block_content>
+<annotation>@</annotation>@ <expr_stmt><expr><operator>-</operator><literal type="number">2550</literal></expr><operator>,</operator><expr><literal type="number">10</literal> <operator>+</operator><literal type="number">2338</literal></expr><operator>,</operator><expr><literal type="number">45</literal> @@ <specifier>public</specifier> <name>class</name> <name>NodeImpl</name> extends <name>ItemImpl</name> implements <name>Node</name> <block>{
+     }</block>
+ 
+     <comment type="block" format="javadoc">/**
+     * {@inheritDoc}
+     */</comment>
+    <specifier>public</specifier> <name>Property</name> <call><name>setProperty</name><argument_list>(<argument><expr><name>String</name> <name>name</name></expr></argument>, <argument><expr><name>Node</name> <name>value</name></expr></argument>)</argument_list></call>
+            <throws>throws <argument><expr><name>ValueFormatException</name></expr></argument>, <argument><expr><name>VersionException</name></expr></argument>, <argument><expr><name>LockException</name></expr></argument>,
+     <argument><expr><operator>*</operator> <name>Implementation</name></expr></argument></throws></expr></expr_stmt> <for>for &lt;code&gt;setProperty<control>(<init><expr/></init>)</control><block type="pseudo"><block_content><decl_stmt><decl><type><argument_list type="generic">&lt;<argument><operator>/</operator><name>code</name></argument>&gt;</argument_list> <name>using</name></type> <name>a</name> <block>{<block_content><annotation>@<name>link</name></annotation> <expr><name>Value</name></expr></block_content>}</block></decl></decl_stmt></block_content></block></for>
+     <expr_stmt><expr><operator>*</operator> <name><name>array</name><operator>.</operator> <name>The</name></name> <name>type</name> <name>of</name> <name>the</name> <name>returned</name> <name>property</name> <name>is</name> <name>enforced</name> <name>based</name> <name>on</name> <name>the</name>
+     <operator>*</operator> <operator>&lt;</operator><name>code</name><operator>&gt;</operator><name><name>enforceType</name><argument_list type="generic">&lt;<argument><operator>/</operator><name>code</name></argument>&gt;</argument_list></name> <name><name>flag</name><operator>.</operator> <name>If</name></name> <name>set</name> <name><name>to</name> <argument_list type="generic">&lt;<argument><name>code</name></argument>&gt;</argument_list></name><literal type="boolean">true</literal><operator>&lt;</operator><operator>/</operator><name>code</name><operator>&gt;</operator></expr><operator>,</operator> <expr><name>the</name> <name>returned</name>
+     <operator>*</operator> <name>property</name> <name>is</name> <name>of</name> <name>the</name> <name>passed</name> <name>type</name></expr></expr_stmt> <if_stmt><if>if it didn'</if></if_stmt></block_content></block></catch></try></block_content></block></function></block_content></block></catch></block_content></block></try>t exist before. If set to
+     * &lt;code&gt;false&lt;/code&gt;, then the returned property may be of some other type,
+     * but still must be based on an existing property definition for the given
+     * name and multi-valued flag. The resulting type is taken from that
+     * definition and the implementation tries to convert the passed values to
+     * that type. If that fails, then a {@link ValueFormatException} is thrown.
+     *
+     * @param name        the name of the property to set.
+     * @param values      the values to set. If &lt;code&gt;null&lt;/code&gt; the property
+     *                    is removed.
+     * @param type        the target type of the values to set.
+     * @param enforceType if the target type is enforced.
+     * @return the &lt;code&gt;Property&lt;/code&gt; object set, or &lt;code&gt;null&lt;/code&gt; if
+     *         this method was used to remove a property (by setting its value
+     *         to &lt;code&gt;null&lt;/code&gt;).
+     * @throws ValueFormatException         if a value cannot be converted to
+     *                                      the specified type or if the
+     *                                      property already exists and is not
+     *                                      multi-valued.
+     * @throws VersionException             if this node is read-only due to a
+     *                                      checked-in node and this implementation
+     *                                      performs this validation immediately.
+     * @throws LockException                if a lock prevents the setting of
+     *                                      the property and this implementation
+     *                                      performs this validation immediately.
+     * @throws ConstraintViolationException if the change would violate a
+     *                                      node-type or other constraint and
+     *                                      this implementation performs this
+     *                                      validation immediately.
+     * @throws RepositoryException          if another error occurs.
+     */
+    protected PropertyImpl setProperty(Name name,
+                                       Value[] values,
+                                       int type,
+                                       boolean enforceType) throws
+            ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+         // check state of this instance
+         sanityCheck();
+@@ -2562,10 +2385,9 @@ public class NodeImpl extends ItemImpl implements Node {
+         checkSetProperty();
+ 
+         BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.REFERENCE, false, true, status);
+        PropertyImpl prop = getOrCreateProperty(name, type, true, enforceType, status);
+         try {
+            prop.setValue(value);
+            prop.setValue(values, type);
+         } catch (RepositoryException re) {
+             if (status.get(CREATED)) {
+                 // setting value failed, get rid of newly created property
+@@ -3750,7 +3572,7 @@ public class NodeImpl extends ItemImpl implements Node {
+                             removeChildProperty(propName);
+                             continue;
+                         }
+                        org.apache.jackrabbit.spi.commons.nodetype.PropertyDefinitionImpl pdi = getApplicablePropertyDefinition(
+                        PropertyDefinitionImpl pdi = getApplicablePropertyDefinition(
+                                 propName, propState.getType(),
+                                 propState.isMultiValued(), false);
+                         if (pdi.getRequiredType() != PropertyType.UNDEFINED
+@@ -3818,7 +3640,7 @@ public class NodeImpl extends ItemImpl implements Node {
+                             removeChildNode(entry.getName(), entry.getIndex());
+                             continue;
+                         }
+                        org.apache.jackrabbit.spi.commons.nodetype.NodeDefinitionImpl ndi = getApplicableChildNodeDefinition(
+                        NodeDefinitionImpl ndi = getApplicableChildNodeDefinition(
+                                 entry.getName(),
+                                 nodeState.getNodeTypeName());
+                         // redefine node
+@@ -3859,26 +3681,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, BigDecimal value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.DECIMAL, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value v = null;
+        if (value != null) {
+            v = session.getValueFactory().createValue(value);
+         }
+        return prop;
+        return setProperty(name, v);
+     }
+ 
+     /**
+@@ -3887,26 +3694,11 @@ public class NodeImpl extends ItemImpl implements Node {
+     public Property setProperty(String name, Binary value)
+             throws ValueFormatException, VersionException, LockException,
+             ConstraintViolationException, RepositoryException {
+        // check state of this instance
+        sanityCheck();
+
+        // check pre-conditions for setting property
+        checkSetProperty();
+
+        BitSet status = new BitSet();
+        PropertyImpl prop = getOrCreateProperty(
+                name, PropertyType.BINARY, false, false, status);
+        try {
+            prop.setValue(value);
+        } catch (RepositoryException re) {
+            if (status.get(CREATED)) {
+                // setting value failed, get rid of newly created property
+                removeChildProperty(name);
+            }
+            // rethrow
+            throw re;
+        Value v = null;
+        if (value != null) {
+            v = session.getValueFactory().createValue(value);
+         }
+        return prop;
+        return setProperty(name, v);
+     }
+ 
+     /**
+diff --git a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/PropertyImpl.java b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/PropertyImpl.java
+index 81f0a9fd8..12d49fdd9 100644
+-- a/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/PropertyImpl.java
+++ b/jackrabbit-core/src/main/java/org/apache/jackrabbit/core/PropertyImpl.java
+@@ -48,6 +48,7 @@ import org.apache.jackrabbit.spi.Path;
+ import org.apache.jackrabbit.spi.QPropertyDefinition;
+ import org.apache.jackrabbit.spi.commons.name.NameConstants;
+ import org.apache.jackrabbit.spi.commons.value.ValueFormat;
+import org.apache.jackrabbit.spi.commons.nodetype.PropertyDefinitionImpl;
+ import org.apache.jackrabbit.value.ValueHelper;
+ import org.apache.commons.io.input.AutoCloseInputStream;
+ import org.slf4j.Logger;
+@@ -166,7 +167,7 @@ public class PropertyImpl extends ItemImpl implements Property {
+     }
+ 
+     protected void onRedefine(QPropertyDefinition def) throws RepositoryException {
+        org.apache.jackrabbit.spi.commons.nodetype.PropertyDefinitionImpl newDef =
+        PropertyDefinitionImpl newDef =
+                 session.getNodeTypeManager().getPropertyDefinition(def);
+         data.setDefinition(newDef);
+     }
+diff --git a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/NodeImplTest.java b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/NodeImplTest.java
+index 9e46afe36..fcca3dce2 100644
+-- a/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/NodeImplTest.java
+++ b/jackrabbit-core/src/test/java/org/apache/jackrabbit/core/NodeImplTest.java
+@@ -19,6 +19,7 @@ package org.apache.jackrabbit.core;
+ import org.apache.jackrabbit.api.security.JackrabbitAccessControlList;
+ import org.apache.jackrabbit.test.AbstractJCRTest;
+ import org.apache.jackrabbit.test.NotExecutableException;
+import org.apache.jackrabbit.test.api.nodetype.NodeTypeUtil;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ 
+@@ -26,7 +27,10 @@ import javax.jcr.ItemExistsException;
+ import javax.jcr.Node;
+ import javax.jcr.RepositoryException;
+ import javax.jcr.Session;
+import javax.jcr.Property;
+import javax.jcr.PropertyType;
+ import javax.jcr.nodetype.NodeType;
+import javax.jcr.nodetype.PropertyDefinition;
+ import javax.jcr.security.AccessControlManager;
+ import javax.jcr.security.AccessControlPolicy;
+ import javax.jcr.security.AccessControlPolicyIterator;
+@@ -34,6 +38,7 @@ import javax.jcr.security.Privilege;
+ import java.security.Principal;
+ import java.security.acl.Group;
+ import java.util.Iterator;
+import java.util.Calendar;
+ 
+ /** &lt;code&gt;NodeImplTest&lt;/code&gt;... */
+ public class NodeImplTest extends AbstractJCRTest {
+@@ -153,4 +158,51 @@ public class NodeImplTest extends AbstractJCRTest {
+         }
+     }
+ 
+    /**
+     * Test case for JCR-2336. Setting jcr:data (of type BINARY) must convert
+     * the String value to a binary.
+     *
+     * @throws RepositoryException -
+     */
+    public void testSetPropertyConvertValue() throws RepositoryException {
+        Node content = testRootNode.addNode("jcr:content", "nt:resource");
+        content.setProperty("jcr:lastModified", Calendar.getInstance());
+        content.setProperty("jcr:mimeType", "text/plain");
+        content.setProperty("jcr:data", "Hello");
+        superuser.save();
+    }
+
+    public void testSetPropertyConvertToString() throws RepositoryException {
+        Node n = testRootNode.addNode(nodeName1, "nt:folder");
+        n.addMixin("mix:title");
+        // must convert to string there is no other definition for this property
+        Property p = n.setProperty("jcr:title", 123);
+        assertEquals(PropertyType.nameFromValue(PropertyType.STRING),
+                PropertyType.nameFromValue(p.getType()));
+    }
+
+    public void testSetPropertyExplicitType() throws RepositoryException {
+        Node n = testRootNode.addNode(nodeName1, ntUnstructured);
+        n.addMixin("mix:title");
+        Property p = n.setProperty("jcr:title", "foo");
+        assertEquals(PropertyType.nameFromValue(PropertyType.STRING),
+                PropertyType.nameFromValue(p.getType()));
+        assertEquals(PropertyType.nameFromValue(PropertyType.STRING),
+                PropertyType.nameFromValue(p.getDefinition().getRequiredType()));
+        p.remove();
+        // must use residual definition from nt:unstructured
+        p = n.setProperty("jcr:title", 123);
+        assertEquals(PropertyType.nameFromValue(PropertyType.LONG),
+                PropertyType.nameFromValue(p.getType()));
+        assertEquals(PropertyType.nameFromValue(PropertyType.UNDEFINED),
+                PropertyType.nameFromValue(p.getDefinition().getRequiredType()));
+    }
+
+    public void testSetPropertyConvertMultiValued() throws RepositoryException {
+        Node n = testRootNode.addNode(nodeName1, "test:canSetProperty");
+        // must convert to long there is no other definition for this property
+        Property p = n.setProperty("LongMultiple", new String[]{"123", "456"});
+        assertEquals(PropertyType.nameFromValue(PropertyType.LONG),
+                PropertyType.nameFromValue(p.getType()));
+    }
+ }
+- 
+2.19.1.windows.1
+
+</unit>
