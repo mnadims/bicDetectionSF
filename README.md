@@ -28,5 +28,5 @@ Following Jupyter Notebook files works for:
 4. **Run PyExplainer Tool:** runPyExplainer-gs-best.ipynb, runPyExplainer-tp-best.ipynb
 
 #### Contact Information: 
-**Md Nadim**, Ph.D. Student, Computer Science, USASK, Canada 
+**Md Nadim**, Ph.D. Student, Computer Science, USASK, Canada. 
 Email: **mnadims.cse@gmail.com**
