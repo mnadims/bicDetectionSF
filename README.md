@@ -1,6 +1,7 @@
 # bicDetectionSF
-
-To extract source code syntax pattern features from GitHub Repositories, follow the following steps: 
+**SourceToXML** Directory contains some sample files extracted in our investigation. 
+**runExperiment** contains necessary source files to run/reproduce the experiment with new subjec systems. 
+To extract source code syntax pattern features from GitHub Repositories perform the following steps in **./runExperiment** directory: 
 #### Inputs #### 
 ssNames.txt (Names of the subject systems) and gitURLs.txt (URLs of the subject systems) 
 
