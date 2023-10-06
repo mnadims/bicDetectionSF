@@ -1,4 +1,6 @@
-# bicDetectionSF
+# Utilizing source code syntax patterns to detect bug inducing commits using machine learning models
+**Available at: https://link.springer.com/article/10.1007/s11219-022-09611-3**
+
 **SourceToXML** Directory contains some sample files extracted in our investigation. 
 
 **runExperiment** contains necessary source files to run/reproduce the experiment with new subjec systems. 
